@@ -34,16 +34,16 @@ Right now only about 10 core examples have been ported.
 
 
 
-| `raylib-cs`                                           | `raylib-cslo`                                                                                                                  |
-| ----------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------ |
-| is hand crafted.                                      | is autogen, with convienence wrappers on top.                                                                                  |
-| has docs inline and does not require unsafe           | Wrappers to make the raylib examples work with minimal changes, but other bindings not in examples will probably be neglected. |
-| has a long track record                               | didn't exist till mid november 2021!                                                                                           |
-| mit licensed                                          | lgpl licensed                                                                                                                  |
-| New Raylib version? Harder to detect breaking changes | New Raylib version? Breaking changes are easy to spot and fix                                                                  |
-| Nuget Package                                         | just this repo right now                                                                                                       |
-| Stable                                                | in development                                                                                                                 |
-| Works with various dotnet flavors?                    | Focus on DotNet6.0                                                                                                             |
-| lots of contribs                                      | just little 'ol me                                                                                                             |
+| [`raylib-cs`](https://github.com/ChrisDill/Raylib-cs)      | `raylib-cslo`                                                                                                                  |
+| ---------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------ |
+| is hand crafted.                                           | is autogen, with convienence wrappers on top.                                                                                  |
+| has docs inline and does not require unsafe                | Wrappers to make the raylib examples work with minimal changes, but other bindings not in examples will probably be neglected. |
+| has a long track record                                    | didn't exist till mid november 2021!                                                                                           |
+| zlib licensed                                              | lgpl licensed                                                                                                                  |
+| New Raylib version? Harder to detect breaking changes      | New Raylib version? Breaking changes are easy to spot and fix                                                                  |
+| [Nuget Package](https://www.nuget.org/packages/Raylib-cs/) | just this repo right now                                                                                                       |
+| Stable                                                     | in development                                                                                                                 |
+| Works with various dotnet flavors?                         | Focus on DotNet6.0                                                                                                             |
+| lots of contribs                                           | just little 'ol me                                                                                                             |
 
 
