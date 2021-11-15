@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.CompilerServices;
@@ -13,8 +13,12 @@ namespace Raylib_CsLo.InternalHelpers;
 public unsafe static class zz_Extensions
 {
 
-	public static SpanOwner<sbyte> MarshalUtf8(this string text) 
+	public static SpanOwner<sbyte> MarshalUtf8(this string text)
 	{
+		if (text == null)
+		{
+			text = "";
+		}
 		var toReturn = SpanOwner<sbyte>.Allocate(text.Length,AllocationMode.Clear);
 		var count = Encoding.UTF8.GetBytes(text.AsSpan(), toReturn.Span.AsBytes());
 		return toReturn;

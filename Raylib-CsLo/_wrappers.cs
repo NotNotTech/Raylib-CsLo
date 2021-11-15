@@ -1,4 +1,4 @@
-﻿
+
 using Raylib_CsLo.InternalHelpers;
 using System.Runtime.InteropServices;
 
@@ -24,7 +24,7 @@ public static unsafe partial class Raylib
 
 	public static bool IsGestureDetected(Gesture gesture) => IsGestureDetected((int)gesture);
 
-	public static Gesture GetGestureDetected_()=>(Gesture)GetGestureDetected();
+	public static Gesture GetGestureDetected_() => (Gesture)GetGestureDetected();
 
 	public static void DrawText(string text, int posX, int posY, int fontSize, Color color)
 	{
@@ -95,7 +95,7 @@ public static unsafe partial class Raylib
 		using var spanOwner = fileName.MarshalUtf8();
 		TakeScreenshot(spanOwner.AsPtr());
 	}
-	public static void TraceLog(int logLevel,string text)
+	public static void TraceLog(int logLevel, string text)
 	{
 		using var spanOwner = text.MarshalUtf8();
 		TraceLog(logLevel, spanOwner.AsPtr());
@@ -122,6 +122,36 @@ public static unsafe partial class Raylib
 
 	public static float GetGamepadAxisMovement(int gamepad, GamepadAxis axis) =>
 		GetGamepadAxisMovement(gamepad, (int)axis);
+
+	public static string[] GetDroppedFiles()
+	{
+		int count;
+		var buffer = GetDroppedFiles(&count);
+		var files = new string[count];
+
+		for (int i = 0; i < count; i++)
+		{
+			files[i] = Marshal.PtrToStringUTF8((IntPtr)buffer[i]);
+		}
+
+		return files;
+	}
+
+	public static string[] GetDroppedFilesAndClear()
+	{
+		int count;
+		var buffer = GetDroppedFiles(&count);
+		var files = new string[count];
+
+		for (int i = 0; i < count; i++)
+		{
+			files[i] = Marshal.PtrToStringUTF8((IntPtr)buffer[i]);
+		}
+
+		ClearDroppedFiles();
+
+		return files;
+	}
 }
 
 
@@ -135,3 +165,14 @@ public partial struct Rectangle
 		this.height = height;
 	}
 }
+
+public partial struct Camera3D
+{
+	public CameraProjection projection_
+	{
+		get => (CameraProjection)projection;
+		set=>projection = (int)value;
+	}
+
+}
+	
