@@ -40,6 +40,15 @@ public static unsafe partial class Raylib
 	{
 		return format.SPrintF(args);
 	}
+	/// <summary>
+	/// dealing with __arglist: https://www.c-sharpcorner.com/UploadFile/b942f9/calling-unmanaged-functions-which-take-a-variable-number-of-arguments-from-C-Sharp/
+	/// </summary>
+	/// <param name="text"></param>
+	/// <param name="__arglist"></param>
+	/// <returns></returns>
+	[DllImport("raylib.dll", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
+	[return: NativeTypeName("const char *")]
+	public static extern sbyte* TextFormat([NativeTypeName("const char *")] sbyte* text,__arglist);
 
 
 	public static void SetConfigFlags(ConfigFlags flags)
