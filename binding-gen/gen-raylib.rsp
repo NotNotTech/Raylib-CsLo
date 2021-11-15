@@ -1,0 +1,53 @@
+# details: https://github.com/microsoft/ClangSharp/blob/main/README.md#generating-bindings
+# example https://github.com/microsoft/ClangSharp/blob/main/sources/ClangSharpPInvokeGenerator/Properties/GenerateClang.rsp
+--config
+# Bindings should be generated for the latest preview version of .NET/C#. This is currently .NET 6/C# 10.
+preview-codegen
+# Generated bindings for latest or preview codegen should not use nint or nuint.
+# preview-codegen-nint
+generate-template-bindings
+generate-vtbl-index-attribute
+generate-macro-bindings
+generate-tests-xunit
+generate-helper-types
+unix-types
+multi-file
+--file-directory
+./raylib-4.0.0_win64_msvc16/include/
+--file
+raylib.h
+# raygui.h
+# raymath.h
+# rlgl.h
+--libraryPath
+raylib.dll
+--headerFile
+./GenerateRaylib-LICENSE.txt
+--methodClassName
+Raylib
+--namespace
+Raylib_CsLo
+--output
+../Raylib-CsLo/autogen/bindings
+--test-output
+../Raylib-CsLo.Tests/autogen/tests
+# --prefixStrip
+# clang_
+--remap 
+Matrix=@Matrix4x4 
+Quaternion=Quaternion
+bool=Boolean
+--with-namespace 
+Matrix4x4=System.Numerics
+Vector2=System.Numerics
+Vector3=System.Numerics
+Vector4=System.Numerics
+Quaternion=System.Numerics
+Boolean=System
+--exclude
+Matrix
+Vector2
+Vector3
+Vector4
+Quaternion
+Boolean
