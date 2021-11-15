@@ -19,7 +19,9 @@ public unsafe static class zz_Extensions
 		{
 			text = "";
 		}
-		var toReturn = SpanOwner<sbyte>.Allocate(text.Length,AllocationMode.Clear);
+
+		var length = Encoding.UTF8.GetByteCount(text) + 1;//need Length+1 so that we always can guarantee a null terminated ending char
+		var toReturn = SpanOwner<sbyte>.Allocate(length, AllocationMode.Clear); 
 		var count = Encoding.UTF8.GetBytes(text.AsSpan(), toReturn.Span.AsBytes());
 		return toReturn;
 	}
