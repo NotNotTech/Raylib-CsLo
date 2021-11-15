@@ -1,0 +1,27 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <RootNamespace>Raylib_CsLo</RootNamespace>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <AllowUnsafeBlocks>True</AllowUnsafeBlocks>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="autogen\binaries\**" />
+    <EmbeddedResource Remove="autogen\binaries\**" />
+    <None Remove="autogen\binaries\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="raylib.dll">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.Toolkit.HighPerformance" Version="7.1.1" />
+  </ItemGroup>
+
+</Project>

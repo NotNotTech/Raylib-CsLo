@@ -1,0 +1,1 @@
+this is a release build of the clang sharp tool: https://github.com/microsoft/ClangSharp
