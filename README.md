@@ -28,6 +28,26 @@ Right now only about 10 core examples have been ported.
 ### `RELEASE`
 - Triggered when all examples are ported.  You can contribute to make this happen.
 
+# How to Contribute
+
+0) assume you are using Visual Studio (or maybe rider?) and can run `dev.sln`
+1) fork the repo, build and try out the example project
+2) Look at how a lot of the raylib functions used in the core examples have convenience wrappers.
+3) Pick one of the raylib example groups not being worked on, and let novaleaf know either on discord or via an [issue](https://github.com/NotNotTech/Raylib-CsLo/issues)
+4) port the example group, following the general design as the core examples.
+
+
+| example group | contrib  |
+| ------------- | -------- |
+| core          | novaleaf |
+| shapes        |          |
+| textures      |          |
+| text          |          |
+| models        |          |
+| shaders       |          |
+| audio         |          |
+| physics       |          |
+
 
 # Differences from `raylib-cs`
 
