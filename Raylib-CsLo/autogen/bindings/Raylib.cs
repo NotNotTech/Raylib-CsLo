@@ -304,8 +304,8 @@ namespace Raylib_CsLo
         [DllImport("raylib.dll", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
         public static extern void MemFree(void* ptr);
 
-        [DllImport("raylib.dll", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
-        public static extern void SetTraceLogCallback([NativeTypeName("TraceLogCallback")] delegate* unmanaged[Cdecl]<int, sbyte*, sbyte*, void> callback);
+[DllImport("raylib.dll", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
+public static extern void SetTraceLogCallback([NativeTypeName("TraceLogCallback")] delegate* unmanaged[Cdecl]<int, sbyte*, sbyte*, void> callback);
 
         [DllImport("raylib.dll", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
         public static extern void SetLoadFileDataCallback([NativeTypeName("LoadFileDataCallback")] delegate* unmanaged[Cdecl]<sbyte*, uint*, byte*> callback);
@@ -556,6 +556,8 @@ namespace Raylib_CsLo
 
         [DllImport("raylib.dll", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
         public static extern void UpdateCamera([NativeTypeName("Camera *")] Camera3D* camera);
+
+
 
         [DllImport("raylib.dll", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
         public static extern void SetCameraPanControl(int keyPan);

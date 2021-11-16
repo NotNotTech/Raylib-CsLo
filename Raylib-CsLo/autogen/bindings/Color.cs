@@ -16,5 +16,6 @@ namespace Raylib_CsLo
 
         [NativeTypeName("unsigned char")]
         public byte a;
-    }
+
+	}
 }

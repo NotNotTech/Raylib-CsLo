@@ -12,6 +12,12 @@ generate-tests-xunit
 generate-helper-types
 unix-types
 multi-file
+# try these out
+generate-aggressive-inlining
+generate-cpp-attributes
+generate-marker-interfaces
+generate-native-inheritance-attribute
+generate-unmanaged-constants
 --file-directory
 ./raylib-4.0.0_win64_msvc16/include/
 --file

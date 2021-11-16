@@ -1,17 +1,16 @@
 /*******************************************************************************************
 *
-*   raylib [core] examples - Mouse wheel input
+*   raylib [core] example - Initialize 3d camera mode
 *
-*   This test has been created using raylib 1.1 (www.raylib.com)
+*   This example has been created using raylib 1.0 (www.raylib.com)
 *   raylib is licensed under an unmodified zlib/libpng license (View raylib.h for details)
 *
 *   Copyright (c) 2014 Ramon Santamaria (@raysan5)
 *
 ********************************************************************************************/
-
 namespace Raylib_CsLo.Examples.Core;
 
-public static class InputMouseWheel
+public static class Camera3dMode
 {
 
 	public static int main()
@@ -21,21 +20,27 @@ public static class InputMouseWheel
 		const int screenWidth = 800;
 		const int screenHeight = 450;
 
-		InitWindow(screenWidth, screenHeight, "raylib [core] example - input mouse wheel");
+		InitWindow(screenWidth, screenHeight, "raylib [core] example - 3d camera mode");
 
-		int boxPositionY = screenHeight / 2 - 40;
-		int scrollSpeed = 4;            // Scrolling speed in pixels
+		// Define the camera to look into our 3d world
+		Camera3D camera=new();
+		camera.position =new( 0.0f, 10.0f, 10.0f );  // Camera position
+		camera.target =new( 0.0f, 0.0f, 0.0f);      // Camera looking at point
+		camera.up =new( 0.0f, 1.0f, 0.0f);          // Camera up vector (rotation towards target)
+		camera.fovy = 45.0f;                                // Camera field-of-view Y
+		camera.projection_ = CAMERA_PERSPECTIVE;             // Camera mode type
+
+		Vector3 cubePosition = new( 0.0f, 0.0f, 0.0f );
 
 		SetTargetFPS(60);               // Set our game to run at 60 frames-per-second
-		//--------------------------------------------------------------------------------------
+										//--------------------------------------------------------------------------------------
 
 		// Main game loop
 		while (!WindowShouldClose())    // Detect window close button or ESC key
 		{
 			// Update
 			//----------------------------------------------------------------------------------
-			boxPositionY -= ((int)GetMouseWheelMove() * scrollSpeed);
-			
+			// TODO: Update your variables here
 			//----------------------------------------------------------------------------------
 
 			// Draw
@@ -44,10 +49,18 @@ public static class InputMouseWheel
 
 			ClearBackground(RAYWHITE);
 
-			DrawRectangle(screenWidth / 2 - 40, boxPositionY, 80, 80, MAROON);
+			BeginMode3D(camera);
 
-			DrawText("Use mouse wheel to move the cube up and down!", 10, 10, 20, GRAY);
-			DrawText(TextFormat("Box position Y: %03i", boxPositionY), 10, 40, 20, LIGHTGRAY); 
+			DrawCube(cubePosition, 2.0f, 2.0f, 2.0f, RED);
+			DrawCubeWires(cubePosition, 2.0f, 2.0f, 2.0f, MAROON);
+
+			DrawGrid(10, 1.0f);
+
+			EndMode3D();
+
+			DrawText("Welcome to the third dimension!", 10, 40, 20, DARKGRAY);
+
+			DrawFPS(10, 10);
 
 			EndDrawing();
 			//----------------------------------------------------------------------------------
@@ -56,7 +69,7 @@ public static class InputMouseWheel
 		// De-Initialization
 		//--------------------------------------------------------------------------------------
 		CloseWindow();        // Close window and OpenGL context
-		//--------------------------------------------------------------------------------------
+							  //--------------------------------------------------------------------------------------
 
 		return 0;
 	}

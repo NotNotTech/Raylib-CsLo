@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Numerics;
 using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
@@ -38,5 +39,9 @@ public unsafe static class zz_Extensions
 		return toReturn;
 	}
 
+	//public static ref float x(ref this Vector2 item)
+	//{
+	//	return ref item.X;
+	//}
 
 }

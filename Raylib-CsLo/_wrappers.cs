@@ -1,6 +1,8 @@
 
+using System.Numerics;
 using Raylib_CsLo.InternalHelpers;
 using System.Runtime.InteropServices;
+using System.Runtime.CompilerServices;
 
 namespace Raylib_CsLo;
 
@@ -148,18 +150,26 @@ public static unsafe partial class Raylib
 
 	public static string[] GetDroppedFilesAndClear()
 	{
-		int count;
-		var buffer = GetDroppedFiles(&count);
-		var files = new string[count];
-
-		for (int i = 0; i < count; i++)
-		{
-			files[i] = Marshal.PtrToStringUTF8((IntPtr)buffer[i]);
-		}
-
+		var files = GetDroppedFiles();
 		ClearDroppedFiles();
-
 		return files;
+	}
+
+
+
+	public static void SetCameraMode(Camera3D camera, CameraMode cAMERA_FREE)=>SetCameraMode(camera,(int)cAMERA_FREE);
+	public unsafe static void UpdateCamera(ref Camera3D camera)
+	{
+		fixed (Camera3D* ptr = &camera)
+		{
+			UpdateCamera(ptr);
+		}
+	}
+
+	public static int MeasureText(string text, int fontSize)
+	{
+		var so = text.MarshalUtf8();
+		return MeasureText(so.AsPtr(), fontSize);
 	}
 }
 
@@ -184,4 +194,29 @@ public partial struct Camera3D
 	}
 
 }
-	
+
+public partial struct Color
+{
+	public Color(byte r, byte g, byte b, byte a)
+	{
+		this.r = r;
+		this.g = g;
+		this.b = b;
+		this.a = a;
+	}
+	public Color(int r, int g, int b, int a)
+	{
+		this.r =(byte) r;
+		this.g = (byte)g;
+		this.b = (byte)b;
+		this.a = (byte)a;
+	}
+}
+public partial struct BoundingBox
+{
+	public BoundingBox(Vector3 min, Vector3 max)
+	{
+		this.min = min;
+		this.max = max;
+	}
+}
