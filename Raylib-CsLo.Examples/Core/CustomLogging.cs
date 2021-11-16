@@ -64,8 +64,9 @@ public unsafe static class CustomLogging
 		//vprintf(text, args);
 		//printf("\n");
 
+		var textStr = Marshal.PtrToStringUTF8((IntPtr)text);
+
 		////calc arg count?
-		//var textStr = Marshal.PtrToStringUTF8((IntPtr)text);
 		//var splits = textStr.Split("%");
 		//var argsCount = splits.Length - 1;
 		//foreach (var splitStr in splits)
@@ -75,7 +76,7 @@ public unsafe static class CustomLogging
 		//		argsCount--;
 		//	}
 		//}
-		
+
 		var sb = new StringBuilder(_vscprintf(textStr, (IntPtr)args) + 1);
 		vsprintf(sb, textStr, (IntPtr)args);
 
