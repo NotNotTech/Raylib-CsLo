@@ -6,7 +6,7 @@
 <div align="center">
 
 
-![Status PRE-ALPHA](https://img.shields.io/badge/status-PRE--ALPHA-red)
+![Status ALPHA](https://img.shields.io/badge/status-ALPHA-orange)
 [![Commit Activity](https://img.shields.io/github/commit-activity/m/NotNotTech/Raylib-CsLo)](https://github.com/NotNotTech/Raylib-CsLo/graphs/contributors)
 ![.NET 6.0](https://img.shields.io/badge/.NET-net6.0-%23512bd4)
 [![Chat on Discord](https://img.shields.io/badge/chat%20on-discord-7289DA)](https://discord.gg/raylib)
@@ -27,11 +27,10 @@ LowLevel autogen bindings to Raylib 4.0 and convenience wrappers on top.
 - [Raylib-CsLo](#raylib-cslo)
 - [Table of Contents](#table-of-contents)
 - [🚧🚨🚧 UNDER CONSTRUCTION 🚧🚨🚧](#-under-construction-)
-	- [Release timeline](#release-timeline)
-		- [`PRE-ALPHA`](#pre-alpha)
-		- [`ALPHA`](#alpha)
-		- [`BETA`](#beta)
-		- [`RELEASE`](#release)
+  - [Release timeline](#release-timeline)
+    - [`ALPHA`](#alpha)
+    - [`BETA`](#beta)
+    - [`RELEASE`](#release)
 - [Differences from `raylib-cs`](#differences-from-raylib-cs)
 - [Usage Tips / FAQ](#usage-tips--faq)
 - [How to Contribute](#how-to-contribute)
@@ -42,13 +41,11 @@ Right now only about [10 core examples have been ported](https://github.com/NotN
 
 ## Release timeline
 
-### `PRE-ALPHA`
-- **The current status.**
-- You can look around, try out the samples, but I would not recomend using it.  
 
 ### `ALPHA`
+- **The current status.**
 - A Nuget package will be released at that time.
-- Triggered when all the [core examples](https://www.raylib.com/examples.html) are ported. This will ensure that a minimal set of convenience wrappers are in place to keep things from getting too miserable.
+- All the [core examples](https://www.raylib.com/examples.html) are ported. This ensures a minimal set of convenience wrappers are in place, so things don't get too miserable.
 
 ### `BETA`
 - Triggered when the `model` and `shaders` examples are ported. 
