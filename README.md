@@ -37,7 +37,7 @@ LowLevel autogen bindings to Raylib 4.0 and convenience wrappers on top.
 
 # 🚧🚨🚧 UNDER CONSTRUCTION 🚧🚨🚧
 Currently the bindings work, but because these are bare-bones, autogen bindings, they are not user friendly, even for `unsafe` use.
-Right now only about [10 core examples have been ported](https://github.com/NotNotTech/Raylib-CsLo/tree/main/Raylib-CsLo.Examples).
+Right now only the [Core Examples have been ported](https://github.com/NotNotTech/Raylib-CsLo/tree/main/Raylib-CsLo.Examples).
 
 ## Release timeline
 
@@ -64,7 +64,7 @@ Right now only about [10 core examples have been ported](https://github.com/NotN
 | New Raylib version? Harder to detect breaking changes                   | New Raylib version? Breaking changes are easy to spot and fix                                                                                                                         |
 | includes Intellisence docs                                              | No docs.  Use the [Cheatsheet](https://www.raylib.com/cheatsheet/cheatsheet.html)                                                                                                     |
 | has a long track record                                                 | didn't exist till mid november 2021!                                                                                                                                                  |
-| [has lots of examples](https://github.com/ChrisDill/Raylib-cs-Examples) | [not that many examples yet](https://github.com/NotNotTech/Raylib-CsLo/tree/main/Raylib-CsLo.Examples)                                                                                |
+| [has lots of examples](https://github.com/ChrisDill/Raylib-cs-Examples) | [only the Core examples](https://github.com/NotNotTech/Raylib-CsLo/tree/main/Raylib-CsLo.Examples)                                                                                    |
 | zlib licensed                                                           | lgpl licensed                                                                                                                                                                         |
 | [Nuget Package](https://www.nuget.org/packages/Raylib-cs/)              | just this repo right now                                                                                                                                                              |
 | Stable                                                                  | in development                                                                                                                                                                        |
@@ -94,7 +94,7 @@ Right now only about [10 core examples have been ported](https://github.com/NotN
 
 | example group | contrib doing port | done? |
 | ------------- | ------------------ | ----- |
-| core          | novaleaf           | [ ]   |
+| core          | novaleaf           | [x]   |
 | shapes        |                    | [ ]   |
 | textures      |                    | [ ]   |
 | text          |                    | [ ]   |
