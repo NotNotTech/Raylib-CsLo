@@ -6,12 +6,39 @@
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
     <AllowUnsafeBlocks>True</AllowUnsafeBlocks>
+    <GenerateDocumentationFile>True</GenerateDocumentationFile>
+    <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
+    <Version>4.0.0-alpha</Version>
+    <Authors>Novaleaf</Authors>
+    <Company>NotNotTech</Company>
+    <Description>LowLevel autogen bindings to Raylib 4.0 and convenience wrappers on top.  
+-    Requires use of unsafe
+-    A focus on performance. No runtime allocations if at all possible.
+-    Because these are autogen, there won't be any intellisense docs. read the raylib cheatsheet for docs
+</Description>
+    <PackageProjectUrl>https://github.com/NotNotTech/Raylib-CsLo</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/NotNotTech/Raylib-CsLo</RepositoryUrl>
+    <PackageIcon>raylib-cslo_128x128.png</PackageIcon>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
+    <PackageTags>raylib;gamedev;binding;NotNot;</PackageTags>
+    <PackageReleaseNotes>Alpha release.  It works, but check the examples on github.</PackageReleaseNotes>
   </PropertyGroup>
 
   <ItemGroup>
     <Compile Remove="autogen\binaries\**" />
     <EmbeddedResource Remove="autogen\binaries\**" />
     <None Remove="autogen\binaries\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="..\meta\logos\raylib-cslo_128x128.png">
+      <Pack>True</Pack>
+      <PackagePath>\</PackagePath>
+    </None>
+    <None Include="..\README.md">
+      <Pack>True</Pack>
+      <PackagePath>\</PackagePath>
+    </None>
   </ItemGroup>
 
   <ItemGroup>

@@ -1,7 +1,8 @@
 <h1 align="center">
-    <a href="#">Raylib-CsLo</a>
+    <a href="#"><img align="center" src="meta/logos/raylib-cslo_128x128.png" height="96"> Raylib-CsLo</a>
     <br />
 </h1>
+
 
 <div align="center">
 
