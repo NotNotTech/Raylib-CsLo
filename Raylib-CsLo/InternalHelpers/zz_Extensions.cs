@@ -44,4 +44,20 @@ public unsafe static class zz_Extensions
 	//	return ref item.X;
 	//}
 
+	public static void CreateYawPitchRoll(this Quaternion r, out float yaw, out float pitch, out float roll)
+	{
+		//implementation from: LEI-Hongfann: https://github.com/dotnet/runtime/issues/38567#issuecomment-655567603
+		yaw = MathF.Atan2(2.0f * (r.Y * r.W + r.X * r.Z), 1.0f - 2.0f * (r.X * r.X + r.Y * r.Y));
+		pitch = MathF.Asin(2.0f * (r.X * r.W - r.Y * r.Z));
+		roll = MathF.Atan2(2.0f * (r.X * r.Y + r.Z * r.W), 1.0f - 2.0f * (r.X * r.X + r.Z * r.Z));
+	}
+
+	public static Vector3 CreateYawPitchRoll(this Quaternion r)
+	{
+		//implementation from: LEI-Hongfann: https://github.com/dotnet/runtime/issues/38567#issuecomment-655567603
+		var yaw = MathF.Atan2(2.0f * (r.Y * r.W + r.X * r.Z), 1.0f - 2.0f * (r.X * r.X + r.Y * r.Y));
+		var pitch = MathF.Asin(2.0f * (r.X * r.W - r.Y * r.Z));
+		var roll = MathF.Atan2(2.0f * (r.X * r.Y + r.Z * r.W), 1.0f - 2.0f * (r.X * r.X + r.Z * r.Z));
+		return new(yaw, pitch, roll);
+	}
 }

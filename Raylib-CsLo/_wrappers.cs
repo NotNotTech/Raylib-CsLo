@@ -28,6 +28,10 @@ public static unsafe partial class Raylib
 
 	public static Gesture GetGestureDetected_() => (Gesture)GetGestureDetected();
 
+	public static void DrawText(string text, float posX, float posY, float fontSize, Color color)
+	{
+		DrawText(text, (int)posX, (int)posY, (int)fontSize, color);
+	}
 	public static void DrawText(string text, int posX, int posY, int fontSize, Color color)
 	{
 		using var spanOwner = text.MarshalUtf8();
@@ -157,7 +161,7 @@ public static unsafe partial class Raylib
 
 
 
-	public static void SetCameraMode(Camera3D camera, CameraMode cAMERA_FREE)=>SetCameraMode(camera,(int)cAMERA_FREE);
+	public static void SetCameraMode(Camera3D camera, CameraMode mode)=>SetCameraMode(camera,(int)mode);
 	public unsafe static void UpdateCamera(ref Camera3D camera)
 	{
 		fixed (Camera3D* ptr = &camera)
@@ -171,6 +175,19 @@ public static unsafe partial class Raylib
 		var so = text.MarshalUtf8();
 		return MeasureText(so.AsPtr(), fontSize);
 	}
+
+	public static void SetTextureFilter(Texture texture, TextureFilter filter)=>SetTextureFilter(texture,(int) filter);
+	public  static void SetTextureWrap(Texture texture, TextureWrap wrap) => SetTextureWrap(texture, (int)wrap);
+
+	public static void SetShaderValue(Shader distortion, int v, float* leftLensCenter, ShaderUniformDataType uniformType)=>SetShaderValue(distortion, v, leftLensCenter,(int) uniformType);
+
+	public static void ClearWindowState(ConfigFlags flags)=>ClearWindowState((uint)flags);
+
+	public static void SetWindowState(ConfigFlags flags)=> SetWindowState((uint) flags);
+
+	public static bool IsWindowState(ConfigFlags flags)=> IsWindowState((uint) flags);
+
+
 }
 
 
