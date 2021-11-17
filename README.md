@@ -8,6 +8,7 @@
 
 
 ![Status ALPHA](https://img.shields.io/badge/status-ALPHA-orange)
+[![Nuget Package](https://img.shields.io/badge/Nuget_Package-blue?logo=NuGet)](https://www.nuget.org/packages/Raylib-CsLo)
 [![Commit Activity](https://img.shields.io/github/commit-activity/m/NotNotTech/Raylib-CsLo)](https://github.com/NotNotTech/Raylib-CsLo/graphs/contributors)
 ![.NET 6.0](https://img.shields.io/badge/.NET-net6.0-%23512bd4)
 [![Chat on Discord](https://img.shields.io/badge/chat%20on-discord-7289DA)](https://discord.gg/raylib)
@@ -45,7 +46,7 @@ Right now only the [Core Examples have been ported](https://github.com/NotNotTec
 
 ### `ALPHA`
 - **The current status.**
-- A Nuget package will be released at that time.
+- [A Nuget package is now avalable](https://www.nuget.org/packages/Raylib-CsLo)
 - All the [core examples](https://www.raylib.com/examples.html) are ported. This ensures a minimal set of convenience wrappers are in place, so things don't get too miserable.
 
 ### `BETA`
@@ -67,8 +68,8 @@ Right now only the [Core Examples have been ported](https://github.com/NotNotTec
 | has a long track record                                                 | didn't exist till mid november 2021!                                                                                                                                                  |
 | [has lots of examples](https://github.com/ChrisDill/Raylib-cs-Examples) | [only the Core examples](https://github.com/NotNotTech/Raylib-CsLo/tree/main/Raylib-CsLo.Examples)                                                                                    |
 | zlib licensed                                                           | lgpl licensed                                                                                                                                                                         |
-| [Nuget Package](https://www.nuget.org/packages/Raylib-cs/)              | just this repo right now                                                                                                                                                              |
-| Stable                                                                  | in development                                                                                                                                                                        |
+| [Nuget Package](https://www.nuget.org/packages/Raylib-cs/)              | [Nuget Package](https://www.nuget.org/packages/Raylib-CsLo)                                                                                                                           |
+| Stable                                                                  | Alpha                                                                                                                                                                                 |
 | Works with various dotnet flavors?                                      | Focus on DotNet6.0                                                                                                                                                                    |
 | lots of contribs                                                        | just little 'ol me                                                                                                                                                                    |
 
@@ -93,13 +94,13 @@ Right now only the [Core Examples have been ported](https://github.com/NotNotTec
 4) port the example group, following the general design as the core examples.
 
 
-| example group | contrib doing port | done? |
-| ------------- | ------------------ | ----- |
-| core          | novaleaf           | [x]   |
-| shapes        |                    | [ ]   |
-| textures      |                    | [ ]   |
-| text          |                    | [ ]   |
-| models        |                    | [ ]   |
-| shaders       |                    | [ ]   |
-| audio         |                    | [ ]   |
-| physics       |                    | [ ]   |
+| ~ example group ~ | ~ contrib doing port ~ | ~ done? ~ |
+| ----------------- | ---------------------- | --------- |
+| core              | novaleaf               | [x]       |
+| shapes            |                        | [ ]       |
+| textures          |                        | [ ]       |
+| text              |                        | [ ]       |
+| models            |                        | [ ]       |
+| shaders           |                        | [ ]       |
+| audio             |                        | [ ]       |
+| physics           |                        | [ ]       |
