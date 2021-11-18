@@ -2,35 +2,36 @@
 # example https://github.com/microsoft/ClangSharp/blob/main/sources/ClangSharpPInvokeGenerator/Properties/GenerateClang.rsp
 --config
 # Bindings should be generated for the latest preview version of .NET/C#. This is currently .NET 6/C# 10.
-preview-codegen
+# preview-codegen
 # Generated bindings for latest or preview codegen should not use nint or nuint.
 # preview-codegen-nint
 generate-template-bindings
-generate-vtbl-index-attribute
+# generate-vtbl-index-attribute
 generate-macro-bindings
 generate-tests-xunit
 generate-helper-types
-unix-types
+# unix-types
+windows-types
 multi-file
 # try these out
 generate-aggressive-inlining
 generate-cpp-attributes
 generate-marker-interfaces
 generate-native-inheritance-attribute
-generate-unmanaged-constants
+#generate-unmanaged-constants
 --file-directory
 ./raylib-4.0.0_win64_msvc16/include/
---file
-raylib.h
+#--methodClassName
+#Raylib
+#--file
+#raylib.h
 # raygui.h
-# raymath.h
+#raymath.h
 # rlgl.h
 --libraryPath
 raylib.dll
 --headerFile
 ./GenerateRaylib-LICENSE.txt
---methodClassName
-Raylib
 --namespace
 Raylib_CsLo
 --output
@@ -43,6 +44,45 @@ Raylib_CsLo
 Matrix=@Matrix4x4 
 Quaternion=Quaternion
 bool=Boolean
+Vector2.x=X
+Vector2.y=Y
+Vector3.x=X
+Vector3.y=Y
+Vector3.z=Z
+Vector4.w=W
+Vector4.x=X
+Vector4.y=Y
+Vector4.z=Z
+Matrix.m0=M11
+Matrix.m1=M12
+Matrix.m2=M13
+Matrix.m3=M14
+Matrix.m4=M21
+Matrix.m5=M22
+Matrix.m6=M23
+Matrix.m7=M24
+Matrix.m8=M31
+Matrix.m9=M32
+Matrix.m10=M33
+Matrix.m11=M34
+Matrix.m12=M41
+Matrix.m13=M42
+Matrix.m14=M43
+Matrix.m15=M44
+fabs=MathF.Abs
+sqrtf=MathF.Sqrt
+atan2f=MathF.Atan2
+acosf=MathF.Acos
+asinf=MathF.Asin
+sinf=MathF.Sin
+cosf=MathF.Cos
+tanf=MathF.Tan
+fminf=MathF.Min
+fmaxf=MathF.Max
+tan=Math.Tan
+MatrixToFloatV=float16.FromMatrix
+Vector3ToFloatV=float3.FromVector3
+#.operator==
 --with-namespace 
 Matrix4x4=System.Numerics
 Vector2=System.Numerics
@@ -57,3 +97,5 @@ Vector3
 Vector4
 Quaternion
 Boolean
+MatrixToFloatV
+Vector3ToFloatV

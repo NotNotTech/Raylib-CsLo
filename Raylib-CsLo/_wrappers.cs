@@ -61,7 +61,7 @@ public static unsafe partial class Raylib
 	/// <returns></returns>
 	[DllImport("raylib.dll", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
 	[return: NativeTypeName("const char *")]
-	public static extern sbyte* TextFormat([NativeTypeName("const char *")] sbyte* text,__arglist);
+	public static extern sbyte* TextFormat([NativeTypeName("const char *")] sbyte* text, __arglist);
 
 
 	public static void SetConfigFlags(ConfigFlags flags)
@@ -168,7 +168,7 @@ public static unsafe partial class Raylib
 
 
 
-	public static void SetCameraMode(Camera3D camera, CameraMode mode)=>SetCameraMode(camera,(int)mode);
+	public static void SetCameraMode(Camera3D camera, CameraMode mode) => SetCameraMode(camera, (int)mode);
 	public unsafe static void UpdateCamera(ref Camera3D camera)
 	{
 		fixed (Camera3D* ptr = &camera)
@@ -179,22 +179,88 @@ public static unsafe partial class Raylib
 
 	public static int MeasureText(string text, int fontSize)
 	{
-		var so = text.MarshalUtf8();
+		using var so = text.MarshalUtf8();
 		return MeasureText(so.AsPtr(), fontSize);
 	}
 
-	public static void SetTextureFilter(Texture texture, TextureFilter filter)=>SetTextureFilter(texture,(int) filter);
-	public  static void SetTextureWrap(Texture texture, TextureWrap wrap) => SetTextureWrap(texture, (int)wrap);
+	public static void SetTextureFilter(Texture texture, TextureFilter filter) => SetTextureFilter(texture, (int)filter);
+	public static void SetTextureWrap(Texture texture, TextureWrap wrap) => SetTextureWrap(texture, (int)wrap);
 
-	public static void SetShaderValue(Shader distortion, int v, float* leftLensCenter, ShaderUniformDataType uniformType)=>SetShaderValue(distortion, v, leftLensCenter,(int) uniformType);
+	public static void SetShaderValue(Shader distortion, int v, float* leftLensCenter, ShaderUniformDataType uniformType) => SetShaderValue(distortion, v, leftLensCenter, (int)uniformType);
 
-	public static void ClearWindowState(ConfigFlags flags)=>ClearWindowState((uint)flags);
+	public static void ClearWindowState(ConfigFlags flags) => ClearWindowState((uint)flags);
 
-	public static void SetWindowState(ConfigFlags flags)=> SetWindowState((uint) flags);
+	public static void SetWindowState(ConfigFlags flags) => SetWindowState((uint)flags);
 
-	public static bool IsWindowState(ConfigFlags flags)=> IsWindowState((uint) flags);
+	public static bool IsWindowState(ConfigFlags flags) => IsWindowState((uint)flags);
 
 
+
+	/// <summary>
+	/// free animations via UnloadModelAnimation() when done
+	/// </summary>
+	/// <param name="fileName"></param>
+	/// <returns></returns>
+	public static ModelAnimation[] LoadModelAnimations(string fileName)
+	{
+		using var soFileName = fileName.MarshalUtf8();
+		uint count;
+		var p_animations = LoadModelAnimations(soFileName.AsPtr(), &count);
+		ModelAnimation[] toReturn = new ModelAnimation[count];
+		for (var i = 0; i < count; i++)
+		{
+			toReturn[i] = p_animations[i];
+		}
+		//this ptr isn't needed.
+		MemFree(p_animations);
+		return toReturn;
+	}
+	public static void UnloadModelAnimations(Span<ModelAnimation> modelAnimations)
+	{
+		foreach (var modelAnimation in modelAnimations)
+		{
+			UnloadModelAnimation(modelAnimation);
+		}
+	}
+
+
+	public static void SetMaterialTexture(Material* material, MaterialMapIndex mapType, Texture texture) => SetMaterialTexture(material, (int)mapType, texture);
+
+	public static Model LoadModel(string fileName)
+	{
+		using var soFileName = fileName.MarshalUtf8();
+		return LoadModel(soFileName.AsPtr());
+	}
+
+	public static Image LoadImage(string fileName)
+	{
+		using var soFileName = fileName.MarshalUtf8();
+		return LoadImage(soFileName.AsPtr());
+	}
+
+
+	public static string GetFileName(string filePath)
+	{
+		return Path.GetFileName(filePath);
+
+		//if (filePath.Contains("/"))
+		//{
+		//	filePath = filePath.Substring(filePath.LastIndexOf("/") + 1);
+		//}
+		//if (filePath.Contains("/"))
+		//{
+		//	filePath = filePath.Substring(filePath.LastIndexOf('\\') + 1);
+		//}
+		//return filePath;
+	}
+
+	public static void DrawGrid(int slices, double spacing)=>DrawGrid(slices,(float)spacing);
+
+	public static void TraceLog(TraceLogLevel logLevel, string text)
+	{
+		using var soFileName = text.MarshalUtf8();
+		TraceLog((int)logLevel,soFileName.AsPtr());
+	}
 }
 
 
@@ -211,10 +277,19 @@ public partial struct Rectangle
 
 public partial struct Camera3D
 {
+	public Camera3D(Vector3 position, Vector3 target, Vector3 up, float fovy, CameraProjection projection)
+	{
+		this.position = position;
+		this.target = target;
+		this.up = up;
+		this.fovy = fovy;
+		this.projection = (int)projection;
+	}
+
 	public CameraProjection projection_
 	{
 		get => (CameraProjection)projection;
-		set=>projection = (int)value;
+		set => projection = (int)value;
 	}
 
 }
@@ -230,7 +305,7 @@ public partial struct Color
 	}
 	public Color(int r, int g, int b, int a)
 	{
-		this.r =(byte) r;
+		this.r = (byte)r;
 		this.g = (byte)g;
 		this.b = (byte)b;
 		this.a = (byte)a;
