@@ -10,7 +10,5 @@ namespace Raylib_CsLo
         public Vector3 min;
 
         public Vector3 max;
-
-	
-	}
+    }
 }

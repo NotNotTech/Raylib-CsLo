@@ -24,6 +24,9 @@ global using static Raylib_CsLo.TextureWrap;
 global using static Raylib_CsLo.ShaderUniformDataType;
 global using static Raylib_CsLo.TraceLogLevel;
 
+
+global using static Raylib_CsLo.RayMath;
+
 global using Camera = Raylib_CsLo.Camera3D;
 global using Texture2D = Raylib_CsLo.Texture;
 global using RenderTexture2D = Raylib_CsLo.RenderTexture;

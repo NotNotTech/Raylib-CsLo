@@ -3,18 +3,9 @@
 //# This file, and it's containing folder are automatically generated.  Do not Modify.
 namespace Raylib_CsLo
 {
-    public partial struct Color
+    public unsafe partial struct float3
     {
-        [NativeTypeName("unsigned char")]
-        public byte r;
-
-        [NativeTypeName("unsigned char")]
-        public byte g;
-
-        [NativeTypeName("unsigned char")]
-        public byte b;
-
-        [NativeTypeName("unsigned char")]
-        public byte a;
+        [NativeTypeName("float [3]")]
+        public fixed float v[3];
     }
 }

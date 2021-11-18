@@ -3,6 +3,7 @@
 //# This file, and it's containing folder are automatically generated.  Do not Modify.
 using System;
 using System.Numerics;
+using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 
 namespace Raylib_CsLo
@@ -40,12 +41,14 @@ namespace Raylib_CsLo
 
             public ref Matrix4x4 this[int index]
             {
+                [MethodImpl(MethodImplOptions.AggressiveInlining)]
                 get
                 {
                     return ref AsSpan()[index];
                 }
             }
 
+            [MethodImpl(MethodImplOptions.AggressiveInlining)]
             public Span<Matrix4x4> AsSpan() => MemoryMarshal.CreateSpan(ref e0, 2);
         }
 
@@ -56,12 +59,14 @@ namespace Raylib_CsLo
 
             public ref Matrix4x4 this[int index]
             {
+                [MethodImpl(MethodImplOptions.AggressiveInlining)]
                 get
                 {
                     return ref AsSpan()[index];
                 }
             }
 
+            [MethodImpl(MethodImplOptions.AggressiveInlining)]
             public Span<Matrix4x4> AsSpan() => MemoryMarshal.CreateSpan(ref e0, 2);
         }
     }

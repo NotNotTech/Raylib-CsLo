@@ -319,3 +319,19 @@ public partial struct BoundingBox
 		this.max = max;
 	}
 }
+public unsafe partial struct float3
+{
+	public static float3 FromVector3(Vector3 vector)
+	{
+		var p_toReturn = (float3*)(void*)(&vector);
+		return *p_toReturn;
+	}
+}
+public unsafe partial struct float16
+{
+	public static float16 FromMatrix(Matrix4x4 matrix)
+	{
+		var p_toReturn = (float16*)(void*)(&matrix);
+		return *p_toReturn;
+	}
+}
