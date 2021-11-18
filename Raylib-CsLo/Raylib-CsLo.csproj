@@ -8,7 +8,7 @@
 		<AllowUnsafeBlocks>True</AllowUnsafeBlocks>
 		<GenerateDocumentationFile>True</GenerateDocumentationFile>
 		<GeneratePackageOnBuild>True</GeneratePackageOnBuild>
-		<Version>4.0.0-alpha.1</Version>
+		<Version>4.0.0-alpha.2</Version>
 		<Authors>Novaleaf</Authors>
 		<Company>NotNotTech</Company>
 		<Description>
@@ -25,7 +25,18 @@ LowLevel autogen bindings to Raylib 4.0 and convenience wrappers on top.
 		<PackageTags>raylib;gamedev;binding;NotNot;rendering;3d;graphics;opengl;</PackageTags>
 		<PackageReleaseNotes>Alpha release.  It works, but check the examples on github.</PackageReleaseNotes>
 		<PackageLicenseExpression>LGPL-2.1-or-later</PackageLicenseExpression>
+		<AssemblyVersion>0.0.0.*</AssemblyVersion>
+		<Copyright>(C) NotNotTech and Contribs</Copyright>
+		<PackageRequireLicenseAcceptance>True</PackageRequireLicenseAcceptance>
 				
+	</PropertyGroup>
+
+	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+	  <Deterministic>False</Deterministic>
+	</PropertyGroup>
+
+	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+	  <Deterministic>False</Deterministic>
 	</PropertyGroup>
 
 
