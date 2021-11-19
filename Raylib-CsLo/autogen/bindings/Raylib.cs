@@ -1512,15 +1512,6 @@ namespace Raylib_CsLo
         [NativeTypeName("#define RAYLIB_VERSION \"4.0\"")]
         public static ReadOnlySpan<byte> RAYLIB_VERSION => new byte[] { 0x34, 0x2E, 0x30, 0x00 };
 
-        [NativeTypeName("#define PI 3.14159265358979323846f")]
-        public const float PI = 3.14159265358979323846f;
-
-        [NativeTypeName("#define DEG2RAD (PI/180.0f)")]
-        public const float DEG2RAD = (3.14159265358979323846f / 180.0f);
-
-        [NativeTypeName("#define RAD2DEG (180.0f/PI)")]
-        public const float RAD2DEG = (180.0f / 3.14159265358979323846f);
-
         [NativeTypeName("#define LIGHTGRAY Color){ 200, 200, 200, 255 }")]
         public static readonly Color LIGHTGRAY = (Color)(new Color
         {

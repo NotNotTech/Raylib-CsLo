@@ -123,6 +123,12 @@ public static unsafe partial class Raylib
 		TraceLog(logLevel, spanOwner.AsPtr());
 	}
 
+	public static void TraceLog(TraceLogLevel logLevel, string text, params object[] args)
+	{
+		text = text.SPrintF(args);
+		TraceLog((int)logLevel, text);
+	}
+
 	public static string GetGamepadName_(int gamepad)
 	{
 		var toReturn = GetGamepadName(gamepad);
@@ -186,7 +192,47 @@ public static unsafe partial class Raylib
 	public static void SetTextureFilter(Texture texture, TextureFilter filter) => SetTextureFilter(texture, (int)filter);
 	public static void SetTextureWrap(Texture texture, TextureWrap wrap) => SetTextureWrap(texture, (int)wrap);
 
-	public static void SetShaderValue(Shader distortion, int v, float* leftLensCenter, ShaderUniformDataType uniformType) => SetShaderValue(distortion, v, leftLensCenter, (int)uniformType);
+	//public static void SetShaderValue(Shader shader, int locIndex, float* value, ShaderUniformDataType uniformType) => SetShaderValue(shader, locIndex, value, (int)uniformType);
+	public static void SetShaderValue<T>(Shader shader, int locIndex, T* value, ShaderUniformDataType uniformType) where T : unmanaged => SetShaderValue(shader, locIndex, value, (int)uniformType);
+	public static unsafe void SetShaderValue<T>(Shader shader, int uniformLoc, ref T value, ShaderUniformDataType uniformType) where T : unmanaged
+	{
+		fixed (T* valuePtr = &value)
+		{
+			SetShaderValue(shader, uniformLoc, (void*)valuePtr,(int) uniformType);
+		}
+	}
+	public static unsafe void SetShaderValue<T>(Shader shader, int uniformLoc, T value, ShaderUniformDataType uniformType) where T : unmanaged=> SetShaderValue(shader, uniformLoc, (void*)(&value), (int)uniformType);
+	public static unsafe void SetShaderValue<T>(Shader shader, int uniformLoc, T[] values, ShaderUniformDataType uniformType) where T : unmanaged
+	{
+		SetShaderValue(shader, uniformLoc, (Span<T>)values, uniformType);
+	}
+	public static unsafe void SetShaderValue<T>(Shader shader, int uniformLoc, Span<T> values, ShaderUniformDataType uniformType) where T : unmanaged
+	{
+		fixed (T* valuePtr = values)
+		{
+			Raylib.SetShaderValue(shader, uniformLoc, (void*)valuePtr,(int) uniformType);
+		}
+	}
+
+	//// Helper functions to pass data into raylib. Pins the data so we can pass in a stable IntPtr to raylib.
+	//public static unsafe void SetShaderValue2<T>(Shader shader, int uniformLoc, T value, ShaderUniformDataType uniformType)
+	//{
+	//    GCHandle pinnedData = GCHandle.Alloc(value, GCHandleType.Pinned);            
+	//    Raylib.SetShaderValue(shader, uniformLoc, pinnedData.AddrOfPinnedObject(), uniformType);
+	//    pinnedData.Free();
+	//}
+	////
+	//// Summary:
+	////     Set shader uniform value value refers to a const void *
+	//[DllImport("raylib", CallingConvention = CallingConvention.Cdecl)]
+	//public static extern void SetShaderValue(Shader shader, int uniformLoc, IntPtr value, ShaderUniformDataType uniformType);
+
+	//public static void SetShaderValueV<T>(Shader shader, int uniformLoc, T[] value, ShaderUniformDataType uniformType, int count)
+	//{
+	//	GCHandle pinnedData = GCHandle.Alloc(value, GCHandleType.Pinned);
+	//	Raylib.SetShaderValueV(shader, uniformLoc, pinnedData.AddrOfPinnedObject(), uniformType, count);
+	//	pinnedData.Free();
+	//}
 
 	public static void ClearWindowState(ConfigFlags flags) => ClearWindowState((uint)flags);
 
@@ -256,11 +302,20 @@ public static unsafe partial class Raylib
 
 	public static void DrawGrid(int slices, double spacing)=>DrawGrid(slices,(float)spacing);
 
-	public static void TraceLog(TraceLogLevel logLevel, string text)
-	{
-		using var soFileName = text.MarshalUtf8();
-		TraceLog((int)logLevel,soFileName.AsPtr());
-	}
+
+	public static Texture LoadTextureCubemap(Image image, CubemapLayout layout) => LoadTextureCubemap(image, (int)layout);
+
+
+}
+
+public static unsafe partial class RlGl
+{
+
+	public static void rlFramebufferAttach(uint fboId, uint texId, rlFramebufferAttachType attachType, rlFramebufferAttachTextureType texType, int mipLevel)
+	=> rlFramebufferAttach(fboId, texId, (int)attachType, (int)texType, mipLevel);
+
+	public static uint rlLoadTextureCubemap(void* data, int size, PixelFormat format)
+	=>rlLoadTextureCubemap(data, size,(int) format);
 }
 
 
@@ -333,5 +388,13 @@ public unsafe partial struct float16
 	{
 		var p_toReturn = (float16*)(void*)(&matrix);
 		return *p_toReturn;
+	}
+}
+public partial struct Texture
+{
+	public PixelFormat format_
+	{
+		get => (PixelFormat)format;
+		set => format = (int)value;
 	}
 }

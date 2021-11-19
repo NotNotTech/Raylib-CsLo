@@ -22,6 +22,7 @@ namespace Raylib_CsLo.InternalHelpers;
 public unsafe static class zz_Extensions
 {
 
+
 	public static SpanOwner<sbyte> MarshalUtf8(this string text)
 	{
 		if (text == null)
