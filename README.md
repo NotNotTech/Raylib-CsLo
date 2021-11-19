@@ -36,6 +36,7 @@ LowLevel autogen bindings to Raylib 4.0 and convenience wrappers on top.
 - [Differences from `raylib-cs`](#differences-from-raylib-cs)
 - [Usage Tips / FAQ](#usage-tips--faq)
 - [How to Contribute](#how-to-contribute)
+- [ChangeLog](#changelog)
 
 # 🚧🚨🚧 UNDER CONSTRUCTION 🚧🚨🚧
 Currently the bindings work, but because these are bare-bones, autogen bindings, they are not user friendly, even for `unsafe` use.
@@ -55,9 +56,11 @@ Right now only the [Core Examples have been ported](https://github.com/NotNotTec
 
 ### `RELEASE`
 - Triggered when all examples are ported.  You can contribute to make this happen.
+
+
+
+
 # Differences from `raylib-cs`
-
-
 
 | [`raylib-cs`](https://github.com/ChrisDill/Raylib-cs)                   | `raylib-cslo`                                                                                                                                                                         |
 | ----------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -80,7 +83,7 @@ Right now only the [Core Examples have been ported](https://github.com/NotNotTec
 -  **I ran the examples in a profiler.   What are all these `sbyte[]` arrays being allocated?**
    -  A pool of `sbyte[]` is allocated for string marshall purposes, to avoid runtime allocations.
 - **Why don't you add wrappers for the Math helpers?**
-  - crossing between Managed and Native code isn't free.  Better you do all your maths in managed code, and pass the final result to raylib.
+  - The `RayMath` helper functions have been translated into C# code.   This is because crossing between Managed and Native code isn't free.  Better you do all your maths in managed code, and pass the final result to raylib.
 - **Why are my matricies corrupt?**
   - Raylib/OpenGl uses column-major matricies, while dotnet/vulkan/directx uses row-major.  When passing your final calculated matrix to raylib for rendering, call `Matrix4x4.Transpose(yourMatrix)`
 
@@ -100,7 +103,12 @@ Right now only the [Core Examples have been ported](https://github.com/NotNotTec
 | shapes            |                        | [ ]       |
 | textures          |                        | [ ]       |
 | text              |                        | [ ]       |
-| models            |                        | [ ]       |
+| models            | novaleaf               | [x]       |
 | shaders           |                        | [ ]       |
 | audio             |                        | [ ]       |
 | physics           |                        | [ ]       |
+
+
+# ChangeLog
+- **4.0.0-alpha.2** (2021/11/18):  Model examples ported. AutoGen Bindings expanded to include all api's exposed by Raylib.dll (adding `RayMath`, `RlGl`, `RayGui`)
+- **4.0.0-alpha.1** (2021/11/16):  all core examples ported, so "feature complete" for the workflows used in those examples (and, complete only for those workflows)
