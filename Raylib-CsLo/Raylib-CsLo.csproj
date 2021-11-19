@@ -10,7 +10,7 @@
         <AllowUnsafeBlocks>True</AllowUnsafeBlocks>
         <GenerateDocumentationFile>True</GenerateDocumentationFile>
         <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
-        <Version>4.0.0-alpha.2</Version>
+        <Version>4.0.0-alpha.3</Version>
         <Authors>Novaleaf</Authors>
         <Company>NotNotTech</Company>
         <Description>
@@ -30,7 +30,8 @@
         <AssemblyVersion>0.0.0.*</AssemblyVersion>
         <Copyright>(C) NotNotTech and Contribs</Copyright>
         <PackageRequireLicenseAcceptance>True</PackageRequireLicenseAcceptance>
-
+        <!--include pdb in nuget package, as per: https://stackoverflow.com/a/48391188 -->
+        <AllowedOutputExtensionsInPackageBuildOutputFolder>$(AllowedOutputExtensionsInPackageBuildOutputFolder);.pdb</AllowedOutputExtensionsInPackageBuildOutputFolder>
     </PropertyGroup>
 
     <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
