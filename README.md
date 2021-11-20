@@ -78,9 +78,19 @@ Right now only the [Core Examples have been ported](https://github.com/NotNotTec
 
 
 # Usage Tips / FAQ
-- **Is there a wrapper for this function?  or do I have to really cast my Enum to `int`?**
+- **Does `Raylib-CsLo` include the `SOME_FUNCTION_YOU_NEED()` function?**
+  - Raylib-CsLo has bindings for everything in the Raylib 4.0 release, with the exception of:
+    -  Native Memory allocation functions:  use `System.Runtime.InteropServices.NativeMemory.Alloc()` instead
+    -  `LogCustom()` is ported but doesn't support variable length arguments.
+- **Why didn't you add a wrapper for function `SOME_OTHER_FUNCTION_YOU_NEED()`?** 
+  - Raylib-CsLo uses a manual marshalling technique, as the built in PInvoke marshalling is not very efficienct.  Unfortunately writing wrappers takes time.
+  - I am going through all the examples and porting them, and when I do I'm adding wrappers to the raylib api's used (I'm using examples as a heuristic for "commonly used api's)   For a function I haven't written a wrapper for, you can look at how I do it and write your own wrapper, or can help the project by submitting a PR.  
+  - On average it only takes me about 15 min to port each example, but there are many examples.
+- **How do I convert a string to `sbyte*` or vice-versa?**
+  - Look if there is a wrapper overload you can call.  If not, you can write your own wrapper by coppying the pattern in one of the existing wrappers.
+- **Do I have to really cast my Enum to `int`?**
   -  The autogen bindings are left untouched, however convenience wrappers are added.  Usually these will automagically "work" via function overloads, but where this is not possible, try adding an underscore `_` to the end of the function/property.  For example:  `Camera3D.projection_ = CameraProjection.CAMERA_ORTHOGRAPHIC;` or `Gesture gesture = Raylib.GetGestureDetected_();`
--  **I ran the examples in a profiler.   What are all these `sbyte[]` arrays being allocated?**
+- **I ran the examples in a profiler.   What are all these `sbyte[]` arrays being allocated?**
    -  A pool of `sbyte[]` is allocated for string marshall purposes, to avoid runtime allocations.
 - **Why don't you add wrappers for the Math helpers?**
   - The `RayMath` helper functions have been translated into C# code.   This is because crossing between Managed and Native code isn't free.  Better you do all your maths in managed code, and pass the final result to raylib.
