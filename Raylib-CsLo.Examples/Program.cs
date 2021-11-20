@@ -57,61 +57,61 @@ global using Matrix = System.Numerics.Matrix4x4;
 
 //////////////  CORE
 
-//Raylib_CsLo.Examples.Core.BasicWindow.main();
-//Raylib_CsLo.Examples.Core.BasicScreenManager.main();
-//Raylib_CsLo.Examples.Core.KeyboardInput.main();
-//Raylib_CsLo.Examples.Core.InputMouse.main();
-//Raylib_CsLo.Examples.Core.InputMouseWheel.main();
-//Raylib_CsLo.Examples.Core.GamepadInput.main();
-//Raylib_CsLo.Examples.Core.InputMultitouch.main();
-//Raylib_CsLo.Examples.Core.InputGesturesDetection.main();
+Raylib_CsLo.Examples.Core.BasicWindow.main();
+Raylib_CsLo.Examples.Core.BasicScreenManager.main();
+Raylib_CsLo.Examples.Core.KeyboardInput.main();
+Raylib_CsLo.Examples.Core.InputMouse.main();
+Raylib_CsLo.Examples.Core.InputMouseWheel.main();
+Raylib_CsLo.Examples.Core.GamepadInput.main();
+Raylib_CsLo.Examples.Core.InputMultitouch.main();
+Raylib_CsLo.Examples.Core.InputGesturesDetection.main();
 
 
-//Raylib_CsLo.Examples.Core.Camera2d.main();
-//Raylib_CsLo.Examples.Core.Camera2dPlatformer.main();
-//Raylib_CsLo.Examples.Core.Camera3dMode.main();
-//Raylib_CsLo.Examples.Core.Camera3dFree.main();
-//Raylib_CsLo.Examples.Core.Camera3dFirstPerson.main();
-//Raylib_CsLo.Examples.Core.Picking3d.main();
-//Raylib_CsLo.Examples.Core.WorldToScreen.main();
-//Raylib_CsLo.Examples.Core.CustomLogging.main();
+Raylib_CsLo.Examples.Core.Camera2d.main();
+Raylib_CsLo.Examples.Core.Camera2dPlatformer.main();
+Raylib_CsLo.Examples.Core.Camera3dMode.main();
+Raylib_CsLo.Examples.Core.Camera3dFree.main();
+Raylib_CsLo.Examples.Core.Camera3dFirstPerson.main();
+Raylib_CsLo.Examples.Core.Picking3d.main();
+Raylib_CsLo.Examples.Core.WorldToScreen.main();
+Raylib_CsLo.Examples.Core.CustomLogging.main();
 
 
-//Raylib_CsLo.Examples.Core.WindowLetterbox.main();
-//Raylib_CsLo.Examples.Core.WindowsDropFiles.main();
-//Raylib_CsLo.Examples.Core.ScissorTest.main();
-//Raylib_CsLo.Examples.Core.VrSimulator.main();
-//Raylib_CsLo.Examples.Core.QuatConversions.main();
-//Raylib_CsLo.Examples.Core.WindowFlags.main();
-//Raylib_CsLo.Examples.Core.SplitScreen.main();
-//Raylib_CsLo.Examples.Core.SmoothPixelPerfectCamera.main();
+Raylib_CsLo.Examples.Core.WindowLetterbox.main();
+Raylib_CsLo.Examples.Core.WindowsDropFiles.main();
+Raylib_CsLo.Examples.Core.ScissorTest.main();
+Raylib_CsLo.Examples.Core.VrSimulator.main();
+Raylib_CsLo.Examples.Core.QuatConversions.main();
+Raylib_CsLo.Examples.Core.WindowFlags.main();
+Raylib_CsLo.Examples.Core.SplitScreen.main();
+Raylib_CsLo.Examples.Core.SmoothPixelPerfectCamera.main();
 
-////the following example requires a custom build of raylib to work.  see it's docs for info.
-////Raylib_CsLo.Examples.Core.CustomFrameControl.main();
-
-
-//////////////  MODELS
-
-//Raylib_CsLo.Examples.Models.Animation.main();
-//Raylib_CsLo.Examples.Models.Billboard.main();
-//Raylib_CsLo.Examples.Models.BoxCollisions.main();
-//Raylib_CsLo.Examples.Models.Cubicmap.main();
-//Raylib_CsLo.Examples.Models.FirstPersonMaze.main();
-//Raylib_CsLo.Examples.Models.GeometricShapes.main();
-//Raylib_CsLo.Examples.Models.Heightmap.main();
-//Raylib_CsLo.Examples.Models.Loading.main();
-//Raylib_CsLo.Examples.Models.LoadingGltf.main();
-//Raylib_CsLo.Examples.Models.LoadingVox.main();
-//Raylib_CsLo.Examples.Models.MeshGeneration.main();
-//Raylib_CsLo.Examples.Models.MeshPicking.main();
-//Raylib_CsLo.Examples.Models.OrthographicProjection.main();
-//Raylib_CsLo.Examples.Models.RlglSolarSystem.main();
-//Raylib_CsLo.Examples.Models.Skybox.main();
-//Raylib_CsLo.Examples.Models.WavingCubes.main();
-//Raylib_CsLo.Examples.Models.YawPitchRoll.main();
+//the following example requires a custom build of raylib to work.  see it's docs for info.
+//Raylib_CsLo.Examples.Core.CustomFrameControl.main();
 
 
-//////////// SHADERS
+////////////  MODELS
+
+Raylib_CsLo.Examples.Models.Animation.main();
+Raylib_CsLo.Examples.Models.Billboard.main();
+Raylib_CsLo.Examples.Models.BoxCollisions.main();
+Raylib_CsLo.Examples.Models.Cubicmap.main();
+Raylib_CsLo.Examples.Models.FirstPersonMaze.main();
+Raylib_CsLo.Examples.Models.GeometricShapes.main();
+Raylib_CsLo.Examples.Models.Heightmap.main();
+Raylib_CsLo.Examples.Models.Loading.main();
+Raylib_CsLo.Examples.Models.LoadingGltf.main();
+Raylib_CsLo.Examples.Models.LoadingVox.main();
+Raylib_CsLo.Examples.Models.MeshGeneration.main();
+Raylib_CsLo.Examples.Models.MeshPicking.main();
+Raylib_CsLo.Examples.Models.OrthographicProjection.main();
+Raylib_CsLo.Examples.Models.RlglSolarSystem.main();
+Raylib_CsLo.Examples.Models.Skybox.main();
+Raylib_CsLo.Examples.Models.WavingCubes.main();
+Raylib_CsLo.Examples.Models.YawPitchRoll.main();
+
+
+////////// SHADERS
 
 Raylib_CsLo.Examples.Shaders.BasicLighting.main();
 Raylib_CsLo.Examples.Shaders.CustomUniform.main();
@@ -120,3 +120,15 @@ Raylib_CsLo.Examples.Shaders.Fog.main();
 Raylib_CsLo.Examples.Shaders.HotReloading.main();
 Raylib_CsLo.Examples.Shaders.JuliaSet.main();
 Raylib_CsLo.Examples.Shaders.MeshInstancing.main();
+Raylib_CsLo.Examples.Shaders.ModelShader.main();
+Raylib_CsLo.Examples.Shaders.MultiSample2d.main();
+Raylib_CsLo.Examples.Shaders.PaletteColorSwitch.main();
+
+Raylib_CsLo.Examples.Shaders.PostProcessingShader.main();
+Raylib_CsLo.Examples.Shaders.RaymarchingShapes.main();
+Raylib_CsLo.Examples.Shaders.ShapesAndTextureShaders.main();
+Raylib_CsLo.Examples.Shaders.SimpleMask.main();
+Raylib_CsLo.Examples.Shaders.Spotlight.main();
+Raylib_CsLo.Examples.Shaders.TextureDrawing.main();
+Raylib_CsLo.Examples.Shaders.TextureOutline.main();
+Raylib_CsLo.Examples.Shaders.TextureWaves.main();

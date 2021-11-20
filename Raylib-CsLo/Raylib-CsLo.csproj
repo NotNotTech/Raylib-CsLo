@@ -10,7 +10,7 @@
         <AllowUnsafeBlocks>True</AllowUnsafeBlocks>
         <GenerateDocumentationFile>True</GenerateDocumentationFile>
         <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
-        <Version>4.0.0-alpha.3</Version>
+        <Version>4.0.0-beta.0</Version>
         <Authors>Novaleaf</Authors>
         <Company>NotNotTech</Company>
         <Description>
@@ -18,14 +18,13 @@
             -    Requires use of `unsafe`
             -    Requires `net6.0`
             -    A focus on performance. No runtime allocations if at all possible.
-            -    Because these are autogen, there won't be any intellisense docs. read the raylib cheatsheet for docs
         </Description>
         <PackageProjectUrl>https://github.com/NotNotTech/Raylib-CsLo</PackageProjectUrl>
         <RepositoryUrl>https://github.com/NotNotTech/Raylib-CsLo</RepositoryUrl>
         <PackageIcon>raylib-cslo_128x128.png</PackageIcon>
         <PackageReadmeFile>README.md</PackageReadmeFile>
         <PackageTags>raylib;gamedev;binding;NotNot;rendering;3d;graphics;opengl;</PackageTags>
-        <PackageReleaseNotes>Alpha release.  It works, but check the examples on github.</PackageReleaseNotes>
+        <PackageReleaseNotes>Beta release.  Review the examples on github.</PackageReleaseNotes>
         <PackageLicenseExpression>LGPL-2.1-or-later</PackageLicenseExpression>
         <AssemblyVersion>0.0.0.*</AssemblyVersion>
         <Copyright>(C) NotNotTech and Contribs</Copyright>

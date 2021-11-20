@@ -7,7 +7,7 @@
 <div align="center">
 
 
-![Status ALPHA](https://img.shields.io/badge/status-ALPHA-orange)
+![Status BETA](https://img.shields.io/badge/status-BETA-yellow)
 [![Nuget Package](https://img.shields.io/badge/Nuget_Package-blue?logo=NuGet)](https://www.nuget.org/packages/Raylib-CsLo)
 [![Commit Activity](https://img.shields.io/github/commit-activity/m/NotNotTech/Raylib-CsLo)](https://github.com/NotNotTech/Raylib-CsLo/graphs/contributors)
 ![.NET 6.0](https://img.shields.io/badge/.NET-net6.0-%23512bd4)
@@ -20,6 +20,7 @@ LowLevel autogen bindings to Raylib 4.0 and convenience wrappers on top.
 
 
 - Requires use of `unsafe`
+- Requires use of `DotNet 6.0`
 - A focus on performance.  No runtime allocations if at all possible.
 - because these are autogen, there won't be any intellisense docs. [read the raylib cheatsheet for docs](https://www.raylib.com/cheatsheet/cheatsheet.html)
 
@@ -30,7 +31,6 @@ LowLevel autogen bindings to Raylib 4.0 and convenience wrappers on top.
 - [Table of Contents](#table-of-contents)
 - [🚧🚨🚧 UNDER CONSTRUCTION 🚧🚨🚧](#-under-construction-)
   - [Release timeline](#release-timeline)
-    - [`ALPHA`](#alpha)
     - [`BETA`](#beta)
     - [`RELEASE`](#release)
 - [Differences from `raylib-cs`](#differences-from-raylib-cs)
@@ -39,23 +39,25 @@ LowLevel autogen bindings to Raylib 4.0 and convenience wrappers on top.
 - [ChangeLog](#changelog)
 
 # 🚧🚨🚧 UNDER CONSTRUCTION 🚧🚨🚧
-Currently the bindings work, but because these are bare-bones, autogen bindings, they are not user friendly, even for `unsafe` use.
-Right now only the [Core Examples have been ported](https://github.com/NotNotTech/Raylib-CsLo/tree/main/Raylib-CsLo.Examples).
+The entire API of `Raylib 4.0` is available via these bindings.  However, as the bindings are auto-generated, they are not user friendly, even for `unsafe` use.
+
+To make these bindings "friendly" to C# use, convenience wrappers are being added, so you can use these bindings with a minimal amount of `unsafe` code.
+
+The current mission of this project is to port all Raylib examples (more than 120 of them) to work with these bindings, with as little modification to the example code as possible.  In doing so, convenience wrappers will be added for the Raylib api's used in the examples.  This is a good heuristic for "primary usage scenarios", so writing wrappers for these API's should make these bindings user friendly in the fastest time, while also providing valuable C# examples.
+
+Right now the [Core, Model, and Shader examples have been fully ported](https://github.com/NotNotTech/Raylib-CsLo/tree/main/Raylib-CsLo.Examples).
 
 ## Release timeline
 
-
-### `ALPHA`
-- **The current status.**
-- [A Nuget package is now avalable](https://www.nuget.org/packages/Raylib-CsLo)
-- All the [core examples](https://www.raylib.com/examples.html) are ported. This ensures a minimal set of convenience wrappers are in place, so things don't get too miserable.
-
 ### `BETA`
+- **The current status.**
 - Triggered when the `model` and `shaders` examples are ported. 
+- [A Nuget package is avalable](https://www.nuget.org/packages/Raylib-CsLo)
+- `Core`, `Model`, and `Shader` examples are ported.
 
 
 ### `RELEASE`
-- Triggered when all examples are ported.  You can contribute to make this happen.
+- Triggered when all remaining examples are ported.  You can contribute to make this happen.
 
 
 
@@ -109,16 +111,17 @@ Right now only the [Core Examples have been ported](https://github.com/NotNotTec
 
 | ~ example group ~ | ~ who is doing port ~ | ~ done? ~ |
 | ----------------- | --------------------- | --------- |
-| core              | novaleaf              | [x]       |
+| core              | novaleaf              | [X]       |
 | shapes            |                       | [ ]       |
 | textures          |                       | [ ]       |
 | text              |                       | [ ]       |
-| models            | novaleaf              | [x]       |
-| shaders           | novaleaf              | [ ]       |
+| models            | novaleaf              | [X]       |
+| shaders           | novaleaf              | [X]       |
 | audio             |                       | [ ]       |
 | physics           |                       | [ ]       |
 
 
 # ChangeLog
+- **4.0.0-beta.0** (2021/11/20):  `Model`, and `Shader` examples ported. 
 - **4.0.0-alpha.2** (2021/11/18):  Model examples ported. AutoGen Bindings expanded to include all api's exposed by Raylib.dll (adding `RayMath`, `RlGl`, `RayGui`)
-- **4.0.0-alpha.1** (2021/11/16):  all core examples ported, so "feature complete" for the workflows used in those examples (and, complete only for those workflows)
+- **4.0.0-alpha.1** (2021/11/16):  all `Core` examples ported, so "feature complete" for the workflows used in those examples (and, complete only for those workflows)

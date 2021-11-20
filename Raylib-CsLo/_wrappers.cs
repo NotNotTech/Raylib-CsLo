@@ -214,26 +214,33 @@ public static unsafe partial class Raylib
 		}
 	}
 
-	//// Helper functions to pass data into raylib. Pins the data so we can pass in a stable IntPtr to raylib.
-	//public static unsafe void SetShaderValue2<T>(Shader shader, int uniformLoc, T value, ShaderUniformDataType uniformType)
-	//{
-	//    GCHandle pinnedData = GCHandle.Alloc(value, GCHandleType.Pinned);            
-	//    Raylib.SetShaderValue(shader, uniformLoc, pinnedData.AddrOfPinnedObject(), uniformType);
-	//    pinnedData.Free();
-	//}
-	////
-	//// Summary:
-	////     Set shader uniform value value refers to a const void *
-	//[DllImport("raylib", CallingConvention = CallingConvention.Cdecl)]
-	//public static extern void SetShaderValue(Shader shader, int uniformLoc, IntPtr value, ShaderUniformDataType uniformType);
 
-	//public static void SetShaderValueV<T>(Shader shader, int uniformLoc, T[] value, ShaderUniformDataType uniformType, int count)
-	//{
-	//	GCHandle pinnedData = GCHandle.Alloc(value, GCHandleType.Pinned);
-	//	Raylib.SetShaderValueV(shader, uniformLoc, pinnedData.AddrOfPinnedObject(), uniformType, count);
-	//	pinnedData.Free();
-	//}
-
+	/// <summary>
+	/// 'vector' (array) version of this function.  
+	/// </summary>
+	public static void SetShaderValueV<T>(Shader shader, int locIndex, T[] array, ShaderUniformDataType uniformType, int count) where T : unmanaged
+	{
+		fixed(T* p_array = array)
+		{
+			SetShaderValueV(shader, locIndex, p_array,(int)uniformType, count);
+		}
+		//GCHandle pinnedData = GCHandle.Alloc(value, GCHandleType.Pinned);
+		//Raylib.SetShaderValueV(shader, uniformLoc, pinnedData.AddrOfPinnedObject(), uniformType, count);
+		//pinnedData.Free();
+	}
+	/// <summary>
+	/// 'vector' (array) version of this function.  can pass a `ref` to an arrayItem instead of the entire array
+	/// </summary>
+	public static void SetShaderValueV<T>(Shader shader, int locIndex,ref T arrayOffset, ShaderUniformDataType uniformType, int count) where T : unmanaged
+	{
+		fixed (T* p_array = &arrayOffset)
+		{
+			SetShaderValueV(shader, locIndex, p_array, (int)uniformType, count);
+		}
+		//GCHandle pinnedData = GCHandle.Alloc(value, GCHandleType.Pinned);
+		//Raylib.SetShaderValueV(shader, uniformLoc, pinnedData.AddrOfPinnedObject(), uniformType, count);
+		//pinnedData.Free();
+	}
 	public static void ClearWindowState(ConfigFlags flags) => ClearWindowState((uint)flags);
 
 	public static void SetWindowState(ConfigFlags flags) => SetWindowState((uint)flags);
