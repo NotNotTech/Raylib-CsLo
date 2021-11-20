@@ -305,7 +305,19 @@ public static unsafe partial class Raylib
 
 	public static Texture LoadTextureCubemap(Image image, CubemapLayout layout) => LoadTextureCubemap(image, (int)layout);
 
+	public static long GetFileModTime(string fileName)
+	{
+		using var soFileName = fileName.MarshalUtf8();
+		return GetFileModTime(soFileName.AsPtr());
+	}
 
+	public static void DrawMeshInstanced(Mesh mesh, Material material, Matrix4x4[] transforms, int instances)
+	{
+		fixed (Matrix4x4* p_transforms = transforms)
+		{
+			Raylib.DrawMeshInstanced(mesh, material, p_transforms, instances);
+		}
+	}
 }
 
 public static unsafe partial class RlGl
