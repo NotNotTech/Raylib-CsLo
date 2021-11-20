@@ -97,16 +97,16 @@ Right now only the [Core Examples have been ported](https://github.com/NotNotTec
 4) port the example group, following the general design as the core examples.
 
 
-| ~ example group ~ | ~ contrib doing port ~ | ~ done? ~ |
-| ----------------- | ---------------------- | --------- |
-| core              | novaleaf               | [x]       |
-| shapes            |                        | [ ]       |
-| textures          |                        | [ ]       |
-| text              |                        | [ ]       |
-| models            | novaleaf               | [x]       |
-| shaders           |                        | [ ]       |
-| audio             |                        | [ ]       |
-| physics           |                        | [ ]       |
+| ~ example group ~ | ~ who is doing port ~ | ~ done? ~ |
+| ----------------- | --------------------- | --------- |
+| core              | novaleaf              | [x]       |
+| shapes            |                       | [ ]       |
+| textures          |                       | [ ]       |
+| text              |                       | [ ]       |
+| models            | novaleaf              | [x]       |
+| shaders           | novaleaf              | [ ]       |
+| audio             |                       | [ ]       |
+| physics           |                       | [ ]       |
 
 
 # ChangeLog
