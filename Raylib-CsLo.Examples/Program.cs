@@ -46,6 +46,11 @@ global using static Raylib_CsLo.Examples.RLights;
 global using static Raylib_CsLo.Examples.RLights.LightType;
 
 
+global using static Raylib_CsLo.BlendMode;
+global using static Raylib_CsLo.NPatchLayout;
+
+
+
 global using Camera = Raylib_CsLo.Camera3D;
 global using RenderTexture2D = Raylib_CsLo.RenderTexture;
 global using Texture2D = Raylib_CsLo.Texture;
@@ -55,7 +60,7 @@ global using Matrix = System.Numerics.Matrix4x4;
 
 
 
-//////////////  CORE
+////////////////  CORE
 
 Raylib_CsLo.Examples.Core.BasicWindow.main();
 Raylib_CsLo.Examples.Core.BasicScreenManager.main();
@@ -132,3 +137,26 @@ Raylib_CsLo.Examples.Shaders.Spotlight.main();
 Raylib_CsLo.Examples.Shaders.TextureDrawing.main();
 Raylib_CsLo.Examples.Shaders.TextureOutline.main();
 Raylib_CsLo.Examples.Shaders.TextureWaves.main();
+
+
+////////////  TEXTURES
+Raylib_CsLo.Examples.Textures.BackgroundScrolling.main();
+Raylib_CsLo.Examples.Textures.BlendModes.main();
+Raylib_CsLo.Examples.Textures.Bunnymark.main();
+Raylib_CsLo.Examples.Textures.ImageDrawing.main();
+Raylib_CsLo.Examples.Textures.ImageGeneration.main();
+Raylib_CsLo.Examples.Textures.ImageLoading.main();
+Raylib_CsLo.Examples.Textures.ImageProcessing.main();
+Raylib_CsLo.Examples.Textures.ImageTextDrawing.main();
+Raylib_CsLo.Examples.Textures.LoadingAndDrawing.main();
+Raylib_CsLo.Examples.Textures.MousePainting.main();
+Raylib_CsLo.Examples.Textures.NPatchDrawing.main();
+Raylib_CsLo.Examples.Textures.ParticlesBlending.main();
+Raylib_CsLo.Examples.Textures.SpriteButton.main();
+Raylib_CsLo.Examples.Textures.SpriteExplosion.main();
+Raylib_CsLo.Examples.Textures.TexturedPolygon.main();
+Raylib_CsLo.Examples.Textures.TextureFromRawData.main();
+Raylib_CsLo.Examples.Textures.TextureRectangle.main();
+Raylib_CsLo.Examples.Textures.TextureSourceAndDestinationRectangles.main();
+Raylib_CsLo.Examples.Textures.TextureToImage.main();
+Raylib_CsLo.Examples.Textures.TiledExture.main();

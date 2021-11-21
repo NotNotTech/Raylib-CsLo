@@ -16,5 +16,7 @@ namespace Raylib_CsLo
         public int bottom;
 
         public int layout;
-    }
+
+		
+	}
 }

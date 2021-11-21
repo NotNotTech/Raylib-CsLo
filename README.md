@@ -113,7 +113,7 @@ Right now the [Core, Model, and Shader examples have been fully ported](https://
 | ----------------- | --------------------- | --------- |
 | core              | novaleaf              | [X]       |
 | shapes            |                       | [ ]       |
-| textures          |                       | [ ]       |
+| textures          | novaleaf              | [X]       |
 | text              |                       | [ ]       |
 | models            | novaleaf              | [X]       |
 | shaders           | novaleaf              | [X]       |

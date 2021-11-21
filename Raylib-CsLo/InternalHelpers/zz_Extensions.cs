@@ -11,6 +11,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Numerics;
 using System.Runtime.CompilerServices;
+using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 using Microsoft.Toolkit.HighPerformance;
@@ -21,7 +22,11 @@ namespace Raylib_CsLo.InternalHelpers;
 
 public unsafe static class zz_Extensions
 {
-
+	public static GCHandle GcPin(this object obj)
+	{
+		var handle = GCHandle.Alloc(obj, GCHandleType.Pinned);
+		return handle;
+	}
 
 	public static SpanOwner<sbyte> MarshalUtf8(this string text)
 	{

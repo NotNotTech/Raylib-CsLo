@@ -198,10 +198,10 @@ public static unsafe partial class Raylib
 	{
 		fixed (T* valuePtr = &value)
 		{
-			SetShaderValue(shader, uniformLoc, (void*)valuePtr,(int) uniformType);
+			SetShaderValue(shader, uniformLoc, (void*)valuePtr, (int)uniformType);
 		}
 	}
-	public static unsafe void SetShaderValue<T>(Shader shader, int uniformLoc, T value, ShaderUniformDataType uniformType) where T : unmanaged=> SetShaderValue(shader, uniformLoc, (void*)(&value), (int)uniformType);
+	public static unsafe void SetShaderValue<T>(Shader shader, int uniformLoc, T value, ShaderUniformDataType uniformType) where T : unmanaged => SetShaderValue(shader, uniformLoc, (void*)(&value), (int)uniformType);
 	public static unsafe void SetShaderValue<T>(Shader shader, int uniformLoc, T[] values, ShaderUniformDataType uniformType) where T : unmanaged
 	{
 		SetShaderValue(shader, uniformLoc, (Span<T>)values, uniformType);
@@ -210,7 +210,7 @@ public static unsafe partial class Raylib
 	{
 		fixed (T* valuePtr = values)
 		{
-			Raylib.SetShaderValue(shader, uniformLoc, (void*)valuePtr,(int) uniformType);
+			Raylib.SetShaderValue(shader, uniformLoc, (void*)valuePtr, (int)uniformType);
 		}
 	}
 
@@ -220,9 +220,9 @@ public static unsafe partial class Raylib
 	/// </summary>
 	public static void SetShaderValueV<T>(Shader shader, int locIndex, T[] array, ShaderUniformDataType uniformType, int count) where T : unmanaged
 	{
-		fixed(T* p_array = array)
+		fixed (T* p_array = array)
 		{
-			SetShaderValueV(shader, locIndex, p_array,(int)uniformType, count);
+			SetShaderValueV(shader, locIndex, p_array, (int)uniformType, count);
 		}
 		//GCHandle pinnedData = GCHandle.Alloc(value, GCHandleType.Pinned);
 		//Raylib.SetShaderValueV(shader, uniformLoc, pinnedData.AddrOfPinnedObject(), uniformType, count);
@@ -231,7 +231,7 @@ public static unsafe partial class Raylib
 	/// <summary>
 	/// 'vector' (array) version of this function.  can pass a `ref` to an arrayItem instead of the entire array
 	/// </summary>
-	public static void SetShaderValueV<T>(Shader shader, int locIndex,ref T arrayOffset, ShaderUniformDataType uniformType, int count) where T : unmanaged
+	public static void SetShaderValueV<T>(Shader shader, int locIndex, ref T arrayOffset, ShaderUniformDataType uniformType, int count) where T : unmanaged
 	{
 		fixed (T* p_array = &arrayOffset)
 		{
@@ -307,7 +307,7 @@ public static unsafe partial class Raylib
 		//return filePath;
 	}
 
-	public static void DrawGrid(int slices, double spacing)=>DrawGrid(slices,(float)spacing);
+	public static void DrawGrid(int slices, double spacing) => DrawGrid(slices, (float)spacing);
 
 
 	public static Texture LoadTextureCubemap(Image image, CubemapLayout layout) => LoadTextureCubemap(image, (int)layout);
@@ -325,6 +325,80 @@ public static unsafe partial class Raylib
 			Raylib.DrawMeshInstanced(mesh, material, p_transforms, instances);
 		}
 	}
+
+	public static void BeginBlendMode(BlendMode blendMode) => BeginBlendMode((int)blendMode);
+
+
+	public static void ImageDrawTextEx(ref Image dst, Font font, string fileName, Vector2 position, float fontSize, float spacing, Color tint)
+	{
+		using var text = fileName.MarshalUtf8();
+		fixed (Image* p_dst = &dst)
+		{
+			ImageDrawTextEx(p_dst, font, text.AsPtr(), position, fontSize, spacing, tint);
+		}
+
+	}
+
+	public static void ImageDrawTextEx(Image* p_dst, Font font, string fileName, Vector2 position, float fontSize, float spacing, Color tint)
+	{
+		using var text = fileName.MarshalUtf8();
+		//fixed (Image* p_dst = &parrots)
+		{
+			ImageDrawTextEx(p_dst, font, text.AsPtr(), position, fontSize, spacing, tint);
+		}
+
+	}
+
+	public static Font LoadFont(string fileName)
+	{
+		using var text = fileName.MarshalUtf8();
+		return LoadFont(text.AsPtr());
+	}
+
+	public static void ImageFormat(Image* image, PixelFormat newFormat) => ImageFormat(image, (int)newFormat);
+
+
+
+	public static Font LoadFontEx(string fileName, int fontSize, int* fontChars, int glyphCount)
+	{
+		using var text = fileName.MarshalUtf8();
+		return LoadFontEx(text.AsPtr(), fontSize, fontChars, glyphCount);
+	}
+
+	public static void DrawTextEx(Font font, string text, Vector2 position, float fontSize, float spacing, Color tint)
+	{
+		using var p_text = text.MarshalUtf8();
+		DrawTextEx(font, p_text.AsPtr(), position, fontSize, spacing, tint);
+	}
+
+
+	public static void ExportImage(Image image, string fileName)
+	{
+		using var soFilename = fileName.MarshalUtf8();
+		ExportImage(image, soFilename.AsPtr());
+	}
+	public static void DrawTexturePoly(Texture texture, Vector2 center, Vector2[] positions, Vector2[] texcoords, int pointCount, Color tint)
+	{
+		fixed (Vector2* p_pos = positions)
+		{
+			fixed (Vector2* p_tex = texcoords)
+			{
+				DrawTexturePoly(texture, center, p_pos, p_tex, pointCount, tint);
+			}
+
+		}
+	}
+
+	public static Image LoadImageRaw(string fileName, int width, int height, PixelFormat format, int headerSize)
+	{
+		using var soFilename = fileName.MarshalUtf8();
+		return LoadImageRaw(soFilename.AsPtr(), width, height, (int)format, headerSize);
+	}
+	public static Sound LoadSound(string fileName)
+	{
+		using var soFilename = fileName.MarshalUtf8();
+		return LoadSound(soFilename.AsPtr());
+	}
 }
 
 public static unsafe partial class RlGl
@@ -334,7 +408,7 @@ public static unsafe partial class RlGl
 	=> rlFramebufferAttach(fboId, texId, (int)attachType, (int)texType, mipLevel);
 
 	public static uint rlLoadTextureCubemap(void* data, int size, PixelFormat format)
-	=>rlLoadTextureCubemap(data, size,(int) format);
+	=> rlLoadTextureCubemap(data, size, (int)format);
 }
 
 
@@ -346,6 +420,17 @@ public partial struct Rectangle
 		this.y = y;
 		this.width = width;
 		this.height = height;
+	}
+
+	public float X
+	{
+		get => x;
+		set => x = value;
+	}
+	public float Y
+	{
+		get => y;
+		set => y = value;
 	}
 }
 
@@ -415,5 +500,18 @@ public partial struct Texture
 	{
 		get => (PixelFormat)format;
 		set => format = (int)value;
+	}
+}
+public partial struct NPatchInfo
+{
+
+	public NPatchInfo(Rectangle source, int left, int top, int right, int bottom, NPatchLayout layout)
+	{
+		this.source = source;
+		this.left = left;
+		this.top = top;
+		this.right = right;
+		this.bottom = bottom;
+		this.layout = (int)layout;
 	}
 }
