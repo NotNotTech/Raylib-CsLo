@@ -54,6 +54,9 @@ global using static Raylib_CsLo.FontType;
 global using static Raylib_CsLo.MouseCursor;
 
 
+global using static Raylib_CsLo.Easings;
+global using static Raylib_CsLo.Physac;
+
 
 global using Camera = Raylib_CsLo.Camera3D;
 global using RenderTexture2D = Raylib_CsLo.RenderTexture;

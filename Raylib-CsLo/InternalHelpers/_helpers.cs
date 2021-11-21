@@ -24,9 +24,9 @@ public unsafe static class Helpers
 	{
 		return Marshal.PtrToStringUTF8((IntPtr)text);
 	}
-	public static string ToString(string text) => text;
+	//public static string ToString(string text) => text;
 
-	public static string ToString(object obj) => obj.ToString();
+	//public static string ToString(object obj) => obj.ToString();
 	
 
 }

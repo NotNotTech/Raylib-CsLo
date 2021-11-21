@@ -93,11 +93,24 @@ any lines not including sbyte
 ^((?!sbyte).)*$
 
 wrap sbyte* inputs
+
+
+only string parm --> void
+public static void TakeScreenshot(sbyte* fileName);
+public static void (\w*)\(sbyte\* (\w+)\);
+public static void $1(string $2){using var so$2 = $2.MarshalUtf8(); $1(so$2.AsPtr());}
+
+
+
+other string params 1x
 public static Boolean GuiWindowBox(Rectangle bounds, sbyte* title);
 public static (\w*) (\w*)\((.*)sbyte\* (\w+)(.*)\);
-public static $1 $2($3string $4$5){using var so$4 = $4.MarshalUtf8(); return $2($3so$4.AsPtr()$5);}
+public static $1 $2($3string $4$5){\nusing var so$4 = $4.MarshalUtf8();\n return $2($3so$4.AsPtr()$5);\n}
+
+just return string
+public static sbyte* GetMonitorName(int monitor);
 
 
-no prefix parameters
+
 
 ```
