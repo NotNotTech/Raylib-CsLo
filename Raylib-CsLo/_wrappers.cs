@@ -399,6 +399,62 @@ public static unsafe partial class Raylib
 		using var soFilename = fileName.MarshalUtf8();
 		return LoadSound(soFilename.AsPtr());
 	}
+
+
+	public static bool IsFileExtension(string fileName, string exts)
+	{
+		using var soFilename = fileName.MarshalUtf8();
+		using var soExts = exts.MarshalUtf8();
+
+		return IsFileExtension(soFilename.AsPtr(), soExts.AsPtr());
+	}
+	public static int TextLength(string text)
+	{
+		using var soText = text.MarshalUtf8();
+		return (int)TextLength(soText.AsPtr());
+	}
+
+	public static int GetCodepoint(char stringChar, out int bytesProcessed)
+	{
+		sbyte charSbyte = (sbyte)stringChar;
+		int byteCount = 0;
+		var toReturn = Raylib.GetCodepoint(&charSbyte, &byteCount);
+		bytesProcessed = byteCount;
+		return toReturn;
+	}
+
+	public static Vector2 MeasureTextEx(Font font, string text, float fontSize, float spacing)
+	{
+		using var soText = text.MarshalUtf8();
+		return MeasureTextEx(font, soText.AsPtr(), fontSize, spacing);
+	}
+
+	public static GlyphInfo* LoadFontData(byte* fileData, int dataSize, int fontSize, int* fontChars, int glyphCount, FontType type)
+		=> LoadFontData(fileData, dataSize, fontSize, fontChars, glyphCount, (int)type);
+
+	public static byte* LoadFileData(string fileName, out uint bytesRead)
+	{
+		using var soFilename = fileName.MarshalUtf8();
+		uint output;
+		var toReturn = LoadFileData(soFilename.AsPtr(), &output);
+		bytesRead = output;
+		return toReturn;
+
+	}
+	public static void SetMouseCursor(MouseCursor cursor) => SetMouseCursor((int)cursor);
+
+
+	public static int GetCodepointCount(string text)
+	{
+		using var soText = text.MarshalUtf8();
+		return GetCodepointCount(soText.AsPtr());
+	}
+	public static string TextSubtext(string message, int position, int length)
+	{
+		return message.Substring(position, length);
+	}
+
+
 }
 
 public static unsafe partial class RlGl
@@ -513,5 +569,39 @@ public partial struct NPatchInfo
 		this.right = right;
 		this.bottom = bottom;
 		this.layout = (int)layout;
+	}
+}
+
+public partial class Easings
+{
+	public static float EaseElasticInOut(float t, float b, float c, float d)
+	{
+		if (t == 0.0f)
+		{
+			return b;
+		}
+
+		if ((t /= d / 2.0f) == 2.0f)
+		{
+			return (b + c);
+		}
+
+		float p = d * (0.3f * 1.5f);
+		float a = c;
+		float s = p / 4.0f;
+
+		if (t < 1.0f)
+		{
+			float postFix = a * MathF.Pow(2.0f, 10.0f * (t -= 1.0f));
+
+			return -0.5f * (postFix * MathF.Sin((t * d - s) * (2.0f * 3.14159265358979323846f) / p)) + b;
+		}
+		else //RAYLIB-CSLO: bugfix in codegen, add else
+		{
+
+			float postFix = a * MathF.Pow(2.0f, -10.0f * (t -= 1.0f));
+
+			return (postFix * MathF.Sin((t * d - s) * (2.0f * 3.14159265358979323846f) / p) * 0.5f + c + b);
+		}
 	}
 }

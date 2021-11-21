@@ -2,8 +2,8 @@
 
     <PropertyGroup>
         <TargetFramework>net6.0</TargetFramework>
-        <!--<EnablePreviewFeatures>True</EnablePreviewFeatures>-->
-        <!--<LangVersion>Preview</LangVersion>-->
+        <!--<EnablePreviewFeatures>True</EnablePreviewFeatures>
+        <LangVersion>Preview</LangVersion>-->
         <RootNamespace>Raylib_CsLo</RootNamespace>
         <ImplicitUsings>enable</ImplicitUsings>
         <Nullable>enable</Nullable>

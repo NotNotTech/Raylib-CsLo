@@ -2,25 +2,31 @@
 # example https://github.com/microsoft/ClangSharp/blob/main/sources/ClangSharpPInvokeGenerator/Properties/GenerateClang.rsp
 --config
 # Bindings should be generated for the latest preview version of .NET/C#. This is currently .NET 6/C# 10.
-# preview-codegen
+preview-codegen
 # Generated bindings for latest or preview codegen should not use nint or nuint.
 # preview-codegen-nint
 generate-template-bindings
-# generate-vtbl-index-attribute
+# 
 generate-macro-bindings
 generate-tests-xunit
 generate-helper-types
 # unix-types
 windows-types
 multi-file
-# try these out
+############ try these out
 generate-aggressive-inlining
 generate-cpp-attributes
 generate-marker-interfaces
 generate-native-inheritance-attribute
 #generate-unmanaged-constants
---file-directory
-./raylib-4.0.0_win64_msvc16/include/
+################ new for physac header gen
+explicit-vtbls
+generate-vtbl-index-attribute
+#generate-unmanaged-constants
+# --file-directory 
+# ./raylib-4.0.0_win64_msvc16/include/
+# --include-directory 
+# ./raylib-4.0.0_win64_msvc16/include/
 #--methodClassName
 #Raylib
 #--file
@@ -82,7 +88,7 @@ fmaxf=MathF.Max
 tan=Math.Tan
 MatrixToFloatV=float16.FromMatrix
 Vector3ToFloatV=float3.FromVector3
-#.operator==
+powf=MathF.Pow
 --with-namespace 
 Matrix4x4=System.Numerics
 Vector2=System.Numerics

@@ -3,18 +3,17 @@
 //# This file, and it's containing folder are automatically generated.  Do not Modify.
 namespace Raylib_CsLo
 {
-    public partial struct NPatchInfo
+    public unsafe partial struct PhysicsShape
     {
-        public Rectangle source;
+        public PhysicsShapeType type;
 
-        public int left;
+        [NativeTypeName("PhysicsBody")]
+        public PhysicsBodyData* body;
 
-        public int top;
+        public PhysicsVertexData vertexData;
 
-        public int right;
+        public float radius;
 
-        public int bottom;
-
-        public int layout;
+        public Matrix2x2 transform;
     }
 }

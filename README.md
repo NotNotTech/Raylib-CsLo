@@ -84,6 +84,7 @@ Right now the [Core, Model, and Shader examples have been fully ported](https://
   - Raylib-CsLo has bindings for everything in the Raylib 4.0 release, with the exception of:
     -  Native Memory allocation functions:  use `System.Runtime.InteropServices.NativeMemory.Alloc()` instead
     -  `LogCustom()` is ported but doesn't support variable length arguments.
+    -  The `Text.Unicode` example doesn't render unicode properly.  Maybe the required font is missing, maybe there is a bug in the example (Utf16 to Utf8 conversion) or maybe there is a bug in Raylib. 
 - **Why didn't you add a wrapper for function `SOME_OTHER_FUNCTION_YOU_NEED()`?** 
   - Raylib-CsLo uses a manual marshalling technique, as the built in PInvoke marshalling is not very efficienct.  Unfortunately writing wrappers takes time.
   - I am going through all the examples and porting them, and when I do I'm adding wrappers to the raylib api's used (I'm using examples as a heuristic for "commonly used api's)   For a function I haven't written a wrapper for, you can look at how I do it and write your own wrapper, or can help the project by submitting a PR.  
@@ -112,9 +113,9 @@ Right now the [Core, Model, and Shader examples have been fully ported](https://
 | ~ example group ~ | ~ who is doing port ~ | ~ done? ~ |
 | ----------------- | --------------------- | --------- |
 | core              | novaleaf              | [X]       |
-| shapes            |                       | [ ]       |
+| shapes            | novaleaf              | [ ]       |
 | textures          | novaleaf              | [X]       |
-| text              |                       | [ ]       |
+| text              | novaleaf              | [X]       |
 | models            | novaleaf              | [X]       |
 | shaders           | novaleaf              | [X]       |
 | audio             |                       | [ ]       |
@@ -122,6 +123,7 @@ Right now the [Core, Model, and Shader examples have been fully ported](https://
 
 
 # ChangeLog
+- **4.0.0-beta.3** (2021/11/21):  `Physac`, and `Easings` Raylib.extras ported to managed code. 
 - **4.0.0-beta.0** (2021/11/20):  `Model`, and `Shader` examples ported. 
 - **4.0.0-alpha.2** (2021/11/18):  Model examples ported. AutoGen Bindings expanded to include all api's exposed by Raylib.dll (adding `RayMath`, `RlGl`, `RayGui`)
 - **4.0.0-alpha.1** (2021/11/16):  all `Core` examples ported, so "feature complete" for the workflows used in those examples (and, complete only for those workflows)

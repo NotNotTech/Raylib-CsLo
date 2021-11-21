@@ -7,18 +7,21 @@ del -Recurse -Force ..\Raylib-CsLo.Tests\autogen
 pushd ..\sub-modules\ClangSharp\
 dotnet build -c Release
 popd
-# raylib
-dotnet ..\sub-modules\ClangSharp\artifacts\bin\sources\ClangSharpPInvokeGenerator\Release\net6.0\ClangSharpPInvokeGenerator.dll @gen-raylib.rsp --file raylib.h --methodClassName Raylib --exclude PI DEG2RAD RAD2DEG
-# raymath
-dotnet ..\sub-modules\ClangSharp\artifacts\bin\sources\ClangSharpPInvokeGenerator\Release\net6.0\ClangSharpPInvokeGenerator.dll @gen-raylib.rsp --file raymath.h --methodClassName RayMath
+" ################ # raylib"
+dotnet ..\sub-modules\ClangSharp\artifacts\bin\sources\ClangSharpPInvokeGenerator\Release\net6.0\ClangSharpPInvokeGenerator.dll @gen-raylib.rsp --file-directory ./raylib-4.0.0_win64_msvc16/include/ --file raylib.h --methodClassName Raylib --exclude PI DEG2RAD RAD2DEG
+" ################ # raymath"
+dotnet ..\sub-modules\ClangSharp\artifacts\bin\sources\ClangSharpPInvokeGenerator\Release\net6.0\ClangSharpPInvokeGenerator.dll @gen-raylib.rsp --file-directory ./raylib-4.0.0_win64_msvc16/include/ --file raymath.h --methodClassName RayMath
 robocopy "./raylib-4.0.0_win64_msvc16/lib" "..\Raylib-CsLo\" raylib.dll
 ##hack: replace malformed autogen content
 $replaceFile = '../Raylib-CsLo/autogen/bindings/RayMath.cs'
 (Get-Content $replaceFile).replace('.operator=', '=') | Set-Content $replaceFile
-# rlgl
-dotnet ..\sub-modules\ClangSharp\artifacts\bin\sources\ClangSharpPInvokeGenerator\Release\net6.0\ClangSharpPInvokeGenerator.dll @gen-raylib.rsp --file rlgl.h --methodClassName RlGl
-# raygui
-dotnet ..\sub-modules\ClangSharp\artifacts\bin\sources\ClangSharpPInvokeGenerator\Release\net6.0\ClangSharpPInvokeGenerator.dll @gen-raylib.rsp --file raygui.h --methodClassName RayGui
-
+" ################ # rlgl"
+dotnet ..\sub-modules\ClangSharp\artifacts\bin\sources\ClangSharpPInvokeGenerator\Release\net6.0\ClangSharpPInvokeGenerator.dll @gen-raylib.rsp --file-directory ./raylib-4.0.0_win64_msvc16/include/ --file rlgl.h --methodClassName RlGl
+" ################ # raygui"
+dotnet ..\sub-modules\ClangSharp\artifacts\bin\sources\ClangSharpPInvokeGenerator\Release\net6.0\ClangSharpPInvokeGenerator.dll @gen-raylib.rsp --file-directory ./raylib-4.0.0_win64_msvc16/include/ --file raygui.h --methodClassName RayGui
+" ################ # physac"
+dotnet ..\sub-modules\ClangSharp\artifacts\bin\sources\ClangSharpPInvokeGenerator\Release\net6.0\ClangSharpPInvokeGenerator.dll @gen-raylib.rsp --file-directory ../sub-modules/raylib/src/extras/ --include-directory ../sub-modules/raylib/src/ --file physac.h --methodClassName Physac
+" ################ # Easings "
+dotnet ..\sub-modules\ClangSharp\artifacts\bin\sources\ClangSharpPInvokeGenerator\Release\net6.0\ClangSharpPInvokeGenerator.dll @gen-raylib.rsp --file-directory ../sub-modules/raylib/src/extras/ --include-directory ../sub-modules/raylib/src/ --file easings.h --methodClassName Easings --exclude EaseElasticInOut
 
 popd

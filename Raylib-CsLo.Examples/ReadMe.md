@@ -77,3 +77,27 @@ should be applied in order, as former transforms impact later
 - alloc
   - example: `Color* pixels = (Color*)malloc(width * height * sizeof(Color));`
   - search:``
+- strings
+  - example: `char[] text = new char[64]`
+  - search:``
+
+
+## recipie for generating wrappers
+
+```
+example input
+search
+replace
+
+any lines not including sbyte
+^((?!sbyte).)*$
+
+wrap sbyte* inputs
+public static Boolean GuiWindowBox(Rectangle bounds, sbyte* title);
+public static (\w*) (\w*)\((.*)sbyte\* (\w+)(.*)\);
+public static $1 $2($3string $4$5){using var so$4 = $4.MarshalUtf8(); return $2($3so$4.AsPtr()$5);}
+
+
+no prefix parameters
+
+```

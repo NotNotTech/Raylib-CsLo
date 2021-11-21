@@ -3,18 +3,14 @@
 //# This file, and it's containing folder are automatically generated.  Do not Modify.
 namespace Raylib_CsLo
 {
-    public partial struct NPatchInfo
+    public partial struct Matrix2x2
     {
-        public Rectangle source;
+        public float m00;
 
-        public int left;
+        public float m01;
 
-        public int top;
+        public float m10;
 
-        public int right;
-
-        public int bottom;
-
-        public int layout;
+        public float m11;
     }
 }

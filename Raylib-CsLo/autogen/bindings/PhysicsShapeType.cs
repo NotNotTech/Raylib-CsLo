@@ -3,18 +3,9 @@
 //# This file, and it's containing folder are automatically generated.  Do not Modify.
 namespace Raylib_CsLo
 {
-    public partial struct NPatchInfo
+    public enum PhysicsShapeType
     {
-        public Rectangle source;
-
-        public int left;
-
-        public int top;
-
-        public int right;
-
-        public int bottom;
-
-        public int layout;
+        PHYSICS_CIRCLE = 0,
+        PHYSICS_POLYGON,
     }
 }
