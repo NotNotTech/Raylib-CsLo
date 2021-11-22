@@ -141,12 +141,6 @@ namespace Raylib_CsLo
         public static extern void WaitTime(float ms);
 
         [DllImport("raylib.dll", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
-        public static extern void EnableCustomFrameControl();
-
-        [DllImport("raylib.dll", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
-        public static extern void DisableCustomFrameControl();
-
-        [DllImport("raylib.dll", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
         public static extern void ShowCursor();
 
         [DllImport("raylib.dll", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]

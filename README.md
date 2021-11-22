@@ -45,7 +45,7 @@ To make these bindings "friendly" to C# use, convenience wrappers are being adde
 
 The current mission of this project is to port all Raylib examples (more than 120 of them) to work with these bindings, with as little modification to the example code as possible.  In doing so, convenience wrappers will be added for the Raylib api's used in the examples.  This is a good heuristic for "primary usage scenarios", so writing wrappers for these API's should make these bindings user friendly in the fastest time, while also providing valuable C# examples.
 
-Right now the [Core, Model, and Shader examples have been fully ported](https://github.com/NotNotTech/Raylib-CsLo/tree/main/Raylib-CsLo.Examples).
+Right now mose of the [examples have been ported](https://github.com/NotNotTech/Raylib-CsLo/tree/main/Raylib-CsLo.Examples).
 
 ## Release timeline
 
@@ -123,7 +123,7 @@ Right now the [Core, Model, and Shader examples have been fully ported](https://
 
 
 # ChangeLog
-- **4.0.0-beta.3** (2021/11/21):  `Physac`, and `Easings` Raylib.extras ported to managed code. 
+- **4.0.0-beta.2** (2021/11/22):  `RayGui`, and `Easings` Raylib.extras ported to managed code. `Shapes`,`Textures`, and `Text` examples ported.
 - **4.0.0-beta.0** (2021/11/20):  `Model`, and `Shader` examples ported. 
-- **4.0.0-alpha.2** (2021/11/18):  Model examples ported. AutoGen Bindings expanded to include all api's exposed by Raylib.dll (adding `RayMath`, `RlGl`, `RayGui`)
+- **4.0.0-alpha.2** (2021/11/18):  Model examples ported. AutoGen Bindings expanded to include all api's exposed by Raylib.dll (adding `RayMath`, `RlGl`)
 - **4.0.0-alpha.1** (2021/11/16):  all `Core` examples ported, so "feature complete" for the workflows used in those examples (and, complete only for those workflows)

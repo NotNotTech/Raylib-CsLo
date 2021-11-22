@@ -2031,6 +2031,10 @@ public unsafe static class Unicode
 	//--------------------------------------------------------------------------------------
 	public static int main()//int argc, char** argv)
 	{
+
+		System.Diagnostics.Debug.Assert(false,
+			"this example does not work properly.  I think the font doesn't include unicode character");
+
 		// Initialization
 		//--------------------------------------------------------------------------------------
 		const int screenWidth = 800;
