@@ -253,8 +253,5 @@ namespace Raylib_CsLo
 
             return (a * MathF.Pow(2.0f, -10.0f * t) * MathF.Sin((t * d - s) * (2.0f * 3.14159265358979323846f) / p) + c + b);
         }
-
-        [NativeTypeName("#define PI 3.14159265358979323846f")]
-        public const float PI = 3.14159265358979323846f;
     }
 }

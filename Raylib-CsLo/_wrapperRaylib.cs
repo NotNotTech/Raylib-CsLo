@@ -455,7 +455,7 @@ public static unsafe partial class Raylib
 	}
 	public static string TextSubtext(string message, int position, int length)
 	{
-		return message.Substring(position, length);
+		return message.Substring(position, Math.Min(length,message.Length-position));
 	}
 
 

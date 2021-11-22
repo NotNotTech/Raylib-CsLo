@@ -69,7 +69,7 @@ global using Matrix = System.Numerics.Matrix4x4;
 
 //////////////////  CORE
 
-Raylib_CsLo.Examples.Core.BasicWindow.main();
+//Raylib_CsLo.Examples.Core.BasicWindow.main();
 //Raylib_CsLo.Examples.Core.BasicScreenManager.main();
 //Raylib_CsLo.Examples.Core.KeyboardInput.main();
 //Raylib_CsLo.Examples.Core.InputMouse.main();
@@ -185,3 +185,22 @@ Raylib_CsLo.Examples.Core.BasicWindow.main();
 /////////////// the unicode example doesn't work properly
 //Raylib_CsLo.Examples.Text.Unicode.main();
 
+
+
+////////////////////// SHAPES
+
+//Raylib_CsLo.Examples.Shapes.BasicShapesDrawing.main();
+//Raylib_CsLo.Examples.Shapes.BoundingBall.main();
+//Raylib_CsLo.Examples.Shapes.CollisionArea.main();
+//Raylib_CsLo.Examples.Shapes.ColorsPalette.main();
+Raylib_CsLo.Examples.Shapes.DrawCircleSector.main();
+Raylib_CsLo.Examples.Shapes.DrawRectangleRounded.main();
+Raylib_CsLo.Examples.Shapes.DrawRing.main();
+Raylib_CsLo.Examples.Shapes.EasingsBallAnim.main();
+Raylib_CsLo.Examples.Shapes.EasingsBoxAnim.main();
+Raylib_CsLo.Examples.Shapes.EasingsRectangleArray.main();
+Raylib_CsLo.Examples.Shapes.FollowingEyes.main();
+Raylib_CsLo.Examples.Shapes.LogoAnimation.main();
+Raylib_CsLo.Examples.Shapes.LogoUsingShapes.main();
+Raylib_CsLo.Examples.Shapes.RectangleScalingMouse.main();
+Raylib_CsLo.Examples.Shapes.LinesCubicBezier.main();

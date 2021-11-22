@@ -8,65 +8,65 @@ namespace Raylib_CsLo
 {
     public static unsafe partial class Physac
     {
-        [DllImport("raylib.dll", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
+        [DllImport("physac.dll", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
         public static extern void InitPhysics();
 
-        [DllImport("raylib.dll", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
+        [DllImport("physac.dll", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
         public static extern void UpdatePhysics();
 
-        [DllImport("raylib.dll", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
+        [DllImport("physac.dll", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
         public static extern void ResetPhysics();
 
-        [DllImport("raylib.dll", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
+        [DllImport("physac.dll", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
         public static extern void ClosePhysics();
 
-        [DllImport("raylib.dll", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
+        [DllImport("physac.dll", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
         public static extern void SetPhysicsTimeStep(double delta);
 
-        [DllImport("raylib.dll", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
+        [DllImport("physac.dll", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
         public static extern void SetPhysicsGravity(float x, float y);
 
-        [DllImport("raylib.dll", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
+        [DllImport("physac.dll", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
         [return: NativeTypeName("PhysicsBody")]
         public static extern PhysicsBodyData* CreatePhysicsBodyCircle(Vector2 pos, float radius, float density);
 
-        [DllImport("raylib.dll", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
+        [DllImport("physac.dll", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
         [return: NativeTypeName("PhysicsBody")]
         public static extern PhysicsBodyData* CreatePhysicsBodyRectangle(Vector2 pos, float width, float height, float density);
 
-        [DllImport("raylib.dll", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
+        [DllImport("physac.dll", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
         [return: NativeTypeName("PhysicsBody")]
         public static extern PhysicsBodyData* CreatePhysicsBodyPolygon(Vector2 pos, float radius, int sides, float density);
 
-        [DllImport("raylib.dll", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
+        [DllImport("physac.dll", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
         public static extern void DestroyPhysicsBody([NativeTypeName("PhysicsBody")] PhysicsBodyData* body);
 
-        [DllImport("raylib.dll", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
+        [DllImport("physac.dll", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
         public static extern void PhysicsAddForce([NativeTypeName("PhysicsBody")] PhysicsBodyData* body, Vector2 force);
 
-        [DllImport("raylib.dll", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
+        [DllImport("physac.dll", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
         public static extern void PhysicsAddTorque([NativeTypeName("PhysicsBody")] PhysicsBodyData* body, float amount);
 
-        [DllImport("raylib.dll", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
+        [DllImport("physac.dll", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
         public static extern void PhysicsShatter([NativeTypeName("PhysicsBody")] PhysicsBodyData* body, Vector2 position, float force);
 
-        [DllImport("raylib.dll", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
+        [DllImport("physac.dll", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
         public static extern void SetPhysicsBodyRotation([NativeTypeName("PhysicsBody")] PhysicsBodyData* body, float radians);
 
-        [DllImport("raylib.dll", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
+        [DllImport("physac.dll", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
         [return: NativeTypeName("PhysicsBody")]
         public static extern PhysicsBodyData* GetPhysicsBody(int index);
 
-        [DllImport("raylib.dll", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
+        [DllImport("physac.dll", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
         public static extern int GetPhysicsBodiesCount();
 
-        [DllImport("raylib.dll", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
+        [DllImport("physac.dll", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
         public static extern int GetPhysicsShapeType(int index);
 
-        [DllImport("raylib.dll", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
+        [DllImport("physac.dll", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
         public static extern int GetPhysicsShapeVerticesCount(int index);
 
-        [DllImport("raylib.dll", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
+        [DllImport("physac.dll", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
         public static extern Vector2 GetPhysicsShapeVertex([NativeTypeName("PhysicsBody")] PhysicsBodyData* body, int vertex);
 
         [NativeTypeName("#define PHYSAC_MAX_BODIES 64")]

@@ -1,5 +1,6 @@
 # details: https://github.com/microsoft/ClangSharp/blob/main/README.md#generating-bindings
 # example https://github.com/microsoft/ClangSharp/blob/main/sources/ClangSharpPInvokeGenerator/Properties/GenerateClang.rsp
+############################## 
 --config
 # Bindings should be generated for the latest preview version of .NET/C#. This is currently .NET 6/C# 10.
 preview-codegen
@@ -27,25 +28,32 @@ generate-vtbl-index-attribute
 # ./raylib-4.0.0_win64_msvc16/include/
 # --include-directory 
 # ./raylib-4.0.0_win64_msvc16/include/
+############################## 
 #--methodClassName
 #Raylib
+############################## 
 #--file
 #raylib.h
 # raygui.h
 #raymath.h
 # rlgl.h
---libraryPath
-raylib.dll
+############################## 
+#--libraryPath raylib.dll
+############################## 
 --headerFile
 ./GenerateRaylib-LICENSE.txt
+############################## 
 --namespace
 Raylib_CsLo
+############################## 
 --output
 ../Raylib-CsLo/autogen/bindings
+############################## 
 --test-output
 ../Raylib-CsLo.Tests/autogen/tests
 # --prefixStrip
 # clang_
+############################## REMAP
 --remap 
 Matrix=@Matrix4x4 
 Quaternion=Quaternion
@@ -89,6 +97,7 @@ tan=Math.Tan
 MatrixToFloatV=float16.FromMatrix
 Vector3ToFloatV=float3.FromVector3
 powf=MathF.Pow
+############################## with-namespace 
 --with-namespace 
 Matrix4x4=System.Numerics
 Vector2=System.Numerics
@@ -96,6 +105,7 @@ Vector3=System.Numerics
 Vector4=System.Numerics
 Quaternion=System.Numerics
 Boolean=System
+############################## exclude
 --exclude
 Matrix
 Vector2

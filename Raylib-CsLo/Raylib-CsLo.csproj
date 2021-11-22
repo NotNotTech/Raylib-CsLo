@@ -65,6 +65,11 @@
             <Pack>true</Pack>
             <PackagePath>lib\net6.0</PackagePath>
         </Content>
+        <Content Include="raygui.dll">
+            <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+            <Pack>true</Pack>
+            <PackagePath>lib\net6.0</PackagePath>
+        </Content>
     </ItemGroup>
 
 </Project>
