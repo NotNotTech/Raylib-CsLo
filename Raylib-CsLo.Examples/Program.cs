@@ -189,10 +189,10 @@ global using Matrix = System.Numerics.Matrix4x4;
 
 ////////////////////// SHAPES
 
-//Raylib_CsLo.Examples.Shapes.BasicShapesDrawing.main();
-//Raylib_CsLo.Examples.Shapes.BoundingBall.main();
-//Raylib_CsLo.Examples.Shapes.CollisionArea.main();
-//Raylib_CsLo.Examples.Shapes.ColorsPalette.main();
+Raylib_CsLo.Examples.Shapes.BasicShapesDrawing.main();
+Raylib_CsLo.Examples.Shapes.BoundingBall.main();
+Raylib_CsLo.Examples.Shapes.CollisionArea.main();
+Raylib_CsLo.Examples.Shapes.ColorsPalette.main();
 Raylib_CsLo.Examples.Shapes.DrawCircleSector.main();
 Raylib_CsLo.Examples.Shapes.DrawRectangleRounded.main();
 Raylib_CsLo.Examples.Shapes.DrawRing.main();
