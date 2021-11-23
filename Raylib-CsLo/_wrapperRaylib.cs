@@ -529,7 +529,7 @@ public static unsafe partial class Raylib
 	public static string LoadFileText(string fileName)
 	{
 		using var sotext = fileName.MarshalUtf8();
-		return Helpers.ToString(LoadFileText(sotext.AsPtr()));
+		return Helpers.Utf8ToString(LoadFileText(sotext.AsPtr()));
 	}
 
 
@@ -567,7 +567,7 @@ public static unsafe partial class Raylib
 	public static string GetFileExtension(string fileName)
 	{
 		using var sotext = fileName.MarshalUtf8();
-		return Helpers.ToString(GetFileExtension(sotext.AsPtr()));
+		return Helpers.Utf8ToString(GetFileExtension(sotext.AsPtr()));
 	}
 
 	//public static string GetFileName(string filePath)
@@ -579,23 +579,23 @@ public static unsafe partial class Raylib
 	public static string GetFileNameWithoutExt(string filePath)
 	{
 		using var sotext = filePath.MarshalUtf8();
-		return Helpers.ToString(GetFileNameWithoutExt(sotext.AsPtr()));
+		return Helpers.Utf8ToString(GetFileNameWithoutExt(sotext.AsPtr()));
 	}
 
 	public static string GetDirectoryPath(string filePath)
 	{
 		using var sotext = filePath.MarshalUtf8();
-		return Helpers.ToString(GetDirectoryPath(sotext.AsPtr()));
+		return Helpers.Utf8ToString(GetDirectoryPath(sotext.AsPtr()));
 	}
 
 	public static string GetPrevDirectoryPath(string filePath)
 	{
 		using var sotext = filePath.MarshalUtf8();
-		return Helpers.ToString(GetPrevDirectoryPath(sotext.AsPtr()));
+		return Helpers.Utf8ToString(GetPrevDirectoryPath(sotext.AsPtr()));
 	}
 
 	public static string GetWorkingDirectory_()
-=> Helpers.ToString(GetWorkingDirectory());
+=> Helpers.Utf8ToString(GetWorkingDirectory());
 
 	public static string[] GetDirectoryFiles(string dirPath)
 	{
@@ -763,10 +763,10 @@ public static unsafe partial class Raylib
 	}
 
 	public static string CodepointToUTF8_(int codepoint, int* byteSize)
-=> Helpers.ToString(CodepointToUTF8( codepoint,  byteSize));
+=> Helpers.Utf8ToString(CodepointToUTF8( codepoint,  byteSize));
 
 	public static string TextCodepointsToUTF8_(int* codepoints, int length)
-=> Helpers.ToString(TextCodepointsToUTF8( codepoints,  length));
+=> Helpers.Utf8ToString(TextCodepointsToUTF8( codepoints,  length));
 
 	public static int TextCopy(string dst, string src)
 	{

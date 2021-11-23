@@ -1,5 +1,5 @@
-| ![Raylib-CsLo-Logo](meta/logos/raylib-cslo_128x128.png) | `Raylib-CsLo` |
-| ------------------------------------------------------- | ------------- |
+| [![Raylib-CsLo-Logo](meta/logos/raylib-cslo_128x128.png)](https://github.com/NotNotTech/Raylib-CsLo) |
+| ---------------------------------------------------------------------------------------------------- |
 
 ![Status BETA](https://img.shields.io/badge/status-BETA-yellow)
 [![Nuget Package](https://img.shields.io/badge/Nuget_Package-blue?logo=NuGet)](https://www.nuget.org/packages/Raylib-CsLo)
@@ -40,12 +40,12 @@ Precise, minimal bindings to `Raylib v4` and `Raylib v4 Extras`.  Convenience wr
 ### `RELEASE CANDIDATE`
 - **The current status.**
 - All Raylib features, including Extras bindings
-  - `raylib`
-  - `rlgl`
-  - `raygui`
-  - `physac`
-  - `easings`
-  - `raymath`
+  - `raylib` : Core features, including Audio.
+  - `rlgl` : OpenGl abstraction
+  - `raygui` : A Imperitive Gui
+  - `physac` : A 2d physics framework
+  - `easings` : for simple animations  (Managed Port)
+  - `raymath` : game math library (Managed Port)
 - All raylib examples are ported and working (see the github repository for the example project)
 - [A Nuget package is avalable](https://www.nuget.org/packages/Raylib-CsLo)
 
@@ -58,8 +58,8 @@ Here are links to most the examples.  The images/links probably won't work from 
 
 | [`Core`](./Raylib-CsLo.Examples/Core/)                                                 | [`Shapes`](./Raylib-CsLo.Examples/Shapes/)                                                   | [`Textures`](./Raylib-CsLo.Examples/Textures/)                                                     | [`Text`](./Raylib-CsLo.Examples/Text/)                                                 | [`Models`](./Raylib-CsLo.Examples/Models/)                                                   | [`Shaders`](./Raylib-CsLo.Examples/Shaders/)                                                    | [`Audio`](./Raylib-CsLo.Examples/Audio/)                                                  | [`Physics`](./Raylib-CsLo.Examples/Physics/)                                                    |
 | -------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------- |
-| [![Ex1](./Raylib-CsLo.Examples/Core/examples-core-1.png)](./Raylib-CsLo.Examples/Core) | [![Ex1](./Raylib-CsLo.Examples/Shapes/examples-Shapes-1.png)](./Raylib-CsLo.Examples/Shapes) | [![Ex1](./Raylib-CsLo.Examples/Textures/examples-textures-1.png)](./Raylib-CsLo.Examples/Textures) | [![Ex1](./Raylib-CsLo.Examples/Text/examples-text-1.png)](./Raylib-CsLo.Examples/Text) | [![Ex1](./Raylib-CsLo.Examples/Models/examples-models-1.png)](./Raylib-CsLo.Examples/Models) | [![Ex1](./Raylib-CsLo.Examples/Shaders/examples-shaders-1.png)](./Raylib-CsLo.Examples/Shaders) | [![Ex1](./Raylib-CsLo.Examples/Audio/examples-audio-1.png)](./Raylib-CsLo.Examples/Audio) | [![Ex1](./Raylib-CsLo.Examples/Physics/examples-physics-1.png)](./Raylib-CsLo.Examples/Physics) |
-| [![Ex2](./Raylib-CsLo.Examples/Core/examples-core-2.png)](./Raylib-CsLo.Examples/Core) | [![Ex2](./Raylib-CsLo.Examples/Shapes/examples-Shapes-2.png)](./Raylib-CsLo.Examples/Shapes) | [![Ex2](./Raylib-CsLo.Examples/Textures/examples-textures-2.png)](./Raylib-CsLo.Examples/Textures) | [![Ex2](./Raylib-CsLo.Examples/Text/examples-text-2.png)](./Raylib-CsLo.Examples/Text) | [![Ex2](./Raylib-CsLo.Examples/Models/examples-models-2.png)](./Raylib-CsLo.Examples/Models) | [![Ex2](./Raylib-CsLo.Examples/Shaders/examples-shaders-2.png)](./Raylib-CsLo.Examples/Shaders) | [![Ex2](./Raylib-CsLo.Examples/Audio/examples-audio-2.png)](./Raylib-CsLo.Examples/Audio) | [![Ex2](./Raylib-CsLo.Examples/Physics/examples-physics-2.png)](./Raylib-CsLo.Examples/Physics) |
+| [![Ex1](./Raylib-CsLo.Examples/Core/examples-core-1.png)](./Raylib-CsLo.Examples/Core) | [![Ex1](./Raylib-CsLo.Examples/Shapes/examples-shapes-1.png)](./Raylib-CsLo.Examples/Shapes) | [![Ex1](./Raylib-CsLo.Examples/Textures/examples-textures-1.png)](./Raylib-CsLo.Examples/Textures) | [![Ex1](./Raylib-CsLo.Examples/Text/examples-text-1.png)](./Raylib-CsLo.Examples/Text) | [![Ex1](./Raylib-CsLo.Examples/Models/examples-models-1.png)](./Raylib-CsLo.Examples/Models) | [![Ex1](./Raylib-CsLo.Examples/Shaders/examples-shaders-1.png)](./Raylib-CsLo.Examples/Shaders) | [![Ex1](./Raylib-CsLo.Examples/Audio/examples-audio-1.png)](./Raylib-CsLo.Examples/Audio) | [![Ex1](./Raylib-CsLo.Examples/Physics/examples-physics-1.png)](./Raylib-CsLo.Examples/Physics) |
+| [![Ex2](./Raylib-CsLo.Examples/Core/examples-core-2.png)](./Raylib-CsLo.Examples/Core) | [![Ex2](./Raylib-CsLo.Examples/Shapes/examples-shapes-2.png)](./Raylib-CsLo.Examples/Shapes) | [![Ex2](./Raylib-CsLo.Examples/Textures/examples-textures-2.png)](./Raylib-CsLo.Examples/Textures) | [![](./Raylib-CsLo.Examples/Text/examples-text-2.png)](./Raylib-CsLo.Examples/Text)    | [![Ex2](./Raylib-CsLo.Examples/Models/examples-models-2.png)](./Raylib-CsLo.Examples/Models) | [![Ex2](./Raylib-CsLo.Examples/Shaders/examples-shaders-2.png)](./Raylib-CsLo.Examples/Shaders) | [![](./Raylib-CsLo.Examples/Audio/examples-audio-2.png)](./Raylib-CsLo.Examples/Audio)    | [![](./Raylib-CsLo.Examples/Physics/examples-physics-2.png)](./Raylib-CsLo.Examples/Physics)    |
 
 # Differences from `Raylib-Cs`
 
@@ -106,7 +106,7 @@ Here are links to most the examples.  The images/links probably won't work from 
 
 0) assume you are using Visual Studio (or maybe rider?) and can run `dev.sln`
 1) fork the repo, build and try out the example project
-2) ???  add some wrappers?    All features are done and working :D
+2) ???  improve the wrappers?    All features are done and working 😎
 
 
 | ~ example group ~ | ~ who is doing port ~ | ~ done? ~ |
@@ -122,7 +122,7 @@ Here are links to most the examples.  The images/links probably won't work from 
 
 
 # ChangeLog
-- **4.0.0-rc.1** (2021/11/23):  Pretty things up.
+- **4.0.0-rc.0.1** (2021/11/23):  Pretty things up.
 - **4.0.0-rc.0** (2021/11/22):  `physac.dll` and bindings for it added.  `Physics` and `Audio` examples ported.   All `raylib` examples complete!
 - **4.0.0-beta.2** (2021/11/22):  `RayGui`, and `Easings` Raylib.extras ported to managed code. `Shapes`,`Textures`, and `Text` examples ported.
 - **4.0.0-beta.0** (2021/11/20):  `Model`, and `Shader` examples ported. 

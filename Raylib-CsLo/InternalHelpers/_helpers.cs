@@ -20,9 +20,15 @@ namespace Raylib_CsLo.InternalHelpers;
 
 public unsafe static class Helpers
 {
-	public static string ToString<T>(T* text) where T:unmanaged
+	/// <summary>
+	/// help convert a utf8 vector to string
+	/// </summary>
+	/// <typeparam name="T"></typeparam>
+	/// <param name="utf8Text"></param>
+	/// <returns></returns>
+	public static string Utf8ToString<T>(T* utf8Text) where T:unmanaged
 	{
-		return Marshal.PtrToStringUTF8((IntPtr)text);
+		return Marshal.PtrToStringUTF8((IntPtr)utf8Text);
 	}
 	//public static string ToString(string text) => text;
 

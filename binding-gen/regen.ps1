@@ -8,7 +8,6 @@ pushd ..\sub-modules\ClangSharp\
 dotnet build -c Release
 popd
 " ################ # raylib"
-$RaylibReleaseDir = "./raylib-4.0.0_win64_msvc16/include/"
 $RaylibSrc = "..\sub-modules\raylib\src"
 $RaylibExtrasSrc = "../sub-modules/raylib/src/extras/"
 $RayBin = "..\sub-modules\bin\Release.DLL\" 

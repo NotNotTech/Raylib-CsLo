@@ -10,7 +10,7 @@
         <AllowUnsafeBlocks>True</AllowUnsafeBlocks>
         <GenerateDocumentationFile>True</GenerateDocumentationFile>
         <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
-        <Version>4.0.0-rc.1</Version>
+        <Version>4.0.0-rc.0.1</Version>
         <Authors>Novaleaf</Authors>
         <Company>NotNotTech</Company>
         <Description>

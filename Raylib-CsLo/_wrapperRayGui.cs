@@ -225,7 +225,7 @@ i++)
 	public static string GuiIconText(int iconId, string text)
 	{
 		using var soText = text.MarshalUtf8();
-		return Helpers.ToString(GuiIconText(iconId, soText.AsPtr()));
+		return Helpers.Utf8ToString(GuiIconText(iconId, soText.AsPtr()));
 	}
 
 
