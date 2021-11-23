@@ -213,3 +213,13 @@ Raylib_CsLo.Examples.Audio.MultichannelSoundPlaying.main();
 Raylib_CsLo.Examples.Audio.MusicPlayingStreaming.main();
 Raylib_CsLo.Examples.Audio.RawAudioStreaming.main();
 Raylib_CsLo.Examples.Audio.SoundLoadingAndPlaying.main();
+
+
+//////////////////////////  PHYSICS
+
+Raylib_CsLo.Examples.Physics.PhysicsDemo.main();
+Raylib_CsLo.Examples.Physics.PhysicsFriction.main();
+Raylib_CsLo.Examples.Physics.PhysicsMovement.main();
+Raylib_CsLo.Examples.Physics.PhysicsRestitution.main();
+Raylib_CsLo.Examples.Physics.PhysicsShatter.main();
+

@@ -28,7 +28,7 @@ should be applied in order, as former transforms impact later
 
 - convert `#define`
   - example: `#define MAX_BUNNIES        50000`
-  - search: `#define (\w+)\s+(\w+)`
+  - search: `#define (\w+)\s+(.+)`
   - replace: `const int $1 = $2;`
 - partial string replacement
   - search: `char (\w+)\[(\w+)\] = "(.+)\\0"`
