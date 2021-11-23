@@ -65,7 +65,27 @@
             <Pack>true</Pack>
             <PackagePath>lib\net6.0</PackagePath>
         </Content>
+        <Content Include="raylib.pdb">
+            <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+            <Pack>true</Pack>
+            <PackagePath>lib\net6.0</PackagePath>
+        </Content>
         <Content Include="raygui.dll">
+            <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+            <Pack>true</Pack>
+            <PackagePath>lib\net6.0</PackagePath>
+        </Content>
+        <Content Include="raygui.pdb">
+            <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+            <Pack>true</Pack>
+            <PackagePath>lib\net6.0</PackagePath>
+        </Content>
+        <Content Include="physac.dll">
+            <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+            <Pack>true</Pack>
+            <PackagePath>lib\net6.0</PackagePath>
+        </Content>
+        <Content Include="physac.pdb">
             <CopyToOutputDirectory>Always</CopyToOutputDirectory>
             <Pack>true</Pack>
             <PackagePath>lib\net6.0</PackagePath>

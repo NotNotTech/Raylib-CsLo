@@ -93,3 +93,58 @@ project "raygui"
 		
 	filter "action:gmake*"
 		links {"pthread", "GL", "m", "dl", "rt", "X11"}
+
+		
+project "raygui"
+	kind "SharedLib"
+	location "raygui"
+	language "C"
+	targetdir "bin/%{cfg.buildcfg}"
+	
+	includedirs {"src"}
+	vpaths 
+	{
+		["Header Files"] = { "**.h"},
+		["Source Files"] = {"**.c", "**.cpp"},
+	}
+	files {"raygui/**.c", "raygui/**.cpp", "raygui/**.h"}
+
+	links {"raylib"}
+	
+	includedirs { "raygui", "raylib/src" }
+	defines{"PLATFORM_DESKTOP", "GRAPHICS_API_OPENGL_33"}
+	
+	filter "action:vs*"
+		defines{"_WINSOCK_DEPRECATED_NO_WARNINGS", "_CRT_SECURE_NO_WARNINGS", "_WIN32"}
+		dependson {"raylib"}
+		links {"raylib.lib", "winmm", "kernel32"}
+		libdirs {"bin/%{cfg.buildcfg}"}
+		
+	filter "action:gmake*"
+		links {"pthread", "GL", "m", "dl", "rt", "X11"}
+
+		
+project "physac"
+		kind "SharedLib"
+		location "physac"
+		language "C"
+		targetdir "bin/%{cfg.buildcfg}"
+		
+		includedirs {"src"}
+		vpaths 
+		{
+			["Header Files"] = { "**.h"},
+			["Source Files"] = {"**.c", "**.cpp"},
+		}
+		files {"physac/**.c", "physac/**.cpp", "physac/**.h"}
+			
+		includedirs { "physac" }
+		defines{"PLATFORM_DESKTOP", "GRAPHICS_API_OPENGL_33"}
+		
+		filter "action:vs*"
+			defines{"_WINSOCK_DEPRECATED_NO_WARNINGS", "_CRT_SECURE_NO_WARNINGS", "_WIN32"}
+			links {"winmm", "kernel32"}
+			libdirs {"bin/%{cfg.buildcfg}"}
+			
+		filter "action:gmake*"
+			links {"pthread", "GL", "m", "dl", "rt", "X11"}
