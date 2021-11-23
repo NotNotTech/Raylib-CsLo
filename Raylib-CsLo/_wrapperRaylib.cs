@@ -457,7 +457,13 @@ public static unsafe partial class Raylib
 	{
 		return message.Substring(position, Math.Min(length,message.Length-position));
 	}
-
+	public static void UpdateAudioStream(AudioStream stream, Span<short> data, int frameCount)
+	{
+		fixed (short* writeBufPtr = data)
+		{
+			UpdateAudioStream(stream, writeBufPtr, frameCount);
+		}
+	}
 
 }
 
