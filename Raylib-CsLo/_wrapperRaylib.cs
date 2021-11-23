@@ -222,9 +222,9 @@ public static unsafe partial class Raylib
 	/// <summary>
 	/// 'vector' (array) version of this function.  
 	/// </summary>
-	public static void SetShaderValueV<T>(Shader shader, int locIndex, T[] array, ShaderUniformDataType uniformType, int count) where T : unmanaged
+	public static void SetShaderValueV<T>(Shader shader, int locIndex, Span<T> values, ShaderUniformDataType uniformType, int count) where T : unmanaged
 	{
-		fixed (T* p_array = array)
+		fixed (T* p_array = values)
 		{
 			SetShaderValueV(shader, locIndex, p_array, (int)uniformType, count);
 		}
@@ -322,7 +322,7 @@ public static unsafe partial class Raylib
 		return GetFileModTime(soFileName.AsPtr());
 	}
 
-	public static void DrawMeshInstanced(Mesh mesh, Material material, Matrix4x4[] transforms, int instances)
+	public static void DrawMeshInstanced(Mesh mesh, Material material, Span<Matrix4x4> transforms, int instances)
 	{
 		fixed (Matrix4x4* p_transforms = transforms)
 		{
@@ -381,7 +381,7 @@ public static unsafe partial class Raylib
 		using var soFilename = fileName.MarshalUtf8();
 		ExportImage(image, soFilename.AsPtr());
 	}
-	public static void DrawTexturePoly(Texture texture, Vector2 center, Vector2[] positions, Vector2[] texcoords, int pointCount, Color tint)
+	public static void DrawTexturePoly(Texture texture, Vector2 center, Span<Vector2> positions, Span<Vector2> texcoords, int pointCount, Color tint)
 	{
 		fixed (Vector2* p_pos = positions)
 		{
