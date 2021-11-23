@@ -14,8 +14,9 @@
         <Authors>Novaleaf</Authors>
         <Company>NotNotTech</Company>
         <Description>
-            Precise, minimal bindings to `Raylib v4` and `Raylib v4 Extras`.  Convenience wrappers are added to make it easy to work with.
-            - Includes bindings for `RayGui`, `Easings`, `Physac`, `RlGl`, `RayMath`.
+            Managed C# bindings to `Raylib`.  Raylib is a friendly 2d/3d game framework similar to XNA / MonoGame.  
+            - Includes bindings for raylib extras: `RayGui`, `Easings`, `Physac`, `RlGl`, `RayMath`.
+                - Minimal bindings + convenience wrappers to make it easier to use.
             - Tested and verified via more than 100 examples (**ALL** Raylib examples ported).  These [examples are available to you in the GitHub Repo](https://github.com/NotNotTech/Raylib-CsLo/tree/main/Raylib-CsLo.Examples)
             -    Requires `unsafe` for 3d workflows.
             -    Requires `net6.0`

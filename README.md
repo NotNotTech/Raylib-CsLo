@@ -13,9 +13,12 @@
 # Table of Contents
 - [Table of Contents](#table-of-contents)
 - [About](#about)
-  - [Release timeline](#release-timeline)
-    - [`RELEASE CANDIDATE`](#release-candidate)
-    - [`RELEASE`](#release)
+- [How to use/install](#how-to-useinstall)
+  - [via Nuget](#via-nuget)
+  - [via sources](#via-sources)
+- [Release timeline](#release-timeline)
+  - [`RELEASE CANDIDATE`](#release-candidate)
+  - [`RELEASE`](#release)
 - [Examples](#examples)
 - [Differences from `Raylib-Cs`](#differences-from-raylib-cs)
 - [Usage Tips / FAQ](#usage-tips--faq)
@@ -34,10 +37,46 @@ Precise, minimal bindings to `Raylib v4` and `Raylib v4 Extras`.  Convenience wr
 - A focus on performance.  No runtime allocations if at all possible.
 - No intellisense docs. [read the raylib cheatsheet for docs](https://www.raylib.com/cheatsheet/cheatsheet.html) or [view the examples](https://github.com/NotNotTech/Raylib-CsLo/tree/main/Raylib-CsLo.Examples)
 
+# How to use/install
+## via Nuget
+1. add the latest version of [The Raylib-CsLo Nuget Package](https://www.nuget.org/packages/Raylib-CsLo) to your project
+2. Create an example project using it, the following code is coppied from [The StandAlone Example's Program.cs](https://github.com/NotNotTech/Raylib-CsLo/tree/main/StandaloneExample/program.cs)
+```cs
+using Raylib_CsLo;
 
-## Release timeline
+namespace StandaloneExample
+{
+	public static class Program
+	{
+		public static async Task Main(string[] args)
+		{
+			Raylib.InitWindow(1280, 720, "Hello, Raylib-CsLo");
+			Raylib.SetTargetFPS(60);
+			// Main game loop
+			while (!Raylib.WindowShouldClose()) // Detect window close button or ESC key
+			{
+				Raylib.BeginDrawing();
+				Raylib.ClearBackground(Raylib.SKYBLUE);
+				Raylib.DrawFPS(10, 10);
+				Raylib.DrawText("Raylib is easy!!!", 640 , 360, 50, Raylib.RED);
+				Raylib.EndDrawing();
+			}
+			Raylib.CloseWindow();
+		}
+	}
+}
+```
+## via sources
+1. clone/download the [github repository](https://github.com/NotNotTech/Raylib-CsLo)
+2. open `./Raylib-CsLo-DEV.sln` in Visual Studio 2022.
+3. build and run.
+   - the `Raylib-CsLo.Examples` project will run by default, and will run through all 100+ examples.
+4. For a stand-alone example, see the [`./StandaloneExample` folder](https://github.com/NotNotTech/Raylib-CsLo/tree/main/StandaloneExample) 
 
-### `RELEASE CANDIDATE`
+
+# Release timeline
+
+## `RELEASE CANDIDATE`
 - **The current status.**
 - All Raylib features, including Extras bindings
   - `raylib` : Core features, including Audio.
@@ -49,7 +88,7 @@ Precise, minimal bindings to `Raylib v4` and `Raylib v4 Extras`.  Convenience wr
 - All raylib examples are ported and working (see the github repository for the example project)
 - [A Nuget package is avalable](https://www.nuget.org/packages/Raylib-CsLo)
 
-### `RELEASE`
+## `RELEASE`
 - Triggered a few weeks after the last RC issue is fixed. If you find any bugs with the release candidate, be sure to [raise an issue](https://github.com/NotNotTech/Raylib-CsLo/issues)!
 
 
