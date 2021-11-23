@@ -15,6 +15,20 @@
 
 </div>
 
+
+# Table of Contents
+- [Table of Contents](#table-of-contents)
+- [Raylib-CsLo](#raylib-cslo)
+  - [Release timeline](#release-timeline)
+    - [`RELEASE CANDIDATE`](#release-candidate)
+    - [`RELEASE`](#release)
+- [Differences from `raylib-cs`](#differences-from-raylib-cs)
+- [Usage Tips / FAQ](#usage-tips--faq)
+- [Known Issues:](#known-issues)
+- [How to Contribute](#how-to-contribute)
+- [ChangeLog](#changelog)
+
+
 # Raylib-CsLo
 LowLevel autogen bindings to Raylib 4.0 and convenience wrappers on top.  
 
@@ -24,21 +38,7 @@ LowLevel autogen bindings to Raylib 4.0 and convenience wrappers on top.
 - A focus on performance.  No runtime allocations if at all possible.
 - because these are autogen, there won't be any intellisense docs. [read the raylib cheatsheet for docs](https://www.raylib.com/cheatsheet/cheatsheet.html)
 
-# Table of Contents
 
-
-- [Raylib-CsLo](#raylib-cslo)
-- [Table of Contents](#table-of-contents)
-- [🚧🚨🚧 UNDER CONSTRUCTION 🚧🚨🚧](#-under-construction-)
-  - [Release timeline](#release-timeline)
-    - [`BETA`](#beta)
-    - [`RELEASE`](#release)
-- [Differences from `raylib-cs`](#differences-from-raylib-cs)
-- [Usage Tips / FAQ](#usage-tips--faq)
-- [How to Contribute](#how-to-contribute)
-- [ChangeLog](#changelog)
-
-# 🚧🚨🚧 UNDER CONSTRUCTION 🚧🚨🚧
 The entire API of `Raylib 4.0` is available via these bindings.  However, as the bindings are auto-generated, they are not user friendly, even for `unsafe` use.
 
 To make these bindings "friendly" to C# use, convenience wrappers are being added, so you can use these bindings with a minimal amount of `unsafe` code.
@@ -49,42 +49,40 @@ Right now mose of the [examples have been ported](https://github.com/NotNotTech/
 
 ## Release timeline
 
-### `BETA`
+### `RELEASE CANDIDATE`
 - **The current status.**
-- Triggered when the `model` and `shaders` examples are ported. 
+- All Raylib features, including Extras bindings
+  - `raylib`
+  - `rlgl`
+  - `raygui`
+  - `physac`
+  - `easings`
+  - `raymath`
+- All raylib examples are ported and working (see the github repository for the example project)
 - [A Nuget package is avalable](https://www.nuget.org/packages/Raylib-CsLo)
-- `Core`, `Model`, and `Shader` examples are ported.
-
 
 ### `RELEASE`
-- Triggered when all remaining examples are ported.  You can contribute to make this happen.
-
-
-
-
+- Triggered 2 weeks after the last RC issue is fixed. (so if you find any bugs with the release candidate, be sure to file them!)
 # Differences from `raylib-cs`
 
-| [`raylib-cs`](https://github.com/ChrisDill/Raylib-cs)                   | `raylib-cslo`                                                                                 |
-| ----------------------------------------------------------------------- | --------------------------------------------------------------------------------------------- |
-| each binding is hand crafted with carefull design                       | Autogen with wrappers to make C# usage nice.                                                  |
-| Optimized for normal C# usage                                           | Optimized for maximum performance and requires `unsafe`                                       |
-| New Raylib version? Harder to detect breaking changes                   | New Raylib version? Breaking changes are easy to spot and fix                                 |
-| includes Intellisence docs                                              | No docs.  Use the [Cheatsheet](https://www.raylib.com/cheatsheet/cheatsheet.html)             |
-| has a long track record                                                 | didn't exist till mid november 2021!                                                          |
-| [has lots of examples](https://github.com/ChrisDill/Raylib-cs-Examples) | [`lots of examples](https://github.com/NotNotTech/Raylib-CsLo/tree/main/Raylib-CsLo.Examples) |
-| zlib licensed                                                           | lgpl licensed                                                                                 |
-| [Nuget Package](https://www.nuget.org/packages/Raylib-cs/)              | [Nuget Package](https://www.nuget.org/packages/Raylib-CsLo)                                   |
-| raylib 3.7.1 Stable                                                     | raylib 4.0.0 Beta                                                                             |
-| Works with various dotnet flavors?                                      | Focus on DotNet6.0                                                                            |
-| lots of contribs                                                        | just little 'ol me                                                                            |
+| [`raylib-cs`](https://github.com/ChrisDill/Raylib-cs)                   | `raylib-cslo`                                                                                    |
+| ----------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------ |
+| each binding is hand crafted with carefull design                       | Autogen with wrappers to make C# usage nice.                                                     |
+| Optimized for normal C# usage                                           | Optimized for maximum performance and requires `unsafe`                                          |
+| New Raylib version? Harder to detect breaking changes                   | New Raylib version? Breaking changes are easy to spot and fix                                    |
+| includes Intellisence docs                                              | No docs.  Use the [Cheatsheet](https://www.raylib.com/cheatsheet/cheatsheet.html)                |
+| has a long track record                                                 | didn't exist till mid november 2021!                                                             |
+| [has lots of examples](https://github.com/ChrisDill/Raylib-cs-Examples) | [`ALL raylib examples](https://github.com/NotNotTech/Raylib-CsLo/tree/main/Raylib-CsLo.Examples) |
+| zlib licensed                                                           | lgpl licensed                                                                                    |
+| [Nuget Package](https://www.nuget.org/packages/Raylib-cs/)              | [Nuget Package](https://www.nuget.org/packages/Raylib-CsLo)                                      |
+| raylib 3.7.1 Stable                                                     | raylib 4.0.0 Beta                                                                                |
+| Works with various dotnet flavors?                                      | Focus on DotNet6.0                                                                               |
+| lots of contribs                                                        | just little 'ol me                                                                               |
 
 
 # Usage Tips / FAQ
 - **Does `Raylib-CsLo` include the `SOME_FUNCTION_YOU_NEED()` function?**
-  - Raylib-CsLo has bindings for everything in the Raylib 4.0 release, with the exception of:
-    -  Native Memory allocation functions:  use `System.Runtime.InteropServices.NativeMemory.Alloc()` instead
-    -  `LogCustom()` is ported but doesn't support variable length arguments.
-    -  The `Text.Unicode` example doesn't render unicode properly.  Maybe the required font is missing, maybe there is a bug in the example (Utf16 to Utf8 conversion) or maybe there is a bug in Raylib. 
+  - Raylib-CsLo has bindings for everything in the Raylib 4.0 release, including extras like `raygui` and `physac`, but with the exception of things in the `Known Issues` section further below.
 - **Why didn't you add a wrapper for function `SOME_OTHER_FUNCTION_YOU_NEED()`?** 
   - Raylib-CsLo uses a manual marshalling technique, as the built in PInvoke marshalling is not very efficienct.  Unfortunately writing wrappers takes time.
   - I am going through all the examples and porting them, and when I do I'm adding wrappers to the raylib api's used (I'm using examples as a heuristic for "commonly used api's)   For a function I haven't written a wrapper for, you can look at how I do it and write your own wrapper, or can help the project by submitting a PR.  
@@ -100,14 +98,17 @@ Right now mose of the [examples have been ported](https://github.com/NotNotTech/
 - **Why are my matricies corrupt?**
   - Raylib/OpenGl uses column-major matricies, while dotnet/vulkan/directx uses row-major.  When passing your final calculated matrix to raylib for rendering, call `Matrix4x4.Transpose(yourMatrix)`
 
+# Known Issues:
+- `RayGui`: be sure to call `RayGui.GuiLoadStyleDefault();` right after you `InitWindow()`.  This is needed to initialize the gui properly.  If you don't, if you close a raylib window and then open a new one (inside the same app), the gui will be broken.
+- The `Text.Unicode` example doesn't render unicode properly.  Maybe the required font is missing, maybe there is a bug in the example (Utf16 to Utf8 conversion) or maybe there is a bug in Raylib.  A hunch: I think it's probably due to the fonts not including unicode characters, but I didn't investigate further.
+-  Native Memory allocation functions:  use `System.Runtime.InteropServices.NativeMemory.Alloc()` instead
+-  `LogCustom()` is ported but doesn't support variable length arguments.
 
 # How to Contribute
 
 0) assume you are using Visual Studio (or maybe rider?) and can run `dev.sln`
 1) fork the repo, build and try out the example project
-2) Look at how a lot of the raylib functions used in the core examples have convenience wrappers.
-3) Pick one of the raylib example groups not being worked on, and let novaleaf know either on discord or via an [issue](https://github.com/NotNotTech/Raylib-CsLo/issues)
-4) port the example group, following the general design as the core examples.
+2) ???  add some wrappers?    All features are done and working :D
 
 
 | ~ example group ~ | ~ who is doing port ~ | ~ done? ~ |
@@ -119,11 +120,11 @@ Right now mose of the [examples have been ported](https://github.com/NotNotTech/
 | models            | novaleaf              | [X]       |
 | shaders           | novaleaf              | [X]       |
 | audio             | novaleaf              | [X]       |
-| physics           |                       | [ ]       |
+| physics           | novaleaf              | [X]       |
 
 
 # ChangeLog
-- **4.0.0-beta.3** (2021/11/22):  `Audio` examples,
+- **4.0.0-rc.0** (2021/11/22):  `physac.dll` and bindings for it added.  `Physics` and `Audio` examples ported.   All `raylib` examples complete!
 - **4.0.0-beta.2** (2021/11/22):  `RayGui`, and `Easings` Raylib.extras ported to managed code. `Shapes`,`Textures`, and `Text` examples ported.
 - **4.0.0-beta.0** (2021/11/20):  `Model`, and `Shader` examples ported. 
 - **4.0.0-alpha.2** (2021/11/18):  Model examples ported. AutoGen Bindings expanded to include all api's exposed by Raylib.dll (adding `RayMath`, `RlGl`)
