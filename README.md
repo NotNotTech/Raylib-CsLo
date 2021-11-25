@@ -33,7 +33,7 @@ Precise, minimal bindings to `Raylib v4` and `Raylib v4 Extras`.  Convenience wr
 - Tested and verified via more than 100 examples (**ALL** Raylib examples ported).  These [examples are available to you in the GitHub Repo](https://github.com/NotNotTech/Raylib-CsLo/tree/main/Raylib-CsLo.Examples)
 -    Requires `unsafe` for 3d workflows.
 -    Requires `net6.0`
--    Tested on `Win10`.  Please test on other platforms and [raise an issue](https://github.com/NotNotTech/Raylib-CsLo/issues) if any problems occur.
+-    Tested on `Win10`.  **But Linux and OsX should work!** Please test on other platforms and [raise an issue](https://github.com/NotNotTech/Raylib-CsLo/issues) if any problems occur.
 - A focus on performance.  No runtime allocations if at all possible.
 - No intellisense docs. [read the raylib cheatsheet for docs](https://www.raylib.com/cheatsheet/cheatsheet.html) or [view the examples](https://github.com/NotNotTech/Raylib-CsLo/tree/main/Raylib-CsLo.Examples)
 
@@ -161,6 +161,7 @@ Here are links to most the examples.  The images/links probably won't work from 
 
 
 # ChangeLog
+- **4.0.0-rc.1** (2021/11/23):  Support for Linux and OsX (hopefully).   Let me know if it works or not!
 - **4.0.0-rc.0.1** (2021/11/23):  Pretty things up.
 - **4.0.0-rc.0** (2021/11/22):  `physac.dll` and bindings for it added.  `Physics` and `Audio` examples ported.   All `raylib` examples complete!
 - **4.0.0-beta.2** (2021/11/22):  `RayGui`, and `Easings` Raylib.extras ported to managed code. `Shapes`,`Textures`, and `Text` examples ported.
