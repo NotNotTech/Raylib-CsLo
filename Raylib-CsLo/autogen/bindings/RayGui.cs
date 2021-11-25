@@ -22,7 +22,8 @@ namespace Raylib_CsLo
         public static extern void GuiUnlock();
 
         [DllImport("raygui", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
-        public static extern Boolean GuiIsLocked();
+        [return: MarshalAs(UnmanagedType.I1)]
+		public static extern bool GuiIsLocked();
 
         [DllImport("raygui", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
         public static extern void GuiFade(float alpha);
@@ -46,7 +47,8 @@ namespace Raylib_CsLo
         public static extern int GuiGetStyle(int control, int property);
 
         [DllImport("raygui", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
-        public static extern Boolean GuiWindowBox(Rectangle bounds, [NativeTypeName("const char *")] sbyte* title);
+        [return: MarshalAs(UnmanagedType.I1)]
+		public static extern bool GuiWindowBox(Rectangle bounds, [NativeTypeName("const char *")] sbyte* title);
 
         [DllImport("raygui", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
         public static extern void GuiGroupBox(Rectangle bounds, [NativeTypeName("const char *")] sbyte* text);
@@ -64,37 +66,46 @@ namespace Raylib_CsLo
         public static extern void GuiLabel(Rectangle bounds, [NativeTypeName("const char *")] sbyte* text);
 
         [DllImport("raygui", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
-        public static extern Boolean GuiButton(Rectangle bounds, [NativeTypeName("const char *")] sbyte* text);
+        [return: MarshalAs(UnmanagedType.I1)]
+		public static extern bool GuiButton(Rectangle bounds, [NativeTypeName("const char *")] sbyte* text);
 
         [DllImport("raygui", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
-        public static extern Boolean GuiLabelButton(Rectangle bounds, [NativeTypeName("const char *")] sbyte* text);
+        [return: MarshalAs(UnmanagedType.I1)]
+		public static extern bool GuiLabelButton(Rectangle bounds, [NativeTypeName("const char *")] sbyte* text);
 
         [DllImport("raygui", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
-        public static extern Boolean GuiToggle(Rectangle bounds, [NativeTypeName("const char *")] sbyte* text, Boolean active);
+        [return: MarshalAs(UnmanagedType.I1)]
+		public static extern bool GuiToggle(Rectangle bounds, [NativeTypeName("const char *")] sbyte* text, Boolean active);
 
         [DllImport("raygui", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
         public static extern int GuiToggleGroup(Rectangle bounds, [NativeTypeName("const char *")] sbyte* text, int active);
 
         [DllImport("raygui", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
-        public static extern Boolean GuiCheckBox(Rectangle bounds, [NativeTypeName("const char *")] sbyte* text, Boolean @checked);
+        [return: MarshalAs(UnmanagedType.I1)]
+		public static extern bool GuiCheckBox(Rectangle bounds, [NativeTypeName("const char *")] sbyte* text, Boolean @checked);
 
         [DllImport("raygui", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
         public static extern int GuiComboBox(Rectangle bounds, [NativeTypeName("const char *")] sbyte* text, int active);
 
         [DllImport("raygui", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
-        public static extern Boolean GuiDropdownBox(Rectangle bounds, [NativeTypeName("const char *")] sbyte* text, int* active, Boolean editMode);
+        [return: MarshalAs(UnmanagedType.I1)]
+		public static extern bool GuiDropdownBox(Rectangle bounds, [NativeTypeName("const char *")] sbyte* text, int* active, Boolean editMode);
 
         [DllImport("raygui", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
-        public static extern Boolean GuiSpinner(Rectangle bounds, [NativeTypeName("const char *")] sbyte* text, int* value, int minValue, int maxValue, Boolean editMode);
+        [return: MarshalAs(UnmanagedType.I1)]
+		public static extern bool GuiSpinner(Rectangle bounds, [NativeTypeName("const char *")] sbyte* text, int* value, int minValue, int maxValue, Boolean editMode);
 
         [DllImport("raygui", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
-        public static extern Boolean GuiValueBox(Rectangle bounds, [NativeTypeName("const char *")] sbyte* text, int* value, int minValue, int maxValue, Boolean editMode);
+        [return: MarshalAs(UnmanagedType.I1)]
+		public static extern bool GuiValueBox(Rectangle bounds, [NativeTypeName("const char *")] sbyte* text, int* value, int minValue, int maxValue, Boolean editMode);
 
         [DllImport("raygui", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
-        public static extern Boolean GuiTextBox(Rectangle bounds, [NativeTypeName("char *")] sbyte* text, int textSize, Boolean editMode);
+        [return: MarshalAs(UnmanagedType.I1)]
+		public static extern bool GuiTextBox(Rectangle bounds, [NativeTypeName("char *")] sbyte* text, int textSize, Boolean editMode);
 
         [DllImport("raygui", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
-        public static extern Boolean GuiTextBoxMulti(Rectangle bounds, [NativeTypeName("char *")] sbyte* text, int textSize, Boolean editMode);
+        [return: MarshalAs(UnmanagedType.I1)]
+		public static extern bool GuiTextBoxMulti(Rectangle bounds, [NativeTypeName("char *")] sbyte* text, int textSize, Boolean editMode);
 
         [DllImport("raygui", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
         public static extern float GuiSlider(Rectangle bounds, [NativeTypeName("const char *")] sbyte* textLeft, [NativeTypeName("const char *")] sbyte* textRight, float value, float minValue, float maxValue);
@@ -172,7 +183,8 @@ namespace Raylib_CsLo
         public static extern void GuiClearIconPixel(int iconId, int x, int y);
 
         [DllImport("raygui", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
-        public static extern Boolean GuiCheckIconPixel(int iconId, int x, int y);
+        [return: MarshalAs(UnmanagedType.I1)]
+		public static extern bool GuiCheckIconPixel(int iconId, int x, int y);
 
         [NativeTypeName("#define RAYGUI_VERSION \"3.0\"")]
         public static ReadOnlySpan<byte> RAYGUI_VERSION => new byte[] { 0x33, 0x2E, 0x30, 0x00 };

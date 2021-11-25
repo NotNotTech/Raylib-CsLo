@@ -18,9 +18,7 @@ dotnet ..\sub-modules\ClangSharp\artifacts\bin\sources\ClangSharpPInvokeGenerato
 dotnet ..\sub-modules\ClangSharp\artifacts\bin\sources\ClangSharpPInvokeGenerator\Release\net6.0\ClangSharpPInvokeGenerator.dll @gen-raylib.rsp --file-directory "$RaylibSrc" --file raymath.h --methodClassName RayMath --libraryPath raylib
 #robocopy "./raylib-4.0.0_win64_msvc16/lib" "..\Raylib-CsLo\" raylib.dll
 # robocopy "$RayBin" "..\Raylib-CsLo\" raylib.dll raylib.pdb
-##hack: replace malformed autogen content
-$replaceFile = '../Raylib-CsLo/autogen/bindings/RayMath.cs'
-(Get-Content $replaceFile).replace('.operator=', '=') | Set-Content $replaceFile
+
 " ################ # rlgl"
 dotnet ..\sub-modules\ClangSharp\artifacts\bin\sources\ClangSharpPInvokeGenerator\Release\net6.0\ClangSharpPInvokeGenerator.dll @gen-raylib.rsp --file-directory "$RaylibSrc" --file rlgl.h --methodClassName RlGl --libraryPath raylib
 " ################ # raygui"
@@ -32,4 +30,20 @@ dotnet ..\sub-modules\ClangSharp\artifacts\bin\sources\ClangSharpPInvokeGenerato
 " ################ # Easings "
 dotnet ..\sub-modules\ClangSharp\artifacts\bin\sources\ClangSharpPInvokeGenerator\Release\net6.0\ClangSharpPInvokeGenerator.dll @gen-raylib.rsp --file-directory "$RaylibExtrasSrc" --include-directory ../sub-modules/raylib/src/ --file easings.h --methodClassName Easings --exclude EaseElasticInOut PI DEG2RAD RAD2DEG
 
+"########################## FIX UP FILES"
+
+$path = "../Raylib-CsLo/autogen/bindings/"
+foreach ($file in Get-ChildItem $path) {
+	$target = $path + $file
+	##hack: replace malformed autogen content
+	$tempContents = (Get-Content $target).replace('.operator=', '=')	
+	# make all C bools marshal properly.   see: https://stackoverflow.com/a/4621621
+	$tempContents = $tempContents.replace('public static extern Boolean ', "[return: MarshalAs(UnmanagedType.I1)]`r`n`t`tpublic static extern bool ")
+	#write the file
+	Set-Content -Path $target -Value $tempContents
+}
+
+
 popd
+
+"########################## DONE!"
