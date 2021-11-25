@@ -14,17 +14,19 @@ if (!($NugetKey)) {
 
 # change dir to folder containing script
 pushd $PSScriptRoot
+$NugetPackage = "./bin/Release/Raylib-CsLo.4.0.0-rc.1.nupkg"
 
-Add-Type -AssemblyName System.Windows.Forms
-$FileBrowser = New-Object System.Windows.Forms.OpenFileDialog -Property @{
-	Title            = "Select the nuget package to publish"
-	Multiselect      = $false # Multiple files can be chosen
-	InitialDirectory = "$PSScriptRoot\bin\Release\"
-	Filter           = 'Nuget Packages (*.nupkg)|*.nupkg' # Specified file types
-} 
-[void]$FileBrowser.ShowDialog()
+# Write-Output "********  SELECT NUGET PACKAGE FROM $PSScriptRoot ******** "
+# Add-Type -AssemblyName System.Windows.Forms
+# $FileBrowser = New-Object System.Windows.Forms.OpenFileDialog -Property @{
+# 	Title            = "Select the nuget package to publish"
+# 	Multiselect      = $false # Multiple files can be chosen
+# 	InitialDirectory = "$PSScriptRoot\bin\Release\"
+# 	Filter           = 'Nuget Packages (*.nupkg)|*.nupkg' # Specified file types
+# } 
+# [void]$FileBrowser.ShowDialog()
 
-$NugetPackage = $FileBrowser.FileName;
+# $NugetPackage = $FileBrowser.FileName;
 
 Write-Output "********  YOUR NUGET DEPLOY COMMAND ******** "
 Write-Output dotnet nuget push "$NugetPackage" --source https://api.nuget.org/v3/index.json --api-key $NugetKey

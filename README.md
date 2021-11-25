@@ -1,15 +1,11 @@
-| [![Raylib-CsLo-Logo](meta/logos/raylib-cslo_128x128.png)](https://github.com/NotNotTech/Raylib-CsLo) |
-| ---------------------------------------------------------------------------------------------------- |
+| [![Raylib-CsLo-Logo](https://raw.githubusercontent.com/NotNotTech/Raylib-CsLo/main/meta/logos/raylib-cslo_128x128.png)](https://github.com/NotNotTech/Raylib-CsLo) |
+| ------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
 
 ![Status BETA](https://img.shields.io/badge/status-Release_Candidate-green)
 [![Nuget Package](https://img.shields.io/badge/Nuget_Package-blue?logo=NuGet)](https://www.nuget.org/packages/Raylib-CsLo)
 [![Commit Activity](https://img.shields.io/github/commit-activity/m/NotNotTech/Raylib-CsLo)](https://github.com/NotNotTech/Raylib-CsLo/graphs/contributors)
 ![.NET 6.0](https://img.shields.io/badge/.NET-net6.0-%23512bd4)
 [![Chat on Discord](https://img.shields.io/badge/chat%20on-discord-7289DA)](https://discord.gg/raylib)
-
-
-
-
 # Table of Contents
 - [Table of Contents](#table-of-contents)
 - [About](#about)
