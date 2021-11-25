@@ -15,7 +15,8 @@
         <RepositoryUrl>https://github.com/NotNotTech/Raylib-CsLo</RepositoryUrl>
         <PackageReadmeFile>README.md</PackageReadmeFile>
         <PackageIcon>raylib-cslo_128x128.png</PackageIcon>
-        <Version>4.0.0-rc.1</Version>
+        <Version>4.0.0-rc.2</Version>
+        <PackageReleaseNotes>Improved bindings.  Review the examples on github.</PackageReleaseNotes>
         <Authors>Novaleaf</Authors>
         <Company>NotNotTech</Company>
         <Description>
@@ -33,7 +34,6 @@
        
         
         <PackageTags>raylib;gamedev;binding;NotNot;rendering;3d;2d;graphics;opengl;physics;audio;</PackageTags>
-        <PackageReleaseNotes>Release Candidate.  Review the examples on github.</PackageReleaseNotes>
         <PackageLicenseExpression>LGPL-2.1-or-later</PackageLicenseExpression>
         <AssemblyVersion>0.0.0.*</AssemblyVersion>
         <Copyright>(C) NotNotTech and Contribs</Copyright>

@@ -106,7 +106,7 @@ Here are links to most the examples.  The images/links probably won't work from 
 | New Raylib version? Harder to detect breaking changes               | New Raylib version? Breaking changes are easy to spot and fix                                                                                                                     |
 | includes Intellisence docs                                          | No docs.  Use the [Cheatsheet](https://www.raylib.com/cheatsheet/cheatsheet.html) /          [Examples](https://github.com/NotNotTech/Raylib-CsLo/tree/main/Raylib-CsLo.Examples) |
 | has a long track record                                             | didn't exist till mid november 2021!                                                                                                                                              |
-| [Lots of examples](https://github.com/ChrisDill/Raylib-cs-Examples) | [ALL Raylib examples](https://github.com/NotNotTech/Raylib-CsLo/tree/main/Raylib-CsLo.Examples)                                                                                   |
+| [Lots of examples](https://github.com/ChrisDill/Raylib-cs-Examples) | [ALL 120+ Raylib examples](https://github.com/NotNotTech/Raylib-CsLo/tree/main/Raylib-CsLo.Examples)                                                                              |
 | zlib licensed                                                       | lgpl licensed                                                                                                                                                                     |
 | [Nuget Package](https://www.nuget.org/packages/Raylib-cs/)          | [Nuget Package](https://www.nuget.org/packages/Raylib-CsLo)                                                                                                                       |
 | raylib 3.7.1 Stable                                                 | Raylib 4.0.0                                                                                                                                                                      |
@@ -141,23 +141,15 @@ Here are links to most the examples.  The images/links probably won't work from 
 
 0) assume you are using Visual Studio (or maybe rider?) and can run `dev.sln`
 1) fork the repo, build and try out the example project
-2) ???  improve the wrappers?    All features are done and working 😎
-
-
-| ~ example group ~ | ~ who is doing port ~ | ~ done? ~ |
-| ----------------- | --------------------- | --------- |
-| core              | novaleaf              | [X]       |
-| shapes            | novaleaf              | [X]       |
-| textures          | novaleaf              | [X]       |
-| text              | novaleaf              | [X]       |
-| models            | novaleaf              | [X]       |
-| shaders           | novaleaf              | [X]       |
-| audio             | novaleaf              | [X]       |
-| physics           | novaleaf              | [X]       |
+2) Pick something to do
+  - test/improve support on linux and/or OsX
+  - improve wrappers for ease of use
+  - ????  check issues
 
 
 # ChangeLog
-- **4.0.0-rc.1** (2021/11/23):  Support for Linux and OsX (hopefully).   Let me know if it works or not!
+- **4.0.0-rc.2** (2021/11/??):  Improve bindings compat.  Cleanup native binary compile workflow.
+- **4.0.0-rc.1** (2021/11/24):  Support for Linux and OsX (hopefully).
 - **4.0.0-rc.0.1** (2021/11/23):  Pretty things up.
 - **4.0.0-rc.0** (2021/11/22):  `physac.dll` and bindings for it added.  `Physics` and `Audio` examples ported.   All `raylib` examples complete!
 - **4.0.0-beta.2** (2021/11/22):  `RayGui`, and `Easings` Raylib.extras ported to managed code. `Shapes`,`Textures`, and `Text` examples ported.

@@ -24,11 +24,8 @@ static class SharedLibraryLoader
 		// this will let our examples pick the proper runtime folder based on our os.
 	 	NativeLibrary.SetDllImportResolver(Assembly.GetExecutingAssembly(), DllImportResolver);
 	}
-
-	//private static HashSet<string> raylibLibs = new() { "raylib", "raygui", "physac" };
 	private static IntPtr DllImportResolver(string libraryName, Assembly assembly, DllImportSearchPath? searchPath)
 	{
-		//if (raylibLibs.Contains(libraryName))
 		{
 			string runtime;
 			//load from our subdir
@@ -46,7 +43,6 @@ static class SharedLibraryLoader
 			else if (System.Runtime.InteropServices.RuntimeInformation.IsOSPlatform(OSPlatform.Linux))
 			{
 				runtime = "linux-x64";
-				//libraryName = $"lib{libraryName}.so";
 			}
 			else if (System.Runtime.InteropServices.RuntimeInformation.IsOSPlatform(OSPlatform.OSX))
 			{
@@ -62,6 +58,13 @@ static class SharedLibraryLoader
 
 				var loadPath = $"./runtimes/{runtime}/native/{libraryName}";
 				if (NativeLibrary.TryLoad(loadPath, out var toReturn))
+				{
+					//success;
+					return toReturn;
+				}
+				//try again prefixing with "lib"
+				loadPath = $"./runtimes/{runtime}/native/lib{libraryName}";
+				if (NativeLibrary.TryLoad(loadPath, out toReturn))
 				{
 					//success;
 					return toReturn;
