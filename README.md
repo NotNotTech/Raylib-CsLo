@@ -9,9 +9,13 @@
 # Table of Contents
 - [Table of Contents](#table-of-contents)
 - [About](#about)
+  - [What is **Raylib**?](#what-is-raylib)
+  - [Super easy to use for 2d!](#super-easy-to-use-for-2d)
+  - [High performance for 3d!  (but `unsafe` to use)](#high-performance-for-3d--but-unsafe-to-use)
 - [How to use/install](#how-to-useinstall)
   - [via Nuget](#via-nuget)
   - [via sources](#via-sources)
+- [Linux / OsX support](#linux--osx-support)
 - [Release timeline](#release-timeline)
   - [`RELEASE CANDIDATE`](#release-candidate)
   - [`RELEASE`](#release)
@@ -24,7 +28,7 @@
 
 
 # About
-Precise, minimal bindings to `Raylib v4` and `Raylib v4 Extras`.  Convenience wrappers are added to make it easy to work with.
+Precise, minimal bindings to **Raylib**.  Convenience wrappers are added to make it easy to use, mostly around `string` marshalling.
 - Includes bindings for `RayGui`, `Easings`, `Physac`, `RlGl`, `RayMath`.
 - Tested and verified via more than 100 examples (**ALL** Raylib examples ported).  These [examples are available to you in the GitHub Repo](https://github.com/NotNotTech/Raylib-CsLo/tree/main/Raylib-CsLo.Examples)
 -    Requires `unsafe` for 3d workflows.
@@ -32,6 +36,17 @@ Precise, minimal bindings to `Raylib v4` and `Raylib v4 Extras`.  Convenience wr
 -    Tested on `Win10`.  **But Linux and OsX should work!** Please test on other platforms and [raise an issue](https://github.com/NotNotTech/Raylib-CsLo/issues) if any problems occur.
 - A focus on performance.  No runtime allocations if at all possible.
 - No intellisense docs. [read the raylib cheatsheet for docs](https://www.raylib.com/cheatsheet/cheatsheet.html) or [view the examples](https://github.com/NotNotTech/Raylib-CsLo/tree/main/Raylib-CsLo.Examples)
+
+## What is **Raylib**?
+[Raylib](https://www.raylib.com/) is a friendly-to-use game framework that includes basic scenarios to meet your needs:   audio, 2d, 3d, fonts, animation, 2d physics.  Somewhat similar to `Xna` or `MonoGame` but friendlier.  **However, `Raylib` is a C/CPP framework**.  `Raylib-CsLo` is a C# Wrapper over the top, which lets you gain raylib's powers to quickly prototype your game ideas.
+
+## Super easy to use for 2d!
+If you stick with 2d, you don't need to use any `unsafe` (pointer) code, which lets 2d users feel at home and use `Raylib-CsLo` as an awesome 2d game framework.   
+
+## High performance for 3d!  (but `unsafe` to use)
+If you use 3d, you need to understand a bit of how pointers work. Raylib uses these to link things like `Model`, `Mesh`, and `Material`.  Writing wrappers over these is possible but it would basically be creating a an entirely new framework.  (I am writing a game engine using Raylib, you could too!)
+
+Additionally, 3d users: **Be sure you check the Usage Tips section below**, especially on how you need to use `Matrix4x4.Transpose()` when sending matricies to Raylib.
 
 # How to use/install
 ## via Nuget
@@ -69,6 +84,8 @@ namespace StandaloneExample
    - the `Raylib-CsLo.Examples` project will run by default, and will run through all 100+ examples.
 4. For a stand-alone example, see the [`./StandaloneExample` folder](https://github.com/NotNotTech/Raylib-CsLo/tree/main/StandaloneExample) 
 
+# Linux / OsX support
+Basic: Ubuntu 20.04 and OsX should work!   Please try it out, (both Nuget package and sources should work).  And please read [This Issue](https://github.com/NotNotTech/Raylib-CsLo/issues/1)
 
 # Release timeline
 
