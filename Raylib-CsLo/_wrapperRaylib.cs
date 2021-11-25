@@ -7,18 +7,15 @@
 // [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!]  [!!] [!!] [!!] [!!]
 
 using System.Numerics;
-
 using Raylib_CsLo.InternalHelpers;
-
 using System.Runtime.InteropServices;
-
-using System.Runtime.CompilerServices;
 
 namespace Raylib_CsLo;
 
-
 public static unsafe partial class Raylib
 {
+	//private static bool _initDllLoader = DllLoader.Init();
+
 	public static bool IsKeyPressed(KeyboardKey key) => IsKeyPressed((int)key);
 
 	public static bool IsKeyDown(KeyboardKey key) => IsKeyDown((int)key);
@@ -30,6 +27,10 @@ public static unsafe partial class Raylib
 
 	public static void InitWindow(int width, int height, string title)
 	{
+		//if (_initDllLoader != true)
+		//{
+		//	_initDllLoader = DllLoader.Init();
+		//}
 		using var spanOwner = title.MarshalUtf8();
 		InitWindow(width, height, spanOwner.AsPtr());
 	}

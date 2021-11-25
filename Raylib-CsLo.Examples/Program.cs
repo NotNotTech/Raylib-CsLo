@@ -83,160 +83,275 @@ global using TextureCubemap = Raylib_CsLo.Texture;
 global using Matrix = System.Numerics.Matrix4x4;
 
 
-/////////////////////////////////////////
-/////////////////////////////////////////
-/////////////////////////////////////////
-///////////////////////  ALL THE EXAMPLES.   you can comment out the ones you don't want to run.
-/////////////////////////////////////////
-/////////////////////////////////////////
-/////////////////////////////////////////
+public static class Program
+{
+	//[DllImport("nativedep")]
+	//private static extern int ExportedFunction();
 
-/////////////////////////////////////////
-//////////////////  CORE
-Raylib_CsLo.Examples.Core.BasicWindow.main();
-Raylib_CsLo.Examples.Core.BasicScreenManager.main();
-Raylib_CsLo.Examples.Core.KeyboardInput.main();
-Raylib_CsLo.Examples.Core.InputMouse.main();
-Raylib_CsLo.Examples.Core.InputMouseWheel.main();
-Raylib_CsLo.Examples.Core.GamepadInput.main();
-Raylib_CsLo.Examples.Core.InputMultitouch.main();
-Raylib_CsLo.Examples.Core.InputGesturesDetection.main();
-Raylib_CsLo.Examples.Core.Camera2d.main();
-Raylib_CsLo.Examples.Core.Camera2dPlatformer.main();
-Raylib_CsLo.Examples.Core.Camera3dMode.main();
-Raylib_CsLo.Examples.Core.Camera3dFree.main();
-Raylib_CsLo.Examples.Core.Camera3dFirstPerson.main();
-Raylib_CsLo.Examples.Core.Picking3d.main();
-Raylib_CsLo.Examples.Core.WorldToScreen.main();
-Raylib_CsLo.Examples.Core.CustomLogging.main();
-Raylib_CsLo.Examples.Core.WindowLetterbox.main();
-Raylib_CsLo.Examples.Core.WindowsDropFiles.main();
-Raylib_CsLo.Examples.Core.ScissorTest.main();
-Raylib_CsLo.Examples.Core.VrSimulator.main();
-Raylib_CsLo.Examples.Core.QuatConversions.main();
-Raylib_CsLo.Examples.Core.WindowFlags.main();
-Raylib_CsLo.Examples.Core.SplitScreen.main();
-Raylib_CsLo.Examples.Core.SmoothPixelPerfectCamera.main();
-//the following example requires a custom build of raylib to work.  see it's docs for info.
-Raylib_CsLo.Examples.Core.CustomFrameControl.main();
+	//public static void Main(string[] args)
+	//{
+	//	// Register the import resolver before calling the imported function.
+	//	// Only one import resolver can be set for a given assembly.
+	//	NativeLibrary.SetDllImportResolver(Assembly.GetExecutingAssembly(), DllImportResolver);
+	//	NativeLibrary.SetDllImportResolver(Assembly.GetEntryAssembly(), DllImportResolver);
+
+	//	int value = ExportedFunction();
+	//	Console.WriteLine(value);
+	//}
+
+	//private static IntPtr DllImportResolver(string libraryName, Assembly assembly, DllImportSearchPath? searchPath)
+	//{
+	//	if (libraryName == "nativedep")
+	//	{
+	//		// On systems with AVX2 support, load a different library.
+	//		//if (System.Runtime.Intrinsics.X86.Avx2.IsSupported)
+	//		{
+	//			return NativeLibrary.Load("nativedep_avx2", assembly, searchPath);
+	//		}
+	//	}
+
+	//	// Otherwise, fallback to default import resolver.
+	//	return IntPtr.Zero;
+	//}
+
+	public static void Main(params string[] args)
+	{
+	
 
 
-/////////////////////////////////////////
-////////////  MODELS
-Raylib_CsLo.Examples.Models.Animation.main();
-Raylib_CsLo.Examples.Models.Billboard.main();
-Raylib_CsLo.Examples.Models.BoxCollisions.main();
-Raylib_CsLo.Examples.Models.Cubicmap.main();
-Raylib_CsLo.Examples.Models.FirstPersonMaze.main();
-Raylib_CsLo.Examples.Models.GeometricShapes.main();
-Raylib_CsLo.Examples.Models.Heightmap.main();
-Raylib_CsLo.Examples.Models.Loading.main();
-Raylib_CsLo.Examples.Models.LoadingGltf.main();
-Raylib_CsLo.Examples.Models.LoadingVox.main();
-Raylib_CsLo.Examples.Models.MeshGeneration.main();
-Raylib_CsLo.Examples.Models.MeshPicking.main();
-Raylib_CsLo.Examples.Models.OrthographicProjection.main();
-Raylib_CsLo.Examples.Models.RlglSolarSystem.main();
-Raylib_CsLo.Examples.Models.Skybox.main();
-Raylib_CsLo.Examples.Models.WavingCubes.main();
-Raylib_CsLo.Examples.Models.YawPitchRoll.main();
+
+		/////////////////////////////////////////
+		/////////////////////////////////////////
+		/////////////////////////////////////////
+		///////////////////////  ALL THE EXAMPLES.   you can comment out the ones you don't want to run.
+		/////////////////////////////////////////
+		/////////////////////////////////////////
+		/////////////////////////////////////////
+
+		/////////////////////////////////////////
+		//////////////////  CORE
+		Raylib_CsLo.Examples.Core.BasicWindow.main();
+		Raylib_CsLo.Examples.Core.BasicScreenManager.main();
+		Raylib_CsLo.Examples.Core.KeyboardInput.main();
+		Raylib_CsLo.Examples.Core.InputMouse.main();
+		Raylib_CsLo.Examples.Core.InputMouseWheel.main();
+		Raylib_CsLo.Examples.Core.GamepadInput.main();
+		Raylib_CsLo.Examples.Core.InputMultitouch.main();
+		Raylib_CsLo.Examples.Core.InputGesturesDetection.main();
+		Raylib_CsLo.Examples.Core.Camera2d.main();
+		Raylib_CsLo.Examples.Core.Camera2dPlatformer.main();
+		Raylib_CsLo.Examples.Core.Camera3dMode.main();
+		Raylib_CsLo.Examples.Core.Camera3dFree.main();
+		Raylib_CsLo.Examples.Core.Camera3dFirstPerson.main();
+		Raylib_CsLo.Examples.Core.Picking3d.main();
+		Raylib_CsLo.Examples.Core.WorldToScreen.main();
+		Raylib_CsLo.Examples.Core.CustomLogging.main();
+		Raylib_CsLo.Examples.Core.WindowLetterbox.main();
+		Raylib_CsLo.Examples.Core.WindowsDropFiles.main();
+		Raylib_CsLo.Examples.Core.ScissorTest.main();
+		Raylib_CsLo.Examples.Core.VrSimulator.main();
+		Raylib_CsLo.Examples.Core.QuatConversions.main();
+		Raylib_CsLo.Examples.Core.WindowFlags.main();
+		Raylib_CsLo.Examples.Core.SplitScreen.main();
+		Raylib_CsLo.Examples.Core.SmoothPixelPerfectCamera.main();
+		//the following example requires a custom build of raylib to work.  see it's docs for info.
+		Raylib_CsLo.Examples.Core.CustomFrameControl.main();
 
 
-/////////////////////////////////////////
-////////// SHADERS
-Raylib_CsLo.Examples.Shaders.BasicLighting.main();
-Raylib_CsLo.Examples.Shaders.CustomUniform.main();
-Raylib_CsLo.Examples.Shaders.Eratosthenes.main();
-Raylib_CsLo.Examples.Shaders.Fog.main();
-Raylib_CsLo.Examples.Shaders.HotReloading.main();
-Raylib_CsLo.Examples.Shaders.JuliaSet.main();
-Raylib_CsLo.Examples.Shaders.MeshInstancing.main();
-Raylib_CsLo.Examples.Shaders.ModelShader.main();
-Raylib_CsLo.Examples.Shaders.MultiSample2d.main();
-Raylib_CsLo.Examples.Shaders.PaletteColorSwitch.main();
-Raylib_CsLo.Examples.Shaders.PostProcessingShader.main();
-Raylib_CsLo.Examples.Shaders.RaymarchingShapes.main();
-Raylib_CsLo.Examples.Shaders.ShapesAndTextureShaders.main();
-Raylib_CsLo.Examples.Shaders.SimpleMask.main();
-Raylib_CsLo.Examples.Shaders.Spotlight.main();
-Raylib_CsLo.Examples.Shaders.TextureDrawing.main();
-Raylib_CsLo.Examples.Shaders.TextureOutline.main();
-Raylib_CsLo.Examples.Shaders.TextureWaves.main();
+		/////////////////////////////////////////
+		////////////  MODELS
+		Raylib_CsLo.Examples.Models.Animation.main();
+		Raylib_CsLo.Examples.Models.Billboard.main();
+		Raylib_CsLo.Examples.Models.BoxCollisions.main();
+		Raylib_CsLo.Examples.Models.Cubicmap.main();
+		Raylib_CsLo.Examples.Models.FirstPersonMaze.main();
+		Raylib_CsLo.Examples.Models.GeometricShapes.main();
+		Raylib_CsLo.Examples.Models.Heightmap.main();
+		Raylib_CsLo.Examples.Models.Loading.main();
+		Raylib_CsLo.Examples.Models.LoadingGltf.main();
+		Raylib_CsLo.Examples.Models.LoadingVox.main();
+		Raylib_CsLo.Examples.Models.MeshGeneration.main();
+		Raylib_CsLo.Examples.Models.MeshPicking.main();
+		Raylib_CsLo.Examples.Models.OrthographicProjection.main();
+		Raylib_CsLo.Examples.Models.RlglSolarSystem.main();
+		Raylib_CsLo.Examples.Models.Skybox.main();
+		Raylib_CsLo.Examples.Models.WavingCubes.main();
+		Raylib_CsLo.Examples.Models.YawPitchRoll.main();
 
 
-/////////////////////////////////////////
-////////////  TEXTURES
-Raylib_CsLo.Examples.Textures.BackgroundScrolling.main();
-Raylib_CsLo.Examples.Textures.BlendModes.main();
-Raylib_CsLo.Examples.Textures.Bunnymark.main();
-Raylib_CsLo.Examples.Textures.ImageDrawing.main();
-Raylib_CsLo.Examples.Textures.ImageGeneration.main();
-Raylib_CsLo.Examples.Textures.ImageLoading.main();
-Raylib_CsLo.Examples.Textures.ImageProcessing.main();
-Raylib_CsLo.Examples.Textures.ImageTextDrawing.main();
-Raylib_CsLo.Examples.Textures.LoadingAndDrawing.main();
-Raylib_CsLo.Examples.Textures.MousePainting.main();
-Raylib_CsLo.Examples.Textures.NPatchDrawing.main();
-Raylib_CsLo.Examples.Textures.ParticlesBlending.main();
-Raylib_CsLo.Examples.Textures.SpriteButton.main();
-Raylib_CsLo.Examples.Textures.SpriteExplosion.main();
-Raylib_CsLo.Examples.Textures.TexturedPolygon.main();
-Raylib_CsLo.Examples.Textures.TextureFromRawData.main();
-Raylib_CsLo.Examples.Textures.TextureRectangle.main();
-Raylib_CsLo.Examples.Textures.TextureSourceAndDestinationRectangles.main();
-Raylib_CsLo.Examples.Textures.TextureToImage.main();
-Raylib_CsLo.Examples.Textures.TiledExture.main();
+		/////////////////////////////////////////
+		////////// SHADERS
+		Raylib_CsLo.Examples.Shaders.BasicLighting.main();
+		Raylib_CsLo.Examples.Shaders.CustomUniform.main();
+		Raylib_CsLo.Examples.Shaders.Eratosthenes.main();
+		Raylib_CsLo.Examples.Shaders.Fog.main();
+		Raylib_CsLo.Examples.Shaders.HotReloading.main();
+		Raylib_CsLo.Examples.Shaders.JuliaSet.main();
+		Raylib_CsLo.Examples.Shaders.MeshInstancing.main();
+		Raylib_CsLo.Examples.Shaders.ModelShader.main();
+		Raylib_CsLo.Examples.Shaders.MultiSample2d.main();
+		Raylib_CsLo.Examples.Shaders.PaletteColorSwitch.main();
+		Raylib_CsLo.Examples.Shaders.PostProcessingShader.main();
+		Raylib_CsLo.Examples.Shaders.RaymarchingShapes.main();
+		Raylib_CsLo.Examples.Shaders.ShapesAndTextureShaders.main();
+		Raylib_CsLo.Examples.Shaders.SimpleMask.main();
+		Raylib_CsLo.Examples.Shaders.Spotlight.main();
+		Raylib_CsLo.Examples.Shaders.TextureDrawing.main();
+		Raylib_CsLo.Examples.Shaders.TextureOutline.main();
+		Raylib_CsLo.Examples.Shaders.TextureWaves.main();
 
 
-/////////////////////////////////////////
-//////////////////// TEXT
-Raylib_CsLo.Examples.Text.Draw2dIn3d.main();
-Raylib_CsLo.Examples.Text.DrawTextInsideRectangle.main();
-Raylib_CsLo.Examples.Text.FontFilters.main();
-Raylib_CsLo.Examples.Text.FontLoading.main();
-Raylib_CsLo.Examples.Text.FontLoadingUsage.main();
-Raylib_CsLo.Examples.Text.InputBox.main();
-Raylib_CsLo.Examples.Text.SdfFonts.main();
-Raylib_CsLo.Examples.Text.SpriteFontLoading.main();
-Raylib_CsLo.Examples.Text.TextFormatting.main();
-Raylib_CsLo.Examples.Text.WritingAnimation.main();
-///////////// the unicode example doesn't work properly.  I guess the fonts don't include the needed unicode chars
-Raylib_CsLo.Examples.Text.Unicode.main();
+		/////////////////////////////////////////
+		////////////  TEXTURES
+		Raylib_CsLo.Examples.Textures.BackgroundScrolling.main();
+		Raylib_CsLo.Examples.Textures.BlendModes.main();
+		Raylib_CsLo.Examples.Textures.Bunnymark.main();
+		Raylib_CsLo.Examples.Textures.ImageDrawing.main();
+		Raylib_CsLo.Examples.Textures.ImageGeneration.main();
+		Raylib_CsLo.Examples.Textures.ImageLoading.main();
+		Raylib_CsLo.Examples.Textures.ImageProcessing.main();
+		Raylib_CsLo.Examples.Textures.ImageTextDrawing.main();
+		Raylib_CsLo.Examples.Textures.LoadingAndDrawing.main();
+		Raylib_CsLo.Examples.Textures.MousePainting.main();
+		Raylib_CsLo.Examples.Textures.NPatchDrawing.main();
+		Raylib_CsLo.Examples.Textures.ParticlesBlending.main();
+		Raylib_CsLo.Examples.Textures.SpriteButton.main();
+		Raylib_CsLo.Examples.Textures.SpriteExplosion.main();
+		Raylib_CsLo.Examples.Textures.TexturedPolygon.main();
+		Raylib_CsLo.Examples.Textures.TextureFromRawData.main();
+		Raylib_CsLo.Examples.Textures.TextureRectangle.main();
+		Raylib_CsLo.Examples.Textures.TextureSourceAndDestinationRectangles.main();
+		Raylib_CsLo.Examples.Textures.TextureToImage.main();
+		Raylib_CsLo.Examples.Textures.TiledExture.main();
 
 
-/////////////////////////////////////////
-////////////////////// SHAPES
-Raylib_CsLo.Examples.Shapes.BasicShapesDrawing.main();
-Raylib_CsLo.Examples.Shapes.BoundingBall.main();
-Raylib_CsLo.Examples.Shapes.CollisionArea.main();
-Raylib_CsLo.Examples.Shapes.ColorsPalette.main();
-Raylib_CsLo.Examples.Shapes.DrawCircleSector.main();
-Raylib_CsLo.Examples.Shapes.DrawRectangleRounded.main();
-Raylib_CsLo.Examples.Shapes.DrawRing.main();
-Raylib_CsLo.Examples.Shapes.EasingsBallAnim.main();
-Raylib_CsLo.Examples.Shapes.EasingsBoxAnim.main();
-Raylib_CsLo.Examples.Shapes.EasingsRectangleArray.main();
-Raylib_CsLo.Examples.Shapes.FollowingEyes.main();
-Raylib_CsLo.Examples.Shapes.LogoAnimation.main();
-Raylib_CsLo.Examples.Shapes.LogoUsingShapes.main();
-Raylib_CsLo.Examples.Shapes.RectangleScalingMouse.main();
-Raylib_CsLo.Examples.Shapes.LinesCubicBezier.main();
+		/////////////////////////////////////////
+		//////////////////// TEXT
+		Raylib_CsLo.Examples.Text.Draw2dIn3d.main();
+		Raylib_CsLo.Examples.Text.DrawTextInsideRectangle.main();
+		Raylib_CsLo.Examples.Text.FontFilters.main();
+		Raylib_CsLo.Examples.Text.FontLoading.main();
+		Raylib_CsLo.Examples.Text.FontLoadingUsage.main();
+		Raylib_CsLo.Examples.Text.InputBox.main();
+		Raylib_CsLo.Examples.Text.SdfFonts.main();
+		Raylib_CsLo.Examples.Text.SpriteFontLoading.main();
+		Raylib_CsLo.Examples.Text.TextFormatting.main();
+		Raylib_CsLo.Examples.Text.WritingAnimation.main();
+		///////////// the unicode example doesn't work properly.  I guess the fonts don't include the needed unicode chars
+		Raylib_CsLo.Examples.Text.Unicode.main();
 
 
-/////////////////////////////////////////
-////////////////////////  AUDIO
-Raylib_CsLo.Examples.Audio.ModulePlayingStreaming.main();
-Raylib_CsLo.Examples.Audio.MultichannelSoundPlaying.main();
-Raylib_CsLo.Examples.Audio.MusicPlayingStreaming.main();
-Raylib_CsLo.Examples.Audio.RawAudioStreaming.main();
-Raylib_CsLo.Examples.Audio.SoundLoadingAndPlaying.main();
+		/////////////////////////////////////////
+		////////////////////// SHAPES
+		Raylib_CsLo.Examples.Shapes.BasicShapesDrawing.main();
+		Raylib_CsLo.Examples.Shapes.BoundingBall.main();
+		Raylib_CsLo.Examples.Shapes.CollisionArea.main();
+		Raylib_CsLo.Examples.Shapes.ColorsPalette.main();
+		Raylib_CsLo.Examples.Shapes.DrawCircleSector.main();
+		Raylib_CsLo.Examples.Shapes.DrawRectangleRounded.main();
+		Raylib_CsLo.Examples.Shapes.DrawRing.main();
+		Raylib_CsLo.Examples.Shapes.EasingsBallAnim.main();
+		Raylib_CsLo.Examples.Shapes.EasingsBoxAnim.main();
+		Raylib_CsLo.Examples.Shapes.EasingsRectangleArray.main();
+		Raylib_CsLo.Examples.Shapes.FollowingEyes.main();
+		Raylib_CsLo.Examples.Shapes.LogoAnimation.main();
+		Raylib_CsLo.Examples.Shapes.LogoUsingShapes.main();
+		Raylib_CsLo.Examples.Shapes.RectangleScalingMouse.main();
+		Raylib_CsLo.Examples.Shapes.LinesCubicBezier.main();
 
 
-/////////////////////////////////////////
-//////////////////////////  PHYSICS
-Raylib_CsLo.Examples.Physics.PhysicsDemo.main();
-Raylib_CsLo.Examples.Physics.PhysicsFriction.main();
-Raylib_CsLo.Examples.Physics.PhysicsMovement.main();
-Raylib_CsLo.Examples.Physics.PhysicsRestitution.main();
-Raylib_CsLo.Examples.Physics.PhysicsShatter.main();
+		/////////////////////////////////////////
+		////////////////////////  AUDIO
+		Raylib_CsLo.Examples.Audio.ModulePlayingStreaming.main();
+		Raylib_CsLo.Examples.Audio.MultichannelSoundPlaying.main();
+		Raylib_CsLo.Examples.Audio.MusicPlayingStreaming.main();
+		Raylib_CsLo.Examples.Audio.RawAudioStreaming.main();
+		Raylib_CsLo.Examples.Audio.SoundLoadingAndPlaying.main();
 
+
+		/////////////////////////////////////////
+		//////////////////////////  PHYSICS
+		Raylib_CsLo.Examples.Physics.PhysicsDemo.main();
+		Raylib_CsLo.Examples.Physics.PhysicsFriction.main();
+		Raylib_CsLo.Examples.Physics.PhysicsMovement.main();
+		Raylib_CsLo.Examples.Physics.PhysicsRestitution.main();
+		Raylib_CsLo.Examples.Physics.PhysicsShatter.main();
+
+	}
+
+	
+}
+
+//static class DllLoader
+//{
+//	public static bool Init()
+//	{
+//		// Register the import resolver before calling anything raylib related.
+//		// this will let our examples pick the proper runtime folder based on our os.
+//		NativeLibrary.SetDllImportResolver(Assembly.GetExecutingAssembly(), DllImportResolver);
+
+//		return true;
+//	}
+
+//	private static HashSet<string> raylibLibs = new() { "raylib", "raygui", "physac" };
+//	private static IntPtr DllImportResolver(string libraryName, Assembly assembly, DllImportSearchPath? searchPath)
+//	{
+//		//if (System.Runtime.Intrinsics.X86.Avx2.IsSupported)
+//		{
+//			return NativeLibrary.Load("nativedep_avx2", assembly, searchPath);
+//		}
+
+//		if (raylibLibs.Contains(libraryName))
+//		{
+//			string runtime;
+//			//load from our subdir
+//			if (System.Runtime.InteropServices.RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
+//			{
+//				if (System.Runtime.InteropServices.RuntimeInformation.ProcessArchitecture == Architecture.X64)
+//				{
+//					runtime = "win-x64";
+
+//				}
+//				else
+//				{
+//					runtime = "win-x86";
+//				}
+//			}
+//			else if (System.Runtime.InteropServices.RuntimeInformation.IsOSPlatform(OSPlatform.Linux))
+//			{
+//				runtime = "linux-x64";
+//			}
+//			else if (System.Runtime.InteropServices.RuntimeInformation.IsOSPlatform(OSPlatform.OSX))
+//			{
+//				runtime = "osx-x64";
+//			}
+//			else
+//			{
+//				runtime = null;
+//			}
+
+//			if (runtime != null)
+//			{
+
+//				var loadPath = $"./runtimes/{runtime}/native/";
+
+
+//				var target = Path.Combine(Environment.ProcessPath, loadPath, libraryName);
+//				if (NativeLibrary.TryLoad("baka", out var toReturn))
+//				{
+//					//success;
+//					return toReturn;
+//				}
+
+//				//// On systems with AVX2 support, load a different library.
+//				//if (System.Runtime.Intrinsics.X86.Avx2.IsSupported)
+//				//{
+//				//	return NativeLibrary.Load("nativedep_avx2", assembly, searchPath);
+//				//}
+//			}
+//		}
+
+//		// Otherwise, fallback to default import resolver.
+//		return IntPtr.Zero;
+//	}
+//}

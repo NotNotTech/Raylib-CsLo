@@ -1,15 +1,20 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
     <PropertyGroup>
         <TargetFramework>net6.0</TargetFramework>
+        <!--<TargetFramework>netstandard2.1</TargetFramework>-->
         <!--<EnablePreviewFeatures>True</EnablePreviewFeatures>
         <LangVersion>Preview</LangVersion>-->
+        <LangVersion>10</LangVersion>
         <RootNamespace>Raylib_CsLo</RootNamespace>
         <ImplicitUsings>enable</ImplicitUsings>
         <Nullable>enable</Nullable>
         <AllowUnsafeBlocks>True</AllowUnsafeBlocks>
         <GenerateDocumentationFile>True</GenerateDocumentationFile>
         <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
+        <RepositoryUrl>https://github.com/NotNotTech/Raylib-CsLo</RepositoryUrl>
+        <PackageReadmeFile>README.md</PackageReadmeFile>
+        <PackageIcon>raylib-cslo_128x128.png</PackageIcon>
         <Version>4.0.0-rc.0.2</Version>
         <Authors>Novaleaf</Authors>
         <Company>NotNotTech</Company>
@@ -25,9 +30,8 @@
             - No intellisense docs. [read the raylib cheatsheet for docs](https://www.raylib.com/cheatsheet/cheatsheet.html) or [view the examples](https://github.com/NotNotTech/Raylib-CsLo/tree/main/Raylib-CsLo.Examples)
         </Description>
         <PackageProjectUrl>https://github.com/NotNotTech/Raylib-CsLo</PackageProjectUrl>
-        <RepositoryUrl>https://github.com/NotNotTech/Raylib-CsLo</RepositoryUrl>
-        <PackageIcon>raylib-cslo_128x128.png</PackageIcon>
-        <PackageReadmeFile>README.md</PackageReadmeFile>
+       
+        
         <PackageTags>raylib;gamedev;binding;NotNot;rendering;3d;2d;graphics;opengl;physics;audio;</PackageTags>
         <PackageReleaseNotes>Release Candidate.  Review the examples on github.</PackageReleaseNotes>
         <PackageLicenseExpression>LGPL-2.1-or-later</PackageLicenseExpression>
@@ -36,6 +40,7 @@
         <PackageRequireLicenseAcceptance>True</PackageRequireLicenseAcceptance>
         <!--include pdb in nuget package, as per: https://stackoverflow.com/a/48391188 -->
         <AllowedOutputExtensionsInPackageBuildOutputFolder>$(AllowedOutputExtensionsInPackageBuildOutputFolder);.pdb</AllowedOutputExtensionsInPackageBuildOutputFolder>
+        <IsPublishable>True</IsPublishable>
     </PropertyGroup>
 
     <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
@@ -65,7 +70,15 @@
     </ItemGroup>
 
     <ItemGroup>
-        <Content Include="raylib.dll">
+        <!--<Content Include="resources\**">
+            <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+        </Content>-->
+        <Content Include="runtimes\**">
+            <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+            <Pack>true</Pack>
+            <PackagePath>runtimes</PackagePath>
+        </Content>
+        <!--<Content Include="raylib.dll">
             <CopyToOutputDirectory>Always</CopyToOutputDirectory>
             <Pack>true</Pack>
             <PackagePath>lib\net6.0</PackagePath>
@@ -94,7 +107,7 @@
             <CopyToOutputDirectory>Always</CopyToOutputDirectory>
             <Pack>true</Pack>
             <PackagePath>lib\net6.0</PackagePath>
-        </Content>
+        </Content>-->
     </ItemGroup>
 
 </Project>

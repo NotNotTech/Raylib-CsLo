@@ -10,443 +10,443 @@ namespace Raylib_CsLo
 {
     public static unsafe partial class RlGl
     {
-        [DllImport("raylib.dll", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
+        [DllImport("raylib", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
         public static extern void rlMatrixMode(int mode);
 
-        [DllImport("raylib.dll", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
+        [DllImport("raylib", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
         public static extern void rlPushMatrix();
 
-        [DllImport("raylib.dll", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
+        [DllImport("raylib", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
         public static extern void rlPopMatrix();
 
-        [DllImport("raylib.dll", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
+        [DllImport("raylib", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
         public static extern void rlLoadIdentity();
 
-        [DllImport("raylib.dll", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
+        [DllImport("raylib", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
         public static extern void rlTranslatef(float x, float y, float z);
 
-        [DllImport("raylib.dll", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
+        [DllImport("raylib", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
         public static extern void rlRotatef(float angle, float x, float y, float z);
 
-        [DllImport("raylib.dll", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
+        [DllImport("raylib", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
         public static extern void rlScalef(float x, float y, float z);
 
-        [DllImport("raylib.dll", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
+        [DllImport("raylib", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
         public static extern void rlMultMatrixf(float* matf);
 
-        [DllImport("raylib.dll", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
+        [DllImport("raylib", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
         public static extern void rlFrustum(double left, double right, double bottom, double top, double znear, double zfar);
 
-        [DllImport("raylib.dll", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
+        [DllImport("raylib", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
         public static extern void rlOrtho(double left, double right, double bottom, double top, double znear, double zfar);
 
-        [DllImport("raylib.dll", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
+        [DllImport("raylib", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
         public static extern void rlViewport(int x, int y, int width, int height);
 
-        [DllImport("raylib.dll", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
+        [DllImport("raylib", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
         public static extern void rlBegin(int mode);
 
-        [DllImport("raylib.dll", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
+        [DllImport("raylib", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
         public static extern void rlEnd();
 
-        [DllImport("raylib.dll", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
+        [DllImport("raylib", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
         public static extern void rlVertex2i(int x, int y);
 
-        [DllImport("raylib.dll", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
+        [DllImport("raylib", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
         public static extern void rlVertex2f(float x, float y);
 
-        [DllImport("raylib.dll", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
+        [DllImport("raylib", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
         public static extern void rlVertex3f(float x, float y, float z);
 
-        [DllImport("raylib.dll", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
+        [DllImport("raylib", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
         public static extern void rlTexCoord2f(float x, float y);
 
-        [DllImport("raylib.dll", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
+        [DllImport("raylib", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
         public static extern void rlNormal3f(float x, float y, float z);
 
-        [DllImport("raylib.dll", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
+        [DllImport("raylib", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
         public static extern void rlColor4ub([NativeTypeName("unsigned char")] byte r, [NativeTypeName("unsigned char")] byte g, [NativeTypeName("unsigned char")] byte b, [NativeTypeName("unsigned char")] byte a);
 
-        [DllImport("raylib.dll", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
+        [DllImport("raylib", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
         public static extern void rlColor3f(float x, float y, float z);
 
-        [DllImport("raylib.dll", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
+        [DllImport("raylib", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
         public static extern void rlColor4f(float x, float y, float z, float w);
 
-        [DllImport("raylib.dll", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
+        [DllImport("raylib", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
         public static extern Boolean rlEnableVertexArray([NativeTypeName("unsigned int")] uint vaoId);
 
-        [DllImport("raylib.dll", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
+        [DllImport("raylib", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
         public static extern void rlDisableVertexArray();
 
-        [DllImport("raylib.dll", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
+        [DllImport("raylib", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
         public static extern void rlEnableVertexBuffer([NativeTypeName("unsigned int")] uint id);
 
-        [DllImport("raylib.dll", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
+        [DllImport("raylib", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
         public static extern void rlDisableVertexBuffer();
 
-        [DllImport("raylib.dll", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
+        [DllImport("raylib", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
         public static extern void rlEnableVertexBufferElement([NativeTypeName("unsigned int")] uint id);
 
-        [DllImport("raylib.dll", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
+        [DllImport("raylib", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
         public static extern void rlDisableVertexBufferElement();
 
-        [DllImport("raylib.dll", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
+        [DllImport("raylib", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
         public static extern void rlEnableVertexAttribute([NativeTypeName("unsigned int")] uint index);
 
-        [DllImport("raylib.dll", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
+        [DllImport("raylib", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
         public static extern void rlDisableVertexAttribute([NativeTypeName("unsigned int")] uint index);
 
-        [DllImport("raylib.dll", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
+        [DllImport("raylib", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
         public static extern void rlActiveTextureSlot(int slot);
 
-        [DllImport("raylib.dll", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
+        [DllImport("raylib", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
         public static extern void rlEnableTexture([NativeTypeName("unsigned int")] uint id);
 
-        [DllImport("raylib.dll", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
+        [DllImport("raylib", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
         public static extern void rlDisableTexture();
 
-        [DllImport("raylib.dll", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
+        [DllImport("raylib", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
         public static extern void rlEnableTextureCubemap([NativeTypeName("unsigned int")] uint id);
 
-        [DllImport("raylib.dll", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
+        [DllImport("raylib", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
         public static extern void rlDisableTextureCubemap();
 
-        [DllImport("raylib.dll", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
+        [DllImport("raylib", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
         public static extern void rlTextureParameters([NativeTypeName("unsigned int")] uint id, int param1, int value);
 
-        [DllImport("raylib.dll", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
+        [DllImport("raylib", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
         public static extern void rlEnableShader([NativeTypeName("unsigned int")] uint id);
 
-        [DllImport("raylib.dll", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
+        [DllImport("raylib", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
         public static extern void rlDisableShader();
 
-        [DllImport("raylib.dll", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
+        [DllImport("raylib", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
         public static extern void rlEnableFramebuffer([NativeTypeName("unsigned int")] uint id);
 
-        [DllImport("raylib.dll", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
+        [DllImport("raylib", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
         public static extern void rlDisableFramebuffer();
 
-        [DllImport("raylib.dll", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
+        [DllImport("raylib", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
         public static extern void rlActiveDrawBuffers(int count);
 
-        [DllImport("raylib.dll", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
+        [DllImport("raylib", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
         public static extern void rlEnableColorBlend();
 
-        [DllImport("raylib.dll", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
+        [DllImport("raylib", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
         public static extern void rlDisableColorBlend();
 
-        [DllImport("raylib.dll", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
+        [DllImport("raylib", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
         public static extern void rlEnableDepthTest();
 
-        [DllImport("raylib.dll", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
+        [DllImport("raylib", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
         public static extern void rlDisableDepthTest();
 
-        [DllImport("raylib.dll", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
+        [DllImport("raylib", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
         public static extern void rlEnableDepthMask();
 
-        [DllImport("raylib.dll", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
+        [DllImport("raylib", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
         public static extern void rlDisableDepthMask();
 
-        [DllImport("raylib.dll", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
+        [DllImport("raylib", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
         public static extern void rlEnableBackfaceCulling();
 
-        [DllImport("raylib.dll", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
+        [DllImport("raylib", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
         public static extern void rlDisableBackfaceCulling();
 
-        [DllImport("raylib.dll", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
+        [DllImport("raylib", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
         public static extern void rlEnableScissorTest();
 
-        [DllImport("raylib.dll", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
+        [DllImport("raylib", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
         public static extern void rlDisableScissorTest();
 
-        [DllImport("raylib.dll", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
+        [DllImport("raylib", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
         public static extern void rlScissor(int x, int y, int width, int height);
 
-        [DllImport("raylib.dll", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
+        [DllImport("raylib", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
         public static extern void rlEnableWireMode();
 
-        [DllImport("raylib.dll", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
+        [DllImport("raylib", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
         public static extern void rlDisableWireMode();
 
-        [DllImport("raylib.dll", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
+        [DllImport("raylib", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
         public static extern void rlSetLineWidth(float width);
 
-        [DllImport("raylib.dll", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
+        [DllImport("raylib", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
         public static extern float rlGetLineWidth();
 
-        [DllImport("raylib.dll", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
+        [DllImport("raylib", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
         public static extern void rlEnableSmoothLines();
 
-        [DllImport("raylib.dll", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
+        [DllImport("raylib", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
         public static extern void rlDisableSmoothLines();
 
-        [DllImport("raylib.dll", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
+        [DllImport("raylib", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
         public static extern void rlEnableStereoRender();
 
-        [DllImport("raylib.dll", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
+        [DllImport("raylib", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
         public static extern void rlDisableStereoRender();
 
-        [DllImport("raylib.dll", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
+        [DllImport("raylib", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
         public static extern Boolean rlIsStereoRenderEnabled();
 
-        [DllImport("raylib.dll", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
+        [DllImport("raylib", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
         public static extern void rlClearColor([NativeTypeName("unsigned char")] byte r, [NativeTypeName("unsigned char")] byte g, [NativeTypeName("unsigned char")] byte b, [NativeTypeName("unsigned char")] byte a);
 
-        [DllImport("raylib.dll", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
+        [DllImport("raylib", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
         public static extern void rlClearScreenBuffers();
 
-        [DllImport("raylib.dll", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
+        [DllImport("raylib", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
         public static extern void rlCheckErrors();
 
-        [DllImport("raylib.dll", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
+        [DllImport("raylib", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
         public static extern void rlSetBlendMode(int mode);
 
-        [DllImport("raylib.dll", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
+        [DllImport("raylib", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
         public static extern void rlSetBlendFactors(int glSrcFactor, int glDstFactor, int glEquation);
 
-        [DllImport("raylib.dll", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
+        [DllImport("raylib", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
         public static extern void rlglInit(int width, int height);
 
-        [DllImport("raylib.dll", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
+        [DllImport("raylib", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
         public static extern void rlglClose();
 
-        [DllImport("raylib.dll", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
+        [DllImport("raylib", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
         public static extern void rlLoadExtensions(void* loader);
 
-        [DllImport("raylib.dll", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
+        [DllImport("raylib", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
         public static extern int rlGetVersion();
 
-        [DllImport("raylib.dll", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
+        [DllImport("raylib", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
         public static extern int rlGetFramebufferWidth();
 
-        [DllImport("raylib.dll", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
+        [DllImport("raylib", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
         public static extern int rlGetFramebufferHeight();
 
-        [DllImport("raylib.dll", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
+        [DllImport("raylib", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
         [return: NativeTypeName("unsigned int")]
         public static extern uint rlGetTextureIdDefault();
 
-        [DllImport("raylib.dll", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
+        [DllImport("raylib", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
         [return: NativeTypeName("unsigned int")]
         public static extern uint rlGetShaderIdDefault();
 
-        [DllImport("raylib.dll", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
+        [DllImport("raylib", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
         public static extern int* rlGetShaderLocsDefault();
 
-        [DllImport("raylib.dll", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
+        [DllImport("raylib", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
         public static extern rlRenderBatch rlLoadRenderBatch(int numBuffers, int bufferElements);
 
-        [DllImport("raylib.dll", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
+        [DllImport("raylib", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
         public static extern void rlUnloadRenderBatch(rlRenderBatch batch);
 
-        [DllImport("raylib.dll", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
+        [DllImport("raylib", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
         public static extern void rlDrawRenderBatch(rlRenderBatch* batch);
 
-        [DllImport("raylib.dll", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
+        [DllImport("raylib", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
         public static extern void rlSetRenderBatchActive(rlRenderBatch* batch);
 
-        [DllImport("raylib.dll", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
+        [DllImport("raylib", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
         public static extern void rlDrawRenderBatchActive();
 
-        [DllImport("raylib.dll", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
+        [DllImport("raylib", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
         public static extern Boolean rlCheckRenderBatchLimit(int vCount);
 
-        [DllImport("raylib.dll", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
+        [DllImport("raylib", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
         public static extern void rlSetTexture([NativeTypeName("unsigned int")] uint id);
 
-        [DllImport("raylib.dll", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
+        [DllImport("raylib", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
         [return: NativeTypeName("unsigned int")]
         public static extern uint rlLoadVertexArray();
 
-        [DllImport("raylib.dll", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
+        [DllImport("raylib", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
         [return: NativeTypeName("unsigned int")]
         public static extern uint rlLoadVertexBuffer(void* buffer, int size, Boolean dynamic);
 
-        [DllImport("raylib.dll", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
+        [DllImport("raylib", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
         [return: NativeTypeName("unsigned int")]
         public static extern uint rlLoadVertexBufferElement(void* buffer, int size, Boolean dynamic);
 
-        [DllImport("raylib.dll", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
+        [DllImport("raylib", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
         public static extern void rlUpdateVertexBuffer([NativeTypeName("unsigned int")] uint bufferId, void* data, int dataSize, int offset);
 
-        [DllImport("raylib.dll", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
+        [DllImport("raylib", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
         public static extern void rlUnloadVertexArray([NativeTypeName("unsigned int")] uint vaoId);
 
-        [DllImport("raylib.dll", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
+        [DllImport("raylib", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
         public static extern void rlUnloadVertexBuffer([NativeTypeName("unsigned int")] uint vboId);
 
-        [DllImport("raylib.dll", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
+        [DllImport("raylib", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
         public static extern void rlSetVertexAttribute([NativeTypeName("unsigned int")] uint index, int compSize, int type, Boolean normalized, int stride, void* pointer);
 
-        [DllImport("raylib.dll", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
+        [DllImport("raylib", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
         public static extern void rlSetVertexAttributeDivisor([NativeTypeName("unsigned int")] uint index, int divisor);
 
-        [DllImport("raylib.dll", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
+        [DllImport("raylib", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
         public static extern void rlSetVertexAttributeDefault(int locIndex, [NativeTypeName("const void *")] void* value, int attribType, int count);
 
-        [DllImport("raylib.dll", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
+        [DllImport("raylib", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
         public static extern void rlDrawVertexArray(int offset, int count);
 
-        [DllImport("raylib.dll", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
+        [DllImport("raylib", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
         public static extern void rlDrawVertexArrayElements(int offset, int count, void* buffer);
 
-        [DllImport("raylib.dll", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
+        [DllImport("raylib", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
         public static extern void rlDrawVertexArrayInstanced(int offset, int count, int instances);
 
-        [DllImport("raylib.dll", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
+        [DllImport("raylib", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
         public static extern void rlDrawVertexArrayElementsInstanced(int offset, int count, void* buffer, int instances);
 
-        [DllImport("raylib.dll", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
+        [DllImport("raylib", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
         [return: NativeTypeName("unsigned int")]
         public static extern uint rlLoadTexture(void* data, int width, int height, int format, int mipmapCount);
 
-        [DllImport("raylib.dll", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
+        [DllImport("raylib", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
         [return: NativeTypeName("unsigned int")]
         public static extern uint rlLoadTextureDepth(int width, int height, Boolean useRenderBuffer);
 
-        [DllImport("raylib.dll", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
+        [DllImport("raylib", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
         [return: NativeTypeName("unsigned int")]
         public static extern uint rlLoadTextureCubemap(void* data, int size, int format);
 
-        [DllImport("raylib.dll", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
+        [DllImport("raylib", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
         public static extern void rlUpdateTexture([NativeTypeName("unsigned int")] uint id, int offsetX, int offsetY, int width, int height, int format, [NativeTypeName("const void *")] void* data);
 
-        [DllImport("raylib.dll", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
+        [DllImport("raylib", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
         public static extern void rlGetGlTextureFormats(int format, int* glInternalFormat, int* glFormat, int* glType);
 
-        [DllImport("raylib.dll", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
+        [DllImport("raylib", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
         [return: NativeTypeName("const char *")]
         public static extern sbyte* rlGetPixelFormatName([NativeTypeName("unsigned int")] uint format);
 
-        [DllImport("raylib.dll", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
+        [DllImport("raylib", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
         public static extern void rlUnloadTexture([NativeTypeName("unsigned int")] uint id);
 
-        [DllImport("raylib.dll", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
+        [DllImport("raylib", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
         public static extern void rlGenTextureMipmaps([NativeTypeName("unsigned int")] uint id, int width, int height, int format, int* mipmaps);
 
-        [DllImport("raylib.dll", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
+        [DllImport("raylib", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
         public static extern void* rlReadTexturePixels([NativeTypeName("unsigned int")] uint id, int width, int height, int format);
 
-        [DllImport("raylib.dll", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
+        [DllImport("raylib", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
         [return: NativeTypeName("unsigned char *")]
         public static extern byte* rlReadScreenPixels(int width, int height);
 
-        [DllImport("raylib.dll", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
+        [DllImport("raylib", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
         [return: NativeTypeName("unsigned int")]
         public static extern uint rlLoadFramebuffer(int width, int height);
 
-        [DllImport("raylib.dll", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
+        [DllImport("raylib", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
         public static extern void rlFramebufferAttach([NativeTypeName("unsigned int")] uint fboId, [NativeTypeName("unsigned int")] uint texId, int attachType, int texType, int mipLevel);
 
-        [DllImport("raylib.dll", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
+        [DllImport("raylib", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
         public static extern Boolean rlFramebufferComplete([NativeTypeName("unsigned int")] uint id);
 
-        [DllImport("raylib.dll", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
+        [DllImport("raylib", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
         public static extern void rlUnloadFramebuffer([NativeTypeName("unsigned int")] uint id);
 
-        [DllImport("raylib.dll", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
+        [DllImport("raylib", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
         [return: NativeTypeName("unsigned int")]
         public static extern uint rlLoadShaderCode([NativeTypeName("const char *")] sbyte* vsCode, [NativeTypeName("const char *")] sbyte* fsCode);
 
-        [DllImport("raylib.dll", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
+        [DllImport("raylib", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
         [return: NativeTypeName("unsigned int")]
         public static extern uint rlCompileShader([NativeTypeName("const char *")] sbyte* shaderCode, int type);
 
-        [DllImport("raylib.dll", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
+        [DllImport("raylib", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
         [return: NativeTypeName("unsigned int")]
         public static extern uint rlLoadShaderProgram([NativeTypeName("unsigned int")] uint vShaderId, [NativeTypeName("unsigned int")] uint fShaderId);
 
-        [DllImport("raylib.dll", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
+        [DllImport("raylib", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
         public static extern void rlUnloadShaderProgram([NativeTypeName("unsigned int")] uint id);
 
-        [DllImport("raylib.dll", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
+        [DllImport("raylib", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
         public static extern int rlGetLocationUniform([NativeTypeName("unsigned int")] uint shaderId, [NativeTypeName("const char *")] sbyte* uniformName);
 
-        [DllImport("raylib.dll", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
+        [DllImport("raylib", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
         public static extern int rlGetLocationAttrib([NativeTypeName("unsigned int")] uint shaderId, [NativeTypeName("const char *")] sbyte* attribName);
 
-        [DllImport("raylib.dll", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
+        [DllImport("raylib", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
         public static extern void rlSetUniform(int locIndex, [NativeTypeName("const void *")] void* value, int uniformType, int count);
 
-        [DllImport("raylib.dll", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
+        [DllImport("raylib", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
         public static extern void rlSetUniformMatrix(int locIndex, [NativeTypeName("Matrix")] Matrix4x4 mat);
 
-        [DllImport("raylib.dll", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
+        [DllImport("raylib", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
         public static extern void rlSetUniformSampler(int locIndex, [NativeTypeName("unsigned int")] uint textureId);
 
-        [DllImport("raylib.dll", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
+        [DllImport("raylib", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
         public static extern void rlSetShader([NativeTypeName("unsigned int")] uint id, int* locs);
 
-        [DllImport("raylib.dll", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
+        [DllImport("raylib", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
         [return: NativeTypeName("unsigned int")]
         public static extern uint rlLoadComputeShaderProgram([NativeTypeName("unsigned int")] uint shaderId);
 
-        [DllImport("raylib.dll", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
+        [DllImport("raylib", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
         public static extern void rlComputeShaderDispatch([NativeTypeName("unsigned int")] uint groupX, [NativeTypeName("unsigned int")] uint groupY, [NativeTypeName("unsigned int")] uint groupZ);
 
-        [DllImport("raylib.dll", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
+        [DllImport("raylib", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
         [return: NativeTypeName("unsigned int")]
         public static extern uint rlLoadShaderBuffer([NativeTypeName("unsigned long long")] ulong size, [NativeTypeName("const void *")] void* data, int usageHint);
 
-        [DllImport("raylib.dll", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
+        [DllImport("raylib", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
         public static extern void rlUnloadShaderBuffer([NativeTypeName("unsigned int")] uint ssboId);
 
-        [DllImport("raylib.dll", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
+        [DllImport("raylib", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
         public static extern void rlUpdateShaderBufferElements([NativeTypeName("unsigned int")] uint id, [NativeTypeName("const void *")] void* data, [NativeTypeName("unsigned long long")] ulong dataSize, [NativeTypeName("unsigned long long")] ulong offset);
 
-        [DllImport("raylib.dll", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
+        [DllImport("raylib", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
         [return: NativeTypeName("unsigned long long")]
         public static extern ulong rlGetShaderBufferSize([NativeTypeName("unsigned int")] uint id);
 
-        [DllImport("raylib.dll", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
+        [DllImport("raylib", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
         public static extern void rlReadShaderBufferElements([NativeTypeName("unsigned int")] uint id, void* dest, [NativeTypeName("unsigned long long")] ulong count, [NativeTypeName("unsigned long long")] ulong offset);
 
-        [DllImport("raylib.dll", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
+        [DllImport("raylib", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
         public static extern void rlBindShaderBuffer([NativeTypeName("unsigned int")] uint id, [NativeTypeName("unsigned int")] uint index);
 
-        [DllImport("raylib.dll", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
+        [DllImport("raylib", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
         public static extern void rlCopyBuffersElements([NativeTypeName("unsigned int")] uint destId, [NativeTypeName("unsigned int")] uint srcId, [NativeTypeName("unsigned long long")] ulong destOffset, [NativeTypeName("unsigned long long")] ulong srcOffset, [NativeTypeName("unsigned long long")] ulong count);
 
-        [DllImport("raylib.dll", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
+        [DllImport("raylib", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
         public static extern void rlBindImageTexture([NativeTypeName("unsigned int")] uint id, [NativeTypeName("unsigned int")] uint index, [NativeTypeName("unsigned int")] uint format, int @readonly);
 
-        [DllImport("raylib.dll", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
+        [DllImport("raylib", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
         [return: NativeTypeName("Matrix")]
         public static extern Matrix4x4 rlGetMatrixModelview();
 
-        [DllImport("raylib.dll", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
+        [DllImport("raylib", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
         [return: NativeTypeName("Matrix")]
         public static extern Matrix4x4 rlGetMatrixProjection();
 
-        [DllImport("raylib.dll", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
+        [DllImport("raylib", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
         [return: NativeTypeName("Matrix")]
         public static extern Matrix4x4 rlGetMatrixTransform();
 
-        [DllImport("raylib.dll", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
+        [DllImport("raylib", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
         [return: NativeTypeName("Matrix")]
         public static extern Matrix4x4 rlGetMatrixProjectionStereo(int eye);
 
-        [DllImport("raylib.dll", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
+        [DllImport("raylib", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
         [return: NativeTypeName("Matrix")]
         public static extern Matrix4x4 rlGetMatrixViewOffsetStereo(int eye);
 
-        [DllImport("raylib.dll", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
+        [DllImport("raylib", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
         public static extern void rlSetMatrixProjection([NativeTypeName("Matrix")] Matrix4x4 proj);
 
-        [DllImport("raylib.dll", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
+        [DllImport("raylib", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
         public static extern void rlSetMatrixModelview([NativeTypeName("Matrix")] Matrix4x4 view);
 
-        [DllImport("raylib.dll", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
+        [DllImport("raylib", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
         public static extern void rlSetMatrixProjectionStereo([NativeTypeName("Matrix")] Matrix4x4 right, [NativeTypeName("Matrix")] Matrix4x4 left);
 
-        [DllImport("raylib.dll", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
+        [DllImport("raylib", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
         public static extern void rlSetMatrixViewOffsetStereo([NativeTypeName("Matrix")] Matrix4x4 right, [NativeTypeName("Matrix")] Matrix4x4 left);
 
-        [DllImport("raylib.dll", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
+        [DllImport("raylib", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
         public static extern void rlLoadDrawCube();
 
-        [DllImport("raylib.dll", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
+        [DllImport("raylib", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
         public static extern void rlLoadDrawQuad();
 
         [NativeTypeName("#define RLGL_VERSION \"4.0\"")]
