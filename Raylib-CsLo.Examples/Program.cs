@@ -85,40 +85,10 @@ global using Matrix = System.Numerics.Matrix4x4;
 
 public static class Program
 {
-	//[DllImport("nativedep")]
-	//private static extern int ExportedFunction();
 
-	//public static void Main(string[] args)
-	//{
-	//	// Register the import resolver before calling the imported function.
-	//	// Only one import resolver can be set for a given assembly.
-	//	NativeLibrary.SetDllImportResolver(Assembly.GetExecutingAssembly(), DllImportResolver);
-	//	NativeLibrary.SetDllImportResolver(Assembly.GetEntryAssembly(), DllImportResolver);
-
-	//	int value = ExportedFunction();
-	//	Console.WriteLine(value);
-	//}
-
-	//private static IntPtr DllImportResolver(string libraryName, Assembly assembly, DllImportSearchPath? searchPath)
-	//{
-	//	if (libraryName == "nativedep")
-	//	{
-	//		// On systems with AVX2 support, load a different library.
-	//		//if (System.Runtime.Intrinsics.X86.Avx2.IsSupported)
-	//		{
-	//			return NativeLibrary.Load("nativedep_avx2", assembly, searchPath);
-	//		}
-	//	}
-
-	//	// Otherwise, fallback to default import resolver.
-	//	return IntPtr.Zero;
-	//}
 
 	public static void Main(params string[] args)
 	{
-	
-
-
 
 		/////////////////////////////////////////
 		/////////////////////////////////////////
@@ -281,77 +251,3 @@ public static class Program
 
 	
 }
-
-//static class DllLoader
-//{
-//	public static bool Init()
-//	{
-//		// Register the import resolver before calling anything raylib related.
-//		// this will let our examples pick the proper runtime folder based on our os.
-//		NativeLibrary.SetDllImportResolver(Assembly.GetExecutingAssembly(), DllImportResolver);
-
-//		return true;
-//	}
-
-//	private static HashSet<string> raylibLibs = new() { "raylib", "raygui", "physac" };
-//	private static IntPtr DllImportResolver(string libraryName, Assembly assembly, DllImportSearchPath? searchPath)
-//	{
-//		//if (System.Runtime.Intrinsics.X86.Avx2.IsSupported)
-//		{
-//			return NativeLibrary.Load("nativedep_avx2", assembly, searchPath);
-//		}
-
-//		if (raylibLibs.Contains(libraryName))
-//		{
-//			string runtime;
-//			//load from our subdir
-//			if (System.Runtime.InteropServices.RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
-//			{
-//				if (System.Runtime.InteropServices.RuntimeInformation.ProcessArchitecture == Architecture.X64)
-//				{
-//					runtime = "win-x64";
-
-//				}
-//				else
-//				{
-//					runtime = "win-x86";
-//				}
-//			}
-//			else if (System.Runtime.InteropServices.RuntimeInformation.IsOSPlatform(OSPlatform.Linux))
-//			{
-//				runtime = "linux-x64";
-//			}
-//			else if (System.Runtime.InteropServices.RuntimeInformation.IsOSPlatform(OSPlatform.OSX))
-//			{
-//				runtime = "osx-x64";
-//			}
-//			else
-//			{
-//				runtime = null;
-//			}
-
-//			if (runtime != null)
-//			{
-
-//				var loadPath = $"./runtimes/{runtime}/native/";
-
-
-//				var target = Path.Combine(Environment.ProcessPath, loadPath, libraryName);
-//				if (NativeLibrary.TryLoad("baka", out var toReturn))
-//				{
-//					//success;
-//					return toReturn;
-//				}
-
-//				//// On systems with AVX2 support, load a different library.
-//				//if (System.Runtime.Intrinsics.X86.Avx2.IsSupported)
-//				//{
-//				//	return NativeLibrary.Load("nativedep_avx2", assembly, searchPath);
-//				//}
-//			}
-//		}
-
-//		// Otherwise, fallback to default import resolver.
-//		return IntPtr.Zero;
-//	}
-//}

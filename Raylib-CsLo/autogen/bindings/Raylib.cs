@@ -16,43 +16,34 @@ namespace Raylib_CsLo
         public static extern void InitWindow(int width, int height, [NativeTypeName("const char *")] sbyte* title);
 
         [DllImport("raylib", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
-        [return: MarshalAs(UnmanagedType.I1)]
-		public static extern bool WindowShouldClose();
+        public static extern Boolean WindowShouldClose();
 
         [DllImport("raylib", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
         public static extern void CloseWindow();
 
         [DllImport("raylib", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
-        [return: MarshalAs(UnmanagedType.I1)]
-		public static extern bool IsWindowReady();
+        public static extern Boolean IsWindowReady();
 
         [DllImport("raylib", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
-        [return: MarshalAs(UnmanagedType.I1)]
-		public static extern bool IsWindowFullscreen();
+        public static extern Boolean IsWindowFullscreen();
 
         [DllImport("raylib", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
-        [return: MarshalAs(UnmanagedType.I1)]
-		public static extern bool IsWindowHidden();
+        public static extern Boolean IsWindowHidden();
 
         [DllImport("raylib", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
-        [return: MarshalAs(UnmanagedType.I1)]
-		public static extern bool IsWindowMinimized();
+        public static extern Boolean IsWindowMinimized();
 
         [DllImport("raylib", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
-        [return: MarshalAs(UnmanagedType.I1)]
-		public static extern bool IsWindowMaximized();
+        public static extern Boolean IsWindowMaximized();
 
         [DllImport("raylib", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
-        [return: MarshalAs(UnmanagedType.I1)]
-		public static extern bool IsWindowFocused();
+        public static extern Boolean IsWindowFocused();
 
         [DllImport("raylib", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
-        [return: MarshalAs(UnmanagedType.I1)]
-		public static extern bool IsWindowResized();
+        public static extern Boolean IsWindowResized();
 
         [DllImport("raylib", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
-        [return: MarshalAs(UnmanagedType.I1)]
-		public static extern bool IsWindowState([NativeTypeName("unsigned int")] uint flag);
+        public static extern Boolean IsWindowState([NativeTypeName("unsigned int")] uint flag);
 
         [DllImport("raylib", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
         public static extern void SetWindowState([NativeTypeName("unsigned int")] uint flags);
@@ -156,8 +147,7 @@ namespace Raylib_CsLo
         public static extern void HideCursor();
 
         [DllImport("raylib", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
-        [return: MarshalAs(UnmanagedType.I1)]
-		public static extern bool IsCursorHidden();
+        public static extern Boolean IsCursorHidden();
 
         [DllImport("raylib", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
         public static extern void EnableCursor();
@@ -166,8 +156,7 @@ namespace Raylib_CsLo
         public static extern void DisableCursor();
 
         [DllImport("raylib", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
-        [return: MarshalAs(UnmanagedType.I1)]
-		public static extern bool IsCursorOnScreen();
+        public static extern Boolean IsCursorOnScreen();
 
         [DllImport("raylib", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
         public static extern void ClearBackground(Color color);
@@ -338,8 +327,7 @@ namespace Raylib_CsLo
         public static extern void UnloadFileData([NativeTypeName("unsigned char *")] byte* data);
 
         [DllImport("raylib", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
-        [return: MarshalAs(UnmanagedType.I1)]
-		public static extern bool SaveFileData([NativeTypeName("const char *")] sbyte* fileName, void* data, [NativeTypeName("unsigned int")] uint bytesToWrite);
+        public static extern Boolean SaveFileData([NativeTypeName("const char *")] sbyte* fileName, void* data, [NativeTypeName("unsigned int")] uint bytesToWrite);
 
         [DllImport("raylib", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
         [return: NativeTypeName("char *")]
@@ -349,20 +337,16 @@ namespace Raylib_CsLo
         public static extern void UnloadFileText([NativeTypeName("char *")] sbyte* text);
 
         [DllImport("raylib", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
-        [return: MarshalAs(UnmanagedType.I1)]
-		public static extern bool SaveFileText([NativeTypeName("const char *")] sbyte* fileName, [NativeTypeName("char *")] sbyte* text);
+        public static extern Boolean SaveFileText([NativeTypeName("const char *")] sbyte* fileName, [NativeTypeName("char *")] sbyte* text);
 
         [DllImport("raylib", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
-        [return: MarshalAs(UnmanagedType.I1)]
-		public static extern bool FileExists([NativeTypeName("const char *")] sbyte* fileName);
+        public static extern Boolean FileExists([NativeTypeName("const char *")] sbyte* fileName);
 
         [DllImport("raylib", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
-        [return: MarshalAs(UnmanagedType.I1)]
-		public static extern bool DirectoryExists([NativeTypeName("const char *")] sbyte* dirPath);
+        public static extern Boolean DirectoryExists([NativeTypeName("const char *")] sbyte* dirPath);
 
         [DllImport("raylib", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
-        [return: MarshalAs(UnmanagedType.I1)]
-		public static extern bool IsFileExtension([NativeTypeName("const char *")] sbyte* fileName, [NativeTypeName("const char *")] sbyte* ext);
+        public static extern Boolean IsFileExtension([NativeTypeName("const char *")] sbyte* fileName, [NativeTypeName("const char *")] sbyte* ext);
 
         [DllImport("raylib", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
         [return: NativeTypeName("const char *")]
@@ -396,12 +380,10 @@ namespace Raylib_CsLo
         public static extern void ClearDirectoryFiles();
 
         [DllImport("raylib", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
-        [return: MarshalAs(UnmanagedType.I1)]
-		public static extern bool ChangeDirectory([NativeTypeName("const char *")] sbyte* dir);
+        public static extern Boolean ChangeDirectory([NativeTypeName("const char *")] sbyte* dir);
 
         [DllImport("raylib", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
-        [return: MarshalAs(UnmanagedType.I1)]
-		public static extern bool IsFileDropped();
+        public static extern Boolean IsFileDropped();
 
         [DllImport("raylib", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
         [return: NativeTypeName("char **")]
@@ -431,8 +413,7 @@ namespace Raylib_CsLo
         public static extern byte* DecodeDataBase64([NativeTypeName("unsigned char *")] byte* data, int* outputLength);
 
         [DllImport("raylib", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
-        [return: MarshalAs(UnmanagedType.I1)]
-		public static extern bool SaveStorageValue([NativeTypeName("unsigned int")] uint position, int value);
+        public static extern Boolean SaveStorageValue([NativeTypeName("unsigned int")] uint position, int value);
 
         [DllImport("raylib", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
         public static extern int LoadStorageValue([NativeTypeName("unsigned int")] uint position);
@@ -441,20 +422,16 @@ namespace Raylib_CsLo
         public static extern void OpenURL([NativeTypeName("const char *")] sbyte* url);
 
         [DllImport("raylib", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
-        [return: MarshalAs(UnmanagedType.I1)]
-		public static extern bool IsKeyPressed(int key);
+        public static extern Boolean IsKeyPressed(int key);
 
         [DllImport("raylib", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
-        [return: MarshalAs(UnmanagedType.I1)]
-		public static extern bool IsKeyDown(int key);
+        public static extern Boolean IsKeyDown(int key);
 
         [DllImport("raylib", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
-        [return: MarshalAs(UnmanagedType.I1)]
-		public static extern bool IsKeyReleased(int key);
+        public static extern Boolean IsKeyReleased(int key);
 
         [DllImport("raylib", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
-        [return: MarshalAs(UnmanagedType.I1)]
-		public static extern bool IsKeyUp(int key);
+        public static extern Boolean IsKeyUp(int key);
 
         [DllImport("raylib", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
         public static extern void SetExitKey(int key);
@@ -466,28 +443,23 @@ namespace Raylib_CsLo
         public static extern int GetCharPressed();
 
         [DllImport("raylib", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
-        [return: MarshalAs(UnmanagedType.I1)]
-		public static extern bool IsGamepadAvailable(int gamepad);
+        public static extern Boolean IsGamepadAvailable(int gamepad);
 
         [DllImport("raylib", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
         [return: NativeTypeName("const char *")]
         public static extern sbyte* GetGamepadName(int gamepad);
 
         [DllImport("raylib", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
-        [return: MarshalAs(UnmanagedType.I1)]
-		public static extern bool IsGamepadButtonPressed(int gamepad, int button);
+        public static extern Boolean IsGamepadButtonPressed(int gamepad, int button);
 
         [DllImport("raylib", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
-        [return: MarshalAs(UnmanagedType.I1)]
-		public static extern bool IsGamepadButtonDown(int gamepad, int button);
+        public static extern Boolean IsGamepadButtonDown(int gamepad, int button);
 
         [DllImport("raylib", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
-        [return: MarshalAs(UnmanagedType.I1)]
-		public static extern bool IsGamepadButtonReleased(int gamepad, int button);
+        public static extern Boolean IsGamepadButtonReleased(int gamepad, int button);
 
         [DllImport("raylib", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
-        [return: MarshalAs(UnmanagedType.I1)]
-		public static extern bool IsGamepadButtonUp(int gamepad, int button);
+        public static extern Boolean IsGamepadButtonUp(int gamepad, int button);
 
         [DllImport("raylib", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
         public static extern int GetGamepadButtonPressed();
@@ -502,20 +474,16 @@ namespace Raylib_CsLo
         public static extern int SetGamepadMappings([NativeTypeName("const char *")] sbyte* mappings);
 
         [DllImport("raylib", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
-        [return: MarshalAs(UnmanagedType.I1)]
-		public static extern bool IsMouseButtonPressed(int button);
+        public static extern Boolean IsMouseButtonPressed(int button);
 
         [DllImport("raylib", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
-        [return: MarshalAs(UnmanagedType.I1)]
-		public static extern bool IsMouseButtonDown(int button);
+        public static extern Boolean IsMouseButtonDown(int button);
 
         [DllImport("raylib", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
-        [return: MarshalAs(UnmanagedType.I1)]
-		public static extern bool IsMouseButtonReleased(int button);
+        public static extern Boolean IsMouseButtonReleased(int button);
 
         [DllImport("raylib", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
-        [return: MarshalAs(UnmanagedType.I1)]
-		public static extern bool IsMouseButtonUp(int button);
+        public static extern Boolean IsMouseButtonUp(int button);
 
         [DllImport("raylib", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
         public static extern int GetMouseX();
@@ -563,8 +531,7 @@ namespace Raylib_CsLo
         public static extern void SetGesturesEnabled([NativeTypeName("unsigned int")] uint flags);
 
         [DllImport("raylib", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
-        [return: MarshalAs(UnmanagedType.I1)]
-		public static extern bool IsGestureDetected(int gesture);
+        public static extern Boolean IsGestureDetected(int gesture);
 
         [DllImport("raylib", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
         public static extern int GetGestureDetected();
@@ -717,36 +684,28 @@ namespace Raylib_CsLo
         public static extern void DrawPolyLinesEx(Vector2 center, int sides, float radius, float rotation, float lineThick, Color color);
 
         [DllImport("raylib", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
-        [return: MarshalAs(UnmanagedType.I1)]
-		public static extern bool CheckCollisionRecs(Rectangle rec1, Rectangle rec2);
+        public static extern Boolean CheckCollisionRecs(Rectangle rec1, Rectangle rec2);
 
         [DllImport("raylib", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
-        [return: MarshalAs(UnmanagedType.I1)]
-		public static extern bool CheckCollisionCircles(Vector2 center1, float radius1, Vector2 center2, float radius2);
+        public static extern Boolean CheckCollisionCircles(Vector2 center1, float radius1, Vector2 center2, float radius2);
 
         [DllImport("raylib", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
-        [return: MarshalAs(UnmanagedType.I1)]
-		public static extern bool CheckCollisionCircleRec(Vector2 center, float radius, Rectangle rec);
+        public static extern Boolean CheckCollisionCircleRec(Vector2 center, float radius, Rectangle rec);
 
         [DllImport("raylib", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
-        [return: MarshalAs(UnmanagedType.I1)]
-		public static extern bool CheckCollisionPointRec(Vector2 point, Rectangle rec);
+        public static extern Boolean CheckCollisionPointRec(Vector2 point, Rectangle rec);
 
         [DllImport("raylib", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
-        [return: MarshalAs(UnmanagedType.I1)]
-		public static extern bool CheckCollisionPointCircle(Vector2 point, Vector2 center, float radius);
+        public static extern Boolean CheckCollisionPointCircle(Vector2 point, Vector2 center, float radius);
 
         [DllImport("raylib", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
-        [return: MarshalAs(UnmanagedType.I1)]
-		public static extern bool CheckCollisionPointTriangle(Vector2 point, Vector2 p1, Vector2 p2, Vector2 p3);
+        public static extern Boolean CheckCollisionPointTriangle(Vector2 point, Vector2 p1, Vector2 p2, Vector2 p3);
 
         [DllImport("raylib", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
-        [return: MarshalAs(UnmanagedType.I1)]
-		public static extern bool CheckCollisionLines(Vector2 startPos1, Vector2 endPos1, Vector2 startPos2, Vector2 endPos2, Vector2* collisionPoint);
+        public static extern Boolean CheckCollisionLines(Vector2 startPos1, Vector2 endPos1, Vector2 startPos2, Vector2 endPos2, Vector2* collisionPoint);
 
         [DllImport("raylib", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
-        [return: MarshalAs(UnmanagedType.I1)]
-		public static extern bool CheckCollisionPointLine(Vector2 point, Vector2 p1, Vector2 p2, int threshold);
+        public static extern Boolean CheckCollisionPointLine(Vector2 point, Vector2 p1, Vector2 p2, int threshold);
 
         [DllImport("raylib", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
         public static extern Rectangle GetCollisionRec(Rectangle rec1, Rectangle rec2);
@@ -773,12 +732,10 @@ namespace Raylib_CsLo
         public static extern void UnloadImage(Image image);
 
         [DllImport("raylib", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
-        [return: MarshalAs(UnmanagedType.I1)]
-		public static extern bool ExportImage(Image image, [NativeTypeName("const char *")] sbyte* fileName);
+        public static extern Boolean ExportImage(Image image, [NativeTypeName("const char *")] sbyte* fileName);
 
         [DllImport("raylib", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
-        [return: MarshalAs(UnmanagedType.I1)]
-		public static extern bool ExportImageAsCode(Image image, [NativeTypeName("const char *")] sbyte* fileName);
+        public static extern Boolean ExportImageAsCode(Image image, [NativeTypeName("const char *")] sbyte* fileName);
 
         [DllImport("raylib", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
         public static extern Image GenImageColor(int width, int height, Color color);
@@ -1120,8 +1077,7 @@ namespace Raylib_CsLo
         public static extern int TextCopy([NativeTypeName("char *")] sbyte* dst, [NativeTypeName("const char *")] sbyte* src);
 
         [DllImport("raylib", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
-        [return: MarshalAs(UnmanagedType.I1)]
-		public static extern bool TextIsEqual([NativeTypeName("const char *")] sbyte* text1, [NativeTypeName("const char *")] sbyte* text2);
+        public static extern Boolean TextIsEqual([NativeTypeName("const char *")] sbyte* text1, [NativeTypeName("const char *")] sbyte* text2);
 
         [DllImport("raylib", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
         [return: NativeTypeName("unsigned int")]
@@ -1290,8 +1246,7 @@ namespace Raylib_CsLo
         public static extern void DrawMeshInstanced(Mesh mesh, Material material, [NativeTypeName("Matrix *")] Matrix4x4* transforms, int instances);
 
         [DllImport("raylib", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
-        [return: MarshalAs(UnmanagedType.I1)]
-		public static extern bool ExportMesh(Mesh mesh, [NativeTypeName("const char *")] sbyte* fileName);
+        public static extern Boolean ExportMesh(Mesh mesh, [NativeTypeName("const char *")] sbyte* fileName);
 
         [DllImport("raylib", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
         public static extern BoundingBox GetMeshBoundingBox(Mesh mesh);
@@ -1363,20 +1318,16 @@ namespace Raylib_CsLo
         public static extern void UnloadModelAnimations(ModelAnimation* animations, [NativeTypeName("unsigned int")] uint count);
 
         [DllImport("raylib", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
-        [return: MarshalAs(UnmanagedType.I1)]
-		public static extern bool IsModelAnimationValid(Model model, ModelAnimation anim);
+        public static extern Boolean IsModelAnimationValid(Model model, ModelAnimation anim);
 
         [DllImport("raylib", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
-        [return: MarshalAs(UnmanagedType.I1)]
-		public static extern bool CheckCollisionSpheres(Vector3 center1, float radius1, Vector3 center2, float radius2);
+        public static extern Boolean CheckCollisionSpheres(Vector3 center1, float radius1, Vector3 center2, float radius2);
 
         [DllImport("raylib", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
-        [return: MarshalAs(UnmanagedType.I1)]
-		public static extern bool CheckCollisionBoxes(BoundingBox box1, BoundingBox box2);
+        public static extern Boolean CheckCollisionBoxes(BoundingBox box1, BoundingBox box2);
 
         [DllImport("raylib", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
-        [return: MarshalAs(UnmanagedType.I1)]
-		public static extern bool CheckCollisionBoxSphere(BoundingBox box, Vector3 center, float radius);
+        public static extern Boolean CheckCollisionBoxSphere(BoundingBox box, Vector3 center, float radius);
 
         [DllImport("raylib", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
         public static extern RayCollision GetRayCollisionSphere(Ray ray, Vector3 center, float radius);
@@ -1403,8 +1354,7 @@ namespace Raylib_CsLo
         public static extern void CloseAudioDevice();
 
         [DllImport("raylib", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
-        [return: MarshalAs(UnmanagedType.I1)]
-		public static extern bool IsAudioDeviceReady();
+        public static extern Boolean IsAudioDeviceReady();
 
         [DllImport("raylib", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
         public static extern void SetMasterVolume(float volume);
@@ -1431,12 +1381,10 @@ namespace Raylib_CsLo
         public static extern void UnloadSound(Sound sound);
 
         [DllImport("raylib", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
-        [return: MarshalAs(UnmanagedType.I1)]
-		public static extern bool ExportWave(Wave wave, [NativeTypeName("const char *")] sbyte* fileName);
+        public static extern Boolean ExportWave(Wave wave, [NativeTypeName("const char *")] sbyte* fileName);
 
         [DllImport("raylib", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
-        [return: MarshalAs(UnmanagedType.I1)]
-		public static extern bool ExportWaveAsCode(Wave wave, [NativeTypeName("const char *")] sbyte* fileName);
+        public static extern Boolean ExportWaveAsCode(Wave wave, [NativeTypeName("const char *")] sbyte* fileName);
 
         [DllImport("raylib", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
         public static extern void PlaySound(Sound sound);
@@ -1460,8 +1408,7 @@ namespace Raylib_CsLo
         public static extern int GetSoundsPlaying();
 
         [DllImport("raylib", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
-        [return: MarshalAs(UnmanagedType.I1)]
-		public static extern bool IsSoundPlaying(Sound sound);
+        public static extern Boolean IsSoundPlaying(Sound sound);
 
         [DllImport("raylib", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
         public static extern void SetSoundVolume(Sound sound, float volume);
@@ -1497,8 +1444,7 @@ namespace Raylib_CsLo
         public static extern void PlayMusicStream(Music music);
 
         [DllImport("raylib", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
-        [return: MarshalAs(UnmanagedType.I1)]
-		public static extern bool IsMusicStreamPlaying(Music music);
+        public static extern Boolean IsMusicStreamPlaying(Music music);
 
         [DllImport("raylib", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
         public static extern void UpdateMusicStream(Music music);
@@ -1537,8 +1483,7 @@ namespace Raylib_CsLo
         public static extern void UpdateAudioStream(AudioStream stream, [NativeTypeName("const void *")] void* data, int frameCount);
 
         [DllImport("raylib", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
-        [return: MarshalAs(UnmanagedType.I1)]
-		public static extern bool IsAudioStreamProcessed(AudioStream stream);
+        public static extern Boolean IsAudioStreamProcessed(AudioStream stream);
 
         [DllImport("raylib", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
         public static extern void PlayAudioStream(AudioStream stream);
@@ -1550,8 +1495,7 @@ namespace Raylib_CsLo
         public static extern void ResumeAudioStream(AudioStream stream);
 
         [DllImport("raylib", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
-        [return: MarshalAs(UnmanagedType.I1)]
-		public static extern bool IsAudioStreamPlaying(AudioStream stream);
+        public static extern Boolean IsAudioStreamPlaying(AudioStream stream);
 
         [DllImport("raylib", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
         public static extern void StopAudioStream(AudioStream stream);

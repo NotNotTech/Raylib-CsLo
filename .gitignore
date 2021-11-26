@@ -347,3 +347,6 @@ MigrationBackup/
 
 # Ionide (cross platform F# VS Code tools) working folder
 .ionide/
+sub-modules/Release.DLL
+sub-modules/physac/Release.DLL
+sub-modules/build

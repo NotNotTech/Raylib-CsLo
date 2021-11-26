@@ -74,8 +74,7 @@ namespace Raylib_CsLo
         public static extern void rlColor4f(float x, float y, float z, float w);
 
         [DllImport("raylib", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
-        [return: MarshalAs(UnmanagedType.I1)]
-		public static extern bool rlEnableVertexArray([NativeTypeName("unsigned int")] uint vaoId);
+        public static extern Boolean rlEnableVertexArray([NativeTypeName("unsigned int")] uint vaoId);
 
         [DllImport("raylib", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
         public static extern void rlDisableVertexArray();
@@ -189,8 +188,7 @@ namespace Raylib_CsLo
         public static extern void rlDisableStereoRender();
 
         [DllImport("raylib", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
-        [return: MarshalAs(UnmanagedType.I1)]
-		public static extern bool rlIsStereoRenderEnabled();
+        public static extern Boolean rlIsStereoRenderEnabled();
 
         [DllImport("raylib", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
         public static extern void rlClearColor([NativeTypeName("unsigned char")] byte r, [NativeTypeName("unsigned char")] byte g, [NativeTypeName("unsigned char")] byte b, [NativeTypeName("unsigned char")] byte a);
@@ -252,8 +250,7 @@ namespace Raylib_CsLo
         public static extern void rlDrawRenderBatchActive();
 
         [DllImport("raylib", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
-        [return: MarshalAs(UnmanagedType.I1)]
-		public static extern bool rlCheckRenderBatchLimit(int vCount);
+        public static extern Boolean rlCheckRenderBatchLimit(int vCount);
 
         [DllImport("raylib", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
         public static extern void rlSetTexture([NativeTypeName("unsigned int")] uint id);
@@ -343,8 +340,7 @@ namespace Raylib_CsLo
         public static extern void rlFramebufferAttach([NativeTypeName("unsigned int")] uint fboId, [NativeTypeName("unsigned int")] uint texId, int attachType, int texType, int mipLevel);
 
         [DllImport("raylib", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
-        [return: MarshalAs(UnmanagedType.I1)]
-		public static extern bool rlFramebufferComplete([NativeTypeName("unsigned int")] uint id);
+        public static extern Boolean rlFramebufferComplete([NativeTypeName("unsigned int")] uint id);
 
         [DllImport("raylib", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
         public static extern void rlUnloadFramebuffer([NativeTypeName("unsigned int")] uint id);

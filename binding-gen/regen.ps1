@@ -32,15 +32,56 @@ dotnet ..\sub-modules\ClangSharp\artifacts\bin\sources\ClangSharpPInvokeGenerato
 
 "########################## FIX UP FILES"
 
+#Start-Sleep -Seconds 1
+function Retry-Command {
+	[CmdletBinding()]
+	Param(
+		[Parameter(Position = 0, Mandatory = $true)]
+		[scriptblock]$ScriptBlock,
+
+		[Parameter(Position = 1, Mandatory = $false)]
+		[int]$Maximum = 5,
+
+		[Parameter(Position = 2, Mandatory = $false)]
+		[int]$Delay = 100
+	)
+
+	Begin {
+		$cnt = 0
+	}
+
+	Process {
+		do {
+			$cnt++
+			try {
+				$ScriptBlock.Invoke()
+				return
+			}
+			catch {
+				Write-Error $_.Exception.InnerException.Message -ErrorAction Continue
+				Start-Sleep -Milliseconds $Delay
+			}
+		} while ($cnt -lt $Maximum)
+
+		# Throw an error after $Maximum unsuccessful invocations. Doesn't need
+		# a condition, since the function returns upon successful invocation.
+		throw 'Execution failed.'
+	}
+}
+
 $path = "../Raylib-CsLo/autogen/bindings/"
 foreach ($file in Get-ChildItem $path) {
 	$target = $path + $file
+	#Write-Output "=========  PROCESSING:        $target"
 	##hack: replace malformed autogen content
 	$tempContents = (Get-Content $target).replace('.operator=', '=')	
 	# make all C bools marshal properly.   see: https://stackoverflow.com/a/4621621
-	$tempContents = $tempContents.replace('public static extern Boolean ', "[return: MarshalAs(UnmanagedType.I1)]`r`n`t`tpublic static extern bool ")
-	#write the file
+	#$tempContents = $tempContents.replace('public static extern Boolean ', "[return: MarshalAs(UnmanagedType.I1)]`r`n`t`tpublic static extern bool ")
+	#write the file	
 	Set-Content -Path $target -Value $tempContents
+	# Retry-Command -ScriptBlock {
+	# 	Set-Content -Path $target -Value $tempContents
+	# }
 }
 
 

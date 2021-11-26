@@ -12,9 +12,20 @@ using System.Runtime.InteropServices;
 
 namespace Raylib_CsLo;
 
+
+public static class CsLoSettings
+{
+	/// <summary>
+	/// experimental, for win-x64 only. 
+	/// <para>only works with limitations: https://github.com/NotNotTech/Raylib-CsLo/issues/2</para>
+	///	other platforms should leave this disabled, or if your computer only supports ogl 3.3
+	/// </summary>
+	public static bool openGl43;
+}
+
 public static unsafe partial class Raylib
 {
-	//private static bool _initDllLoader = DllLoader.Init();
+	
 
 	public static bool IsKeyPressed(KeyboardKey key) => IsKeyPressed((int)key);
 
@@ -27,10 +38,6 @@ public static unsafe partial class Raylib
 
 	public static void InitWindow(int width, int height, string title)
 	{
-		//if (_initDllLoader != true)
-		//{
-		//	_initDllLoader = DllLoader.Init();
-		//}
 		using var spanOwner = title.MarshalUtf8();
 		InitWindow(width, height, spanOwner.AsPtr());
 	}

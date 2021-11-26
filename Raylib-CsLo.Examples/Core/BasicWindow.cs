@@ -1,4 +1,4 @@
-﻿// [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] 
+// [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] 
 // [!!] Copyright ©️ Raylib-CsLo and Contributors. 
 // [!!] This file is licensed to you under the LGPL-2.1.
 // [!!] See the LICENSE file in the project root for more info. 
@@ -57,6 +57,8 @@ public static class BasicWindow
 			ClearBackground(RAYWHITE);
 
 			DrawText("Congrats! You created your first window!", 190, 200, 20, LIGHTGRAY);
+			DrawText($"rlGetVersion = {rlGetVersion()}", 290, 300, 20, RED);
+			
 
 			EndDrawing();
 			//----------------------------------------------------------------------------------
