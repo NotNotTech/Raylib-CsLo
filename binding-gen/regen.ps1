@@ -74,11 +74,23 @@ foreach ($file in Get-ChildItem $path) {
 	$target = $path + $file
 	#Write-Output "=========  PROCESSING:        $target"
 	##hack: replace malformed autogen content
-	$tempContents = (Get-Content $target).replace('.operator=', '=')	
+	$tempContents = (Get-Content $target -Raw).replace('.operator=', '=')	
 	# make all C bools marshal properly.   see: https://stackoverflow.com/a/4621621
 	#$tempContents = $tempContents.replace('public static extern Boolean ', "[return: MarshalAs(UnmanagedType.I1)]`r`n`t`tpublic static extern bool ")
 	#write the file	
-	Set-Content -Path $target -Value $tempContents
+	$tempContents | Out-File -FilePath $target
+	# $tempContents | Set-Content -Path $target
+	# try {
+	# 	Set-Content -Path $target -Value $tempContents
+	# }
+	# catch {	
+	# 	try {
+	# 		Set-Content -Path $target -Value $tempContents
+	# 	}
+	# 	catch {
+	# 		Set-Content -Path $target -Value $tempContents
+	# 	}
+	# }
 	# Retry-Command -ScriptBlock {
 	# 	Set-Content -Path $target -Value $tempContents
 	# }

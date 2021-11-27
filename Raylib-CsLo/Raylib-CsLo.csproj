@@ -1,4 +1,4 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+<Project Sdk="Microsoft.NET.Sdk">
 
     <PropertyGroup>
         <TargetFramework>net6.0</TargetFramework>
@@ -16,13 +16,14 @@
         <PackageReadmeFile>README.md</PackageReadmeFile>
         <PackageIcon>raylib-cslo_128x128.png</PackageIcon>
         <Version>4.0.0-rc.2</Version>
-        <PackageReleaseNotes>Improved bindings.  Review the examples on github.</PackageReleaseNotes>
+        <PackageReleaseNotes>Release Notes: Improved Linux compat.</PackageReleaseNotes>
         <Authors>Novaleaf</Authors>
         <Company>NotNotTech</Company>
         <Description>
-            Managed C# bindings to `Raylib`.  Raylib is a friendly 2d/3d game framework similar to XNA / MonoGame.  
+            Managed C# bindings to `Raylib`, a friendly 2d/3d game framework similar to XNA / MonoGame.
+            - Win/Linux/OsX supported.
             - Includes bindings for raylib extras: `RayGui`, `Easings`, `Physac`, `RlGl`, `RayMath`.
-                - Minimal bindings + convenience wrappers to make it easier to use.
+            - Minimal bindings + convenience wrappers to make it easier to use.
             - Tested and verified via more than 100 examples (**ALL** Raylib examples ported).  These [examples are available to you in the GitHub Repo](https://github.com/NotNotTech/Raylib-CsLo/tree/main/Raylib-CsLo.Examples)
             -    Requires `unsafe` for 3d workflows.
             -    Requires `net6.0`

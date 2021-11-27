@@ -30,16 +30,143 @@ static class SharedLibraryLoader
 	/// stores discovered location of libraries
 	/// </summary>
 	private static ConcurrentDictionary<string, IntPtr> _lookupCache = new();
-	private static IntPtr DllImportResolver(string libraryNameOrig, Assembly assembly, DllImportSearchPath? searchPath)
+
+	/// <summary>
+	/// libs contained in "raylib-with-extras"
+	/// </summary>
+	private static HashSet<string> _raylibLibs = new() { "raylib", "raygui", "physac" };
+	private static IntPtr DllImportResolver(string libName, Assembly assembly, DllImportSearchPath? searchPath)
 	{
 		//use existing discovered location, if any
 		{
-			if (_lookupCache.TryGetValue(libraryNameOrig, out var libHandle))
+			if (_lookupCache.TryGetValue(libName, out var libHandle))
 			{
 				return libHandle;
 			}
 		}
+		//try the default first
+		{
+			if (NativeLibrary.TryLoad(libName, assembly, searchPath, out var libHandle))
+			{
+				_lookupCache.TryAdd(libName, libHandle);
+				return libHandle;
+			}
+		}
+		var potentialFileNames = new List<string>() { libName, $"lib{libName}" };
 
+		if (_raylibLibs.Contains(libName))
+		{
+			potentialFileNames.Add("raylib-with-extras");
+			potentialFileNames.Add("libraylib-with-extras");
+		}
+
+
+		if (CsLoSettings.openGl43 == true)
+		{
+			// experimental, for win-x64 only. 
+			// only works with limitations: https://github.com/NotNotTech/Raylib-CsLo/issues/2
+			//	other platforms should leave this disabled, or if your computer only supports ogl 3.3
+			for (int i = potentialFileNames.Count - 1; i >= 0; i--)
+			{
+				var current = potentialFileNames[i];
+				potentialFileNames.Add($"{current}-ogl43");
+			}
+			//attempt to load 4.3's first
+			potentialFileNames.Reverse();
+		}
+
+
+
+
+		foreach (var potentialLibName in potentialFileNames)
+		{
+			if (_TryLoad(libName, potentialLibName, assembly, searchPath, out var toReturn))
+			{
+				_lookupCache.TryAdd(libName, toReturn);
+				return toReturn;
+			}
+		}
+
+
+		//fallback to default import resolver
+		_lookupCache.TryAdd(libName, IntPtr.Zero);
+		return IntPtr.Zero;
+	}
+
+	private static bool _TryLoad(string libName, string potentialLibName, Assembly assembly, DllImportSearchPath? searchPath, out IntPtr libHandle)
+	{
+		//first just try to load direct
+		if (NativeLibrary.TryLoad(potentialLibName, assembly, searchPath, out libHandle))
+		{
+			return true;
+		}
+
+		//load from our subdir
+		//nuget stores native binaries in folders according to "/runtimes/{$RID}/native/" so if we are using source code, emulate that loading behavior
+		string runtimeId;
+		if (System.Runtime.InteropServices.RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
+		{
+			if (System.Runtime.InteropServices.RuntimeInformation.ProcessArchitecture == Architecture.X64)
+			{
+				runtimeId = "win-x64";
+			}
+			else
+			{
+				runtimeId = "win-x86";
+			}
+		}
+		else if (System.Runtime.InteropServices.RuntimeInformation.IsOSPlatform(OSPlatform.Linux))
+		{
+			runtimeId = "linux-x64";
+		}
+		else if (System.Runtime.InteropServices.RuntimeInformation.IsOSPlatform(OSPlatform.OSX))
+		{
+			runtimeId = "osx-x64";
+		}
+		else
+		{
+			//not a pre-known runtime, use whatever is given
+			runtimeId = System.Runtime.InteropServices.RuntimeInformation.RuntimeIdentifier;
+		}
+
+		const int TECHNIQUE_COUNT = 3;
+		for (var i = 0; i < TECHNIQUE_COUNT; i++)
+		{
+			string baseFolder;
+			switch (i)
+			{
+				case 0:
+					{
+						baseFolder = AppDomain.CurrentDomain.BaseDirectory;
+						break;
+					}
+				case 2:
+					{
+						baseFolder = Environment.CurrentDirectory;
+						break;
+					}
+				default:
+				case 1:
+					{
+						baseFolder = "./";
+						break;
+					}
+			}
+
+			var loadPath = Path.Combine(baseFolder, $"runtimes/{runtimeId}/native/");
+
+			if (NativeLibrary.TryLoad($"{loadPath}{potentialLibName}", out libHandle))
+			{
+				return true;
+			}
+		}
+
+		// Otherwise, fail out
+		libHandle = IntPtr.Zero;
+		return false;
+	}
+	private static IntPtr NewMethod(string libraryNameOrig)
+	{
 		string libNameResolved = libraryNameOrig;
 		if (CsLoSettings.openGl43 == true)
 		{
@@ -81,8 +208,9 @@ static class SharedLibraryLoader
 		}
 		else
 		{
+
 			//unknown runtime, just cache and return whatever is returned when we try to load, if it succeeds or not
-			var isSuccess = _LoadHelper(libraryNameOrig,libNameResolved,out var toReturn);
+			var isSuccess = _LoadHelper(libraryNameOrig, libNameResolved, out var toReturn);
 			_lookupCache.TryAdd(libraryNameOrig, toReturn);
 			return toReturn;
 		}
@@ -94,21 +222,21 @@ static class SharedLibraryLoader
 			switch (i)
 			{
 				case 0:
-				{
-					baseFolder = AppDomain.CurrentDomain.BaseDirectory;
-					break;
-				}
+					{
+						baseFolder = AppDomain.CurrentDomain.BaseDirectory;
+						break;
+					}
 				case 2:
-				{
-					baseFolder = Environment.CurrentDirectory;
-					break;
-				}
+					{
+						baseFolder = Environment.CurrentDirectory;
+						break;
+					}
 				default:
 				case 1:
-				{
-					baseFolder = "./";
-					break;
-				}
+					{
+						baseFolder = "./";
+						break;
+					}
 			}
 
 			var loadPath = Path.Combine(baseFolder, $"runtimes/{runtimeId}/native/");
@@ -130,7 +258,6 @@ static class SharedLibraryLoader
 		// Otherwise, fallback to default import resolver.
 		_lookupCache.TryAdd(libraryNameOrig, IntPtr.Zero);
 		return IntPtr.Zero;
-
 	}
 
 	/// <summary>

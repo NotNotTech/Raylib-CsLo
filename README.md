@@ -31,9 +31,10 @@
 # About
 Precise, minimal bindings to **Raylib**.  Convenience wrappers are added to make it easy to use, mostly around `string` marshalling.
 - Includes bindings for `RayGui`, `Easings`, `Physac`, `RlGl`, `RayMath`.
-- Tested and verified via more than 100 examples (**ALL** Raylib examples ported).  These [examples are available to you in the GitHub Repo](https://github.com/NotNotTech/Raylib-CsLo/tree/main/Raylib-CsLo.Examples)
+- Tested and verified **ALL** 120 Raylib examples.  These [ported examples are available to you in the GitHub Repo](https://github.com/NotNotTech/Raylib-CsLo/tree/main/Raylib-CsLo.Examples)
 -    Requires `unsafe` for 3d workflows.
--    Requires `net6.0`
+-    Requires `net6.0` and 
+     -    Supports Windows, Linux (Ubuntu 20.04), OsX
 -    Tested on `Win10`.  **But Linux and OsX should work!** Please test on other platforms and [raise an issue](https://github.com/NotNotTech/Raylib-CsLo/issues) if any problems occur.
 - A focus on performance.  No runtime allocations if at all possible.
 - No intellisense docs. [read the raylib cheatsheet for docs](https://www.raylib.com/cheatsheet/cheatsheet.html) or [view the examples](https://github.com/NotNotTech/Raylib-CsLo/tree/main/Raylib-CsLo.Examples)
@@ -45,7 +46,7 @@ Precise, minimal bindings to **Raylib**.  Convenience wrappers are added to make
 If you stick with 2d, you don't need to use any `unsafe` (pointer) code, which lets 2d users feel at home and use `Raylib-CsLo` as an awesome 2d game framework.   
 
 ## High performance for 3d!  (but `unsafe` to use)
-If you use 3d, you need to understand a bit of how pointers work. Raylib uses these to link things like `Model`, `Mesh`, and `Material`.  Writing wrappers over these is possible but it would basically be creating a an entirely new framework.  (I am writing a game engine using Raylib, you could too!)
+If you use 3d, you need to understand a bit of how pointers work. Raylib uses these to link things like `Model`, `Mesh`, and `Material`.  Writing wrappers over these is possible but it would basically be creating a an entirely new framework.  I suggest leaving this as-is, as it avoids object allocation (GC Pressure).
 
 Additionally, 3d users: **Be sure you check the Usage Tips section below**, especially on how you need to use `Matrix4x4.Transpose()` when sending matricies to Raylib.
 
@@ -82,8 +83,8 @@ namespace StandaloneExample
 1. clone/download the [github repository](https://github.com/NotNotTech/Raylib-CsLo)
 2. open `./Raylib-CsLo-DEV.sln` in Visual Studio 2022.
 3. build and run.
-   - the `Raylib-CsLo.Examples` project will run by default, and will run through all 100+ examples.
-4. For a stand-alone example, see the [`./StandaloneExample` folder](https://github.com/NotNotTech/Raylib-CsLo/tree/main/StandaloneExample) 
+   - the `Raylib-CsLo.Examples` project will run by default, and will run through all (aprox 120) examples.
+4. For a stand-alone example that uses the Nuget Package, see the [`./StandaloneExample` folder](https://github.com/NotNotTech/Raylib-CsLo/tree/main/StandaloneExample)
 
 # Linux / OsX support
 Basic: Ubuntu 20.04 and OsX should work!   Please try it out, (both Nuget package and sources should work).  And please read [This Issue](https://github.com/NotNotTech/Raylib-CsLo/issues/1)
@@ -95,7 +96,7 @@ Basic: Ubuntu 20.04 and OsX should work!   Please try it out, (both Nuget packag
 - All Raylib features, including Extras bindings
   - `raylib` : Core features, including Audio.
   - `rlgl` : OpenGl abstraction
-  - `raygui` : A Imperitive Gui
+  - `raygui` : An Imperitive Gui
   - `physac` : A 2d physics framework
   - `easings` : for simple animations  (Managed Port)
   - `raymath` : game math library (Managed Port)
@@ -168,7 +169,7 @@ Here are links to most the examples.  The images/links probably won't work from 
 
 
 # ChangeLog
-- **4.0.0-rc.2** (2021/11/??):  Improve bindings compat.  Cleanup native binary compile workflow.
+- **4.0.0-rc.2** (2021/11/??):  Rollup all native code into single binary.  Improve bindings compat.  
 - **4.0.0-rc.1** (2021/11/24):  Support for Linux and OsX (hopefully).
 - **4.0.0-rc.0.1** (2021/11/23):  Pretty things up.
 - **4.0.0-rc.0** (2021/11/22):  `physac.dll` and bindings for it added.  `Physics` and `Audio` examples ported.   All `raylib` examples complete!
@@ -180,9 +181,9 @@ Here are links to most the examples.  The images/links probably won't work from 
 
 # Todo
 - soon
-  - add opengl 4.3 support
+  - Add xplat native compile via github actions.  
   - exit pre-release
 - later
-  - linux/osx builds of `raygui` and `physac` libraries
-  - add frame control support
+  
+  
 
