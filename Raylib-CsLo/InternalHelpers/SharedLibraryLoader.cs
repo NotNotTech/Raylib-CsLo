@@ -16,10 +16,21 @@ namespace Raylib_CsLo;
 /// <summary>
 /// searches the /runtimes/ folder for shared libraries
 /// </summary>
+/// <remarks>
+/// <para>kind of wacky pattern I made, which may be useful to others making native nuget packages:
+/// The nuget packages need native binaries in a specific folder:
+/// `./runtimes/{RID}/native/*` where `RID` is the RuntimeId for the os/platform in which dotnet is running.</para>
+/// <para>I made a nuget package that's a wrapper over some native libraries (`raylib`).
+/// Unfortunately running via visual studio project references doesn't lookup native binaries the same way as nuget.
+/// Instead of having a different folder structure for source projects vs nuget,
+/// I added a Custom Import Resolver: https://docs.microsoft.com/en-us/dotnet/standard/native-interop/cross-platform#custom-import-resolver
+/// which will search the  `./runtimes/{RID}/native/*` folder structure the same way nuget packages are structured.</para>
+/// <para>This lets my source-based project/debugging have the same folder layout as nuget packages.</para>
+/// </remarks>
 static class SharedLibraryLoader
 {
 	[ModuleInitializer]
-	public static void Init()
+	internal static void Init()
 	{
 		// Register the import resolver before calling anything raylib related.
 		// this will let our examples pick the proper runtime folder based on our os.

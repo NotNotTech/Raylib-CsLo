@@ -169,7 +169,8 @@ Here are links to most the examples.  The images/links probably won't work from 
 
 
 # ChangeLog
-- **4.0.0-rc.2** (2021/11/??):  Rollup all native code into single binary.  Improve bindings compat.  
+- **4.0.0-rc.3** (2021/**??/??**):  No breaking changes.  Improve Boolean Marshalling.  
+- **4.0.0-rc.2** (2021/11/28):  Rollup all native code into single binary.  Improve bindings compat.  
 - **4.0.0-rc.1** (2021/11/24):  Support for Linux and OsX (hopefully).
 - **4.0.0-rc.0.1** (2021/11/23):  Pretty things up.
 - **4.0.0-rc.0** (2021/11/22):  `physac.dll` and bindings for it added.  `Physics` and `Audio` examples ported.   All `raylib` examples complete!
@@ -181,7 +182,8 @@ Here are links to most the examples.  The images/links probably won't work from 
 
 # Todo
 - soon
-  - Add xplat native compile via github actions.  
+  - Improve XPlat:
+    - *pending.  will aim to have native binaries generated via github actions...*
   - exit pre-release
 - later
   

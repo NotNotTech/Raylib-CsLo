@@ -12,7 +12,6 @@ using System.Runtime.InteropServices;
 
 namespace Raylib_CsLo;
 
-
 public static class CsLoSettings
 {
 	/// <summary>

@@ -7,12 +7,11 @@ preview-codegen
 # Generated bindings for latest or preview codegen should not use nint or nuint.
 # preview-codegen-nint
 generate-template-bindings
-# 
 generate-macro-bindings
 generate-tests-xunit
 generate-helper-types
-# unix-types
-windows-types
+unix-types
+# windows-types
 multi-file
 ############ try these out
 generate-aggressive-inlining
@@ -59,7 +58,7 @@ Boolean=[MarshalAs(UnmanagedType.I1)]
 --remap 
 Matrix=@Matrix4x4 
 Quaternion=Quaternion
-bool=Boolean
+bool=Bool
 Vector2.x=X
 Vector2.y=Y
 Vector3.x=X
@@ -106,7 +105,7 @@ Vector2=System.Numerics
 Vector3=System.Numerics
 Vector4=System.Numerics
 Quaternion=System.Numerics
-Boolean=System
+Bool=Raylib_CsLo.InternalHelpers
 ############################## exclude
 --exclude
 Matrix
