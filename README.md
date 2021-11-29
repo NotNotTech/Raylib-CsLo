@@ -15,7 +15,7 @@
 - [How to use/install](#how-to-useinstall)
   - [via Nuget](#via-nuget)
   - [via sources](#via-sources)
-- [Linux / OsX support](#linux--osx-support)
+- [Linux / OsX / other platform support](#linux--osx--other-platform-support)
 - [Release timeline](#release-timeline)
   - [`RELEASE CANDIDATE`](#release-candidate)
   - [`RELEASE`](#release)
@@ -29,15 +29,17 @@
 
 
 # About
-Precise, minimal bindings to **Raylib**.  Convenience wrappers are added to make it easy to use, mostly around `string` marshalling.
-- Includes bindings for `RayGui`, `Easings`, `Physac`, `RlGl`, `RayMath`.
+Managed C# bindings to `Raylib`, a friendly 2d/3d game framework similar to XNA / MonoGame.
+- Win/Linux/OsX supported.
+- Includes bindings for raylib extras: `RayGui`, `Easings`, `Physac`, `RlGl`, `RayMath`.
+- Minimal bindings + convenience wrappers to make it easier to use.
 - Tested and verified **ALL** 120 Raylib examples.  These [ported examples are available to you in the GitHub Repo](https://github.com/NotNotTech/Raylib-CsLo/tree/main/Raylib-CsLo.Examples)
 -    Requires `unsafe` for 3d workflows.
--    Requires `net6.0` and 
-     -    Supports Windows, Linux (Ubuntu 20.04), OsX
--    Tested on `Win10`.  **But Linux and OsX should work!** Please test on other platforms and [raise an issue](https://github.com/NotNotTech/Raylib-CsLo/issues) if any problems occur.
+-    Requires `net6.0` (net5.0 isn't enough)
+-    Tested on `Win10`.  User Reports `Arch` Linux works.  Please test on other platforms and [raise an issue](https://github.com/NotNotTech/Raylib-CsLo/issues) if any problems occur.
 - A focus on performance.  No runtime allocations if at all possible.
 - No intellisense docs. [read the raylib cheatsheet for docs](https://www.raylib.com/cheatsheet/cheatsheet.html) or [view the examples](https://github.com/NotNotTech/Raylib-CsLo/tree/main/Raylib-CsLo.Examples)
+- Full source code included in [The GitHub Repository](https://github.com/NotNotTech/Raylib-CsLo), including native sources, allowing you to compile for any platform you wish.
 
 ## What is **Raylib**?
 [Raylib](https://www.raylib.com/) is a friendly-to-use game framework that includes basic scenarios to meet your needs:   audio, 2d, 3d, fonts, animation, 2d physics.  Somewhat similar to `Xna` or `MonoGame` but friendlier.  **However, `Raylib` is a C/CPP framework**.  `Raylib-CsLo` is a C# Wrapper over the top, which lets you gain raylib's powers to quickly prototype your game ideas.
@@ -86,8 +88,18 @@ namespace StandaloneExample
    - the `Raylib-CsLo.Examples` project will run by default, and will run through all (aprox 120) examples.
 4. For a stand-alone example that uses the Nuget Package, see the [`./StandaloneExample` folder](https://github.com/NotNotTech/Raylib-CsLo/tree/main/StandaloneExample)
 
-# Linux / OsX support
-Basic: Ubuntu 20.04 and OsX should work!   Please try it out, (both Nuget package and sources should work).  And please read [This Issue](https://github.com/NotNotTech/Raylib-CsLo/issues/1)
+# Linux / OsX / other platform support
+
+The following platforms are shipped in the nuget package:
+- `win-x64` : confirmed working on `Win10, x64`.  This is the platform used for dev/testing of `raylib-cslo`.
+- `linux-x64`: confirmed working on `Arch` Linux.  Binaries built under `Ubuntu 20.04` so that shold also work.
+- `osx-x64`:  not confirmed yet.  Please let me know if you try.
+
+You can build the native binaries for whatever platform you need.  Please see the readme under https://github.com/NotNotTech/Raylib-CsLo/tree/main/Raylib-CsLo/runtimes for more info.
+
+
+
+
 
 # Release timeline
 
@@ -181,7 +193,7 @@ Here are links to most the examples.  The images/links probably won't work from 
 
 
 # Todo
-- soon
+- soonish
   - Improve XPlat:
     - *pending.  will aim to have native binaries generated via github actions...*
   - exit pre-release

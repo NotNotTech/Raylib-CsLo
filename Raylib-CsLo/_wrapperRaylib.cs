@@ -24,7 +24,8 @@ public static class CsLoSettings
 
 public static unsafe partial class Raylib
 {
-	
+
+
 
 	public static bool IsKeyPressed(KeyboardKey key) => IsKeyPressed((int)key);
 
