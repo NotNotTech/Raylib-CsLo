@@ -6,6 +6,7 @@
 // [!!] The code ane examples are here! https://github.com/NotNotTech/Raylib-CsLo 
 // [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!]  [!!] [!!] [!!] [!!]
 
+using System.Diagnostics;
 using System.Runtime.InteropServices;
 
 namespace Raylib_CsLo.InternalHelpers;
@@ -14,6 +15,7 @@ namespace Raylib_CsLo.InternalHelpers;
 /// helper marshalling struct convert byte sized CBOOL's to/from dotnet
 /// <para>You should be able to ignore this type.   treat it just as you would a normal bool.</para>
 /// </summary>
+[DebuggerDisplay("{ToString(),raw}")]
 public readonly partial struct Bool : IEquatable<Bool>
 {
 	[MarshalAs(UnmanagedType.U1)]

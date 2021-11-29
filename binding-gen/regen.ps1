@@ -76,10 +76,11 @@ foreach ($file in Get-ChildItem $path) {
 	##hack: replace malformed autogen content
 	$tempContents = (Get-Content $target -Raw).replace('.operator=', '=')	
 	# make all C bools marshal properly.   see: https://stackoverflow.com/a/4621621
-	$tempContents = $tempContents.replace('public static extern Bool ', "[return: MarshalAs(UnmanagedType.I1)]`r`n`t`tpublic static extern bool ")
-	$tempContents = $tempContents.replace(', Bool ', ", bool ")
+	$tempContents = $tempContents.replace('public static extern Bool ', "[return: MarshalAs(UnmanagedType.I1)] public static extern bool ")
+	$tempContents = $tempContents.replace(', Bool ', ", [MarshalAs(UnmanagedType.I1)] bool ")
+	$tempContents = $tempContents.replace('(Bool ', "([MarshalAs(UnmanagedType.I1)] bool ")
 	#write the file	
-	$tempContents | Out-File -FilePath $target
+	$tempContents | Out-File -FilePath $target -NoNewline
 	# $tempContents | Set-Content -Path $target
 	# try {
 	# 	Set-Content -Path $target -Value $tempContents
