@@ -3,7 +3,7 @@
 
 ![Status BETA](https://img.shields.io/badge/status-Release_Candidate-green)
 [![Nuget Package](https://img.shields.io/badge/Nuget_Package-blue?logo=NuGet)](https://www.nuget.org/packages/Raylib-CsLo)
-[![Commit Activity](https://img.shields.io/github/commit-activity/m/NotNotTech/Raylib-CsLo)](https://github.com/NotNotTech/Raylib-CsLo/graphs/contributors)
+[![Source Code](https://img.shields.io/badge/Source_Code-black?logo=GitHub)](https://github.com/NotNotTech/Raylib-CsLo)
 ![.NET 6.0](https://img.shields.io/badge/.NET-net6.0-%23512bd4)
 [![Chat on Discord](https://img.shields.io/badge/chat%20on-discord-7289DA)](https://discord.gg/raylib)
 # Table of Contents
@@ -181,7 +181,7 @@ Here are links to most the examples.  The images/links probably won't work from 
 
 
 # ChangeLog
-- **4.0.0-rc.3** (2021/**??/??**):  No breaking changes.  Improve Boolean Marshalling.  
+- **4.0.0-rc.3** (2021/11/29):  No breaking changes.  Improve Boolean Marshalling.  
 - **4.0.0-rc.2** (2021/11/28):  Rollup all native code into single binary.  Improve bindings compat.  
 - **4.0.0-rc.1** (2021/11/24):  Support for Linux and OsX (hopefully).
 - **4.0.0-rc.0.1** (2021/11/23):  Pretty things up.
@@ -201,3 +201,4 @@ Here are links to most the examples.  The images/links probably won't work from 
   
   
 
+<!-- [![Commit Activity](https://img.shields.io/github/commit-activity/m/NotNotTech/Raylib-CsLo)](https://github.com/NotNotTech/Raylib-CsLo/graphs/contributors) -->

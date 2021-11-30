@@ -26,6 +26,7 @@ external resources needed for creating bindings.
 # dev notes
 these are just notes for use doirn develoment...  please ignore unless you run into problems
 
+-- listing of RID's: https://docs.microsoft.com/en-us/dotnet/core/rid-catalog
 
 ## build notes
 - install wsl stuff: https://docs.microsoft.com/en-us/windows/wsl/tutorials/gui-apps
