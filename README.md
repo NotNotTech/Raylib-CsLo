@@ -4,6 +4,7 @@
 ![Status BETA](https://img.shields.io/badge/status-Release_Candidate-green)
 [![Nuget Package](https://img.shields.io/badge/Nuget_Package-blue?logo=NuGet)](https://www.nuget.org/packages/Raylib-CsLo)
 [![Source Code](https://img.shields.io/badge/Source_Code-black?logo=GitHub)](https://github.com/NotNotTech/Raylib-CsLo)
+[![Source Code](https://img.shields.io/badge/🚀_100+_Examples_🚀-teal)](https://github.com/NotNotTech/Raylib-CsLo/tree/main/Raylib-CsLo.Examples)
 ![.NET 6.0](https://img.shields.io/badge/.NET-net6.0-%23512bd4)
 [![Chat on Discord](https://img.shields.io/badge/chat%20on-discord-7289DA)](https://discord.gg/raylib)
 # Table of Contents
@@ -33,7 +34,7 @@ Managed C# bindings to `Raylib`, a friendly 2d/3d game framework similar to XNA 
 - Win/Linux/OsX supported.
 - Includes bindings for raylib extras: `RayGui`, `Easings`, `Physac`, `RlGl`, `RayMath`.
 - Minimal bindings + convenience wrappers to make it easier to use.
-- Tested and verified **ALL** 120 Raylib examples.  These [ported examples are available to you in the GitHub Repo](https://github.com/NotNotTech/Raylib-CsLo/tree/main/Raylib-CsLo.Examples)
+- Tested and verified **ALL** 100+ Raylib examples.  These [ported examples are available to you in the GitHub Repo](https://github.com/NotNotTech/Raylib-CsLo/tree/main/Raylib-CsLo.Examples)
 -    Requires `unsafe` for 3d workflows.
 -    Requires `net6.0` (net5.0 isn't enough)
 -    Tested on `Win10`.  User Reports `Arch` Linux works.  Please test on other platforms and [raise an issue](https://github.com/NotNotTech/Raylib-CsLo/issues) if any problems occur.
@@ -85,7 +86,7 @@ namespace StandaloneExample
 1. clone/download the [github repository](https://github.com/NotNotTech/Raylib-CsLo)
 2. open `./Raylib-CsLo-DEV.sln` in Visual Studio 2022.
 3. build and run.
-   - the `Raylib-CsLo.Examples` project will run by default, and will run through all (aprox 120) examples.
+   - the `Raylib-CsLo.Examples` project will run by default, and will run through all (aprox 100+) examples.
 4. For a stand-alone example that uses the Nuget Package, see the [`./StandaloneExample` folder](https://github.com/NotNotTech/Raylib-CsLo/tree/main/StandaloneExample)
 
 # Linux / OsX / other platform support
@@ -137,7 +138,7 @@ Here are links to most the examples.  The images/links probably won't work from 
 | New Raylib version? Harder to detect breaking changes               | New Raylib version? Breaking changes are easy to spot and fix                                                                                                                     |
 | includes Intellisence docs                                          | No docs.  Use the [Cheatsheet](https://www.raylib.com/cheatsheet/cheatsheet.html) /          [Examples](https://github.com/NotNotTech/Raylib-CsLo/tree/main/Raylib-CsLo.Examples) |
 | has a long track record                                             | didn't exist till mid november 2021!                                                                                                                                              |
-| [Lots of examples](https://github.com/ChrisDill/Raylib-cs-Examples) | [ALL 120+ Raylib examples](https://github.com/NotNotTech/Raylib-CsLo/tree/main/Raylib-CsLo.Examples)                                                                              |
+| [Lots of examples](https://github.com/ChrisDill/Raylib-cs-Examples) | [ALL 100+ Raylib examples](https://github.com/NotNotTech/Raylib-CsLo/tree/main/Raylib-CsLo.Examples)                                                                              |
 | zlib licensed                                                       | lgpl licensed                                                                                                                                                                     |
 | [Nuget Package](https://www.nuget.org/packages/Raylib-cs/)          | [Nuget Package](https://www.nuget.org/packages/Raylib-CsLo)                                                                                                                       |
 | raylib 3.7.1 Stable                                                 | Raylib 4.0.0                                                                                                                                                                      |
@@ -146,7 +147,7 @@ Here are links to most the examples.  The images/links probably won't work from 
 
 # Usage Tips / FAQ
 - **How do I do `SOME_IDEA`?**
-  - All the Raylib examples (120+) have been ported successfully.  Please refer to them here: [ALL 120+ Raylib examples](https://github.com/NotNotTech/Raylib-CsLo/tree/main/Raylib-CsLo.Examples).  If you need more help, ask on Discord.
+  - All the Raylib examples (100+) have been ported successfully.  Please refer to them here: [ALL 100+ Raylib examples](https://github.com/NotNotTech/Raylib-CsLo/tree/main/Raylib-CsLo.Examples).  If you need more help, ask on Discord.
 - **Does `Raylib-CsLo` include the `SOME_FUNCTION_YOU_NEED()` function?**
   - Raylib-CsLo has bindings for everything in the Raylib 4.0 release, including extras like `raygui` and `physac`, but with the exception of things in the `Known Issues` section further below.
 - **Why didn't you add a wrapper for function `SOME_OTHER_FUNCTION_YOU_NEED()`?** 
