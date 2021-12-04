@@ -51,7 +51,6 @@ global using static Raylib_CsLo.rlShaderLocationIndex;
 
 global using static Raylib_CsLo.ShaderAttributeDataType;
 global using static Raylib_CsLo.ShaderLocationIndex;
-global using static Raylib_CsLo.ShaderUniformDataType;
 
 
 global using static Raylib_CsLo.Examples.RLights;

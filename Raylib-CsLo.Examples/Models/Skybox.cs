@@ -1,5 +1,5 @@
-﻿// [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] 
-// [!!] Copyright ©? Raylib-CsLo and Contributors. 
+// [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] 
+// [!!] Copyright ©️ Raylib-CsLo and Contributors. 
 // [!!] This file is licensed to you under the LGPL-2.1.
 // [!!] See the LICENSE file in the project root for more info. 
 // [!!] ------------------------------------------------- 
@@ -67,7 +67,7 @@ public unsafe static class Skybox
 		SetShaderValue(shdrCubemap, GetShaderLocation(shdrCubemap, "equirectangularMap"), 0, SHADER_UNIFORM_INT);
 
 		//char skyboxFileName[256];
-		string skyboxFileName = null;
+		string? skyboxFileName = null;
 
 		Texture2D panorama;
 

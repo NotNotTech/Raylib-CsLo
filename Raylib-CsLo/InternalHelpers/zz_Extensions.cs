@@ -28,12 +28,9 @@ public unsafe static class zz_Extensions
 		return handle;
 	}
 
-	public static SpanOwner<sbyte> MarshalUtf8(this string text)
+	public static SpanOwner<sbyte> MarshalUtf8(this string? text)
 	{
-		if (text == null)
-		{
-			text = "";
-		}
+		text ??= "";
 
 		var length = Encoding.UTF8.GetByteCount(text) + 1;//need Length+1 so that we always can guarantee a null terminated ending char
 		var toReturn = SpanOwner<sbyte>.Allocate(length, AllocationMode.Clear); 

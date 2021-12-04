@@ -46,10 +46,12 @@
 
     <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
         <Deterministic>False</Deterministic>
+        <NoWarn>1701;1702;1591;IDE0073;</NoWarn>
     </PropertyGroup>
 
     <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
         <Deterministic>False</Deterministic>
+        <NoWarn>1701;1702;1591;IDE0073;</NoWarn>
     </PropertyGroup>
 
 

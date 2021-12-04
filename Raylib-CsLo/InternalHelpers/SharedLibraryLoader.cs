@@ -29,6 +29,7 @@ namespace Raylib_CsLo;
 /// </remarks>
 static class SharedLibraryLoader
 {
+#pragma warning disable CA2255
 	[ModuleInitializer]
 	internal static void Init()
 	{

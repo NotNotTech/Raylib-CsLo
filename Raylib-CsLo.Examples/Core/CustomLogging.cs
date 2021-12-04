@@ -1,5 +1,5 @@
 // [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] 
-// [!!] Copyright �? Raylib-CsLo and Contributors. 
+// [!!] Copyright ©️ Raylib-CsLo and Contributors. 
 // [!!] This file is licensed to you under the LGPL-2.1.
 // [!!] See the LICENSE file in the project root for more info. 
 // [!!] ------------------------------------------------- 
@@ -72,7 +72,7 @@ public unsafe static class CustomLogging
 		//vprintf(text, args);
 		//printf("\n");
 
-		var textStr = Marshal.PtrToStringUTF8((IntPtr)text);
+		var textStr = Marshal.PtrToStringUTF8((IntPtr)text)??"";
 
 		////calc arg count?
 		//var splits = textStr.Split("%");

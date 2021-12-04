@@ -28,7 +28,7 @@ public unsafe static class Helpers
 	/// <returns></returns>
 	public static string Utf8ToString<T>(T* utf8Text) where T:unmanaged
 	{
-		return Marshal.PtrToStringUTF8((IntPtr)utf8Text);
+		return Marshal.PtrToStringUTF8((IntPtr)utf8Text) ?? "";
 	}
 	//public static string ToString(string text) => text;
 

@@ -68,10 +68,7 @@ public static unsafe partial class Raylib
 	/// <summary>
 	/// dealing with __arglist: https://www.c-sharpcorner.com/UploadFile/b942f9/calling-unmanaged-functions-which-take-a-variable-number-of-arguments-from-C-Sharp/
 	/// </summary>
-	/// <param name="text"></param>
-	/// <param name="__arglist"></param>
-	/// <returns></returns>
-	[DllImport("raylib.dll", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
+	[DllImport("raylib", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
 	[return: NativeTypeName("const char *")]
 	public static extern sbyte* TextFormat([NativeTypeName("const char *")] sbyte* text, __arglist);
 
@@ -88,7 +85,7 @@ public static unsafe partial class Raylib
 	}
 
 
-	public static string GetMonitorName_(int monitor) => Marshal.PtrToStringUTF8((IntPtr)GetMonitorName(monitor));
+	public static string GetMonitorName_(int monitor) => Helpers.Utf8ToString(GetMonitorName(monitor));
 
 	public static void SetClipboardText(string text)
 	{
@@ -96,16 +93,16 @@ public static unsafe partial class Raylib
 		SetClipboardText(spanOwner.AsPtr());
 	}
 
-	public static string GetClipboardText_() => Marshal.PtrToStringUTF8((IntPtr)GetClipboardText());
+	public static string GetClipboardText_() => Helpers.Utf8ToString(GetClipboardText());
 
-	public static Shader LoadShader(string vsFileName, string fsFileName)
+	public static Shader LoadShader(string? vsFileName, string fsFileName)
 	{
 
 		using var _vsFileName = vsFileName.MarshalUtf8();
 		using var _fsFileName = fsFileName.MarshalUtf8();
 		return LoadShader(_vsFileName.AsPtr(), _fsFileName.AsPtr());
 	}
-	public static Shader LoadShaderFromMemory(string vsCode, string fsCode)
+	public static Shader LoadShaderFromMemory(string? vsCode, string fsCode)
 	{
 
 		using var _vsCode = vsCode.MarshalUtf8();
@@ -144,7 +141,7 @@ public static unsafe partial class Raylib
 	public static string GetGamepadName_(int gamepad)
 	{
 		var toReturn = GetGamepadName(gamepad);
-		return Marshal.PtrToStringUTF8((IntPtr)toReturn);
+		return Helpers.Utf8ToString(toReturn);
 	}
 	public static bool TextIsEqual(string a, string b)
 	{
@@ -171,7 +168,7 @@ public static unsafe partial class Raylib
 
 		for (int i = 0; i < count; i++)
 		{
-			files[i] = Marshal.PtrToStringUTF8((IntPtr)buffer[i]);
+			files[i] = Helpers.Utf8ToString(buffer[i]);
 		}
 
 		return files;

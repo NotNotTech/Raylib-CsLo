@@ -1,4 +1,4 @@
-﻿// [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] 
+// [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] 
 // [!!] Copyright ©️ Raylib-CsLo and Contributors. 
 // [!!] This file is licensed to you under the LGPL-2.1.
 // [!!] See the LICENSE file in the project root for more info. 
@@ -162,7 +162,7 @@ internal class FormatObject
 	FormatStringPart[] parts;
 	string[] staticParts;
 
-	string finalString;
+	string? finalString;
 
 	enum ParseMode
 	{
@@ -206,9 +206,9 @@ internal class FormatObject
 
 		//Static mode: not in a % block, Format mode: in a % block
 		ParseMode mode = ParseMode.Static;
-		FormatStringPart part = null;
+		FormatStringPart? part = null;
 		FormatStep step = FormatStep.Flags;
-		StringBuilder tempBuffer = null;
+		StringBuilder? tempBuffer = null;
 
 		for (int i = 0; i < format.Length; ++i)
 		{
@@ -229,6 +229,8 @@ internal class FormatObject
 			}
 			else
 			{
+				//if (part == null) part = new FormatStringPart();
+				part ??= new FormatStringPart();
 				//For the terminology (flags, specifiers etc.) look up any printf documentation.
 				switch (step)
 				{
@@ -240,7 +242,7 @@ internal class FormatObject
 							continue;
 						}
 
-						if (part == null) part = new FormatStringPart();
+						
 						if (c == '-')
 						{
 							part.LeftAlign = true;
@@ -494,7 +496,7 @@ internal class FormatObject
 	public override string ToString()
 	{
 		if (this.finalString == null) DoFormat();
-		return finalString;
+		return finalString!;
 	}
 
 	/// <summary>
@@ -724,13 +726,14 @@ internal class FormatObject
 		AddFormatter('X', hexFormatter);
 		Formatter strFormatter = (part, arg) =>
 		{
+			arg ??= "";
 			if (part.precision != null)
 			{
-				return arg.ToString().Remove(part.precision.Value);
+				return arg.ToString()!.Remove(part.precision.Value);
 			}
 			else
 			{
-				return arg.ToString();
+				return arg.ToString()!;
 			}
 		};
 		AddFormatter('s', strFormatter);
