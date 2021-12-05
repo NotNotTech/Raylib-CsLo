@@ -25,6 +25,9 @@
 - [Usage Tips / FAQ](#usage-tips--faq)
 - [Known Issues:](#known-issues)
 - [How to Contribute](#how-to-contribute)
+- [License options:  `MPL2.0` or `PCL`](#license-options--mpl20-or-pcl)
+  - [Mozilla Public License 2.0 (**MPL**)](#mozilla-public-license-20-mpl)
+  - [Private Commercial License (**PCL**)](#private-commercial-license-pcl)
 - [ChangeLog](#changelog)
 - [Todo](#todo)
 
@@ -139,7 +142,7 @@ Here are links to most the examples.  The images/links probably won't work from 
 | includes Intellisence docs                                          | No docs.  Use the [Cheatsheet](https://www.raylib.com/cheatsheet/cheatsheet.html) /          [Examples](https://github.com/NotNotTech/Raylib-CsLo/tree/main/Raylib-CsLo.Examples) |
 | has a long track record                                             | didn't exist till mid november 2021!                                                                                                                                              |
 | [Lots of examples](https://github.com/ChrisDill/Raylib-cs-Examples) | [ALL 100+ Raylib examples](https://github.com/NotNotTech/Raylib-CsLo/tree/main/Raylib-CsLo.Examples)                                                                              |
-| zlib licensed                                                       | lgpl licensed                                                                                                                                                                     |
+| zlib licensed                                                       | MPL 2.0 Licensed licensed                                                                                                                                                         |
 | [Nuget Package](https://www.nuget.org/packages/Raylib-cs/)          | [Nuget Package](https://www.nuget.org/packages/Raylib-CsLo)                                                                                                                       |
 | raylib 3.7.1 Stable                                                 | Raylib 4.0.0                                                                                                                                                                      |
 | lots of contribs                                                    | just little 'ol me                                                                                                                                                                |
@@ -179,6 +182,18 @@ Here are links to most the examples.  The images/links probably won't work from 
   - test/improve support on linux and/or OsX
   - improve wrappers for ease of use
   - ????  check issues
+
+
+# License options:  `MPL2.0` or `PCL`
+## [Mozilla Public License 2.0 (**MPL**)](https://github.com/NotNotTech/Raylib-CsLo/blob/main/LICENSE)
+By default, this repository is licensed under the [Mozilla Public License 2.0 (**MPL**)](https://github.com/NotNotTech/Raylib-CsLo/blob/main/LICENSE).  The MPL is a popular "weak copyleft" license that allows just about anything.  **For example, you may use/include/static-link this library in a commercial, closed-source project without any burdens.**    The main limitation of the MPL being that: ***Modifications to the source code in this project must be open sourced***.  
+
+The MPL is a great choice, both by providing flexibility to the user, and by encouraging contributions to the underlying project.  If you would like to read about the MPL, **FOSSA** has [a great overview of the MPL 2.0 here](https://fossa.com/blog/open-source-software-licenses-101-mozilla-public-license-2-0/).
+
+## Private Commercial License (**PCL**)
+If for some reason you or your organization really, ***REALLY*** can not open source your modifications to this project, I am willing to offer a PCL for USD $1000, half of which will be donated to the upstream `raylib` project.  Payment can be made via github donations.  Yes $1000 is a lot of money, so just try to accept the MPL terms and move on with life!
+If you still think a PCL is what you need, raise an issue or email JasonS aat Novaleaf doot coom to discuss.
+
 
 
 # ChangeLog

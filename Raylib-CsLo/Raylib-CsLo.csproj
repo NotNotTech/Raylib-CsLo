@@ -15,7 +15,7 @@
         <RepositoryUrl>https://github.com/NotNotTech/Raylib-CsLo</RepositoryUrl>
         <PackageReadmeFile>README.md</PackageReadmeFile>
         <PackageIcon>raylib-cslo_128x128.png</PackageIcon>
-        <Version>4.0.0-rc.3.2</Version>
+        <Version>4.0.0-rc.4.0</Version>
         <PackageReleaseNotes>Release Notes: Further Improved Boolean Marshalling.</PackageReleaseNotes>
         <Authors>Novaleaf</Authors>
         <Company>NotNotTech</Company>
@@ -35,7 +35,7 @@
        
         
         <PackageTags>raylib;gamedev;binding;NotNot;rendering;3d;2d;graphics;opengl;physics;audio;</PackageTags>
-        <PackageLicenseExpression>LGPL-2.1-or-later</PackageLicenseExpression>
+        <PackageLicenseExpression>MPL-2.0</PackageLicenseExpression>
         <AssemblyVersion>0.0.0.*</AssemblyVersion>
         <Copyright>(C) NotNotTech and Contribs</Copyright>
         <PackageRequireLicenseAcceptance>True</PackageRequireLicenseAcceptance>
