@@ -4,7 +4,7 @@
 root = true
 
 [*]
-# end_of_line = lf
+end_of_line = lf
 insert_final_newline = true
 trim_trailing_whitespace = true
 charset = utf-8
@@ -16,7 +16,7 @@ indent_size = 4
 tab_width = 4
 
 # File header template  https://docs.microsoft.com/en-us/visualstudio/ide/reference/add-file-header?view=vs-2019
-file_header_template = [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] \n[!!] Copyright ©️ Raylib-CsLo and Contributors. \n[!!] This file is licensed to you under the MPL-2.0.\n[!!] See the LICENSE file in the project root for more info. \n[!!] ------------------------------------------------- \n[!!] The code and 100+ examples are here! https://github.com/NotNotTech/Raylib-CsLo \n[!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!]  [!!] [!!] [!!] [!!] 
+file_header_template = [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] \n[!!] Copyright ©️ Raylib-CsLo and Contributors. \n[!!] This file is licensed to you under the MPL-2.0.\n[!!] See the LICENSE file in the project root for more info. \n[!!] ------------------------------------------------- \n[!!] The code and 100+ examples are here! https://github.com/NotNotTech/Raylib-CsLo \n[!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!]  [!!] [!!] [!!] [!!]
 
 dotnet_diagnostic.IDE0073.severity = warning
 
