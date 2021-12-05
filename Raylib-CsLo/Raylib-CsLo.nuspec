@@ -7,7 +7,7 @@
     <authors>Novaleaf</authors>
     <owners>NotNotTech</owners>
     <requireLicenseAcceptance>true</requireLicenseAcceptance>
-    <license type="expression">LGPL-2.1-or-later</license>
+    <license type="expression">MPL-2.0</license>
     <projectUrl>https://github.com/NotNotTech/Raylib-CsLo</projectUrl>   
     <description>
 Managed C# bindings to `Raylib`.  Raylib is a friendly 2d/3d game framework similar to XNA / MonoGame.  
