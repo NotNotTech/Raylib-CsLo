@@ -23,6 +23,9 @@ public static unsafe partial class RlGl
 
 	public static uint rlLoadTextureCubemap(void* data, int size, PixelFormat format)
 	=> rlLoadTextureCubemap(data, size, (int)format);
+
+	public unsafe static void rlMultMatrixf(Matrix4x4 matrix) => rlMultMatrixf((float*)&matrix);
+
 }
 
 

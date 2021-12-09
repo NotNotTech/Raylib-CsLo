@@ -162,9 +162,9 @@ Here are links to most the examples.  The images/links probably won't work from 
   -  If all else fails, yes.  Cast to `(int)`.
 - **I ran the examples in a profiler.   What are all these `sbyte[]` arrays being allocated?**
    -  A pool of `sbyte[]` is allocated for string marshall purposes, to avoid runtime allocations.
-- **Can I, Shoudl I use `RayMath`?**
+- **Can I, Should I use `RayMath`?**
   - `Raylib_CsLo.RayMath` contains a lot of super helpful functions for doing gamedev related maths.
-  - The `RayMath` helper functions have been translated into C# code.   This makes the code pretty fast, but if the same function exists under `System.Numerics` you should use that instead, because the DotNet CLR treats things under System.Numerics speciall, and optimizes it better.
+  - The `RayMath` helper functions have been translated into C# code.   This makes the code pretty fast, but if the same function exists under `System.Numerics` you should use that instead, because the DotNet CLR treats things under System.Numerics special, and optimizes it better.
 - **Why are my matricies corrupt?**
   - Raylib/OpenGl uses column-major matricies, while dotnet/vulkan/directx uses row-major.  When passing your final calculated matrix to raylib for rendering, call `Matrix4x4.Transpose(yourMatrix)`
 
@@ -197,6 +197,7 @@ If you still think a PCL is what you need, raise an issue or email JasonS aat No
 
 
 # ChangeLog
+- **4.0.0-rc.4.0** (2021/12/04):  No breaking changes. Cleanup and change license from LGPL to MPL, because LGPL doesn't allow private static linking.
 - **4.0.0-rc.3** (2021/11/29):  No breaking changes.  Improve Boolean Marshalling.  
 - **4.0.0-rc.2** (2021/11/28):  Rollup all native code into single binary.  Improve bindings compat.  
 - **4.0.0-rc.1** (2021/11/24):  Support for Linux and OsX (hopefully).
