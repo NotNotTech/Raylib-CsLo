@@ -15,8 +15,8 @@
         <RepositoryUrl>https://github.com/NotNotTech/Raylib-CsLo</RepositoryUrl>
         <PackageReadmeFile>README.md</PackageReadmeFile>
         <PackageIcon>raylib-cslo_128x128.png</PackageIcon>
-        <Version>4.0.0-rc.4.1</Version>
-        <PackageReleaseNotes>Release Notes: Matrix4x4 overload for RlGl.rlMultMatrixf()</PackageReleaseNotes>
+        <Version>4.0.0-rc.4.2</Version>
+        <PackageReleaseNotes>Release Notes: Ray ctor added</PackageReleaseNotes>
         <Authors>Novaleaf</Authors>
         <Company>NotNotTech</Company>
         <Description>

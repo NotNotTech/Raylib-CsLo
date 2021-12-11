@@ -173,6 +173,16 @@ Here are links to most the examples.  The images/links probably won't work from 
 - The `Text.Unicode` example doesn't render unicode properly.  Maybe the required font is missing, maybe there is a bug in the example (Utf16 to Utf8 conversion) or maybe there is a bug in Raylib.  A hunch: I think it's probably due to the fonts not including unicode characters, but I didn't investigate further.
 -  Native Memory allocation functions are not ported:  use `System.Runtime.InteropServices.NativeMemory.Alloc()` instead
 -  `LogCustom()` is ported but doesn't support variable length arguments.
+-  `Texture2D` doesn't exist.  it is just an alias for `Texture` so use that instead.  You might want to use `using` aliases like the following
+      ```cs
+      //usings to make C# code more like the raylib cpp examples.   
+      //to see more stuff like this, look at Raylib-CsLo.Examples/program.cs
+      global using Camera = Raylib_CsLo.Camera3D;
+      global using RenderTexture2D = Raylib_CsLo.RenderTexture;
+      global using Texture2D = Raylib_CsLo.Texture;
+      global using TextureCubemap = Raylib_CsLo.Texture;
+      global using Matrix = System.Numerics.Matrix4x4;
+      ```
 
 # How to Contribute
 
@@ -197,11 +207,12 @@ If you still think a PCL is what you need, raise an issue or email JasonS aat No
 
 
 # ChangeLog
+changelog for major releases.
+
 - **4.0.0-rc.4.0** (2021/12/04):  No breaking changes. Cleanup and change license from LGPL to MPL, because LGPL doesn't allow private static linking.
 - **4.0.0-rc.3** (2021/11/29):  No breaking changes.  Improve Boolean Marshalling.  
 - **4.0.0-rc.2** (2021/11/28):  Rollup all native code into single binary.  Improve bindings compat.  
 - **4.0.0-rc.1** (2021/11/24):  Support for Linux and OsX (hopefully).
-- **4.0.0-rc.0.1** (2021/11/23):  Pretty things up.
 - **4.0.0-rc.0** (2021/11/22):  `physac.dll` and bindings for it added.  `Physics` and `Audio` examples ported.   All `raylib` examples complete!
 - **4.0.0-beta.2** (2021/11/22):  `RayGui`, and `Easings` Raylib.extras ported to managed code. `Shapes`,`Textures`, and `Text` examples ported.
 - **4.0.0-beta.0** (2021/11/20):  `Model`, and `Shader` examples ported. 

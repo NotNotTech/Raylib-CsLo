@@ -28,6 +28,15 @@ public static unsafe partial class RlGl
 
 }
 
+public partial struct Ray
+{
+	public Ray(Vector3 position, Vector3 direction)
+	{
+		this.position = position;
+		this.direction = direction;
+	}
+}
+
 
 public partial struct Rectangle
 {
@@ -60,6 +69,7 @@ public partial struct Camera3D
 		this.up = up;
 		this.fovy = fovy;
 		this.projection = (int)projection;
+
 	}
 
 	public CameraProjection projection_
