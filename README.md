@@ -22,6 +22,7 @@
   - [`RELEASE`](#release)
 - [Examples](#examples)
 - [Differences from `Raylib-Cs`](#differences-from-raylib-cs)
+- [Extras (1st person, 3rd person cameras)](#extras-1st-person-3rd-person-cameras)
 - [Usage Tips / FAQ](#usage-tips--faq)
 - [Known Issues:](#known-issues)
 - [How to Contribute](#how-to-contribute)
@@ -146,6 +147,9 @@ Here are links to most the examples.  The images/links probably won't work from 
 | [Nuget Package](https://www.nuget.org/packages/Raylib-cs/)          | [Nuget Package](https://www.nuget.org/packages/Raylib-CsLo)                                                                                                                       |
 | raylib 3.7.1 Stable                                                 | Raylib 4.0.0                                                                                                                                                                      |
 | lots of contribs                                                    | just little 'ol me                                                                                                                                                                |
+
+# Extras (1st person, 3rd person cameras)
+If you need a custom camera, check out the `Raylib-Extras-CsLo` project, which contains a custom First Person Camera and Third Person Camera.  https://github.com/NotNotTech/Raylib-Extras-CsLo
 
 
 # Usage Tips / FAQ
