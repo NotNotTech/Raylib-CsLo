@@ -1,8 +1,8 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
     <PropertyGroup>
-        <TargetFramework>net6.0</TargetFramework>
-        <!--<TargetFramework>netstandard2.1</TargetFramework>-->
+        <!--<TargetFramework>net6.0</TargetFramework>-->
+        <TargetFramework>netstandard2.1</TargetFramework>
         <!--<EnablePreviewFeatures>True</EnablePreviewFeatures>
         <LangVersion>Preview</LangVersion>-->
         <LangVersion>10</LangVersion>
@@ -15,19 +15,19 @@
         <RepositoryUrl>https://github.com/NotNotTech/Raylib-CsLo</RepositoryUrl>
         <PackageReadmeFile>README.md</PackageReadmeFile>
         <PackageIcon>raylib-cslo_128x128.png</PackageIcon>
-        <Version>4.0.0-rc.4.2</Version>
-        <PackageReleaseNotes>Release Notes: Ray ctor added</PackageReleaseNotes>
+        <Version>4.0.0-rc.5.0</Version>
+        <PackageReleaseNotes>Release Notes: No breaking changes. Broaden DotNet support to Net5+, etc (via NetStandard 2.1)</PackageReleaseNotes>
         <Authors>Novaleaf</Authors>
         <Company>NotNotTech</Company>
         <Description>
-            Managed C# bindings to `Raylib`, a friendly 2d/3d game framework similar to XNA / MonoGame.
+            Managed C# bindings to Raylib, a friendly 2d/3d game framework similar to XNA / MonoGame.
             - Win/Linux/OsX supported.
-            - Includes bindings for raylib extras: `RayGui`, `Easings`, `Physac`, `RlGl`, `RayMath`.
+            - Includes bindings for raylib extras: RayGui, Easings, Physac, RlGl, RayMath.
             - Minimal bindings + convenience wrappers to make it easier to use.
             - Tested and verified via more than 100 examples (**ALL** Raylib examples ported).  These [examples are available to you in the GitHub Repo](https://github.com/NotNotTech/Raylib-CsLo/tree/main/Raylib-CsLo.Examples)
             -    Requires `unsafe` for 3d workflows.
-            -    Requires `net6.0`
-            -    Tested on `Win10`.  Please test on other platforms and [raise an issue](https://github.com/NotNotTech/Raylib-CsLo/issues) if any problems occur.
+            -    Supports net5+, Mono 6.4+, NetCore3.0
+            -    Tested on Win10 Net6.  Please test on other platforms and [raise an issue](https://github.com/NotNotTech/Raylib-CsLo/issues) if any problems occur.
             - A focus on performance.  No runtime allocations if at all possible.
             - No intellisense docs. [read the raylib cheatsheet for docs](https://www.raylib.com/cheatsheet/cheatsheet.html) or [view the examples](https://github.com/NotNotTech/Raylib-CsLo/tree/main/Raylib-CsLo.Examples)
         </Description>
@@ -111,6 +111,12 @@
             <Pack>true</Pack>
             <PackagePath>lib\net6.0</PackagePath>
         </Content>-->
+    </ItemGroup>
+
+    <ItemGroup>
+      <Content Include="raylib.dll">
+        <CopyToOutputDirectory>Always</CopyToOutputDirectory>        
+      </Content>
     </ItemGroup>
 
 </Project>

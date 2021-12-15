@@ -13,6 +13,7 @@ using System.Runtime.CompilerServices;
 
 namespace Raylib_CsLo;
 
+#if NET6
 /// <summary>
 /// searches the /runtimes/ folder for shared libraries
 /// </summary>
@@ -289,4 +290,4 @@ static class SharedLibraryLoader
 	}
 }
 
-
+#endif

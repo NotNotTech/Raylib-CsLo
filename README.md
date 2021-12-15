@@ -5,7 +5,7 @@
 [![Nuget Package](https://img.shields.io/badge/Nuget_Package-blue?logo=NuGet)](https://www.nuget.org/packages/Raylib-CsLo)
 [![Source Code](https://img.shields.io/badge/Source_Code-black?logo=GitHub)](https://github.com/NotNotTech/Raylib-CsLo)
 [![Source Code](https://img.shields.io/badge/🚀_100+_Examples_🚀-teal)](https://github.com/NotNotTech/Raylib-CsLo/tree/main/Raylib-CsLo.Examples)
-![.NET 6.0](https://img.shields.io/badge/.NET-net6.0-%23512bd4)
+![.NET 5+](https://img.shields.io/badge/.NET-net5+-%23512bd4)
 [![Chat on Discord](https://img.shields.io/badge/chat%20on-discord-7289DA)](https://discord.gg/raylib)
 # Table of Contents
 - [Table of Contents](#table-of-contents)
@@ -40,7 +40,7 @@ Managed C# bindings to `Raylib`, a friendly 2d/3d game framework similar to XNA 
 - Minimal bindings + convenience wrappers to make it easier to use.
 - Tested and verified **ALL** 100+ Raylib examples.  These [ported examples are available to you in the GitHub Repo](https://github.com/NotNotTech/Raylib-CsLo/tree/main/Raylib-CsLo.Examples)
 -    Requires `unsafe` for 3d workflows.
--    Requires `net6.0` (net5.0 isn't enough)
+-    Supports `net5+`, `Mono 6.4+`, `NetCore3+` (via `netStandard 2.1`)
 -    Tested on `Win10`.  User Reports `Arch` Linux works.  Please test on other platforms and [raise an issue](https://github.com/NotNotTech/Raylib-CsLo/issues) if any problems occur.
 - A focus on performance.  No runtime allocations if at all possible.
 - No intellisense docs. [read the raylib cheatsheet for docs](https://www.raylib.com/cheatsheet/cheatsheet.html) or [view the examples](https://github.com/NotNotTech/Raylib-CsLo/tree/main/Raylib-CsLo.Examples)
@@ -213,6 +213,7 @@ If you still think a PCL is what you need, raise an issue or email JasonS aat No
 # ChangeLog
 changelog for major releases.
 
+- **4.0.0-rc.5.0** (2021/12/15):  No breaking changes. Broaden DotNet support to Net5+, etc (via NetStandard 2.1)
 - **4.0.0-rc.4.0** (2021/12/04):  No breaking changes. Cleanup and change license from LGPL to MPL, because LGPL doesn't allow private static linking.
 - **4.0.0-rc.3** (2021/11/29):  No breaking changes.  Improve Boolean Marshalling.  
 - **4.0.0-rc.2** (2021/11/28):  Rollup all native code into single binary.  Improve bindings compat.  
