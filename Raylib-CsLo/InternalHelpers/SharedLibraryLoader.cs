@@ -13,7 +13,7 @@ using System.Runtime.CompilerServices;
 
 namespace Raylib_CsLo;
 
-#if NET6
+#if NET6_0_OR_GREATER  //switch conditional from:  https://docs.microsoft.com/en-us/dotnet/standard/frameworks
 /// <summary>
 /// searches the /runtimes/ folder for shared libraries
 /// </summary>
