@@ -1,7 +1,6 @@
 | [![Raylib-CsLo-Logo](https://raw.githubusercontent.com/NotNotTech/Raylib-CsLo/main/meta/logos/raylib-cslo_128x128.png)](https://github.com/NotNotTech/Raylib-CsLo) |
 | ------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
 
-![Status BETA](https://img.shields.io/badge/status-Release_Candidate-green)
 [![Nuget Package](https://img.shields.io/badge/Nuget_Package-blue?logo=NuGet)](https://www.nuget.org/packages/Raylib-CsLo)
 [![Source Code](https://img.shields.io/badge/Source_Code-black?logo=GitHub)](https://github.com/NotNotTech/Raylib-CsLo)
 [![Source Code](https://img.shields.io/badge/🚀_100+_Examples_🚀-teal)](https://github.com/NotNotTech/Raylib-CsLo/tree/main/Raylib-CsLo.Examples)
@@ -17,9 +16,6 @@
   - [via Nuget](#via-nuget)
   - [via sources](#via-sources)
 - [Linux / OsX / other platform support](#linux--osx--other-platform-support)
-- [Release timeline](#release-timeline)
-  - [`RELEASE CANDIDATE`](#release-candidate)
-  - [`RELEASE`](#release)
 - [Examples](#examples)
 - [Differences from `Raylib-Cs`](#differences-from-raylib-cs)
 - [Extras (1st person, 3rd person cameras)](#extras-1st-person-3rd-person-cameras)
@@ -36,16 +32,22 @@
 # About
 Managed C# bindings to `Raylib`, a friendly 2d/3d game framework similar to XNA / MonoGame.
 - Win/Linux/OsX supported.
-- Includes bindings for raylib extras: `RayGui`, `Easings`, `Physac`, `RlGl`, `RayMath`.
+- All Raylib features, including Extras bindings
+  - `raylib` : Core features, including Audio.
+  - `rlgl` : OpenGl abstraction
+  - `raygui` : An Imperitive Gui
+  - `physac` : A 2d physics framework
+  - `easings` : for simple animations  (Managed Port)
+  - `raymath` : game math library (Managed Port)
 - Minimal bindings + convenience wrappers to make it easier to use.
 - Tested and verified **ALL** 100+ Raylib examples.  These [ported examples are available to you in the GitHub Repo](https://github.com/NotNotTech/Raylib-CsLo/tree/main/Raylib-CsLo.Examples)
 -    Requires `unsafe` for 3d workflows.
 -    Supports `net5+`, `Mono 6.4+`, `NetCore3+` (via `netStandard 2.1`)
 -    Tested on `Win10`.  User Reports `Arch` Linux works.  Please test on other platforms and [raise an issue](https://github.com/NotNotTech/Raylib-CsLo/issues) if any problems occur.
 - A focus on performance.  No runtime allocations if at all possible.
-- No intellisense docs. [read the raylib cheatsheet for docs](https://www.raylib.com/cheatsheet/cheatsheet.html) or [view the examples](https://github.com/NotNotTech/Raylib-CsLo/tree/main/Raylib-CsLo.Examples)
+- No intellisense docs. [read the raylib cheatsheet for docs](https://www.raylib.com/cheatsheet/cheatsheet.html) or [view the 100+ examples](https://github.com/NotNotTech/Raylib-CsLo/tree/main/Raylib-CsLo.Examples)
 - Full source code included in [The GitHub Repository](https://github.com/NotNotTech/Raylib-CsLo), including native sources, allowing you to compile for any platform you wish.
-
+- [A Nuget package is avalable](https://www.nuget.org/packages/Raylib-CsLo)
 ## What is **Raylib**?
 [Raylib](https://www.raylib.com/) is a friendly-to-use game framework that includes basic scenarios to meet your needs:   audio, 2d, 3d, fonts, animation, 2d physics.  Somewhat similar to `Xna` or `MonoGame` but friendlier.  **However, `Raylib` is a C/CPP framework**.  `Raylib-CsLo` is a C# Wrapper over the top, which lets you gain raylib's powers to quickly prototype your game ideas.
 
@@ -101,29 +103,6 @@ The following platforms are shipped in the nuget package:
 - `osx-x64`:  not confirmed yet.  Please let me know if you try.
 
 You can build the native binaries for whatever platform you need.  Please see the readme under https://github.com/NotNotTech/Raylib-CsLo/tree/main/Raylib-CsLo/runtimes for more info.
-
-
-
-
-
-# Release timeline
-
-## `RELEASE CANDIDATE`
-- **The current status.**
-- All Raylib features, including Extras bindings
-  - `raylib` : Core features, including Audio.
-  - `rlgl` : OpenGl abstraction
-  - `raygui` : An Imperitive Gui
-  - `physac` : A 2d physics framework
-  - `easings` : for simple animations  (Managed Port)
-  - `raymath` : game math library (Managed Port)
-- All raylib examples are ported and working (see the github repository for the example project)
-- [A Nuget package is avalable](https://www.nuget.org/packages/Raylib-CsLo)
-
-## `RELEASE`
-- Triggered a few weeks after the last RC issue is fixed. If you find any bugs with the release candidate, be sure to [raise an issue](https://github.com/NotNotTech/Raylib-CsLo/issues)!
-
-
 # Examples
 Here are links to most the examples.  The images/links probably won't work from Nuget.  [Visit the Github Repo to see it properly.](https://github.com/NotNotTech/Raylib-CsLo)
 
