@@ -45,27 +45,35 @@ public unsafe static class PaletteColorSwitch
 
 	static int[,] palettes = new int[MAX_PALETTES, COLORS_PER_PALETTE * VALUES_PER_COLOR]{
 			{   // 3-BIT RGB
+			//black
 			0,
 			0,
 			0,
+			//red
 			255,
 			0,
 			0,
+			//green
 			0,
 			255,
 			0,
+			//blue
 			0,
 			0,
 			255,
+			//cyan
 			0,
 			255,
 			255,
+			//magenta
 			255,
 			0,
 			255,
+			//yellow
 			255,
 			255,
 			0,
+			//white
 			255,
 			255,
 			255,
@@ -186,7 +194,7 @@ public unsafe static class PaletteColorSwitch
 				// The used palette index is encoded in the RGB components of the pixel
 				DrawRectangle(0, lineHeight * i, GetScreenWidth(), lineHeight, new Color(i, i, i, 255));
 			}
-
+			
 			EndShaderMode();
 
 			DrawText("< >", 10, 10, 30, DARKBLUE);

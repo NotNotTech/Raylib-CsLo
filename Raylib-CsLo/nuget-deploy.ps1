@@ -2,6 +2,13 @@
 # $env:NUGET_KEY = 'your_key'
 
 
+######## STEPS TO NUGET DEPLOY:
+# 0) set your NUGET_KEY as shown above
+# 1) set nuget version in the csproj file
+# 2) build in visual studio, which will create the nuget package
+# 3) checkin everything and tag the commit with the nuget version
+# 4) run this script and pick the package you just built
+
 #help on passing args: https://morgantechspace.com/2014/12/How-to-pass-arguments-to-PowerShell-script.html
 param( 
 	[Parameter(Mandatory = $true, HelpMessage = "either set env:NUGET_KEY = 'your_key' or input it now")] $NugetKey
