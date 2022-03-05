@@ -96,6 +96,34 @@ public partial struct Color
 		this.b = (byte)b;
 		this.a = (byte)a;
 	}
+	
+	// Alias for Raylib-Cs
+	public static readonly Color LIGHTGRAY = Raylib.LIGHTGRAY;
+	public static readonly Color GRAY = Raylib.GRAY;
+	public static readonly Color DARKGRAY = Raylib.DARKGRAY;
+	public static readonly Color YELLOW = Raylib.YELLOW;
+	public static readonly Color GOLD = Raylib.GOLD;
+	public static readonly Color ORANGE = Raylib.ORANGE;
+	public static readonly Color PINK = Raylib.PINK;
+	public static readonly Color RED = Raylib.RED;
+	public static readonly Color MAROON = Raylib.MAROON;
+	public static readonly Color GREEN = Raylib.GREEN;
+	public static readonly Color LIME = Raylib.LIME;
+	public static readonly Color DARKGREEN = Raylib.DARKGREEN;
+	public static readonly Color SKYBLUE = Raylib.SKYBLUE;
+	public static readonly Color BLUE = Raylib.BLUE;
+	public static readonly Color DARKBLUE = Raylib.DARKBLUE;
+	public static readonly Color PURPLE = Raylib.PURPLE;
+	public static readonly Color VIOLET = Raylib.VIOLET;
+	public static readonly Color DARKPURPLE = Raylib.DARKPURPLE;
+	public static readonly Color BEIGE = Raylib.BEIGE;
+	public static readonly Color BROWN = Raylib.BROWN;
+	public static readonly Color DARKBROWN = Raylib.DARKBROWN;
+	public static readonly Color WHITE = Raylib.WHITE;
+	public static readonly Color BLACK = Raylib.BLACK;
+	public static readonly Color BLANK = Raylib.BLANK;
+	public static readonly Color MAGENTA = Raylib.MAGENTA;
+	public static readonly Color RAYWHITE = Raylib.RAYWHITE;
 }
 public partial struct BoundingBox
 {
