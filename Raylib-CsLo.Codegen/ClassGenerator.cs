@@ -12,14 +12,7 @@ using System.Text;
 
 public class ClassGenerator
 {
-    const string NamespaceName = "Raylib_CsLo";
-    static string[] usings =
-    {
-        "System.Numerics",
-        "Microsoft.Toolkit.HighPerformance.Buffers",
-        "Raylib_CsLo.InternalHelpers",
-    };
-
+    // const string SByteToStringHelper = "Helpers.Utf8ToString";
 
     readonly string module;
     int indent;
@@ -29,14 +22,13 @@ public class ClassGenerator
     public ClassGenerator(RaylibModule module, List<RaylibFunction> functions)
     {
         this.module = Enum.GetName(typeof(RaylibModule), module);
-        Console.WriteLine(this.module);
         this.functions = functions;
     }
 
     public void Generate()
     {
         Line($"#pragma warning disable");
-        Line($"namespace {NamespaceName};");
+        Line($"namespace {CodegenSettings.NamespaceName};");
 
         Usings();
 
@@ -46,37 +38,49 @@ public class ClassGenerator
         {
             foreach (RaylibFunction func in functions)
             {
-                DocumentationBlock(func);
-
-                string paramters = "";
-
-                int index = 0;
-                if (func.ParamatersC != null)
-                {
-                    foreach (KeyValuePair<string, string> parameter in func.Paramaters)
-                    {
-                        paramters += $"{parameter.Value} {parameter.Key}";
-
-                        if (index < func.Paramaters.Count - 1)
-                        {
-                            paramters += ", ";
-                        }
-
-                        index++;
-                    }
-                }
-
-                Line($"public {func.ReturnType} {func.Name}({paramters})");
-                StartBlock();
-                {
-                    GenerateFunctionContents(func);
-                }
-                EndBlock();
-                Blank();
+                GenFunction(func);
             }
         }
         EndBlock();
         Line($"#pragma warning restore");
+    }
+
+    void GenFunction(RaylibFunction func)
+    {
+        DocumentationBlock(func);
+
+        string parameters = GenParameterDefinitions(func);
+
+        Line($"public {func.ReturnType} {func.Name}({parameters})");
+        StartBlock();
+        {
+            GenFunctionContents(func);
+        }
+        EndBlock();
+        Blank();
+    }
+
+    static string GenParameterDefinitions(RaylibFunction func)
+    {
+        string parameters = "";
+
+        int index = 0;
+        if (func.ParametersC != null)
+        {
+            foreach (KeyValuePair<string, string> parameter in func.Parameters)
+            {
+                parameters += $"{parameter.Value} {parameter.Key}";
+
+                if (index < func.Parameters.Count - 1)
+                {
+                    parameters += ", ";
+                }
+
+                index++;
+            }
+        }
+
+        return parameters;
     }
 
     void DocumentationBlock(RaylibFunction func)
@@ -86,37 +90,43 @@ public class ClassGenerator
         Line($"/// </summary>");
     }
 
-    void GenerateFunctionContents(RaylibFunction func)
+    void GenFunctionContents(RaylibFunction func)
     {
-        string paramters = "";
-
-        int index = 0;
-        if (func.Paramaters != null)
-        {
-            foreach (KeyValuePair<string, string> parameter in func.Paramaters)
-            {
-                string nativeParameterName = HandleParamter(parameter.Key, parameter.Value);
-                paramters += $"{nativeParameterName}";
-
-                if (index < func.Paramaters.Count - 1)
-                {
-                    paramters += ", ";
-                }
-
-                index++;
-            }
-        }
+        string paramaters = GenParameters(func);
 
         string returnStatement = "";
         if (func.ReturnTypeC != "void")
         {
             returnStatement += "return ";
         }
-        returnStatement += CastReturn(func);
 
-        returnStatement += $"Raylib.{func.Name}({paramters});";
+        returnStatement = HandleReturn(func, paramaters, returnStatement);
 
         Line(returnStatement);
+    }
+
+    string GenParameters(RaylibFunction func)
+    {
+        string parameters = "";
+
+        int index = 0;
+        if (func.Parameters != null)
+        {
+            foreach (KeyValuePair<string, string> parameter in func.Parameters)
+            {
+                string nativeParameterName = HandleParameter(parameter.Key, parameter.Value);
+                parameters += $"{nativeParameterName}";
+
+                if (index < func.Parameters.Count - 1)
+                {
+                    parameters += ", ";
+                }
+
+                index++;
+            }
+        }
+
+        return parameters;
     }
 
     static string CastReturn(RaylibFunction func)
@@ -130,7 +140,7 @@ public class ClassGenerator
         return returnStatement;
     }
 
-    string HandleParamter(string name, string type)
+    string HandleParameter(string name, string type)
     {
         switch (type)
         {
@@ -140,10 +150,21 @@ public class ClassGenerator
                 break;
 
             default:
-                Console.WriteLine($"Unhandled Paramter: {type} {name}");
+                // Console.WriteLine($"Unhandled Parameter: {type} {name}");
                 break;
         }
         return name;
+    }
+
+    static string HandleReturn(RaylibFunction func, string paramaters, string returnStatement)
+    {
+        if (true)
+        {
+            returnStatement += CastReturn(func);
+        }
+
+        returnStatement += $"Raylib.{func.Name}({paramaters});";
+        return returnStatement;
     }
 
     void Usings()
@@ -184,6 +205,6 @@ public class ClassGenerator
 
     public void Output()
     {
-        File.WriteAllText(Program.OutputFolder + module + ".cs", fileContents.ToString());
+        File.WriteAllText(CodegenSettings.OutputFolder + module + ".cs", fileContents.ToString());
     }
 }

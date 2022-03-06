@@ -5,83 +5,51 @@
 
 namespace Raylib_CsLo.Codegen;
 
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Text.Json;
 
 public class Program
 {
-    public static string OutputFolder { get; } = Path.Join(Path.GetFullPath("./"), "Raylib-CsLo/autogen/wrappers/");
-    public static string ApiJsonFile { get; } = Path.Join(Path.GetFullPath("./"), "sub-modules\\raylib\\parser\\raylib_api.json");
-
-    static string[] lastFunction = { "SetCameraMoveControls", "GetCollisionRec", "GetPixelDataSize", "TextToInteger", "GetRayCollisionQuad" };
-
-
-    static readonly Dictionary<string, string> CSharpSafeEquivelent = new()
-    {
-        { "char *", "string" },
-        { "unsigned int", "uint" },
-        { "void *", "IntPtr" },
-
-        // Alias TODO: Remove later
-        { "RenderTexture2D", "RenderTexture" },
-        { "Texture2D", "Texture" },
-        { "TextureCubemap", "Texture" },
-        { "Matrix", "Matrix4x4" },
-    };
-
+    static List<string> types = new();
     public static void Main()
     {
-        if (Directory.Exists(OutputFolder))
+        if (Directory.Exists(CodegenSettings.OutputFolder))
         {
-            Directory.Delete(OutputFolder, true);
+            Directory.Delete(CodegenSettings.OutputFolder, true);
         }
-        Directory.CreateDirectory(OutputFolder);
+        Directory.CreateDirectory(CodegenSettings.OutputFolder);
 
         Dictionary<RaylibModule, List<RaylibFunction>> modules = new();
         modules.Add(RaylibModule.Core, new List<RaylibFunction>());
 
-        using (JsonDocument document = JsonDocument.Parse(File.ReadAllText(ApiJsonFile)))
+        using (JsonDocument document = JsonDocument.Parse(File.ReadAllText(CodegenSettings.ApiJsonFile)))
         {
             RaylibModule module = RaylibModule.Core;
             foreach (JsonElement element in document.RootElement.GetProperty("functions").EnumerateArray())
             {
                 RaylibFunction func = JsonSerializer.Deserialize<RaylibFunction>(element);
 
-                if (CSharpSafeEquivelent.TryGetValue(SantizeTypes(func.ReturnTypeC), out string returnType))
-                {
-                    func.ReturnType = returnType;
-                }
-                else
-                {
-                    func.ReturnType = func.ReturnTypeC;
-                }
+                func.ReturnType = ConvertCTypesToCSharpReturn(func.ReturnTypeC);
 
-                if (func.ParamatersC != null)
+                if (func.ParametersC != null)
                 {
-                    func.Paramaters = new();
-                    foreach (KeyValuePair<string, string> kvp in func.ParamatersC)
+                    func.Parameters = new();
+                    foreach (KeyValuePair<string, string> kvp in func.ParametersC)
                     {
-                        func.Paramaters.Add(kvp.Key, (string)kvp.Value.Clone());
+                        func.Parameters.Add(kvp.Key, (string)kvp.Value.Clone());
                     }
 
-                    foreach (KeyValuePair<string, string> parameter in func.ParamatersC)
+                    foreach (KeyValuePair<string, string> parameter in func.ParametersC)
                     {
-                        if (CSharpSafeEquivelent.TryGetValue(SantizeTypes(parameter.Value), out string parameterType))
-                        {
-                            func.Paramaters[parameter.Key] = parameterType;
-                        }
-                        else
-                        {
-                            func.Paramaters[parameter.Key] = func.ParamatersC[parameter.Key];
-                        }
-
+                        func.Parameters[parameter.Key] = ConvertCTypesToCSharpParameter(parameter.Value);
                     }
                 }
 
                 modules[module].Add(func);
 
-                if (module != RaylibModule.Audio && func.Name == lastFunction[(int)module])
+                if (module != RaylibModule.Audio && func.Name == CodegenSettings.LastFunctionInModule[(int)module])
                 {
                     module++;
                     modules.Add(module, new List<RaylibFunction>());
@@ -89,6 +57,10 @@ public class Program
             }
         }
 
+        foreach (string item in types)
+        {
+            Console.WriteLine(item);
+        }
 
         foreach (KeyValuePair<RaylibModule, List<RaylibFunction>> module in modules)
         {
@@ -96,15 +68,66 @@ public class Program
             classGenerator.Generate();
             classGenerator.Output();
         }
-
-        while (true)
-        { }
     }
 
-    static string SantizeTypes(string type)
+
+    static string ConvertCTypesToCSharpParameter(string type)
     {
-        return type
-        .Replace("const ", "");
+        type = ConvertCTypesToCSharpBase(type);
+
+        type = type switch
+        {
+            "unsigned int *" => "out uint",
+            _ => type
+        };
+
+        type = type.Replace(" *", "[]");
+
+        // Debug pruposes only
+        if (!types.Contains(type))
+        {
+            types.Add(type);
+        }
+
+        return type;
     }
 
+    static string ConvertCTypesToCSharpReturn(string type)
+    {
+        type = ConvertCTypesToCSharpBase(type);
+
+        type = type.Replace(" *", "[]");
+
+        return type;
+    }
+
+    static string ConvertCTypesToCSharpBase(string type)
+    {
+        // remove const
+        type = type.Replace("const ", "");
+
+        // TextFormat & TraceLog takes any parms
+        if (type == "")
+        {
+            type = "params object[] args";
+        }
+
+        // Convert C types to param and return safe types
+        type = type switch
+        {
+            "void *" => "IntPtr",
+
+            "char *" => "string",
+            "char **" => "string[]",
+
+            "unsigned int" => "uint",
+
+            "Rectangle **" => "Rectangle[]",
+            "unsigned char *" => "byte[]",
+
+            _ => type
+        };
+
+        return type;
+    }
 }

@@ -14,8 +14,8 @@ public class RaylibFunction
     [JsonPropertyName("name")] public string Name { get; set; }
     [JsonPropertyName("description")] public string Description { get; set; }
     [JsonPropertyName("returnType")] public string ReturnTypeC { get; set; }
-    [JsonPropertyName("params")] public Dictionary<string, string> ParamatersC { get; set; }
+    [JsonPropertyName("params")] public Dictionary<string, string> ParametersC { get; set; }
 
     public string ReturnType { get; set; }
-    public Dictionary<string, string> Paramaters { get; set; }
+    public Dictionary<string, string> Parameters { get; set; }
 }
