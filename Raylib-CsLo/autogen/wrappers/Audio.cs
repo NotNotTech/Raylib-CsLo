@@ -36,6 +36,7 @@ public unsafe partial class RaylibS
     /// </summary>
     public void SetMasterVolume(float volume)
     {
+        /*|  float => float  |*/
         Raylib.SetMasterVolume(volume);
     }
 
@@ -44,8 +45,9 @@ public unsafe partial class RaylibS
     /// </summary>
     public Wave LoadWave(string fileName)
     {
-        using var fileName_ = fileName.MarshalUtf8();
-        return Raylib.LoadWave(fileName_.AsPtr());
+        /*|  const char * => string  |*/
+        using var fileNameLocal = fileName.MarshalUtf8();
+        return Raylib.LoadWave(fileNameLocal.AsPtr());
     }
 
     /// <summary>
@@ -53,8 +55,12 @@ public unsafe partial class RaylibS
     /// </summary>
     public Wave LoadWaveFromMemory(string fileType, byte[] fileData, int dataSize)
     {
-        using var fileType_ = fileType.MarshalUtf8();
-        return Raylib.LoadWaveFromMemory(fileType_.AsPtr(), fileData, dataSize);
+        /*|  const char * => string  |*/
+        using var fileTypeLocal = fileType.MarshalUtf8();
+        /*|  const unsigned char * => byte[]  |*/
+        var fileDataLocal = Helpers.ArrayToPtr(fileData);
+        /*|  int => int  |*/
+        return Raylib.LoadWaveFromMemory(fileTypeLocal.AsPtr(), fileDataLocal, dataSize);
     }
 
     /// <summary>
@@ -62,8 +68,9 @@ public unsafe partial class RaylibS
     /// </summary>
     public Sound LoadSound(string fileName)
     {
-        using var fileName_ = fileName.MarshalUtf8();
-        return Raylib.LoadSound(fileName_.AsPtr());
+        /*|  const char * => string  |*/
+        using var fileNameLocal = fileName.MarshalUtf8();
+        return Raylib.LoadSound(fileNameLocal.AsPtr());
     }
 
     /// <summary>
@@ -71,6 +78,7 @@ public unsafe partial class RaylibS
     /// </summary>
     public Sound LoadSoundFromWave(Wave wave)
     {
+        /*|  Wave => Wave  |*/
         return Raylib.LoadSoundFromWave(wave);
     }
 
@@ -79,8 +87,11 @@ public unsafe partial class RaylibS
     /// </summary>
     public void UpdateSound(Sound sound, IntPtr data, int sampleCount)
     {
-        var data_ = (void*)data;
-        Raylib.UpdateSound(sound, data_, sampleCount);
+        /*|  Sound => Sound  |*/
+        /*|  const void * => IntPtr  |*/
+        var dataLocal = (void*)data;
+        /*|  int => int  |*/
+        Raylib.UpdateSound(sound, dataLocal, sampleCount);
     }
 
     /// <summary>
@@ -88,6 +99,7 @@ public unsafe partial class RaylibS
     /// </summary>
     public void UnloadWave(Wave wave)
     {
+        /*|  Wave => Wave  |*/
         Raylib.UnloadWave(wave);
     }
 
@@ -96,6 +108,7 @@ public unsafe partial class RaylibS
     /// </summary>
     public void UnloadSound(Sound sound)
     {
+        /*|  Sound => Sound  |*/
         Raylib.UnloadSound(sound);
     }
 
@@ -104,8 +117,10 @@ public unsafe partial class RaylibS
     /// </summary>
     public bool ExportWave(Wave wave, string fileName)
     {
-        using var fileName_ = fileName.MarshalUtf8();
-        return Raylib.ExportWave(wave, fileName_.AsPtr());
+        /*|  Wave => Wave  |*/
+        /*|  const char * => string  |*/
+        using var fileNameLocal = fileName.MarshalUtf8();
+        return Raylib.ExportWave(wave, fileNameLocal.AsPtr());
     }
 
     /// <summary>
@@ -113,8 +128,10 @@ public unsafe partial class RaylibS
     /// </summary>
     public bool ExportWaveAsCode(Wave wave, string fileName)
     {
-        using var fileName_ = fileName.MarshalUtf8();
-        return Raylib.ExportWaveAsCode(wave, fileName_.AsPtr());
+        /*|  Wave => Wave  |*/
+        /*|  const char * => string  |*/
+        using var fileNameLocal = fileName.MarshalUtf8();
+        return Raylib.ExportWaveAsCode(wave, fileNameLocal.AsPtr());
     }
 
     /// <summary>
@@ -122,6 +139,7 @@ public unsafe partial class RaylibS
     /// </summary>
     public void PlaySound(Sound sound)
     {
+        /*|  Sound => Sound  |*/
         Raylib.PlaySound(sound);
     }
 
@@ -130,6 +148,7 @@ public unsafe partial class RaylibS
     /// </summary>
     public void StopSound(Sound sound)
     {
+        /*|  Sound => Sound  |*/
         Raylib.StopSound(sound);
     }
 
@@ -138,6 +157,7 @@ public unsafe partial class RaylibS
     /// </summary>
     public void PauseSound(Sound sound)
     {
+        /*|  Sound => Sound  |*/
         Raylib.PauseSound(sound);
     }
 
@@ -146,6 +166,7 @@ public unsafe partial class RaylibS
     /// </summary>
     public void ResumeSound(Sound sound)
     {
+        /*|  Sound => Sound  |*/
         Raylib.ResumeSound(sound);
     }
 
@@ -154,6 +175,7 @@ public unsafe partial class RaylibS
     /// </summary>
     public void PlaySoundMulti(Sound sound)
     {
+        /*|  Sound => Sound  |*/
         Raylib.PlaySoundMulti(sound);
     }
 
@@ -178,6 +200,7 @@ public unsafe partial class RaylibS
     /// </summary>
     public bool IsSoundPlaying(Sound sound)
     {
+        /*|  Sound => Sound  |*/
         return Raylib.IsSoundPlaying(sound);
     }
 
@@ -186,6 +209,8 @@ public unsafe partial class RaylibS
     /// </summary>
     public void SetSoundVolume(Sound sound, float volume)
     {
+        /*|  Sound => Sound  |*/
+        /*|  float => float  |*/
         Raylib.SetSoundVolume(sound, volume);
     }
 
@@ -194,6 +219,8 @@ public unsafe partial class RaylibS
     /// </summary>
     public void SetSoundPitch(Sound sound, float pitch)
     {
+        /*|  Sound => Sound  |*/
+        /*|  float => float  |*/
         Raylib.SetSoundPitch(sound, pitch);
     }
 
@@ -202,6 +229,10 @@ public unsafe partial class RaylibS
     /// </summary>
     public void WaveFormat(Wave* wave, int sampleRate, int sampleSize, int channels)
     {
+        /*|  Wave * => Wave*  |*/
+        /*|  int => int  |*/
+        /*|  int => int  |*/
+        /*|  int => int  |*/
         Raylib.WaveFormat(wave, sampleRate, sampleSize, channels);
     }
 
@@ -210,6 +241,7 @@ public unsafe partial class RaylibS
     /// </summary>
     public Wave WaveCopy(Wave wave)
     {
+        /*|  Wave => Wave  |*/
         return Raylib.WaveCopy(wave);
     }
 
@@ -218,6 +250,9 @@ public unsafe partial class RaylibS
     /// </summary>
     public void WaveCrop(Wave* wave, int initSample, int finalSample)
     {
+        /*|  Wave * => Wave*  |*/
+        /*|  int => int  |*/
+        /*|  int => int  |*/
         Raylib.WaveCrop(wave, initSample, finalSample);
     }
 
@@ -226,6 +261,7 @@ public unsafe partial class RaylibS
     /// </summary>
     public float[] LoadWaveSamples(Wave wave)
     {
+        /*|  Wave => Wave  |*/
         return Helpers.PrtToArray(Raylib.LoadWaveSamples(wave));
     }
 
@@ -234,6 +270,7 @@ public unsafe partial class RaylibS
     /// </summary>
     public void UnloadWaveSamples(float* samples)
     {
+        /*|  float * => float*  |*/
         Raylib.UnloadWaveSamples(samples);
     }
 
@@ -242,8 +279,9 @@ public unsafe partial class RaylibS
     /// </summary>
     public Music LoadMusicStream(string fileName)
     {
-        using var fileName_ = fileName.MarshalUtf8();
-        return Raylib.LoadMusicStream(fileName_.AsPtr());
+        /*|  const char * => string  |*/
+        using var fileNameLocal = fileName.MarshalUtf8();
+        return Raylib.LoadMusicStream(fileNameLocal.AsPtr());
     }
 
     /// <summary>
@@ -251,8 +289,12 @@ public unsafe partial class RaylibS
     /// </summary>
     public Music LoadMusicStreamFromMemory(string fileType, byte[] data, int dataSize)
     {
-        using var fileType_ = fileType.MarshalUtf8();
-        return Raylib.LoadMusicStreamFromMemory(fileType_.AsPtr(), data, dataSize);
+        /*|  const char * => string  |*/
+        using var fileTypeLocal = fileType.MarshalUtf8();
+        /*|  unsigned char * => byte[]  |*/
+        var dataLocal = Helpers.ArrayToPtr(data);
+        /*|  int => int  |*/
+        return Raylib.LoadMusicStreamFromMemory(fileTypeLocal.AsPtr(), dataLocal, dataSize);
     }
 
     /// <summary>
@@ -260,6 +302,7 @@ public unsafe partial class RaylibS
     /// </summary>
     public void UnloadMusicStream(Music music)
     {
+        /*|  Music => Music  |*/
         Raylib.UnloadMusicStream(music);
     }
 
@@ -268,6 +311,7 @@ public unsafe partial class RaylibS
     /// </summary>
     public void PlayMusicStream(Music music)
     {
+        /*|  Music => Music  |*/
         Raylib.PlayMusicStream(music);
     }
 
@@ -276,6 +320,7 @@ public unsafe partial class RaylibS
     /// </summary>
     public bool IsMusicStreamPlaying(Music music)
     {
+        /*|  Music => Music  |*/
         return Raylib.IsMusicStreamPlaying(music);
     }
 
@@ -284,6 +329,7 @@ public unsafe partial class RaylibS
     /// </summary>
     public void UpdateMusicStream(Music music)
     {
+        /*|  Music => Music  |*/
         Raylib.UpdateMusicStream(music);
     }
 
@@ -292,6 +338,7 @@ public unsafe partial class RaylibS
     /// </summary>
     public void StopMusicStream(Music music)
     {
+        /*|  Music => Music  |*/
         Raylib.StopMusicStream(music);
     }
 
@@ -300,6 +347,7 @@ public unsafe partial class RaylibS
     /// </summary>
     public void PauseMusicStream(Music music)
     {
+        /*|  Music => Music  |*/
         Raylib.PauseMusicStream(music);
     }
 
@@ -308,6 +356,7 @@ public unsafe partial class RaylibS
     /// </summary>
     public void ResumeMusicStream(Music music)
     {
+        /*|  Music => Music  |*/
         Raylib.ResumeMusicStream(music);
     }
 
@@ -316,6 +365,8 @@ public unsafe partial class RaylibS
     /// </summary>
     public void SeekMusicStream(Music music, float position)
     {
+        /*|  Music => Music  |*/
+        /*|  float => float  |*/
         Raylib.SeekMusicStream(music, position);
     }
 
@@ -324,6 +375,8 @@ public unsafe partial class RaylibS
     /// </summary>
     public void SetMusicVolume(Music music, float volume)
     {
+        /*|  Music => Music  |*/
+        /*|  float => float  |*/
         Raylib.SetMusicVolume(music, volume);
     }
 
@@ -332,6 +385,8 @@ public unsafe partial class RaylibS
     /// </summary>
     public void SetMusicPitch(Music music, float pitch)
     {
+        /*|  Music => Music  |*/
+        /*|  float => float  |*/
         Raylib.SetMusicPitch(music, pitch);
     }
 
@@ -340,6 +395,7 @@ public unsafe partial class RaylibS
     /// </summary>
     public float GetMusicTimeLength(Music music)
     {
+        /*|  Music => Music  |*/
         return Raylib.GetMusicTimeLength(music);
     }
 
@@ -348,6 +404,7 @@ public unsafe partial class RaylibS
     /// </summary>
     public float GetMusicTimePlayed(Music music)
     {
+        /*|  Music => Music  |*/
         return Raylib.GetMusicTimePlayed(music);
     }
 
@@ -356,6 +413,9 @@ public unsafe partial class RaylibS
     /// </summary>
     public AudioStream LoadAudioStream(uint sampleRate, uint sampleSize, uint channels)
     {
+        /*|  unsigned int => uint  |*/
+        /*|  unsigned int => uint  |*/
+        /*|  unsigned int => uint  |*/
         return Raylib.LoadAudioStream(sampleRate, sampleSize, channels);
     }
 
@@ -364,6 +424,7 @@ public unsafe partial class RaylibS
     /// </summary>
     public void UnloadAudioStream(AudioStream stream)
     {
+        /*|  AudioStream => AudioStream  |*/
         Raylib.UnloadAudioStream(stream);
     }
 
@@ -372,8 +433,11 @@ public unsafe partial class RaylibS
     /// </summary>
     public void UpdateAudioStream(AudioStream stream, IntPtr data, int frameCount)
     {
-        var data_ = (void*)data;
-        Raylib.UpdateAudioStream(stream, data_, frameCount);
+        /*|  AudioStream => AudioStream  |*/
+        /*|  const void * => IntPtr  |*/
+        var dataLocal = (void*)data;
+        /*|  int => int  |*/
+        Raylib.UpdateAudioStream(stream, dataLocal, frameCount);
     }
 
     /// <summary>
@@ -381,6 +445,7 @@ public unsafe partial class RaylibS
     /// </summary>
     public bool IsAudioStreamProcessed(AudioStream stream)
     {
+        /*|  AudioStream => AudioStream  |*/
         return Raylib.IsAudioStreamProcessed(stream);
     }
 
@@ -389,6 +454,7 @@ public unsafe partial class RaylibS
     /// </summary>
     public void PlayAudioStream(AudioStream stream)
     {
+        /*|  AudioStream => AudioStream  |*/
         Raylib.PlayAudioStream(stream);
     }
 
@@ -397,6 +463,7 @@ public unsafe partial class RaylibS
     /// </summary>
     public void PauseAudioStream(AudioStream stream)
     {
+        /*|  AudioStream => AudioStream  |*/
         Raylib.PauseAudioStream(stream);
     }
 
@@ -405,6 +472,7 @@ public unsafe partial class RaylibS
     /// </summary>
     public void ResumeAudioStream(AudioStream stream)
     {
+        /*|  AudioStream => AudioStream  |*/
         Raylib.ResumeAudioStream(stream);
     }
 
@@ -413,6 +481,7 @@ public unsafe partial class RaylibS
     /// </summary>
     public bool IsAudioStreamPlaying(AudioStream stream)
     {
+        /*|  AudioStream => AudioStream  |*/
         return Raylib.IsAudioStreamPlaying(stream);
     }
 
@@ -421,6 +490,7 @@ public unsafe partial class RaylibS
     /// </summary>
     public void StopAudioStream(AudioStream stream)
     {
+        /*|  AudioStream => AudioStream  |*/
         Raylib.StopAudioStream(stream);
     }
 
@@ -429,6 +499,8 @@ public unsafe partial class RaylibS
     /// </summary>
     public void SetAudioStreamVolume(AudioStream stream, float volume)
     {
+        /*|  AudioStream => AudioStream  |*/
+        /*|  float => float  |*/
         Raylib.SetAudioStreamVolume(stream, volume);
     }
 
@@ -437,6 +509,8 @@ public unsafe partial class RaylibS
     /// </summary>
     public void SetAudioStreamPitch(AudioStream stream, float pitch)
     {
+        /*|  AudioStream => AudioStream  |*/
+        /*|  float => float  |*/
         Raylib.SetAudioStreamPitch(stream, pitch);
     }
 
@@ -445,6 +519,7 @@ public unsafe partial class RaylibS
     /// </summary>
     public void SetAudioStreamBufferSizeDefault(int size)
     {
+        /*|  int => int  |*/
         Raylib.SetAudioStreamBufferSizeDefault(size);
     }
 

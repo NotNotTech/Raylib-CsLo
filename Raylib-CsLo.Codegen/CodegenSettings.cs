@@ -14,8 +14,9 @@ public static class CodegenSettings
     public static string OutputFolder { get; } = Path.GetFullPath("../Raylib-CsLo/autogen/wrappers/");
     public static string ApiJsonFile { get; } = Path.GetFullPath("../sub-modules/raylib/parser/raylib_api.json");
 
-    public const string Utf8ToString = "Helpers.Utf8ToString";
-    public const string PrtToArray = "Helpers.PrtToArray";
+    public const string Utf8ToStringFunction = "Helpers.Utf8ToString";
+    public const string PrtToArrayFunction = "Helpers.PrtToArray";
+    public const string ArrayToPtrFunction = "Helpers.ArrayToPtr";
 
     public static readonly string[] LastFunctionInModule =
     {

@@ -20,8 +20,9 @@ public unsafe partial class RaylibS
     /// </summary>
     public Font LoadFont(string fileName)
     {
-        using var fileName_ = fileName.MarshalUtf8();
-        return Raylib.LoadFont(fileName_.AsPtr());
+        /*|  const char * => string  |*/
+        using var fileNameLocal = fileName.MarshalUtf8();
+        return Raylib.LoadFont(fileNameLocal.AsPtr());
     }
 
     /// <summary>
@@ -29,8 +30,12 @@ public unsafe partial class RaylibS
     /// </summary>
     public Font LoadFontEx(string fileName, int fontSize, int* fontChars, int glyphCount)
     {
-        using var fileName_ = fileName.MarshalUtf8();
-        return Raylib.LoadFontEx(fileName_.AsPtr(), fontSize, fontChars, glyphCount);
+        /*|  const char * => string  |*/
+        using var fileNameLocal = fileName.MarshalUtf8();
+        /*|  int => int  |*/
+        /*|  int * => int*  |*/
+        /*|  int => int  |*/
+        return Raylib.LoadFontEx(fileNameLocal.AsPtr(), fontSize, fontChars, glyphCount);
     }
 
     /// <summary>
@@ -38,6 +43,9 @@ public unsafe partial class RaylibS
     /// </summary>
     public Font LoadFontFromImage(Image image, Color key, int firstChar)
     {
+        /*|  Image => Image  |*/
+        /*|  Color => Color  |*/
+        /*|  int => int  |*/
         return Raylib.LoadFontFromImage(image, key, firstChar);
     }
 
@@ -46,8 +54,15 @@ public unsafe partial class RaylibS
     /// </summary>
     public Font LoadFontFromMemory(string fileType, byte[] fileData, int dataSize, int fontSize, int* fontChars, int glyphCount)
     {
-        using var fileType_ = fileType.MarshalUtf8();
-        return Raylib.LoadFontFromMemory(fileType_.AsPtr(), fileData, dataSize, fontSize, fontChars, glyphCount);
+        /*|  const char * => string  |*/
+        using var fileTypeLocal = fileType.MarshalUtf8();
+        /*|  const unsigned char * => byte[]  |*/
+        var fileDataLocal = Helpers.ArrayToPtr(fileData);
+        /*|  int => int  |*/
+        /*|  int => int  |*/
+        /*|  int * => int*  |*/
+        /*|  int => int  |*/
+        return Raylib.LoadFontFromMemory(fileTypeLocal.AsPtr(), fileDataLocal, dataSize, fontSize, fontChars, glyphCount);
     }
 
     /// <summary>
@@ -55,7 +70,14 @@ public unsafe partial class RaylibS
     /// </summary>
     public GlyphInfo[] LoadFontData(byte[] fileData, int dataSize, int fontSize, int* fontChars, int glyphCount, int type)
     {
-        return (GlyphInfo[])Raylib.LoadFontData(fileData, dataSize, fontSize, fontChars, glyphCount, type);
+        /*|  const unsigned char * => byte[]  |*/
+        var fileDataLocal = Helpers.ArrayToPtr(fileData);
+        /*|  int => int  |*/
+        /*|  int => int  |*/
+        /*|  int * => int*  |*/
+        /*|  int => int  |*/
+        /*|  int => int  |*/
+        return Helpers.PrtToArray(Raylib.LoadFontData(fileDataLocal, dataSize, fontSize, fontChars, glyphCount, type));
     }
 
     /// <summary>
@@ -63,6 +85,12 @@ public unsafe partial class RaylibS
     /// </summary>
     public Image GenImageFontAtlas(GlyphInfo* chars, Rectangle[] recs, int glyphCount, int fontSize, int padding, int packMethod)
     {
+        /*|  const GlyphInfo * => GlyphInfo*  |*/
+        /*|  Rectangle ** => Rectangle[]  |*/
+        /*|  int => int  |*/
+        /*|  int => int  |*/
+        /*|  int => int  |*/
+        /*|  int => int  |*/
         return Raylib.GenImageFontAtlas(chars, recs, glyphCount, fontSize, padding, packMethod);
     }
 
@@ -71,6 +99,8 @@ public unsafe partial class RaylibS
     /// </summary>
     public void UnloadFontData(GlyphInfo* chars, int glyphCount)
     {
+        /*|  GlyphInfo * => GlyphInfo*  |*/
+        /*|  int => int  |*/
         Raylib.UnloadFontData(chars, glyphCount);
     }
 
@@ -79,6 +109,7 @@ public unsafe partial class RaylibS
     /// </summary>
     public void UnloadFont(Font font)
     {
+        /*|  Font => Font  |*/
         Raylib.UnloadFont(font);
     }
 
@@ -87,6 +118,8 @@ public unsafe partial class RaylibS
     /// </summary>
     public void DrawFPS(int posX, int posY)
     {
+        /*|  int => int  |*/
+        /*|  int => int  |*/
         Raylib.DrawFPS(posX, posY);
     }
 
@@ -95,8 +128,13 @@ public unsafe partial class RaylibS
     /// </summary>
     public void DrawText(string text, int posX, int posY, int fontSize, Color color)
     {
-        using var text_ = text.MarshalUtf8();
-        Raylib.DrawText(text_.AsPtr(), posX, posY, fontSize, color);
+        /*|  const char * => string  |*/
+        using var textLocal = text.MarshalUtf8();
+        /*|  int => int  |*/
+        /*|  int => int  |*/
+        /*|  int => int  |*/
+        /*|  Color => Color  |*/
+        Raylib.DrawText(textLocal.AsPtr(), posX, posY, fontSize, color);
     }
 
     /// <summary>
@@ -104,8 +142,14 @@ public unsafe partial class RaylibS
     /// </summary>
     public void DrawTextEx(Font font, string text, Vector2 position, float fontSize, float spacing, Color tint)
     {
-        using var text_ = text.MarshalUtf8();
-        Raylib.DrawTextEx(font, text_.AsPtr(), position, fontSize, spacing, tint);
+        /*|  Font => Font  |*/
+        /*|  const char * => string  |*/
+        using var textLocal = text.MarshalUtf8();
+        /*|  Vector2 => Vector2  |*/
+        /*|  float => float  |*/
+        /*|  float => float  |*/
+        /*|  Color => Color  |*/
+        Raylib.DrawTextEx(font, textLocal.AsPtr(), position, fontSize, spacing, tint);
     }
 
     /// <summary>
@@ -113,8 +157,16 @@ public unsafe partial class RaylibS
     /// </summary>
     public void DrawTextPro(Font font, string text, Vector2 position, Vector2 origin, float rotation, float fontSize, float spacing, Color tint)
     {
-        using var text_ = text.MarshalUtf8();
-        Raylib.DrawTextPro(font, text_.AsPtr(), position, origin, rotation, fontSize, spacing, tint);
+        /*|  Font => Font  |*/
+        /*|  const char * => string  |*/
+        using var textLocal = text.MarshalUtf8();
+        /*|  Vector2 => Vector2  |*/
+        /*|  Vector2 => Vector2  |*/
+        /*|  float => float  |*/
+        /*|  float => float  |*/
+        /*|  float => float  |*/
+        /*|  Color => Color  |*/
+        Raylib.DrawTextPro(font, textLocal.AsPtr(), position, origin, rotation, fontSize, spacing, tint);
     }
 
     /// <summary>
@@ -122,6 +174,11 @@ public unsafe partial class RaylibS
     /// </summary>
     public void DrawTextCodepoint(Font font, int codepoint, Vector2 position, float fontSize, Color tint)
     {
+        /*|  Font => Font  |*/
+        /*|  int => int  |*/
+        /*|  Vector2 => Vector2  |*/
+        /*|  float => float  |*/
+        /*|  Color => Color  |*/
         Raylib.DrawTextCodepoint(font, codepoint, position, fontSize, tint);
     }
 
@@ -130,8 +187,10 @@ public unsafe partial class RaylibS
     /// </summary>
     public int MeasureText(string text, int fontSize)
     {
-        using var text_ = text.MarshalUtf8();
-        return Raylib.MeasureText(text_.AsPtr(), fontSize);
+        /*|  const char * => string  |*/
+        using var textLocal = text.MarshalUtf8();
+        /*|  int => int  |*/
+        return Raylib.MeasureText(textLocal.AsPtr(), fontSize);
     }
 
     /// <summary>
@@ -139,8 +198,12 @@ public unsafe partial class RaylibS
     /// </summary>
     public Vector2 MeasureTextEx(Font font, string text, float fontSize, float spacing)
     {
-        using var text_ = text.MarshalUtf8();
-        return Raylib.MeasureTextEx(font, text_.AsPtr(), fontSize, spacing);
+        /*|  Font => Font  |*/
+        /*|  const char * => string  |*/
+        using var textLocal = text.MarshalUtf8();
+        /*|  float => float  |*/
+        /*|  float => float  |*/
+        return Raylib.MeasureTextEx(font, textLocal.AsPtr(), fontSize, spacing);
     }
 
     /// <summary>
@@ -148,6 +211,8 @@ public unsafe partial class RaylibS
     /// </summary>
     public int GetGlyphIndex(Font font, int codepoint)
     {
+        /*|  Font => Font  |*/
+        /*|  int => int  |*/
         return Raylib.GetGlyphIndex(font, codepoint);
     }
 
@@ -156,6 +221,8 @@ public unsafe partial class RaylibS
     /// </summary>
     public GlyphInfo GetGlyphInfo(Font font, int codepoint)
     {
+        /*|  Font => Font  |*/
+        /*|  int => int  |*/
         return Raylib.GetGlyphInfo(font, codepoint);
     }
 
@@ -164,6 +231,8 @@ public unsafe partial class RaylibS
     /// </summary>
     public Rectangle GetGlyphAtlasRec(Font font, int codepoint)
     {
+        /*|  Font => Font  |*/
+        /*|  int => int  |*/
         return Raylib.GetGlyphAtlasRec(font, codepoint);
     }
 
@@ -172,8 +241,10 @@ public unsafe partial class RaylibS
     /// </summary>
     public int[] LoadCodepoints(string text, int* count)
     {
-        using var text_ = text.MarshalUtf8();
-        return (int[])Raylib.LoadCodepoints(text_.AsPtr(), count);
+        /*|  const char * => string  |*/
+        using var textLocal = text.MarshalUtf8();
+        /*|  int * => int*  |*/
+        return Helpers.PrtToArray(Raylib.LoadCodepoints(textLocal.AsPtr(), count));
     }
 
     /// <summary>
@@ -181,6 +252,7 @@ public unsafe partial class RaylibS
     /// </summary>
     public void UnloadCodepoints(int* codepoints)
     {
+        /*|  int * => int*  |*/
         Raylib.UnloadCodepoints(codepoints);
     }
 
@@ -189,8 +261,9 @@ public unsafe partial class RaylibS
     /// </summary>
     public int GetCodepointCount(string text)
     {
-        using var text_ = text.MarshalUtf8();
-        return Raylib.GetCodepointCount(text_.AsPtr());
+        /*|  const char * => string  |*/
+        using var textLocal = text.MarshalUtf8();
+        return Raylib.GetCodepointCount(textLocal.AsPtr());
     }
 
     /// <summary>
@@ -198,8 +271,10 @@ public unsafe partial class RaylibS
     /// </summary>
     public int GetCodepoint(string text, int* bytesProcessed)
     {
-        using var text_ = text.MarshalUtf8();
-        return Raylib.GetCodepoint(text_.AsPtr(), bytesProcessed);
+        /*|  const char * => string  |*/
+        using var textLocal = text.MarshalUtf8();
+        /*|  int * => int*  |*/
+        return Raylib.GetCodepoint(textLocal.AsPtr(), bytesProcessed);
     }
 
     /// <summary>
@@ -207,6 +282,8 @@ public unsafe partial class RaylibS
     /// </summary>
     public string CodepointToUTF8(int codepoint, int* byteSize)
     {
+        /*|  int => int  |*/
+        /*|  int * => int*  |*/
         return Helpers.Utf8ToString(Raylib.CodepointToUTF8(codepoint, byteSize));
     }
 
@@ -215,6 +292,8 @@ public unsafe partial class RaylibS
     /// </summary>
     public string TextCodepointsToUTF8(int* codepoints, int length)
     {
+        /*|  int * => int*  |*/
+        /*|  int => int  |*/
         return (string)Raylib.TextCodepointsToUTF8(codepoints, length);
     }
 
@@ -223,9 +302,11 @@ public unsafe partial class RaylibS
     /// </summary>
     public int TextCopy(string dst, string src)
     {
-        using var dst_ = dst.MarshalUtf8();
-        using var src_ = src.MarshalUtf8();
-        return Raylib.TextCopy(dst_.AsPtr(), src_.AsPtr());
+        /*|  char * => string  |*/
+        using var dstLocal = dst.MarshalUtf8();
+        /*|  const char * => string  |*/
+        using var srcLocal = src.MarshalUtf8();
+        return Raylib.TextCopy(dstLocal.AsPtr(), srcLocal.AsPtr());
     }
 
     /// <summary>
@@ -233,9 +314,11 @@ public unsafe partial class RaylibS
     /// </summary>
     public bool TextIsEqual(string text1, string text2)
     {
-        using var text1_ = text1.MarshalUtf8();
-        using var text2_ = text2.MarshalUtf8();
-        return Raylib.TextIsEqual(text1_.AsPtr(), text2_.AsPtr());
+        /*|  const char * => string  |*/
+        using var text1Local = text1.MarshalUtf8();
+        /*|  const char * => string  |*/
+        using var text2Local = text2.MarshalUtf8();
+        return Raylib.TextIsEqual(text1Local.AsPtr(), text2Local.AsPtr());
     }
 
     /// <summary>
@@ -243,8 +326,9 @@ public unsafe partial class RaylibS
     /// </summary>
     public uint TextLength(string text)
     {
-        using var text_ = text.MarshalUtf8();
-        return (uint)Raylib.TextLength(text_.AsPtr());
+        /*|  const char * => string  |*/
+        using var textLocal = text.MarshalUtf8();
+        return (uint)Raylib.TextLength(textLocal.AsPtr());
     }
 
     /// <summary>
@@ -252,8 +336,10 @@ public unsafe partial class RaylibS
     /// </summary>
     public string TextFormat(string text, params object[] args)
     {
-        using var text_ = text.MarshalUtf8();
-        return Helpers.Utf8ToString(Raylib.TextFormat(text_.AsPtr(), args));
+        /*|  const char * => string  |*/
+        using var textLocal = text.MarshalUtf8();
+        /*|  params object[] => params object[]  |*/
+        return Helpers.Utf8ToString(Raylib.TextFormat(textLocal.AsPtr(), args));
     }
 
     /// <summary>
@@ -261,8 +347,11 @@ public unsafe partial class RaylibS
     /// </summary>
     public string TextSubtext(string text, int position, int length)
     {
-        using var text_ = text.MarshalUtf8();
-        return Helpers.Utf8ToString(Raylib.TextSubtext(text_.AsPtr(), position, length));
+        /*|  const char * => string  |*/
+        using var textLocal = text.MarshalUtf8();
+        /*|  int => int  |*/
+        /*|  int => int  |*/
+        return Helpers.Utf8ToString(Raylib.TextSubtext(textLocal.AsPtr(), position, length));
     }
 
     /// <summary>
@@ -270,10 +359,13 @@ public unsafe partial class RaylibS
     /// </summary>
     public string TextReplace(string text, string replace, string by)
     {
-        using var text_ = text.MarshalUtf8();
-        using var replace_ = replace.MarshalUtf8();
-        using var by_ = by.MarshalUtf8();
-        return (string)Raylib.TextReplace(text_.AsPtr(), replace_.AsPtr(), by_.AsPtr());
+        /*|  char * => string  |*/
+        using var textLocal = text.MarshalUtf8();
+        /*|  const char * => string  |*/
+        using var replaceLocal = replace.MarshalUtf8();
+        /*|  const char * => string  |*/
+        using var byLocal = by.MarshalUtf8();
+        return (string)Raylib.TextReplace(textLocal.AsPtr(), replaceLocal.AsPtr(), byLocal.AsPtr());
     }
 
     /// <summary>
@@ -281,9 +373,12 @@ public unsafe partial class RaylibS
     /// </summary>
     public string TextInsert(string text, string insert, int position)
     {
-        using var text_ = text.MarshalUtf8();
-        using var insert_ = insert.MarshalUtf8();
-        return (string)Raylib.TextInsert(text_.AsPtr(), insert_.AsPtr(), position);
+        /*|  const char * => string  |*/
+        using var textLocal = text.MarshalUtf8();
+        /*|  const char * => string  |*/
+        using var insertLocal = insert.MarshalUtf8();
+        /*|  int => int  |*/
+        return (string)Raylib.TextInsert(textLocal.AsPtr(), insertLocal.AsPtr(), position);
     }
 
     /// <summary>
@@ -291,8 +386,11 @@ public unsafe partial class RaylibS
     /// </summary>
     public string TextJoin(string[] textList, int count, string delimiter)
     {
-        using var delimiter_ = delimiter.MarshalUtf8();
-        return Helpers.Utf8ToString(Raylib.TextJoin(textList, count, delimiter_.AsPtr()));
+        /*|  const char ** => string[]  |*/
+        /*|  int => int  |*/
+        /*|  const char * => string  |*/
+        using var delimiterLocal = delimiter.MarshalUtf8();
+        return Helpers.Utf8ToString(Raylib.TextJoin(textList, count, delimiterLocal.AsPtr()));
     }
 
     /// <summary>
@@ -300,8 +398,11 @@ public unsafe partial class RaylibS
     /// </summary>
     public string[] TextSplit(string text, char delimiter, int* count)
     {
-        using var text_ = text.MarshalUtf8();
-        return (string[])Raylib.TextSplit(text_.AsPtr(), delimiter, count);
+        /*|  const char * => string  |*/
+        using var textLocal = text.MarshalUtf8();
+        /*|  char => char  |*/
+        /*|  int * => int*  |*/
+        return Helpers.PrtToArray(Raylib.TextSplit(textLocal.AsPtr(), delimiter, count));
     }
 
     /// <summary>
@@ -309,9 +410,12 @@ public unsafe partial class RaylibS
     /// </summary>
     public void TextAppend(string text, string append, int* position)
     {
-        using var text_ = text.MarshalUtf8();
-        using var append_ = append.MarshalUtf8();
-        Raylib.TextAppend(text_.AsPtr(), append_.AsPtr(), position);
+        /*|  char * => string  |*/
+        using var textLocal = text.MarshalUtf8();
+        /*|  const char * => string  |*/
+        using var appendLocal = append.MarshalUtf8();
+        /*|  int * => int*  |*/
+        Raylib.TextAppend(textLocal.AsPtr(), appendLocal.AsPtr(), position);
     }
 
     /// <summary>
@@ -319,9 +423,11 @@ public unsafe partial class RaylibS
     /// </summary>
     public int TextFindIndex(string text, string find)
     {
-        using var text_ = text.MarshalUtf8();
-        using var find_ = find.MarshalUtf8();
-        return Raylib.TextFindIndex(text_.AsPtr(), find_.AsPtr());
+        /*|  const char * => string  |*/
+        using var textLocal = text.MarshalUtf8();
+        /*|  const char * => string  |*/
+        using var findLocal = find.MarshalUtf8();
+        return Raylib.TextFindIndex(textLocal.AsPtr(), findLocal.AsPtr());
     }
 
     /// <summary>
@@ -329,8 +435,9 @@ public unsafe partial class RaylibS
     /// </summary>
     public string TextToUpper(string text)
     {
-        using var text_ = text.MarshalUtf8();
-        return Helpers.Utf8ToString(Raylib.TextToUpper(text_.AsPtr()));
+        /*|  const char * => string  |*/
+        using var textLocal = text.MarshalUtf8();
+        return Helpers.Utf8ToString(Raylib.TextToUpper(textLocal.AsPtr()));
     }
 
     /// <summary>
@@ -338,8 +445,9 @@ public unsafe partial class RaylibS
     /// </summary>
     public string TextToLower(string text)
     {
-        using var text_ = text.MarshalUtf8();
-        return Helpers.Utf8ToString(Raylib.TextToLower(text_.AsPtr()));
+        /*|  const char * => string  |*/
+        using var textLocal = text.MarshalUtf8();
+        return Helpers.Utf8ToString(Raylib.TextToLower(textLocal.AsPtr()));
     }
 
     /// <summary>
@@ -347,8 +455,9 @@ public unsafe partial class RaylibS
     /// </summary>
     public string TextToPascal(string text)
     {
-        using var text_ = text.MarshalUtf8();
-        return Helpers.Utf8ToString(Raylib.TextToPascal(text_.AsPtr()));
+        /*|  const char * => string  |*/
+        using var textLocal = text.MarshalUtf8();
+        return Helpers.Utf8ToString(Raylib.TextToPascal(textLocal.AsPtr()));
     }
 
     /// <summary>
@@ -356,8 +465,9 @@ public unsafe partial class RaylibS
     /// </summary>
     public int TextToInteger(string text)
     {
-        using var text_ = text.MarshalUtf8();
-        return Raylib.TextToInteger(text_.AsPtr());
+        /*|  const char * => string  |*/
+        using var textLocal = text.MarshalUtf8();
+        return Raylib.TextToInteger(textLocal.AsPtr());
     }
 
 }

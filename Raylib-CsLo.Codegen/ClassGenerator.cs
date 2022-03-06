@@ -49,7 +49,7 @@ public class ClassGenerator
 
         string parameters = GenParameterDefinitions(func);
 
-        Line($"public {func.CsReturnType} {func.Name}({parameters})");
+        Line($"public {func.ReturnTypeCs} {func.Name}({parameters})");
         StartBlock();
         {
             GenFunctionContents(func);
@@ -65,11 +65,11 @@ public class ClassGenerator
         int index = 0;
         if (func.ParametersC != null)
         {
-            foreach ((string name, string type) in func.CsParameters)
+            foreach ((string name, string type) in func.ParametersCs)
             {
                 parameters += $"{type} {name}";
 
-                if (index < func.CsParameters.Count - 1)
+                if (index < func.ParametersCs.Count - 1)
                 {
                     parameters += ", ";
                 }
@@ -108,14 +108,14 @@ public class ClassGenerator
         string parameters = "";
 
         int index = 0;
-        if (func.CsParameters != null)
+        if (func.ParametersCs != null)
         {
-            foreach ((string name, string type) in func.CsParameters)
+            foreach ((string name, string type) in func.ParametersCs)
             {
-                string nativeParameterName = HandleParameter(type, name);
-                parameters += $"{nativeParameterName}";
+                string parameterVariableName = HandleParameter(name, type, func.ParametersC[name]);
+                parameters += HandleNativeCallParameter(parameterVariableName);
 
-                if (index < func.CsParameters.Count - 1)
+                if (index < func.ParametersCs.Count - 1)
                 {
                     parameters += ", ";
                 }
@@ -127,30 +127,45 @@ public class ClassGenerator
         return parameters;
     }
 
+    // Raylib.*(Theses, Params, Here);
+    static string HandleNativeCallParameter(string nativeParameterName)
+    {
+
+        return $"{nativeParameterName}";
+    }
+
     static string CastReturn(RaylibFunction func)
     {
         string returnStatement = "";
-        if (func.CsReturnType != func.ReturnTypeC)
+        if (func.ReturnTypeCs != func.ReturnTypeC)
         {
-            returnStatement += $"({func.CsReturnType})";
+            returnStatement += $"({func.ReturnTypeCs})";
         }
 
         return returnStatement;
     }
 
-    string HandleParameter(string type, string name)
+    string HandleParameter(string parameterName, string typeCs, string typeC)
     {
-        switch (type)
+        const string localVariableSuffix = "Local";
+        Debug($"{typeC} => {typeCs}");
+        switch (typeCs)
         {
             case "string":
-                Line($"using var {name + "_"} = {name}.MarshalUtf8();");
-                name += "_";
-                name += ".AsPtr()";
+                Line($"using var {parameterName + localVariableSuffix} = {parameterName}.MarshalUtf8();");
+                parameterName += localVariableSuffix;
+                parameterName += ".AsPtr()";
                 break;
 
             case "IntPtr":
-                Line($"var {name + "_"} = (void*){name};");
-                name += "_";
+                Line($"var {parameterName + localVariableSuffix} = (void*){parameterName};");
+                parameterName += localVariableSuffix;
+                break;
+
+            case "byte[]":
+                string func = Call(CodegenSettings.ArrayToPtrFunction, parameterName);
+                Line($"var {parameterName + localVariableSuffix} = {func};");
+                parameterName += localVariableSuffix;
                 break;
 
 
@@ -158,7 +173,7 @@ public class ClassGenerator
                 // Console.WriteLine($"Unhandled Parameter: {type} {name}");
                 break;
         }
-        return name;
+        return parameterName;
     }
 
     /*TODO
@@ -171,20 +186,18 @@ public class ClassGenerator
     {
         string nativeCall = $"Raylib.{func.Name}({paramaters})";
 
-        switch (func.CsReturnType)
+        if (func.ReturnTypeCs == "string" && func.ReturnTypeC == "const char *")
         {
-            case string t when t == "string" && func.ReturnTypeC == "const char *":
-                returnStatement += Call(CodegenSettings.Utf8ToString, nativeCall);
-                break;
-
-            case string t when t == "float[]" && func.ReturnTypeC == "float *":
-                returnStatement += Call(CodegenSettings.PrtToArray, nativeCall);
-                break;
-
-            default:
-                returnStatement += CastReturn(func);
-                returnStatement += nativeCall;
-                break;
+            returnStatement += Call(CodegenSettings.Utf8ToStringFunction, nativeCall);
+        }
+        else if (func.ReturnTypeCs.EndsWith("[]") && func.ReturnTypeC.EndsWith("*"))
+        {
+            returnStatement += Call(CodegenSettings.PrtToArrayFunction, nativeCall);
+        }
+        else
+        {
+            returnStatement += CastReturn(func);
+            returnStatement += nativeCall;
         }
 
         returnStatement += ";";
@@ -231,6 +244,11 @@ public class ClassGenerator
     void Blank()
     {
         fileContents.AppendLine();
+    }
+
+    void Debug(string v)
+    {
+        Line($"/*|  {v}  |*/");
     }
 
     public void Output()

@@ -16,6 +16,6 @@ public class RaylibFunction
     [JsonPropertyName("returnType")] public string ReturnTypeC { get; set; }
     [JsonPropertyName("params")] public Dictionary<string, string> ParametersC { get; set; }
 
-    public string CsReturnType { get; set; }
-    public Dictionary<string, string> CsParameters { get; set; }
+    public string ReturnTypeCs { get; set; }
+    public Dictionary<string, string> ParametersCs { get; set; }
 }

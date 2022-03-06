@@ -12,8 +12,11 @@ public unsafe partial class RaylibS
     /// </summary>
     public void InitWindow(int width, int height, string title)
     {
-        using var title_ = title.MarshalUtf8();
-        Raylib.InitWindow(width, height, title_.AsPtr());
+        /*|  int => int  |*/
+        /*|  int => int  |*/
+        /*|  const char * => string  |*/
+        using var titleLocal = title.MarshalUtf8();
+        Raylib.InitWindow(width, height, titleLocal.AsPtr());
     }
 
     /// <summary>
@@ -93,6 +96,7 @@ public unsafe partial class RaylibS
     /// </summary>
     public bool IsWindowState(uint flag)
     {
+        /*|  unsigned int => uint  |*/
         return Raylib.IsWindowState(flag);
     }
 
@@ -101,6 +105,7 @@ public unsafe partial class RaylibS
     /// </summary>
     public void SetWindowState(uint flags)
     {
+        /*|  unsigned int => uint  |*/
         Raylib.SetWindowState(flags);
     }
 
@@ -109,6 +114,7 @@ public unsafe partial class RaylibS
     /// </summary>
     public void ClearWindowState(uint flags)
     {
+        /*|  unsigned int => uint  |*/
         Raylib.ClearWindowState(flags);
     }
 
@@ -149,6 +155,7 @@ public unsafe partial class RaylibS
     /// </summary>
     public void SetWindowIcon(Image image)
     {
+        /*|  Image => Image  |*/
         Raylib.SetWindowIcon(image);
     }
 
@@ -157,8 +164,9 @@ public unsafe partial class RaylibS
     /// </summary>
     public void SetWindowTitle(string title)
     {
-        using var title_ = title.MarshalUtf8();
-        Raylib.SetWindowTitle(title_.AsPtr());
+        /*|  const char * => string  |*/
+        using var titleLocal = title.MarshalUtf8();
+        Raylib.SetWindowTitle(titleLocal.AsPtr());
     }
 
     /// <summary>
@@ -166,6 +174,8 @@ public unsafe partial class RaylibS
     /// </summary>
     public void SetWindowPosition(int x, int y)
     {
+        /*|  int => int  |*/
+        /*|  int => int  |*/
         Raylib.SetWindowPosition(x, y);
     }
 
@@ -174,6 +184,7 @@ public unsafe partial class RaylibS
     /// </summary>
     public void SetWindowMonitor(int monitor)
     {
+        /*|  int => int  |*/
         Raylib.SetWindowMonitor(monitor);
     }
 
@@ -182,6 +193,8 @@ public unsafe partial class RaylibS
     /// </summary>
     public void SetWindowMinSize(int width, int height)
     {
+        /*|  int => int  |*/
+        /*|  int => int  |*/
         Raylib.SetWindowMinSize(width, height);
     }
 
@@ -190,6 +203,8 @@ public unsafe partial class RaylibS
     /// </summary>
     public void SetWindowSize(int width, int height)
     {
+        /*|  int => int  |*/
+        /*|  int => int  |*/
         Raylib.SetWindowSize(width, height);
     }
 
@@ -238,6 +253,7 @@ public unsafe partial class RaylibS
     /// </summary>
     public Vector2 GetMonitorPosition(int monitor)
     {
+        /*|  int => int  |*/
         return Raylib.GetMonitorPosition(monitor);
     }
 
@@ -246,6 +262,7 @@ public unsafe partial class RaylibS
     /// </summary>
     public int GetMonitorWidth(int monitor)
     {
+        /*|  int => int  |*/
         return Raylib.GetMonitorWidth(monitor);
     }
 
@@ -254,6 +271,7 @@ public unsafe partial class RaylibS
     /// </summary>
     public int GetMonitorHeight(int monitor)
     {
+        /*|  int => int  |*/
         return Raylib.GetMonitorHeight(monitor);
     }
 
@@ -262,6 +280,7 @@ public unsafe partial class RaylibS
     /// </summary>
     public int GetMonitorPhysicalWidth(int monitor)
     {
+        /*|  int => int  |*/
         return Raylib.GetMonitorPhysicalWidth(monitor);
     }
 
@@ -270,6 +289,7 @@ public unsafe partial class RaylibS
     /// </summary>
     public int GetMonitorPhysicalHeight(int monitor)
     {
+        /*|  int => int  |*/
         return Raylib.GetMonitorPhysicalHeight(monitor);
     }
 
@@ -278,6 +298,7 @@ public unsafe partial class RaylibS
     /// </summary>
     public int GetMonitorRefreshRate(int monitor)
     {
+        /*|  int => int  |*/
         return Raylib.GetMonitorRefreshRate(monitor);
     }
 
@@ -302,6 +323,7 @@ public unsafe partial class RaylibS
     /// </summary>
     public string GetMonitorName(int monitor)
     {
+        /*|  int => int  |*/
         return Helpers.Utf8ToString(Raylib.GetMonitorName(monitor));
     }
 
@@ -310,8 +332,9 @@ public unsafe partial class RaylibS
     /// </summary>
     public void SetClipboardText(string text)
     {
-        using var text_ = text.MarshalUtf8();
-        Raylib.SetClipboardText(text_.AsPtr());
+        /*|  const char * => string  |*/
+        using var textLocal = text.MarshalUtf8();
+        Raylib.SetClipboardText(textLocal.AsPtr());
     }
 
     /// <summary>
@@ -343,6 +366,7 @@ public unsafe partial class RaylibS
     /// </summary>
     public void WaitTime(float ms)
     {
+        /*|  float => float  |*/
         Raylib.WaitTime(ms);
     }
 
@@ -399,6 +423,7 @@ public unsafe partial class RaylibS
     /// </summary>
     public void ClearBackground(Color color)
     {
+        /*|  Color => Color  |*/
         Raylib.ClearBackground(color);
     }
 
@@ -423,6 +448,7 @@ public unsafe partial class RaylibS
     /// </summary>
     public void BeginMode2D(Camera2D camera)
     {
+        /*|  Camera2D => Camera2D  |*/
         Raylib.BeginMode2D(camera);
     }
 
@@ -439,6 +465,7 @@ public unsafe partial class RaylibS
     /// </summary>
     public void BeginMode3D(Camera3D camera)
     {
+        /*|  Camera3D => Camera3D  |*/
         Raylib.BeginMode3D(camera);
     }
 
@@ -455,6 +482,7 @@ public unsafe partial class RaylibS
     /// </summary>
     public void BeginTextureMode(RenderTexture2D target)
     {
+        /*|  RenderTexture2D => RenderTexture2D  |*/
         Raylib.BeginTextureMode(target);
     }
 
@@ -471,6 +499,7 @@ public unsafe partial class RaylibS
     /// </summary>
     public void BeginShaderMode(Shader shader)
     {
+        /*|  Shader => Shader  |*/
         Raylib.BeginShaderMode(shader);
     }
 
@@ -487,6 +516,7 @@ public unsafe partial class RaylibS
     /// </summary>
     public void BeginBlendMode(int mode)
     {
+        /*|  int => int  |*/
         Raylib.BeginBlendMode(mode);
     }
 
@@ -503,6 +533,10 @@ public unsafe partial class RaylibS
     /// </summary>
     public void BeginScissorMode(int x, int y, int width, int height)
     {
+        /*|  int => int  |*/
+        /*|  int => int  |*/
+        /*|  int => int  |*/
+        /*|  int => int  |*/
         Raylib.BeginScissorMode(x, y, width, height);
     }
 
@@ -519,6 +553,7 @@ public unsafe partial class RaylibS
     /// </summary>
     public void BeginVrStereoMode(VrStereoConfig config)
     {
+        /*|  VrStereoConfig => VrStereoConfig  |*/
         Raylib.BeginVrStereoMode(config);
     }
 
@@ -535,6 +570,7 @@ public unsafe partial class RaylibS
     /// </summary>
     public VrStereoConfig LoadVrStereoConfig(VrDeviceInfo device)
     {
+        /*|  VrDeviceInfo => VrDeviceInfo  |*/
         return Raylib.LoadVrStereoConfig(device);
     }
 
@@ -543,6 +579,7 @@ public unsafe partial class RaylibS
     /// </summary>
     public void UnloadVrStereoConfig(VrStereoConfig config)
     {
+        /*|  VrStereoConfig => VrStereoConfig  |*/
         Raylib.UnloadVrStereoConfig(config);
     }
 
@@ -551,9 +588,11 @@ public unsafe partial class RaylibS
     /// </summary>
     public Shader LoadShader(string vsFileName, string fsFileName)
     {
-        using var vsFileName_ = vsFileName.MarshalUtf8();
-        using var fsFileName_ = fsFileName.MarshalUtf8();
-        return Raylib.LoadShader(vsFileName_.AsPtr(), fsFileName_.AsPtr());
+        /*|  const char * => string  |*/
+        using var vsFileNameLocal = vsFileName.MarshalUtf8();
+        /*|  const char * => string  |*/
+        using var fsFileNameLocal = fsFileName.MarshalUtf8();
+        return Raylib.LoadShader(vsFileNameLocal.AsPtr(), fsFileNameLocal.AsPtr());
     }
 
     /// <summary>
@@ -561,9 +600,11 @@ public unsafe partial class RaylibS
     /// </summary>
     public Shader LoadShaderFromMemory(string vsCode, string fsCode)
     {
-        using var vsCode_ = vsCode.MarshalUtf8();
-        using var fsCode_ = fsCode.MarshalUtf8();
-        return Raylib.LoadShaderFromMemory(vsCode_.AsPtr(), fsCode_.AsPtr());
+        /*|  const char * => string  |*/
+        using var vsCodeLocal = vsCode.MarshalUtf8();
+        /*|  const char * => string  |*/
+        using var fsCodeLocal = fsCode.MarshalUtf8();
+        return Raylib.LoadShaderFromMemory(vsCodeLocal.AsPtr(), fsCodeLocal.AsPtr());
     }
 
     /// <summary>
@@ -571,8 +612,10 @@ public unsafe partial class RaylibS
     /// </summary>
     public int GetShaderLocation(Shader shader, string uniformName)
     {
-        using var uniformName_ = uniformName.MarshalUtf8();
-        return Raylib.GetShaderLocation(shader, uniformName_.AsPtr());
+        /*|  Shader => Shader  |*/
+        /*|  const char * => string  |*/
+        using var uniformNameLocal = uniformName.MarshalUtf8();
+        return Raylib.GetShaderLocation(shader, uniformNameLocal.AsPtr());
     }
 
     /// <summary>
@@ -580,8 +623,10 @@ public unsafe partial class RaylibS
     /// </summary>
     public int GetShaderLocationAttrib(Shader shader, string attribName)
     {
-        using var attribName_ = attribName.MarshalUtf8();
-        return Raylib.GetShaderLocationAttrib(shader, attribName_.AsPtr());
+        /*|  Shader => Shader  |*/
+        /*|  const char * => string  |*/
+        using var attribNameLocal = attribName.MarshalUtf8();
+        return Raylib.GetShaderLocationAttrib(shader, attribNameLocal.AsPtr());
     }
 
     /// <summary>
@@ -589,8 +634,12 @@ public unsafe partial class RaylibS
     /// </summary>
     public void SetShaderValue(Shader shader, int locIndex, IntPtr value, int uniformType)
     {
-        var value_ = (void*)value;
-        Raylib.SetShaderValue(shader, locIndex, value_, uniformType);
+        /*|  Shader => Shader  |*/
+        /*|  int => int  |*/
+        /*|  const void * => IntPtr  |*/
+        var valueLocal = (void*)value;
+        /*|  int => int  |*/
+        Raylib.SetShaderValue(shader, locIndex, valueLocal, uniformType);
     }
 
     /// <summary>
@@ -598,8 +647,13 @@ public unsafe partial class RaylibS
     /// </summary>
     public void SetShaderValueV(Shader shader, int locIndex, IntPtr value, int uniformType, int count)
     {
-        var value_ = (void*)value;
-        Raylib.SetShaderValueV(shader, locIndex, value_, uniformType, count);
+        /*|  Shader => Shader  |*/
+        /*|  int => int  |*/
+        /*|  const void * => IntPtr  |*/
+        var valueLocal = (void*)value;
+        /*|  int => int  |*/
+        /*|  int => int  |*/
+        Raylib.SetShaderValueV(shader, locIndex, valueLocal, uniformType, count);
     }
 
     /// <summary>
@@ -607,6 +661,9 @@ public unsafe partial class RaylibS
     /// </summary>
     public void SetShaderValueMatrix(Shader shader, int locIndex, Matrix mat)
     {
+        /*|  Shader => Shader  |*/
+        /*|  int => int  |*/
+        /*|  Matrix => Matrix  |*/
         Raylib.SetShaderValueMatrix(shader, locIndex, mat);
     }
 
@@ -615,6 +672,9 @@ public unsafe partial class RaylibS
     /// </summary>
     public void SetShaderValueTexture(Shader shader, int locIndex, Texture2D texture)
     {
+        /*|  Shader => Shader  |*/
+        /*|  int => int  |*/
+        /*|  Texture2D => Texture2D  |*/
         Raylib.SetShaderValueTexture(shader, locIndex, texture);
     }
 
@@ -623,6 +683,7 @@ public unsafe partial class RaylibS
     /// </summary>
     public void UnloadShader(Shader shader)
     {
+        /*|  Shader => Shader  |*/
         Raylib.UnloadShader(shader);
     }
 
@@ -631,6 +692,8 @@ public unsafe partial class RaylibS
     /// </summary>
     public Ray GetMouseRay(Vector2 mousePosition, Camera camera)
     {
+        /*|  Vector2 => Vector2  |*/
+        /*|  Camera => Camera  |*/
         return Raylib.GetMouseRay(mousePosition, camera);
     }
 
@@ -639,6 +702,7 @@ public unsafe partial class RaylibS
     /// </summary>
     public Matrix GetCameraMatrix(Camera camera)
     {
+        /*|  Camera => Camera  |*/
         return Raylib.GetCameraMatrix(camera);
     }
 
@@ -647,6 +711,7 @@ public unsafe partial class RaylibS
     /// </summary>
     public Matrix GetCameraMatrix2D(Camera2D camera)
     {
+        /*|  Camera2D => Camera2D  |*/
         return Raylib.GetCameraMatrix2D(camera);
     }
 
@@ -655,6 +720,8 @@ public unsafe partial class RaylibS
     /// </summary>
     public Vector2 GetWorldToScreen(Vector3 position, Camera camera)
     {
+        /*|  Vector3 => Vector3  |*/
+        /*|  Camera => Camera  |*/
         return Raylib.GetWorldToScreen(position, camera);
     }
 
@@ -663,6 +730,10 @@ public unsafe partial class RaylibS
     /// </summary>
     public Vector2 GetWorldToScreenEx(Vector3 position, Camera camera, int width, int height)
     {
+        /*|  Vector3 => Vector3  |*/
+        /*|  Camera => Camera  |*/
+        /*|  int => int  |*/
+        /*|  int => int  |*/
         return Raylib.GetWorldToScreenEx(position, camera, width, height);
     }
 
@@ -671,6 +742,8 @@ public unsafe partial class RaylibS
     /// </summary>
     public Vector2 GetWorldToScreen2D(Vector2 position, Camera2D camera)
     {
+        /*|  Vector2 => Vector2  |*/
+        /*|  Camera2D => Camera2D  |*/
         return Raylib.GetWorldToScreen2D(position, camera);
     }
 
@@ -679,6 +752,8 @@ public unsafe partial class RaylibS
     /// </summary>
     public Vector2 GetScreenToWorld2D(Vector2 position, Camera2D camera)
     {
+        /*|  Vector2 => Vector2  |*/
+        /*|  Camera2D => Camera2D  |*/
         return Raylib.GetScreenToWorld2D(position, camera);
     }
 
@@ -687,6 +762,7 @@ public unsafe partial class RaylibS
     /// </summary>
     public void SetTargetFPS(int fps)
     {
+        /*|  int => int  |*/
         Raylib.SetTargetFPS(fps);
     }
 
@@ -719,6 +795,8 @@ public unsafe partial class RaylibS
     /// </summary>
     public int GetRandomValue(int min, int max)
     {
+        /*|  int => int  |*/
+        /*|  int => int  |*/
         return Raylib.GetRandomValue(min, max);
     }
 
@@ -727,6 +805,7 @@ public unsafe partial class RaylibS
     /// </summary>
     public void SetRandomSeed(uint seed)
     {
+        /*|  unsigned int => uint  |*/
         Raylib.SetRandomSeed(seed);
     }
 
@@ -735,8 +814,9 @@ public unsafe partial class RaylibS
     /// </summary>
     public void TakeScreenshot(string fileName)
     {
-        using var fileName_ = fileName.MarshalUtf8();
-        Raylib.TakeScreenshot(fileName_.AsPtr());
+        /*|  const char * => string  |*/
+        using var fileNameLocal = fileName.MarshalUtf8();
+        Raylib.TakeScreenshot(fileNameLocal.AsPtr());
     }
 
     /// <summary>
@@ -744,6 +824,7 @@ public unsafe partial class RaylibS
     /// </summary>
     public void SetConfigFlags(uint flags)
     {
+        /*|  unsigned int => uint  |*/
         Raylib.SetConfigFlags(flags);
     }
 
@@ -752,6 +833,7 @@ public unsafe partial class RaylibS
     /// </summary>
     public void SetTraceLogLevel(int logLevel)
     {
+        /*|  int => int  |*/
         Raylib.SetTraceLogLevel(logLevel);
     }
 
@@ -760,6 +842,7 @@ public unsafe partial class RaylibS
     /// </summary>
     public IntPtr MemAlloc(int size)
     {
+        /*|  int => int  |*/
         return (IntPtr)Raylib.MemAlloc(size);
     }
 
@@ -768,8 +851,10 @@ public unsafe partial class RaylibS
     /// </summary>
     public IntPtr MemRealloc(IntPtr ptr, int size)
     {
-        var ptr_ = (void*)ptr;
-        return (IntPtr)Raylib.MemRealloc(ptr_, size);
+        /*|  void * => IntPtr  |*/
+        var ptrLocal = (void*)ptr;
+        /*|  int => int  |*/
+        return (IntPtr)Raylib.MemRealloc(ptrLocal, size);
     }
 
     /// <summary>
@@ -777,8 +862,9 @@ public unsafe partial class RaylibS
     /// </summary>
     public void MemFree(IntPtr ptr)
     {
-        var ptr_ = (void*)ptr;
-        Raylib.MemFree(ptr_);
+        /*|  void * => IntPtr  |*/
+        var ptrLocal = (void*)ptr;
+        Raylib.MemFree(ptrLocal);
     }
 
     /// <summary>
@@ -786,8 +872,10 @@ public unsafe partial class RaylibS
     /// </summary>
     public byte[] LoadFileData(string fileName, out uint bytesRead)
     {
-        using var fileName_ = fileName.MarshalUtf8();
-        return (byte[])Raylib.LoadFileData(fileName_.AsPtr(), bytesRead);
+        /*|  const char * => string  |*/
+        using var fileNameLocal = fileName.MarshalUtf8();
+        /*|  unsigned int * => out uint  |*/
+        return Helpers.PrtToArray(Raylib.LoadFileData(fileNameLocal.AsPtr(), bytesRead));
     }
 
     /// <summary>
@@ -795,7 +883,9 @@ public unsafe partial class RaylibS
     /// </summary>
     public void UnloadFileData(byte[] data)
     {
-        Raylib.UnloadFileData(data);
+        /*|  unsigned char * => byte[]  |*/
+        var dataLocal = Helpers.ArrayToPtr(data);
+        Raylib.UnloadFileData(dataLocal);
     }
 
     /// <summary>
@@ -803,9 +893,12 @@ public unsafe partial class RaylibS
     /// </summary>
     public bool SaveFileData(string fileName, IntPtr data, uint bytesToWrite)
     {
-        using var fileName_ = fileName.MarshalUtf8();
-        var data_ = (void*)data;
-        return Raylib.SaveFileData(fileName_.AsPtr(), data_, bytesToWrite);
+        /*|  const char * => string  |*/
+        using var fileNameLocal = fileName.MarshalUtf8();
+        /*|  void * => IntPtr  |*/
+        var dataLocal = (void*)data;
+        /*|  unsigned int => uint  |*/
+        return Raylib.SaveFileData(fileNameLocal.AsPtr(), dataLocal, bytesToWrite);
     }
 
     /// <summary>
@@ -813,8 +906,9 @@ public unsafe partial class RaylibS
     /// </summary>
     public string LoadFileText(string fileName)
     {
-        using var fileName_ = fileName.MarshalUtf8();
-        return (string)Raylib.LoadFileText(fileName_.AsPtr());
+        /*|  const char * => string  |*/
+        using var fileNameLocal = fileName.MarshalUtf8();
+        return (string)Raylib.LoadFileText(fileNameLocal.AsPtr());
     }
 
     /// <summary>
@@ -822,8 +916,9 @@ public unsafe partial class RaylibS
     /// </summary>
     public void UnloadFileText(string text)
     {
-        using var text_ = text.MarshalUtf8();
-        Raylib.UnloadFileText(text_.AsPtr());
+        /*|  char * => string  |*/
+        using var textLocal = text.MarshalUtf8();
+        Raylib.UnloadFileText(textLocal.AsPtr());
     }
 
     /// <summary>
@@ -831,9 +926,11 @@ public unsafe partial class RaylibS
     /// </summary>
     public bool SaveFileText(string fileName, string text)
     {
-        using var fileName_ = fileName.MarshalUtf8();
-        using var text_ = text.MarshalUtf8();
-        return Raylib.SaveFileText(fileName_.AsPtr(), text_.AsPtr());
+        /*|  const char * => string  |*/
+        using var fileNameLocal = fileName.MarshalUtf8();
+        /*|  char * => string  |*/
+        using var textLocal = text.MarshalUtf8();
+        return Raylib.SaveFileText(fileNameLocal.AsPtr(), textLocal.AsPtr());
     }
 
     /// <summary>
@@ -841,8 +938,9 @@ public unsafe partial class RaylibS
     /// </summary>
     public bool FileExists(string fileName)
     {
-        using var fileName_ = fileName.MarshalUtf8();
-        return Raylib.FileExists(fileName_.AsPtr());
+        /*|  const char * => string  |*/
+        using var fileNameLocal = fileName.MarshalUtf8();
+        return Raylib.FileExists(fileNameLocal.AsPtr());
     }
 
     /// <summary>
@@ -850,8 +948,9 @@ public unsafe partial class RaylibS
     /// </summary>
     public bool DirectoryExists(string dirPath)
     {
-        using var dirPath_ = dirPath.MarshalUtf8();
-        return Raylib.DirectoryExists(dirPath_.AsPtr());
+        /*|  const char * => string  |*/
+        using var dirPathLocal = dirPath.MarshalUtf8();
+        return Raylib.DirectoryExists(dirPathLocal.AsPtr());
     }
 
     /// <summary>
@@ -859,9 +958,11 @@ public unsafe partial class RaylibS
     /// </summary>
     public bool IsFileExtension(string fileName, string ext)
     {
-        using var fileName_ = fileName.MarshalUtf8();
-        using var ext_ = ext.MarshalUtf8();
-        return Raylib.IsFileExtension(fileName_.AsPtr(), ext_.AsPtr());
+        /*|  const char * => string  |*/
+        using var fileNameLocal = fileName.MarshalUtf8();
+        /*|  const char * => string  |*/
+        using var extLocal = ext.MarshalUtf8();
+        return Raylib.IsFileExtension(fileNameLocal.AsPtr(), extLocal.AsPtr());
     }
 
     /// <summary>
@@ -869,8 +970,9 @@ public unsafe partial class RaylibS
     /// </summary>
     public string GetFileExtension(string fileName)
     {
-        using var fileName_ = fileName.MarshalUtf8();
-        return Helpers.Utf8ToString(Raylib.GetFileExtension(fileName_.AsPtr()));
+        /*|  const char * => string  |*/
+        using var fileNameLocal = fileName.MarshalUtf8();
+        return Helpers.Utf8ToString(Raylib.GetFileExtension(fileNameLocal.AsPtr()));
     }
 
     /// <summary>
@@ -878,8 +980,9 @@ public unsafe partial class RaylibS
     /// </summary>
     public string GetFileName(string filePath)
     {
-        using var filePath_ = filePath.MarshalUtf8();
-        return Helpers.Utf8ToString(Raylib.GetFileName(filePath_.AsPtr()));
+        /*|  const char * => string  |*/
+        using var filePathLocal = filePath.MarshalUtf8();
+        return Helpers.Utf8ToString(Raylib.GetFileName(filePathLocal.AsPtr()));
     }
 
     /// <summary>
@@ -887,8 +990,9 @@ public unsafe partial class RaylibS
     /// </summary>
     public string GetFileNameWithoutExt(string filePath)
     {
-        using var filePath_ = filePath.MarshalUtf8();
-        return Helpers.Utf8ToString(Raylib.GetFileNameWithoutExt(filePath_.AsPtr()));
+        /*|  const char * => string  |*/
+        using var filePathLocal = filePath.MarshalUtf8();
+        return Helpers.Utf8ToString(Raylib.GetFileNameWithoutExt(filePathLocal.AsPtr()));
     }
 
     /// <summary>
@@ -896,8 +1000,9 @@ public unsafe partial class RaylibS
     /// </summary>
     public string GetDirectoryPath(string filePath)
     {
-        using var filePath_ = filePath.MarshalUtf8();
-        return Helpers.Utf8ToString(Raylib.GetDirectoryPath(filePath_.AsPtr()));
+        /*|  const char * => string  |*/
+        using var filePathLocal = filePath.MarshalUtf8();
+        return Helpers.Utf8ToString(Raylib.GetDirectoryPath(filePathLocal.AsPtr()));
     }
 
     /// <summary>
@@ -905,8 +1010,9 @@ public unsafe partial class RaylibS
     /// </summary>
     public string GetPrevDirectoryPath(string dirPath)
     {
-        using var dirPath_ = dirPath.MarshalUtf8();
-        return Helpers.Utf8ToString(Raylib.GetPrevDirectoryPath(dirPath_.AsPtr()));
+        /*|  const char * => string  |*/
+        using var dirPathLocal = dirPath.MarshalUtf8();
+        return Helpers.Utf8ToString(Raylib.GetPrevDirectoryPath(dirPathLocal.AsPtr()));
     }
 
     /// <summary>
@@ -922,8 +1028,10 @@ public unsafe partial class RaylibS
     /// </summary>
     public string[] GetDirectoryFiles(string dirPath, int* count)
     {
-        using var dirPath_ = dirPath.MarshalUtf8();
-        return (string[])Raylib.GetDirectoryFiles(dirPath_.AsPtr(), count);
+        /*|  const char * => string  |*/
+        using var dirPathLocal = dirPath.MarshalUtf8();
+        /*|  int * => int*  |*/
+        return Helpers.PrtToArray(Raylib.GetDirectoryFiles(dirPathLocal.AsPtr(), count));
     }
 
     /// <summary>
@@ -939,8 +1047,9 @@ public unsafe partial class RaylibS
     /// </summary>
     public bool ChangeDirectory(string dir)
     {
-        using var dir_ = dir.MarshalUtf8();
-        return Raylib.ChangeDirectory(dir_.AsPtr());
+        /*|  const char * => string  |*/
+        using var dirLocal = dir.MarshalUtf8();
+        return Raylib.ChangeDirectory(dirLocal.AsPtr());
     }
 
     /// <summary>
@@ -956,7 +1065,8 @@ public unsafe partial class RaylibS
     /// </summary>
     public string[] GetDroppedFiles(int* count)
     {
-        return (string[])Raylib.GetDroppedFiles(count);
+        /*|  int * => int*  |*/
+        return Helpers.PrtToArray(Raylib.GetDroppedFiles(count));
     }
 
     /// <summary>
@@ -972,8 +1082,9 @@ public unsafe partial class RaylibS
     /// </summary>
     public long GetFileModTime(string fileName)
     {
-        using var fileName_ = fileName.MarshalUtf8();
-        return Raylib.GetFileModTime(fileName_.AsPtr());
+        /*|  const char * => string  |*/
+        using var fileNameLocal = fileName.MarshalUtf8();
+        return Raylib.GetFileModTime(fileNameLocal.AsPtr());
     }
 
     /// <summary>
@@ -981,7 +1092,11 @@ public unsafe partial class RaylibS
     /// </summary>
     public byte[] CompressData(byte[] data, int dataLength, int* compDataLength)
     {
-        return (byte[])Raylib.CompressData(data, dataLength, compDataLength);
+        /*|  unsigned char * => byte[]  |*/
+        var dataLocal = Helpers.ArrayToPtr(data);
+        /*|  int => int  |*/
+        /*|  int * => int*  |*/
+        return Helpers.PrtToArray(Raylib.CompressData(dataLocal, dataLength, compDataLength));
     }
 
     /// <summary>
@@ -989,7 +1104,11 @@ public unsafe partial class RaylibS
     /// </summary>
     public byte[] DecompressData(byte[] compData, int compDataLength, int* dataLength)
     {
-        return (byte[])Raylib.DecompressData(compData, compDataLength, dataLength);
+        /*|  unsigned char * => byte[]  |*/
+        var compDataLocal = Helpers.ArrayToPtr(compData);
+        /*|  int => int  |*/
+        /*|  int * => int*  |*/
+        return Helpers.PrtToArray(Raylib.DecompressData(compDataLocal, compDataLength, dataLength));
     }
 
     /// <summary>
@@ -997,7 +1116,11 @@ public unsafe partial class RaylibS
     /// </summary>
     public string EncodeDataBase64(byte[] data, int dataLength, int* outputLength)
     {
-        return (string)Raylib.EncodeDataBase64(data, dataLength, outputLength);
+        /*|  const unsigned char * => byte[]  |*/
+        var dataLocal = Helpers.ArrayToPtr(data);
+        /*|  int => int  |*/
+        /*|  int * => int*  |*/
+        return (string)Raylib.EncodeDataBase64(dataLocal, dataLength, outputLength);
     }
 
     /// <summary>
@@ -1005,7 +1128,10 @@ public unsafe partial class RaylibS
     /// </summary>
     public byte[] DecodeDataBase64(byte[] data, int* outputLength)
     {
-        return (byte[])Raylib.DecodeDataBase64(data, outputLength);
+        /*|  unsigned char * => byte[]  |*/
+        var dataLocal = Helpers.ArrayToPtr(data);
+        /*|  int * => int*  |*/
+        return Helpers.PrtToArray(Raylib.DecodeDataBase64(dataLocal, outputLength));
     }
 
     /// <summary>
@@ -1013,6 +1139,8 @@ public unsafe partial class RaylibS
     /// </summary>
     public bool SaveStorageValue(uint position, int value)
     {
+        /*|  unsigned int => uint  |*/
+        /*|  int => int  |*/
         return Raylib.SaveStorageValue(position, value);
     }
 
@@ -1021,6 +1149,7 @@ public unsafe partial class RaylibS
     /// </summary>
     public int LoadStorageValue(uint position)
     {
+        /*|  unsigned int => uint  |*/
         return Raylib.LoadStorageValue(position);
     }
 
@@ -1029,8 +1158,9 @@ public unsafe partial class RaylibS
     /// </summary>
     public void OpenURL(string url)
     {
-        using var url_ = url.MarshalUtf8();
-        Raylib.OpenURL(url_.AsPtr());
+        /*|  const char * => string  |*/
+        using var urlLocal = url.MarshalUtf8();
+        Raylib.OpenURL(urlLocal.AsPtr());
     }
 
     /// <summary>
@@ -1038,6 +1168,7 @@ public unsafe partial class RaylibS
     /// </summary>
     public bool IsKeyPressed(int key)
     {
+        /*|  int => int  |*/
         return Raylib.IsKeyPressed(key);
     }
 
@@ -1046,6 +1177,7 @@ public unsafe partial class RaylibS
     /// </summary>
     public bool IsKeyDown(int key)
     {
+        /*|  int => int  |*/
         return Raylib.IsKeyDown(key);
     }
 
@@ -1054,6 +1186,7 @@ public unsafe partial class RaylibS
     /// </summary>
     public bool IsKeyReleased(int key)
     {
+        /*|  int => int  |*/
         return Raylib.IsKeyReleased(key);
     }
 
@@ -1062,6 +1195,7 @@ public unsafe partial class RaylibS
     /// </summary>
     public bool IsKeyUp(int key)
     {
+        /*|  int => int  |*/
         return Raylib.IsKeyUp(key);
     }
 
@@ -1070,6 +1204,7 @@ public unsafe partial class RaylibS
     /// </summary>
     public void SetExitKey(int key)
     {
+        /*|  int => int  |*/
         Raylib.SetExitKey(key);
     }
 
@@ -1094,6 +1229,7 @@ public unsafe partial class RaylibS
     /// </summary>
     public bool IsGamepadAvailable(int gamepad)
     {
+        /*|  int => int  |*/
         return Raylib.IsGamepadAvailable(gamepad);
     }
 
@@ -1102,6 +1238,7 @@ public unsafe partial class RaylibS
     /// </summary>
     public string GetGamepadName(int gamepad)
     {
+        /*|  int => int  |*/
         return Helpers.Utf8ToString(Raylib.GetGamepadName(gamepad));
     }
 
@@ -1110,6 +1247,8 @@ public unsafe partial class RaylibS
     /// </summary>
     public bool IsGamepadButtonPressed(int gamepad, int button)
     {
+        /*|  int => int  |*/
+        /*|  int => int  |*/
         return Raylib.IsGamepadButtonPressed(gamepad, button);
     }
 
@@ -1118,6 +1257,8 @@ public unsafe partial class RaylibS
     /// </summary>
     public bool IsGamepadButtonDown(int gamepad, int button)
     {
+        /*|  int => int  |*/
+        /*|  int => int  |*/
         return Raylib.IsGamepadButtonDown(gamepad, button);
     }
 
@@ -1126,6 +1267,8 @@ public unsafe partial class RaylibS
     /// </summary>
     public bool IsGamepadButtonReleased(int gamepad, int button)
     {
+        /*|  int => int  |*/
+        /*|  int => int  |*/
         return Raylib.IsGamepadButtonReleased(gamepad, button);
     }
 
@@ -1134,6 +1277,8 @@ public unsafe partial class RaylibS
     /// </summary>
     public bool IsGamepadButtonUp(int gamepad, int button)
     {
+        /*|  int => int  |*/
+        /*|  int => int  |*/
         return Raylib.IsGamepadButtonUp(gamepad, button);
     }
 
@@ -1150,6 +1295,7 @@ public unsafe partial class RaylibS
     /// </summary>
     public int GetGamepadAxisCount(int gamepad)
     {
+        /*|  int => int  |*/
         return Raylib.GetGamepadAxisCount(gamepad);
     }
 
@@ -1158,6 +1304,8 @@ public unsafe partial class RaylibS
     /// </summary>
     public float GetGamepadAxisMovement(int gamepad, int axis)
     {
+        /*|  int => int  |*/
+        /*|  int => int  |*/
         return Raylib.GetGamepadAxisMovement(gamepad, axis);
     }
 
@@ -1166,8 +1314,9 @@ public unsafe partial class RaylibS
     /// </summary>
     public int SetGamepadMappings(string mappings)
     {
-        using var mappings_ = mappings.MarshalUtf8();
-        return Raylib.SetGamepadMappings(mappings_.AsPtr());
+        /*|  const char * => string  |*/
+        using var mappingsLocal = mappings.MarshalUtf8();
+        return Raylib.SetGamepadMappings(mappingsLocal.AsPtr());
     }
 
     /// <summary>
@@ -1175,6 +1324,7 @@ public unsafe partial class RaylibS
     /// </summary>
     public bool IsMouseButtonPressed(int button)
     {
+        /*|  int => int  |*/
         return Raylib.IsMouseButtonPressed(button);
     }
 
@@ -1183,6 +1333,7 @@ public unsafe partial class RaylibS
     /// </summary>
     public bool IsMouseButtonDown(int button)
     {
+        /*|  int => int  |*/
         return Raylib.IsMouseButtonDown(button);
     }
 
@@ -1191,6 +1342,7 @@ public unsafe partial class RaylibS
     /// </summary>
     public bool IsMouseButtonReleased(int button)
     {
+        /*|  int => int  |*/
         return Raylib.IsMouseButtonReleased(button);
     }
 
@@ -1199,6 +1351,7 @@ public unsafe partial class RaylibS
     /// </summary>
     public bool IsMouseButtonUp(int button)
     {
+        /*|  int => int  |*/
         return Raylib.IsMouseButtonUp(button);
     }
 
@@ -1239,6 +1392,8 @@ public unsafe partial class RaylibS
     /// </summary>
     public void SetMousePosition(int x, int y)
     {
+        /*|  int => int  |*/
+        /*|  int => int  |*/
         Raylib.SetMousePosition(x, y);
     }
 
@@ -1247,6 +1402,8 @@ public unsafe partial class RaylibS
     /// </summary>
     public void SetMouseOffset(int offsetX, int offsetY)
     {
+        /*|  int => int  |*/
+        /*|  int => int  |*/
         Raylib.SetMouseOffset(offsetX, offsetY);
     }
 
@@ -1255,6 +1412,8 @@ public unsafe partial class RaylibS
     /// </summary>
     public void SetMouseScale(float scaleX, float scaleY)
     {
+        /*|  float => float  |*/
+        /*|  float => float  |*/
         Raylib.SetMouseScale(scaleX, scaleY);
     }
 
@@ -1271,6 +1430,7 @@ public unsafe partial class RaylibS
     /// </summary>
     public void SetMouseCursor(int cursor)
     {
+        /*|  int => int  |*/
         Raylib.SetMouseCursor(cursor);
     }
 
@@ -1295,6 +1455,7 @@ public unsafe partial class RaylibS
     /// </summary>
     public Vector2 GetTouchPosition(int index)
     {
+        /*|  int => int  |*/
         return Raylib.GetTouchPosition(index);
     }
 
@@ -1303,6 +1464,7 @@ public unsafe partial class RaylibS
     /// </summary>
     public int GetTouchPointId(int index)
     {
+        /*|  int => int  |*/
         return Raylib.GetTouchPointId(index);
     }
 
@@ -1319,6 +1481,7 @@ public unsafe partial class RaylibS
     /// </summary>
     public void SetGesturesEnabled(uint flags)
     {
+        /*|  unsigned int => uint  |*/
         Raylib.SetGesturesEnabled(flags);
     }
 
@@ -1327,6 +1490,7 @@ public unsafe partial class RaylibS
     /// </summary>
     public bool IsGestureDetected(int gesture)
     {
+        /*|  int => int  |*/
         return Raylib.IsGestureDetected(gesture);
     }
 
@@ -1383,6 +1547,8 @@ public unsafe partial class RaylibS
     /// </summary>
     public void SetCameraMode(Camera camera, int mode)
     {
+        /*|  Camera => Camera  |*/
+        /*|  int => int  |*/
         Raylib.SetCameraMode(camera, mode);
     }
 
@@ -1391,6 +1557,7 @@ public unsafe partial class RaylibS
     /// </summary>
     public void UpdateCamera(Camera* camera)
     {
+        /*|  Camera * => Camera*  |*/
         Raylib.UpdateCamera(camera);
     }
 
@@ -1399,6 +1566,7 @@ public unsafe partial class RaylibS
     /// </summary>
     public void SetCameraPanControl(int keyPan)
     {
+        /*|  int => int  |*/
         Raylib.SetCameraPanControl(keyPan);
     }
 
@@ -1407,6 +1575,7 @@ public unsafe partial class RaylibS
     /// </summary>
     public void SetCameraAltControl(int keyAlt)
     {
+        /*|  int => int  |*/
         Raylib.SetCameraAltControl(keyAlt);
     }
 
@@ -1415,6 +1584,7 @@ public unsafe partial class RaylibS
     /// </summary>
     public void SetCameraSmoothZoomControl(int keySmoothZoom)
     {
+        /*|  int => int  |*/
         Raylib.SetCameraSmoothZoomControl(keySmoothZoom);
     }
 
@@ -1423,6 +1593,12 @@ public unsafe partial class RaylibS
     /// </summary>
     public void SetCameraMoveControls(int keyFront, int keyBack, int keyRight, int keyLeft, int keyUp, int keyDown)
     {
+        /*|  int => int  |*/
+        /*|  int => int  |*/
+        /*|  int => int  |*/
+        /*|  int => int  |*/
+        /*|  int => int  |*/
+        /*|  int => int  |*/
         Raylib.SetCameraMoveControls(keyFront, keyBack, keyRight, keyLeft, keyUp, keyDown);
     }
 

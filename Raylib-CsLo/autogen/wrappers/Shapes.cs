@@ -12,6 +12,8 @@ public unsafe partial class RaylibS
     /// </summary>
     public void SetShapesTexture(Texture2D texture, Rectangle source)
     {
+        /*|  Texture2D => Texture2D  |*/
+        /*|  Rectangle => Rectangle  |*/
         Raylib.SetShapesTexture(texture, source);
     }
 
@@ -20,6 +22,9 @@ public unsafe partial class RaylibS
     /// </summary>
     public void DrawPixel(int posX, int posY, Color color)
     {
+        /*|  int => int  |*/
+        /*|  int => int  |*/
+        /*|  Color => Color  |*/
         Raylib.DrawPixel(posX, posY, color);
     }
 
@@ -28,6 +33,8 @@ public unsafe partial class RaylibS
     /// </summary>
     public void DrawPixelV(Vector2 position, Color color)
     {
+        /*|  Vector2 => Vector2  |*/
+        /*|  Color => Color  |*/
         Raylib.DrawPixelV(position, color);
     }
 
@@ -36,6 +43,11 @@ public unsafe partial class RaylibS
     /// </summary>
     public void DrawLine(int startPosX, int startPosY, int endPosX, int endPosY, Color color)
     {
+        /*|  int => int  |*/
+        /*|  int => int  |*/
+        /*|  int => int  |*/
+        /*|  int => int  |*/
+        /*|  Color => Color  |*/
         Raylib.DrawLine(startPosX, startPosY, endPosX, endPosY, color);
     }
 
@@ -44,6 +56,9 @@ public unsafe partial class RaylibS
     /// </summary>
     public void DrawLineV(Vector2 startPos, Vector2 endPos, Color color)
     {
+        /*|  Vector2 => Vector2  |*/
+        /*|  Vector2 => Vector2  |*/
+        /*|  Color => Color  |*/
         Raylib.DrawLineV(startPos, endPos, color);
     }
 
@@ -52,6 +67,10 @@ public unsafe partial class RaylibS
     /// </summary>
     public void DrawLineEx(Vector2 startPos, Vector2 endPos, float thick, Color color)
     {
+        /*|  Vector2 => Vector2  |*/
+        /*|  Vector2 => Vector2  |*/
+        /*|  float => float  |*/
+        /*|  Color => Color  |*/
         Raylib.DrawLineEx(startPos, endPos, thick, color);
     }
 
@@ -60,6 +79,10 @@ public unsafe partial class RaylibS
     /// </summary>
     public void DrawLineBezier(Vector2 startPos, Vector2 endPos, float thick, Color color)
     {
+        /*|  Vector2 => Vector2  |*/
+        /*|  Vector2 => Vector2  |*/
+        /*|  float => float  |*/
+        /*|  Color => Color  |*/
         Raylib.DrawLineBezier(startPos, endPos, thick, color);
     }
 
@@ -68,6 +91,11 @@ public unsafe partial class RaylibS
     /// </summary>
     public void DrawLineBezierQuad(Vector2 startPos, Vector2 endPos, Vector2 controlPos, float thick, Color color)
     {
+        /*|  Vector2 => Vector2  |*/
+        /*|  Vector2 => Vector2  |*/
+        /*|  Vector2 => Vector2  |*/
+        /*|  float => float  |*/
+        /*|  Color => Color  |*/
         Raylib.DrawLineBezierQuad(startPos, endPos, controlPos, thick, color);
     }
 
@@ -76,6 +104,12 @@ public unsafe partial class RaylibS
     /// </summary>
     public void DrawLineBezierCubic(Vector2 startPos, Vector2 endPos, Vector2 startControlPos, Vector2 endControlPos, float thick, Color color)
     {
+        /*|  Vector2 => Vector2  |*/
+        /*|  Vector2 => Vector2  |*/
+        /*|  Vector2 => Vector2  |*/
+        /*|  Vector2 => Vector2  |*/
+        /*|  float => float  |*/
+        /*|  Color => Color  |*/
         Raylib.DrawLineBezierCubic(startPos, endPos, startControlPos, endControlPos, thick, color);
     }
 
@@ -84,6 +118,9 @@ public unsafe partial class RaylibS
     /// </summary>
     public void DrawLineStrip(Vector2* points, int pointCount, Color color)
     {
+        /*|  Vector2 * => Vector2*  |*/
+        /*|  int => int  |*/
+        /*|  Color => Color  |*/
         Raylib.DrawLineStrip(points, pointCount, color);
     }
 
@@ -92,6 +129,10 @@ public unsafe partial class RaylibS
     /// </summary>
     public void DrawCircle(int centerX, int centerY, float radius, Color color)
     {
+        /*|  int => int  |*/
+        /*|  int => int  |*/
+        /*|  float => float  |*/
+        /*|  Color => Color  |*/
         Raylib.DrawCircle(centerX, centerY, radius, color);
     }
 
@@ -100,6 +141,12 @@ public unsafe partial class RaylibS
     /// </summary>
     public void DrawCircleSector(Vector2 center, float radius, float startAngle, float endAngle, int segments, Color color)
     {
+        /*|  Vector2 => Vector2  |*/
+        /*|  float => float  |*/
+        /*|  float => float  |*/
+        /*|  float => float  |*/
+        /*|  int => int  |*/
+        /*|  Color => Color  |*/
         Raylib.DrawCircleSector(center, radius, startAngle, endAngle, segments, color);
     }
 
@@ -108,6 +155,12 @@ public unsafe partial class RaylibS
     /// </summary>
     public void DrawCircleSectorLines(Vector2 center, float radius, float startAngle, float endAngle, int segments, Color color)
     {
+        /*|  Vector2 => Vector2  |*/
+        /*|  float => float  |*/
+        /*|  float => float  |*/
+        /*|  float => float  |*/
+        /*|  int => int  |*/
+        /*|  Color => Color  |*/
         Raylib.DrawCircleSectorLines(center, radius, startAngle, endAngle, segments, color);
     }
 
@@ -116,6 +169,11 @@ public unsafe partial class RaylibS
     /// </summary>
     public void DrawCircleGradient(int centerX, int centerY, float radius, Color color1, Color color2)
     {
+        /*|  int => int  |*/
+        /*|  int => int  |*/
+        /*|  float => float  |*/
+        /*|  Color => Color  |*/
+        /*|  Color => Color  |*/
         Raylib.DrawCircleGradient(centerX, centerY, radius, color1, color2);
     }
 
@@ -124,6 +182,9 @@ public unsafe partial class RaylibS
     /// </summary>
     public void DrawCircleV(Vector2 center, float radius, Color color)
     {
+        /*|  Vector2 => Vector2  |*/
+        /*|  float => float  |*/
+        /*|  Color => Color  |*/
         Raylib.DrawCircleV(center, radius, color);
     }
 
@@ -132,6 +193,10 @@ public unsafe partial class RaylibS
     /// </summary>
     public void DrawCircleLines(int centerX, int centerY, float radius, Color color)
     {
+        /*|  int => int  |*/
+        /*|  int => int  |*/
+        /*|  float => float  |*/
+        /*|  Color => Color  |*/
         Raylib.DrawCircleLines(centerX, centerY, radius, color);
     }
 
@@ -140,6 +205,11 @@ public unsafe partial class RaylibS
     /// </summary>
     public void DrawEllipse(int centerX, int centerY, float radiusH, float radiusV, Color color)
     {
+        /*|  int => int  |*/
+        /*|  int => int  |*/
+        /*|  float => float  |*/
+        /*|  float => float  |*/
+        /*|  Color => Color  |*/
         Raylib.DrawEllipse(centerX, centerY, radiusH, radiusV, color);
     }
 
@@ -148,6 +218,11 @@ public unsafe partial class RaylibS
     /// </summary>
     public void DrawEllipseLines(int centerX, int centerY, float radiusH, float radiusV, Color color)
     {
+        /*|  int => int  |*/
+        /*|  int => int  |*/
+        /*|  float => float  |*/
+        /*|  float => float  |*/
+        /*|  Color => Color  |*/
         Raylib.DrawEllipseLines(centerX, centerY, radiusH, radiusV, color);
     }
 
@@ -156,6 +231,13 @@ public unsafe partial class RaylibS
     /// </summary>
     public void DrawRing(Vector2 center, float innerRadius, float outerRadius, float startAngle, float endAngle, int segments, Color color)
     {
+        /*|  Vector2 => Vector2  |*/
+        /*|  float => float  |*/
+        /*|  float => float  |*/
+        /*|  float => float  |*/
+        /*|  float => float  |*/
+        /*|  int => int  |*/
+        /*|  Color => Color  |*/
         Raylib.DrawRing(center, innerRadius, outerRadius, startAngle, endAngle, segments, color);
     }
 
@@ -164,6 +246,13 @@ public unsafe partial class RaylibS
     /// </summary>
     public void DrawRingLines(Vector2 center, float innerRadius, float outerRadius, float startAngle, float endAngle, int segments, Color color)
     {
+        /*|  Vector2 => Vector2  |*/
+        /*|  float => float  |*/
+        /*|  float => float  |*/
+        /*|  float => float  |*/
+        /*|  float => float  |*/
+        /*|  int => int  |*/
+        /*|  Color => Color  |*/
         Raylib.DrawRingLines(center, innerRadius, outerRadius, startAngle, endAngle, segments, color);
     }
 
@@ -172,6 +261,11 @@ public unsafe partial class RaylibS
     /// </summary>
     public void DrawRectangle(int posX, int posY, int width, int height, Color color)
     {
+        /*|  int => int  |*/
+        /*|  int => int  |*/
+        /*|  int => int  |*/
+        /*|  int => int  |*/
+        /*|  Color => Color  |*/
         Raylib.DrawRectangle(posX, posY, width, height, color);
     }
 
@@ -180,6 +274,9 @@ public unsafe partial class RaylibS
     /// </summary>
     public void DrawRectangleV(Vector2 position, Vector2 size, Color color)
     {
+        /*|  Vector2 => Vector2  |*/
+        /*|  Vector2 => Vector2  |*/
+        /*|  Color => Color  |*/
         Raylib.DrawRectangleV(position, size, color);
     }
 
@@ -188,6 +285,8 @@ public unsafe partial class RaylibS
     /// </summary>
     public void DrawRectangleRec(Rectangle rec, Color color)
     {
+        /*|  Rectangle => Rectangle  |*/
+        /*|  Color => Color  |*/
         Raylib.DrawRectangleRec(rec, color);
     }
 
@@ -196,6 +295,10 @@ public unsafe partial class RaylibS
     /// </summary>
     public void DrawRectanglePro(Rectangle rec, Vector2 origin, float rotation, Color color)
     {
+        /*|  Rectangle => Rectangle  |*/
+        /*|  Vector2 => Vector2  |*/
+        /*|  float => float  |*/
+        /*|  Color => Color  |*/
         Raylib.DrawRectanglePro(rec, origin, rotation, color);
     }
 
@@ -204,6 +307,12 @@ public unsafe partial class RaylibS
     /// </summary>
     public void DrawRectangleGradientV(int posX, int posY, int width, int height, Color color1, Color color2)
     {
+        /*|  int => int  |*/
+        /*|  int => int  |*/
+        /*|  int => int  |*/
+        /*|  int => int  |*/
+        /*|  Color => Color  |*/
+        /*|  Color => Color  |*/
         Raylib.DrawRectangleGradientV(posX, posY, width, height, color1, color2);
     }
 
@@ -212,6 +321,12 @@ public unsafe partial class RaylibS
     /// </summary>
     public void DrawRectangleGradientH(int posX, int posY, int width, int height, Color color1, Color color2)
     {
+        /*|  int => int  |*/
+        /*|  int => int  |*/
+        /*|  int => int  |*/
+        /*|  int => int  |*/
+        /*|  Color => Color  |*/
+        /*|  Color => Color  |*/
         Raylib.DrawRectangleGradientH(posX, posY, width, height, color1, color2);
     }
 
@@ -220,6 +335,11 @@ public unsafe partial class RaylibS
     /// </summary>
     public void DrawRectangleGradientEx(Rectangle rec, Color col1, Color col2, Color col3, Color col4)
     {
+        /*|  Rectangle => Rectangle  |*/
+        /*|  Color => Color  |*/
+        /*|  Color => Color  |*/
+        /*|  Color => Color  |*/
+        /*|  Color => Color  |*/
         Raylib.DrawRectangleGradientEx(rec, col1, col2, col3, col4);
     }
 
@@ -228,6 +348,11 @@ public unsafe partial class RaylibS
     /// </summary>
     public void DrawRectangleLines(int posX, int posY, int width, int height, Color color)
     {
+        /*|  int => int  |*/
+        /*|  int => int  |*/
+        /*|  int => int  |*/
+        /*|  int => int  |*/
+        /*|  Color => Color  |*/
         Raylib.DrawRectangleLines(posX, posY, width, height, color);
     }
 
@@ -236,6 +361,9 @@ public unsafe partial class RaylibS
     /// </summary>
     public void DrawRectangleLinesEx(Rectangle rec, float lineThick, Color color)
     {
+        /*|  Rectangle => Rectangle  |*/
+        /*|  float => float  |*/
+        /*|  Color => Color  |*/
         Raylib.DrawRectangleLinesEx(rec, lineThick, color);
     }
 
@@ -244,6 +372,10 @@ public unsafe partial class RaylibS
     /// </summary>
     public void DrawRectangleRounded(Rectangle rec, float roundness, int segments, Color color)
     {
+        /*|  Rectangle => Rectangle  |*/
+        /*|  float => float  |*/
+        /*|  int => int  |*/
+        /*|  Color => Color  |*/
         Raylib.DrawRectangleRounded(rec, roundness, segments, color);
     }
 
@@ -252,6 +384,11 @@ public unsafe partial class RaylibS
     /// </summary>
     public void DrawRectangleRoundedLines(Rectangle rec, float roundness, int segments, float lineThick, Color color)
     {
+        /*|  Rectangle => Rectangle  |*/
+        /*|  float => float  |*/
+        /*|  int => int  |*/
+        /*|  float => float  |*/
+        /*|  Color => Color  |*/
         Raylib.DrawRectangleRoundedLines(rec, roundness, segments, lineThick, color);
     }
 
@@ -260,6 +397,10 @@ public unsafe partial class RaylibS
     /// </summary>
     public void DrawTriangle(Vector2 v1, Vector2 v2, Vector2 v3, Color color)
     {
+        /*|  Vector2 => Vector2  |*/
+        /*|  Vector2 => Vector2  |*/
+        /*|  Vector2 => Vector2  |*/
+        /*|  Color => Color  |*/
         Raylib.DrawTriangle(v1, v2, v3, color);
     }
 
@@ -268,6 +409,10 @@ public unsafe partial class RaylibS
     /// </summary>
     public void DrawTriangleLines(Vector2 v1, Vector2 v2, Vector2 v3, Color color)
     {
+        /*|  Vector2 => Vector2  |*/
+        /*|  Vector2 => Vector2  |*/
+        /*|  Vector2 => Vector2  |*/
+        /*|  Color => Color  |*/
         Raylib.DrawTriangleLines(v1, v2, v3, color);
     }
 
@@ -276,6 +421,9 @@ public unsafe partial class RaylibS
     /// </summary>
     public void DrawTriangleFan(Vector2* points, int pointCount, Color color)
     {
+        /*|  Vector2 * => Vector2*  |*/
+        /*|  int => int  |*/
+        /*|  Color => Color  |*/
         Raylib.DrawTriangleFan(points, pointCount, color);
     }
 
@@ -284,6 +432,9 @@ public unsafe partial class RaylibS
     /// </summary>
     public void DrawTriangleStrip(Vector2* points, int pointCount, Color color)
     {
+        /*|  Vector2 * => Vector2*  |*/
+        /*|  int => int  |*/
+        /*|  Color => Color  |*/
         Raylib.DrawTriangleStrip(points, pointCount, color);
     }
 
@@ -292,6 +443,11 @@ public unsafe partial class RaylibS
     /// </summary>
     public void DrawPoly(Vector2 center, int sides, float radius, float rotation, Color color)
     {
+        /*|  Vector2 => Vector2  |*/
+        /*|  int => int  |*/
+        /*|  float => float  |*/
+        /*|  float => float  |*/
+        /*|  Color => Color  |*/
         Raylib.DrawPoly(center, sides, radius, rotation, color);
     }
 
@@ -300,6 +456,11 @@ public unsafe partial class RaylibS
     /// </summary>
     public void DrawPolyLines(Vector2 center, int sides, float radius, float rotation, Color color)
     {
+        /*|  Vector2 => Vector2  |*/
+        /*|  int => int  |*/
+        /*|  float => float  |*/
+        /*|  float => float  |*/
+        /*|  Color => Color  |*/
         Raylib.DrawPolyLines(center, sides, radius, rotation, color);
     }
 
@@ -308,6 +469,12 @@ public unsafe partial class RaylibS
     /// </summary>
     public void DrawPolyLinesEx(Vector2 center, int sides, float radius, float rotation, float lineThick, Color color)
     {
+        /*|  Vector2 => Vector2  |*/
+        /*|  int => int  |*/
+        /*|  float => float  |*/
+        /*|  float => float  |*/
+        /*|  float => float  |*/
+        /*|  Color => Color  |*/
         Raylib.DrawPolyLinesEx(center, sides, radius, rotation, lineThick, color);
     }
 
@@ -316,6 +483,8 @@ public unsafe partial class RaylibS
     /// </summary>
     public bool CheckCollisionRecs(Rectangle rec1, Rectangle rec2)
     {
+        /*|  Rectangle => Rectangle  |*/
+        /*|  Rectangle => Rectangle  |*/
         return Raylib.CheckCollisionRecs(rec1, rec2);
     }
 
@@ -324,6 +493,10 @@ public unsafe partial class RaylibS
     /// </summary>
     public bool CheckCollisionCircles(Vector2 center1, float radius1, Vector2 center2, float radius2)
     {
+        /*|  Vector2 => Vector2  |*/
+        /*|  float => float  |*/
+        /*|  Vector2 => Vector2  |*/
+        /*|  float => float  |*/
         return Raylib.CheckCollisionCircles(center1, radius1, center2, radius2);
     }
 
@@ -332,6 +505,9 @@ public unsafe partial class RaylibS
     /// </summary>
     public bool CheckCollisionCircleRec(Vector2 center, float radius, Rectangle rec)
     {
+        /*|  Vector2 => Vector2  |*/
+        /*|  float => float  |*/
+        /*|  Rectangle => Rectangle  |*/
         return Raylib.CheckCollisionCircleRec(center, radius, rec);
     }
 
@@ -340,6 +516,8 @@ public unsafe partial class RaylibS
     /// </summary>
     public bool CheckCollisionPointRec(Vector2 point, Rectangle rec)
     {
+        /*|  Vector2 => Vector2  |*/
+        /*|  Rectangle => Rectangle  |*/
         return Raylib.CheckCollisionPointRec(point, rec);
     }
 
@@ -348,6 +526,9 @@ public unsafe partial class RaylibS
     /// </summary>
     public bool CheckCollisionPointCircle(Vector2 point, Vector2 center, float radius)
     {
+        /*|  Vector2 => Vector2  |*/
+        /*|  Vector2 => Vector2  |*/
+        /*|  float => float  |*/
         return Raylib.CheckCollisionPointCircle(point, center, radius);
     }
 
@@ -356,6 +537,10 @@ public unsafe partial class RaylibS
     /// </summary>
     public bool CheckCollisionPointTriangle(Vector2 point, Vector2 p1, Vector2 p2, Vector2 p3)
     {
+        /*|  Vector2 => Vector2  |*/
+        /*|  Vector2 => Vector2  |*/
+        /*|  Vector2 => Vector2  |*/
+        /*|  Vector2 => Vector2  |*/
         return Raylib.CheckCollisionPointTriangle(point, p1, p2, p3);
     }
 
@@ -364,6 +549,11 @@ public unsafe partial class RaylibS
     /// </summary>
     public bool CheckCollisionLines(Vector2 startPos1, Vector2 endPos1, Vector2 startPos2, Vector2 endPos2, Vector2* collisionPoint)
     {
+        /*|  Vector2 => Vector2  |*/
+        /*|  Vector2 => Vector2  |*/
+        /*|  Vector2 => Vector2  |*/
+        /*|  Vector2 => Vector2  |*/
+        /*|  Vector2 * => Vector2*  |*/
         return Raylib.CheckCollisionLines(startPos1, endPos1, startPos2, endPos2, collisionPoint);
     }
 
@@ -372,6 +562,10 @@ public unsafe partial class RaylibS
     /// </summary>
     public bool CheckCollisionPointLine(Vector2 point, Vector2 p1, Vector2 p2, int threshold)
     {
+        /*|  Vector2 => Vector2  |*/
+        /*|  Vector2 => Vector2  |*/
+        /*|  Vector2 => Vector2  |*/
+        /*|  int => int  |*/
         return Raylib.CheckCollisionPointLine(point, p1, p2, threshold);
     }
 
@@ -380,6 +574,8 @@ public unsafe partial class RaylibS
     /// </summary>
     public Rectangle GetCollisionRec(Rectangle rec1, Rectangle rec2)
     {
+        /*|  Rectangle => Rectangle  |*/
+        /*|  Rectangle => Rectangle  |*/
         return Raylib.GetCollisionRec(rec1, rec2);
     }
 

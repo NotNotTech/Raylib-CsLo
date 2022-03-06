@@ -17,6 +17,8 @@ public class Program
 
     public static void Main()
     {
+        Console.WriteLine("\n-- Raylib Code Gen --\n");
+
         if (Directory.Exists(CodegenSettings.OutputFolder))
         {
             Directory.Delete(CodegenSettings.OutputFolder, true);
@@ -40,23 +42,21 @@ public class Program
                     continue;
                 }
 
-                func.CsReturnType = ConvertCTypesToCSharpReturn(func.ReturnTypeC);
+                func.ReturnTypeCs = ConvertCTypesToCSharpReturn(func.ReturnTypeC);
 
                 if (func.ParametersC != null)
                 {
-                    func.CsParameters = new();
+                    // Variable len args have name and type of ""
+                    if (func.ParametersC.ContainsKey(""))
+                    {
+                        func.ParametersC.Remove("");
+                        func.ParametersC.Add("args", "params object[]");
+                    }
+
+                    func.ParametersCs = new();
                     foreach ((string name, string type) in func.ParametersC)
                     {
-                        // TextFormat & TraceLog takes any parms
-                        if (name == "")
-                        {
-                            func.CsParameters.Remove(name);
-                            func.CsParameters.Add("args", "params object[]");
-                        }
-                        else
-                        {
-                            func.CsParameters[name] = ConvertCTypesToCSharpParameter(type);
-                        }
+                        func.ParametersCs[name] = ConvertCTypesToCSharpParameter(type);
                     }
                 }
 

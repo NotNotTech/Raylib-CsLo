@@ -18,7 +18,7 @@ public static unsafe class Helpers
     }
 
     // TODO implement + get @jasonswearingen to check for memory leaks
-    public static T[] ArrayToPtr<T>(T* ptrToArray) where T : unmanaged
+    public static T* ArrayToPtr<T>(T[] ptrToArray) where T : unmanaged
     {
         throw new NotImplementedException();
     }
