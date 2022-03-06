@@ -1,10 +1,7 @@
-﻿// [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] 
-// [!!] Copyright ©️ Raylib-CsLo and Contributors. 
-// [!!] This file is licensed to you under the MPL-2.0.
-// [!!] See the LICENSE file in the project root for more info. 
-// [!!] ------------------------------------------------- 
-// [!!] The code and 100+ examples are here! https://github.com/NotNotTech/Raylib-CsLo 
-// [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!]  [!!] [!!] [!!] [!!]
+// Copyright ©️ Raylib-CsLo and Contributors.
+// This file is licensed to you under the MPL-2.0.
+// See the LICENSE file in the project root for more info.
+// The code and 100+ examples are here! https://github.com/NotNotTech/Raylib-CsLo
 
 namespace Raylib_CsLo.Examples.Text;
 
@@ -19,56 +16,56 @@ namespace Raylib_CsLo.Examples.Text;
 *
 ********************************************************************************************/
 
-public unsafe static class TextFormatting
+public static unsafe class TextFormatting
 {
 
-	public static int main()
-	{
-		// Initialization
-		//--------------------------------------------------------------------------------------
-		const int screenWidth = 800;
-		const int screenHeight = 450;
+    public static int Example()
+    {
+        // Initialization
 
-		InitWindow(screenWidth, screenHeight, "raylib [text] example - text formatting");
+        const int screenWidth = 800;
+        const int screenHeight = 450;
 
-		int score = 100020;
-		int hiscore = 200450;
-		int lives = 5;
+        InitWindow(screenWidth, screenHeight, "raylib [text] example - text formatting");
 
-		SetTargetFPS(60);               // Set our game to run at 60 frames-per-second
-										//--------------------------------------------------------------------------------------
+        int score = 100020;
+        int hiscore = 200450;
+        int lives = 5;
 
-		// Main game loop
-		while (!WindowShouldClose())    // Detect window close button or ESC key
-		{
-			// Update
-			//----------------------------------------------------------------------------------
-			// TODO: Update your variables here
-			//----------------------------------------------------------------------------------
+        SetTargetFPS(60);               // Set our game to run at 60 frames-per-second
 
-			// Draw
-			//----------------------------------------------------------------------------------
-			BeginDrawing();
 
-			ClearBackground(RAYWHITE);
+        // Main game loop
+        while (!WindowShouldClose())    // Detect window close button or ESC key
+        {
+            // Update
 
-			DrawText(TextFormat("Score: %08i", score), 200, 80, 20, RED);
+            // TODO: Update your variables here
 
-			DrawText(TextFormat("HiScore: %08i", hiscore), 200, 120, 20, GREEN);
 
-			DrawText(TextFormat("Lives: %02i", lives), 200, 160, 40, BLUE);
+            // Draw
 
-			DrawText(TextFormat("Elapsed Time: %02.02f ms", GetFrameTime() * 1000), 200, 220, 20, BLACK);
+            BeginDrawing();
 
-			EndDrawing();
-			//----------------------------------------------------------------------------------
-		}
+            ClearBackground(RAYWHITE);
 
-		// De-Initialization
-		//--------------------------------------------------------------------------------------
-		CloseWindow();        // Close window and OpenGL context
-							  //--------------------------------------------------------------------------------------
+            DrawText(TextFormat("Score: %08i", score), 200, 80, 20, RED);
 
-		return 0;
-	}
+            DrawText(TextFormat("HiScore: %08i", hiscore), 200, 120, 20, GREEN);
+
+            DrawText(TextFormat("Lives: %02i", lives), 200, 160, 40, BLUE);
+
+            DrawText(TextFormat("Elapsed Time: %02.02f ms", GetFrameTime() * 1000), 200, 220, 20, BLACK);
+
+            EndDrawing();
+
+        }
+
+        // De-Initialization
+
+        CloseWindow();        // Close window and OpenGL context
+
+
+        return 0;
+    }
 }

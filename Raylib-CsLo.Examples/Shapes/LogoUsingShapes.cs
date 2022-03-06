@@ -1,10 +1,7 @@
-﻿// [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] 
-// [!!] Copyright ©️ Raylib-CsLo and Contributors. 
-// [!!] This file is licensed to you under the MPL-2.0.
-// [!!] See the LICENSE file in the project root for more info. 
-// [!!] ------------------------------------------------- 
-// [!!] The code and 100+ examples are here! https://github.com/NotNotTech/Raylib-CsLo 
-// [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!]  [!!] [!!] [!!] [!!]
+// Copyright ©️ Raylib-CsLo and Contributors.
+// This file is licensed to you under the MPL-2.0.
+// See the LICENSE file in the project root for more info.
+// The code and 100+ examples are here! https://github.com/NotNotTech/Raylib-CsLo
 
 namespace Raylib_CsLo.Examples.Shapes;
 
@@ -19,50 +16,50 @@ namespace Raylib_CsLo.Examples.Shapes;
 *
 ********************************************************************************************/
 
-public unsafe static class LogoUsingShapes
+public static unsafe class LogoUsingShapes
 {
 
-	public static int main()
-	{
-		// Initialization
-		//--------------------------------------------------------------------------------------
-		const int screenWidth = 800;
-		const int screenHeight = 450;
+    public static int Example()
+    {
+        // Initialization
 
-		InitWindow(screenWidth, screenHeight, "raylib [shapes] example - raylib logo using shapes");
+        const int screenWidth = 800;
+        const int screenHeight = 450;
 
-		SetTargetFPS(60);               // Set our game to run at 60 frames-per-second
-										//--------------------------------------------------------------------------------------
+        InitWindow(screenWidth, screenHeight, "raylib [shapes] example - raylib logo using shapes");
 
-		// Main game loop
-		while (!WindowShouldClose())    // Detect window close button or ESC key
-		{
-			// Update
-			//----------------------------------------------------------------------------------
-			// TODO: Update your variables here
-			//----------------------------------------------------------------------------------
+        SetTargetFPS(60);               // Set our game to run at 60 frames-per-second
 
-			// Draw
-			//----------------------------------------------------------------------------------
-			BeginDrawing();
 
-			ClearBackground(RAYWHITE);
+        // Main game loop
+        while (!WindowShouldClose())    // Detect window close button or ESC key
+        {
+            // Update
 
-			DrawRectangle(screenWidth / 2 - 128, screenHeight / 2 - 128, 256, 256, BLACK);
-			DrawRectangle(screenWidth / 2 - 112, screenHeight / 2 - 112, 224, 224, RAYWHITE);
-			DrawText("raylib", screenWidth / 2 - 44, screenHeight / 2 + 48, 50, BLACK);
+            // TODO: Update your variables here
 
-			DrawText("this is NOT a texture!", 350, 370, 10, GRAY);
 
-			EndDrawing();
-			//----------------------------------------------------------------------------------
-		}
+            // Draw
 
-		// De-Initialization
-		//--------------------------------------------------------------------------------------
-		CloseWindow();        // Close window and OpenGL context
-							  //--------------------------------------------------------------------------------------
+            BeginDrawing();
 
-		return 0;
-	}
+            ClearBackground(RAYWHITE);
+
+            DrawRectangle((screenWidth / 2) - 128, (screenHeight / 2) - 128, 256, 256, BLACK);
+            DrawRectangle((screenWidth / 2) - 112, (screenHeight / 2) - 112, 224, 224, RAYWHITE);
+            DrawText("raylib", (screenWidth / 2) - 44, (screenHeight / 2) + 48, 50, BLACK);
+
+            DrawText("this is NOT a texture!", 350, 370, 10, GRAY);
+
+            EndDrawing();
+
+        }
+
+        // De-Initialization
+
+        CloseWindow();        // Close window and OpenGL context
+
+
+        return 0;
+    }
 }

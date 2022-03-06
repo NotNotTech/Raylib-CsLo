@@ -1,10 +1,7 @@
-﻿// [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] 
-// [!!] Copyright ©️ Raylib-CsLo and Contributors. 
-// [!!] This file is licensed to you under the MPL-2.0.
-// [!!] See the LICENSE file in the project root for more info. 
-// [!!] ------------------------------------------------- 
-// [!!] The code and 100+ examples are here! https://github.com/NotNotTech/Raylib-CsLo 
-// [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!]  [!!] [!!] [!!] [!!]
+// Copyright ©️ Raylib-CsLo and Contributors.
+// This file is licensed to you under the MPL-2.0.
+// See the LICENSE file in the project root for more info.
+// The code and 100+ examples are here! https://github.com/NotNotTech/Raylib-CsLo
 
 namespace Raylib_CsLo.Examples.Text;
 
@@ -23,126 +20,141 @@ namespace Raylib_CsLo.Examples.Text;
 *
 ********************************************************************************************/
 
-public unsafe static class FontFilters
+public static unsafe class FontFilters
 {
 
-	public static int main()
-	{
-		// Initialization
-		//--------------------------------------------------------------------------------------
-		const int screenWidth = 800;
-		const int screenHeight = 450;
+    public static int Example()
+    {
+        // Initialization
 
-		InitWindow(screenWidth, screenHeight, "raylib [text] example - font filters");
+        const int screenWidth = 800;
+        const int screenHeight = 450;
 
-		string msg = "Loaded Font";
+        InitWindow(screenWidth, screenHeight, "raylib [text] example - font filters");
 
-		// NOTE: Textures/Fonts MUST be loaded after Window initialization (OpenGL context is required)
+        string msg = "Loaded Font";
 
-		// TTF Font loading with custom generation parameters
-		Font font = LoadFontEx("resources/KAISG.ttf", 96, (int*)0, 0);
+        // NOTE: Textures/Fonts MUST be loaded after Window initialization (OpenGL context is required)
 
-		// Generate mipmap levels to use trilinear filtering
-		// NOTE: On 2D drawing it won't be noticeable, it looks like FILTER_BILINEAR
-		GenTextureMipmaps(&font.texture);
+        // TTF Font loading with custom generation parameters
+        Font font = LoadFontEx("resources/KAISG.ttf", 96, (int*)0, 0);
 
-		float fontSize = (float)font.baseSize;
-		Vector2 fontPosition = new Vector2(40.0f, screenHeight / 2.0f - 80.0f);
-		Vector2 textSize = new Vector2(0.0f, 0.0f);
+        // Generate mipmap levels to use trilinear filtering
+        // NOTE: On 2D drawing it won't be noticeable, it looks like FILTER_BILINEAR
+        GenTextureMipmaps(&font.texture);
 
-		// Setup texture scaling filter
-		SetTextureFilter(font.texture, TEXTURE_FILTER_POINT);
-		int currentFontFilter = 0;      // TEXTURE_FILTER_POINT
+        float fontSize = font.baseSize;
+        Vector2 fontPosition = new(40.0f, (screenHeight / 2.0f) - 80.0f);
 
-		SetTargetFPS(60);               // Set our game to run at 60 frames-per-second
-										//--------------------------------------------------------------------------------------
+        // Setup texture scaling filter
+        SetTextureFilter(font.texture, TEXTURE_FILTER_POINT);
+        int currentFontFilter = 0;      // TEXTURE_FILTER_POINT
 
-		// Main game loop
-		while (!WindowShouldClose())    // Detect window close button or ESC key
-		{
-			// Update
-			//----------------------------------------------------------------------------------
-			fontSize += GetMouseWheelMove() * 4.0f;
+        SetTargetFPS(60);               // Set our game to run at 60 frames-per-second
 
-			// Choose font texture filter method
-			if (IsKeyPressed(KEY_ONE))
-			{
-				SetTextureFilter(font.texture, TEXTURE_FILTER_POINT);
-				currentFontFilter = 0;
-			}
-			else if (IsKeyPressed(KEY_TWO))
-			{
-				SetTextureFilter(font.texture, TEXTURE_FILTER_BILINEAR);
-				currentFontFilter = 1;
-			}
-			else if (IsKeyPressed(KEY_THREE))
-			{
-				// NOTE: Trilinear filter won't be noticed on 2D drawing
-				SetTextureFilter(font.texture, TEXTURE_FILTER_TRILINEAR);
-				currentFontFilter = 2;
-			}
 
-			textSize = MeasureTextEx(font, msg, fontSize, 0);
+        // Main game loop
+        while (!WindowShouldClose())    // Detect window close button or ESC key
+        {
+            // Update
 
-			if (IsKeyDown(KEY_LEFT)) fontPosition.X -= 10;
-			else if (IsKeyDown(KEY_RIGHT)) fontPosition.X += 10;
+            fontSize += GetMouseWheelMove() * 4.0f;
 
-			// Load a dropped TTF file dynamically (at current fontSize)
-			if (IsFileDropped())
-			{
-				//int count = 0;
-				//char** droppedFiles = GetDroppedFiles(&count);
-				var droppedFiles = GetDroppedFiles();
-				var count = droppedFiles.Length;
+            // Choose font texture filter method
+            if (IsKeyPressed(KEY_ONE))
+            {
+                SetTextureFilter(font.texture, TEXTURE_FILTER_POINT);
+                currentFontFilter = 0;
+            }
+            else if (IsKeyPressed(KEY_TWO))
+            {
+                SetTextureFilter(font.texture, TEXTURE_FILTER_BILINEAR);
+                currentFontFilter = 1;
+            }
+            else if (IsKeyPressed(KEY_THREE))
+            {
+                // NOTE: Trilinear filter won't be noticed on 2D drawing
+                SetTextureFilter(font.texture, TEXTURE_FILTER_TRILINEAR);
+                currentFontFilter = 2;
+            }
 
-				// NOTE: We only support first ttf file dropped
-				if (IsFileExtension(droppedFiles[0], ".ttf"))
-				{
-					UnloadFont(font);
-					font = LoadFontEx(droppedFiles[0], (int)fontSize, (int*)0, 0);
-					ClearDroppedFiles();
-				}
-			}
-			//----------------------------------------------------------------------------------
+            Vector2 textSize = MeasureTextEx(font, msg, fontSize, 0);
 
-			// Draw
-			//----------------------------------------------------------------------------------
-			BeginDrawing();
+            if (IsKeyDown(KEY_LEFT))
+            {
+                fontPosition.X -= 10;
+            }
+            else if (IsKeyDown(KEY_RIGHT))
+            {
+                fontPosition.X += 10;
+            }
 
-			ClearBackground(RAYWHITE);
+            // Load a dropped TTF file dynamically (at current fontSize)
+            if (IsFileDropped())
+            {
+                //int count = 0;
+                //char** droppedFiles = GetDroppedFiles(&count);
+                string[]? droppedFiles = GetDroppedFiles();
 
-			DrawText("Use mouse wheel to change font size", 20, 20, 10, GRAY);
-			DrawText("Use KEY_RIGHT and KEY_LEFT to move text", 20, 40, 10, GRAY);
-			DrawText("Use 1, 2, 3 to change texture filter", 20, 60, 10, GRAY);
-			DrawText("Drop a new TTF font for dynamic loading", 20, 80, 10, DARKGRAY);
+                _ = droppedFiles.Length;
 
-			DrawTextEx(font, msg, fontPosition, fontSize, 0, BLACK);
+                // NOTE: We only support first ttf file dropped
+                if (IsFileExtension(droppedFiles[0], ".ttf"))
+                {
+                    UnloadFont(font);
+                    font = LoadFontEx(droppedFiles[0], (int)fontSize, (int*)0, 0);
+                    ClearDroppedFiles();
+                }
+            }
 
-			// TODO: It seems texSize measurement is not accurate due to chars offsets...
-			//DrawRectangleLines(fontPosition.X, fontPosition.Y, textSize.X, textSize.Y, RED);
 
-			DrawRectangle(0, screenHeight - 80, screenWidth, 80, LIGHTGRAY);
-			DrawText(TextFormat("Font size: %02.02f", fontSize), 20, screenHeight - 50, 10, DARKGRAY);
-			DrawText(TextFormat("Text size: [%02.02f, %02.02f]", textSize.X, textSize.Y), 20, screenHeight - 30, 10, DARKGRAY);
-			DrawText("CURRENT TEXTURE FILTER:", 250, 400, 20, GRAY);
+            // Draw
 
-			if (currentFontFilter == 0) DrawText("POINT", 570, 400, 20, BLACK);
-			else if (currentFontFilter == 1) DrawText("BILINEAR", 570, 400, 20, BLACK);
-			else if (currentFontFilter == 2) DrawText("TRILINEAR", 570, 400, 20, BLACK);
+            BeginDrawing();
 
-			EndDrawing();
-			//----------------------------------------------------------------------------------
-		}
+            ClearBackground(RAYWHITE);
 
-		// De-Initialization
-		//--------------------------------------------------------------------------------------
-		ClearDroppedFiles();        // Clear internal buffers
+            DrawText("Use mouse wheel to change font size", 20, 20, 10, GRAY);
+            DrawText("Use KEY_RIGHT and KEY_LEFT to move text", 20, 40, 10, GRAY);
+            DrawText("Use 1, 2, 3 to change texture filter", 20, 60, 10, GRAY);
+            DrawText("Drop a new TTF font for dynamic loading", 20, 80, 10, DARKGRAY);
 
-		UnloadFont(font);           // Font unloading
+            DrawTextEx(font, msg, fontPosition, fontSize, 0, BLACK);
 
-		CloseWindow();              // Close window and OpenGL context
-									//--------------------------------------------------------------------------------------
+            // TODO: It seems texSize measurement is not accurate due to chars offsets...
+            //DrawRectangleLines(fontPosition.X, fontPosition.Y, textSize.X, textSize.Y, RED);
 
-		return 0;
-	}
+            DrawRectangle(0, screenHeight - 80, screenWidth, 80, LIGHTGRAY);
+            DrawText(TextFormat("Font size: %02.02f", fontSize), 20, screenHeight - 50, 10, DARKGRAY);
+            DrawText(TextFormat("Text size: [%02.02f, %02.02f]", textSize.X, textSize.Y), 20, screenHeight - 30, 10, DARKGRAY);
+            DrawText("CURRENT TEXTURE FILTER:", 250, 400, 20, GRAY);
+
+            if (currentFontFilter == 0)
+            {
+                DrawText("POINT", 570, 400, 20, BLACK);
+            }
+            else if (currentFontFilter == 1)
+            {
+                DrawText("BILINEAR", 570, 400, 20, BLACK);
+            }
+            else if (currentFontFilter == 2)
+            {
+                DrawText("TRILINEAR", 570, 400, 20, BLACK);
+            }
+
+            EndDrawing();
+
+        }
+
+        // De-Initialization
+
+        ClearDroppedFiles();        // Clear internal buffers
+
+        UnloadFont(font);           // Font unloading
+
+        CloseWindow();              // Close window and OpenGL context
+
+
+        return 0;
+    }
 }

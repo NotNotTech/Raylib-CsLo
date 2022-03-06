@@ -1,10 +1,7 @@
-﻿// [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] 
-// [!!] Copyright ©️ Raylib-CsLo and Contributors. 
-// [!!] This file is licensed to you under the MPL-2.0.
-// [!!] See the LICENSE file in the project root for more info. 
-// [!!] ------------------------------------------------- 
-// [!!] The code and 100+ examples are here! https://github.com/NotNotTech/Raylib-CsLo 
-// [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!]  [!!] [!!] [!!] [!!]
+// Copyright ©️ Raylib-CsLo and Contributors.
+// This file is licensed to you under the MPL-2.0.
+// See the LICENSE file in the project root for more info.
+// The code and 100+ examples are here! https://github.com/NotNotTech/Raylib-CsLo
 
 namespace Raylib_CsLo.Examples.Textures;
 
@@ -19,51 +16,51 @@ namespace Raylib_CsLo.Examples.Textures;
 *
 ********************************************************************************************/
 
-public unsafe static class LoadingAndDrawing
+public static unsafe class LoadingAndDrawing
 {
 
-	public static int main()
-	{
-		// Initialization
-		//--------------------------------------------------------------------------------------
-		const int screenWidth = 800;
-		const int screenHeight = 450;
+    public static int Example()
+    {
+        // Initialization
 
-		InitWindow(screenWidth, screenHeight, "raylib [textures] example - texture loading and drawing");
+        const int screenWidth = 800;
+        const int screenHeight = 450;
 
-		// NOTE: Textures MUST be loaded after Window initialization (OpenGL context is required)
-		Texture2D texture = LoadTexture("resources/raylib_logo.png");        // Texture loading
-																			 //---------------------------------------------------------------------------------------
+        InitWindow(screenWidth, screenHeight, "raylib [textures] example - texture loading and drawing");
 
-		// Main game loop
-		while (!WindowShouldClose())    // Detect window close button or ESC key
-		{
-			// Update
-			//----------------------------------------------------------------------------------
-			// TODO: Update your variables here
-			//----------------------------------------------------------------------------------
+        // NOTE: Textures MUST be loaded after Window initialization (OpenGL context is required)
+        Texture2D texture = LoadTexture("resources/raylib_logo.png");        // Texture loading
 
-			// Draw
-			//----------------------------------------------------------------------------------
-			BeginDrawing();
 
-			ClearBackground(RAYWHITE);
+        // Main game loop
+        while (!WindowShouldClose())    // Detect window close button or ESC key
+        {
+            // Update
 
-			DrawTexture(texture, screenWidth / 2 - texture.width / 2, screenHeight / 2 - texture.height / 2, WHITE);
+            // TODO: Update your variables here
 
-			DrawText("this IS a texture!", 360, 370, 10, GRAY);
 
-			EndDrawing();
-			//----------------------------------------------------------------------------------
-		}
+            // Draw
 
-		// De-Initialization
-		//--------------------------------------------------------------------------------------
-		UnloadTexture(texture);       // Texture unloading
+            BeginDrawing();
 
-		CloseWindow();                // Close window and OpenGL context
-									  //--------------------------------------------------------------------------------------
+            ClearBackground(RAYWHITE);
 
-		return 0;
-	}
+            DrawTexture(texture, (screenWidth / 2) - (texture.width / 2), (screenHeight / 2) - (texture.height / 2), WHITE);
+
+            DrawText("this IS a texture!", 360, 370, 10, GRAY);
+
+            EndDrawing();
+
+        }
+
+        // De-Initialization
+
+        UnloadTexture(texture);       // Texture unloading
+
+        CloseWindow();                // Close window and OpenGL context
+
+
+        return 0;
+    }
 }

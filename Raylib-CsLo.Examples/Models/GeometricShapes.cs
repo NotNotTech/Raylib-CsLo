@@ -1,10 +1,7 @@
-﻿// [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] 
-// [!!] Copyright ©️ Raylib-CsLo and Contributors. 
-// [!!] This file is licensed to you under the MPL-2.0.
-// [!!] See the LICENSE file in the project root for more info. 
-// [!!] ------------------------------------------------- 
-// [!!] The code and 100+ examples are here! https://github.com/NotNotTech/Raylib-CsLo 
-// [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!]  [!!] [!!] [!!] [!!]
+// Copyright ©️ Raylib-CsLo and Contributors.
+// This file is licensed to you under the MPL-2.0.
+// See the LICENSE file in the project root for more info.
+// The code and 100+ examples are here! https://github.com/NotNotTech/Raylib-CsLo
 
 namespace Raylib_CsLo.Examples.Models;
 
@@ -19,74 +16,74 @@ namespace Raylib_CsLo.Examples.Models;
 //*
 //********************************************************************************************/
 ///</summary>
-public unsafe static class GeometricShapes
+public static unsafe class GeometricShapes
 {
 
-	public static int main()
-	{
-		// Initialization
-		//--------------------------------------------------------------------------------------
-		const int screenWidth = 800;
-		const int screenHeight = 450;
+    public static int Example()
+    {
+        // Initialization
 
-		InitWindow(screenWidth, screenHeight, "raylib [models] example - geometric shapes");
+        const int screenWidth = 800;
+        const int screenHeight = 450;
 
-		// Define the camera to look into our 3d world
-		Camera camera = new();
-		camera.position = new(0.0f, 10.0f, 10.0f);
-		camera.target = new(0.0f, 0.0f, 0.0f);
-		camera.up = new(0.0f, 1.0f, 0.0f);
-		camera.fovy = 45.0f;
-		camera.projection_ = CAMERA_PERSPECTIVE;
+        InitWindow(screenWidth, screenHeight, "raylib [models] example - geometric shapes");
 
-		SetTargetFPS(60);               // Set our game to run at 60 frames-per-second
-										//--------------------------------------------------------------------------------------
+        // Define the camera to look into our 3d world
+        Camera camera = new();
+        camera.position = new(0.0f, 10.0f, 10.0f);
+        camera.target = new(0.0f, 0.0f, 0.0f);
+        camera.up = new(0.0f, 1.0f, 0.0f);
+        camera.fovy = 45.0f;
+        camera.Projection = CAMERA_PERSPECTIVE;
 
-		// Main game loop
-		while (!WindowShouldClose())    // Detect window close button or ESC key
-		{
-			// Update
-			//----------------------------------------------------------------------------------
-			// TODO: Update your variables here
-			//----------------------------------------------------------------------------------
+        SetTargetFPS(60);               // Set our game to run at 60 frames-per-second
 
-			// Draw
-			//----------------------------------------------------------------------------------
-			BeginDrawing();
 
-			ClearBackground(RAYWHITE);
+        // Main game loop
+        while (!WindowShouldClose())    // Detect window close button or ESC key
+        {
+            // Update
 
-			BeginMode3D(camera);
+            // TODO: Update your variables here
 
-			DrawCube(new(-4.0f, 0.0f, 2.0f), 2.0f, 5.0f, 2.0f, RED);
-			DrawCubeWires(new(-4.0f, 0.0f, 2.0f), 2.0f, 5.0f, 2.0f, GOLD);
-			DrawCubeWires(new(-4.0f, 0.0f, -2.0f), 3.0f, 6.0f, 2.0f, MAROON);
 
-			DrawSphere(new(-1.0f, 0.0f, -2.0f), 1.0f, GREEN);
-			DrawSphereWires(new(1.0f, 0.0f, 2.0f), 2.0f, 16, 16, LIME);
+            // Draw
 
-			DrawCylinder(new(4.0f, 0.0f, -2.0f), 1.0f, 2.0f, 3.0f, 4, SKYBLUE);
-			DrawCylinderWires(new(4.0f, 0.0f, -2.0f), 1.0f, 2.0f, 3.0f, 4, DARKBLUE);
-			DrawCylinderWires(new(4.5f, -1.0f, 2.0f), 1.0f, 1.0f, 2.0f, 6, BROWN);
+            BeginDrawing();
 
-			DrawCylinder(new(1.0f, 0.0f, -4.0f), 0.0f, 1.5f, 3.0f, 8, GOLD);
-			DrawCylinderWires(new(1.0f, 0.0f, -4.0f), 0.0f, 1.5f, 3.0f, 8, PINK);
+            ClearBackground(RAYWHITE);
 
-			DrawGrid(10, 1.0f);        // Draw a grid
+            BeginMode3D(camera);
 
-			EndMode3D();
+            DrawCube(new(-4.0f, 0.0f, 2.0f), 2.0f, 5.0f, 2.0f, RED);
+            DrawCubeWires(new(-4.0f, 0.0f, 2.0f), 2.0f, 5.0f, 2.0f, GOLD);
+            DrawCubeWires(new(-4.0f, 0.0f, -2.0f), 3.0f, 6.0f, 2.0f, MAROON);
 
-			DrawFPS(10, 10);
+            DrawSphere(new(-1.0f, 0.0f, -2.0f), 1.0f, GREEN);
+            DrawSphereWires(new(1.0f, 0.0f, 2.0f), 2.0f, 16, 16, LIME);
 
-			EndDrawing();
-			//----------------------------------------------------------------------------------
-		}
+            DrawCylinder(new(4.0f, 0.0f, -2.0f), 1.0f, 2.0f, 3.0f, 4, SKYBLUE);
+            DrawCylinderWires(new(4.0f, 0.0f, -2.0f), 1.0f, 2.0f, 3.0f, 4, DARKBLUE);
+            DrawCylinderWires(new(4.5f, -1.0f, 2.0f), 1.0f, 1.0f, 2.0f, 6, BROWN);
 
-		// De-Initialization
-		//--------------------------------------------------------------------------------------
-		CloseWindow();        // Close window and OpenGL context
-							  //--------------------------------------------------------------------------------------
+            DrawCylinder(new(1.0f, 0.0f, -4.0f), 0.0f, 1.5f, 3.0f, 8, GOLD);
+            DrawCylinderWires(new(1.0f, 0.0f, -4.0f), 0.0f, 1.5f, 3.0f, 8, PINK);
 
-		return 0;
-	}
+            DrawGrid(10, 1.0f);        // Draw a grid
+
+            EndMode3D();
+
+            DrawFPS(10, 10);
+
+            EndDrawing();
+
+        }
+
+        // De-Initialization
+
+        CloseWindow();        // Close window and OpenGL context
+
+
+        return 0;
+    }
 }

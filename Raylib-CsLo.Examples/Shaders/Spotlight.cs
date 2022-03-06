@@ -1,10 +1,7 @@
-﻿// [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] 
-// [!!] Copyright ©️ Raylib-CsLo and Contributors. 
-// [!!] This file is licensed to you under the MPL-2.0.
-// [!!] See the LICENSE file in the project root for more info. 
-// [!!] ------------------------------------------------- 
-// [!!] The code and 100+ examples are here! https://github.com/NotNotTech/Raylib-CsLo 
-// [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!]  [!!] [!!] [!!] [!!]
+// Copyright ©️ Raylib-CsLo and Contributors.
+// This file is licensed to you under the MPL-2.0.
+// See the LICENSE file in the project root for more info.
+// The code and 100+ examples are here! https://github.com/NotNotTech/Raylib-CsLo
 
 
 namespace Raylib_CsLo.Examples.Shaders;
@@ -38,237 +35,249 @@ namespace Raylib_CsLo.Examples.Shaders;
 *
 ********************************************************************************************/
 
-public unsafe static class Spotlight
+public static unsafe class Spotlight
 {
 
 #if PLATFORM_DESKTOP
-	const int GLSL_VERSION = 330;
+    const int GLSL_VERSION = 330;
 #else   // PLATFORM_RPI, PLATFORM_ANDROID, PLATFORM_WEB
 	const int GLSL_VERSION = 100;
 #endif
 
-	const int MAX_SPOTS = 3;        // NOTE: It must be the same as define in shader
-	const int MAX_STARS = 400;
-	// Spot data
-	struct Spot
-	{
+    const int MAX_SPOTS = 3;        // NOTE: It must be the same as define in shader
+    const int MAX_STARS = 400;
+    // Spot data
+    struct Spot
+    {
 
-		public Vector2 pos;
-		public Vector2 vel;
-		public float inner;
-		public float radius;
+        public Vector2 pos;
+        public Vector2 vel;
+        public float inner;
+        public float radius;
 
-		// Shader locations
-		public int posLoc;
-		public int innerLoc;
-		public int radiusLoc;
-	}
+        // Shader locations
+        public int posLoc;
+        public int innerLoc;
+        public int radiusLoc;
+    }
 
-	// Stars in the star field have a position and velocity
-	struct Star
-	{
-		public Vector2 pos;
-		public Vector2 vel;
-	}
+    // Stars in the star field have a position and velocity
+    struct Star
+    {
+        public Vector2 pos;
+        public Vector2 vel;
+    }
 
-	public static int main()
-	{
-		// Initialization
-		//--------------------------------------------------------------------------------------
-		const int screenWidth = 800;
-		const int screenHeight = 450;
+    public static int Example()
+    {
+        // Initialization
 
-		InitWindow(screenWidth, screenHeight, "raylib - shader spotlight");
-		HideCursor();
+        const int screenWidth = 800;
+        const int screenHeight = 450;
 
-		Texture texRay = LoadTexture("resources/raysan.png");
+        InitWindow(screenWidth, screenHeight, "raylib - shader spotlight");
+        HideCursor();
 
-		Star[] stars = new Star[MAX_STARS];
+        Texture texRay = LoadTexture("resources/raysan.png");
 
-		for (int n = 0; n < MAX_STARS; n++) ResetStar(ref stars[n]);
+        Star[] stars = new Star[MAX_STARS];
 
-		// Progress all the stars on, so they don't all start in the centre
-		for (int m = 0; m < screenWidth / 2.0; m++)
-		{
-			for (int n = 0; n < MAX_STARS; n++) UpdateStar(ref stars[n]);
-		}
+        for (int n = 0; n < MAX_STARS; n++)
+        {
+            ResetStar(ref stars[n]);
+        }
 
-		int frameCounter = 0;
+        // Progress all the stars on, so they don't all start in the centre
+        for (int m = 0; m < screenWidth / 2.0; m++)
+        {
+            for (int n = 0; n < MAX_STARS; n++)
+            {
+                UpdateStar(ref stars[n]);
+            }
+        }
 
-		// Use default vert shader
-		Shader shdrSpot = LoadShader(null, TextFormat("resources/shaders/glsl%i/spotlight.fs", GLSL_VERSION));
+        int frameCounter = 0;
 
-		// Get the locations of spots in the shader
-		Spot[] spots = new Spot[MAX_SPOTS];
+        // Use default vert shader
+        Shader shdrSpot = LoadShader(null, TextFormat("resources/shaders/glsl%i/spotlight.fs", GLSL_VERSION));
 
-		for (int i = 0; i < MAX_SPOTS; i++)
-		{
-			string posName = $"spots[{i}].pos";
-			string innerName = $"spots[{i}].inner";
-			string radiusName = $"spots[{i}].radius";
+        // Get the locations of spots in the shader
+        Spot[] spots = new Spot[MAX_SPOTS];
 
-			// posName[6] = '0' + i;
-			// innerName[6] = '0' + i;
-			// radiusName[6] = '0' + i;
+        for (int i = 0; i < MAX_SPOTS; i++)
+        {
+            string posName = $"spots[{i}].pos";
+            string innerName = $"spots[{i}].inner";
+            string radiusName = $"spots[{i}].radius";
 
-			spots[i].posLoc = GetShaderLocation(shdrSpot, posName);
-			spots[i].innerLoc = GetShaderLocation(shdrSpot, innerName);
-			spots[i].radiusLoc = GetShaderLocation(shdrSpot, radiusName);
+            // posName[6] = '0' + i;
+            // innerName[6] = '0' + i;
+            // radiusName[6] = '0' + i;
 
-		}
+            spots[i].posLoc = GetShaderLocation(shdrSpot, posName);
+            spots[i].innerLoc = GetShaderLocation(shdrSpot, innerName);
+            spots[i].radiusLoc = GetShaderLocation(shdrSpot, radiusName);
 
-		// Tell the shader how wide the screen is so we can have
-		// a pitch black half and a dimly lit half.
-		int wLoc = GetShaderLocation(shdrSpot, "screenWidth");
-		float sw = (float)GetScreenWidth();
-		SetShaderValue(shdrSpot, wLoc, &sw, SHADER_UNIFORM_FLOAT);
+        }
 
-		// Randomize the locations and velocities of the spotlights
-		// and initialize the shader locations
-		for (int i = 0; i < MAX_SPOTS; i++)
-		{
-			spots[i].pos.X = (float)GetRandomValue(64, screenWidth - 64);
-			spots[i].pos.Y = (float)GetRandomValue(64, screenHeight - 64);
-			spots[i].vel = new Vector2(0, 0);
+        // Tell the shader how wide the screen is so we can have
+        // a pitch black half and a dimly lit half.
+        int wLoc = GetShaderLocation(shdrSpot, "screenWidth");
+        float sw = GetScreenWidth();
+        SetShaderValue(shdrSpot, wLoc, &sw, SHADER_UNIFORM_FLOAT);
 
-			while ((MathF.Abs(spots[i].vel.X) + MathF.Abs(spots[i].vel.Y)) < 2)
-			{
-				spots[i].vel.X = GetRandomValue(-400, 40) / 10.0f;
-				spots[i].vel.Y = GetRandomValue(-400, 40) / 10.0f;
-			}
+        // Randomize the locations and velocities of the spotlights
+        // and initialize the shader locations
+        for (int i = 0; i < MAX_SPOTS; i++)
+        {
+            spots[i].pos.X = GetRandomValue(64, screenWidth - 64);
+            spots[i].pos.Y = GetRandomValue(64, screenHeight - 64);
+            spots[i].vel = new Vector2(0, 0);
 
-			spots[i].inner = 28.0f * (i + 1);
-			spots[i].radius = 48.0f * (i + 1);
+            while ((MathF.Abs(spots[i].vel.X) + MathF.Abs(spots[i].vel.Y)) < 2)
+            {
+                spots[i].vel.X = GetRandomValue(-400, 40) / 10.0f;
+                spots[i].vel.Y = GetRandomValue(-400, 40) / 10.0f;
+            }
 
-			SetShaderValue(shdrSpot, spots[i].posLoc, spots[i].pos.X, SHADER_UNIFORM_VEC2);
-			SetShaderValue(shdrSpot, spots[i].innerLoc, spots[i].inner, SHADER_UNIFORM_FLOAT);
-			SetShaderValue(shdrSpot, spots[i].radiusLoc, spots[i].radius, SHADER_UNIFORM_FLOAT);
-		}
+            spots[i].inner = 28.0f * (i + 1);
+            spots[i].radius = 48.0f * (i + 1);
 
-		SetTargetFPS(60);               // Set  to run at 60 frames-per-second
-										//--------------------------------------------------------------------------------------
+            SetShaderValue(shdrSpot, spots[i].posLoc, spots[i].pos.X, SHADER_UNIFORM_VEC2);
+            SetShaderValue(shdrSpot, spots[i].innerLoc, spots[i].inner, SHADER_UNIFORM_FLOAT);
+            SetShaderValue(shdrSpot, spots[i].radiusLoc, spots[i].radius, SHADER_UNIFORM_FLOAT);
+        }
 
-		// Main game loop
-		while (!WindowShouldClose())    // Detect window close button or ESC key
-		{
-			// Update
-			//----------------------------------------------------------------------------------
-			frameCounter++;
-
-			// Move the stars, resetting them if the go offscreen
-			for (int n = 0; n < MAX_STARS; n++) UpdateStar(ref stars[n]);
-
-			// Update the spots, send them to the shader
-			for (int i = 0; i < MAX_SPOTS; i++)
-			{
-				if (i == 0)
-				{
-					Vector2 mp = GetMousePosition();
-					spots[i].pos.X = mp.X;
-					spots[i].pos.Y = screenHeight - mp.Y;
-				}
-				else
-				{
-					spots[i].pos.X += spots[i].vel.X;
-					spots[i].pos.Y += spots[i].vel.Y;
-
-					if (spots[i].pos.X < 64) spots[i].vel.X = -spots[i].vel.X;
-					if (spots[i].pos.X > (screenWidth - 64)) spots[i].vel.X = -spots[i].vel.X;
-					if (spots[i].pos.Y < 64) spots[i].vel.Y = -spots[i].vel.Y;
-					if (spots[i].pos.Y > (screenHeight - 64)) spots[i].vel.Y = -spots[i].vel.Y;
-				}
-
-				SetShaderValue(shdrSpot, spots[i].posLoc,ref spots[i].pos.X, SHADER_UNIFORM_VEC2);
-			}
-
-			// Draw
-			//----------------------------------------------------------------------------------
-			BeginDrawing();
-
-			ClearBackground(DARKBLUE);
-
-			// Draw stars and bobs
-			for (int n = 0; n < MAX_STARS; n++)
-			{
-				// Single pixel is just too small these days!
-				DrawRectangle((int)stars[n].pos.X, (int)stars[n].pos.Y, 2, 2, WHITE);
-			}
-
-			for (int i = 0; i < 16; i++)
-			{
-				DrawTexture(texRay,
-					(int)((screenWidth / 2.0f) + Math.Cos((frameCounter + i * 8) / 51.45f) * (screenWidth / 2.2f) - 32),
-					(int)((screenHeight / 2.0f) + Math.Sin((frameCounter + i * 8) / 17.87f) * (screenHeight / 4.2f)), WHITE);
-			}
-
-			// Draw spot lights
-			BeginShaderMode(shdrSpot);
-			// Instead of a blank rectangle you could render here
-			// a render texture of the full screen used to do screen
-			// scaling (slight adjustment to shader would be required
-			// to actually pay attention to the colour!)
-			DrawRectangle(0, 0, screenWidth, screenHeight, WHITE);
-			EndShaderMode();
-
-			DrawFPS(10, 10);
-
-			DrawText("Move the mouse!", 10, 30, 20, GREEN);
-			DrawText("Pitch Black", (int)(screenWidth * 0.2f), screenHeight / 2, 20, GREEN);
-			DrawText("Dark", (int)(screenWidth * .66f), screenHeight / 2, 20, GREEN);
+        SetTargetFPS(60);               // Set  to run at 60 frames-per-second
 
 
-			EndDrawing();
-			//----------------------------------------------------------------------------------
-		}
+        // Main game loop
+        while (!WindowShouldClose())    // Detect window close button or ESC key
+        {
+            // Update
 
-		// De-Initialization
-		//--------------------------------------------------------------------------------------
-		UnloadTexture(texRay);
-		UnloadShader(shdrSpot);
+            frameCounter++;
 
-		CloseWindow();        // Close window and OpenGL context
-							  //--------------------------------------------------------------------------------------
+            // Move the stars, resetting them if the go offscreen
+            for (int n = 0; n < MAX_STARS; n++)
+            {
+                UpdateStar(ref stars[n]);
+            }
 
-		return 0;
-	}
+            // Update the spots, send them to the shader
+            for (int i = 0; i < MAX_SPOTS; i++)
+            {
+                if (i == 0)
+                {
+                    Vector2 mp = GetMousePosition();
+                    spots[i].pos.X = mp.X;
+                    spots[i].pos.Y = screenHeight - mp.Y;
+                }
+                else
+                {
+                    spots[i].pos.X += spots[i].vel.X;
+                    spots[i].pos.Y += spots[i].vel.Y;
+
+                    if (spots[i].pos.X < 64)
+                    {
+                        spots[i].vel.X = -spots[i].vel.X;
+                    }
+
+                    if (spots[i].pos.X > (screenWidth - 64))
+                    {
+                        spots[i].vel.X = -spots[i].vel.X;
+                    }
+
+                    if (spots[i].pos.Y < 64)
+                    {
+                        spots[i].vel.Y = -spots[i].vel.Y;
+                    }
+
+                    if (spots[i].pos.Y > (screenHeight - 64))
+                    {
+                        spots[i].vel.Y = -spots[i].vel.Y;
+                    }
+                }
+
+                SetShaderValue(shdrSpot, spots[i].posLoc, ref spots[i].pos.X, SHADER_UNIFORM_VEC2);
+            }
+
+            // Draw
+
+            BeginDrawing();
+
+            ClearBackground(DARKBLUE);
+
+            // Draw stars and bobs
+            for (int n = 0; n < MAX_STARS; n++)
+            {
+                // Single pixel is just too small these days!
+                DrawRectangle((int)stars[n].pos.X, (int)stars[n].pos.Y, 2, 2, WHITE);
+            }
+
+            for (int i = 0; i < 16; i++)
+            {
+                DrawTexture(texRay,
+                    (int)((screenWidth / 2.0f) + (Math.Cos((frameCounter + (i * 8)) / 51.45f) * (screenWidth / 2.2f)) - 32),
+                    (int)((screenHeight / 2.0f) + (Math.Sin((frameCounter + (i * 8)) / 17.87f) * (screenHeight / 4.2f))), WHITE);
+            }
+
+            // Draw spot lights
+            BeginShaderMode(shdrSpot);
+            // Instead of a blank rectangle you could render here
+            // a render texture of the full screen used to do screen
+            // scaling (slight adjustment to shader would be required
+            // to actually pay attention to the colour!)
+            DrawRectangle(0, 0, screenWidth, screenHeight, WHITE);
+            EndShaderMode();
+
+            DrawFPS(10, 10);
+
+            DrawText("Move the mouse!", 10, 30, 20, GREEN);
+            DrawText("Pitch Black", (int)(screenWidth * 0.2f), screenHeight / 2, 20, GREEN);
+            DrawText("Dark", (int)(screenWidth * .66f), screenHeight / 2, 20, GREEN);
+
+
+            EndDrawing();
+
+        }
+
+        // De-Initialization
+
+        UnloadTexture(texRay);
+        UnloadShader(shdrSpot);
+
+        CloseWindow();        // Close window and OpenGL context
+
+
+        return 0;
+    }
 
 
 
-	static void ResetStar(ref Star s)
-	{
-		s.pos = new Vector2(GetScreenWidth() / 2.0f, GetScreenHeight() / 2.0f);
+    static void ResetStar(ref Star s)
+    {
+        s.pos = new Vector2(GetScreenWidth() / 2.0f, GetScreenHeight() / 2.0f);
 
-		do
-		{
-			s.vel.X = (float)GetRandomValue(-1000, 1000) / 100.0f;
-			s.vel.Y = (float)GetRandomValue(-1000, 1000) / 100.0f;
+        do
+        {
+            s.vel.X = GetRandomValue(-1000, 1000) / 100.0f;
+            s.vel.Y = GetRandomValue(-1000, 1000) / 100.0f;
 
-		} while ((MathF.Abs(s.vel.X) + (MathF.Abs(s.vel.Y)) > 1));
+        } while (MathF.Abs(s.vel.X) + MathF.Abs(s.vel.Y) > 1);
 
-		s.pos = Vector2Add(s.pos, Vector2Multiply(s.vel, new Vector2(8.0f, 8.0f)));
-	}
+        s.pos = Vector2Add(s.pos, Vector2Multiply(s.vel, new Vector2(8.0f, 8.0f)));
+    }
 
-	static void UpdateStar(ref Star s)
-	{
-		s.pos = Vector2Add(s.pos, s.vel);
+    static void UpdateStar(ref Star s)
+    {
+        s.pos = Vector2Add(s.pos, s.vel);
 
-		if ((s.pos.X < 0) || (s.pos.X > GetScreenWidth()) ||
-			(s.pos.Y < 0) || (s.pos.Y > GetScreenHeight()))
-		{
-			ResetStar(ref s);
-		}
-	}
+        if ((s.pos.X < 0) || (s.pos.X > GetScreenWidth()) ||
+            (s.pos.Y < 0) || (s.pos.Y > GetScreenHeight()))
+        {
+            ResetStar(ref s);
+        }
+    }
 
 }
-
-
-
-
-
-
-
-
-
-
-
-

@@ -1,10 +1,7 @@
-﻿// [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] 
-// [!!] Copyright ©️ Raylib-CsLo and Contributors. 
-// [!!] This file is licensed to you under the MPL-2.0.
-// [!!] See the LICENSE file in the project root for more info. 
-// [!!] ------------------------------------------------- 
-// [!!] The code and 100+ examples are here! https://github.com/NotNotTech/Raylib-CsLo 
-// [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!]  [!!] [!!] [!!] [!!]
+// Copyright ©️ Raylib-CsLo and Contributors.
+// This file is licensed to you under the MPL-2.0.
+// See the LICENSE file in the project root for more info.
+// The code and 100+ examples are here! https://github.com/NotNotTech/Raylib-CsLo
 
 namespace Raylib_CsLo.Examples.Shaders;
 
@@ -27,93 +24,103 @@ namespace Raylib_CsLo.Examples.Shaders;
 ********************************************************************************************/
 
 
-public unsafe static class MultiSample2d
+public static unsafe class MultiSample2d
 {
 
-	const int GLSL_VERSION = 330;
-	public static int main()
-	{
-		//var rLights = new Examples.RLights();
+    const int GLSL_VERSION = 330;
+    public static int Example()
+    {
+        //var rLights = new Examples.RLights();
 
-		// Initialization
-		//--------------------------------------------------------------------------------------
-		const int screenWidth = 800;
-		const int screenHeight = 450;
+        // Initialization
 
-		InitWindow(screenWidth, screenHeight, "raylib - multiple sample2D");
+        const int screenWidth = 800;
+        const int screenHeight = 450;
 
-		Image imRed = GenImageColor(800, 450, new Color(
-			255, 0, 0, 255));
-		Texture texRed = LoadTextureFromImage(imRed);
-		UnloadImage(imRed);
+        InitWindow(screenWidth, screenHeight, "raylib - multiple sample2D");
 
-		Image imBlue = GenImageColor(800, 450, new Color(
-			0, 0, 255, 255));
-		Texture texBlue = LoadTextureFromImage(imBlue);
-		UnloadImage(imBlue);
+        Image imRed = GenImageColor(800, 450, new Color(
+            255, 0, 0, 255));
+        Texture texRed = LoadTextureFromImage(imRed);
+        UnloadImage(imRed);
 
-		Shader shader = LoadShader(null, TextFormat("resources/shaders/glsl%i/color_mix.fs", GLSL_VERSION));
+        Image imBlue = GenImageColor(800, 450, new Color(
+            0, 0, 255, 255));
+        Texture texBlue = LoadTextureFromImage(imBlue);
+        UnloadImage(imBlue);
 
-		// Get an additional sampler2D location to be enabled on drawing
-		int texBlueLoc = GetShaderLocation(shader, "texture1");
+        Shader shader = LoadShader(null, TextFormat("resources/shaders/glsl%i/color_mix.fs", GLSL_VERSION));
 
-		// Get shader uniform for divider
-		int dividerLoc = GetShaderLocation(shader, "divider");
-		float dividerValue = 0.5f;
+        // Get an additional sampler2D location to be enabled on drawing
+        int texBlueLoc = GetShaderLocation(shader, "texture1");
 
-		SetTargetFPS(60);                           // Set our game to run at 60 frames-per-second
-													//--------------------------------------------------------------------------------------
+        // Get shader uniform for divider
+        int dividerLoc = GetShaderLocation(shader, "divider");
+        float dividerValue = 0.5f;
 
-		// Main game loop
-		while (!WindowShouldClose())                // Detect window close button or ESC key
-		{
-			// Update
-			//----------------------------------------------------------------------------------
-			if (IsKeyDown(KEY_RIGHT)) dividerValue += 0.01f;
-			else if (IsKeyDown(KEY_LEFT)) dividerValue -= 0.01f;
+        SetTargetFPS(60);                           // Set our game to run at 60 frames-per-second
 
-			if (dividerValue < 0.0f) dividerValue = 0.0f;
-			else if (dividerValue > 1.0f) dividerValue = 1.0f;
 
-			SetShaderValue(shader, dividerLoc, &dividerValue, SHADER_UNIFORM_FLOAT);
-			//----------------------------------------------------------------------------------
+        // Main game loop
+        while (!WindowShouldClose())                // Detect window close button or ESC key
+        {
+            // Update
 
-			// Draw
-			//----------------------------------------------------------------------------------
-			BeginDrawing();
+            if (IsKeyDown(KEY_RIGHT))
+            {
+                dividerValue += 0.01f;
+            }
+            else if (IsKeyDown(KEY_LEFT))
+            {
+                dividerValue -= 0.01f;
+            }
 
-			ClearBackground(RAYWHITE);
+            if (dividerValue < 0.0f)
+            {
+                dividerValue = 0.0f;
+            }
+            else if (dividerValue > 1.0f)
+            {
+                dividerValue = 1.0f;
+            }
 
-			BeginShaderMode(shader);
+            SetShaderValue(shader, dividerLoc, &dividerValue, SHADER_UNIFORM_FLOAT);
 
-			// WARNING: Additional samplers are enabled for all draw calls in the batch,
-			// EndShaderMode() forces batch drawing and consequently resets active textures
-			// to let other sampler2D to be activated on consequent drawings (if required)
-			SetShaderValueTexture(shader, texBlueLoc, texBlue);
 
-			// We are drawing texRed using default sampler2D texture0 but
-			// an additional texture units is enabled for texBlue (sampler2D texture1)
-			DrawTexture(texRed, 0, 0, WHITE);
+            // Draw
 
-			EndShaderMode();
+            BeginDrawing();
 
-			DrawText("Use KEY_LEFT/KEY_RIGHT to move texture mixing in shader!", 80, GetScreenHeight() - 40, 20, RAYWHITE);
+            ClearBackground(RAYWHITE);
 
-			EndDrawing();
-			//----------------------------------------------------------------------------------
-		}
+            BeginShaderMode(shader);
 
-		// De-Initialization
-		//--------------------------------------------------------------------------------------
-		UnloadShader(shader);       // Unload shader
-		UnloadTexture(texRed);      // Unload texture
-		UnloadTexture(texBlue);     // Unload texture
+            // WARNING: Additional samplers are enabled for all draw calls in the batch,
+            // EndShaderMode() forces batch drawing and consequently resets active textures
+            // to let other sampler2D to be activated on consequent drawings (if required)
+            SetShaderValueTexture(shader, texBlueLoc, texBlue);
 
-		CloseWindow();              // Close window and OpenGL context
-									//--------------------------------------------------------------------------------------
+            // We are drawing texRed using default sampler2D texture0 but
+            // an additional texture units is enabled for texBlue (sampler2D texture1)
+            DrawTexture(texRed, 0, 0, WHITE);
 
-		return 0;
-	}
+            EndShaderMode();
+
+            DrawText("Use KEY_LEFT/KEY_RIGHT to move texture mixing in shader!", 80, GetScreenHeight() - 40, 20, RAYWHITE);
+
+            EndDrawing();
+
+        }
+
+        // De-Initialization
+
+        UnloadShader(shader);       // Unload shader
+        UnloadTexture(texRed);      // Unload texture
+        UnloadTexture(texBlue);     // Unload texture
+
+        CloseWindow();              // Close window and OpenGL context
+
+
+        return 0;
+    }
 }
-
-

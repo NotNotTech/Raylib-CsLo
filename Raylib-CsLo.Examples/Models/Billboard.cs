@@ -1,10 +1,7 @@
-﻿// [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] 
-// [!!] Copyright ©️ Raylib-CsLo and Contributors. 
-// [!!] This file is licensed to you under the MPL-2.0.
-// [!!] See the LICENSE file in the project root for more info. 
-// [!!] ------------------------------------------------- 
-// [!!] The code and 100+ examples are here! https://github.com/NotNotTech/Raylib-CsLo 
-// [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!]  [!!] [!!] [!!] [!!]
+// Copyright ©️ Raylib-CsLo and Contributors.
+// This file is licensed to you under the MPL-2.0.
+// See the LICENSE file in the project root for more info.
+// The code and 100+ examples are here! https://github.com/NotNotTech/Raylib-CsLo
 
 namespace Raylib_CsLo.Examples.Models;
 
@@ -19,69 +16,69 @@ namespace Raylib_CsLo.Examples.Models;
 //*
 //********************************************************************************************/
 ///</summary>
-public unsafe static class Billboard
+public static unsafe class Billboard
 {
 
-	public static int main()
-	{
-		// Initialization
-		//--------------------------------------------------------------------------------------
-		const int screenWidth = 800;
-		const int screenHeight = 450;
+    public static int Example()
+    {
+        // Initialization
 
-		InitWindow(screenWidth, screenHeight, "raylib [models] example - drawing billboards");
+        const int screenWidth = 800;
+        const int screenHeight = 450;
 
-		// Define the camera to look into our 3d world
-		Camera camera = new();
-		camera.position = new(5.0f, 4.0f, 5.0f);
-		camera.target = new(0.0f, 2.0f, 0.0f);
-		camera.up = new(0.0f, 1.0f, 0.0f);
-		camera.fovy = 45.0f;
-		camera.projection_ = CAMERA_PERSPECTIVE;
+        InitWindow(screenWidth, screenHeight, "raylib [models] example - drawing billboards");
 
-		Texture2D bill = LoadTexture("resources/billboard.png");     // Our texture billboard
-		Vector3 billPosition = new(0.0f, 2.0f, 0.0f);                 // Position where draw billboard
+        // Define the camera to look into our 3d world
+        Camera camera = new();
+        camera.position = new(5.0f, 4.0f, 5.0f);
+        camera.target = new(0.0f, 2.0f, 0.0f);
+        camera.up = new(0.0f, 1.0f, 0.0f);
+        camera.fovy = 45.0f;
+        camera.Projection = CAMERA_PERSPECTIVE;
 
-		SetCameraMode(camera, CAMERA_ORBITAL);  // Set an orbital camera mode
+        Texture2D bill = LoadTexture("resources/billboard.png");     // Our texture billboard
+        Vector3 billPosition = new(0.0f, 2.0f, 0.0f);                 // Position where draw billboard
 
-		SetTargetFPS(60);                       // Set our game to run at 60 frames-per-second
-												//--------------------------------------------------------------------------------------
+        SetCameraMode(camera, CAMERA_ORBITAL);  // Set an orbital camera mode
 
-		// Main game loop
-		while (!WindowShouldClose())            // Detect window close button or ESC key
-		{
-			// Update
-			//----------------------------------------------------------------------------------
-			UpdateCamera(ref camera);              // Update camera
-												   //----------------------------------------------------------------------------------
+        SetTargetFPS(60);                       // Set our game to run at 60 frames-per-second
 
-			// Draw
-			//----------------------------------------------------------------------------------
-			BeginDrawing();
 
-			ClearBackground(RAYWHITE);
+        // Main game loop
+        while (!WindowShouldClose())            // Detect window close button or ESC key
+        {
+            // Update
 
-			BeginMode3D(camera);
+            UpdateCamera(ref camera);              // Update camera
 
-			DrawGrid(10, 1.0f);        // Draw a grid
 
-			DrawBillboard(camera, bill, billPosition, 2.0f, WHITE);
+            // Draw
 
-			EndMode3D();
+            BeginDrawing();
 
-			DrawFPS(10, 10);
+            ClearBackground(RAYWHITE);
 
-			EndDrawing();
-			//----------------------------------------------------------------------------------
-		}
+            BeginMode3D(camera);
 
-		// De-Initialization
-		//--------------------------------------------------------------------------------------
-		UnloadTexture(bill);        // Unload texture
+            DrawGrid(10, 1.0f);        // Draw a grid
 
-		CloseWindow();              // Close window and OpenGL context
-									//--------------------------------------------------------------------------------------
+            DrawBillboard(camera, bill, billPosition, 2.0f, WHITE);
 
-		return 0;
-	}
+            EndMode3D();
+
+            DrawFPS(10, 10);
+
+            EndDrawing();
+
+        }
+
+        // De-Initialization
+
+        UnloadTexture(bill);        // Unload texture
+
+        CloseWindow();              // Close window and OpenGL context
+
+
+        return 0;
+    }
 }

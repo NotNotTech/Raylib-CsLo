@@ -1,10 +1,7 @@
-﻿// [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] 
-// [!!] Copyright ©️ Raylib-CsLo and Contributors. 
-// [!!] This file is licensed to you under the MPL-2.0.
-// [!!] See the LICENSE file in the project root for more info. 
-// [!!] ------------------------------------------------- 
-// [!!] The code and 100+ examples are here! https://github.com/NotNotTech/Raylib-CsLo 
-// [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!]  [!!] [!!] [!!] [!!]
+// Copyright ©️ Raylib-CsLo and Contributors.
+// This file is licensed to you under the MPL-2.0.
+// See the LICENSE file in the project root for more info.
+// The code and 100+ examples are here! https://github.com/NotNotTech/Raylib-CsLo
 
 namespace Raylib_CsLo.Examples.Shaders;
 
@@ -26,112 +23,110 @@ namespace Raylib_CsLo.Examples.Shaders;
 *
 ********************************************************************************************/
 
-public unsafe static class CustomUniform
+public static unsafe class CustomUniform
 {
 
-	const int GLSL_VERSION = 330;
-	public static int main()
-	{
-		// Initialization
-		//--------------------------------------------------------------------------------------
-		const int screenWidth = 800;
-		const int screenHeight = 450;
+    const int GLSL_VERSION = 330;
+    public static int Example()
+    {
+        // Initialization
 
-		SetConfigFlags(FLAG_MSAA_4X_HINT);      // Enable Multi Sampling Anti Aliasing 4x (if available)
+        const int screenWidth = 800;
+        const int screenHeight = 450;
 
-		InitWindow(screenWidth, screenHeight, "raylib [shaders] example - custom uniform variable");
+        SetConfigFlags(FLAG_MSAA_4X_HINT);      // Enable Multi Sampling Anti Aliasing 4x (if available)
 
-		// Define the camera to look into our 3d world
-		Camera camera = new();
-		camera.position = new Vector3(8.0f, 8.0f, 8.0f);
-		camera.target = new Vector3(0.0f, 1.5f, 0.0f);
-		camera.up = new Vector3(0.0f, 1.0f, 0.0f);
-		camera.fovy = 45.0f;
-		camera.projection_ = CAMERA_PERSPECTIVE;
+        InitWindow(screenWidth, screenHeight, "raylib [shaders] example - custom uniform variable");
 
-		Model model = LoadModel("resources/models/barracks.obj");                   // Load OBJ model
-		Texture2D texture = LoadTexture("resources/models/barracks_diffuse.png");   // Load model texture (diffuse map)
-		model.materials[0].maps[(int)MATERIAL_MAP_DIFFUSE].texture = texture;                     // Set model diffuse texture
+        // Define the camera to look into our 3d world
+        Camera camera = new();
+        camera.position = new Vector3(8.0f, 8.0f, 8.0f);
+        camera.target = new Vector3(0.0f, 1.5f, 0.0f);
+        camera.up = new Vector3(0.0f, 1.0f, 0.0f);
+        camera.fovy = 45.0f;
+        camera.Projection = CAMERA_PERSPECTIVE;
 
-		Vector3 position = new(0.0f, 0.0f, 0.0f);                                    // Set model position
+        Model model = LoadModel("resources/models/barracks.obj");                   // Load OBJ model
+        Texture2D texture = LoadTexture("resources/models/barracks_diffuse.png");   // Load model texture (diffuse map)
+        model.materials[0].maps[(int)MATERIAL_MAP_DIFFUSE].texture = texture;                     // Set model diffuse texture
 
-		// Load postprocessing shader
-		// NOTE: Defining 0 (NULL) for vertex shader forces usage of internal default vertex shader
-		Shader shader = LoadShader(null, TextFormat("resources/shaders/glsl%i/swirl.fs", GLSL_VERSION));
+        Vector3 position = new(0.0f, 0.0f, 0.0f);                                    // Set model position
 
-		// Get variable (uniform) location on the shader to connect with the program
-		// NOTE: If uniform variable could not be found in the shader, function returns -1
-		int swirlCenterLoc = GetShaderLocation(shader, "center");
+        // Load postprocessing shader
+        // NOTE: Defining 0 (NULL) for vertex shader forces usage of internal default vertex shader
+        Shader shader = LoadShader(null, TextFormat("resources/shaders/glsl%i/swirl.fs", GLSL_VERSION));
 
-		Vector2 swirlCenter = new((float)screenWidth / 2, (float)screenHeight / 2);
+        // Get variable (uniform) location on the shader to connect with the program
+        // NOTE: If uniform variable could not be found in the shader, function returns -1
+        int swirlCenterLoc = GetShaderLocation(shader, "center");
 
-		// Create a RenderTexture2D to be used for render to texture
-		RenderTexture2D target = LoadRenderTexture(screenWidth, screenHeight);
+        Vector2 swirlCenter = new((float)screenWidth / 2, (float)screenHeight / 2);
 
-		// Setup orbital camera
-		SetCameraMode(camera, CAMERA_ORBITAL);  // Set an orbital camera mode
+        // Create a RenderTexture2D to be used for render to texture
+        RenderTexture2D target = LoadRenderTexture(screenWidth, screenHeight);
 
-		SetTargetFPS(60);                   // Set our game to run at 60 frames-per-second
-											//--------------------------------------------------------------------------------------
+        // Setup orbital camera
+        SetCameraMode(camera, CAMERA_ORBITAL);  // Set an orbital camera mode
 
-		// Main game loop
-		while (!WindowShouldClose())        // Detect window close button or ESC key
-		{
-			// Update
-			//----------------------------------------------------------------------------------
-			Vector2 mousePosition = GetMousePosition();
+        SetTargetFPS(60);                   // Set our game to run at 60 frames-per-second
 
-			swirlCenter.X = mousePosition.X;
-			swirlCenter.Y = screenHeight - mousePosition.Y;
 
-			// Send new value to the shader to be used on drawing
-			SetShaderValue(shader, swirlCenterLoc, swirlCenter, SHADER_UNIFORM_VEC2);
+        // Main game loop
+        while (!WindowShouldClose())        // Detect window close button or ESC key
+        {
+            // Update
 
-			UpdateCamera(&camera);          // Update camera
-											//----------------------------------------------------------------------------------
+            Vector2 mousePosition = GetMousePosition();
 
-			// Draw
-			//----------------------------------------------------------------------------------
-			BeginTextureMode(target);       // Enable drawing to texture
-			ClearBackground(RAYWHITE);  // Clear texture background
+            swirlCenter.X = mousePosition.X;
+            swirlCenter.Y = screenHeight - mousePosition.Y;
 
-			BeginMode3D(camera);        // Begin 3d mode drawing
-			DrawModel(model, position, 0.5f, WHITE);   // Draw 3d model with texture
-			DrawGrid(10, 1.0f);     // Draw a grid
-			EndMode3D();                // End 3d mode drawing, returns to orthographic 2d mode
+            // Send new value to the shader to be used on drawing
+            SetShaderValue(shader, swirlCenterLoc, swirlCenter, SHADER_UNIFORM_VEC2);
 
-			DrawText("TEXT DRAWN IN RENDER TEXTURE", 200, 10, 30, RED);
-			EndTextureMode();               // End drawing to texture (now we have a texture available for next passes)
+            UpdateCamera(&camera);          // Update camera
 
-			BeginDrawing();
-			ClearBackground(RAYWHITE);  // Clear screen background
 
-			// Enable shader using the custom uniform
-			BeginShaderMode(shader);
-			// NOTE: Render texture must be y-flipped due to default OpenGL coordinates (left-bottom)
-			DrawTextureRec(target.texture, new Rectangle(0, 0, (float)target.texture.width, (float)-target.texture.height), new Vector2(
-				0, 0), WHITE);
-			EndShaderMode();
+            // Draw
 
-			// Draw some 2d text over drawn texture
-			DrawText("(c) Barracks 3D model by Alberto Cano", screenWidth - 220, screenHeight - 20, 10, GRAY);
-			DrawFPS(10, 10);
-			EndDrawing();
-			//----------------------------------------------------------------------------------
-		}
+            BeginTextureMode(target);       // Enable drawing to texture
+            ClearBackground(RAYWHITE);  // Clear texture background
 
-		// De-Initialization
-		//--------------------------------------------------------------------------------------
-		UnloadShader(shader);               // Unload shader
-		UnloadTexture(texture);             // Unload texture
-		UnloadModel(model);                 // Unload model
-		UnloadRenderTexture(target);        // Unload render texture
+            BeginMode3D(camera);        // Begin 3d mode drawing
+            DrawModel(model, position, 0.5f, WHITE);   // Draw 3d model with texture
+            DrawGrid(10, 1.0f);     // Draw a grid
+            EndMode3D();                // End 3d mode drawing, returns to orthographic 2d mode
 
-		CloseWindow();                      // Close window and OpenGL context
-											//--------------------------------------------------------------------------------------
+            DrawText("TEXT DRAWN IN RENDER TEXTURE", 200, 10, 30, RED);
+            EndTextureMode();               // End drawing to texture (now we have a texture available for next passes)
 
-		return 0;
-	}
+            BeginDrawing();
+            ClearBackground(RAYWHITE);  // Clear screen background
+
+            // Enable shader using the custom uniform
+            BeginShaderMode(shader);
+            // NOTE: Render texture must be y-flipped due to default OpenGL coordinates (left-bottom)
+            DrawTextureRec(target.texture, new Rectangle(0, 0, target.texture.width, -target.texture.height), new Vector2(
+                0, 0), WHITE);
+            EndShaderMode();
+
+            // Draw some 2d text over drawn texture
+            DrawText("(c) Barracks 3D model by Alberto Cano", screenWidth - 220, screenHeight - 20, 10, GRAY);
+            DrawFPS(10, 10);
+            EndDrawing();
+
+        }
+
+        // De-Initialization
+
+        UnloadShader(shader);               // Unload shader
+        UnloadTexture(texture);             // Unload texture
+        UnloadModel(model);                 // Unload model
+        UnloadRenderTexture(target);        // Unload render texture
+
+        CloseWindow();                      // Close window and OpenGL context
+
+
+        return 0;
+    }
 }
-
-

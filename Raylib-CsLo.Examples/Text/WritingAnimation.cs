@@ -1,20 +1,9 @@
-// [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] 
-// [!!] Copyright ©️ Raylib-CsLo and Contributors. 
-// [!!] This file is licensed to you under the MPL-2.0.
-// [!!] See the LICENSE file in the project root for more info. 
-// [!!] ------------------------------------------------- 
-// [!!] The code and 100+ examples are here! https://github.com/NotNotTech/Raylib-CsLo 
-// [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!]  [!!] [!!] [!!] [!!]
-
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+// Copyright ©️ Raylib-CsLo and Contributors.
+// This file is licensed to you under the MPL-2.0.
+// See the LICENSE file in the project root for more info.
+// The code and 100+ examples are here! https://github.com/NotNotTech/Raylib-CsLo
 
 namespace Raylib_CsLo.Examples.Text;
-
-
 /*******************************************************************************************
 *
 *   raylib [text] example - Text Writing Animation
@@ -26,58 +15,67 @@ namespace Raylib_CsLo.Examples.Text;
 *
 ********************************************************************************************/
 
-public unsafe static class WritingAnimation
+public static unsafe class WritingAnimation
 {
 
-	public static int main()
-	{
-		// Initialization
-		//--------------------------------------------------------------------------------------
-		const int screenWidth = 800;
-		const int screenHeight = 450;
+    public static int Example()
+    {
+        // Initialization
 
-		InitWindow(screenWidth, screenHeight, "raylib [text] example - text writing anim");
+        const int screenWidth = 800;
+        const int screenHeight = 450;
 
-		string message = "This sample illustrates a text writing\nanimation effect! Check it out! ;)";
+        InitWindow(screenWidth, screenHeight, "raylib [text] example - text writing anim");
 
-		int framesCounter = 0;
+        string message = "This sample illustrates a text writing\nanimation effect! Check it out! ;)";
 
-		SetTargetFPS(60);               // Set our game to run at 60 frames-per-second
-										//--------------------------------------------------------------------------------------
+        int framesCounter = 0;
 
-		// Main game loop
-		while (!WindowShouldClose())    // Detect window close button or ESC key
-		{
-			// Update
-			//----------------------------------------------------------------------------------
-			if (IsKeyDown(KEY_SPACE)) framesCounter += 8;
-			else framesCounter++;
+        SetTargetFPS(60);               // Set our game to run at 60 frames-per-second
 
-			if (IsKeyPressed(KEY_ENTER)) framesCounter = 0;
-			//----------------------------------------------------------------------------------
 
-			// Draw
-			//----------------------------------------------------------------------------------
-			BeginDrawing();
+        // Main game loop
+        while (!WindowShouldClose())    // Detect window close button or ESC key
+        {
+            // Update
 
-			ClearBackground(RAYWHITE);
+            if (IsKeyDown(KEY_SPACE))
+            {
+                framesCounter += 8;
+            }
+            else
+            {
+                framesCounter++;
+            }
 
-			DrawText(TextSubtext(message, 0, framesCounter / 10), 210, 160, 20, MAROON);
+            if (IsKeyPressed(KEY_ENTER))
+            {
+                framesCounter = 0;
+            }
 
-			DrawText("PRESS [ENTER] to RESTART!", 240, 260, 20, LIGHTGRAY);
-			DrawText("PRESS [SPACE] to SPEED UP!", 239, 300, 20, LIGHTGRAY);
 
-			EndDrawing();
-			//----------------------------------------------------------------------------------
-		}
+            // Draw
 
-		// De-Initialization
-		//--------------------------------------------------------------------------------------
-		CloseWindow();        // Close window and OpenGL context
-							  //--------------------------------------------------------------------------------------
+            BeginDrawing();
 
-		return 0;
-	}
+            ClearBackground(RAYWHITE);
+
+            DrawText(TextSubtext(message, 0, framesCounter / 10), 210, 160, 20, MAROON);
+
+            DrawText("PRESS [ENTER] to RESTART!", 240, 260, 20, LIGHTGRAY);
+            DrawText("PRESS [SPACE] to SPEED UP!", 239, 300, 20, LIGHTGRAY);
+
+            EndDrawing();
+
+        }
+
+        // De-Initialization
+
+        CloseWindow();        // Close window and OpenGL context
+
+
+        return 0;
+    }
 
 
 }

@@ -1,10 +1,7 @@
-﻿// [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] 
-// [!!] Copyright ©️ Raylib-CsLo and Contributors. 
-// [!!] This file is licensed to you under the MPL-2.0.
-// [!!] See the LICENSE file in the project root for more info. 
-// [!!] ------------------------------------------------- 
-// [!!] The code and 100+ examples are here! https://github.com/NotNotTech/Raylib-CsLo 
-// [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!]  [!!] [!!] [!!] [!!]
+// Copyright ©️ Raylib-CsLo and Contributors.
+// This file is licensed to you under the MPL-2.0.
+// See the LICENSE file in the project root for more info.
+// The code and 100+ examples are here! https://github.com/NotNotTech/Raylib-CsLo
 
 namespace Raylib_CsLo.Examples.Textures;
 
@@ -19,93 +16,101 @@ namespace Raylib_CsLo.Examples.Textures;
 *
 ********************************************************************************************/
 
-public unsafe static class SpriteButton
+public static unsafe class SpriteButton
 {
 
-	const int NUM_FRAMES = 3;       // Number of frames (rectangles) for the button sprite texture
+    const int NUM_FRAMES = 3;       // Number of frames (rectangles) for the button sprite texture
 
-	public static int main()
-	{
-		// Initialization
-		//--------------------------------------------------------------------------------------
-		const int screenWidth = 800;
-		const int screenHeight = 450;
+    public static int Example()
+    {
+        // Initialization
 
-		InitWindow(screenWidth, screenHeight, "raylib [textures] example - sprite button");
+        const int screenWidth = 800;
+        const int screenHeight = 450;
 
-		InitAudioDevice();      // Initialize audio device
+        InitWindow(screenWidth, screenHeight, "raylib [textures] example - sprite button");
 
-		Sound fxButton = LoadSound("resources/buttonfx.wav");   // Load button sound
-		Texture2D button = LoadTexture("resources/button.png"); // Load button texture
+        InitAudioDevice();      // Initialize audio device
 
-		// Define frame rectangle for drawing
-		float frameHeight = (float)button.height / NUM_FRAMES;
-		Rectangle sourceRec = new Rectangle(0, 0, (float)button.width, frameHeight);
+        Sound fxButton = LoadSound("resources/buttonfx.wav");   // Load button sound
+        Texture2D button = LoadTexture("resources/button.png"); // Load button texture
 
-		// Define button bounds on screen
-		Rectangle btnBounds = new Rectangle(screenWidth / 2.0f - button.width / 2.0f, screenHeight / 2.0f - button.height / NUM_FRAMES / 2.0f, (float)button.width, frameHeight);
+        // Define frame rectangle for drawing
+        float frameHeight = (float)button.height / NUM_FRAMES;
+        Rectangle sourceRec = new(0, 0, button.width, frameHeight);
 
-		int btnState = 0;               // Button state: 0-NORMAL, 1-MOUSE_HOVER, 2-PRESSED
-		bool btnAction = false;         // Button action should be activated
+        // Define button bounds on screen
+        Rectangle btnBounds = new((screenWidth / 2.0f) - (button.width / 2.0f), (screenHeight / 2.0f) - (button.height / NUM_FRAMES / 2.0f), button.width, frameHeight);
 
-		Vector2 mousePoint = new Vector2(0.0f, 0.0f);
+        SetTargetFPS(60);
 
-		SetTargetFPS(60);
-		//--------------------------------------------------------------------------------------
 
-		// Main game loop
-		while (!WindowShouldClose())    // Detect window close button or ESC key
-		{
-			// Update
-			//----------------------------------------------------------------------------------
-			mousePoint = GetMousePosition();
-			btnAction = false;
+        // Main game loop
+        while (!WindowShouldClose())    // Detect window close button or ESC key
+        {
+            // Update
 
-			// Check button state
-			if (CheckCollisionPointRec(mousePoint, btnBounds))
-			{
-				if (IsMouseButtonDown(MOUSE_BUTTON_LEFT)) btnState = 2;
-				else btnState = 1;
+            Vector2 mousePoint = GetMousePosition();
+            bool btnAction = false;
 
-				if (IsMouseButtonReleased(MOUSE_BUTTON_LEFT)) btnAction = true;
-			}
-			else btnState = 0;
+            int btnState;
+            // Check button state
+            if (CheckCollisionPointRec(mousePoint, btnBounds))
+            {
+                if (IsMouseButtonDown(MOUSE_BUTTON_LEFT))
+                {
+                    btnState = 2;
+                }
+                else
+                {
+                    btnState = 1;
+                }
 
-			if (btnAction)
-			{
-				PlaySound(fxButton);
+                if (IsMouseButtonReleased(MOUSE_BUTTON_LEFT))
+                {
+                    btnAction = true;
+                }
+            }
+            else
+            {
+                btnState = 0;
+            }
 
-				// TODO: Any desired action
-			}
+            if (btnAction)
+            {
+                PlaySound(fxButton);
 
-			// Calculate button frame rectangle to draw depending on button state
-			sourceRec.Y = btnState * frameHeight;
-			//----------------------------------------------------------------------------------
+                // TODO: Any desired action
+            }
 
-			// Draw
-			//----------------------------------------------------------------------------------
-			BeginDrawing();
+            // Calculate button frame rectangle to draw depending on button state
+            sourceRec.Y = btnState * frameHeight;
 
-			ClearBackground(RAYWHITE);
 
-			DrawTextureRec(button, sourceRec, new Vector2(btnBounds.X, btnBounds.Y), WHITE); // Draw button frame
+            // Draw
 
-			EndDrawing();
-			//----------------------------------------------------------------------------------
-		}
+            BeginDrawing();
 
-		// De-Initialization
-		//--------------------------------------------------------------------------------------
-		UnloadTexture(button);  // Unload button texture
-		UnloadSound(fxButton);  // Unload sound
+            ClearBackground(RAYWHITE);
 
-		CloseAudioDevice();     // Close audio device
+            DrawTextureRec(button, sourceRec, new Vector2(btnBounds.X, btnBounds.Y), WHITE); // Draw button frame
 
-		CloseWindow();          // Close window and OpenGL context
-								//--------------------------------------------------------------------------------------
+            EndDrawing();
 
-		return 0;
-	}
+        }
+
+        // De-Initialization
+
+        UnloadTexture(button);  // Unload button texture
+        UnloadSound(fxButton);  // Unload sound
+
+        CloseAudioDevice();     // Close audio device
+
+        CloseWindow();          // Close window and OpenGL context
+
+
+        return 0;
+    }
 
 
 }

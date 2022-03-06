@@ -1,10 +1,7 @@
-﻿// [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] 
-// [!!] Copyright ©️ Raylib-CsLo and Contributors. 
-// [!!] This file is licensed to you under the MPL-2.0.
-// [!!] See the LICENSE file in the project root for more info. 
-// [!!] ------------------------------------------------- 
-// [!!] The code and 100+ examples are here! https://github.com/NotNotTech/Raylib-CsLo 
-// [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!]  [!!] [!!] [!!] [!!]
+// Copyright ©️ Raylib-CsLo and Contributors.
+// This file is licensed to you under the MPL-2.0.
+// See the LICENSE file in the project root for more info.
+// The code and 100+ examples are here! https://github.com/NotNotTech/Raylib-CsLo
 
 /*******************************************************************************************
 *
@@ -21,57 +18,75 @@ namespace Raylib_CsLo.Examples.Core;
 public static class InputMouse
 {
 
-	public static int main()
-	{
-		// Initialization
-		//--------------------------------------------------------------------------------------
-		const int screenWidth = 800;
-		const int screenHeight = 450;
+    public static int Example()
+    {
+        // Initialization
 
-		InitWindow(screenWidth, screenHeight, "raylib [core] example - mouse input");
+        const int screenWidth = 800;
+        const int screenHeight = 450;
 
-		Vector2 ballPosition = new( -100.0f, -100.0f );
-		Color ballColor = DARKBLUE;
+        InitWindow(screenWidth, screenHeight, "raylib [core] example - mouse input");
+        Color ballColor = DARKBLUE;
 
-		SetTargetFPS(60);               // Set our game to run at 60 frames-per-second
-										//---------------------------------------------------------------------------------------
+        SetTargetFPS(60);               // Set our game to run at 60 frames-per-second
 
-		// Main game loop
-		while (!WindowShouldClose())    // Detect window close button or ESC key
-		{
-			// Update
-			//----------------------------------------------------------------------------------
-			ballPosition = GetMousePosition();
 
-			if (IsMouseButtonPressed(MOUSE_BUTTON_LEFT)) ballColor = MAROON;
-			else if (IsMouseButtonPressed(MOUSE_BUTTON_MIDDLE)) ballColor = LIME;
-			else if (IsMouseButtonPressed(MOUSE_BUTTON_RIGHT)) ballColor = DARKBLUE;
-			else if (IsMouseButtonPressed(MOUSE_BUTTON_SIDE)) ballColor = PURPLE;
-			else if (IsMouseButtonPressed(MOUSE_BUTTON_EXTRA)) ballColor = YELLOW;
-			else if (IsMouseButtonPressed(MOUSE_BUTTON_FORWARD)) ballColor = ORANGE;
-			else if (IsMouseButtonPressed(MOUSE_BUTTON_BACK)) ballColor = BEIGE;
-			//----------------------------------------------------------------------------------
+        // Main game loop
+        while (!WindowShouldClose())    // Detect window close button or ESC key
+        {
+            // Update
 
-			// Draw
-			//----------------------------------------------------------------------------------
-			BeginDrawing();
+            Vector2 ballPosition = GetMousePosition();
 
-			ClearBackground(RAYWHITE);
+            if (IsMouseButtonPressed(MOUSE_BUTTON_LEFT))
+            {
+                ballColor = MAROON;
+            }
+            else if (IsMouseButtonPressed(MOUSE_BUTTON_MIDDLE))
+            {
+                ballColor = LIME;
+            }
+            else if (IsMouseButtonPressed(MOUSE_BUTTON_RIGHT))
+            {
+                ballColor = DARKBLUE;
+            }
+            else if (IsMouseButtonPressed(MOUSE_BUTTON_SIDE))
+            {
+                ballColor = PURPLE;
+            }
+            else if (IsMouseButtonPressed(MOUSE_BUTTON_EXTRA))
+            {
+                ballColor = YELLOW;
+            }
+            else if (IsMouseButtonPressed(MOUSE_BUTTON_FORWARD))
+            {
+                ballColor = ORANGE;
+            }
+            else if (IsMouseButtonPressed(MOUSE_BUTTON_BACK))
+            {
+                ballColor = BEIGE;
+            }
 
-			DrawCircleV(ballPosition, 40, ballColor);
 
-			DrawText("move ball with mouse and click mouse button to change color", 10, 10, 20, DARKGRAY);
+            // Draw
 
-			EndDrawing();
-			//----------------------------------------------------------------------------------
-		}
+            BeginDrawing();
 
-		// De-Initialization
-		//--------------------------------------------------------------------------------------
-		CloseWindow();        // Close window and OpenGL context
-							  //--------------------------------------------------------------------------------------
+            ClearBackground(RAYWHITE);
 
-		return 0;
-	}
+            DrawCircleV(ballPosition, 40, ballColor);
+
+            DrawText("move ball with mouse and click mouse button to change color", 10, 10, 20, DARKGRAY);
+
+            EndDrawing();
+
+        }
+
+        // De-Initialization
+
+        CloseWindow();        // Close window and OpenGL context
+
+
+        return 0;
+    }
 }
-

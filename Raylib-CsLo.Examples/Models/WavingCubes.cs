@@ -1,10 +1,7 @@
-﻿// [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] 
-// [!!] Copyright ©️ Raylib-CsLo and Contributors. 
-// [!!] This file is licensed to you under the MPL-2.0.
-// [!!] See the LICENSE file in the project root for more info. 
-// [!!] ------------------------------------------------- 
-// [!!] The code and 100+ examples are here! https://github.com/NotNotTech/Raylib-CsLo 
-// [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!]  [!!] [!!] [!!] [!!]
+// Copyright ©️ Raylib-CsLo and Contributors.
+// This file is licensed to you under the MPL-2.0.
+// See the LICENSE file in the project root for more info.
+// The code and 100+ examples are here! https://github.com/NotNotTech/Raylib-CsLo
 
 namespace Raylib_CsLo.Examples.Models;
 
@@ -21,102 +18,102 @@ namespace Raylib_CsLo.Examples.Models;
 //*
 //********************************************************************************************/
 ///</summary>
-public unsafe static class WavingCubes
+public static unsafe class WavingCubes
 {
 
-	public static int main()
-	{
-		// Initialization
-		//--------------------------------------------------------------------------------------
-		const int screenWidth = 800;
-		const int screenHeight = 450;
+    public static int Example()
+    {
+        // Initialization
 
-		InitWindow(screenWidth, screenHeight, "raylib [models] example - waving cubes");
+        const int screenWidth = 800;
+        const int screenHeight = 450;
 
-		// Initialize the camera
-		Camera3D camera = new();
-		camera.position = new(30.0f, 20.0f, 30.0f);
-		camera.target = new(0.0f, 0.0f, 0.0f);
-		camera.up = new(0.0f, 1.0f, 0.0f);
-		camera.fovy = 70.0f;
-		camera.projection_ = CAMERA_PERSPECTIVE;
+        InitWindow(screenWidth, screenHeight, "raylib [models] example - waving cubes");
 
-		// Specify the amount of blocks in each direction
-		const int numBlocks = 15;
+        // Initialize the camera
+        Camera3D camera = new();
+        camera.position = new(30.0f, 20.0f, 30.0f);
+        camera.target = new(0.0f, 0.0f, 0.0f);
+        camera.up = new(0.0f, 1.0f, 0.0f);
+        camera.fovy = 70.0f;
+        camera.Projection = CAMERA_PERSPECTIVE;
 
-		SetTargetFPS(60);
-		//--------------------------------------------------------------------------------------
+        // Specify the amount of blocks in each direction
+        const int numBlocks = 15;
 
-		// Main game loop
-		while (!WindowShouldClose())    // Detect window close button or ESC key
-		{
-			// Update
-			//----------------------------------------------------------------------------------
-			double time = GetTime();
+        SetTargetFPS(60);
 
-			// Calculate time scale for cube position and size
-			float scale = (2.0f + (float)Math.Sin(time)) * 0.7f;
 
-			// Move camera around the scene
-			double cameraTime = time * 0.3;
-			camera.position.X = (float)Math.Cos(cameraTime) * 40.0f;
-			camera.position.Z = (float)Math.Sin(cameraTime) * 40.0f;
-			//----------------------------------------------------------------------------------
+        // Main game loop
+        while (!WindowShouldClose())    // Detect window close button or ESC key
+        {
+            // Update
 
-			// Draw
-			//----------------------------------------------------------------------------------
-			BeginDrawing();
+            double time = GetTime();
 
-			ClearBackground(RAYWHITE);
+            // Calculate time scale for cube position and size
+            float scale = (2.0f + (float)Math.Sin(time)) * 0.7f;
 
-			BeginMode3D(camera);
+            // Move camera around the scene
+            double cameraTime = time * 0.3;
+            camera.position.X = (float)Math.Cos(cameraTime) * 40.0f;
+            camera.position.Z = (float)Math.Sin(cameraTime) * 40.0f;
 
-			DrawGrid(10, 5.0f);
 
-			for (int x = 0; x < numBlocks; x++)
-			{
-				for (int y = 0; y < numBlocks; y++)
-				{
-					for (int z = 0; z < numBlocks; z++)
-					{
-						// Scale of the blocks depends on x/y/z positions
-						float blockScale = (x + y + z) / 30.0f;
+            // Draw
 
-						// Scatter makes the waving effect by adding blockScale over time
-						float scatter = MathF.Sin(blockScale * 20.0f + (float)(time * 4.0f));
+            BeginDrawing();
 
-						// Calculate the cube position
-						Vector3 cubePos = new(
-									(float)(x - numBlocks / 2) * (scale * 3.0f) + scatter,
-									(float)(y - numBlocks / 2) * (scale * 2.0f) + scatter,
-									(float)(z - numBlocks / 2) * (scale * 3.0f) + scatter
-								);
+            ClearBackground(RAYWHITE);
 
-						// Pick a color with a hue depending on cube position for the rainbow color effect
-						Color cubeColor = ColorFromHSV((float)(((x + y + z) * 18) % 360), 0.75f, 0.9f);
+            BeginMode3D(camera);
 
-						// Calculate cube size
-						float cubeSize = (2.4f - scale) * blockScale;
+            DrawGrid(10, 5.0f);
 
-						// And finally, draw the cube!
-						DrawCube(cubePos, cubeSize, cubeSize, cubeSize, cubeColor);
-					}
-				}
-			}
+            for (int x = 0; x < numBlocks; x++)
+            {
+                for (int y = 0; y < numBlocks; y++)
+                {
+                    for (int z = 0; z < numBlocks; z++)
+                    {
+                        // Scale of the blocks depends on x/y/z positions
+                        float blockScale = (x + y + z) / 30.0f;
 
-			EndMode3D();
+                        // Scatter makes the waving effect by adding blockScale over time
+                        float scatter = MathF.Sin((blockScale * 20.0f) + (float)(time * 4.0f));
 
-			DrawFPS(10, 10);
+                        // Calculate the cube position
+                        Vector3 cubePos = new(
+                                    ((x - (numBlocks / 2)) * (scale * 3.0f)) + scatter,
+                                    ((y - (numBlocks / 2)) * (scale * 2.0f)) + scatter,
+                                    ((z - (numBlocks / 2)) * (scale * 3.0f)) + scatter
+                                );
 
-			EndDrawing();
-			//----------------------------------------------------------------------------------
-		}
+                        // Pick a color with a hue depending on cube position for the rainbow color effect
+                        Color cubeColor = ColorFromHSV((x + y + z) * 18 % 360, 0.75f, 0.9f);
 
-		// De-Initialization
-		//--------------------------------------------------------------------------------------
-		CloseWindow();        // Close window and OpenGL context
-							  //--------------------------------------------------------------------------------------
+                        // Calculate cube size
+                        float cubeSize = (2.4f - scale) * blockScale;
 
-		return 0;
-	}
+                        // And finally, draw the cube!
+                        DrawCube(cubePos, cubeSize, cubeSize, cubeSize, cubeColor);
+                    }
+                }
+            }
+
+            EndMode3D();
+
+            DrawFPS(10, 10);
+
+            EndDrawing();
+
+        }
+
+        // De-Initialization
+
+        CloseWindow();        // Close window and OpenGL context
+
+
+        return 0;
+    }
 }

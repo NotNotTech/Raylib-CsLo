@@ -1,10 +1,7 @@
-﻿// [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] 
-// [!!] Copyright ©️ Raylib-CsLo and Contributors. 
-// [!!] This file is licensed to you under the MPL-2.0.
-// [!!] See the LICENSE file in the project root for more info. 
-// [!!] ------------------------------------------------- 
-// [!!] The code and 100+ examples are here! https://github.com/NotNotTech/Raylib-CsLo 
-// [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!]  [!!] [!!] [!!] [!!]
+// Copyright ©️ Raylib-CsLo and Contributors.
+// This file is licensed to you under the MPL-2.0.
+// See the LICENSE file in the project root for more info.
+// The code and 100+ examples are here! https://github.com/NotNotTech/Raylib-CsLo
 
 namespace Raylib_CsLo.Examples.Textures;
 
@@ -19,79 +16,89 @@ namespace Raylib_CsLo.Examples.Textures;
 *
 ********************************************************************************************/
 
-public unsafe static class ImageTextDrawing
+public static unsafe class ImageTextDrawing
 {
 
-	public static int main()
-	{
-		// Initialization
-		//--------------------------------------------------------------------------------------
-		const int screenWidth = 800;
-		const int screenHeight = 450;
+    public static int Example()
+    {
+        // Initialization
 
-		InitWindow(screenWidth, screenHeight, "raylib [texture] example - image text drawing");
+        const int screenWidth = 800;
+        const int screenHeight = 450;
 
-		Image parrots = LoadImage("resources/parrots.png"); // Load image in CPU memory (RAM)
+        InitWindow(screenWidth, screenHeight, "raylib [texture] example - image text drawing");
 
-		// TTF Font loading with custom generation parameters
-		Font font = LoadFontEx("resources/KAISG.ttf", 64, (int*)0, 0);
+        Image parrots = LoadImage("resources/parrots.png"); // Load image in CPU memory (RAM)
 
-		// Draw over image using custom font
-		ImageDrawTextEx(&parrots, font, "[Parrots font drawing]", new Vector2(20.0f, 20.0f), (float)font.baseSize, 0.0f, RED);
+        // TTF Font loading with custom generation parameters
+        Font font = LoadFontEx("resources/KAISG.ttf", 64, (int*)0, 0);
 
-		Texture2D texture = LoadTextureFromImage(parrots);  // Image converted to texture, uploaded to GPU memory (VRAM)
-		UnloadImage(parrots);   // Once image has been converted to texture and uploaded to VRAM, it can be unloaded from RAM
+        // Draw over image using custom font
+        ImageDrawTextEx(&parrots, font, "[Parrots font drawing]", new Vector2(20.0f, 20.0f), font.baseSize, 0.0f, RED);
 
-		Vector2 position = new Vector2((float)(screenWidth / 2 - texture.width / 2), (float)(screenHeight / 2 - texture.height / 2 - 20));
+        Texture2D texture = LoadTextureFromImage(parrots);  // Image converted to texture, uploaded to GPU memory (VRAM)
+        UnloadImage(parrots);   // Once image has been converted to texture and uploaded to VRAM, it can be unloaded from RAM
 
-		bool showFont = false;
+        Vector2 position = new((screenWidth / 2) - (texture.width / 2), (screenHeight / 2) - (texture.height / 2) - 20);
 
-		SetTargetFPS(60);
-		//--------------------------------------------------------------------------------------
 
-		// Main game loop
-		while (!WindowShouldClose())    // Detect window close button or ESC key
-		{
-			// Update
-			//----------------------------------------------------------------------------------
-			if (IsKeyDown(KEY_SPACE)) showFont = true;
-			else showFont = false;
-			//----------------------------------------------------------------------------------
+        SetTargetFPS(60);
 
-			// Draw
-			//----------------------------------------------------------------------------------
-			BeginDrawing();
 
-			ClearBackground(RAYWHITE);
+        // Main game loop
+        while (!WindowShouldClose())    // Detect window close button or ESC key
+        {
 
-			if (!showFont)
-			{
-				// Draw texture with text already drawn inside
-				DrawTextureV(texture, position, WHITE);
+            bool showFont;
+            // Update
 
-				// Draw text directly using sprite font
-				DrawTextEx(font, "[Parrots font drawing]", new Vector2(position.X + 20,
-						   position.Y + 20 + 280), (float)font.baseSize, 0.0f, WHITE);
-			}
+            if (IsKeyDown(KEY_SPACE))
+            {
+                showFont = true;
+            }
+            else
+            {
+                showFont = false;
+            }
 
-			else DrawTexture(font.texture, screenWidth / 2 - font.texture.width / 2, 50, BLACK);
 
-			DrawText("PRESS SPACE to SHOW FONT ATLAS USED", 290, 420, 10, DARKGRAY);
+            // Draw
 
-			EndDrawing();
-			//----------------------------------------------------------------------------------
-		}
+            BeginDrawing();
 
-		// De-Initialization
-		//--------------------------------------------------------------------------------------
-		UnloadTexture(texture);     // Texture unloading
+            ClearBackground(RAYWHITE);
 
-		UnloadFont(font);           // Unload custom font
+            if (!showFont)
+            {
+                // Draw texture with text already drawn inside
+                DrawTextureV(texture, position, WHITE);
 
-		CloseWindow();              // Close window and OpenGL context
-									//--------------------------------------------------------------------------------------
+                // Draw text directly using sprite font
+                DrawTextEx(font, "[Parrots font drawing]", new Vector2(position.X + 20,
+                           position.Y + 20 + 280), font.baseSize, 0.0f, WHITE);
+            }
 
-		return 0;
-	}
+            else
+            {
+                DrawTexture(font.texture, (screenWidth / 2) - (font.texture.width / 2), 50, BLACK);
+            }
+
+            DrawText("PRESS SPACE to SHOW FONT ATLAS USED", 290, 420, 10, DARKGRAY);
+
+            EndDrawing();
+
+        }
+
+        // De-Initialization
+
+        UnloadTexture(texture);     // Texture unloading
+
+        UnloadFont(font);           // Unload custom font
+
+        CloseWindow();              // Close window and OpenGL context
+
+
+        return 0;
+    }
 
 }

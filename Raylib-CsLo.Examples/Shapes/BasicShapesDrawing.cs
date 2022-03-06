@@ -1,10 +1,7 @@
-﻿// [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] 
-// [!!] Copyright ©️ Raylib-CsLo and Contributors. 
-// [!!] This file is licensed to you under the MPL-2.0.
-// [!!] See the LICENSE file in the project root for more info. 
-// [!!] ------------------------------------------------- 
-// [!!] The code and 100+ examples are here! https://github.com/NotNotTech/Raylib-CsLo 
-// [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!]  [!!] [!!] [!!] [!!]
+// Copyright ©️ Raylib-CsLo and Contributors.
+// This file is licensed to you under the MPL-2.0.
+// See the LICENSE file in the project root for more info.
+// The code and 100+ examples are here! https://github.com/NotNotTech/Raylib-CsLo
 
 namespace Raylib_CsLo.Examples.Shapes;
 
@@ -19,72 +16,72 @@ namespace Raylib_CsLo.Examples.Shapes;
 *
 ********************************************************************************************/
 
-public unsafe static class BasicShapesDrawing
+public static unsafe class BasicShapesDrawing
 {
 
-	public static int main()
-	{
-		// Initialization
-		//--------------------------------------------------------------------------------------
-		const int screenWidth = 800;
-		const int screenHeight = 450;
+    public static int Example()
+    {
+        // Initialization
 
-		InitWindow(screenWidth, screenHeight, "raylib [shapes] example - basic shapes drawing");
+        const int screenWidth = 800;
+        const int screenHeight = 450;
 
-		SetTargetFPS(60);               // Set our game to run at 60 frames-per-second
-										//--------------------------------------------------------------------------------------
+        InitWindow(screenWidth, screenHeight, "raylib [shapes] example - basic shapes drawing");
 
-		// Main game loop
-		while (!WindowShouldClose())    // Detect window close button or ESC key
-		{
-			// Update
-			//----------------------------------------------------------------------------------
-			// TODO: Update your variables here
-			//----------------------------------------------------------------------------------
+        SetTargetFPS(60);               // Set our game to run at 60 frames-per-second
 
-			// Draw
-			//----------------------------------------------------------------------------------
-			BeginDrawing();
 
-			ClearBackground(RAYWHITE);
+        // Main game loop
+        while (!WindowShouldClose())    // Detect window close button or ESC key
+        {
+            // Update
 
-			DrawText("some basic shapes available on raylib", 20, 20, 20, DARKGRAY);
+            // TODO: Update your variables here
 
-			// Circle shapes and lines
-			DrawCircle(screenWidth / 5, 120, 35, DARKBLUE);
-			DrawCircleGradient(screenWidth / 5, 220, 60, GREEN, SKYBLUE);
-			DrawCircleLines(screenWidth / 5, 340, 80, DARKBLUE);
 
-			// Rectangle shapes and ines
-			DrawRectangle(screenWidth / 4 * 2 - 60, 100, 120, 60, RED);
-			DrawRectangleGradientH(screenWidth / 4 * 2 - 90, 170, 180, 130, MAROON, GOLD);
-			DrawRectangleLines(screenWidth / 4 * 2 - 40, 320, 80, 60, ORANGE);  // NOTE: Uses QUADS internally, not lines
+            // Draw
 
-			// Triangle shapes and lines
-			DrawTriangle(new Vector2(screenWidth / 4.0f * 3.0f, 80.0f),
-						 new Vector2(screenWidth / 4.0f * 3.0f - 60.0f, 150.0f),
-						 new Vector2(screenWidth / 4.0f * 3.0f + 60.0f, 150.0f), VIOLET);
+            BeginDrawing();
 
-			DrawTriangleLines(new Vector2(screenWidth / 4.0f * 3.0f, 160.0f),
-							  new Vector2(screenWidth / 4.0f * 3.0f - 20.0f, 230.0f),
-							  new Vector2(screenWidth / 4.0f * 3.0f + 20.0f, 230.0f), DARKBLUE);
+            ClearBackground(RAYWHITE);
 
-			// Polygon shapes and lines
-			DrawPoly(new Vector2(screenWidth / 4.0f * 3, 320), 6, 80, 0, BROWN);
-			DrawPolyLinesEx(new Vector2(screenWidth / 4.0f * 3, 320), 6, 80, 0, 6, BEIGE);
+            DrawText("some basic shapes available on raylib", 20, 20, 20, DARKGRAY);
 
-			// NOTE: We draw all LINES based shapes together to optimize internal drawing,
-			// this way, all LINES are rendered in a single draw pass
-			DrawLine(18, 42, screenWidth - 18, 42, BLACK);
-			EndDrawing();
-			//----------------------------------------------------------------------------------
-		}
+            // Circle shapes and lines
+            DrawCircle(screenWidth / 5, 120, 35, DARKBLUE);
+            DrawCircleGradient(screenWidth / 5, 220, 60, GREEN, SKYBLUE);
+            DrawCircleLines(screenWidth / 5, 340, 80, DARKBLUE);
 
-		// De-Initialization
-		//--------------------------------------------------------------------------------------
-		CloseWindow();        // Close window and OpenGL context
-							  //--------------------------------------------------------------------------------------
+            // Rectangle shapes and ines
+            DrawRectangle((screenWidth / 4 * 2) - 60, 100, 120, 60, RED);
+            DrawRectangleGradientH((screenWidth / 4 * 2) - 90, 170, 180, 130, MAROON, GOLD);
+            DrawRectangleLines((screenWidth / 4 * 2) - 40, 320, 80, 60, ORANGE);  // NOTE: Uses QUADS internally, not lines
 
-		return 0;
-	}
+            // Triangle shapes and lines
+            DrawTriangle(new Vector2(screenWidth / 4.0f * 3.0f, 80.0f),
+                         new Vector2((screenWidth / 4.0f * 3.0f) - 60.0f, 150.0f),
+                         new Vector2((screenWidth / 4.0f * 3.0f) + 60.0f, 150.0f), VIOLET);
+
+            DrawTriangleLines(new Vector2(screenWidth / 4.0f * 3.0f, 160.0f),
+                              new Vector2((screenWidth / 4.0f * 3.0f) - 20.0f, 230.0f),
+                              new Vector2((screenWidth / 4.0f * 3.0f) + 20.0f, 230.0f), DARKBLUE);
+
+            // Polygon shapes and lines
+            DrawPoly(new Vector2(screenWidth / 4.0f * 3, 320), 6, 80, 0, BROWN);
+            DrawPolyLinesEx(new Vector2(screenWidth / 4.0f * 3, 320), 6, 80, 0, 6, BEIGE);
+
+            // NOTE: We draw all LINES based shapes together to optimize internal drawing,
+            // this way, all LINES are rendered in a single draw pass
+            DrawLine(18, 42, screenWidth - 18, 42, BLACK);
+            EndDrawing();
+
+        }
+
+        // De-Initialization
+
+        CloseWindow();        // Close window and OpenGL context
+
+
+        return 0;
+    }
 }

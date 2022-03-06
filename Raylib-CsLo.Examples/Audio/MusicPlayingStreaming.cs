@@ -1,10 +1,7 @@
-﻿// [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] 
-// [!!] Copyright ©️ Raylib-CsLo and Contributors. 
-// [!!] This file is licensed to you under the MPL-2.0.
-// [!!] See the LICENSE file in the project root for more info. 
-// [!!] ------------------------------------------------- 
-// [!!] The code and 100+ examples are here! https://github.com/NotNotTech/Raylib-CsLo 
-// [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!]  [!!] [!!] [!!] [!!]
+// Copyright ©️ Raylib-CsLo and Contributors.
+// This file is licensed to you under the MPL-2.0.
+// See the LICENSE file in the project root for more info.
+// The code and 100+ examples are here! https://github.com/NotNotTech/Raylib-CsLo
 
 namespace Raylib_CsLo.Examples.Audio;
 
@@ -19,94 +16,94 @@ namespace Raylib_CsLo.Examples.Audio;
 *
 ********************************************************************************************/
 
-public unsafe static class MusicPlayingStreaming
+public static unsafe class MusicPlayingStreaming
 {
 
-	public static int main()
-	{
-		// Initialization
-		//--------------------------------------------------------------------------------------
-		const int screenWidth = 800;
-		const int screenHeight = 450;
+    public static int Example()
+    {
+        // Initialization
 
-		InitWindow(screenWidth, screenHeight, "raylib [audio] example - music playing (streaming)");
+        const int screenWidth = 800;
+        const int screenHeight = 450;
 
-		InitAudioDevice();              // Initialize audio device
+        InitWindow(screenWidth, screenHeight, "raylib [audio] example - music playing (streaming)");
 
-		Music music = LoadMusicStream("resources/country.mp3");
+        InitAudioDevice();              // Initialize audio device
 
-		PlayMusicStream(music);
+        Music music = LoadMusicStream("resources/country.mp3");
 
-		float timePlayed = 0.0f;
-		bool pause = false;
+        PlayMusicStream(music);
+        bool pause = false;
 
-		SetTargetFPS(60);               // Set our game to run at 60 frames-per-second
-										//--------------------------------------------------------------------------------------
+        SetTargetFPS(60);               // Set our game to run at 60 frames-per-second
 
-		// Main game loop
-		while (!WindowShouldClose())    // Detect window close button or ESC key
-		{
-			// Update
-			//----------------------------------------------------------------------------------
-			UpdateMusicStream(music);   // Update music buffer with new stream data
 
-			// Restart music playing (stop and play)
-			if (IsKeyPressed(KEY_SPACE))
-			{
-				StopMusicStream(music);
-				PlayMusicStream(music);
-			}
+        // Main game loop
+        while (!WindowShouldClose())    // Detect window close button or ESC key
+        {
+            // Update
 
-			// Pause/Resume music playing
-			if (IsKeyPressed(KEY_P))
-			{
-				pause = !pause;
+            UpdateMusicStream(music);   // Update music buffer with new stream data
 
-				if (pause) PauseMusicStream(music);
-				else ResumeMusicStream(music);
-			}
+            // Restart music playing (stop and play)
+            if (IsKeyPressed(KEY_SPACE))
+            {
+                StopMusicStream(music);
+                PlayMusicStream(music);
+            }
 
-			// Get timePlayed scaled to bar dimensions (400 pixels)
-			timePlayed = GetMusicTimePlayed(music) / GetMusicTimeLength(music) * 400;
+            // Pause/Resume music playing
+            if (IsKeyPressed(KEY_P))
+            {
+                pause = !pause;
 
-			if (timePlayed > 400) StopMusicStream(music);
-			//----------------------------------------------------------------------------------
+                if (pause)
+                {
+                    PauseMusicStream(music);
+                }
+                else
+                {
+                    ResumeMusicStream(music);
+                }
+            }
 
-			// Draw
-			//----------------------------------------------------------------------------------
-			BeginDrawing();
+            // Get timePlayed scaled to bar dimensions (400 pixels)
+            float timePlayed = GetMusicTimePlayed(music) / GetMusicTimeLength(music) * 400;
 
-			ClearBackground(RAYWHITE);
+            if (timePlayed > 400)
+            {
+                StopMusicStream(music);
+            }
 
-			DrawText("MUSIC SHOULD BE PLAYING!", 255, 150, 20, LIGHTGRAY);
 
-			DrawRectangle(200, 200, 400, 12, LIGHTGRAY);
-			DrawRectangle(200, 200, (int)timePlayed, 12, MAROON);
-			DrawRectangleLines(200, 200, 400, 12, GRAY);
+            // Draw
 
-			DrawText("PRESS SPACE TO RESTART MUSIC", 215, 250, 20, LIGHTGRAY);
-			DrawText("PRESS P TO PAUSE/RESUME MUSIC", 208, 280, 20, LIGHTGRAY);
+            BeginDrawing();
 
-			EndDrawing();
-			//----------------------------------------------------------------------------------
-		}
+            ClearBackground(RAYWHITE);
 
-		// De-Initialization
-		//--------------------------------------------------------------------------------------
-		UnloadMusicStream(music);   // Unload music stream buffers from RAM
+            DrawText("MUSIC SHOULD BE PLAYING!", 255, 150, 20, LIGHTGRAY);
 
-		CloseAudioDevice();         // Close audio device (music streaming is automatically stopped)
+            DrawRectangle(200, 200, 400, 12, LIGHTGRAY);
+            DrawRectangle(200, 200, (int)timePlayed, 12, MAROON);
+            DrawRectangleLines(200, 200, 400, 12, GRAY);
 
-		CloseWindow();              // Close window and OpenGL context
-									//--------------------------------------------------------------------------------------
+            DrawText("PRESS SPACE TO RESTART MUSIC", 215, 250, 20, LIGHTGRAY);
+            DrawText("PRESS P TO PAUSE/RESUME MUSIC", 208, 280, 20, LIGHTGRAY);
 
-		return 0;
-	}
+            EndDrawing();
+
+        }
+
+        // De-Initialization
+
+        UnloadMusicStream(music);   // Unload music stream buffers from RAM
+
+        CloseAudioDevice();         // Close audio device (music streaming is automatically stopped)
+
+        CloseWindow();              // Close window and OpenGL context
+
+
+        return 0;
+    }
 }
-
-
-
-
-
-
-

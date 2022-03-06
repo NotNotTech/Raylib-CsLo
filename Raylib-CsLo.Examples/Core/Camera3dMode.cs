@@ -1,10 +1,7 @@
-// [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] 
-// [!!] Copyright ©️ Raylib-CsLo and Contributors. 
-// [!!] This file is licensed to you under the MPL-2.0.
-// [!!] See the LICENSE file in the project root for more info. 
-// [!!] ------------------------------------------------- 
-// [!!] The code and 100+ examples are here! https://github.com/NotNotTech/Raylib-CsLo 
-// [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!]  [!!] [!!] [!!] [!!]
+// Copyright ©️ Raylib-CsLo and Contributors.
+// This file is licensed to you under the MPL-2.0.
+// See the LICENSE file in the project root for more info.
+// The code and 100+ examples are here! https://github.com/NotNotTech/Raylib-CsLo
 
 /*******************************************************************************************
 *
@@ -21,65 +18,64 @@ namespace Raylib_CsLo.Examples.Core;
 public static class Camera3dMode
 {
 
-	public static int main()
-	{
-		// Initialization
-		//--------------------------------------------------------------------------------------
-		const int screenWidth = 800;
-		const int screenHeight = 450;
-		
-		InitWindow(screenWidth, screenHeight, "raylib [core] example - 3d camera mode");
+    public static int Example()
+    {
+        // Initialization
 
-		// Define the camera to look into our 3d world
-		Camera3D camera=new();
-		camera.position =new( 0.0f, 10.0f, 10.0f );  // Camera position
-		camera.target =new( 0.0f, 0.0f, 0.0f);      // Camera looking at point
-		camera.up =new( 0.0f, 1.0f, 0.0f);          // Camera up vector (rotation towards target)
-		camera.fovy = 45.0f;                                // Camera field-of-view Y
-		camera.projection_ = CAMERA_PERSPECTIVE;             // Camera mode type
+        const int screenWidth = 800;
+        const int screenHeight = 450;
 
-		Vector3 cubePosition = new( 0.0f, 0.0f, 0.0f );
+        InitWindow(screenWidth, screenHeight, "raylib [core] example - 3d camera mode");
 
-		SetTargetFPS(60);               // Set our game to run at 60 frames-per-second
-										//--------------------------------------------------------------------------------------
+        // Define the camera to look into our 3d world
+        Camera3D camera = new();
+        camera.position = new(0.0f, 10.0f, 10.0f);  // Camera position
+        camera.target = new(0.0f, 0.0f, 0.0f);      // Camera looking at point
+        camera.up = new(0.0f, 1.0f, 0.0f);          // Camera up vector (rotation towards target)
+        camera.fovy = 45.0f;                                // Camera field-of-view Y
+        camera.Projection = CAMERA_PERSPECTIVE;             // Camera mode type
 
-		// Main game loop
-		while (!WindowShouldClose())    // Detect window close button or ESC key
-		{
-			// Update
-			//----------------------------------------------------------------------------------
-			// TODO: Update your variables here
-			//----------------------------------------------------------------------------------
+        Vector3 cubePosition = new(0.0f, 0.0f, 0.0f);
 
-			// Draw
-			//----------------------------------------------------------------------------------
-			BeginDrawing();
+        SetTargetFPS(60);               // Set our game to run at 60 frames-per-second
 
-			ClearBackground(RAYWHITE);
 
-			BeginMode3D(camera);
+        // Main game loop
+        while (!WindowShouldClose())    // Detect window close button or ESC key
+        {
+            // Update
 
-			DrawCube(cubePosition, 2.0f, 2.0f, 2.0f, RED);
-			DrawCubeWires(cubePosition, 2.0f, 2.0f, 2.0f, MAROON);
+            // TODO: Update your variables here
 
-			DrawGrid(10, 1.0f);
 
-			EndMode3D();
+            // Draw
 
-			DrawText("Welcome to the third dimension!", 10, 40, 20, DARKGRAY);
+            BeginDrawing();
 
-			DrawFPS(10, 10);
+            ClearBackground(RAYWHITE);
 
-			EndDrawing();
-			//----------------------------------------------------------------------------------
-		}
+            BeginMode3D(camera);
 
-		// De-Initialization
-		//--------------------------------------------------------------------------------------
-		CloseWindow();        // Close window and OpenGL context
-							  //--------------------------------------------------------------------------------------
+            DrawCube(cubePosition, 2.0f, 2.0f, 2.0f, RED);
+            DrawCubeWires(cubePosition, 2.0f, 2.0f, 2.0f, MAROON);
 
-		return 0;
-	}
+            DrawGrid(10, 1.0f);
+
+            EndMode3D();
+
+            DrawText("Welcome to the third dimension!", 10, 40, 20, DARKGRAY);
+
+            DrawFPS(10, 10);
+
+            EndDrawing();
+
+        }
+
+        // De-Initialization
+
+        CloseWindow();        // Close window and OpenGL context
+
+
+        return 0;
+    }
 }
-

@@ -1,10 +1,7 @@
-﻿// [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] 
-// [!!] Copyright ©️ Raylib-CsLo and Contributors. 
-// [!!] This file is licensed to you under the MPL-2.0.
-// [!!] See the LICENSE file in the project root for more info. 
-// [!!] ------------------------------------------------- 
-// [!!] The code and 100+ examples are here! https://github.com/NotNotTech/Raylib-CsLo 
-// [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!]  [!!] [!!] [!!] [!!]
+// Copyright ©️ Raylib-CsLo and Contributors.
+// This file is licensed to you under the MPL-2.0.
+// See the LICENSE file in the project root for more info.
+// The code and 100+ examples are here! https://github.com/NotNotTech/Raylib-CsLo
 
 namespace Raylib_CsLo.Examples.Shapes;
 
@@ -19,53 +16,59 @@ namespace Raylib_CsLo.Examples.Shapes;
 *
 ********************************************************************************************/
 
-public unsafe static class LinesCubicBezier
+public static unsafe class LinesCubicBezier
 {
 
-	public static int main()
-	{
-		// Initialization
-		//--------------------------------------------------------------------------------------
-		const int screenWidth = 800;
-		const int screenHeight = 450;
+    public static int Example()
+    {
+        // Initialization
 
-		SetConfigFlags(FLAG_MSAA_4X_HINT);
-		InitWindow(screenWidth, screenHeight, "raylib [shapes] example - cubic-bezier lines");
+        const int screenWidth = 800;
+        const int screenHeight = 450;
 
-		Vector2 start = new Vector2(0, 0);
-		Vector2 end = new Vector2((float)screenWidth, (float)screenHeight);
+        SetConfigFlags(FLAG_MSAA_4X_HINT);
+        InitWindow(screenWidth, screenHeight, "raylib [shapes] example - cubic-bezier lines");
 
-		SetTargetFPS(60);               // Set our game to run at 60 frames-per-second
-										//--------------------------------------------------------------------------------------
+        Vector2 start = new(0, 0);
+        Vector2 end = new(screenWidth, screenHeight);
 
-		// Main game loop
-		while (!WindowShouldClose())    // Detect window close button or ESC key
-		{
-			// Update
-			//----------------------------------------------------------------------------------
-			if (IsMouseButtonDown(MOUSE_BUTTON_LEFT)) start = GetMousePosition();
-			else if (IsMouseButtonDown(MOUSE_BUTTON_RIGHT)) end = GetMousePosition();
-			//----------------------------------------------------------------------------------
+        SetTargetFPS(60);               // Set our game to run at 60 frames-per-second
 
-			// Draw
-			//----------------------------------------------------------------------------------
-			BeginDrawing();
 
-			ClearBackground(RAYWHITE);
+        // Main game loop
+        while (!WindowShouldClose())    // Detect window close button or ESC key
+        {
+            // Update
 
-			DrawText("USE MOUSE LEFT-RIGHT CLICK to DEFINE LINE START and END POINTS", 15, 20, 20, GRAY);
+            if (IsMouseButtonDown(MOUSE_BUTTON_LEFT))
+            {
+                start = GetMousePosition();
+            }
+            else if (IsMouseButtonDown(MOUSE_BUTTON_RIGHT))
+            {
+                end = GetMousePosition();
+            }
 
-			DrawLineBezier(start, end, 2.0f, RED);
 
-			EndDrawing();
-			//----------------------------------------------------------------------------------
-		}
+            // Draw
 
-		// De-Initialization
-		//--------------------------------------------------------------------------------------
-		CloseWindow();        // Close window and OpenGL context
-							  //--------------------------------------------------------------------------------------
+            BeginDrawing();
 
-		return 0;
-	}
+            ClearBackground(RAYWHITE);
+
+            DrawText("USE MOUSE LEFT-RIGHT CLICK to DEFINE LINE START and END POINTS", 15, 20, 20, GRAY);
+
+            DrawLineBezier(start, end, 2.0f, RED);
+
+            EndDrawing();
+
+        }
+
+        // De-Initialization
+
+        CloseWindow();        // Close window and OpenGL context
+
+
+        return 0;
+    }
 }

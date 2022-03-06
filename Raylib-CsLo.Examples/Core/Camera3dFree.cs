@@ -1,10 +1,7 @@
-﻿// [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] 
-// [!!] Copyright ©️ Raylib-CsLo and Contributors. 
-// [!!] This file is licensed to you under the MPL-2.0.
-// [!!] See the LICENSE file in the project root for more info. 
-// [!!] ------------------------------------------------- 
-// [!!] The code and 100+ examples are here! https://github.com/NotNotTech/Raylib-CsLo 
-// [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!]  [!!] [!!] [!!] [!!]
+// Copyright ©️ Raylib-CsLo and Contributors.
+// This file is licensed to you under the MPL-2.0.
+// See the LICENSE file in the project root for more info.
+// The code and 100+ examples are here! https://github.com/NotNotTech/Raylib-CsLo
 
 /*******************************************************************************************
 *
@@ -19,83 +16,89 @@
 
 namespace Raylib_CsLo.Examples.Core;
 
-public unsafe static class Camera3dFree
+public static unsafe class Camera3dFree
 {
 
-	public static int main()
-	{
-		// Initialization
-		//--------------------------------------------------------------------------------------
-		const int screenWidth = 800;
-		const int screenHeight = 450;
+    public static int Example()
+    {
+        // Initialization
 
-		InitWindow(screenWidth, screenHeight, "raylib [core] example - 3d camera free");
+        const int screenWidth = 800;
+        const int screenHeight = 450;
 
-		// Define the camera to look into our 3d world
-		Camera3D camera = new();
-		camera.position = new(10.0f, 10.0f, 10.0f); // Camera position
-		camera.target = new(0.0f, 0.0f, 0.0f);      // Camera looking at point
-		camera.up = new(0.0f, 1.0f, 0.0f);          // Camera up vector (rotation towards target)
-		camera.fovy = 45.0f;                                // Camera field-of-view Y
-		camera.projection_ = CAMERA_PERSPECTIVE;                   // Camera mode type
+        InitWindow(screenWidth, screenHeight, "raylib [core] example - 3d camera free");
 
-		Vector3 cubePosition = new(0.0f, 0.0f, 0.0f);
+        // Define the camera to look into our 3d world
+        Camera3D camera = new();
+        camera.position = new(10.0f, 10.0f, 10.0f); // Camera position
+        camera.target = new(0.0f, 0.0f, 0.0f);      // Camera looking at point
+        camera.up = new(0.0f, 1.0f, 0.0f);          // Camera up vector (rotation towards target)
+        camera.fovy = 45.0f;                                // Camera field-of-view Y
+        camera.Projection = CAMERA_PERSPECTIVE;                   // Camera mode type
 
-		SetCameraMode(camera, CAMERA_FREE); // Set a free camera mode
+        Vector3 cubePosition = new(0.0f, 0.0f, 0.0f);
 
-		SetCameraPanControl((int)MouseButton.MOUSE_BUTTON_RIGHT);
+        SetCameraMode(camera, CAMERA_FREE); // Set a free camera mode
 
-		SetTargetFPS(60);                   // Set our game to run at 60 frames-per-second
-											//--------------------------------------------------------------------------------------
+        SetCameraPanControl((int)MOUSE_BUTTON_RIGHT);
 
-		// Main game loop
-		while (!WindowShouldClose())        // Detect window close button or ESC key
-		{
-			// Update
-			//----------------------------------------------------------------------------------
-			UpdateCamera(&camera);          // Update camera
-
-			if (IsKeyDown('Z')) camera.target = new(0.0f, 0.0f, 0.0f);
-			if (IsKeyDown('Z')) camera.target = new(0.0f, 0.0f, 0.0f);
-			//----------------------------------------------------------------------------------
-
-			// Draw
-			//----------------------------------------------------------------------------------
-			BeginDrawing();
-
-			ClearBackground(RAYWHITE);
-
-			BeginMode3D(camera);
-
-			DrawCube(cubePosition, 2.0f, 2.0f, 2.0f, RED);
-			DrawCubeWires(cubePosition, 2.0f, 2.0f, 2.0f, MAROON);
-
-			DrawGrid(10, 1.0f);
-
-			EndMode3D();
-
-			DrawRectangle(10, 10, 320, 133, Fade(SKYBLUE, 0.5f));
-			DrawRectangleLines(10, 10, 320, 133, BLUE);
-
-			DrawText("Free camera default controls:", 20, 20, 10, BLACK);
-			DrawText("- Mouse Wheel to Zoom in-out", 40, 40, 10, DARKGRAY);
-			DrawText("- Mouse Right Pressed to Pan", 40, 60, 10, DARKGRAY);
-			DrawText("- Alt + Mouse Right Pressed to Rotate", 40, 80, 10, DARKGRAY);
-			DrawText("- Alt + Ctrl + Mouse Right Pressed for Smooth Zoom", 40, 100, 10, DARKGRAY);
-			DrawText("- Z to zoom to (0, 0, 0)", 40, 120, 10, DARKGRAY);
-
-			EndDrawing();
-			//----------------------------------------------------------------------------------
-		}
+        SetTargetFPS(60);                   // Set our game to run at 60 frames-per-second
 
 
+        // Main game loop
+        while (!WindowShouldClose())        // Detect window close button or ESC key
+        {
+            // Update
 
-		// De-Initialization
-		//--------------------------------------------------------------------------------------
-		CloseWindow();        // Close window and OpenGL context
-							  //--------------------------------------------------------------------------------------
+            UpdateCamera(&camera);          // Update camera
 
-		return 0;
-	}
+            if (IsKeyDown('Z'))
+            {
+                camera.target = new(0.0f, 0.0f, 0.0f);
+            }
+
+            if (IsKeyDown('Z'))
+            {
+                camera.target = new(0.0f, 0.0f, 0.0f);
+            }
+
+
+            // Draw
+
+            BeginDrawing();
+
+            ClearBackground(RAYWHITE);
+
+            BeginMode3D(camera);
+
+            DrawCube(cubePosition, 2.0f, 2.0f, 2.0f, RED);
+            DrawCubeWires(cubePosition, 2.0f, 2.0f, 2.0f, MAROON);
+
+            DrawGrid(10, 1.0f);
+
+            EndMode3D();
+
+            DrawRectangle(10, 10, 320, 133, Fade(SKYBLUE, 0.5f));
+            DrawRectangleLines(10, 10, 320, 133, BLUE);
+
+            DrawText("Free camera default controls:", 20, 20, 10, BLACK);
+            DrawText("- Mouse Wheel to Zoom in-out", 40, 40, 10, DARKGRAY);
+            DrawText("- Mouse Right Pressed to Pan", 40, 60, 10, DARKGRAY);
+            DrawText("- Alt + Mouse Right Pressed to Rotate", 40, 80, 10, DARKGRAY);
+            DrawText("- Alt + Ctrl + Mouse Right Pressed for Smooth Zoom", 40, 100, 10, DARKGRAY);
+            DrawText("- Z to zoom to (0, 0, 0)", 40, 120, 10, DARKGRAY);
+
+            EndDrawing();
+
+        }
+
+
+
+        // De-Initialization
+
+        CloseWindow();        // Close window and OpenGL context
+
+
+        return 0;
+    }
 }
-

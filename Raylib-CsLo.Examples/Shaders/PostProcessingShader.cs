@@ -1,10 +1,7 @@
-﻿// [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] 
-// [!!] Copyright ©️ Raylib-CsLo and Contributors. 
-// [!!] This file is licensed to you under the MPL-2.0.
-// [!!] See the LICENSE file in the project root for more info. 
-// [!!] ------------------------------------------------- 
-// [!!] The code and 100+ examples are here! https://github.com/NotNotTech/Raylib-CsLo 
-// [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!]  [!!] [!!] [!!] [!!]
+// Copyright ©️ Raylib-CsLo and Contributors.
+// This file is licensed to you under the MPL-2.0.
+// See the LICENSE file in the project root for more info.
+// The code and 100+ examples are here! https://github.com/NotNotTech/Raylib-CsLo
 
 namespace Raylib_CsLo.Examples.Shaders;
 
@@ -25,166 +22,179 @@ namespace Raylib_CsLo.Examples.Shaders;
 *   Copyright (c) 2015 Ramon Santamaria (@raysan5)
 *
 ********************************************************************************************/
-public unsafe static class PostProcessingShader
+public static unsafe class PostProcessingShader
 {
-	////#if PLATFORM_DESKTOP
-	////	const int GLSL_VERSION = 330;
-	////#else   // PLATFORM_RPI, PLATFORM_ANDROID, PLATFORM_WEB
-	////const int GLSL_VERSION =100;
-	////#endif
-	const int GLSL_VERSION = 330;
+    ////#if PLATFORM_DESKTOP
+    ////	const int GLSL_VERSION = 330;
+    ////#else   // PLATFORM_RPI, PLATFORM_ANDROID, PLATFORM_WEB
+    ////const int GLSL_VERSION =100;
+    ////#endif
+    const int GLSL_VERSION = 330;
 
 
-	const int MAX_POSTPRO_SHADERS = 12;
+    const int MAX_POSTPRO_SHADERS = 12;
 
 
-	enum PostproShader
-	{
-		FX_GRAYSCALE = 0,
-		FX_POSTERIZATION,
-		FX_DREAM_VISION,
-		FX_PIXELIZER,
-		FX_CROSS_HATCHING,
-		FX_CROSS_STITCHING,
-		FX_PREDATOR_VIEW,
-		FX_SCANLINES,
-		FX_FISHEYE,
-		FX_SOBEL,
-		FX_BLOOM,
-		FX_BLUR,
-		//FX_FXAA
-	}
+    enum PostproShader
+    {
+        FX_GRAYSCALE = 0,
+        FX_POSTERIZATION,
+        FX_DREAM_VISION,
+        FX_PIXELIZER,
+        FX_CROSS_HATCHING,
+        FX_CROSS_STITCHING,
+        FX_PREDATOR_VIEW,
+        FX_SCANLINES,
+        FX_FISHEYE,
+        FX_SOBEL,
+        FX_BLOOM,
+        FX_BLUR,
+        //FX_FXAA
+    }
 
-	static string[] postproShaderText = new string[]{
-	"GRAYSCALE",
-	"POSTERIZATION",
-	"DREAM_VISION",
-	"PIXELIZER",
-	"CROSS_HATCHING",
-	"CROSS_STITCHING",
-	"PREDATOR_VIEW",
-	"SCANLINES",
-	"FISHEYE",
-	"SOBEL",
-	"BLOOM",
-	"BLUR",
+    static string[] postproShaderText = new string[]{
+    "GRAYSCALE",
+    "POSTERIZATION",
+    "DREAM_VISION",
+    "PIXELIZER",
+    "CROSS_HATCHING",
+    "CROSS_STITCHING",
+    "PREDATOR_VIEW",
+    "SCANLINES",
+    "FISHEYE",
+    "SOBEL",
+    "BLOOM",
+    "BLUR",
 	//"FXAA"
 };
 
 
-	public static int main()
-	{
-		// Initialization
-		//--------------------------------------------------------------------------------------
-		const int screenWidth = 800;
-		const int screenHeight = 450;
+    public static int Example()
+    {
+        // Initialization
 
-		SetConfigFlags(FLAG_MSAA_4X_HINT);      // Enable Multi Sampling Anti Aliasing 4x (if available)
+        const int screenWidth = 800;
+        const int screenHeight = 450;
 
-		InitWindow(screenWidth, screenHeight, "raylib [shaders] example - postprocessing shader");
+        SetConfigFlags(FLAG_MSAA_4X_HINT);      // Enable Multi Sampling Anti Aliasing 4x (if available)
 
-		// Define the camera to look into our 3d world
-		Camera camera = new(new(2.0f, 3.0f, 2.0f), new(
-		0.0f, 1.0f, 0.0f), new(
-			0.0f, 1.0f, 0.0f), 45.0f, 0);
+        InitWindow(screenWidth, screenHeight, "raylib [shaders] example - postprocessing shader");
 
-		Model model = LoadModel("resources/models/church.obj");                 // Load OBJ model
-		Texture2D texture = LoadTexture("resources/models/church_diffuse.png"); // Load model texture (diffuse map)
-		model.materials[0].maps[(int)MATERIAL_MAP_DIFFUSE].texture = texture;                     // Set model diffuse texture
+        // Define the camera to look into our 3d world
+        Camera camera = new(new(2.0f, 3.0f, 2.0f), new(
+        0.0f, 1.0f, 0.0f), new(
+            0.0f, 1.0f, 0.0f), 45.0f, 0);
 
-		Vector3 position = new(0.0f, 0.0f, 0.0f);                             // Set model position
+        Model model = LoadModel("resources/models/church.obj");                 // Load OBJ model
+        Texture2D texture = LoadTexture("resources/models/church_diffuse.png"); // Load model texture (diffuse map)
+        model.materials[0].maps[(int)MATERIAL_MAP_DIFFUSE].texture = texture;                     // Set model diffuse texture
 
-		// Load all postpro shaders
-		// NOTE 1: All postpro shader use the base vertex shader (DEFAULT_VERTEX_SHADER)
-		// NOTE 2: We load the correct shader depending on GLSL version
-		Shader[] shaders = new Shader[MAX_POSTPRO_SHADERS];
+        Vector3 position = new(0.0f, 0.0f, 0.0f);                             // Set model position
 
-		// NOTE: Defining 0 (NULL) for vertex shader forces usage of internal default vertex shader
-		shaders[(int)PostproShader.FX_GRAYSCALE] = LoadShader(null, TextFormat("resources/shaders/glsl%i/grayscale.fs", GLSL_VERSION));
-		shaders[(int)PostproShader.FX_POSTERIZATION] = LoadShader(null, TextFormat("resources/shaders/glsl%i/posterization.fs", GLSL_VERSION));
-		shaders[(int)PostproShader.FX_DREAM_VISION] = LoadShader(null, TextFormat("resources/shaders/glsl%i/dream_vision.fs", GLSL_VERSION));
-		shaders[(int)PostproShader.FX_PIXELIZER] = LoadShader(null, TextFormat("resources/shaders/glsl%i/pixelizer.fs", GLSL_VERSION));
-		shaders[(int)PostproShader.FX_CROSS_HATCHING] = LoadShader(null, TextFormat("resources/shaders/glsl%i/cross_hatching.fs", GLSL_VERSION));
-		shaders[(int)PostproShader.FX_CROSS_STITCHING] = LoadShader(null, TextFormat("resources/shaders/glsl%i/cross_stitching.fs", GLSL_VERSION));
-		shaders[(int)PostproShader.FX_PREDATOR_VIEW] = LoadShader(null, TextFormat("resources/shaders/glsl%i/predator.fs", GLSL_VERSION));
-		shaders[(int)PostproShader.FX_SCANLINES] = LoadShader(null, TextFormat("resources/shaders/glsl%i/scanlines.fs", GLSL_VERSION));
-		shaders[(int)PostproShader.FX_FISHEYE] = LoadShader(null, TextFormat("resources/shaders/glsl%i/fisheye.fs", GLSL_VERSION));
-		shaders[(int)PostproShader.FX_SOBEL] = LoadShader(null, TextFormat("resources/shaders/glsl%i/sobel.fs", GLSL_VERSION));
-		shaders[(int)PostproShader.FX_BLOOM] = LoadShader(null, TextFormat("resources/shaders/glsl%i/bloom.fs", GLSL_VERSION));
-		shaders[(int)PostproShader.FX_BLUR] = LoadShader(null, TextFormat("resources/shaders/glsl%i/blur.fs", GLSL_VERSION));
+        // Load all postpro shaders
+        // NOTE 1: All postpro shader use the base vertex shader (DEFAULT_VERTEX_SHADER)
+        // NOTE 2: We load the correct shader depending on GLSL version
+        Shader[] shaders = new Shader[MAX_POSTPRO_SHADERS];
 
-		int currentShader = (int)PostproShader.FX_GRAYSCALE;
+        // NOTE: Defining 0 (NULL) for vertex shader forces usage of internal default vertex shader
+        shaders[(int)PostproShader.FX_GRAYSCALE] = LoadShader(null, TextFormat("resources/shaders/glsl%i/grayscale.fs", GLSL_VERSION));
+        shaders[(int)PostproShader.FX_POSTERIZATION] = LoadShader(null, TextFormat("resources/shaders/glsl%i/posterization.fs", GLSL_VERSION));
+        shaders[(int)PostproShader.FX_DREAM_VISION] = LoadShader(null, TextFormat("resources/shaders/glsl%i/dream_vision.fs", GLSL_VERSION));
+        shaders[(int)PostproShader.FX_PIXELIZER] = LoadShader(null, TextFormat("resources/shaders/glsl%i/pixelizer.fs", GLSL_VERSION));
+        shaders[(int)PostproShader.FX_CROSS_HATCHING] = LoadShader(null, TextFormat("resources/shaders/glsl%i/cross_hatching.fs", GLSL_VERSION));
+        shaders[(int)PostproShader.FX_CROSS_STITCHING] = LoadShader(null, TextFormat("resources/shaders/glsl%i/cross_stitching.fs", GLSL_VERSION));
+        shaders[(int)PostproShader.FX_PREDATOR_VIEW] = LoadShader(null, TextFormat("resources/shaders/glsl%i/predator.fs", GLSL_VERSION));
+        shaders[(int)PostproShader.FX_SCANLINES] = LoadShader(null, TextFormat("resources/shaders/glsl%i/scanlines.fs", GLSL_VERSION));
+        shaders[(int)PostproShader.FX_FISHEYE] = LoadShader(null, TextFormat("resources/shaders/glsl%i/fisheye.fs", GLSL_VERSION));
+        shaders[(int)PostproShader.FX_SOBEL] = LoadShader(null, TextFormat("resources/shaders/glsl%i/sobel.fs", GLSL_VERSION));
+        shaders[(int)PostproShader.FX_BLOOM] = LoadShader(null, TextFormat("resources/shaders/glsl%i/bloom.fs", GLSL_VERSION));
+        shaders[(int)PostproShader.FX_BLUR] = LoadShader(null, TextFormat("resources/shaders/glsl%i/blur.fs", GLSL_VERSION));
 
-		// Create a RenderTexture2D to be used for render to texture
-		RenderTexture2D target = LoadRenderTexture(screenWidth, screenHeight);
+        int currentShader = (int)PostproShader.FX_GRAYSCALE;
 
-		// Setup orbital camera
-		SetCameraMode(camera, CAMERA_ORBITAL);  // Set an orbital camera mode
+        // Create a RenderTexture2D to be used for render to texture
+        RenderTexture2D target = LoadRenderTexture(screenWidth, screenHeight);
 
-		SetTargetFPS(60);                       // Set our game to run at 60 frames-per-second
-												//--------------------------------------------------------------------------------------
+        // Setup orbital camera
+        SetCameraMode(camera, CAMERA_ORBITAL);  // Set an orbital camera mode
 
-		// Main game loop
-		while (!WindowShouldClose())            // Detect window close button or ESC key
-		{
-			// Update
-			//----------------------------------------------------------------------------------
-			UpdateCamera(&camera);              // Update camera
+        SetTargetFPS(60);                       // Set our game to run at 60 frames-per-second
 
-			if (IsKeyPressed(KEY_RIGHT)) currentShader++;
-			else if (IsKeyPressed(KEY_LEFT)) currentShader--;
 
-			if (currentShader >= MAX_POSTPRO_SHADERS) currentShader = 0;
-			else if (currentShader < 0) currentShader = MAX_POSTPRO_SHADERS - 1;
-			//----------------------------------------------------------------------------------
+        // Main game loop
+        while (!WindowShouldClose())            // Detect window close button or ESC key
+        {
+            // Update
 
-			// Draw
-			//----------------------------------------------------------------------------------
-			BeginTextureMode(target);       // Enable drawing to texture
-			ClearBackground(RAYWHITE);  // Clear texture background
+            UpdateCamera(&camera);              // Update camera
 
-			BeginMode3D(camera);        // Begin 3d mode drawing
-			DrawModel(model, position, 0.1f, WHITE);   // Draw 3d model with texture
-			DrawGrid(10, 1.0f);     // Draw a grid
-			EndMode3D();                // End 3d mode drawing, returns to orthographic 2d mode
-			EndTextureMode();               // End drawing to texture (now we have a texture available for next passes)
+            if (IsKeyPressed(KEY_RIGHT))
+            {
+                currentShader++;
+            }
+            else if (IsKeyPressed(KEY_LEFT))
+            {
+                currentShader--;
+            }
 
-			BeginDrawing();
-			ClearBackground(RAYWHITE);  // Clear screen background
+            if (currentShader >= MAX_POSTPRO_SHADERS)
+            {
+                currentShader = 0;
+            }
+            else if (currentShader < 0)
+            {
+                currentShader = MAX_POSTPRO_SHADERS - 1;
+            }
 
-			// Render generated texture using selected postprocessing shader
-			BeginShaderMode(shaders[(int)currentShader]);
-			// NOTE: Render texture must be y-flipped due to default OpenGL coordinates (left-bottom)
-			DrawTextureRec(target.texture, new Rectangle(0, 0, (float)target.texture.width, (float)-target.texture.height), new Vector2(
-				0, 0), WHITE);
-			EndShaderMode();
 
-			// Draw 2d shapes and text over drawn texture
-			DrawRectangle(0, 9, 580, 30, Fade(LIGHTGRAY, 0.7f));
+            // Draw
 
-			DrawText("(c) Church 3D model by Alberto Cano", screenWidth - 200, screenHeight - 20, 10, GRAY);
-			DrawText("CURRENT POSTPRO SHADER:", 10, 15, 20, BLACK);
-			DrawText(postproShaderText[currentShader], 330, 15, 20, RED);
-			DrawText("< >", 540, 10, 30, DARKBLUE);
-			DrawFPS(700, 15);
-			EndDrawing();
-			//----------------------------------------------------------------------------------
-		}
+            BeginTextureMode(target);       // Enable drawing to texture
+            ClearBackground(RAYWHITE);  // Clear texture background
 
-		// De-Initialization
-		//--------------------------------------------------------------------------------------
-		// Unload all postpro shaders
-		for (int i = 0; i < MAX_POSTPRO_SHADERS; i++) UnloadShader(shaders[(int)i]);
+            BeginMode3D(camera);        // Begin 3d mode drawing
+            DrawModel(model, position, 0.1f, WHITE);   // Draw 3d model with texture
+            DrawGrid(10, 1.0f);     // Draw a grid
+            EndMode3D();                // End 3d mode drawing, returns to orthographic 2d mode
+            EndTextureMode();               // End drawing to texture (now we have a texture available for next passes)
 
-		UnloadTexture(texture);         // Unload texture
-		UnloadModel(model);             // Unload model
-		UnloadRenderTexture(target);    // Unload render texture
+            BeginDrawing();
+            ClearBackground(RAYWHITE);  // Clear screen background
 
-		CloseWindow();                  // Close window and OpenGL context
-										//--------------------------------------------------------------------------------------
+            // Render generated texture using selected postprocessing shader
+            BeginShaderMode(shaders[currentShader]);
+            // NOTE: Render texture must be y-flipped due to default OpenGL coordinates (left-bottom)
+            DrawTextureRec(target.texture, new Rectangle(0, 0, target.texture.width, -target.texture.height), new Vector2(
+                0, 0), WHITE);
+            EndShaderMode();
 
-		return 0;
-	}
+            // Draw 2d shapes and text over drawn texture
+            DrawRectangle(0, 9, 580, 30, Fade(LIGHTGRAY, 0.7f));
+
+            DrawText("(c) Church 3D model by Alberto Cano", screenWidth - 200, screenHeight - 20, 10, GRAY);
+            DrawText("CURRENT POSTPRO SHADER:", 10, 15, 20, BLACK);
+            DrawText(postproShaderText[currentShader], 330, 15, 20, RED);
+            DrawText("< >", 540, 10, 30, DARKBLUE);
+            DrawFPS(700, 15);
+            EndDrawing();
+
+        }
+
+        // De-Initialization
+
+        // Unload all postpro shaders
+        for (int i = 0; i < MAX_POSTPRO_SHADERS; i++)
+        {
+            UnloadShader(shaders[i]);
+        }
+
+        UnloadTexture(texture);         // Unload texture
+        UnloadModel(model);             // Unload model
+        UnloadRenderTexture(target);    // Unload render texture
+
+        CloseWindow();                  // Close window and OpenGL context
+
+
+        return 0;
+    }
 }
-
-

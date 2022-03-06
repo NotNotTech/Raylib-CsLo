@@ -1,10 +1,7 @@
-﻿// [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] 
-// [!!] Copyright ©️ Raylib-CsLo and Contributors. 
-// [!!] This file is licensed to you under the MPL-2.0.
-// [!!] See the LICENSE file in the project root for more info. 
-// [!!] ------------------------------------------------- 
-// [!!] The code and 100+ examples are here! https://github.com/NotNotTech/Raylib-CsLo 
-// [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!]  [!!] [!!] [!!] [!!]
+// Copyright ©️ Raylib-CsLo and Contributors.
+// This file is licensed to you under the MPL-2.0.
+// See the LICENSE file in the project root for more info.
+// The code and 100+ examples are here! https://github.com/NotNotTech/Raylib-CsLo
 
 namespace Raylib_CsLo.Examples.Textures;
 
@@ -19,131 +16,149 @@ namespace Raylib_CsLo.Examples.Textures;
 *
 ********************************************************************************************/
 
-public unsafe static class ParticlesBlending
+public static unsafe class ParticlesBlending
 {
 
-	const int MAX_PARTICLES = 200;
+    const int MAX_PARTICLES = 200;
 
-	// Particle structure with basic data
-	struct Particle
-	{
+    // Particle structure with basic data
+    struct Particle
+    {
 
-		public Vector2 position;
-		public Color color;
-		public float alpha;
-		public float size;
-		public float rotation;
-		public bool active;        // NOTE: Use it to activate/deactive particle
-	}
+        public Vector2 position;
+        public Color color;
+        public float alpha;
+        public float size;
+        public float rotation;
+        public bool active;        // NOTE: Use it to activate/deactive particle
+    }
 
-	public static int main()
-	{
-		// Initialization
-		//--------------------------------------------------------------------------------------
-		const int screenWidth = 800;
-		const int screenHeight = 450;
+    public static int Example()
+    {
+        // Initialization
 
-		InitWindow(screenWidth, screenHeight, "raylib [textures] example - particles blending");
+        const int screenWidth = 800;
+        const int screenHeight = 450;
 
-		// Particles pool, reuse them!
-		Particle[] mouseTail = new Particle[MAX_PARTICLES];
+        InitWindow(screenWidth, screenHeight, "raylib [textures] example - particles blending");
 
-		// Initialize particles
-		for (int i = 0; i < MAX_PARTICLES; i++)
-		{
-			mouseTail[i].position = new Vector2(0, 0);
-			mouseTail[i].color = new Color(GetRandomValue(0, 255), GetRandomValue(0, 255), GetRandomValue(0, 255), 255);
-			mouseTail[i].alpha = 1.0f;
-			mouseTail[i].size = (float)GetRandomValue(1, 30) / 20.0f;
-			mouseTail[i].rotation = (float)GetRandomValue(0, 360);
-			mouseTail[i].active = false;
-		}
+        // Particles pool, reuse them!
+        Particle[] mouseTail = new Particle[MAX_PARTICLES];
 
-		float gravity = 3.0f;
+        // Initialize particles
+        for (int i = 0; i < MAX_PARTICLES; i++)
+        {
+            mouseTail[i].position = new Vector2(0, 0);
+            mouseTail[i].color = new Color(GetRandomValue(0, 255), GetRandomValue(0, 255), GetRandomValue(0, 255), 255);
+            mouseTail[i].alpha = 1.0f;
+            mouseTail[i].size = GetRandomValue(1, 30) / 20.0f;
+            mouseTail[i].rotation = GetRandomValue(0, 360);
+            mouseTail[i].active = false;
+        }
 
-		Texture2D smoke = LoadTexture("resources/spark_flame.png");
+        float gravity = 3.0f;
 
-		BlendMode blending = BLEND_ALPHA;
+        Texture2D smoke = LoadTexture("resources/spark_flame.png");
 
-		SetTargetFPS(60);
-		//--------------------------------------------------------------------------------------
+        BlendMode blending = BLEND_ALPHA;
 
-		// Main game loop
-		while (!WindowShouldClose())    // Detect window close button or ESC key
-		{
-			// Update
-			//----------------------------------------------------------------------------------
+        SetTargetFPS(60);
 
-			// Activate one particle every frame and Update active particles
-			// NOTE: Particles initial position should be mouse position when activated
-			// NOTE: Particles fall down with gravity and rotation... and disappear after 2 seconds (alpha = 0)
-			// NOTE: When a particle disappears, active = false and it can be reused.
-			for (int i = 0; i < MAX_PARTICLES; i++)
-			{
-				if (!mouseTail[i].active)
-				{
-					mouseTail[i].active = true;
-					mouseTail[i].alpha = 1.0f;
-					mouseTail[i].position = GetMousePosition();
-					i = MAX_PARTICLES;
-				}
-			}
 
-			for (int i = 0; i < MAX_PARTICLES; i++)
-			{
-				if (mouseTail[i].active)
-				{
-					mouseTail[i].position.Y += gravity / 2;
-					mouseTail[i].alpha -= 0.005f;
+        // Main game loop
+        while (!WindowShouldClose())    // Detect window close button or ESC key
+        {
+            // Update
 
-					if (mouseTail[i].alpha <= 0.0f) mouseTail[i].active = false;
 
-					mouseTail[i].rotation += 2.0f;
-				}
-			}
+            // Activate one particle every frame and Update active particles
+            // NOTE: Particles initial position should be mouse position when activated
+            // NOTE: Particles fall down with gravity and rotation... and disappear after 2 seconds (alpha = 0)
+            // NOTE: When a particle disappears, active = false and it can be reused.
+            for (int i = 0; i < MAX_PARTICLES; i++)
+            {
+                if (!mouseTail[i].active)
+                {
+                    mouseTail[i].active = true;
+                    mouseTail[i].alpha = 1.0f;
+                    mouseTail[i].position = GetMousePosition();
+                    i = MAX_PARTICLES;
+                }
+            }
 
-			if (IsKeyPressed(KEY_SPACE))
-			{
-				if (blending == BLEND_ALPHA) blending = BLEND_ADDITIVE;
-				else blending = BLEND_ALPHA;
-			}
-			//----------------------------------------------------------------------------------
+            for (int i = 0; i < MAX_PARTICLES; i++)
+            {
+                if (mouseTail[i].active)
+                {
+                    mouseTail[i].position.Y += gravity / 2;
+                    mouseTail[i].alpha -= 0.005f;
 
-			// Draw
-			//----------------------------------------------------------------------------------
-			BeginDrawing();
+                    if (mouseTail[i].alpha <= 0.0f)
+                    {
+                        mouseTail[i].active = false;
+                    }
 
-			ClearBackground(DARKGRAY);
+                    mouseTail[i].rotation += 2.0f;
+                }
+            }
 
-			BeginBlendMode(blending);
+            if (IsKeyPressed(KEY_SPACE))
+            {
+                if (blending == BLEND_ALPHA)
+                {
+                    blending = BLEND_ADDITIVE;
+                }
+                else
+                {
+                    blending = BLEND_ALPHA;
+                }
+            }
 
-			// Draw active particles
-			for (int i = 0; i < MAX_PARTICLES; i++)
-			{
-				if (mouseTail[i].active) DrawTexturePro(smoke, new Rectangle(0.0f, 0.0f, (float)smoke.width, (float)smoke.height),
-													   new Rectangle(mouseTail[i].position.X, mouseTail[i].position.Y, smoke.width * mouseTail[i].size, smoke.height * mouseTail[i].size),
-													   new Vector2((float)(smoke.width * mouseTail[i].size / 2.0f), (float)(smoke.height * mouseTail[i].size / 2.0f)), mouseTail[i].rotation,
-													   Fade(mouseTail[i].color, mouseTail[i].alpha));
-			}
 
-			EndBlendMode();
+            // Draw
 
-			DrawText("PRESS SPACE to CHANGE BLENDING MODE", 180, 20, 20, BLACK);
+            BeginDrawing();
 
-			if (blending == BLEND_ALPHA) DrawText("ALPHA BLENDING", 290, screenHeight - 40, 20, BLACK);
-			else DrawText("ADDITIVE BLENDING", 280, screenHeight - 40, 20, RAYWHITE);
+            ClearBackground(DARKGRAY);
 
-			EndDrawing();
-			//----------------------------------------------------------------------------------
-		}
+            BeginBlendMode(blending);
 
-		// De-Initialization
-		//--------------------------------------------------------------------------------------
-		UnloadTexture(smoke);
+            // Draw active particles
+            for (int i = 0; i < MAX_PARTICLES; i++)
+            {
+                if (mouseTail[i].active)
+                {
+                    DrawTexturePro(smoke, new Rectangle(0.0f, 0.0f, smoke.width, smoke.height),
+                                  new Rectangle(mouseTail[i].position.X, mouseTail[i].position.Y, smoke.width * mouseTail[i].size, smoke.height * mouseTail[i].size),
+                                  new Vector2((float)(smoke.width * mouseTail[i].size / 2.0f), (float)(smoke.height * mouseTail[i].size / 2.0f)), mouseTail[i].rotation,
+                                  Fade(mouseTail[i].color, mouseTail[i].alpha));
+                }
+            }
 
-		CloseWindow();        // Close window and OpenGL context
-							  //--------------------------------------------------------------------------------------
+            EndBlendMode();
 
-		return 0;
-	}
+            DrawText("PRESS SPACE to CHANGE BLENDING MODE", 180, 20, 20, BLACK);
+
+            if (blending == BLEND_ALPHA)
+            {
+                DrawText("ALPHA BLENDING", 290, screenHeight - 40, 20, BLACK);
+            }
+            else
+            {
+                DrawText("ADDITIVE BLENDING", 280, screenHeight - 40, 20, RAYWHITE);
+            }
+
+            EndDrawing();
+
+        }
+
+        // De-Initialization
+
+        UnloadTexture(smoke);
+
+        CloseWindow();        // Close window and OpenGL context
+
+
+        return 0;
+    }
 }

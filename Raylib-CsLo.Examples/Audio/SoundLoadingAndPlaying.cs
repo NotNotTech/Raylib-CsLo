@@ -1,10 +1,7 @@
-﻿// [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] 
-// [!!] Copyright ©️ Raylib-CsLo and Contributors. 
-// [!!] This file is licensed to you under the MPL-2.0.
-// [!!] See the LICENSE file in the project root for more info. 
-// [!!] ------------------------------------------------- 
-// [!!] The code and 100+ examples are here! https://github.com/NotNotTech/Raylib-CsLo 
-// [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!]  [!!] [!!] [!!] [!!]
+// Copyright ©️ Raylib-CsLo and Contributors.
+// This file is licensed to you under the MPL-2.0.
+// See the LICENSE file in the project root for more info.
+// The code and 100+ examples are here! https://github.com/NotNotTech/Raylib-CsLo
 
 namespace Raylib_CsLo.Examples.Audio;
 /*******************************************************************************************
@@ -18,65 +15,65 @@ namespace Raylib_CsLo.Examples.Audio;
 *
 ********************************************************************************************/
 
-public unsafe static class SoundLoadingAndPlaying
+public static unsafe class SoundLoadingAndPlaying
 {
 
-	public static int main()
-	{
-		// Initialization
-		//--------------------------------------------------------------------------------------
-		const int screenWidth = 800;
-		const int screenHeight = 450;
+    public static int Example()
+    {
+        // Initialization
 
-		InitWindow(screenWidth, screenHeight, "raylib [audio] example - sound loading and playing");
+        const int screenWidth = 800;
+        const int screenHeight = 450;
 
-		InitAudioDevice();      // Initialize audio device
+        InitWindow(screenWidth, screenHeight, "raylib [audio] example - sound loading and playing");
 
-		Sound fxWav = LoadSound("resources/sound.wav");         // Load WAV audio file
-		Sound fxOgg = LoadSound("resources/target.ogg");        // Load OGG audio file
+        InitAudioDevice();      // Initialize audio device
 
-		SetTargetFPS(60);               // Set our game to run at 60 frames-per-second
-										//--------------------------------------------------------------------------------------
+        Sound fxWav = LoadSound("resources/sound.wav");         // Load WAV audio file
+        Sound fxOgg = LoadSound("resources/target.ogg");        // Load OGG audio file
 
-		// Main game loop
-		while (!WindowShouldClose())    // Detect window close button or ESC key
-		{
-			// Update
-			//----------------------------------------------------------------------------------
-			if (IsKeyPressed(KEY_SPACE)) PlaySound(fxWav);      // Play WAV sound
-			if (IsKeyPressed(KEY_ENTER)) PlaySound(fxOgg);      // Play OGG sound
-																//----------------------------------------------------------------------------------
+        SetTargetFPS(60);               // Set our game to run at 60 frames-per-second
 
-			// Draw
-			//----------------------------------------------------------------------------------
-			BeginDrawing();
 
-			ClearBackground(RAYWHITE);
+        // Main game loop
+        while (!WindowShouldClose())    // Detect window close button or ESC key
+        {
+            // Update
 
-			DrawText("Press SPACE to PLAY the WAV sound!", 200, 180, 20, LIGHTGRAY);
-			DrawText("Press ENTER to PLAY the OGG sound!", 200, 220, 20, LIGHTGRAY);
+            if (IsKeyPressed(KEY_SPACE))
+            {
+                PlaySound(fxWav);      // Play WAV sound
+            }
 
-			EndDrawing();
-			//----------------------------------------------------------------------------------
-		}
+            if (IsKeyPressed(KEY_ENTER))
+            {
+                PlaySound(fxOgg);      // Play OGG sound
+            }
 
-		// De-Initialization
-		//--------------------------------------------------------------------------------------
-		UnloadSound(fxWav);     // Unload sound data
-		UnloadSound(fxOgg);     // Unload sound data
 
-		CloseAudioDevice();     // Close audio device
+            // Draw
 
-		CloseWindow();          // Close window and OpenGL context
-								//--------------------------------------------------------------------------------------
+            BeginDrawing();
 
-		return 0;
-	}
+            ClearBackground(RAYWHITE);
+
+            DrawText("Press SPACE to PLAY the WAV sound!", 200, 180, 20, LIGHTGRAY);
+            DrawText("Press ENTER to PLAY the OGG sound!", 200, 220, 20, LIGHTGRAY);
+
+            EndDrawing();
+
+        }
+
+        // De-Initialization
+
+        UnloadSound(fxWav);     // Unload sound data
+        UnloadSound(fxOgg);     // Unload sound data
+
+        CloseAudioDevice();     // Close audio device
+
+        CloseWindow();          // Close window and OpenGL context
+
+
+        return 0;
+    }
 }
-
-
-
-
-
-
-

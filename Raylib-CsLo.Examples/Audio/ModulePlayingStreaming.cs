@@ -1,10 +1,7 @@
-﻿// [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] 
-// [!!] Copyright ©️ Raylib-CsLo and Contributors. 
-// [!!] This file is licensed to you under the MPL-2.0.
-// [!!] See the LICENSE file in the project root for more info. 
-// [!!] ------------------------------------------------- 
-// [!!] The code and 100+ examples are here! https://github.com/NotNotTech/Raylib-CsLo 
-// [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!]  [!!] [!!] [!!] [!!]
+// Copyright ©️ Raylib-CsLo and Contributors.
+// This file is licensed to you under the MPL-2.0.
+// See the LICENSE file in the project root for more info.
+// The code and 100+ examples are here! https://github.com/NotNotTech/Raylib-CsLo
 
 namespace Raylib_CsLo.Examples.Audio;
 
@@ -19,149 +16,155 @@ namespace Raylib_CsLo.Examples.Audio;
 *
 ********************************************************************************************/
 
-public unsafe static class ModulePlayingStreaming
+public static unsafe class ModulePlayingStreaming
 {
 
-	const int MAX_CIRCLES = 64;
+    const int MAX_CIRCLES = 64;
 
-	struct CircleWave
-	{
+    struct CircleWave
+    {
 
-		public Vector2 position;
-		public float radius;
-		public float alpha;
-		public float speed;
-		public Color color;
-	}
+        public Vector2 position;
+        public float radius;
+        public float alpha;
+        public float speed;
+        public Color color;
+    }
 
-	public static int main()
-	{
-		// Initialization
-		//--------------------------------------------------------------------------------------
-		const int screenWidth = 800;
-		const int screenHeight = 450;
+    public static int Example()
+    {
+        // Initialization
 
-		SetConfigFlags(FLAG_MSAA_4X_HINT);  // NOTE: Try to enable MSAA 4X
+        const int screenWidth = 800;
+        const int screenHeight = 450;
 
-		InitWindow(screenWidth, screenHeight, "raylib [audio] example - module playing (streaming)");
+        SetConfigFlags(FLAG_MSAA_4X_HINT);  // NOTE: Try to enable MSAA 4X
 
-		InitAudioDevice();                  // Initialize audio device
+        InitWindow(screenWidth, screenHeight, "raylib [audio] example - module playing (streaming)");
 
-		Color[] colors = new Color[14] { ORANGE, RED, GOLD, LIME, BLUE, VIOLET, BROWN, LIGHTGRAY, PINK,
-						 YELLOW, GREEN, SKYBLUE, PURPLE, BEIGE };
+        InitAudioDevice();                  // Initialize audio device
 
-		// Creates ome circles for visual effect
-		CircleWave[] circles = new CircleWave[MAX_CIRCLES];
+        Color[] colors = new Color[14] { ORANGE, RED, GOLD, LIME, BLUE, VIOLET, BROWN, LIGHTGRAY, PINK,
+                         YELLOW, GREEN, SKYBLUE, PURPLE, BEIGE };
 
-		for (int i = MAX_CIRCLES - 1; i >= 0; i--)
-		{
-			circles[i].alpha = 0.0f;
-			circles[i].radius = (float)GetRandomValue(10, 40);
-			circles[i].position.X = (float)GetRandomValue((int)circles[i].radius, (int)(screenWidth - circles[i].radius));
-			circles[i].position.Y = (float)GetRandomValue((int)circles[i].radius, (int)(screenHeight - circles[i].radius));
-			circles[i].speed = (float)GetRandomValue(1, 100) / 2000.0f;
-			circles[i].color = colors[GetRandomValue(0, 13)];
-		}
+        // Creates ome circles for visual effect
+        CircleWave[] circles = new CircleWave[MAX_CIRCLES];
 
-		Music music = LoadMusicStream("resources/mini1111.xm");
-		music.looping = false;
-		float pitch = 1.0f;
+        for (int i = MAX_CIRCLES - 1; i >= 0; i--)
+        {
+            circles[i].alpha = 0.0f;
+            circles[i].radius = GetRandomValue(10, 40);
+            circles[i].position.X = GetRandomValue((int)circles[i].radius, (int)(screenWidth - circles[i].radius));
+            circles[i].position.Y = GetRandomValue((int)circles[i].radius, (int)(screenHeight - circles[i].radius));
+            circles[i].speed = GetRandomValue(1, 100) / 2000.0f;
+            circles[i].color = colors[GetRandomValue(0, 13)];
+        }
 
-		PlayMusicStream(music);
+        Music music = LoadMusicStream("resources/mini1111.xm");
+        music.looping = false;
+        float pitch = 1.0f;
 
-		float timePlayed = 0.0f;
-		bool pause = false;
+        PlayMusicStream(music);
+        bool pause = false;
 
-		SetTargetFPS(60);               // Set our game to run at 60 frames-per-second
-										//--------------------------------------------------------------------------------------
+        SetTargetFPS(60);               // Set our game to run at 60 frames-per-second
 
-		// Main game loop
-		while (!WindowShouldClose())    // Detect window close button or ESC key
-		{
-			// Update
-			//----------------------------------------------------------------------------------
-			UpdateMusicStream(music);      // Update music buffer with new stream data
 
-			// Restart music playing (stop and play)
-			if (IsKeyPressed(KEY_SPACE))
-			{
-				StopMusicStream(music);
-				PlayMusicStream(music);
-			}
+        // Main game loop
+        while (!WindowShouldClose())    // Detect window close button or ESC key
+        {
+            // Update
 
-			// Pause/Resume music playing
-			if (IsKeyPressed(KEY_P))
-			{
-				pause = !pause;
+            UpdateMusicStream(music);      // Update music buffer with new stream data
 
-				if (pause) PauseMusicStream(music);
-				else ResumeMusicStream(music);
-			}
+            // Restart music playing (stop and play)
+            if (IsKeyPressed(KEY_SPACE))
+            {
+                StopMusicStream(music);
+                PlayMusicStream(music);
+            }
 
-			if (IsKeyDown(KEY_DOWN)) pitch -= 0.01f;
-			else if (IsKeyDown(KEY_UP)) pitch += 0.01f;
+            // Pause/Resume music playing
+            if (IsKeyPressed(KEY_P))
+            {
+                pause = !pause;
 
-			SetMusicPitch(music, pitch);
+                if (pause)
+                {
+                    PauseMusicStream(music);
+                }
+                else
+                {
+                    ResumeMusicStream(music);
+                }
+            }
 
-			// Get timePlayed scaled to bar dimensions
-			timePlayed = GetMusicTimePlayed(music) / GetMusicTimeLength(music) * (screenWidth - 40);
+            if (IsKeyDown(KEY_DOWN))
+            {
+                pitch -= 0.01f;
+            }
+            else if (IsKeyDown(KEY_UP))
+            {
+                pitch += 0.01f;
+            }
 
-			// Color circles animation
-			for (int i = MAX_CIRCLES - 1; (i >= 0) && !pause; i--)
-			{
-				circles[i].alpha += circles[i].speed;
-				circles[i].radius += circles[i].speed * 10.0f;
+            SetMusicPitch(music, pitch);
 
-				if (circles[i].alpha > 1.0f) circles[i].speed *= -1;
+            // Get timePlayed scaled to bar dimensions
+            float timePlayed = GetMusicTimePlayed(music) / GetMusicTimeLength(music) * (screenWidth - 40);
 
-				if (circles[i].alpha <= 0.0f)
-				{
-					circles[i].alpha = 0.0f;
-					circles[i].radius = (float)GetRandomValue(10, 40);
-					circles[i].position.X = (float)GetRandomValue((int)circles[i].radius, (int)(screenWidth - circles[i].radius));
-					circles[i].position.Y = (float)GetRandomValue((int)circles[i].radius, (int)(screenHeight - circles[i].radius));
-					circles[i].color = colors[GetRandomValue(0, 13)];
-					circles[i].speed = (float)GetRandomValue(1, 100) / 2000.0f;
-				}
-			}
-			//----------------------------------------------------------------------------------
+            // Color circles animation
+            for (int i = MAX_CIRCLES - 1; (i >= 0) && !pause; i--)
+            {
+                circles[i].alpha += circles[i].speed;
+                circles[i].radius += circles[i].speed * 10.0f;
 
-			// Draw
-			//----------------------------------------------------------------------------------
-			BeginDrawing();
+                if (circles[i].alpha > 1.0f)
+                {
+                    circles[i].speed *= -1;
+                }
 
-			ClearBackground(RAYWHITE);
+                if (circles[i].alpha <= 0.0f)
+                {
+                    circles[i].alpha = 0.0f;
+                    circles[i].radius = GetRandomValue(10, 40);
+                    circles[i].position.X = GetRandomValue((int)circles[i].radius, (int)(screenWidth - circles[i].radius));
+                    circles[i].position.Y = GetRandomValue((int)circles[i].radius, (int)(screenHeight - circles[i].radius));
+                    circles[i].color = colors[GetRandomValue(0, 13)];
+                    circles[i].speed = GetRandomValue(1, 100) / 2000.0f;
+                }
+            }
 
-			for (int i = MAX_CIRCLES - 1; i >= 0; i--)
-			{
-				DrawCircleV(circles[i].position, circles[i].radius, Fade(circles[i].color, circles[i].alpha));
-			}
 
-			// Draw time bar
-			DrawRectangle(20, screenHeight - 20 - 12, screenWidth - 40, 12, LIGHTGRAY);
-			DrawRectangle(20, screenHeight - 20 - 12, (int)timePlayed, 12, MAROON);
-			DrawRectangleLines(20, screenHeight - 20 - 12, screenWidth - 40, 12, GRAY);
+            // Draw
 
-			EndDrawing();
-			//----------------------------------------------------------------------------------
-		}
+            BeginDrawing();
 
-		// De-Initialization
-		//--------------------------------------------------------------------------------------
-		UnloadMusicStream(music);          // Unload music stream buffers from RAM
+            ClearBackground(RAYWHITE);
 
-		CloseAudioDevice();     // Close audio device (music streaming is automatically stopped)
+            for (int i = MAX_CIRCLES - 1; i >= 0; i--)
+            {
+                DrawCircleV(circles[i].position, circles[i].radius, Fade(circles[i].color, circles[i].alpha));
+            }
 
-		CloseWindow();          // Close window and OpenGL context
-								//--------------------------------------------------------------------------------------
+            // Draw time bar
+            DrawRectangle(20, screenHeight - 20 - 12, screenWidth - 40, 12, LIGHTGRAY);
+            DrawRectangle(20, screenHeight - 20 - 12, (int)timePlayed, 12, MAROON);
+            DrawRectangleLines(20, screenHeight - 20 - 12, screenWidth - 40, 12, GRAY);
 
-		return 0;
-	}
+            EndDrawing();
+
+        }
+
+        // De-Initialization
+
+        UnloadMusicStream(music);          // Unload music stream buffers from RAM
+
+        CloseAudioDevice();     // Close audio device (music streaming is automatically stopped)
+
+        CloseWindow();          // Close window and OpenGL context
+
+
+        return 0;
+    }
 }
-
-
-
-
-
-
-

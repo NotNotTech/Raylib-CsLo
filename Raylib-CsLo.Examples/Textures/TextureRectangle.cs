@@ -1,10 +1,7 @@
-﻿// [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] 
-// [!!] Copyright ©️ Raylib-CsLo and Contributors. 
-// [!!] This file is licensed to you under the MPL-2.0.
-// [!!] See the LICENSE file in the project root for more info. 
-// [!!] ------------------------------------------------- 
-// [!!] The code and 100+ examples are here! https://github.com/NotNotTech/Raylib-CsLo 
-// [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!]  [!!] [!!] [!!] [!!]
+// Copyright ©️ Raylib-CsLo and Contributors.
+// This file is licensed to you under the MPL-2.0.
+// See the LICENSE file in the project root for more info.
+// The code and 100+ examples are here! https://github.com/NotNotTech/Raylib-CsLo
 
 namespace Raylib_CsLo.Examples.Textures;
 
@@ -19,93 +16,112 @@ namespace Raylib_CsLo.Examples.Textures;
 *
 ********************************************************************************************/
 
-public unsafe static class TextureRectangle
+public static unsafe class TextureRectangle
 {
 
-	const int MAX_FRAME_SPEED = 15;
-	const int MIN_FRAME_SPEED = 1;
+    const int MAX_FRAME_SPEED = 15;
+    const int MIN_FRAME_SPEED = 1;
 
-	public static int main()
-	{
-		// Initialization
-		//--------------------------------------------------------------------------------------
-		const int screenWidth = 800;
-		const int screenHeight = 450;
+    public static int Example()
+    {
+        // Initialization
 
-		InitWindow(screenWidth, screenHeight, "raylib [texture] example - texture rectangle");
+        const int screenWidth = 800;
+        const int screenHeight = 450;
 
-		// NOTE: Textures MUST be loaded after Window initialization (OpenGL context is required)
-		Texture2D scarfy = LoadTexture("resources/scarfy.png");        // Texture loading
+        InitWindow(screenWidth, screenHeight, "raylib [texture] example - texture rectangle");
 
-		Vector2 position = new Vector2(350.0f, 280.0f);
-		Rectangle frameRec = new Rectangle(0.0f, 0.0f, (float)scarfy.width / 6, (float)scarfy.height);
-		int currentFrame = 0;
+        // NOTE: Textures MUST be loaded after Window initialization (OpenGL context is required)
+        Texture2D scarfy = LoadTexture("resources/scarfy.png");        // Texture loading
 
-		int framesCounter = 0;
-		int framesSpeed = 8;            // Number of spritesheet frames shown by second
+        Vector2 position = new(350.0f, 280.0f);
+        Rectangle frameRec = new(0.0f, 0.0f, (float)scarfy.width / 6, scarfy.height);
+        int currentFrame = 0;
 
-		SetTargetFPS(60);               // Set our game to run at 60 frames-per-second
-										//--------------------------------------------------------------------------------------
+        int framesCounter = 0;
+        int framesSpeed = 8;            // Number of spritesheet frames shown by second
 
-		// Main game loop
-		while (!WindowShouldClose())    // Detect window close button or ESC key
-		{
-			// Update
-			//----------------------------------------------------------------------------------
-			framesCounter++;
+        SetTargetFPS(60);               // Set our game to run at 60 frames-per-second
 
-			if (framesCounter >= (60 / framesSpeed))
-			{
-				framesCounter = 0;
-				currentFrame++;
 
-				if (currentFrame > 5) currentFrame = 0;
+        // Main game loop
+        while (!WindowShouldClose())    // Detect window close button or ESC key
+        {
+            // Update
 
-				frameRec.X = (float)currentFrame * (float)scarfy.width / 6;
-			}
+            framesCounter++;
 
-			if (IsKeyPressed(KEY_RIGHT)) framesSpeed++;
-			else if (IsKeyPressed(KEY_LEFT)) framesSpeed--;
+            if (framesCounter >= (60 / framesSpeed))
+            {
+                framesCounter = 0;
+                currentFrame++;
 
-			if (framesSpeed > MAX_FRAME_SPEED) framesSpeed = MAX_FRAME_SPEED;
-			else if (framesSpeed < MIN_FRAME_SPEED) framesSpeed = MIN_FRAME_SPEED;
-			//----------------------------------------------------------------------------------
+                if (currentFrame > 5)
+                {
+                    currentFrame = 0;
+                }
 
-			// Draw
-			//----------------------------------------------------------------------------------
-			BeginDrawing();
+                frameRec.X = currentFrame * (float)scarfy.width / 6;
+            }
 
-			ClearBackground(RAYWHITE);
+            if (IsKeyPressed(KEY_RIGHT))
+            {
+                framesSpeed++;
+            }
+            else if (IsKeyPressed(KEY_LEFT))
+            {
+                framesSpeed--;
+            }
 
-			DrawTexture(scarfy, 15, 40, WHITE);
-			DrawRectangleLines(15, 40, scarfy.width, scarfy.height, LIME);
-			DrawRectangleLines(15 + (int)frameRec.X, 40 + (int)frameRec.Y, (int)frameRec.width, (int)frameRec.height, RED);
+            if (framesSpeed > MAX_FRAME_SPEED)
+            {
+                framesSpeed = MAX_FRAME_SPEED;
+            }
+            else if (framesSpeed < MIN_FRAME_SPEED)
+            {
+                framesSpeed = MIN_FRAME_SPEED;
+            }
 
-			DrawText("FRAME SPEED: ", 165, 210, 10, DARKGRAY);
-			DrawText(TextFormat("%02i FPS", framesSpeed), 575, 210, 10, DARKGRAY);
-			DrawText("PRESS RIGHT/LEFT KEYS to CHANGE SPEED!", 290, 240, 10, DARKGRAY);
 
-			for (int i = 0; i < MAX_FRAME_SPEED; i++)
-			{
-				if (i < framesSpeed) DrawRectangle(250 + 21 * i, 205, 20, 20, RED);
-				DrawRectangleLines(250 + 21 * i, 205, 20, 20, MAROON);
-			}
+            // Draw
 
-			DrawTextureRec(scarfy, frameRec, position, WHITE);  // Draw part of the texture
+            BeginDrawing();
 
-			DrawText("(c) Scarfy sprite by Eiden Marsal", screenWidth - 200, screenHeight - 20, 10, GRAY);
+            ClearBackground(RAYWHITE);
 
-			EndDrawing();
-			//----------------------------------------------------------------------------------
-		}
+            DrawTexture(scarfy, 15, 40, WHITE);
+            DrawRectangleLines(15, 40, scarfy.width, scarfy.height, LIME);
+            DrawRectangleLines(15 + (int)frameRec.X, 40 + (int)frameRec.Y, (int)frameRec.width, (int)frameRec.height, RED);
 
-		// De-Initialization
-		//--------------------------------------------------------------------------------------
-		UnloadTexture(scarfy);       // Texture unloading
+            DrawText("FRAME SPEED: ", 165, 210, 10, DARKGRAY);
+            DrawText(TextFormat("%02i FPS", framesSpeed), 575, 210, 10, DARKGRAY);
+            DrawText("PRESS RIGHT/LEFT KEYS to CHANGE SPEED!", 290, 240, 10, DARKGRAY);
 
-		CloseWindow();                // Close window and OpenGL context
-									  //--------------------------------------------------------------------------------------
+            for (int i = 0; i < MAX_FRAME_SPEED; i++)
+            {
+                if (i < framesSpeed)
+                {
+                    DrawRectangle(250 + (21 * i), 205, 20, 20, RED);
+                }
 
-		return 0;
-	}
+                DrawRectangleLines(250 + (21 * i), 205, 20, 20, MAROON);
+            }
+
+            DrawTextureRec(scarfy, frameRec, position, WHITE);  // Draw part of the texture
+
+            DrawText("(c) Scarfy sprite by Eiden Marsal", screenWidth - 200, screenHeight - 20, 10, GRAY);
+
+            EndDrawing();
+
+        }
+
+        // De-Initialization
+
+        UnloadTexture(scarfy);       // Texture unloading
+
+        CloseWindow();                // Close window and OpenGL context
+
+
+        return 0;
+    }
 }

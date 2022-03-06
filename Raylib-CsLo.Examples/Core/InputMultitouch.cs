@@ -1,10 +1,7 @@
-﻿// [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] 
-// [!!] Copyright ©️ Raylib-CsLo and Contributors. 
-// [!!] This file is licensed to you under the MPL-2.0.
-// [!!] See the LICENSE file in the project root for more info. 
-// [!!] ------------------------------------------------- 
-// [!!] The code and 100+ examples are here! https://github.com/NotNotTech/Raylib-CsLo 
-// [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!]  [!!] [!!] [!!] [!!]
+// Copyright ©️ Raylib-CsLo and Contributors.
+// This file is licensed to you under the MPL-2.0.
+// See the LICENSE file in the project root for more info.
+// The code and 100+ examples are here! https://github.com/NotNotTech/Raylib-CsLo
 
 /*******************************************************************************************
 *
@@ -22,11 +19,11 @@ namespace Raylib_CsLo.Examples.Core;
 
 public static class InputMultitouch
 {
-	private const int MAX_TOUCH_POINTS = 10;
-	public static int main()
-	{
+    const int MAX_TOUCH_POINTS = 10;
+    public static int Example()
+    {
         // Initialization
-        //--------------------------------------------------------------------------------------
+
         const int screenWidth = 800;
         const int screenHeight = 450;
 
@@ -35,19 +32,22 @@ public static class InputMultitouch
         Vector2[] touchPositions = new Vector2[MAX_TOUCH_POINTS];
 
         SetTargetFPS(60);               // Set our game to run at 60 frames-per-second
-                                        //---------------------------------------------------------------------------------------
+
 
         // Main game loop
         while (!WindowShouldClose())    // Detect window close button or ESC key
         {
             // Update
-            //----------------------------------------------------------------------------------
+
             // Get multiple touchpoints
-            for (int i = 0; i < MAX_TOUCH_POINTS; ++i) touchPositions[i] = GetTouchPosition(i);
-            //----------------------------------------------------------------------------------
+            for (int i = 0; i < MAX_TOUCH_POINTS; ++i)
+            {
+                touchPositions[i] = GetTouchPosition(i);
+            }
+
 
             // Draw
-            //----------------------------------------------------------------------------------
+
             BeginDrawing();
 
             ClearBackground(RAYWHITE);
@@ -66,15 +66,14 @@ public static class InputMultitouch
             DrawText("touch the screen at multiple locations to get multiple balls", 10, 10, 20, DARKGRAY);
 
             EndDrawing();
-            //----------------------------------------------------------------------------------
+
         }
 
         // De-Initialization
-        //--------------------------------------------------------------------------------------
+
         CloseWindow();        // Close window and OpenGL context
-                              //--------------------------------------------------------------------------------------
+
 
         return 0;
     }
 }
-

@@ -1,10 +1,7 @@
-﻿// [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] 
-// [!!] Copyright ©️ Raylib-CsLo and Contributors. 
-// [!!] This file is licensed to you under the MPL-2.0.
-// [!!] See the LICENSE file in the project root for more info. 
-// [!!] ------------------------------------------------- 
-// [!!] The code and 100+ examples are here! https://github.com/NotNotTech/Raylib-CsLo 
-// [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!]  [!!] [!!] [!!] [!!]
+// Copyright ©️ Raylib-CsLo and Contributors.
+// This file is licensed to you under the MPL-2.0.
+// See the LICENSE file in the project root for more info.
+// The code and 100+ examples are here! https://github.com/NotNotTech/Raylib-CsLo
 
 namespace Raylib_CsLo.Examples.Audio;
 
@@ -21,72 +18,72 @@ namespace Raylib_CsLo.Examples.Audio;
 *
 ********************************************************************************************/
 
-public unsafe static class MultichannelSoundPlaying
+public static unsafe class MultichannelSoundPlaying
 {
 
-	public static int main()
-	{
-		// Initialization
-		//--------------------------------------------------------------------------------------
-		const int screenWidth = 800;
-		const int screenHeight = 450;
+    public static int Example()
+    {
+        // Initialization
 
-		InitWindow(screenWidth, screenHeight, "raylib [audio] example - Multichannel sound playing");
+        const int screenWidth = 800;
+        const int screenHeight = 450;
 
-		InitAudioDevice();      // Initialize audio device
+        InitWindow(screenWidth, screenHeight, "raylib [audio] example - Multichannel sound playing");
 
-		Sound fxWav = LoadSound("resources/sound.wav");         // Load WAV audio file
-		Sound fxOgg = LoadSound("resources/target.ogg");        // Load OGG audio file
+        InitAudioDevice();      // Initialize audio device
 
-		SetSoundVolume(fxWav, 0.2f);
+        Sound fxWav = LoadSound("resources/sound.wav");         // Load WAV audio file
+        Sound fxOgg = LoadSound("resources/target.ogg");        // Load OGG audio file
 
-		SetTargetFPS(60);       // Set our game to run at 60 frames-per-second
-								//--------------------------------------------------------------------------------------
+        SetSoundVolume(fxWav, 0.2f);
 
-		// Main game loop
-		while (!WindowShouldClose())    // Detect window close button or ESC key
-		{
-			// Update
-			//----------------------------------------------------------------------------------
-			if (IsKeyPressed(KEY_ENTER)) PlaySoundMulti(fxWav);     // Play a new wav sound instance
-			if (IsKeyPressed(KEY_SPACE)) PlaySoundMulti(fxOgg);     // Play a new ogg sound instance
-																	//----------------------------------------------------------------------------------
+        SetTargetFPS(60);       // Set our game to run at 60 frames-per-second
 
-			// Draw
-			//----------------------------------------------------------------------------------
-			BeginDrawing();
 
-			ClearBackground(RAYWHITE);
+        // Main game loop
+        while (!WindowShouldClose())    // Detect window close button or ESC key
+        {
+            // Update
 
-			DrawText("MULTICHANNEL SOUND PLAYING", 20, 20, 20, GRAY);
-			DrawText("Press SPACE to play new ogg instance!", 200, 120, 20, LIGHTGRAY);
-			DrawText("Press ENTER to play new wav instance!", 200, 180, 20, LIGHTGRAY);
+            if (IsKeyPressed(KEY_ENTER))
+            {
+                PlaySoundMulti(fxWav);     // Play a new wav sound instance
+            }
 
-			DrawText(TextFormat("CONCURRENT SOUNDS PLAYING: %02i", GetSoundsPlaying()), 220, 280, 20, RED);
+            if (IsKeyPressed(KEY_SPACE))
+            {
+                PlaySoundMulti(fxOgg);     // Play a new ogg sound instance
+            }
 
-			EndDrawing();
-			//----------------------------------------------------------------------------------
-		}
 
-		// De-Initialization
-		//--------------------------------------------------------------------------------------
-		StopSoundMulti();       // We must stop the buffer pool before unloading
+            // Draw
 
-		UnloadSound(fxWav);     // Unload sound data
-		UnloadSound(fxOgg);     // Unload sound data
+            BeginDrawing();
 
-		CloseAudioDevice();     // Close audio device
+            ClearBackground(RAYWHITE);
 
-		CloseWindow();          // Close window and OpenGL context
-								//--------------------------------------------------------------------------------------
+            DrawText("MULTICHANNEL SOUND PLAYING", 20, 20, 20, GRAY);
+            DrawText("Press SPACE to play new ogg instance!", 200, 120, 20, LIGHTGRAY);
+            DrawText("Press ENTER to play new wav instance!", 200, 180, 20, LIGHTGRAY);
 
-		return 0;
-	}
+            DrawText(TextFormat("CONCURRENT SOUNDS PLAYING: %02i", GetSoundsPlaying()), 220, 280, 20, RED);
+
+            EndDrawing();
+
+        }
+
+        // De-Initialization
+
+        StopSoundMulti();       // We must stop the buffer pool before unloading
+
+        UnloadSound(fxWav);     // Unload sound data
+        UnloadSound(fxOgg);     // Unload sound data
+
+        CloseAudioDevice();     // Close audio device
+
+        CloseWindow();          // Close window and OpenGL context
+
+
+        return 0;
+    }
 }
-
-
-
-
-
-
-
