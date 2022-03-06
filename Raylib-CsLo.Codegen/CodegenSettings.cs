@@ -4,14 +4,18 @@
 // The code and 100+ examples are here! https://github.com/NotNotTech/Raylib-CsLo
 
 namespace Raylib_CsLo.Codegen;
-
-using System.Collections.Generic;
 using System.IO;
 
 public static class CodegenSettings
 {
+    public const string ClassName = "RaylibS";
+    public const string NamespaceName = "Raylib_CsLo";
+
     public static string OutputFolder { get; } = Path.GetFullPath("../Raylib-CsLo/autogen/wrappers/");
     public static string ApiJsonFile { get; } = Path.GetFullPath("../sub-modules/raylib/parser/raylib_api.json");
+
+    public const string Utf8ToString = "Helpers.Utf8ToString";
+    public const string PrtToArray = "Helpers.PrtToArray";
 
     public static readonly string[] LastFunctionInModule =
     {
@@ -22,11 +26,20 @@ public static class CodegenSettings
         "GetRayCollisionQuad"
     };
 
-    public const string NamespaceName = "Raylib_CsLo";
     public static readonly string[] Usings =
     {
         "System.Numerics",
         "Microsoft.Toolkit.HighPerformance.Buffers",
         "Raylib_CsLo.InternalHelpers",
+    };
+
+    public static readonly string[] FunctionsToHandleManually =
+    {
+        "TraceLog",
+        "SetTraceLogCallback",
+        "SetLoadFileDataCallback",
+        "SetSaveFileDataCallback",
+        "SetLoadFileTextCallback",
+        "SetSaveFileTextCallback",
     };
 }

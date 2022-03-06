@@ -27,7 +27,7 @@ public unsafe partial class RaylibS
     /// <summary>
     /// Load font from file with extended parameters
     /// </summary>
-    public Font LoadFontEx(string fileName, int fontSize, int[] fontChars, int glyphCount)
+    public Font LoadFontEx(string fileName, int fontSize, int* fontChars, int glyphCount)
     {
         using var fileName_ = fileName.MarshalUtf8();
         return Raylib.LoadFontEx(fileName_.AsPtr(), fontSize, fontChars, glyphCount);
@@ -44,7 +44,7 @@ public unsafe partial class RaylibS
     /// <summary>
     /// Load font from memory buffer, fileType refers to extension: i.e. '.ttf'
     /// </summary>
-    public Font LoadFontFromMemory(string fileType, byte[] fileData, int dataSize, int fontSize, int[] fontChars, int glyphCount)
+    public Font LoadFontFromMemory(string fileType, byte[] fileData, int dataSize, int fontSize, int* fontChars, int glyphCount)
     {
         using var fileType_ = fileType.MarshalUtf8();
         return Raylib.LoadFontFromMemory(fileType_.AsPtr(), fileData, dataSize, fontSize, fontChars, glyphCount);
@@ -53,7 +53,7 @@ public unsafe partial class RaylibS
     /// <summary>
     /// Load font data for further use
     /// </summary>
-    public GlyphInfo[] LoadFontData(byte[] fileData, int dataSize, int fontSize, int[] fontChars, int glyphCount, int type)
+    public GlyphInfo[] LoadFontData(byte[] fileData, int dataSize, int fontSize, int* fontChars, int glyphCount, int type)
     {
         return (GlyphInfo[])Raylib.LoadFontData(fileData, dataSize, fontSize, fontChars, glyphCount, type);
     }
@@ -61,7 +61,7 @@ public unsafe partial class RaylibS
     /// <summary>
     /// Generate image font atlas using chars info
     /// </summary>
-    public Image GenImageFontAtlas(GlyphInfo[] chars, Rectangle[] recs, int glyphCount, int fontSize, int padding, int packMethod)
+    public Image GenImageFontAtlas(GlyphInfo* chars, Rectangle[] recs, int glyphCount, int fontSize, int padding, int packMethod)
     {
         return Raylib.GenImageFontAtlas(chars, recs, glyphCount, fontSize, padding, packMethod);
     }
@@ -69,7 +69,7 @@ public unsafe partial class RaylibS
     /// <summary>
     /// Unload font chars info data (RAM)
     /// </summary>
-    public void UnloadFontData(GlyphInfo[] chars, int glyphCount)
+    public void UnloadFontData(GlyphInfo* chars, int glyphCount)
     {
         Raylib.UnloadFontData(chars, glyphCount);
     }
@@ -170,7 +170,7 @@ public unsafe partial class RaylibS
     /// <summary>
     /// Load all codepoints from a UTF-8 text string, codepoints count returned by parameter
     /// </summary>
-    public int[] LoadCodepoints(string text, int[] count)
+    public int[] LoadCodepoints(string text, int* count)
     {
         using var text_ = text.MarshalUtf8();
         return (int[])Raylib.LoadCodepoints(text_.AsPtr(), count);
@@ -179,7 +179,7 @@ public unsafe partial class RaylibS
     /// <summary>
     /// Unload codepoints data from memory
     /// </summary>
-    public void UnloadCodepoints(int[] codepoints)
+    public void UnloadCodepoints(int* codepoints)
     {
         Raylib.UnloadCodepoints(codepoints);
     }
@@ -196,7 +196,7 @@ public unsafe partial class RaylibS
     /// <summary>
     /// Get next codepoint in a UTF-8 encoded string, 0x3f('?') is returned on failure
     /// </summary>
-    public int GetCodepoint(string text, int[] bytesProcessed)
+    public int GetCodepoint(string text, int* bytesProcessed)
     {
         using var text_ = text.MarshalUtf8();
         return Raylib.GetCodepoint(text_.AsPtr(), bytesProcessed);
@@ -205,15 +205,15 @@ public unsafe partial class RaylibS
     /// <summary>
     /// Encode one codepoint into UTF-8 byte array (array length returned as parameter)
     /// </summary>
-    public string CodepointToUTF8(int codepoint, int[] byteSize)
+    public string CodepointToUTF8(int codepoint, int* byteSize)
     {
-        return (string)Raylib.CodepointToUTF8(codepoint, byteSize);
+        return Helpers.Utf8ToString(Raylib.CodepointToUTF8(codepoint, byteSize));
     }
 
     /// <summary>
     /// Encode text as codepoints array into UTF-8 text string (WARNING: memory must be freed!)
     /// </summary>
-    public string TextCodepointsToUTF8(int[] codepoints, int length)
+    public string TextCodepointsToUTF8(int* codepoints, int length)
     {
         return (string)Raylib.TextCodepointsToUTF8(codepoints, length);
     }
@@ -250,10 +250,10 @@ public unsafe partial class RaylibS
     /// <summary>
     /// Text formatting with variables (sprintf() style)
     /// </summary>
-    public string TextFormat(string text, params object[] args )
+    public string TextFormat(string text, params object[] args)
     {
         using var text_ = text.MarshalUtf8();
-        return (string)Raylib.TextFormat(text_.AsPtr(), );
+        return Helpers.Utf8ToString(Raylib.TextFormat(text_.AsPtr(), args));
     }
 
     /// <summary>
@@ -262,7 +262,7 @@ public unsafe partial class RaylibS
     public string TextSubtext(string text, int position, int length)
     {
         using var text_ = text.MarshalUtf8();
-        return (string)Raylib.TextSubtext(text_.AsPtr(), position, length);
+        return Helpers.Utf8ToString(Raylib.TextSubtext(text_.AsPtr(), position, length));
     }
 
     /// <summary>
@@ -292,13 +292,13 @@ public unsafe partial class RaylibS
     public string TextJoin(string[] textList, int count, string delimiter)
     {
         using var delimiter_ = delimiter.MarshalUtf8();
-        return (string)Raylib.TextJoin(textList, count, delimiter_.AsPtr());
+        return Helpers.Utf8ToString(Raylib.TextJoin(textList, count, delimiter_.AsPtr()));
     }
 
     /// <summary>
     /// Split text into multiple strings
     /// </summary>
-    public string[] TextSplit(string text, char delimiter, int[] count)
+    public string[] TextSplit(string text, char delimiter, int* count)
     {
         using var text_ = text.MarshalUtf8();
         return (string[])Raylib.TextSplit(text_.AsPtr(), delimiter, count);
@@ -307,7 +307,7 @@ public unsafe partial class RaylibS
     /// <summary>
     /// Append text at specific position and move cursor!
     /// </summary>
-    public void TextAppend(string text, string append, int[] position)
+    public void TextAppend(string text, string append, int* position)
     {
         using var text_ = text.MarshalUtf8();
         using var append_ = append.MarshalUtf8();
@@ -330,7 +330,7 @@ public unsafe partial class RaylibS
     public string TextToUpper(string text)
     {
         using var text_ = text.MarshalUtf8();
-        return (string)Raylib.TextToUpper(text_.AsPtr());
+        return Helpers.Utf8ToString(Raylib.TextToUpper(text_.AsPtr()));
     }
 
     /// <summary>
@@ -339,7 +339,7 @@ public unsafe partial class RaylibS
     public string TextToLower(string text)
     {
         using var text_ = text.MarshalUtf8();
-        return (string)Raylib.TextToLower(text_.AsPtr());
+        return Helpers.Utf8ToString(Raylib.TextToLower(text_.AsPtr()));
     }
 
     /// <summary>
@@ -348,7 +348,7 @@ public unsafe partial class RaylibS
     public string TextToPascal(string text)
     {
         using var text_ = text.MarshalUtf8();
-        return (string)Raylib.TextToPascal(text_.AsPtr());
+        return Helpers.Utf8ToString(Raylib.TextToPascal(text_.AsPtr()));
     }
 
     /// <summary>

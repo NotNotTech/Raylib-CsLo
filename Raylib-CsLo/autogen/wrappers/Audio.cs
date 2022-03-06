@@ -79,7 +79,8 @@ public unsafe partial class RaylibS
     /// </summary>
     public void UpdateSound(Sound sound, IntPtr data, int sampleCount)
     {
-        Raylib.UpdateSound(sound, data, sampleCount);
+        var data_ = (void*)data;
+        Raylib.UpdateSound(sound, data_, sampleCount);
     }
 
     /// <summary>
@@ -199,7 +200,7 @@ public unsafe partial class RaylibS
     /// <summary>
     /// Convert wave data to desired format
     /// </summary>
-    public void WaveFormat(Wave[] wave, int sampleRate, int sampleSize, int channels)
+    public void WaveFormat(Wave* wave, int sampleRate, int sampleSize, int channels)
     {
         Raylib.WaveFormat(wave, sampleRate, sampleSize, channels);
     }
@@ -215,7 +216,7 @@ public unsafe partial class RaylibS
     /// <summary>
     /// Crop a wave to defined samples range
     /// </summary>
-    public void WaveCrop(Wave[] wave, int initSample, int finalSample)
+    public void WaveCrop(Wave* wave, int initSample, int finalSample)
     {
         Raylib.WaveCrop(wave, initSample, finalSample);
     }
@@ -225,13 +226,13 @@ public unsafe partial class RaylibS
     /// </summary>
     public float[] LoadWaveSamples(Wave wave)
     {
-        return (float[])Raylib.LoadWaveSamples(wave);
+        return Helpers.PrtToArray(Raylib.LoadWaveSamples(wave));
     }
 
     /// <summary>
     /// Unload samples data loaded with LoadWaveSamples()
     /// </summary>
-    public void UnloadWaveSamples(float[] samples)
+    public void UnloadWaveSamples(float* samples)
     {
         Raylib.UnloadWaveSamples(samples);
     }
@@ -371,7 +372,8 @@ public unsafe partial class RaylibS
     /// </summary>
     public void UpdateAudioStream(AudioStream stream, IntPtr data, int frameCount)
     {
-        Raylib.UpdateAudioStream(stream, data, frameCount);
+        var data_ = (void*)data;
+        Raylib.UpdateAudioStream(stream, data_, frameCount);
     }
 
     /// <summary>

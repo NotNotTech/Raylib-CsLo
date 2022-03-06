@@ -82,7 +82,7 @@ public unsafe partial class RaylibS
     /// <summary>
     /// Draw lines sequence
     /// </summary>
-    public void DrawLineStrip(Vector2[] points, int pointCount, Color color)
+    public void DrawLineStrip(Vector2* points, int pointCount, Color color)
     {
         Raylib.DrawLineStrip(points, pointCount, color);
     }
@@ -274,7 +274,7 @@ public unsafe partial class RaylibS
     /// <summary>
     /// Draw a triangle fan defined by points (first vertex is the center)
     /// </summary>
-    public void DrawTriangleFan(Vector2[] points, int pointCount, Color color)
+    public void DrawTriangleFan(Vector2* points, int pointCount, Color color)
     {
         Raylib.DrawTriangleFan(points, pointCount, color);
     }
@@ -282,7 +282,7 @@ public unsafe partial class RaylibS
     /// <summary>
     /// Draw a triangle strip defined by points
     /// </summary>
-    public void DrawTriangleStrip(Vector2[] points, int pointCount, Color color)
+    public void DrawTriangleStrip(Vector2* points, int pointCount, Color color)
     {
         Raylib.DrawTriangleStrip(points, pointCount, color);
     }
@@ -362,7 +362,7 @@ public unsafe partial class RaylibS
     /// <summary>
     /// Check the collision between two lines defined by two points each, returns collision point by reference
     /// </summary>
-    public bool CheckCollisionLines(Vector2 startPos1, Vector2 endPos1, Vector2 startPos2, Vector2 endPos2, Vector2[] collisionPoint)
+    public bool CheckCollisionLines(Vector2 startPos1, Vector2 endPos1, Vector2 startPos2, Vector2 endPos2, Vector2* collisionPoint)
     {
         return Raylib.CheckCollisionLines(startPos1, endPos1, startPos2, endPos2, collisionPoint);
     }

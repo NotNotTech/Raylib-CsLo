@@ -302,7 +302,7 @@ public unsafe partial class RaylibS
     /// </summary>
     public string GetMonitorName(int monitor)
     {
-        return (string)Raylib.GetMonitorName(monitor);
+        return Helpers.Utf8ToString(Raylib.GetMonitorName(monitor));
     }
 
     /// <summary>
@@ -319,7 +319,7 @@ public unsafe partial class RaylibS
     /// </summary>
     public string GetClipboardText()
     {
-        return (string)Raylib.GetClipboardText();
+        return Helpers.Utf8ToString(Raylib.GetClipboardText());
     }
 
     /// <summary>
@@ -589,7 +589,8 @@ public unsafe partial class RaylibS
     /// </summary>
     public void SetShaderValue(Shader shader, int locIndex, IntPtr value, int uniformType)
     {
-        Raylib.SetShaderValue(shader, locIndex, value, uniformType);
+        var value_ = (void*)value;
+        Raylib.SetShaderValue(shader, locIndex, value_, uniformType);
     }
 
     /// <summary>
@@ -597,7 +598,8 @@ public unsafe partial class RaylibS
     /// </summary>
     public void SetShaderValueV(Shader shader, int locIndex, IntPtr value, int uniformType, int count)
     {
-        Raylib.SetShaderValueV(shader, locIndex, value, uniformType, count);
+        var value_ = (void*)value;
+        Raylib.SetShaderValueV(shader, locIndex, value_, uniformType, count);
     }
 
     /// <summary>
@@ -746,15 +748,6 @@ public unsafe partial class RaylibS
     }
 
     /// <summary>
-    /// Show trace log messages (LOG_DEBUG, LOG_INFO, LOG_WARNING, LOG_ERROR...)
-    /// </summary>
-    public void TraceLog(int logLevel, string text, params object[] args )
-    {
-        using var text_ = text.MarshalUtf8();
-        Raylib.TraceLog(logLevel, text_.AsPtr(), );
-    }
-
-    /// <summary>
     /// Set the current threshold (minimum) log level
     /// </summary>
     public void SetTraceLogLevel(int logLevel)
@@ -775,7 +768,8 @@ public unsafe partial class RaylibS
     /// </summary>
     public IntPtr MemRealloc(IntPtr ptr, int size)
     {
-        return (IntPtr)Raylib.MemRealloc(ptr, size);
+        var ptr_ = (void*)ptr;
+        return (IntPtr)Raylib.MemRealloc(ptr_, size);
     }
 
     /// <summary>
@@ -783,47 +777,8 @@ public unsafe partial class RaylibS
     /// </summary>
     public void MemFree(IntPtr ptr)
     {
-        Raylib.MemFree(ptr);
-    }
-
-    /// <summary>
-    /// Set custom trace log
-    /// </summary>
-    public void SetTraceLogCallback(TraceLogCallback callback)
-    {
-        Raylib.SetTraceLogCallback(callback);
-    }
-
-    /// <summary>
-    /// Set custom file binary data loader
-    /// </summary>
-    public void SetLoadFileDataCallback(LoadFileDataCallback callback)
-    {
-        Raylib.SetLoadFileDataCallback(callback);
-    }
-
-    /// <summary>
-    /// Set custom file binary data saver
-    /// </summary>
-    public void SetSaveFileDataCallback(SaveFileDataCallback callback)
-    {
-        Raylib.SetSaveFileDataCallback(callback);
-    }
-
-    /// <summary>
-    /// Set custom file text data loader
-    /// </summary>
-    public void SetLoadFileTextCallback(LoadFileTextCallback callback)
-    {
-        Raylib.SetLoadFileTextCallback(callback);
-    }
-
-    /// <summary>
-    /// Set custom file text data saver
-    /// </summary>
-    public void SetSaveFileTextCallback(SaveFileTextCallback callback)
-    {
-        Raylib.SetSaveFileTextCallback(callback);
+        var ptr_ = (void*)ptr;
+        Raylib.MemFree(ptr_);
     }
 
     /// <summary>
@@ -849,7 +804,8 @@ public unsafe partial class RaylibS
     public bool SaveFileData(string fileName, IntPtr data, uint bytesToWrite)
     {
         using var fileName_ = fileName.MarshalUtf8();
-        return Raylib.SaveFileData(fileName_.AsPtr(), data, bytesToWrite);
+        var data_ = (void*)data;
+        return Raylib.SaveFileData(fileName_.AsPtr(), data_, bytesToWrite);
     }
 
     /// <summary>
@@ -914,7 +870,7 @@ public unsafe partial class RaylibS
     public string GetFileExtension(string fileName)
     {
         using var fileName_ = fileName.MarshalUtf8();
-        return (string)Raylib.GetFileExtension(fileName_.AsPtr());
+        return Helpers.Utf8ToString(Raylib.GetFileExtension(fileName_.AsPtr()));
     }
 
     /// <summary>
@@ -923,7 +879,7 @@ public unsafe partial class RaylibS
     public string GetFileName(string filePath)
     {
         using var filePath_ = filePath.MarshalUtf8();
-        return (string)Raylib.GetFileName(filePath_.AsPtr());
+        return Helpers.Utf8ToString(Raylib.GetFileName(filePath_.AsPtr()));
     }
 
     /// <summary>
@@ -932,7 +888,7 @@ public unsafe partial class RaylibS
     public string GetFileNameWithoutExt(string filePath)
     {
         using var filePath_ = filePath.MarshalUtf8();
-        return (string)Raylib.GetFileNameWithoutExt(filePath_.AsPtr());
+        return Helpers.Utf8ToString(Raylib.GetFileNameWithoutExt(filePath_.AsPtr()));
     }
 
     /// <summary>
@@ -941,7 +897,7 @@ public unsafe partial class RaylibS
     public string GetDirectoryPath(string filePath)
     {
         using var filePath_ = filePath.MarshalUtf8();
-        return (string)Raylib.GetDirectoryPath(filePath_.AsPtr());
+        return Helpers.Utf8ToString(Raylib.GetDirectoryPath(filePath_.AsPtr()));
     }
 
     /// <summary>
@@ -950,7 +906,7 @@ public unsafe partial class RaylibS
     public string GetPrevDirectoryPath(string dirPath)
     {
         using var dirPath_ = dirPath.MarshalUtf8();
-        return (string)Raylib.GetPrevDirectoryPath(dirPath_.AsPtr());
+        return Helpers.Utf8ToString(Raylib.GetPrevDirectoryPath(dirPath_.AsPtr()));
     }
 
     /// <summary>
@@ -958,13 +914,13 @@ public unsafe partial class RaylibS
     /// </summary>
     public string GetWorkingDirectory()
     {
-        return (string)Raylib.GetWorkingDirectory();
+        return Helpers.Utf8ToString(Raylib.GetWorkingDirectory());
     }
 
     /// <summary>
     /// Get filenames in a directory path (memory should be freed)
     /// </summary>
-    public string[] GetDirectoryFiles(string dirPath, int[] count)
+    public string[] GetDirectoryFiles(string dirPath, int* count)
     {
         using var dirPath_ = dirPath.MarshalUtf8();
         return (string[])Raylib.GetDirectoryFiles(dirPath_.AsPtr(), count);
@@ -998,7 +954,7 @@ public unsafe partial class RaylibS
     /// <summary>
     /// Get dropped files names (memory should be freed)
     /// </summary>
-    public string[] GetDroppedFiles(int[] count)
+    public string[] GetDroppedFiles(int* count)
     {
         return (string[])Raylib.GetDroppedFiles(count);
     }
@@ -1023,7 +979,7 @@ public unsafe partial class RaylibS
     /// <summary>
     /// Compress data (DEFLATE algorithm)
     /// </summary>
-    public byte[] CompressData(byte[] data, int dataLength, int[] compDataLength)
+    public byte[] CompressData(byte[] data, int dataLength, int* compDataLength)
     {
         return (byte[])Raylib.CompressData(data, dataLength, compDataLength);
     }
@@ -1031,7 +987,7 @@ public unsafe partial class RaylibS
     /// <summary>
     /// Decompress data (DEFLATE algorithm)
     /// </summary>
-    public byte[] DecompressData(byte[] compData, int compDataLength, int[] dataLength)
+    public byte[] DecompressData(byte[] compData, int compDataLength, int* dataLength)
     {
         return (byte[])Raylib.DecompressData(compData, compDataLength, dataLength);
     }
@@ -1039,7 +995,7 @@ public unsafe partial class RaylibS
     /// <summary>
     /// Encode data to Base64 string
     /// </summary>
-    public string EncodeDataBase64(byte[] data, int dataLength, int[] outputLength)
+    public string EncodeDataBase64(byte[] data, int dataLength, int* outputLength)
     {
         return (string)Raylib.EncodeDataBase64(data, dataLength, outputLength);
     }
@@ -1047,7 +1003,7 @@ public unsafe partial class RaylibS
     /// <summary>
     /// Decode Base64 string data
     /// </summary>
-    public byte[] DecodeDataBase64(byte[] data, int[] outputLength)
+    public byte[] DecodeDataBase64(byte[] data, int* outputLength)
     {
         return (byte[])Raylib.DecodeDataBase64(data, outputLength);
     }
@@ -1146,7 +1102,7 @@ public unsafe partial class RaylibS
     /// </summary>
     public string GetGamepadName(int gamepad)
     {
-        return (string)Raylib.GetGamepadName(gamepad);
+        return Helpers.Utf8ToString(Raylib.GetGamepadName(gamepad));
     }
 
     /// <summary>
@@ -1433,7 +1389,7 @@ public unsafe partial class RaylibS
     /// <summary>
     /// Update camera position for selected mode
     /// </summary>
-    public void UpdateCamera(Camera[] camera)
+    public void UpdateCamera(Camera* camera)
     {
         Raylib.UpdateCamera(camera);
     }

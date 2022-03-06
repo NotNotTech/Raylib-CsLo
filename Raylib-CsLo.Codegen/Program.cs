@@ -8,11 +8,13 @@ namespace Raylib_CsLo.Codegen;
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Text.Json;
 
 public class Program
 {
     static List<string> types = new();
+
     public static void Main()
     {
         if (Directory.Exists(CodegenSettings.OutputFolder))
@@ -31,16 +33,30 @@ public class Program
             {
                 RaylibFunction func = JsonSerializer.Deserialize<RaylibFunction>(element);
 
-                func.ReturnType = ConvertCTypesToCSharpReturn(func.ReturnTypeC);
+                // Skip auto gening these functions be sure to add them manually
+                if (CodegenSettings.FunctionsToHandleManually.Contains(func.Name))
+                {
+                    Console.WriteLine("Handle these functions inside Raylib-CsLo/wrappers/" + module + ".cs " + func.Name + "()");
+                    continue;
+                }
+
+                func.CsReturnType = ConvertCTypesToCSharpReturn(func.ReturnTypeC);
 
                 if (func.ParametersC != null)
                 {
-                    func.Parameters = new();
+                    func.CsParameters = new();
                     foreach ((string name, string type) in func.ParametersC)
                     {
-                        func.Parameters.Add(kvp.Key, (string)kvp.Value.Clone());
-                    }
-                        func.Parameters[name] = ConvertCTypesToCSharpParameter(type);
+                        // TextFormat & TraceLog takes any parms
+                        if (name == "")
+                        {
+                            func.CsParameters.Remove(name);
+                            func.CsParameters.Add("args", "params object[]");
+                        }
+                        else
+                        {
+                            func.CsParameters[name] = ConvertCTypesToCSharpParameter(type);
+                        }
                     }
                 }
 
@@ -54,10 +70,11 @@ public class Program
             }
         }
 
-        foreach (string item in types)
-        {
-            Console.WriteLine(item);
-        }
+        // Debug only
+        // foreach (string item in types)
+        // {
+        //     Console.WriteLine(item);
+        // }
 
         foreach (KeyValuePair<RaylibModule, List<RaylibFunction>> module in modules)
         {
@@ -78,7 +95,8 @@ public class Program
             _ => type
         };
 
-        type = type.Replace(" *", "[]");
+        // Fix the formatting
+        type = type.Replace(" *", "*");
 
         // Debug pruposes only
         if (!types.Contains(type))
@@ -95,6 +113,12 @@ public class Program
 
         type = type.Replace(" *", "[]");
 
+        // Debug pruposes only
+        if (!types.Contains(type))
+        {
+            types.Add(type);
+        }
+
         return type;
     }
 
@@ -102,12 +126,6 @@ public class Program
     {
         // remove const
         type = type.Replace("const ", "");
-
-        // TextFormat & TraceLog takes any parms
-        if (type == "")
-        {
-            type = "params object[] args";
-        }
 
         // Convert C types to param and return safe types
         type = type switch

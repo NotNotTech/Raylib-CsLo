@@ -28,7 +28,7 @@ public unsafe partial class RaylibS
     /// <summary>
     /// Load image sequence from file (frames appended to image.data)
     /// </summary>
-    public Image LoadImageAnim(string fileName, int[] frames)
+    public Image LoadImageAnim(string fileName, int* frames)
     {
         using var fileName_ = fileName.MarshalUtf8();
         return Raylib.LoadImageAnim(fileName_.AsPtr(), frames);
@@ -178,7 +178,7 @@ public unsafe partial class RaylibS
     /// <summary>
     /// Convert image data to desired format
     /// </summary>
-    public void ImageFormat(Image[] image, int newFormat)
+    public void ImageFormat(Image* image, int newFormat)
     {
         Raylib.ImageFormat(image, newFormat);
     }
@@ -186,7 +186,7 @@ public unsafe partial class RaylibS
     /// <summary>
     /// Convert image to POT (power-of-two)
     /// </summary>
-    public void ImageToPOT(Image[] image, Color fill)
+    public void ImageToPOT(Image* image, Color fill)
     {
         Raylib.ImageToPOT(image, fill);
     }
@@ -194,7 +194,7 @@ public unsafe partial class RaylibS
     /// <summary>
     /// Crop an image to a defined rectangle
     /// </summary>
-    public void ImageCrop(Image[] image, Rectangle crop)
+    public void ImageCrop(Image* image, Rectangle crop)
     {
         Raylib.ImageCrop(image, crop);
     }
@@ -202,7 +202,7 @@ public unsafe partial class RaylibS
     /// <summary>
     /// Crop image depending on alpha value
     /// </summary>
-    public void ImageAlphaCrop(Image[] image, float threshold)
+    public void ImageAlphaCrop(Image* image, float threshold)
     {
         Raylib.ImageAlphaCrop(image, threshold);
     }
@@ -210,7 +210,7 @@ public unsafe partial class RaylibS
     /// <summary>
     /// Clear alpha channel to desired color
     /// </summary>
-    public void ImageAlphaClear(Image[] image, Color color, float threshold)
+    public void ImageAlphaClear(Image* image, Color color, float threshold)
     {
         Raylib.ImageAlphaClear(image, color, threshold);
     }
@@ -218,7 +218,7 @@ public unsafe partial class RaylibS
     /// <summary>
     /// Apply alpha mask to image
     /// </summary>
-    public void ImageAlphaMask(Image[] image, Image alphaMask)
+    public void ImageAlphaMask(Image* image, Image alphaMask)
     {
         Raylib.ImageAlphaMask(image, alphaMask);
     }
@@ -226,7 +226,7 @@ public unsafe partial class RaylibS
     /// <summary>
     /// Premultiply alpha channel
     /// </summary>
-    public void ImageAlphaPremultiply(Image[] image)
+    public void ImageAlphaPremultiply(Image* image)
     {
         Raylib.ImageAlphaPremultiply(image);
     }
@@ -234,7 +234,7 @@ public unsafe partial class RaylibS
     /// <summary>
     /// Resize image (Bicubic scaling algorithm)
     /// </summary>
-    public void ImageResize(Image[] image, int newWidth, int newHeight)
+    public void ImageResize(Image* image, int newWidth, int newHeight)
     {
         Raylib.ImageResize(image, newWidth, newHeight);
     }
@@ -242,7 +242,7 @@ public unsafe partial class RaylibS
     /// <summary>
     /// Resize image (Nearest-Neighbor scaling algorithm)
     /// </summary>
-    public void ImageResizeNN(Image[] image, int newWidth, int newHeight)
+    public void ImageResizeNN(Image* image, int newWidth, int newHeight)
     {
         Raylib.ImageResizeNN(image, newWidth, newHeight);
     }
@@ -250,7 +250,7 @@ public unsafe partial class RaylibS
     /// <summary>
     /// Resize canvas and fill with color
     /// </summary>
-    public void ImageResizeCanvas(Image[] image, int newWidth, int newHeight, int offsetX, int offsetY, Color fill)
+    public void ImageResizeCanvas(Image* image, int newWidth, int newHeight, int offsetX, int offsetY, Color fill)
     {
         Raylib.ImageResizeCanvas(image, newWidth, newHeight, offsetX, offsetY, fill);
     }
@@ -258,7 +258,7 @@ public unsafe partial class RaylibS
     /// <summary>
     /// Compute all mipmap levels for a provided image
     /// </summary>
-    public void ImageMipmaps(Image[] image)
+    public void ImageMipmaps(Image* image)
     {
         Raylib.ImageMipmaps(image);
     }
@@ -266,7 +266,7 @@ public unsafe partial class RaylibS
     /// <summary>
     /// Dither image data to 16bpp or lower (Floyd-Steinberg dithering)
     /// </summary>
-    public void ImageDither(Image[] image, int rBpp, int gBpp, int bBpp, int aBpp)
+    public void ImageDither(Image* image, int rBpp, int gBpp, int bBpp, int aBpp)
     {
         Raylib.ImageDither(image, rBpp, gBpp, bBpp, aBpp);
     }
@@ -274,7 +274,7 @@ public unsafe partial class RaylibS
     /// <summary>
     /// Flip image vertically
     /// </summary>
-    public void ImageFlipVertical(Image[] image)
+    public void ImageFlipVertical(Image* image)
     {
         Raylib.ImageFlipVertical(image);
     }
@@ -282,7 +282,7 @@ public unsafe partial class RaylibS
     /// <summary>
     /// Flip image horizontally
     /// </summary>
-    public void ImageFlipHorizontal(Image[] image)
+    public void ImageFlipHorizontal(Image* image)
     {
         Raylib.ImageFlipHorizontal(image);
     }
@@ -290,7 +290,7 @@ public unsafe partial class RaylibS
     /// <summary>
     /// Rotate image clockwise 90deg
     /// </summary>
-    public void ImageRotateCW(Image[] image)
+    public void ImageRotateCW(Image* image)
     {
         Raylib.ImageRotateCW(image);
     }
@@ -298,7 +298,7 @@ public unsafe partial class RaylibS
     /// <summary>
     /// Rotate image counter-clockwise 90deg
     /// </summary>
-    public void ImageRotateCCW(Image[] image)
+    public void ImageRotateCCW(Image* image)
     {
         Raylib.ImageRotateCCW(image);
     }
@@ -306,7 +306,7 @@ public unsafe partial class RaylibS
     /// <summary>
     /// Modify image color: tint
     /// </summary>
-    public void ImageColorTint(Image[] image, Color color)
+    public void ImageColorTint(Image* image, Color color)
     {
         Raylib.ImageColorTint(image, color);
     }
@@ -314,7 +314,7 @@ public unsafe partial class RaylibS
     /// <summary>
     /// Modify image color: invert
     /// </summary>
-    public void ImageColorInvert(Image[] image)
+    public void ImageColorInvert(Image* image)
     {
         Raylib.ImageColorInvert(image);
     }
@@ -322,7 +322,7 @@ public unsafe partial class RaylibS
     /// <summary>
     /// Modify image color: grayscale
     /// </summary>
-    public void ImageColorGrayscale(Image[] image)
+    public void ImageColorGrayscale(Image* image)
     {
         Raylib.ImageColorGrayscale(image);
     }
@@ -330,7 +330,7 @@ public unsafe partial class RaylibS
     /// <summary>
     /// Modify image color: contrast (-100 to 100)
     /// </summary>
-    public void ImageColorContrast(Image[] image, float contrast)
+    public void ImageColorContrast(Image* image, float contrast)
     {
         Raylib.ImageColorContrast(image, contrast);
     }
@@ -338,7 +338,7 @@ public unsafe partial class RaylibS
     /// <summary>
     /// Modify image color: brightness (-255 to 255)
     /// </summary>
-    public void ImageColorBrightness(Image[] image, int brightness)
+    public void ImageColorBrightness(Image* image, int brightness)
     {
         Raylib.ImageColorBrightness(image, brightness);
     }
@@ -346,7 +346,7 @@ public unsafe partial class RaylibS
     /// <summary>
     /// Modify image color: replace color
     /// </summary>
-    public void ImageColorReplace(Image[] image, Color color, Color replace)
+    public void ImageColorReplace(Image* image, Color color, Color replace)
     {
         Raylib.ImageColorReplace(image, color, replace);
     }
@@ -362,7 +362,7 @@ public unsafe partial class RaylibS
     /// <summary>
     /// Load colors palette from image as a Color array (RGBA - 32bit)
     /// </summary>
-    public Color[] LoadImagePalette(Image image, int maxPaletteSize, int[] colorCount)
+    public Color[] LoadImagePalette(Image image, int maxPaletteSize, int* colorCount)
     {
         return (Color[])Raylib.LoadImagePalette(image, maxPaletteSize, colorCount);
     }
@@ -370,7 +370,7 @@ public unsafe partial class RaylibS
     /// <summary>
     /// Unload color data loaded with LoadImageColors()
     /// </summary>
-    public void UnloadImageColors(Color[] colors)
+    public void UnloadImageColors(Color* colors)
     {
         Raylib.UnloadImageColors(colors);
     }
@@ -378,7 +378,7 @@ public unsafe partial class RaylibS
     /// <summary>
     /// Unload colors palette loaded with LoadImagePalette()
     /// </summary>
-    public void UnloadImagePalette(Color[] colors)
+    public void UnloadImagePalette(Color* colors)
     {
         Raylib.UnloadImagePalette(colors);
     }
@@ -402,7 +402,7 @@ public unsafe partial class RaylibS
     /// <summary>
     /// Clear image background with given color
     /// </summary>
-    public void ImageClearBackground(Image[] dst, Color color)
+    public void ImageClearBackground(Image* dst, Color color)
     {
         Raylib.ImageClearBackground(dst, color);
     }
@@ -410,7 +410,7 @@ public unsafe partial class RaylibS
     /// <summary>
     /// Draw pixel within an image
     /// </summary>
-    public void ImageDrawPixel(Image[] dst, int posX, int posY, Color color)
+    public void ImageDrawPixel(Image* dst, int posX, int posY, Color color)
     {
         Raylib.ImageDrawPixel(dst, posX, posY, color);
     }
@@ -418,7 +418,7 @@ public unsafe partial class RaylibS
     /// <summary>
     /// Draw pixel within an image (Vector version)
     /// </summary>
-    public void ImageDrawPixelV(Image[] dst, Vector2 position, Color color)
+    public void ImageDrawPixelV(Image* dst, Vector2 position, Color color)
     {
         Raylib.ImageDrawPixelV(dst, position, color);
     }
@@ -426,7 +426,7 @@ public unsafe partial class RaylibS
     /// <summary>
     /// Draw line within an image
     /// </summary>
-    public void ImageDrawLine(Image[] dst, int startPosX, int startPosY, int endPosX, int endPosY, Color color)
+    public void ImageDrawLine(Image* dst, int startPosX, int startPosY, int endPosX, int endPosY, Color color)
     {
         Raylib.ImageDrawLine(dst, startPosX, startPosY, endPosX, endPosY, color);
     }
@@ -434,7 +434,7 @@ public unsafe partial class RaylibS
     /// <summary>
     /// Draw line within an image (Vector version)
     /// </summary>
-    public void ImageDrawLineV(Image[] dst, Vector2 start, Vector2 end, Color color)
+    public void ImageDrawLineV(Image* dst, Vector2 start, Vector2 end, Color color)
     {
         Raylib.ImageDrawLineV(dst, start, end, color);
     }
@@ -442,7 +442,7 @@ public unsafe partial class RaylibS
     /// <summary>
     /// Draw circle within an image
     /// </summary>
-    public void ImageDrawCircle(Image[] dst, int centerX, int centerY, int radius, Color color)
+    public void ImageDrawCircle(Image* dst, int centerX, int centerY, int radius, Color color)
     {
         Raylib.ImageDrawCircle(dst, centerX, centerY, radius, color);
     }
@@ -450,7 +450,7 @@ public unsafe partial class RaylibS
     /// <summary>
     /// Draw circle within an image (Vector version)
     /// </summary>
-    public void ImageDrawCircleV(Image[] dst, Vector2 center, int radius, Color color)
+    public void ImageDrawCircleV(Image* dst, Vector2 center, int radius, Color color)
     {
         Raylib.ImageDrawCircleV(dst, center, radius, color);
     }
@@ -458,7 +458,7 @@ public unsafe partial class RaylibS
     /// <summary>
     /// Draw rectangle within an image
     /// </summary>
-    public void ImageDrawRectangle(Image[] dst, int posX, int posY, int width, int height, Color color)
+    public void ImageDrawRectangle(Image* dst, int posX, int posY, int width, int height, Color color)
     {
         Raylib.ImageDrawRectangle(dst, posX, posY, width, height, color);
     }
@@ -466,7 +466,7 @@ public unsafe partial class RaylibS
     /// <summary>
     /// Draw rectangle within an image (Vector version)
     /// </summary>
-    public void ImageDrawRectangleV(Image[] dst, Vector2 position, Vector2 size, Color color)
+    public void ImageDrawRectangleV(Image* dst, Vector2 position, Vector2 size, Color color)
     {
         Raylib.ImageDrawRectangleV(dst, position, size, color);
     }
@@ -474,7 +474,7 @@ public unsafe partial class RaylibS
     /// <summary>
     /// Draw rectangle within an image
     /// </summary>
-    public void ImageDrawRectangleRec(Image[] dst, Rectangle rec, Color color)
+    public void ImageDrawRectangleRec(Image* dst, Rectangle rec, Color color)
     {
         Raylib.ImageDrawRectangleRec(dst, rec, color);
     }
@@ -482,7 +482,7 @@ public unsafe partial class RaylibS
     /// <summary>
     /// Draw rectangle lines within an image
     /// </summary>
-    public void ImageDrawRectangleLines(Image[] dst, Rectangle rec, int thick, Color color)
+    public void ImageDrawRectangleLines(Image* dst, Rectangle rec, int thick, Color color)
     {
         Raylib.ImageDrawRectangleLines(dst, rec, thick, color);
     }
@@ -490,7 +490,7 @@ public unsafe partial class RaylibS
     /// <summary>
     /// Draw a source image within a destination image (tint applied to source)
     /// </summary>
-    public void ImageDraw(Image[] dst, Image src, Rectangle srcRec, Rectangle dstRec, Color tint)
+    public void ImageDraw(Image* dst, Image src, Rectangle srcRec, Rectangle dstRec, Color tint)
     {
         Raylib.ImageDraw(dst, src, srcRec, dstRec, tint);
     }
@@ -498,7 +498,7 @@ public unsafe partial class RaylibS
     /// <summary>
     /// Draw text (using default font) within an image (destination)
     /// </summary>
-    public void ImageDrawText(Image[] dst, string text, int posX, int posY, int fontSize, Color color)
+    public void ImageDrawText(Image* dst, string text, int posX, int posY, int fontSize, Color color)
     {
         using var text_ = text.MarshalUtf8();
         Raylib.ImageDrawText(dst, text_.AsPtr(), posX, posY, fontSize, color);
@@ -507,7 +507,7 @@ public unsafe partial class RaylibS
     /// <summary>
     /// Draw text (custom sprite font) within an image (destination)
     /// </summary>
-    public void ImageDrawTextEx(Image[] dst, Font font, string text, Vector2 position, float fontSize, float spacing, Color tint)
+    public void ImageDrawTextEx(Image* dst, Font font, string text, Vector2 position, float fontSize, float spacing, Color tint)
     {
         using var text_ = text.MarshalUtf8();
         Raylib.ImageDrawTextEx(dst, font, text_.AsPtr(), position, fontSize, spacing, tint);
@@ -567,7 +567,8 @@ public unsafe partial class RaylibS
     /// </summary>
     public void UpdateTexture(Texture2D texture, IntPtr pixels)
     {
-        Raylib.UpdateTexture(texture, pixels);
+        var pixels_ = (void*)pixels;
+        Raylib.UpdateTexture(texture, pixels_);
     }
 
     /// <summary>
@@ -575,13 +576,14 @@ public unsafe partial class RaylibS
     /// </summary>
     public void UpdateTextureRec(Texture2D texture, Rectangle rec, IntPtr pixels)
     {
-        Raylib.UpdateTextureRec(texture, rec, pixels);
+        var pixels_ = (void*)pixels;
+        Raylib.UpdateTextureRec(texture, rec, pixels_);
     }
 
     /// <summary>
     /// Generate GPU mipmaps for a texture
     /// </summary>
-    public void GenTextureMipmaps(Texture2D[] texture)
+    public void GenTextureMipmaps(Texture2D* texture)
     {
         Raylib.GenTextureMipmaps(texture);
     }
@@ -669,7 +671,7 @@ public unsafe partial class RaylibS
     /// <summary>
     /// Draw a textured polygon
     /// </summary>
-    public void DrawTexturePoly(Texture2D texture, Vector2 center, Vector2[] points, Vector2[] texcoords, int pointCount, Color tint)
+    public void DrawTexturePoly(Texture2D texture, Vector2 center, Vector2* points, Vector2* texcoords, int pointCount, Color tint)
     {
         Raylib.DrawTexturePoly(texture, center, points, texcoords, pointCount, tint);
     }
@@ -751,7 +753,8 @@ public unsafe partial class RaylibS
     /// </summary>
     public Color GetPixelColor(IntPtr srcPtr, int format)
     {
-        return Raylib.GetPixelColor(srcPtr, format);
+        var srcPtr_ = (void*)srcPtr;
+        return Raylib.GetPixelColor(srcPtr_, format);
     }
 
     /// <summary>
@@ -759,7 +762,8 @@ public unsafe partial class RaylibS
     /// </summary>
     public void SetPixelColor(IntPtr dstPtr, Color color, int format)
     {
-        Raylib.SetPixelColor(dstPtr, color, format);
+        var dstPtr_ = (void*)dstPtr;
+        Raylib.SetPixelColor(dstPtr_, color, format);
     }
 
     /// <summary>

@@ -42,7 +42,7 @@ public unsafe partial class RaylibS
     /// <summary>
     /// Draw a triangle strip defined by points
     /// </summary>
-    public void DrawTriangleStrip3D(Vector3[] points, int pointCount, Color color)
+    public void DrawTriangleStrip3D(Vector3* points, int pointCount, Color color)
     {
         Raylib.DrawTriangleStrip3D(points, pointCount, color);
     }
@@ -283,7 +283,7 @@ public unsafe partial class RaylibS
     /// <summary>
     /// Upload mesh vertex data in GPU and provide VAO/VBO ids
     /// </summary>
-    public void UploadMesh(Mesh[] mesh, bool dynamic)
+    public void UploadMesh(Mesh* mesh, bool dynamic)
     {
         Raylib.UploadMesh(mesh, dynamic);
     }
@@ -293,7 +293,8 @@ public unsafe partial class RaylibS
     /// </summary>
     public void UpdateMeshBuffer(Mesh mesh, int index, IntPtr data, int dataSize, int offset)
     {
-        Raylib.UpdateMeshBuffer(mesh, index, data, dataSize, offset);
+        var data_ = (void*)data;
+        Raylib.UpdateMeshBuffer(mesh, index, data_, dataSize, offset);
     }
 
     /// <summary>
@@ -315,7 +316,7 @@ public unsafe partial class RaylibS
     /// <summary>
     /// Draw multiple mesh instances with material and different transforms
     /// </summary>
-    public void DrawMeshInstanced(Mesh mesh, Material material, Matrix[] transforms, int instances)
+    public void DrawMeshInstanced(Mesh mesh, Material material, Matrix* transforms, int instances)
     {
         Raylib.DrawMeshInstanced(mesh, material, transforms, instances);
     }
@@ -340,7 +341,7 @@ public unsafe partial class RaylibS
     /// <summary>
     /// Compute mesh tangents
     /// </summary>
-    public void GenMeshTangents(Mesh[] mesh)
+    public void GenMeshTangents(Mesh* mesh)
     {
         Raylib.GenMeshTangents(mesh);
     }
@@ -348,7 +349,7 @@ public unsafe partial class RaylibS
     /// <summary>
     /// Compute mesh binormals
     /// </summary>
-    public void GenMeshBinormals(Mesh[] mesh)
+    public void GenMeshBinormals(Mesh* mesh)
     {
         Raylib.GenMeshBinormals(mesh);
     }
@@ -444,7 +445,7 @@ public unsafe partial class RaylibS
     /// <summary>
     /// Load materials from model file
     /// </summary>
-    public Material[] LoadMaterials(string fileName, int[] materialCount)
+    public Material[] LoadMaterials(string fileName, int* materialCount)
     {
         using var fileName_ = fileName.MarshalUtf8();
         return (Material[])Raylib.LoadMaterials(fileName_.AsPtr(), materialCount);
@@ -469,7 +470,7 @@ public unsafe partial class RaylibS
     /// <summary>
     /// Set texture for a material map type (MATERIAL_MAP_DIFFUSE, MATERIAL_MAP_SPECULAR...)
     /// </summary>
-    public void SetMaterialTexture(Material[] material, int mapType, Texture2D texture)
+    public void SetMaterialTexture(Material* material, int mapType, Texture2D texture)
     {
         Raylib.SetMaterialTexture(material, mapType, texture);
     }
@@ -477,7 +478,7 @@ public unsafe partial class RaylibS
     /// <summary>
     /// Set material for a mesh
     /// </summary>
-    public void SetModelMeshMaterial(Model[] model, int meshId, int materialId)
+    public void SetModelMeshMaterial(Model* model, int meshId, int materialId)
     {
         Raylib.SetModelMeshMaterial(model, meshId, materialId);
     }
