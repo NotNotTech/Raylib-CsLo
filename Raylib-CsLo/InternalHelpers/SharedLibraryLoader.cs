@@ -1,17 +1,12 @@
-// [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] 
-// [!!] Copyright ©️ Raylib-CsLo and Contributors. 
+// [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!]
+// [!!] Copyright ©️ Raylib-CsLo and Contributors.
 // [!!] This file is licensed to you under the MPL-2.0.
-// [!!] See the LICENSE file in the project root for more info. 
-// [!!] ------------------------------------------------- 
-// [!!] The code and 100+ examples are here! https://github.com/NotNotTech/Raylib-CsLo 
+// [!!] See the LICENSE file in the project root for more info.
+// [!!] -------------------------------------------------
+// [!!] The code and 100+ examples are here! https://github.com/NotNotTech/Raylib-CsLo
 // [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!]  [!!] [!!] [!!] [!!]
 
-using System.Collections.Concurrent;
-using System.Reflection;
-using System.Runtime.InteropServices;
-using System.Runtime.CompilerServices;
-
-namespace Raylib_CsLo;
+namespace Raylib_CsLo.InternalHelpers;
 
 #if NET6_0_OR_GREATER  //switch conditional from:  https://docs.microsoft.com/en-us/dotnet/standard/frameworks
 /// <summary>
@@ -76,7 +71,7 @@ static class SharedLibraryLoader
 
 		if (CsLoSettings.openGl43 == true)
 		{
-			// experimental, for win-x64 only. 
+			// experimental, for win-x64 only.
 			// only works with limitations: https://github.com/NotNotTech/Raylib-CsLo/issues/2
 			//	other platforms should leave this disabled, or if your computer only supports ogl 3.3
 			for (int i = potentialFileNames.Count - 1; i >= 0; i--)
@@ -183,7 +178,7 @@ static class SharedLibraryLoader
 		string libNameResolved = libraryNameOrig;
 		if (CsLoSettings.openGl43 == true)
 		{
-			// experimental, for win-x64 only. 
+			// experimental, for win-x64 only.
 			// only works with limitations: https://github.com/NotNotTech/Raylib-CsLo/issues/2
 			//	other platforms should leave this disabled, or if your computer only supports ogl 3.3
 

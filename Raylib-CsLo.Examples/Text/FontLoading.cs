@@ -1,10 +1,7 @@
-﻿// [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] 
-// [!!] Copyright ©️ Raylib-CsLo and Contributors. 
-// [!!] This file is licensed to you under the MPL-2.0.
-// [!!] See the LICENSE file in the project root for more info. 
-// [!!] ------------------------------------------------- 
-// [!!] The code and 100+ examples are here! https://github.com/NotNotTech/Raylib-CsLo 
-// [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!]  [!!] [!!] [!!] [!!]
+// Copyright ©️ Raylib-CsLo and Contributors.
+// This file is licensed to you under the MPL-2.0.
+// See the LICENSE file in the project root for more info.
+// The code and 100+ examples are here! https://github.com/NotNotTech/Raylib-CsLo
 
 namespace Raylib_CsLo.Examples.Text;
 
@@ -28,76 +25,83 @@ namespace Raylib_CsLo.Examples.Text;
 *
 ********************************************************************************************/
 
-public unsafe static class FontLoading
+public static unsafe class FontLoading
 {
 
-	public static int main()
-	{
-		// Initialization
-		//--------------------------------------------------------------------------------------
-		const int screenWidth = 800;
-		const int screenHeight = 450;
+    public static int Example()
+    {
+        // Initialization
 
-		InitWindow(screenWidth, screenHeight, "raylib [text] example - font loading");
+        const int screenWidth = 800;
+        const int screenHeight = 450;
 
-		// Define characters to draw
-		// NOTE: raylib supports UTF-8 encoding, following list is actually codified as UTF8 internally
-		string msg = "!\"#$%&'()*+,-./0123456789:;<=>?@ABCDEFGHI\nJKLMNOPQRSTUVWXYZ[]^_`abcdefghijklmn\nopqrstuvwxyz{|}~¿ÀÁÂÃÄÅÆÇÈÉÊËÌÍÎÏÐÑÒÓ\nÔÕÖ×ØÙÚÛÜÝÞßàáâãäåæçèéêëìíîïðñòóôõö÷\nøùúûüýþÿ";
+        InitWindow(screenWidth, screenHeight, "raylib [text] example - font loading");
 
-		// NOTE: Textures/Fonts MUST be loaded after Window initialization (OpenGL context is required)
+        // Define characters to draw
+        // NOTE: raylib supports UTF-8 encoding, following list is actually codified as UTF8 internally
+        string msg = "!\"#$%&'()*+,-./0123456789:;<=>?@ABCDEFGHI\nJKLMNOPQRSTUVWXYZ[]^_`abcdefghijklmn\nopqrstuvwxyz{|}~¿ÀÁÂÃÄÅÆÇÈÉÊËÌÍÎÏÐÑÒÓ\nÔÕÖ×ØÙÚÛÜÝÞßàáâãäåæçèéêëìíîïðñòóôõö÷\nøùúûüýþÿ";
 
-		// BMFont (AngelCode) : Font data and image atlas have been generated using external program
-		Font fontBm = LoadFont("resources/pixantiqua.fnt");
+        // NOTE: Textures/Fonts MUST be loaded after Window initialization (OpenGL context is required)
 
-		// TTF font : Font data and atlas are generated directly from TTF
-		// NOTE: We define a font base size of 32 pixels tall and up-to 250 characters
-		Font fontTtf = LoadFontEx("resources/pixantiqua.ttf", 32, (int*)0, 250);
+        // BMFont (AngelCode) : Font data and image atlas have been generated using external program
+        Font fontBm = LoadFont("resources/pixantiqua.fnt");
 
-		bool useTtf = false;
+        // TTF font : Font data and atlas are generated directly from TTF
+        // NOTE: We define a font base size of 32 pixels tall and up-to 250 characters
+        Font fontTtf = LoadFontEx("resources/pixantiqua.ttf", 32, (int*)0, 250);
 
-		SetTargetFPS(60);               // Set our game to run at 60 frames-per-second
-										//--------------------------------------------------------------------------------------
 
-		// Main game loop
-		while (!WindowShouldClose())    // Detect window close button or ESC key
-		{
-			// Update
-			//----------------------------------------------------------------------------------
-			if (IsKeyDown(KEY_SPACE)) useTtf = true;
-			else useTtf = false;
-			//----------------------------------------------------------------------------------
+        SetTargetFPS(60);               // Set our game to run at 60 frames-per-second
 
-			// Draw
-			//----------------------------------------------------------------------------------
-			BeginDrawing();
 
-			ClearBackground(RAYWHITE);
+        // Main game loop
+        while (!WindowShouldClose())    // Detect window close button or ESC key
+        {
 
-			DrawText("Hold SPACE to use TTF generated font", 20, 20, 20, LIGHTGRAY);
+            bool useTtf;
+            // Update
 
-			if (!useTtf)
-			{
-				DrawTextEx(fontBm, msg, new Vector2(20.0f, 100.0f), (float)fontBm.baseSize, 2, MAROON);
-				DrawText("Using BMFont (Angelcode) imported", 20, GetScreenHeight() - 30, 20, GRAY);
-			}
-			else
-			{
-				DrawTextEx(fontTtf, msg, new Vector2(20.0f, 100.0f), (float)fontTtf.baseSize, 2, LIME);
-				DrawText("Using TTF font generated", 20, GetScreenHeight() - 30, 20, GRAY);
-			}
+            if (IsKeyDown(KEY_SPACE))
+            {
+                useTtf = true;
+            }
+            else
+            {
+                useTtf = false;
+            }
 
-			EndDrawing();
-			//----------------------------------------------------------------------------------
-		}
 
-		// De-Initialization
-		//--------------------------------------------------------------------------------------
-		UnloadFont(fontBm);     // AngelCode Font unloading
-		UnloadFont(fontTtf);    // TTF Font unloading
+            // Draw
 
-		CloseWindow();          // Close window and OpenGL context
-								//--------------------------------------------------------------------------------------
+            BeginDrawing();
 
-		return 0;
-	}
+            ClearBackground(RAYWHITE);
+
+            DrawText("Hold SPACE to use TTF generated font", 20, 20, 20, LIGHTGRAY);
+
+            if (!useTtf)
+            {
+                DrawTextEx(fontBm, msg, new Vector2(20.0f, 100.0f), fontBm.baseSize, 2, MAROON);
+                DrawText("Using BMFont (Angelcode) imported", 20, GetScreenHeight() - 30, 20, GRAY);
+            }
+            else
+            {
+                DrawTextEx(fontTtf, msg, new Vector2(20.0f, 100.0f), fontTtf.baseSize, 2, LIME);
+                DrawText("Using TTF font generated", 20, GetScreenHeight() - 30, 20, GRAY);
+            }
+
+            EndDrawing();
+
+        }
+
+        // De-Initialization
+
+        UnloadFont(fontBm);     // AngelCode Font unloading
+        UnloadFont(fontTtf);    // TTF Font unloading
+
+        CloseWindow();          // Close window and OpenGL context
+
+
+        return 0;
+    }
 }

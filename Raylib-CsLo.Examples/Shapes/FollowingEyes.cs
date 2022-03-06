@@ -1,10 +1,7 @@
-﻿// [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] 
-// [!!] Copyright ©️ Raylib-CsLo and Contributors. 
-// [!!] This file is licensed to you under the MPL-2.0.
-// [!!] See the LICENSE file in the project root for more info. 
-// [!!] ------------------------------------------------- 
-// [!!] The code and 100+ examples are here! https://github.com/NotNotTech/Raylib-CsLo 
-// [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!]  [!!] [!!] [!!] [!!]
+// Copyright ©️ Raylib-CsLo and Contributors.
+// This file is licensed to you under the MPL-2.0.
+// See the LICENSE file in the project root for more info.
+// The code and 100+ examples are here! https://github.com/NotNotTech/Raylib-CsLo
 
 namespace Raylib_CsLo.Examples.Shapes;
 
@@ -19,98 +16,103 @@ namespace Raylib_CsLo.Examples.Shapes;
 *
 ********************************************************************************************/
 
-public unsafe static class FollowingEyes
+public static unsafe class FollowingEyes
 {
 
-	// # include <math.h>       // Required for: MathF.Atan2()
+    // # include <math.h>       // Required for: MathF.Atan2()
 
-	public static int main()
-	{
-		// Initialization
-		//--------------------------------------------------------------------------------------
-		const int screenWidth = 800;
-		const int screenHeight = 450;
+    public static int Example()
+    {
+        // Initialization
 
-		InitWindow(screenWidth, screenHeight, "raylib [shapes] example - following eyes");
+        const int screenWidth = 800;
+        const int screenHeight = 450;
 
-		Vector2 scleraLeftPosition = new Vector2(GetScreenWidth() / 2.0f - 100.0f, GetScreenHeight() / 2.0f);
-		Vector2 scleraRightPosition = new Vector2(GetScreenWidth() / 2.0f + 100.0f, GetScreenHeight() / 2.0f);
-		float scleraRadius = 80;
+        InitWindow(screenWidth, screenHeight, "raylib [shapes] example - following eyes");
 
-		Vector2 irisLeftPosition = new Vector2(GetScreenWidth() / 2.0f - 100.0f, GetScreenHeight() / 2.0f);
-		Vector2 irisRightPosition = new Vector2(GetScreenWidth() / 2.0f + 100.0f, GetScreenHeight() / 2.0f);
-		float irisRadius = 24;
+        Vector2 scleraLeftPosition = new((GetScreenWidth() / 2.0f) - 100.0f, GetScreenHeight() / 2.0f);
+        Vector2 scleraRightPosition = new((GetScreenWidth() / 2.0f) + 100.0f, GetScreenHeight() / 2.0f);
+        float scleraRadius = 80;
+        float irisRadius = 24;
 
-		float angle = 0.0f;
-		float dx = 0.0f, dy = 0.0f, dxx = 0.0f, dyy = 0.0f;
 
-		SetTargetFPS(60);               // Set our game to run at 60 frames-per-second
-										//--------------------------------------------------------------------------------------
+        SetTargetFPS(60);               // Set our game to run at 60 frames-per-second
 
-		// Main game loop
-		while (!WindowShouldClose())    // Detect window close button or ESC key
-		{
-			// Update
-			//----------------------------------------------------------------------------------
-			irisLeftPosition = GetMousePosition();
-			irisRightPosition = GetMousePosition();
 
-			// Check not inside the left eye sclera
-			if (!CheckCollisionPointCircle(irisLeftPosition, scleraLeftPosition, scleraRadius - 20))
-			{
-				dx = irisLeftPosition.X - scleraLeftPosition.X;
-				dy = irisLeftPosition.Y - scleraLeftPosition.Y;
+        // Main game loop
+        while (!WindowShouldClose())    // Detect window close button or ESC key
+        {
+            // Update
 
-				angle = MathF.Atan2(dy, dx);
+            Vector2 irisLeftPosition = GetMousePosition();
+            Vector2 irisRightPosition = GetMousePosition();
 
-				dxx = (scleraRadius - irisRadius) * MathF.Cos(angle);
-				dyy = (scleraRadius - irisRadius) * MathF.Sin(angle);
 
-				irisLeftPosition.X = scleraLeftPosition.X + dxx;
-				irisLeftPosition.Y = scleraLeftPosition.Y + dyy;
-			}
+            float angle;
 
-			// Check not inside the right eye sclera
-			if (!CheckCollisionPointCircle(irisRightPosition, scleraRightPosition, scleraRadius - 20))
-			{
-				dx = irisRightPosition.X - scleraRightPosition.X;
-				dy = irisRightPosition.Y - scleraRightPosition.Y;
+            float dx;
 
-				angle = MathF.Atan2(dy, dx);
+            float dy;
 
-				dxx = (scleraRadius - irisRadius) * MathF.Cos(angle);
-				dyy = (scleraRadius - irisRadius) * MathF.Sin(angle);
+            float dxx;
 
-				irisRightPosition.X = scleraRightPosition.X + dxx;
-				irisRightPosition.Y = scleraRightPosition.Y + dyy;
-			}
-			//----------------------------------------------------------------------------------
+            float dyy;
+            // Check not inside the left eye sclera
+            if (!CheckCollisionPointCircle(irisLeftPosition, scleraLeftPosition, scleraRadius - 20))
+            {
+                dx = irisLeftPosition.X - scleraLeftPosition.X;
+                dy = irisLeftPosition.Y - scleraLeftPosition.Y;
 
-			// Draw
-			//----------------------------------------------------------------------------------
-			BeginDrawing();
+                angle = MathF.Atan2(dy, dx);
 
-			ClearBackground(RAYWHITE);
+                dxx = (scleraRadius - irisRadius) * MathF.Cos(angle);
+                dyy = (scleraRadius - irisRadius) * MathF.Sin(angle);
 
-			DrawCircleV(scleraLeftPosition, scleraRadius, LIGHTGRAY);
-			DrawCircleV(irisLeftPosition, irisRadius, BROWN);
-			DrawCircleV(irisLeftPosition, 10, BLACK);
+                irisLeftPosition.X = scleraLeftPosition.X + dxx;
+                irisLeftPosition.Y = scleraLeftPosition.Y + dyy;
+            }
 
-			DrawCircleV(scleraRightPosition, scleraRadius, LIGHTGRAY);
-			DrawCircleV(irisRightPosition, irisRadius, DARKGREEN);
-			DrawCircleV(irisRightPosition, 10, BLACK);
+            // Check not inside the right eye sclera
+            if (!CheckCollisionPointCircle(irisRightPosition, scleraRightPosition, scleraRadius - 20))
+            {
+                dx = irisRightPosition.X - scleraRightPosition.X;
+                dy = irisRightPosition.Y - scleraRightPosition.Y;
 
-			DrawFPS(10, 10);
+                angle = MathF.Atan2(dy, dx);
 
-			EndDrawing();
-			//----------------------------------------------------------------------------------
-		}
+                dxx = (scleraRadius - irisRadius) * MathF.Cos(angle);
+                dyy = (scleraRadius - irisRadius) * MathF.Sin(angle);
 
-		// De-Initialization
-		//--------------------------------------------------------------------------------------
-		CloseWindow();        // Close window and OpenGL context
-							  //--------------------------------------------------------------------------------------
+                irisRightPosition.X = scleraRightPosition.X + dxx;
+                irisRightPosition.Y = scleraRightPosition.Y + dyy;
+            }
 
-		return 0;
-	}
+
+            // Draw
+
+            BeginDrawing();
+
+            ClearBackground(RAYWHITE);
+
+            DrawCircleV(scleraLeftPosition, scleraRadius, LIGHTGRAY);
+            DrawCircleV(irisLeftPosition, irisRadius, BROWN);
+            DrawCircleV(irisLeftPosition, 10, BLACK);
+
+            DrawCircleV(scleraRightPosition, scleraRadius, LIGHTGRAY);
+            DrawCircleV(irisRightPosition, irisRadius, DARKGREEN);
+            DrawCircleV(irisRightPosition, 10, BLACK);
+
+            DrawFPS(10, 10);
+
+            EndDrawing();
+
+        }
+
+        // De-Initialization
+
+        CloseWindow();        // Close window and OpenGL context
+
+
+        return 0;
+    }
 }

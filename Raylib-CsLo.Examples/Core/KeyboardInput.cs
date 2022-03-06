@@ -1,10 +1,7 @@
-﻿// [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] 
-// [!!] Copyright ©️ Raylib-CsLo and Contributors. 
-// [!!] This file is licensed to you under the MPL-2.0.
-// [!!] See the LICENSE file in the project root for more info. 
-// [!!] ------------------------------------------------- 
-// [!!] The code and 100+ examples are here! https://github.com/NotNotTech/Raylib-CsLo 
-// [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!]  [!!] [!!] [!!] [!!]
+// Copyright ©️ Raylib-CsLo and Contributors.
+// This file is licensed to you under the MPL-2.0.
+// See the LICENSE file in the project root for more info.
+// The code and 100+ examples are here! https://github.com/NotNotTech/Raylib-CsLo
 
 /*******************************************************************************************
 *
@@ -21,51 +18,65 @@ namespace Raylib_CsLo.Examples.Core;
 public static class KeyboardInput
 {
 
-	public static int main()
-	{
-		// Initialization
-		//--------------------------------------------------------------------------------------
-		const int screenWidth = 800;
-		const int screenHeight = 450;
+    public static int Example()
+    {
+        // Initialization
 
-		InitWindow(screenWidth, screenHeight, "raylib [core] example - keyboard input");
+        const int screenWidth = 800;
+        const int screenHeight = 450;
 
-		Vector2 ballPosition = new((float)screenWidth / 2, (float)screenHeight / 2);
+        InitWindow(screenWidth, screenHeight, "raylib [core] example - keyboard input");
 
-		SetTargetFPS(60);               // Set our game to run at 60 frames-per-second
-										//--------------------------------------------------------------------------------------
+        Vector2 ballPosition = new((float)screenWidth / 2, (float)screenHeight / 2);
 
-		// Main game loop
-		while (!WindowShouldClose())    // Detect window close button or ESC key
-		{
-			// Update
-			//----------------------------------------------------------------------------------
-			if (IsKeyDown(KEY_RIGHT)) ballPosition.X += 2.0f;
-			if (IsKeyDown(KEY_LEFT)) ballPosition.X -= 2.0f;
-			if (IsKeyDown(KEY_UP)) ballPosition.Y -= 2.0f;
-			if (IsKeyDown(KEY_DOWN)) ballPosition.Y += 2.0f;
-			//----------------------------------------------------------------------------------
+        SetTargetFPS(60);               // Set our game to run at 60 frames-per-second
 
-			// Draw
-			//----------------------------------------------------------------------------------
-			BeginDrawing();
 
-			ClearBackground(RAYWHITE);
+        // Main game loop
+        while (!WindowShouldClose())    // Detect window close button or ESC key
+        {
+            // Update
 
-			DrawText("move the ball with arrow keys", 10, 10, 20, DARKGRAY);
+            if (IsKeyDown(KEY_RIGHT))
+            {
+                ballPosition.X += 2.0f;
+            }
 
-			DrawCircleV(ballPosition, 50, MAROON);
+            if (IsKeyDown(KEY_LEFT))
+            {
+                ballPosition.X -= 2.0f;
+            }
 
-			EndDrawing();
-			//----------------------------------------------------------------------------------
-		}
+            if (IsKeyDown(KEY_UP))
+            {
+                ballPosition.Y -= 2.0f;
+            }
 
-		// De-Initialization
-		//--------------------------------------------------------------------------------------
-		CloseWindow();        // Close window and OpenGL context
-							  //--------------------------------------------------------------------------------------
+            if (IsKeyDown(KEY_DOWN))
+            {
+                ballPosition.Y += 2.0f;
+            }
 
-		return 0;
-	}
+
+            // Draw
+
+            BeginDrawing();
+
+            ClearBackground(RAYWHITE);
+
+            DrawText("move the ball with arrow keys", 10, 10, 20, DARKGRAY);
+
+            DrawCircleV(ballPosition, 50, MAROON);
+
+            EndDrawing();
+
+        }
+
+        // De-Initialization
+
+        CloseWindow();        // Close window and OpenGL context
+
+
+        return 0;
+    }
 }
-

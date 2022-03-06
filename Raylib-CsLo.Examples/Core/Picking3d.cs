@@ -1,10 +1,7 @@
-﻿// [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] 
-// [!!] Copyright ©️ Raylib-CsLo and Contributors. 
-// [!!] This file is licensed to you under the MPL-2.0.
-// [!!] See the LICENSE file in the project root for more info. 
-// [!!] ------------------------------------------------- 
-// [!!] The code and 100+ examples are here! https://github.com/NotNotTech/Raylib-CsLo 
-// [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!]  [!!] [!!] [!!] [!!]
+// Copyright ©️ Raylib-CsLo and Contributors.
+// This file is licensed to you under the MPL-2.0.
+// See the LICENSE file in the project root for more info.
+// The code and 100+ examples are here! https://github.com/NotNotTech/Raylib-CsLo
 
 /*******************************************************************************************
 *
@@ -19,106 +16,111 @@
 
 namespace Raylib_CsLo.Examples.Core;
 
-public unsafe static class Picking3d
+public static unsafe class Picking3d
 {
 
-	public static int main()
-	{
-		// Initialization
-		//--------------------------------------------------------------------------------------
-		const int screenWidth = 800;
-		const int screenHeight = 450;
+    public static int Example()
+    {
+        // Initialization
 
-		InitWindow(screenWidth, screenHeight, "raylib [core] example - 3d picking");
+        const int screenWidth = 800;
+        const int screenHeight = 450;
 
-		// Define the camera to look into our 3d world
-		Camera camera = new();
-		camera.position = new( 10.0f, 10.0f, 10.0f ); // Camera position
-		camera.target = new( 0.0f, 0.0f, 0.0f );      // Camera looking at point
-		camera.up = new( 0.0f, 1.0f, 0.0f );          // Camera up vector (rotation towards target)
-		camera.fovy = 45.0f;                                // Camera field-of-view Y
-		camera.projection_ = CAMERA_PERSPECTIVE;                   // Camera mode type
+        InitWindow(screenWidth, screenHeight, "raylib [core] example - 3d picking");
 
-		Vector3 cubePosition = new( 0.0f, 1.0f, 0.0f );
-		Vector3 cubeSize = new(2.0f, 2.0f, 2.0f );
+        // Define the camera to look into our 3d world
+        Camera camera = new();
+        camera.position = new(10.0f, 10.0f, 10.0f); // Camera position
+        camera.target = new(0.0f, 0.0f, 0.0f);      // Camera looking at point
+        camera.up = new(0.0f, 1.0f, 0.0f);          // Camera up vector (rotation towards target)
+        camera.fovy = 45.0f;                                // Camera field-of-view Y
+        camera.Projection = CAMERA_PERSPECTIVE;                   // Camera mode type
 
-		Ray ray = new();// { 0 };                    // Picking line ray
+        Vector3 cubePosition = new(0.0f, 1.0f, 0.0f);
+        Vector3 cubeSize = new(2.0f, 2.0f, 2.0f);
 
-		RayCollision collision =new();
+        Ray ray = new();// { 0 };                    // Picking line ray
 
-		SetCameraMode(camera, CAMERA_FREE); // Set a free camera mode
+        RayCollision collision = new();
 
-		SetTargetFPS(60);                   // Set our game to run at 60 frames-per-second
-											//--------------------------------------------------------------------------------------
+        SetCameraMode(camera, CAMERA_FREE); // Set a free camera mode
 
-		// Main game loop
-		while (!WindowShouldClose())        // Detect window close button or ESC key
-		{
-			// Update
-			//----------------------------------------------------------------------------------
-			UpdateCamera(&camera);          // Update camera
+        SetTargetFPS(60);                   // Set our game to run at 60 frames-per-second
 
-			if (IsMouseButtonPressed(MOUSE_BUTTON_LEFT))
-			{
-				if (!collision.hit)
-				{
-					ray = GetMouseRay(GetMousePosition(), camera);
 
-					// Check collision between ray and box
-					collision = GetRayCollisionBox(ray,
-						new BoundingBox(
-						new( cubePosition.X - cubeSize.X / 2, cubePosition.Y - cubeSize.Y / 2, cubePosition.Z - cubeSize.Z / 2 ),
-										  new( cubePosition.X + cubeSize.X / 2, cubePosition.Y + cubeSize.Y / 2, cubePosition.Z + cubeSize.Z / 2 )
-					));
-				}
-				else collision.hit = false;
-			}
-			//----------------------------------------------------------------------------------
+        // Main game loop
+        while (!WindowShouldClose())        // Detect window close button or ESC key
+        {
+            // Update
 
-			// Draw
-			//----------------------------------------------------------------------------------
-			BeginDrawing();
+            UpdateCamera(&camera);          // Update camera
 
-			ClearBackground(RAYWHITE);
+            if (IsMouseButtonPressed(MOUSE_BUTTON_LEFT))
+            {
+                if (!collision.hit)
+                {
+                    ray = GetMouseRay(GetMousePosition(), camera);
 
-			BeginMode3D(camera);
+                    // Check collision between ray and box
+                    collision = GetRayCollisionBox(ray,
+                        new BoundingBox(
+                        new(cubePosition.X - (cubeSize.X / 2), cubePosition.Y - (cubeSize.Y / 2), cubePosition.Z - (cubeSize.Z / 2)),
+                                          new(cubePosition.X + (cubeSize.X / 2), cubePosition.Y + (cubeSize.Y / 2), cubePosition.Z + (cubeSize.Z / 2))
+                    ));
+                }
+                else
+                {
+                    collision.hit = false;
+                }
+            }
 
-			if (collision.hit)
-			{
-				DrawCube(cubePosition, cubeSize.X, cubeSize.Y, cubeSize.Z, RED);
-				DrawCubeWires(cubePosition, cubeSize.X, cubeSize.Y, cubeSize.Z, MAROON);
 
-				DrawCubeWires(cubePosition, cubeSize.X + 0.2f, cubeSize.Y + 0.2f, cubeSize.Z + 0.2f, GREEN);
-			}
-			else
-			{
-				DrawCube(cubePosition, cubeSize.X, cubeSize.Y, cubeSize.Z, GRAY);
-				DrawCubeWires(cubePosition, cubeSize.X, cubeSize.Y, cubeSize.Z, DARKGRAY);
-			}
+            // Draw
 
-			DrawRay(ray, MAROON);
-			DrawGrid(10, 1.0f);
+            BeginDrawing();
 
-			EndMode3D();
+            ClearBackground(RAYWHITE);
 
-			DrawText("Try selecting the box with mouse!", 240, 10, 20, DARKGRAY);
+            BeginMode3D(camera);
 
-			if (collision.hit) DrawText("BOX SELECTED", (screenWidth - MeasureText("BOX SELECTED", 30)) / 2, (int)(screenHeight * 0.1f), 30, GREEN);
+            if (collision.hit)
+            {
+                DrawCube(cubePosition, cubeSize.X, cubeSize.Y, cubeSize.Z, RED);
+                DrawCubeWires(cubePosition, cubeSize.X, cubeSize.Y, cubeSize.Z, MAROON);
 
-			DrawFPS(10, 10);
+                DrawCubeWires(cubePosition, cubeSize.X + 0.2f, cubeSize.Y + 0.2f, cubeSize.Z + 0.2f, GREEN);
+            }
+            else
+            {
+                DrawCube(cubePosition, cubeSize.X, cubeSize.Y, cubeSize.Z, GRAY);
+                DrawCubeWires(cubePosition, cubeSize.X, cubeSize.Y, cubeSize.Z, DARKGRAY);
+            }
 
-			EndDrawing();
-			//----------------------------------------------------------------------------------
-		}
+            DrawRay(ray, MAROON);
+            DrawGrid(10, 1.0f);
 
-		// De-Initialization
-		//--------------------------------------------------------------------------------------
-		CloseWindow();        // Close window and OpenGL context
-							  //--------------------------------------------------------------------------------------
+            EndMode3D();
 
-		return 0;
-	}
+            DrawText("Try selecting the box with mouse!", 240, 10, 20, DARKGRAY);
+
+            if (collision.hit)
+            {
+                DrawText("BOX SELECTED", (screenWidth - MeasureText("BOX SELECTED", 30)) / 2, (int)(screenHeight * 0.1f), 30, GREEN);
+            }
+
+            DrawFPS(10, 10);
+
+            EndDrawing();
+
+        }
+
+        // De-Initialization
+
+        CloseWindow();        // Close window and OpenGL context
+
+
+        return 0;
+    }
 
 
 }
-

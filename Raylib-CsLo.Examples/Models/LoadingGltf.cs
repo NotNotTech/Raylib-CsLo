@@ -1,10 +1,7 @@
-﻿// [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] 
-// [!!] Copyright ©️ Raylib-CsLo and Contributors. 
-// [!!] This file is licensed to you under the MPL-2.0.
-// [!!] See the LICENSE file in the project root for more info. 
-// [!!] ------------------------------------------------- 
-// [!!] The code and 100+ examples are here! https://github.com/NotNotTech/Raylib-CsLo 
-// [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!]  [!!] [!!] [!!] [!!]
+// Copyright ©️ Raylib-CsLo and Contributors.
+// This file is licensed to you under the MPL-2.0.
+// See the LICENSE file in the project root for more info.
+// The code and 100+ examples are here! https://github.com/NotNotTech/Raylib-CsLo
 
 namespace Raylib_CsLo.Examples.Models;
 
@@ -26,90 +23,99 @@ namespace Raylib_CsLo.Examples.Models;
 //*
 //********************************************************************************************/
 ///</summary>
-public unsafe static class LoadingGltf
+public static unsafe class LoadingGltf
 {
-	const int MAX_GLTF_MODELS = 8;
-	public static int main()
-	{
-		// Initialization
-		//--------------------------------------------------------------------------------------
-		const int screenWidth = 800;
-		const int screenHeight = 450;
+    const int MAX_GLTF_MODELS = 8;
+    public static int Example()
+    {
+        // Initialization
 
-		InitWindow(screenWidth, screenHeight, "raylib [models] example - model");
+        const int screenWidth = 800;
+        const int screenHeight = 450;
 
-		// Define the camera to look into our 3d world
-		Camera camera = new();
-		camera.position = new(10.0f, 10.0f, 10.0f); // Camera position
-		camera.target = new(0.0f, 0.0f, 0.0f);      // Camera looking at point
-		camera.up = new(0.0f, 1.0f, 0.0f);          // Camera up vector (rotation towards target)
-		camera.fovy = 45.0f;                                // Camera field-of-view Y
-		camera.projection_ = CAMERA_PERSPECTIVE;             // Camera mode type
+        InitWindow(screenWidth, screenHeight, "raylib [models] example - model");
 
-		// Load some models
-		Model[] model = new Model[MAX_GLTF_MODELS];
-		model[0] = LoadModel("resources/models/gltf/raylib_32x32.glb");
-		model[1] = LoadModel("resources/models/gltf/rigged_figure.glb");
-		model[2] = LoadModel("resources/models/gltf/GearboxAssy.glb");
-		model[3] = LoadModel("resources/models/gltf/BoxAnimated.glb");
-		model[4] = LoadModel("resources/models/gltf/AnimatedTriangle.gltf");
-		model[5] = LoadModel("resources/models/gltf/AnimatedMorphCube.glb");
-		model[6] = LoadModel("resources/models/gltf/vertex_colored_object.glb");
-		model[7] = LoadModel("resources/models/gltf/girl.glb");
+        // Define the camera to look into our 3d world
+        Camera camera = new();
+        camera.position = new(10.0f, 10.0f, 10.0f); // Camera position
+        camera.target = new(0.0f, 0.0f, 0.0f);      // Camera looking at point
+        camera.up = new(0.0f, 1.0f, 0.0f);          // Camera up vector (rotation towards target)
+        camera.fovy = 45.0f;                                // Camera field-of-view Y
+        camera.Projection = CAMERA_PERSPECTIVE;             // Camera mode type
 
-		int currentModel = 0;
+        // Load some models
+        Model[] model = new Model[MAX_GLTF_MODELS];
+        model[0] = LoadModel("resources/models/gltf/raylib_32x32.glb");
+        model[1] = LoadModel("resources/models/gltf/rigged_figure.glb");
+        model[2] = LoadModel("resources/models/gltf/GearboxAssy.glb");
+        model[3] = LoadModel("resources/models/gltf/BoxAnimated.glb");
+        model[4] = LoadModel("resources/models/gltf/AnimatedTriangle.gltf");
+        model[5] = LoadModel("resources/models/gltf/AnimatedMorphCube.glb");
+        model[6] = LoadModel("resources/models/gltf/vertex_colored_object.glb");
+        model[7] = LoadModel("resources/models/gltf/girl.glb");
 
-		Vector3 position = new(0.0f, 0.0f, 0.0f);    // Set model position
+        int currentModel = 0;
 
-		SetCameraMode(camera, CAMERA_FREE); // Set free camera mode
+        Vector3 position = new(0.0f, 0.0f, 0.0f);    // Set model position
 
-		SetTargetFPS(60);                   // Set our game to run at 60 frames-per-second
-											//--------------------------------------------------------------------------------------
+        SetCameraMode(camera, CAMERA_FREE); // Set free camera mode
 
-		// Main game loop
-		while (!WindowShouldClose())        // Detect window close button or ESC key
-		{
-			// Update
-			//----------------------------------------------------------------------------------
-			UpdateCamera(ref camera);          // Update our camera with inputs
+        SetTargetFPS(60);                   // Set our game to run at 60 frames-per-second
 
-			if (IsKeyReleased(KEY_RIGHT))
-			{
-				currentModel++;
-				if (currentModel == MAX_GLTF_MODELS) currentModel = 0;
-			}
 
-			if (IsKeyReleased(KEY_LEFT))
-			{
-				currentModel--;
-				if (currentModel < 0) currentModel = MAX_GLTF_MODELS - 1;
-			}
-			//----------------------------------------------------------------------------------
+        // Main game loop
+        while (!WindowShouldClose())        // Detect window close button or ESC key
+        {
+            // Update
 
-			// Draw
-			//----------------------------------------------------------------------------------
-			BeginDrawing();
+            UpdateCamera(ref camera);          // Update our camera with inputs
 
-			ClearBackground(SKYBLUE);
+            if (IsKeyReleased(KEY_RIGHT))
+            {
+                currentModel++;
+                if (currentModel == MAX_GLTF_MODELS)
+                {
+                    currentModel = 0;
+                }
+            }
 
-			BeginMode3D(camera);
+            if (IsKeyReleased(KEY_LEFT))
+            {
+                currentModel--;
+                if (currentModel < 0)
+                {
+                    currentModel = MAX_GLTF_MODELS - 1;
+                }
+            }
 
-			DrawModel(model[currentModel], position, 1.0f, WHITE);
-			DrawGrid(10, 1.0f);         // Draw a grid
 
-			EndMode3D();
+            // Draw
 
-			EndDrawing();
-			//----------------------------------------------------------------------------------
-		}
+            BeginDrawing();
 
-		// De-Initialization
-		//--------------------------------------------------------------------------------------
-		for (int i = 0; i < MAX_GLTF_MODELS; i++) UnloadModel(model[i]);  // Unload models
+            ClearBackground(SKYBLUE);
 
-		CloseWindow();              // Close window and OpenGL context
-									//--------------------------------------------------------------------------------------
+            BeginMode3D(camera);
 
-		return 0;
-	}
+            DrawModel(model[currentModel], position, 1.0f, WHITE);
+            DrawGrid(10, 1.0f);         // Draw a grid
+
+            EndMode3D();
+
+            EndDrawing();
+
+        }
+
+        // De-Initialization
+
+        for (int i = 0; i < MAX_GLTF_MODELS; i++)
+        {
+            UnloadModel(model[i]);  // Unload models
+        }
+
+        CloseWindow();              // Close window and OpenGL context
+
+
+        return 0;
+    }
 }

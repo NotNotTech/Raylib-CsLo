@@ -1,10 +1,7 @@
-﻿// [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] 
-// [!!] Copyright ©️ Raylib-CsLo and Contributors. 
-// [!!] This file is licensed to you under the MPL-2.0.
-// [!!] See the LICENSE file in the project root for more info. 
-// [!!] ------------------------------------------------- 
-// [!!] The code and 100+ examples are here! https://github.com/NotNotTech/Raylib-CsLo 
-// [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!]  [!!] [!!] [!!] [!!]
+// Copyright ©️ Raylib-CsLo and Contributors.
+// This file is licensed to you under the MPL-2.0.
+// See the LICENSE file in the project root for more info.
+// The code and 100+ examples are here! https://github.com/NotNotTech/Raylib-CsLo
 
 namespace Raylib_CsLo.Examples.Physics;
 
@@ -21,109 +18,107 @@ namespace Raylib_CsLo.Examples.Physics;
 *
 ********************************************************************************************/
 
-public unsafe static class PhysicsShatter
+public static unsafe class PhysicsShatter
 {
 
-	//#define PHYSAC_IMPLEMENTATION
-	//# include "extras/physac.h"
+    //#define PHYSAC_IMPLEMENTATION
+    //# include "extras/physac.h"
 
-	static int* NULL = (int*)0;
-	public static int main()
-	{
-		// Initialization
-		//--------------------------------------------------------------------------------------
-		const int screenWidth = 800;
-		const int screenHeight = 450;
+    static readonly int* NULL = (int*)0;
+    public static int Example()
+    {
+        // Initialization
 
-		SetConfigFlags(FLAG_MSAA_4X_HINT);
-		InitWindow(screenWidth, screenHeight, "raylib [physac] example - physics shatter");
+        const int screenWidth = 800;
+        const int screenHeight = 450;
 
-		// Physac logo drawing position
-		int logoX = screenWidth - MeasureText("Physac", 30) - 10;
-		int logoY = 15;
+        SetConfigFlags(FLAG_MSAA_4X_HINT);
+        InitWindow(screenWidth, screenHeight, "raylib [physac] example - physics shatter");
 
-		// Initialize physics and default physics bodies
-		InitPhysics();
-		SetPhysicsGravity(0, 0);
+        // Physac logo drawing position
+        int logoX = screenWidth - MeasureText("Physac", 30) - 10;
+        int logoY = 15;
 
-		// Create random polygon physics body to shatter
-		CreatePhysicsBodyPolygon(new Vector2(screenWidth / 2.0f, screenHeight / 2.0f), (float)GetRandomValue(80, 200), GetRandomValue(3, 8), 10);
+        // Initialize physics and default physics bodies
+        InitPhysics();
+        SetPhysicsGravity(0, 0);
 
-		SetTargetFPS(60);               // Set our game to run at 60 frames-per-second
-										//--------------------------------------------------------------------------------------
+        // Create random polygon physics body to shatter
+        CreatePhysicsBodyPolygon(new Vector2(screenWidth / 2.0f, screenHeight / 2.0f), GetRandomValue(80, 200), GetRandomValue(3, 8), 10);
 
-		// Main game loop
-		while (!WindowShouldClose())    // Detect window close button or ESC key
-		{
-			//----------------------------------------------------------------------------------
-			UpdatePhysics();            // Update physics system
+        SetTargetFPS(60);               // Set our game to run at 60 frames-per-second
 
-			if (IsKeyPressed(KEY_R))    // Reset physics input
-			{
-				ResetPhysics();
 
-				CreatePhysicsBodyPolygon(new Vector2(screenWidth / 2.0f, screenHeight / 2.0f), (float)GetRandomValue(80, 200), GetRandomValue(3, 8), 10);
-			}
+        // Main game loop
+        while (!WindowShouldClose())    // Detect window close button or ESC key
+        {
 
-			if (IsMouseButtonPressed(MOUSE_BUTTON_LEFT))    // Physics shatter input
-			{
-				int count = GetPhysicsBodiesCount();
-				for (int i = count - 1; i >= 0; i--)
-				{
-					PhysicsBodyData* currentBody = GetPhysicsBody(i);
+            UpdatePhysics();            // Update physics system
 
-					if (currentBody != NULL) PhysicsShatter(currentBody, GetMousePosition(), 10 / currentBody->inverseMass);
-				}
-			}
-			//----------------------------------------------------------------------------------
+            if (IsKeyPressed(KEY_R))    // Reset physics input
+            {
+                ResetPhysics();
 
-			// Draw
-			//----------------------------------------------------------------------------------
-			BeginDrawing();
+                CreatePhysicsBodyPolygon(new Vector2(screenWidth / 2.0f, screenHeight / 2.0f), GetRandomValue(80, 200), GetRandomValue(3, 8), 10);
+            }
 
-			ClearBackground(BLACK);
+            if (IsMouseButtonPressed(MOUSE_BUTTON_LEFT))    // Physics shatter input
+            {
+                int count = GetPhysicsBodiesCount();
+                for (int i = count - 1; i >= 0; i--)
+                {
+                    PhysicsBodyData* currentBody = GetPhysicsBody(i);
 
-			// Draw created physics bodies
-			int bodiesCount = GetPhysicsBodiesCount();
-			for (int i = 0; i < bodiesCount; i++)
-			{
-				PhysicsBodyData* currentBody = GetPhysicsBody(i);
+                    if (currentBody != NULL)
+                    {
+                        PhysicsShatter(currentBody, GetMousePosition(), 10 / currentBody->inverseMass);
+                    }
+                }
+            }
 
-				int vertexCount = GetPhysicsShapeVerticesCount(i);
-				for (int j = 0; j < vertexCount; j++)
-				{
-					// Get physics bodies shape vertices to draw lines
-					// Note: GetPhysicsShapeVertex() already calculates rotation transformations
-					Vector2 vertexA = GetPhysicsShapeVertex(currentBody, j);
 
-					int jj = (((j + 1) < vertexCount) ? (j + 1) : 0);   // Get next vertex or first to close the shape
-					Vector2 vertexB = GetPhysicsShapeVertex(currentBody, jj);
+            // Draw
 
-					DrawLineV(vertexA, vertexB, GREEN);     // Draw a line between two vertex positions
-				}
-			}
+            BeginDrawing();
 
-			DrawText("Left mouse button in polygon area to shatter body\nPress 'R' to reset example", 10, 10, 10, WHITE);
+            ClearBackground(BLACK);
 
-			DrawText("Physac", logoX, logoY, 30, WHITE);
-			DrawText("Powered by", logoX + 50, logoY - 7, 10, WHITE);
+            // Draw created physics bodies
+            int bodiesCount = GetPhysicsBodiesCount();
+            for (int i = 0; i < bodiesCount; i++)
+            {
+                PhysicsBodyData* currentBody = GetPhysicsBody(i);
 
-			EndDrawing();
-			//----------------------------------------------------------------------------------
-		}
+                int vertexCount = GetPhysicsShapeVerticesCount(i);
+                for (int j = 0; j < vertexCount; j++)
+                {
+                    // Get physics bodies shape vertices to draw lines
+                    // Note: GetPhysicsShapeVertex() already calculates rotation transformations
+                    Vector2 vertexA = GetPhysicsShapeVertex(currentBody, j);
 
-		// De-Initialization
-		//--------------------------------------------------------------------------------------
-		ClosePhysics();       // Unitialize physics
+                    int jj = ((j + 1) < vertexCount) ? (j + 1) : 0;   // Get next vertex or first to close the shape
+                    Vector2 vertexB = GetPhysicsShapeVertex(currentBody, jj);
 
-		CloseWindow();        // Close window and OpenGL context
-							  //--------------------------------------------------------------------------------------
+                    DrawLineV(vertexA, vertexB, GREEN);     // Draw a line between two vertex positions
+                }
+            }
 
-		return 0;
-	}
+            DrawText("Left mouse button in polygon area to shatter body\nPress 'R' to reset example", 10, 10, 10, WHITE);
+
+            DrawText("Physac", logoX, logoY, 30, WHITE);
+            DrawText("Powered by", logoX + 50, logoY - 7, 10, WHITE);
+
+            EndDrawing();
+
+        }
+
+        // De-Initialization
+
+        ClosePhysics();       // Unitialize physics
+
+        CloseWindow();        // Close window and OpenGL context
+
+
+        return 0;
+    }
 }
-
-
-
-
-

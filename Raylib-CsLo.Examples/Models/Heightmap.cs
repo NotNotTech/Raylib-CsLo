@@ -1,10 +1,7 @@
-﻿// [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] 
-// [!!] Copyright ©️ Raylib-CsLo and Contributors. 
-// [!!] This file is licensed to you under the MPL-2.0.
-// [!!] See the LICENSE file in the project root for more info. 
-// [!!] ------------------------------------------------- 
-// [!!] The code and 100+ examples are here! https://github.com/NotNotTech/Raylib-CsLo 
-// [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!]  [!!] [!!] [!!] [!!]
+// Copyright ©️ Raylib-CsLo and Contributors.
+// This file is licensed to you under the MPL-2.0.
+// See the LICENSE file in the project root for more info.
+// The code and 100+ examples are here! https://github.com/NotNotTech/Raylib-CsLo
 
 namespace Raylib_CsLo.Examples.Models;
 
@@ -19,76 +16,76 @@ namespace Raylib_CsLo.Examples.Models;
 //*
 //********************************************************************************************/
 ///</summary>
-public unsafe static class Heightmap
+public static unsafe class Heightmap
 {
 
-	public static int main()
-	{
-		// Initialization
-		//--------------------------------------------------------------------------------------
-		const int screenWidth = 800;
-		const int screenHeight = 450;
+    public static int Example()
+    {
+        // Initialization
 
-		InitWindow(screenWidth, screenHeight, "raylib [models] example - heightmap loading and drawing");
+        const int screenWidth = 800;
+        const int screenHeight = 450;
 
-		// Define our custom camera to look into our 3d world
-		Camera camera = new(new(18.0f, 18.0f, 18.0f), new(0.0f, 0.0f, 0.0f), new(0.0f, 1.0f, 0.0f), 45.0f, 0);
+        InitWindow(screenWidth, screenHeight, "raylib [models] example - heightmap loading and drawing");
 
-		Image image = LoadImage("resources/heightmap.png");             // Load heightmap image (RAM)
-		Texture2D texture = LoadTextureFromImage(image);                // Convert image to texture (VRAM)
+        // Define our custom camera to look into our 3d world
+        Camera camera = new(new(18.0f, 18.0f, 18.0f), new(0.0f, 0.0f, 0.0f), new(0.0f, 1.0f, 0.0f), 45.0f, 0);
 
-		Mesh mesh = GenMeshHeightmap(image, new(16, 8, 16));    // Generate heightmap mesh (RAM and VRAM)
-		Model model = LoadModelFromMesh(mesh);                          // Load model from generated mesh
+        Image image = LoadImage("resources/heightmap.png");             // Load heightmap image (RAM)
+        Texture2D texture = LoadTextureFromImage(image);                // Convert image to texture (VRAM)
 
-		model.materials[0].maps[(int)MATERIAL_MAP_DIFFUSE].texture = texture;         // Set map diffuse texture
-		Vector3 mapPosition = new(-8.0f, 0.0f, -8.0f);                   // Define model position
+        Mesh mesh = GenMeshHeightmap(image, new(16, 8, 16));    // Generate heightmap mesh (RAM and VRAM)
+        Model model = LoadModelFromMesh(mesh);                          // Load model from generated mesh
 
-		UnloadImage(image);                     // Unload heightmap image from RAM, already uploaded to VRAM
+        model.materials[0].maps[(int)MATERIAL_MAP_DIFFUSE].texture = texture;         // Set map diffuse texture
+        Vector3 mapPosition = new(-8.0f, 0.0f, -8.0f);                   // Define model position
 
-		SetCameraMode(camera, CAMERA_ORBITAL);  // Set an orbital camera mode
+        UnloadImage(image);                     // Unload heightmap image from RAM, already uploaded to VRAM
 
-		SetTargetFPS(60);                       // Set our game to run at 60 frames-per-second
-												//--------------------------------------------------------------------------------------
+        SetCameraMode(camera, CAMERA_ORBITAL);  // Set an orbital camera mode
 
-		// Main game loop
-		while (!WindowShouldClose())            // Detect window close button or ESC key
-		{
-			// Update
-			//----------------------------------------------------------------------------------
-			UpdateCamera(ref camera);              // Update camera
-												   //----------------------------------------------------------------------------------
+        SetTargetFPS(60);                       // Set our game to run at 60 frames-per-second
 
-			// Draw
-			//----------------------------------------------------------------------------------
-			BeginDrawing();
 
-			ClearBackground(RAYWHITE);
+        // Main game loop
+        while (!WindowShouldClose())            // Detect window close button or ESC key
+        {
+            // Update
 
-			BeginMode3D(camera);
+            UpdateCamera(ref camera);              // Update camera
 
-			DrawModel(model, mapPosition, 1.0f, RED);
 
-			DrawGrid(20, 1.0f);
+            // Draw
 
-			EndMode3D();
+            BeginDrawing();
 
-			DrawTexture(texture, screenWidth - texture.width - 20, 20, WHITE);
-			DrawRectangleLines(screenWidth - texture.width - 20, 20, texture.width, texture.height, GREEN);
+            ClearBackground(RAYWHITE);
 
-			DrawFPS(10, 10);
+            BeginMode3D(camera);
 
-			EndDrawing();
-			//----------------------------------------------------------------------------------
-		}
+            DrawModel(model, mapPosition, 1.0f, RED);
 
-		// De-Initialization
-		//--------------------------------------------------------------------------------------
-		UnloadTexture(texture);     // Unload texture
-		UnloadModel(model);         // Unload model
+            DrawGrid(20, 1.0f);
 
-		CloseWindow();              // Close window and OpenGL context
-									//--------------------------------------------------------------------------------------
+            EndMode3D();
 
-		return 0;
-	}
+            DrawTexture(texture, screenWidth - texture.width - 20, 20, WHITE);
+            DrawRectangleLines(screenWidth - texture.width - 20, 20, texture.width, texture.height, GREEN);
+
+            DrawFPS(10, 10);
+
+            EndDrawing();
+
+        }
+
+        // De-Initialization
+
+        UnloadTexture(texture);     // Unload texture
+        UnloadModel(model);         // Unload model
+
+        CloseWindow();              // Close window and OpenGL context
+
+
+        return 0;
+    }
 }

@@ -1,10 +1,7 @@
-// [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] 
-// [!!] Copyright ©️ Raylib-CsLo and Contributors. 
-// [!!] This file is licensed to you under the MPL-2.0.
-// [!!] See the LICENSE file in the project root for more info. 
-// [!!] ------------------------------------------------- 
-// [!!] The code and 100+ examples are here! https://github.com/NotNotTech/Raylib-CsLo 
-// [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!]  [!!] [!!] [!!] [!!]
+// Copyright ©️ Raylib-CsLo and Contributors.
+// This file is licensed to you under the MPL-2.0.
+// See the LICENSE file in the project root for more info.
+// The code and 100+ examples are here! https://github.com/NotNotTech/Raylib-CsLo
 
 /*******************************************************************************************
 *
@@ -23,144 +20,145 @@ namespace Raylib_CsLo.Examples.Core;
 using static BasicScreenManager.GameScreen;
 public static class BasicScreenManager
 {
-	
-	public enum GameScreen { LOGO = 0, TITLE, GAMEPLAY, ENDING }
 
-	public static int main()
-	{
-		// Initialization
-		//--------------------------------------------------------------------------------------
-		const int screenWidth = 800;
-		const int screenHeight = 450;
+    public enum GameScreen { LOGO = 0, TITLE, GAMEPLAY, ENDING }
 
-		InitWindow(screenWidth, screenHeight, "raylib [core] example - basic screen manager");
+    public static int Example()
+    {
+        // Initialization
+
+        const int screenWidth = 800;
+        const int screenHeight = 450;
+
+        InitWindow(screenWidth, screenHeight, "raylib [core] example - basic screen manager");
 
 
-		GameScreen currentScreen = LOGO;
+        GameScreen currentScreen = LOGO;
 
-		// TODO: Initialize all required variables and load all required data here!
+        // TODO: Initialize all required variables and load all required data here!
 
-		int framesCounter = 0; // Useful to count frames
+        int framesCounter = 0; // Useful to count frames
 
-		SetTargetFPS(60); // Set desired framerate (frames-per-second)
-						  //--------------------------------------------------------------------------------------
+        SetTargetFPS(60); // Set desired framerate (frames-per-second)
 
-		// Main game loop
-		while (!WindowShouldClose()) // Detect window close button or ESC key
-		{
-			// Update
-			//----------------------------------------------------------------------------------
-			switch (currentScreen)
-			{
-				case LOGO:
-					{
-						// TODO: Update LOGO screen variables here!
 
-						framesCounter++; // Count frames
+        // Main game loop
+        while (!WindowShouldClose()) // Detect window close button or ESC key
+        {
+            // Update
 
-						// Wait for 2 seconds (120 frames) before jumping to TITLE screen
-						if (framesCounter > 120)
-						{
-							currentScreen = TITLE;
-						}
-					}
-					break;
-				case TITLE:
-					{
-						// TODO: Update TITLE screen variables here!
+            switch (currentScreen)
+            {
+                case LOGO:
+                {
+                    // TODO: Update LOGO screen variables here!
 
-						// Press enter to change to GAMEPLAY screen
-						if (IsKeyPressed(KEY_ENTER) || IsGestureDetected(GESTURE_TAP))
-						{
-							currentScreen = GAMEPLAY;
-						}
-					}
-					break;
-				case GAMEPLAY:
-					{
-						// TODO: Update GAMEPLAY screen variables here!
+                    framesCounter++; // Count frames
 
-						// Press enter to change to ENDING screen
-						if (IsKeyPressed(KEY_ENTER) || IsGestureDetected(GESTURE_TAP))
-						{
-							currentScreen = ENDING;
-						}
-					}
-					break;
-				case ENDING:
-					{
-						// TODO: Update ENDING screen variables here!
+                    // Wait for 2 seconds (120 frames) before jumping to TITLE screen
+                    if (framesCounter > 120)
+                    {
+                        currentScreen = TITLE;
+                    }
+                }
+                break;
+                case TITLE:
+                {
+                    // TODO: Update TITLE screen variables here!
 
-						// Press enter to return to TITLE screen
-						if (IsKeyPressed(KEY_ENTER) || IsGestureDetected(GESTURE_TAP))
-						{
-							currentScreen = TITLE;
-						}
-					}
-					break;
-				default: break;
-			}
-			//----------------------------------------------------------------------------------
+                    // Press enter to change to GAMEPLAY screen
+                    if (IsKeyPressed(KEY_ENTER) || IsGestureDetected(GESTURE_TAP))
+                    {
+                        currentScreen = GAMEPLAY;
+                    }
+                }
+                break;
+                case GAMEPLAY:
+                {
+                    // TODO: Update GAMEPLAY screen variables here!
 
-			// Draw
-			//----------------------------------------------------------------------------------
-			BeginDrawing();
+                    // Press enter to change to ENDING screen
+                    if (IsKeyPressed(KEY_ENTER) || IsGestureDetected(GESTURE_TAP))
+                    {
+                        currentScreen = ENDING;
+                    }
+                }
+                break;
+                case ENDING:
+                {
+                    // TODO: Update ENDING screen variables here!
 
-			ClearBackground(RAYWHITE);
+                    // Press enter to return to TITLE screen
+                    if (IsKeyPressed(KEY_ENTER) || IsGestureDetected(GESTURE_TAP))
+                    {
+                        currentScreen = TITLE;
+                    }
+                }
+                break;
+                default:
+                    break;
+            }
 
-			switch (currentScreen)
-			{
-				case LOGO:
-					{
-						// TODO: Draw LOGO screen here!
-						DrawText("LOGO SCREEN", 20, 20, 40, LIGHTGRAY);
-						DrawText("WAIT for 2 SECONDS...", 290, 220, 20, GRAY);
 
-					}
-					break;
-				case TITLE:
-					{
-						// TODO: Draw TITLE screen here!
-						DrawRectangle(0, 0, screenWidth, screenHeight, GREEN);
-						DrawText("TITLE SCREEN", 20, 20, 40, DARKGREEN);
-						DrawText("PRESS ENTER or TAP to JUMP to GAMEPLAY SCREEN", 120, 220, 20, DARKGREEN);
+            // Draw
 
-					}
-					break;
-				case GAMEPLAY:
-					{
-						// TODO: Draw GAMEPLAY screen here!
-						DrawRectangle(0, 0, screenWidth, screenHeight, PURPLE);
-						DrawText("GAMEPLAY SCREEN", 20, 20, 40, MAROON);
-						DrawText("PRESS ENTER or TAP to JUMP to ENDING SCREEN", 130, 220, 20, MAROON);
+            BeginDrawing();
 
-					}
-					break;
-				case ENDING:
-					{
-						// TODO: Draw ENDING screen here!
-						DrawRectangle(0, 0, screenWidth, screenHeight, BLUE);
-						DrawText("ENDING SCREEN", 20, 20, 40, DARKBLUE);
-						DrawText("PRESS ENTER or TAP to RETURN to TITLE SCREEN", 120, 220, 20, DARKBLUE);
+            ClearBackground(RAYWHITE);
 
-					}
-					break;
-				default: break;
-			}
+            switch (currentScreen)
+            {
+                case LOGO:
+                {
+                    // TODO: Draw LOGO screen here!
+                    DrawText("LOGO SCREEN", 20, 20, 40, LIGHTGRAY);
+                    DrawText("WAIT for 2 SECONDS...", 290, 220, 20, GRAY);
 
-			EndDrawing();
-			//----------------------------------------------------------------------------------
-		}
+                }
+                break;
+                case TITLE:
+                {
+                    // TODO: Draw TITLE screen here!
+                    DrawRectangle(0, 0, screenWidth, screenHeight, GREEN);
+                    DrawText("TITLE SCREEN", 20, 20, 40, DARKGREEN);
+                    DrawText("PRESS ENTER or TAP to JUMP to GAMEPLAY SCREEN", 120, 220, 20, DARKGREEN);
 
-		// De-Initialization
-		//--------------------------------------------------------------------------------------
+                }
+                break;
+                case GAMEPLAY:
+                {
+                    // TODO: Draw GAMEPLAY screen here!
+                    DrawRectangle(0, 0, screenWidth, screenHeight, PURPLE);
+                    DrawText("GAMEPLAY SCREEN", 20, 20, 40, MAROON);
+                    DrawText("PRESS ENTER or TAP to JUMP to ENDING SCREEN", 130, 220, 20, MAROON);
 
-		// TODO: Unload all loaded data (textures, fonts, audio) here!
+                }
+                break;
+                case ENDING:
+                {
+                    // TODO: Draw ENDING screen here!
+                    DrawRectangle(0, 0, screenWidth, screenHeight, BLUE);
+                    DrawText("ENDING SCREEN", 20, 20, 40, DARKBLUE);
+                    DrawText("PRESS ENTER or TAP to RETURN to TITLE SCREEN", 120, 220, 20, DARKBLUE);
 
-		CloseWindow(); // Close window and OpenGL context
-					   //--------------------------------------------------------------------------------------
+                }
+                break;
+                default:
+                    break;
+            }
 
-		return 0;
-	}
+            EndDrawing();
+
+        }
+
+        // De-Initialization
+
+
+        // TODO: Unload all loaded data (textures, fonts, audio) here!
+
+        CloseWindow(); // Close window and OpenGL context
+
+
+        return 0;
+    }
 }
-

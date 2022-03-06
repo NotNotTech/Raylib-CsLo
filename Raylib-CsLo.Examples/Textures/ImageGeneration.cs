@@ -1,10 +1,7 @@
-﻿// [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] 
-// [!!] Copyright ©️ Raylib-CsLo and Contributors. 
-// [!!] This file is licensed to you under the MPL-2.0.
-// [!!] See the LICENSE file in the project root for more info. 
-// [!!] ------------------------------------------------- 
-// [!!] The code and 100+ examples are here! https://github.com/NotNotTech/Raylib-CsLo 
-// [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!]  [!!] [!!] [!!] [!!]
+// Copyright ©️ Raylib-CsLo and Contributors.
+// This file is licensed to you under the MPL-2.0.
+// See the LICENSE file in the project root for more info.
+// The code and 100+ examples are here! https://github.com/NotNotTech/Raylib-CsLo
 
 namespace Raylib_CsLo.Examples.Textures;
 
@@ -19,96 +16,112 @@ namespace Raylib_CsLo.Examples.Textures;
 *
 ********************************************************************************************/
 
-public unsafe static class ImageGeneration
+public static unsafe class ImageGeneration
 {
 
-	const int NUM_TEXTURES = 6;      // Currently we have 7 generation algorithms
+    const int NUM_TEXTURES = 6;      // Currently we have 7 generation algorithms
 
-	public static int main()
-	{
-		// Initialization
-		//--------------------------------------------------------------------------------------
-		const int screenWidth = 800;
-		const int screenHeight = 450;
+    public static int Example()
+    {
+        // Initialization
 
-		InitWindow(screenWidth, screenHeight, "raylib [textures] example - procedural images generation");
+        const int screenWidth = 800;
+        const int screenHeight = 450;
 
-		Image verticalGradient = GenImageGradientV(screenWidth, screenHeight, RED, BLUE);
-		Image horizontalGradient = GenImageGradientH(screenWidth, screenHeight, RED, BLUE);
-		Image radialGradient = GenImageGradientRadial(screenWidth, screenHeight, 0.0f, WHITE, BLACK);
-		Image checkedImage = GenImageChecked(screenWidth, screenHeight, 32, 32, RED, BLUE);
-		Image whiteNoise = GenImageWhiteNoise(screenWidth, screenHeight, 0.5f);
-		Image cellular = GenImageCellular(screenWidth, screenHeight, 32);
+        InitWindow(screenWidth, screenHeight, "raylib [textures] example - procedural images generation");
 
-		Texture2D[] textures = new Texture2D[NUM_TEXTURES];
+        Image verticalGradient = GenImageGradientV(screenWidth, screenHeight, RED, BLUE);
+        Image horizontalGradient = GenImageGradientH(screenWidth, screenHeight, RED, BLUE);
+        Image radialGradient = GenImageGradientRadial(screenWidth, screenHeight, 0.0f, WHITE, BLACK);
+        Image checkedImage = GenImageChecked(screenWidth, screenHeight, 32, 32, RED, BLUE);
+        Image whiteNoise = GenImageWhiteNoise(screenWidth, screenHeight, 0.5f);
+        Image cellular = GenImageCellular(screenWidth, screenHeight, 32);
 
-		textures[0] = LoadTextureFromImage(verticalGradient);
-		textures[1] = LoadTextureFromImage(horizontalGradient);
-		textures[2] = LoadTextureFromImage(radialGradient);
-		textures[3] = LoadTextureFromImage(checkedImage);
-		textures[4] = LoadTextureFromImage(whiteNoise);
-		textures[5] = LoadTextureFromImage(cellular);
+        Texture2D[] textures = new Texture2D[NUM_TEXTURES];
 
-		// Unload image data (CPU RAM)
-		UnloadImage(verticalGradient);
-		UnloadImage(horizontalGradient);
-		UnloadImage(radialGradient);
-		UnloadImage(checkedImage);
-		UnloadImage(whiteNoise);
-		UnloadImage(cellular);
+        textures[0] = LoadTextureFromImage(verticalGradient);
+        textures[1] = LoadTextureFromImage(horizontalGradient);
+        textures[2] = LoadTextureFromImage(radialGradient);
+        textures[3] = LoadTextureFromImage(checkedImage);
+        textures[4] = LoadTextureFromImage(whiteNoise);
+        textures[5] = LoadTextureFromImage(cellular);
 
-		int currentTexture = 0;
+        // Unload image data (CPU RAM)
+        UnloadImage(verticalGradient);
+        UnloadImage(horizontalGradient);
+        UnloadImage(radialGradient);
+        UnloadImage(checkedImage);
+        UnloadImage(whiteNoise);
+        UnloadImage(cellular);
 
-		SetTargetFPS(60);
-		//---------------------------------------------------------------------------------------
+        int currentTexture = 0;
 
-		// Main game loop
-		while (!WindowShouldClose())
-		{
-			// Update
-			//----------------------------------------------------------------------------------
-			if (IsMouseButtonPressed(MOUSE_BUTTON_LEFT) || IsKeyPressed(KEY_RIGHT))
-			{
-				currentTexture = (currentTexture + 1) % NUM_TEXTURES; // Cycle between the textures
-			}
-			//----------------------------------------------------------------------------------
+        SetTargetFPS(60);
 
-			// Draw
-			//----------------------------------------------------------------------------------
-			BeginDrawing();
 
-			ClearBackground(RAYWHITE);
+        // Main game loop
+        while (!WindowShouldClose())
+        {
+            // Update
 
-			DrawTexture(textures[currentTexture], 0, 0, WHITE);
+            if (IsMouseButtonPressed(MOUSE_BUTTON_LEFT) || IsKeyPressed(KEY_RIGHT))
+            {
+                currentTexture = (currentTexture + 1) % NUM_TEXTURES; // Cycle between the textures
+            }
 
-			DrawRectangle(30, 400, 325, 30, Fade(SKYBLUE, 0.5f));
-			DrawRectangleLines(30, 400, 325, 30, Fade(WHITE, 0.5f));
-			DrawText("MOUSE LEFT BUTTON to CYCLE PROCEDURAL TEXTURES", 40, 410, 10, WHITE);
 
-			switch (currentTexture)
-			{
-				case 0: DrawText("VERTICAL GRADIENT", 560, 10, 20, RAYWHITE); break;
-				case 1: DrawText("HORIZONTAL GRADIENT", 540, 10, 20, RAYWHITE); break;
-				case 2: DrawText("RADIAL GRADIENT", 580, 10, 20, LIGHTGRAY); break;
-				case 3: DrawText("CHECKED", 680, 10, 20, RAYWHITE); break;
-				case 4: DrawText("WHITE NOISE", 640, 10, 20, RED); break;
-				case 5: DrawText("CELLULAR", 670, 10, 20, RAYWHITE); break;
-				default: break;
-			}
+            // Draw
 
-			EndDrawing();
-			//----------------------------------------------------------------------------------
-		}
+            BeginDrawing();
 
-		// De-Initialization
-		//--------------------------------------------------------------------------------------
+            ClearBackground(RAYWHITE);
 
-		// Unload textures data (GPU VRAM)
-		for (int i = 0; i < NUM_TEXTURES; i++) UnloadTexture(textures[i]);
+            DrawTexture(textures[currentTexture], 0, 0, WHITE);
 
-		CloseWindow();                // Close window and OpenGL context
-									  //--------------------------------------------------------------------------------------
+            DrawRectangle(30, 400, 325, 30, Fade(SKYBLUE, 0.5f));
+            DrawRectangleLines(30, 400, 325, 30, Fade(WHITE, 0.5f));
+            DrawText("MOUSE LEFT BUTTON to CYCLE PROCEDURAL TEXTURES", 40, 410, 10, WHITE);
 
-		return 0;
-	}
+            switch (currentTexture)
+            {
+                case 0:
+                    DrawText("VERTICAL GRADIENT", 560, 10, 20, RAYWHITE);
+                    break;
+                case 1:
+                    DrawText("HORIZONTAL GRADIENT", 540, 10, 20, RAYWHITE);
+                    break;
+                case 2:
+                    DrawText("RADIAL GRADIENT", 580, 10, 20, LIGHTGRAY);
+                    break;
+                case 3:
+                    DrawText("CHECKED", 680, 10, 20, RAYWHITE);
+                    break;
+                case 4:
+                    DrawText("WHITE NOISE", 640, 10, 20, RED);
+                    break;
+                case 5:
+                    DrawText("CELLULAR", 670, 10, 20, RAYWHITE);
+                    break;
+                default:
+                    break;
+            }
+
+            EndDrawing();
+
+        }
+
+        // De-Initialization
+
+
+        // Unload textures data (GPU VRAM)
+        for (int i = 0; i < NUM_TEXTURES; i++)
+        {
+            UnloadTexture(textures[i]);
+        }
+
+        CloseWindow();                // Close window and OpenGL context
+
+
+        return 0;
+    }
 }

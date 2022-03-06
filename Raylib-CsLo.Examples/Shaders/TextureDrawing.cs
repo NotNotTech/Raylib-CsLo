@@ -1,10 +1,7 @@
-﻿// [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] 
-// [!!] Copyright ©️ Raylib-CsLo and Contributors. 
-// [!!] This file is licensed to you under the MPL-2.0.
-// [!!] See the LICENSE file in the project root for more info. 
-// [!!] ------------------------------------------------- 
-// [!!] The code and 100+ examples are here! https://github.com/NotNotTech/Raylib-CsLo 
-// [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!]  [!!] [!!] [!!] [!!]
+// Copyright ©️ Raylib-CsLo and Contributors.
+// This file is licensed to you under the MPL-2.0.
+// See the LICENSE file in the project root for more info.
+// The code and 100+ examples are here! https://github.com/NotNotTech/Raylib-CsLo
 
 
 namespace Raylib_CsLo.Examples.Shaders;
@@ -24,82 +21,70 @@ namespace Raylib_CsLo.Examples.Shaders;
 *
 ********************************************************************************************/
 
-public unsafe static class TextureDrawing
+public static unsafe class TextureDrawing
 {
 
 #if PLATFORM_DESKTOP
-	const int GLSL_VERSION = 330;
+    const int GLSL_VERSION = 330;
 #else   // PLATFORM_RPI, PLATFORM_ANDROID, PLATFORM_WEB
 	const int GLSL_VERSION = 100;
 #endif
 
-	public static int main()
-	{
-		// Initialization
-		//--------------------------------------------------------------------------------------
-		const int screenWidth = 800;
-		const int screenHeight = 450;
+    public static int Example()
+    {
+        // Initialization
 
-		InitWindow(screenWidth, screenHeight, "raylib [shaders] example - texture drawing");
+        const int screenWidth = 800;
+        const int screenHeight = 450;
 
-		Image imBlank = GenImageColor(1024, 1024, BLANK);
-		Texture2D texture = LoadTextureFromImage(imBlank);  // Load blank texture to fill on shader
-		UnloadImage(imBlank);
+        InitWindow(screenWidth, screenHeight, "raylib [shaders] example - texture drawing");
 
-		// NOTE: Using GLSL 330 shader version, on OpenGL ES 2.0 use GLSL 100 shader version
-		Shader shader = LoadShader(null, TextFormat("resources/shaders/glsl%i/cubes_panning.fs", GLSL_VERSION));
+        Image imBlank = GenImageColor(1024, 1024, BLANK);
+        Texture2D texture = LoadTextureFromImage(imBlank);  // Load blank texture to fill on shader
+        UnloadImage(imBlank);
 
-		float time = 0.0f;
-		int timeLoc = GetShaderLocation(shader, "uTime");
-		SetShaderValue(shader, timeLoc, &time, SHADER_UNIFORM_FLOAT);
+        // NOTE: Using GLSL 330 shader version, on OpenGL ES 2.0 use GLSL 100 shader version
+        Shader shader = LoadShader(null, TextFormat("resources/shaders/glsl%i/cubes_panning.fs", GLSL_VERSION));
 
-		SetTargetFPS(60);               // Set our game to run at 60 frames-per-second
-										// -------------------------------------------------------------------------------------------------------------
+        float time = 0.0f;
+        int timeLoc = GetShaderLocation(shader, "uTime");
+        SetShaderValue(shader, timeLoc, &time, SHADER_UNIFORM_FLOAT);
 
-		// Main game loop
-		while (!WindowShouldClose())    // Detect window close button or ESC key
-		{
-			// Update
-			//----------------------------------------------------------------------------------
-			time = (float)GetTime();
-			SetShaderValue(shader, timeLoc, &time, SHADER_UNIFORM_FLOAT);
-			//----------------------------------------------------------------------------------
+        SetTargetFPS(60);               // Set our game to run at 60 frames-per-second
 
-			// Draw
-			//----------------------------------------------------------------------------------
-			BeginDrawing();
 
-			ClearBackground(RAYWHITE);
+        // Main game loop
+        while (!WindowShouldClose())    // Detect window close button or ESC key
+        {
+            // Update
 
-			BeginShaderMode(shader);    // Enable our custom shader for next shapes/textures drawings
-			DrawTexture(texture, 0, 0, WHITE);  // Drawing BLANK texture, all magic happens on shader
-			EndShaderMode();            // Disable our custom shader, return to default shader
+            time = (float)GetTime();
+            SetShaderValue(shader, timeLoc, &time, SHADER_UNIFORM_FLOAT);
 
-			DrawText("BACKGROUND is PAINTED and ANIMATED on SHADER!", 10, 10, 20, MAROON);
 
-			EndDrawing();
-			//----------------------------------------------------------------------------------
-		}
+            // Draw
 
-		// De-Initialization
-		//--------------------------------------------------------------------------------------
-		UnloadShader(shader);
+            BeginDrawing();
 
-		CloseWindow();        // Close window and OpenGL context
-							  //--------------------------------------------------------------------------------------
+            ClearBackground(RAYWHITE);
 
-		return 0;
-	}
+            BeginShaderMode(shader);    // Enable our custom shader for next shapes/textures drawings
+            DrawTexture(texture, 0, 0, WHITE);  // Drawing BLANK texture, all magic happens on shader
+            EndShaderMode();            // Disable our custom shader, return to default shader
+
+            DrawText("BACKGROUND is PAINTED and ANIMATED on SHADER!", 10, 10, 20, MAROON);
+
+            EndDrawing();
+
+        }
+
+        // De-Initialization
+
+        UnloadShader(shader);
+
+        CloseWindow();        // Close window and OpenGL context
+
+
+        return 0;
+    }
 }
-
-
-
-
-
-
-
-
-
-
-
-

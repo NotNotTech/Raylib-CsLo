@@ -1,19 +1,9 @@
-// [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] 
-// [!!] Copyright ©️ Raylib-CsLo and Contributors. 
-// [!!] This file is licensed to you under the MPL-2.0.
-// [!!] See the LICENSE file in the project root for more info. 
-// [!!] ------------------------------------------------- 
-// [!!] The code and 100+ examples are here! https://github.com/NotNotTech/Raylib-CsLo 
-// [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!]  [!!] [!!] [!!] [!!]
-
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+// Copyright ©️ Raylib-CsLo and Contributors.
+// This file is licensed to you under the MPL-2.0.
+// See the LICENSE file in the project root for more info.
+// The code and 100+ examples are here! https://github.com/NotNotTech/Raylib-CsLo
 
 namespace Raylib_CsLo.Examples.Shapes;
-
 /*******************************************************************************************
 *
 *   raylib [shapes] example - rectangle scaling by mouse
@@ -27,86 +17,101 @@ namespace Raylib_CsLo.Examples.Shapes;
 *
 ********************************************************************************************/
 
-public unsafe static class RectangleScalingMouse
+public static unsafe class RectangleScalingMouse
 {
 
-	const int MOUSE_SCALE_MARK_SIZE = 12;
+    const int MOUSE_SCALE_MARK_SIZE = 12;
 
-	public static int main()
-	{
-		// Initialization
-		//--------------------------------------------------------------------------------------
-		const int screenWidth = 800;
-		const int screenHeight = 450;
+    public static int Example()
+    {
+        // Initialization
 
-		InitWindow(screenWidth, screenHeight, "raylib [shapes] example - rectangle scaling mouse");
+        const int screenWidth = 800;
+        const int screenHeight = 450;
 
-		Rectangle rec = new Rectangle(100, 100, 200, 80);
+        InitWindow(screenWidth, screenHeight, "raylib [shapes] example - rectangle scaling mouse");
 
-		Vector2 mousePosition = new Vector2(0);
+        Rectangle rec = new(100, 100, 200, 80);
 
-		bool mouseScaleReady = false;
-		bool mouseScaleMode = false;
+        bool mouseScaleMode = false;
 
-		SetTargetFPS(60);               // Set our game to run at 60 frames-per-second
-										//--------------------------------------------------------------------------------------
+        SetTargetFPS(60);               // Set our game to run at 60 frames-per-second
 
-		// Main game loop
-		while (!WindowShouldClose())    // Detect window close button or ESC key
-		{
-			// Update
-			//----------------------------------------------------------------------------------
-			mousePosition = GetMousePosition();
 
-			if (CheckCollisionPointRec(mousePosition, rec) &&
-				CheckCollisionPointRec(mousePosition, new Rectangle(rec.X + rec.width - MOUSE_SCALE_MARK_SIZE, rec.Y + rec.height - MOUSE_SCALE_MARK_SIZE, MOUSE_SCALE_MARK_SIZE, MOUSE_SCALE_MARK_SIZE)))
-			{
-				mouseScaleReady = true;
-				if (IsMouseButtonPressed(MOUSE_BUTTON_LEFT)) mouseScaleMode = true;
-			}
-			else mouseScaleReady = false;
+        // Main game loop
+        while (!WindowShouldClose())    // Detect window close button or ESC key
+        {
+            // Update
 
-			if (mouseScaleMode)
-			{
-				mouseScaleReady = true;
+            Vector2 mousePosition = GetMousePosition();
 
-				rec.width = (mousePosition.X - rec.X);
-				rec.height = (mousePosition.Y - rec.Y);
 
-				if (rec.width < MOUSE_SCALE_MARK_SIZE) rec.width = MOUSE_SCALE_MARK_SIZE;
-				if (rec.height < MOUSE_SCALE_MARK_SIZE) rec.height = MOUSE_SCALE_MARK_SIZE;
+            bool mouseScaleReady;
+            if (CheckCollisionPointRec(mousePosition, rec) &&
+                CheckCollisionPointRec(mousePosition, new Rectangle(rec.X + rec.width - MOUSE_SCALE_MARK_SIZE, rec.Y + rec.height - MOUSE_SCALE_MARK_SIZE, MOUSE_SCALE_MARK_SIZE, MOUSE_SCALE_MARK_SIZE)))
+            {
+                mouseScaleReady = true;
+                if (IsMouseButtonPressed(MOUSE_BUTTON_LEFT))
+                {
+                    mouseScaleMode = true;
+                }
+            }
+            else
+            {
+                mouseScaleReady = false;
+            }
 
-				if (IsMouseButtonReleased(MOUSE_BUTTON_LEFT)) mouseScaleMode = false;
-			}
-			//----------------------------------------------------------------------------------
+            if (mouseScaleMode)
+            {
+                mouseScaleReady = true;
 
-			// Draw
-			//----------------------------------------------------------------------------------
-			BeginDrawing();
+                rec.width = mousePosition.X - rec.X;
+                rec.height = mousePosition.Y - rec.Y;
 
-			ClearBackground(RAYWHITE);
+                if (rec.width < MOUSE_SCALE_MARK_SIZE)
+                {
+                    rec.width = MOUSE_SCALE_MARK_SIZE;
+                }
 
-			DrawText("Scale rectangle dragging from bottom-right corner!", 10, 10, 20, GRAY);
+                if (rec.height < MOUSE_SCALE_MARK_SIZE)
+                {
+                    rec.height = MOUSE_SCALE_MARK_SIZE;
+                }
 
-			DrawRectangleRec(rec, Fade(GREEN, 0.5f));
+                if (IsMouseButtonReleased(MOUSE_BUTTON_LEFT))
+                {
+                    mouseScaleMode = false;
+                }
+            }
 
-			if (mouseScaleReady)
-			{
-				DrawRectangleLinesEx(rec, 1, RED);
-				DrawTriangle(new Vector2(rec.X + rec.width - MOUSE_SCALE_MARK_SIZE, rec.Y + rec.height),
-							 new Vector2(rec.X + rec.width, rec.Y + rec.height),
-							 new Vector2(rec.X + rec.width, rec.Y + rec.height - MOUSE_SCALE_MARK_SIZE), RED);
-			}
 
-			EndDrawing();
-			//----------------------------------------------------------------------------------
-		}
+            // Draw
 
-		// De-Initialization
-		//--------------------------------------------------------------------------------------
-		CloseWindow();        // Close window and OpenGL context
-							  //--------------------------------------------------------------------------------------
+            BeginDrawing();
 
-		return 0;
-	}
+            ClearBackground(RAYWHITE);
+
+            DrawText("Scale rectangle dragging from bottom-right corner!", 10, 10, 20, GRAY);
+
+            DrawRectangleRec(rec, Fade(GREEN, 0.5f));
+
+            if (mouseScaleReady)
+            {
+                DrawRectangleLinesEx(rec, 1, RED);
+                DrawTriangle(new Vector2(rec.X + rec.width - MOUSE_SCALE_MARK_SIZE, rec.Y + rec.height),
+                             new Vector2(rec.X + rec.width, rec.Y + rec.height),
+                             new Vector2(rec.X + rec.width, rec.Y + rec.height - MOUSE_SCALE_MARK_SIZE), RED);
+            }
+
+            EndDrawing();
+
+        }
+
+        // De-Initialization
+
+        CloseWindow();        // Close window and OpenGL context
+
+
+        return 0;
+    }
 }

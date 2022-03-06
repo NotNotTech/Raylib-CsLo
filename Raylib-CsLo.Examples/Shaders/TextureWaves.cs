@@ -1,10 +1,7 @@
-// [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] 
-// [!!] Copyright ©️ Raylib-CsLo and Contributors. 
-// [!!] This file is licensed to you under the MPL-2.0.
-// [!!] See the LICENSE file in the project root for more info. 
-// [!!] ------------------------------------------------- 
-// [!!] The code and 100+ examples are here! https://github.com/NotNotTech/Raylib-CsLo 
-// [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!]  [!!] [!!] [!!] [!!]
+// Copyright ©️ Raylib-CsLo and Contributors.
+// This file is licensed to you under the MPL-2.0.
+// See the LICENSE file in the project root for more info.
+// The code and 100+ examples are here! https://github.com/NotNotTech/Raylib-CsLo
 
 
 namespace Raylib_CsLo.Examples.Shaders;
@@ -29,107 +26,95 @@ namespace Raylib_CsLo.Examples.Shaders;
 *
 ********************************************************************************************/
 
-public unsafe static class TextureWaves
+public static unsafe class TextureWaves
 {
 
 #if PLATFORM_DESKTOP
-	const int GLSL_VERSION = 330;
+    const int GLSL_VERSION = 330;
 #else   // PLATFORM_RPI, PLATFORM_ANDROID, PLATFORM_WEB
 	const int GLSL_VERSION = 100;
 #endif
 
-	public static int main()
-	{
-		// Initialization
-		//--------------------------------------------------------------------------------------
-		const int screenWidth = 800;
-		const int screenHeight = 450;
+    public static int Example()
+    {
+        // Initialization
 
-		InitWindow(screenWidth, screenHeight, "raylib [shaders] example - texture waves");
+        const int screenWidth = 800;
+        const int screenHeight = 450;
 
-		// Load texture texture to apply shaders
-		Texture2D texture = LoadTexture("resources/space.png");
+        InitWindow(screenWidth, screenHeight, "raylib [shaders] example - texture waves");
 
-		// Load shader and setup location points and values
-		Shader shader = LoadShader(null, TextFormat("resources/shaders/glsl%i/wave.fs", GLSL_VERSION));
+        // Load texture texture to apply shaders
+        Texture2D texture = LoadTexture("resources/space.png");
 
-		int secondsLoc = GetShaderLocation(shader, "secondes");
-		int freqXLoc = GetShaderLocation(shader, "freqX");
-		int freqYLoc = GetShaderLocation(shader, "freqY");
-		int ampXLoc = GetShaderLocation(shader, "ampX");
-		int ampYLoc = GetShaderLocation(shader, "ampY");
-		int speedXLoc = GetShaderLocation(shader, "speedX");
-		int speedYLoc = GetShaderLocation(shader, "speedY");
+        // Load shader and setup location points and values
+        Shader shader = LoadShader(null, TextFormat("resources/shaders/glsl%i/wave.fs", GLSL_VERSION));
 
-		// Shader uniform values that can be updated at any time
-		float freqX = 25.0f;
-		float freqY = 25.0f;
-		float ampX = 5.0f;
-		float ampY = 5.0f;
-		float speedX = 8.0f;
-		float speedY = 8.0f;
+        int secondsLoc = GetShaderLocation(shader, "secondes");
+        int freqXLoc = GetShaderLocation(shader, "freqX");
+        int freqYLoc = GetShaderLocation(shader, "freqY");
+        int ampXLoc = GetShaderLocation(shader, "ampX");
+        int ampYLoc = GetShaderLocation(shader, "ampY");
+        int speedXLoc = GetShaderLocation(shader, "speedX");
+        int speedYLoc = GetShaderLocation(shader, "speedY");
 
-		Vector2 screenSize = new((float)GetScreenWidth(), (float)GetScreenHeight());
-		SetShaderValue(shader, GetShaderLocation(shader, "size"), &screenSize, SHADER_UNIFORM_VEC2);
-		SetShaderValue(shader, freqXLoc, &freqX, SHADER_UNIFORM_FLOAT);
-		SetShaderValue(shader, freqYLoc, &freqY, SHADER_UNIFORM_FLOAT);
-		SetShaderValue(shader, ampXLoc, &ampX, SHADER_UNIFORM_FLOAT);
-		SetShaderValue(shader, ampYLoc, &ampY, SHADER_UNIFORM_FLOAT);
-		SetShaderValue(shader, speedXLoc, &speedX, SHADER_UNIFORM_FLOAT);
-		SetShaderValue(shader, speedYLoc, &speedY, SHADER_UNIFORM_FLOAT);
+        // Shader uniform values that can be updated at any time
+        float freqX = 25.0f;
+        float freqY = 25.0f;
+        float ampX = 5.0f;
+        float ampY = 5.0f;
+        float speedX = 8.0f;
+        float speedY = 8.0f;
 
-		float seconds = 0.0f;
+        Vector2 screenSize = new(GetScreenWidth(), GetScreenHeight());
+        SetShaderValue(shader, GetShaderLocation(shader, "size"), &screenSize, SHADER_UNIFORM_VEC2);
+        SetShaderValue(shader, freqXLoc, &freqX, SHADER_UNIFORM_FLOAT);
+        SetShaderValue(shader, freqYLoc, &freqY, SHADER_UNIFORM_FLOAT);
+        SetShaderValue(shader, ampXLoc, &ampX, SHADER_UNIFORM_FLOAT);
+        SetShaderValue(shader, ampYLoc, &ampY, SHADER_UNIFORM_FLOAT);
+        SetShaderValue(shader, speedXLoc, &speedX, SHADER_UNIFORM_FLOAT);
+        SetShaderValue(shader, speedYLoc, &speedY, SHADER_UNIFORM_FLOAT);
 
-		SetTargetFPS(60);               // Set our game to run at 60 frames-per-second
-										// -------------------------------------------------------------------------------------------------------------
+        float seconds = 0.0f;
 
-		// Main game loop
-		while (!WindowShouldClose())    // Detect window close button or ESC key
-		{
-			// Update
-			//----------------------------------------------------------------------------------
-			seconds += GetFrameTime();
+        SetTargetFPS(60);               // Set our game to run at 60 frames-per-second
 
-			SetShaderValue(shader, secondsLoc, &seconds, SHADER_UNIFORM_FLOAT);
-			//----------------------------------------------------------------------------------
 
-			// Draw
-			//----------------------------------------------------------------------------------
-			BeginDrawing();
+        // Main game loop
+        while (!WindowShouldClose())    // Detect window close button or ESC key
+        {
+            // Update
 
-			ClearBackground(RAYWHITE);
+            seconds += GetFrameTime();
 
-			BeginShaderMode(shader);
+            SetShaderValue(shader, secondsLoc, &seconds, SHADER_UNIFORM_FLOAT);
 
-			DrawTexture(texture, 0, 0, WHITE);
-			DrawTexture(texture, texture.width, 0, WHITE);
 
-			EndShaderMode();
+            // Draw
 
-			EndDrawing();
-			//----------------------------------------------------------------------------------
-		}
+            BeginDrawing();
 
-		// De-Initialization
-		//--------------------------------------------------------------------------------------
-		UnloadShader(shader);         // Unload shader
-		UnloadTexture(texture);       // Unload texture
+            ClearBackground(RAYWHITE);
 
-		CloseWindow();              // Close window and OpenGL context
-									//--------------------------------------------------------------------------------------
+            BeginShaderMode(shader);
 
-		return 0;
-	}
+            DrawTexture(texture, 0, 0, WHITE);
+            DrawTexture(texture, texture.width, 0, WHITE);
+
+            EndShaderMode();
+
+            EndDrawing();
+
+        }
+
+        // De-Initialization
+
+        UnloadShader(shader);         // Unload shader
+        UnloadTexture(texture);       // Unload texture
+
+        CloseWindow();              // Close window and OpenGL context
+
+
+        return 0;
+    }
 }
-
-
-
-
-
-
-
-
-
-
-
-

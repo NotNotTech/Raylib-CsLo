@@ -1,10 +1,7 @@
-﻿// [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] 
-// [!!] Copyright ©️ Raylib-CsLo and Contributors. 
-// [!!] This file is licensed to you under the MPL-2.0.
-// [!!] See the LICENSE file in the project root for more info. 
-// [!!] ------------------------------------------------- 
-// [!!] The code and 100+ examples are here! https://github.com/NotNotTech/Raylib-CsLo 
-// [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!]  [!!] [!!] [!!] [!!]
+// Copyright ©️ Raylib-CsLo and Contributors.
+// This file is licensed to you under the MPL-2.0.
+// See the LICENSE file in the project root for more info.
+// The code and 100+ examples are here! https://github.com/NotNotTech/Raylib-CsLo
 
 /*******************************************************************************************
 *
@@ -22,51 +19,50 @@ namespace Raylib_CsLo.Examples.Core;
 public static class InputMouseWheel
 {
 
-	public static int main()
-	{
-		// Initialization
-		//--------------------------------------------------------------------------------------
-		const int screenWidth = 800;
-		const int screenHeight = 450;
+    public static int Example()
+    {
+        // Initialization
 
-		InitWindow(screenWidth, screenHeight, "raylib [core] example - input mouse wheel");
+        const int screenWidth = 800;
+        const int screenHeight = 450;
 
-		int boxPositionY = screenHeight / 2 - 40;
-		int scrollSpeed = 4;            // Scrolling speed in pixels
+        InitWindow(screenWidth, screenHeight, "raylib [core] example - input mouse wheel");
 
-		SetTargetFPS(60);               // Set our game to run at 60 frames-per-second
-		//--------------------------------------------------------------------------------------
+        int boxPositionY = (screenHeight / 2) - 40;
+        int scrollSpeed = 4;            // Scrolling speed in pixels
 
-		// Main game loop
-		while (!WindowShouldClose())    // Detect window close button or ESC key
-		{
-			// Update
-			//----------------------------------------------------------------------------------
-			boxPositionY -= ((int)GetMouseWheelMove() * scrollSpeed);
-			
-			//----------------------------------------------------------------------------------
+        SetTargetFPS(60);               // Set our game to run at 60 frames-per-second
 
-			// Draw
-			//----------------------------------------------------------------------------------
-			BeginDrawing();
 
-			ClearBackground(RAYWHITE);
+        // Main game loop
+        while (!WindowShouldClose())    // Detect window close button or ESC key
+        {
+            // Update
 
-			DrawRectangle(screenWidth / 2 - 40, boxPositionY, 80, 80, MAROON);
+            boxPositionY -= (int)GetMouseWheelMove() * scrollSpeed;
 
-			DrawText("Use mouse wheel to move the cube up and down!", 10, 10, 20, GRAY);
-			DrawText(TextFormat("Box position Y: %03i", boxPositionY), 10, 40, 20, LIGHTGRAY); 
 
-			EndDrawing();
-			//----------------------------------------------------------------------------------
-		}
 
-		// De-Initialization
-		//--------------------------------------------------------------------------------------
-		CloseWindow();        // Close window and OpenGL context
-		//--------------------------------------------------------------------------------------
+            // Draw
 
-		return 0;
-	}
+            BeginDrawing();
+
+            ClearBackground(RAYWHITE);
+
+            DrawRectangle((screenWidth / 2) - 40, boxPositionY, 80, 80, MAROON);
+
+            DrawText("Use mouse wheel to move the cube up and down!", 10, 10, 20, GRAY);
+            DrawText(TextFormat("Box position Y: %03i", boxPositionY), 10, 40, 20, LIGHTGRAY);
+
+            EndDrawing();
+
+        }
+
+        // De-Initialization
+
+        CloseWindow();        // Close window and OpenGL context
+
+
+        return 0;
+    }
 }
-

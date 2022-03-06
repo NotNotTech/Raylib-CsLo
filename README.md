@@ -169,12 +169,13 @@ If you need a custom camera, check out the `Raylib-Extras-CsLo` project, which c
 
 # How to Contribute
 
-0) assume you are using Visual Studio (or maybe rider?) and can run `dev.sln`
-1) fork the repo, build and try out the example project
-2) Pick something to do
-  - test/improve support on linux and/or OsX
-  - improve wrappers for ease of use
-  - ????  check issues
+1. `git clone https://github.com/NotNotTech/Raylib-CsLo.git --recursive`
+2. assume you are using Visual Studio (or maybe rider?) and can run `dev.sln`
+3. fork the repo, build and try out the example project
+4. Pick something to do
+   - test/improve support on linux and/or OsX
+   - improve wrappers for ease of use
+   - check issues
 
 
 # License options:  `MPL2.0` or `PCL`
@@ -210,7 +211,5 @@ changelog for major releases.
     - *pending.  will aim to have native binaries generated via github actions...*
   - exit pre-release
 - later
-  
-  
 
 <!-- [![Commit Activity](https://img.shields.io/github/commit-activity/m/NotNotTech/Raylib-CsLo)](https://github.com/NotNotTech/Raylib-CsLo/graphs/contributors) -->

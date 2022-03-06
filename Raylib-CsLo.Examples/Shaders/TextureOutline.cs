@@ -1,10 +1,7 @@
-﻿// [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] 
-// [!!] Copyright ©️ Raylib-CsLo and Contributors. 
-// [!!] This file is licensed to you under the MPL-2.0.
-// [!!] See the LICENSE file in the project root for more info. 
-// [!!] ------------------------------------------------- 
-// [!!] The code and 100+ examples are here! https://github.com/NotNotTech/Raylib-CsLo 
-// [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!]  [!!] [!!] [!!] [!!]
+// Copyright ©️ Raylib-CsLo and Contributors.
+// This file is licensed to you under the MPL-2.0.
+// See the LICENSE file in the project root for more info.
+// The code and 100+ examples are here! https://github.com/NotNotTech/Raylib-CsLo
 
 
 namespace Raylib_CsLo.Examples.Shaders;
@@ -25,98 +22,89 @@ namespace Raylib_CsLo.Examples.Shaders;
 *
 ********************************************************************************************/
 
-public unsafe static class TextureOutline
+public static unsafe class TextureOutline
 {
 
 #if PLATFORM_DESKTOP
-	const int GLSL_VERSION = 330;
+    const int GLSL_VERSION = 330;
 #else   // PLATFORM_RPI, PLATFORM_ANDROID, PLATFORM_WEB
 	const int GLSL_VERSION = 100;
 #endif
 
-	public static int main()
-	{
-		// Initialization
-		//--------------------------------------------------------------------------------------
-		const int screenWidth = 800;
-		const int screenHeight = 450;
+    public static int Example()
+    {
+        // Initialization
 
-		InitWindow(screenWidth, screenHeight, "raylib [shaders] example - Apply an outline to a texture");
+        const int screenWidth = 800;
+        const int screenHeight = 450;
 
-		Texture2D texture = LoadTexture("resources/fudesumi.png");
+        InitWindow(screenWidth, screenHeight, "raylib [shaders] example - Apply an outline to a texture");
 
-		Shader shdrOutline = LoadShader(null, TextFormat("resources/shaders/glsl%i/outline.fs", GLSL_VERSION));
+        Texture2D texture = LoadTexture("resources/fudesumi.png");
 
-		float outlineSize = 2.0f;
-		Vector4 outlineColor = new(1.0f, 0.0f, 0.0f, 1.0f);     // Normalized RED color 
-		Vector2 textureSize = new((float)texture.width, (float)texture.height);
+        Shader shdrOutline = LoadShader(null, TextFormat("resources/shaders/glsl%i/outline.fs", GLSL_VERSION));
 
-		// Get shader locations
-		int outlineSizeLoc = GetShaderLocation(shdrOutline, "outlineSize");
-		int outlineColorLoc = GetShaderLocation(shdrOutline, "outlineColor");
-		int textureSizeLoc = GetShaderLocation(shdrOutline, "textureSize");
+        float outlineSize = 2.0f;
+        Vector4 outlineColor = new(1.0f, 0.0f, 0.0f, 1.0f);     // Normalized RED color
+        Vector2 textureSize = new(texture.width, texture.height);
 
-		// Set shader values (they can be changed later)
-		SetShaderValue(shdrOutline, outlineSizeLoc, &outlineSize, SHADER_UNIFORM_FLOAT);
-		SetShaderValue(shdrOutline, outlineColorLoc, outlineColor, SHADER_UNIFORM_VEC4);
-		SetShaderValue(shdrOutline, textureSizeLoc, textureSize, SHADER_UNIFORM_VEC2);
+        // Get shader locations
+        int outlineSizeLoc = GetShaderLocation(shdrOutline, "outlineSize");
+        int outlineColorLoc = GetShaderLocation(shdrOutline, "outlineColor");
+        int textureSizeLoc = GetShaderLocation(shdrOutline, "textureSize");
 
-		SetTargetFPS(60);               // Set our game to run at 60 frames-per-second
-										//--------------------------------------------------------------------------------------
+        // Set shader values (they can be changed later)
+        SetShaderValue(shdrOutline, outlineSizeLoc, &outlineSize, SHADER_UNIFORM_FLOAT);
+        SetShaderValue(shdrOutline, outlineColorLoc, outlineColor, SHADER_UNIFORM_VEC4);
+        SetShaderValue(shdrOutline, textureSizeLoc, textureSize, SHADER_UNIFORM_VEC2);
 
-		// Main game loop
-		while (!WindowShouldClose())    // Detect window close button or ESC key
-		{
-			// Update
-			//----------------------------------------------------------------------------------
-			outlineSize += GetMouseWheelMove();
-			if (outlineSize < 1.0f) outlineSize = 1.0f;
+        SetTargetFPS(60);               // Set our game to run at 60 frames-per-second
 
-			SetShaderValue(shdrOutline, outlineSizeLoc, &outlineSize, SHADER_UNIFORM_FLOAT);
-			//----------------------------------------------------------------------------------
 
-			// Draw
-			//----------------------------------------------------------------------------------
-			BeginDrawing();
+        // Main game loop
+        while (!WindowShouldClose())    // Detect window close button or ESC key
+        {
+            // Update
 
-			ClearBackground(RAYWHITE);
+            outlineSize += GetMouseWheelMove();
+            if (outlineSize < 1.0f)
+            {
+                outlineSize = 1.0f;
+            }
 
-			BeginShaderMode(shdrOutline);
+            SetShaderValue(shdrOutline, outlineSizeLoc, &outlineSize, SHADER_UNIFORM_FLOAT);
 
-			DrawTexture(texture, GetScreenWidth() / 2 - texture.width / 2, -30, WHITE);
 
-			EndShaderMode();
+            // Draw
 
-			DrawText("Shader-based\ntexture\noutline", 10, 10, 20, GRAY);
+            BeginDrawing();
 
-			DrawText(TextFormat("Outline size: %i px", (int)outlineSize), 10, 120, 20, MAROON);
+            ClearBackground(RAYWHITE);
 
-			DrawFPS(710, 10);
+            BeginShaderMode(shdrOutline);
 
-			EndDrawing();
-			//----------------------------------------------------------------------------------
-		}
+            DrawTexture(texture, (GetScreenWidth() / 2) - (texture.width / 2), -30, WHITE);
 
-		// De-Initialization
-		//--------------------------------------------------------------------------------------
-		UnloadTexture(texture);
-		UnloadShader(shdrOutline);
+            EndShaderMode();
 
-		CloseWindow();        // Close window and OpenGL context
-							  //--------------------------------------------------------------------------------------
+            DrawText("Shader-based\ntexture\noutline", 10, 10, 20, GRAY);
 
-		return 0;
-	}
+            DrawText(TextFormat("Outline size: %i px", (int)outlineSize), 10, 120, 20, MAROON);
+
+            DrawFPS(710, 10);
+
+            EndDrawing();
+
+        }
+
+        // De-Initialization
+
+        UnloadTexture(texture);
+        UnloadShader(shdrOutline);
+
+        CloseWindow();        // Close window and OpenGL context
+
+
+        return 0;
+    }
 }
-
-
-
-
-
-
-
-
-
-
-
-

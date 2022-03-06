@@ -1,12 +1,11 @@
-﻿// [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] 
-// [!!] Copyright ©️ Raylib-CsLo and Contributors. 
-// [!!] This file is licensed to you under the MPL-2.0.
-// [!!] See the LICENSE file in the project root for more info. 
-// [!!] ------------------------------------------------- 
-// [!!] The code and 100+ examples are here! https://github.com/NotNotTech/Raylib-CsLo 
-// [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!]  [!!] [!!] [!!] [!!]
+// Copyright ©️ Raylib-CsLo and Contributors.
+// This file is licensed to you under the MPL-2.0.
+// See the LICENSE file in the project root for more info.
+// The code and 100+ examples are here! https://github.com/NotNotTech/Raylib-CsLo
 
 namespace Raylib_CsLo.Examples.Shaders;
+
+using System.Globalization;
 
 /*******************************************************************************************
 *
@@ -22,119 +21,123 @@ namespace Raylib_CsLo.Examples.Shaders;
 *
 ********************************************************************************************/
 
-public unsafe static class HotReloading
+public static unsafe class HotReloading
 {
 
-	const int GLSL_VERSION = 330;
-	public static int main()
-	{
-		// Initialization
-		//--------------------------------------------------------------------------------------
-		int screenWidth = 800;
-		int screenHeight = 450;
+    const int GLSL_VERSION = 330;
+    public static int Example()
+    {
+        // Initialization
 
-		InitWindow(screenWidth, screenHeight, "raylib [shaders] example - hot reloading");
+        int screenWidth = 800;
+        int screenHeight = 450;
 
-		string fragShaderFileName = "resources/shaders/glsl%i/reload.fs";
+        InitWindow(screenWidth, screenHeight, "raylib [shaders] example - hot reloading");
 
-		//System.IO.File.GetLastWriteTime(TextFormat(fragShaderFileName, GLSL_VERSION)).Ticks;
-		long fragShaderFileModTime = GetFileModTime(TextFormat(fragShaderFileName, GLSL_VERSION));
+        string fragShaderFileName = "resources/shaders/glsl%i/reload.fs";
 
-		// Load raymarching shader
-		// NOTE: Defining 0 (NULL) for vertex shader forces usage of internal default vertex shader
-		Shader shader = LoadShader(null, TextFormat(fragShaderFileName, GLSL_VERSION));
+        //System.IO.File.GetLastWriteTime(TextFormat(fragShaderFileName, GLSL_VERSION)).Ticks;
+        long fragShaderFileModTime = GetFileModTime(TextFormat(fragShaderFileName, GLSL_VERSION));
 
-		// Get shader locations for required uniforms
-		int resolutionLoc = GetShaderLocation(shader, "resolution");
-		int mouseLoc = GetShaderLocation(shader, "mouse");
-		int timeLoc = GetShaderLocation(shader, "time");
+        // Load raymarching shader
+        // NOTE: Defining 0 (NULL) for vertex shader forces usage of internal default vertex shader
+        Shader shader = LoadShader(null, TextFormat(fragShaderFileName, GLSL_VERSION));
 
-		Vector2 resolution = new((float)screenWidth, (float)screenHeight);
-		SetShaderValue(shader, resolutionLoc, resolution, SHADER_UNIFORM_VEC2);
+        // Get shader locations for required uniforms
+        int resolutionLoc = GetShaderLocation(shader, "resolution");
+        int mouseLoc = GetShaderLocation(shader, "mouse");
+        int timeLoc = GetShaderLocation(shader, "time");
 
-		float totalTime = 0.0f;
-		bool shaderAutoReloading = false;
+        Vector2 resolution = new(screenWidth, screenHeight);
+        SetShaderValue(shader, resolutionLoc, resolution, SHADER_UNIFORM_VEC2);
 
-		SetTargetFPS(60);                       // Set our game to run at 60 frames-per-second
-												//--------------------------------------------------------------------------------------
+        float totalTime = 0.0f;
+        bool shaderAutoReloading = false;
 
-		// Main game loop
-		while (!WindowShouldClose())            // Detect window close button or ESC key
-		{
-			// Update
-			//----------------------------------------------------------------------------------
-			totalTime += GetFrameTime();
-			Vector2 mouse = GetMousePosition();
-			Vector2 mousePos = new(mouse.X, mouse.Y);
+        SetTargetFPS(60);                       // Set our game to run at 60 frames-per-second
 
-			// Set shader required uniform values
-			SetShaderValue(shader, timeLoc, &totalTime, SHADER_UNIFORM_FLOAT);
-			SetShaderValue(shader, mouseLoc, mousePos, SHADER_UNIFORM_VEC2);
 
-			// Hot shader reloading
-			if (shaderAutoReloading || (IsMouseButtonPressed(MOUSE_BUTTON_LEFT)))
-			{
-				long currentFragShaderModTime = GetFileModTime(TextFormat(fragShaderFileName, GLSL_VERSION));
+        // Main game loop
+        while (!WindowShouldClose())            // Detect window close button or ESC key
+        {
+            // Update
 
-				// Check if shader file has been modified
-				if (currentFragShaderModTime != fragShaderFileModTime)
-				{
-					// Try reloading updated shader
-					Shader updatedShader = LoadShader(null, TextFormat(fragShaderFileName, GLSL_VERSION));
+            totalTime += GetFrameTime();
+            Vector2 mouse = GetMousePosition();
+            Vector2 mousePos = new(mouse.X, mouse.Y);
 
-					if (updatedShader.id != rlGetShaderIdDefault())      // It was correctly loaded
-					{
-						UnloadShader(shader);
-						shader = updatedShader;
+            // Set shader required uniform values
+            SetShaderValue(shader, timeLoc, &totalTime, SHADER_UNIFORM_FLOAT);
+            SetShaderValue(shader, mouseLoc, mousePos, SHADER_UNIFORM_VEC2);
 
-						// Get shader locations for required uniforms
-						resolutionLoc = GetShaderLocation(shader, "resolution");
-						mouseLoc = GetShaderLocation(shader, "mouse");
-						timeLoc = GetShaderLocation(shader, "time");
+            // Hot shader reloading
+            if (shaderAutoReloading || IsMouseButtonPressed(MOUSE_BUTTON_LEFT))
+            {
+                long currentFragShaderModTime = GetFileModTime(TextFormat(fragShaderFileName, GLSL_VERSION));
 
-						// Reset required uniforms
-						SetShaderValue(shader, resolutionLoc, resolution, SHADER_UNIFORM_VEC2);
-					}
+                // Check if shader file has been modified
+                if (currentFragShaderModTime != fragShaderFileModTime)
+                {
+                    // Try reloading updated shader
+                    Shader updatedShader = LoadShader(null, TextFormat(fragShaderFileName, GLSL_VERSION));
 
-					fragShaderFileModTime = currentFragShaderModTime;
-				}
-			}
+                    if (updatedShader.id != rlGetShaderIdDefault())      // It was correctly loaded
+                    {
+                        UnloadShader(shader);
+                        shader = updatedShader;
 
-			if (IsKeyPressed(KEY_A)) shaderAutoReloading = !shaderAutoReloading;
-			//----------------------------------------------------------------------------------
+                        // Get shader locations for required uniforms
+                        resolutionLoc = GetShaderLocation(shader, "resolution");
+                        mouseLoc = GetShaderLocation(shader, "mouse");
+                        timeLoc = GetShaderLocation(shader, "time");
 
-			// Draw
-			//----------------------------------------------------------------------------------
-			BeginDrawing();
+                        // Reset required uniforms
+                        SetShaderValue(shader, resolutionLoc, resolution, SHADER_UNIFORM_VEC2);
+                    }
 
-			ClearBackground(RAYWHITE);
+                    fragShaderFileModTime = currentFragShaderModTime;
+                }
+            }
 
-			// We only draw a white full-screen rectangle, frame is generated in shader
-			BeginShaderMode(shader);
-			DrawRectangle(0, 0, screenWidth, screenHeight, WHITE);
-			EndShaderMode();
+            if (IsKeyPressed(KEY_A))
+            {
+                shaderAutoReloading = !shaderAutoReloading;
+            }
 
-			DrawText(TextFormat("PRESS [A] to TOGGLE SHADER AUTOLOADING: %s",
-					 shaderAutoReloading ? "AUTO" : "MANUAL"), 10, 10, 10, shaderAutoReloading ? RED : BLACK);
-			if (!shaderAutoReloading) DrawText("MOUSE CLICK to SHADER RE-LOADING", 10, 30, 10, BLACK);
 
-			DrawText(TextFormat("Shader last modification: %s", DateTime.FromFileTime(fragShaderFileModTime).ToString()), 10, 430, 10, BLACK);
+            // Draw
 
-			EndDrawing();
-			//----------------------------------------------------------------------------------
-		}
+            BeginDrawing();
 
-		// De-Initialization
-		//--------------------------------------------------------------------------------------
-		UnloadShader(shader);           // Unload shader
+            ClearBackground(RAYWHITE);
 
-		CloseWindow();                  // Close window and OpenGL context
-										//--------------------------------------------------------------------------------------
+            // We only draw a white full-screen rectangle, frame is generated in shader
+            BeginShaderMode(shader);
+            DrawRectangle(0, 0, screenWidth, screenHeight, WHITE);
+            EndShaderMode();
 
-		return 0;
-	}
+            DrawText(TextFormat("PRESS [A] to TOGGLE SHADER AUTOLOADING: %s",
+                     shaderAutoReloading ? "AUTO" : "MANUAL"), 10, 10, 10, shaderAutoReloading ? RED : BLACK);
+            if (!shaderAutoReloading)
+            {
+                DrawText("MOUSE CLICK to SHADER RE-LOADING", 10, 30, 10, BLACK);
+            }
+
+            DrawText(TextFormat("Shader last modification: %s", DateTime.FromFileTime(fragShaderFileModTime).ToString(CultureInfo.CurrentCulture)), 10, 430, 10, BLACK);
+
+            EndDrawing();
+
+        }
+
+        // De-Initialization
+
+        UnloadShader(shader);           // Unload shader
+
+        CloseWindow();                  // Close window and OpenGL context
+
+
+        return 0;
+    }
 
 
 }
-
-

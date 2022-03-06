@@ -1,10 +1,7 @@
-﻿// [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] 
-// [!!] Copyright ©️ Raylib-CsLo and Contributors. 
-// [!!] This file is licensed to you under the MPL-2.0.
-// [!!] See the LICENSE file in the project root for more info. 
-// [!!] ------------------------------------------------- 
-// [!!] The code and 100+ examples are here! https://github.com/NotNotTech/Raylib-CsLo 
-// [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!]  [!!] [!!] [!!] [!!]
+// Copyright ©️ Raylib-CsLo and Contributors.
+// This file is licensed to you under the MPL-2.0.
+// See the LICENSE file in the project root for more info.
+// The code and 100+ examples are here! https://github.com/NotNotTech/Raylib-CsLo
 
 /*******************************************************************************************
 *
@@ -19,73 +16,71 @@
 
 namespace Raylib_CsLo.Examples.Core;
 
-public unsafe static class WorldToScreen
+public static unsafe class WorldToScreen
 {
 
-	public static int main()
-	{
-		// Initialization
-		//--------------------------------------------------------------------------------------
-		const int screenWidth = 800;
-		const int screenHeight = 450;
+    public static int Example()
+    {
+        // Initialization
 
-		InitWindow(screenWidth, screenHeight, "raylib [core] example - 3d camera free");
+        const int screenWidth = 800;
+        const int screenHeight = 450;
 
-		// Define the camera to look into our 3d world
-		Camera camera = new();
-		camera.position = new(10.0f, 10.0f, 10.0f); // Camera position
-		camera.target = new(0.0f, 0.0f, 0.0f);      // Camera looking at point
-		camera.up = new(0.0f, 1.0f, 0.0f);          // Camera up vector (rotation towards target)
-		camera.fovy = 45.0f;                                // Camera field-of-view Y
-		camera.projection_ = CAMERA_PERSPECTIVE;                   // Camera mode type
+        InitWindow(screenWidth, screenHeight, "raylib [core] example - 3d camera free");
 
-		Vector3 cubePosition =new( 1.0f, 5.0f, 5.0f );
-		Vector2 cubeScreenPosition = new( 0.0f, 0.0f );
+        // Define the camera to look into our 3d world
+        Camera camera = new();
+        camera.position = new(10.0f, 10.0f, 10.0f); // Camera position
+        camera.target = new(0.0f, 0.0f, 0.0f);      // Camera looking at point
+        camera.up = new(0.0f, 1.0f, 0.0f);          // Camera up vector (rotation towards target)
+        camera.fovy = 45.0f;                                // Camera field-of-view Y
+        camera.Projection = CAMERA_PERSPECTIVE;                   // Camera mode type
 
-		SetCameraMode(camera, CAMERA_FREE); // Set a free camera mode
+        Vector3 cubePosition = new(1.0f, 5.0f, 5.0f);
 
-		SetTargetFPS(60);                   // Set our game to run at 60 frames-per-second
-											//--------------------------------------------------------------------------------------
+        SetCameraMode(camera, CAMERA_FREE); // Set a free camera mode
 
-		// Main game loop
-		while (!WindowShouldClose())        // Detect window close button or ESC key
-		{
-			// Update
-			//----------------------------------------------------------------------------------
-			UpdateCamera(&camera);          // Update camera
-			
-			// Calculate cube screen space position (with a little offset to be in top)
-			cubeScreenPosition = GetWorldToScreen(new(cubePosition.X, cubePosition.Y + 2.5f, cubePosition.Z), camera);
-			//----------------------------------------------------------------------------------
+        SetTargetFPS(60);                   // Set our game to run at 60 frames-per-second
 
-			// Draw
-			//----------------------------------------------------------------------------------
-			BeginDrawing();
 
-			ClearBackground(RAYWHITE);
+        // Main game loop
+        while (!WindowShouldClose())        // Detect window close button or ESC key
+        {
+            // Update
 
-			BeginMode3D(camera);
+            UpdateCamera(&camera);          // Update camera
 
-			DrawCube(cubePosition, 2.0f, 2.0f, 2.0f, RED);
-			DrawCubeWires(cubePosition, 2.0f, 2.0f, 2.0f, MAROON);
+            // Calculate cube screen space position (with a little offset to be in top)
+            Vector2 cubeScreenPosition = GetWorldToScreen(new(cubePosition.X, cubePosition.Y + 2.5f, cubePosition.Z), camera);
 
-			DrawGrid(10, 1.0f);
 
-			EndMode3D();
+            // Draw
 
-			DrawText("Enemy: 100 / 100", (int)cubeScreenPosition.X - MeasureText("Enemy: 100/100", 20) / 2, (int)cubeScreenPosition.Y, 20, BLACK);
-			DrawText("Text is always on top of the cube", (screenWidth - MeasureText("Text is always on top of the cube", 20)) / 2, 25, 20, GRAY);
+            BeginDrawing();
 
-			EndDrawing();
-			//----------------------------------------------------------------------------------
-		}
+            ClearBackground(RAYWHITE);
 
-		// De-Initialization
-		//--------------------------------------------------------------------------------------
-		CloseWindow();        // Close window and OpenGL context
-							  //--------------------------------------------------------------------------------------
+            BeginMode3D(camera);
 
-		return 0;
-	}
+            DrawCube(cubePosition, 2.0f, 2.0f, 2.0f, RED);
+            DrawCubeWires(cubePosition, 2.0f, 2.0f, 2.0f, MAROON);
+
+            DrawGrid(10, 1.0f);
+
+            EndMode3D();
+
+            DrawText("Enemy: 100 / 100", (int)cubeScreenPosition.X - (MeasureText("Enemy: 100/100", 20) / 2), (int)cubeScreenPosition.Y, 20, BLACK);
+            DrawText("Text is always on top of the cube", (screenWidth - MeasureText("Text is always on top of the cube", 20)) / 2, 25, 20, GRAY);
+
+            EndDrawing();
+
+        }
+
+        // De-Initialization
+
+        CloseWindow();        // Close window and OpenGL context
+
+
+        return 0;
+    }
 }
-

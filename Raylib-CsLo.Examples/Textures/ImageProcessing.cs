@@ -1,10 +1,7 @@
-﻿// [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] 
-// [!!] Copyright ©️ Raylib-CsLo and Contributors. 
-// [!!] This file is licensed to you under the MPL-2.0.
-// [!!] See the LICENSE file in the project root for more info. 
-// [!!] ------------------------------------------------- 
-// [!!] The code and 100+ examples are here! https://github.com/NotNotTech/Raylib-CsLo 
-// [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!]  [!!] [!!] [!!] [!!]
+// Copyright ©️ Raylib-CsLo and Contributors.
+// This file is licensed to you under the MPL-2.0.
+// See the LICENSE file in the project root for more info.
+// The code and 100+ examples are here! https://github.com/NotNotTech/Raylib-CsLo
 
 namespace Raylib_CsLo.Examples.Textures;
 
@@ -21,163 +18,194 @@ namespace Raylib_CsLo.Examples.Textures;
 *
 ********************************************************************************************/
 
-public unsafe static class ImageProcessing
+public static unsafe class ImageProcessing
 {
 
-	// #include <stdlib.h>             // Required for: free()
+    // #include <stdlib.h>             // Required for: free()
 
-	const int NUM_PROCESSES = 8;
+    const int NUM_PROCESSES = 8;
 
-	enum ImageProcess
-	{
-		NONE = 0,
-		COLOR_GRAYSCALE,
-		COLOR_TINT,
-		COLOR_INVERT,
-		COLOR_CONTRAST,
-		COLOR_BRIGHTNESS,
-		FLIP_VERTICAL,
-		FLIP_HORIZONTAL
-	}
+    enum ImageProcess
+    {
+        NONE = 0,
+        COLOR_GRAYSCALE,
+        COLOR_TINT,
+        COLOR_INVERT,
+        COLOR_CONTRAST,
+        COLOR_BRIGHTNESS,
+        FLIP_VERTICAL,
+        FLIP_HORIZONTAL
+    }
 
-	static string[] processText = new string[]{
-	"NO PROCESSING",
-	"COLOR GRAYSCALE",
-	"COLOR TINT",
-	"COLOR INVERT",
-	"COLOR CONTRAST",
-	"COLOR BRIGHTNESS",
-	"FLIP VERTICAL",
-	"FLIP HORIZONTAL"
+    static string[] processText = new string[]{
+    "NO PROCESSING",
+    "COLOR GRAYSCALE",
+    "COLOR TINT",
+    "COLOR INVERT",
+    "COLOR CONTRAST",
+    "COLOR BRIGHTNESS",
+    "FLIP VERTICAL",
+    "FLIP HORIZONTAL"
 };
 
-	public static int main()
-	{
-		// Initialization
-		//--------------------------------------------------------------------------------------
-		const int screenWidth = 800;
-		const int screenHeight = 450;
+    public static int Example()
+    {
+        // Initialization
 
-		InitWindow(screenWidth, screenHeight, "raylib [textures] example - image processing");
+        const int screenWidth = 800;
+        const int screenHeight = 450;
 
-		// NOTE: Textures MUST be loaded after Window initialization (OpenGL context is required)
+        InitWindow(screenWidth, screenHeight, "raylib [textures] example - image processing");
 
-		Image imOrigin = LoadImage("resources/parrots.png");   // Loaded in CPU memory (RAM)
-		ImageFormat(&imOrigin, PIXELFORMAT_UNCOMPRESSED_R8G8B8A8);         // Format image to RGBA 32bit (required for texture update) <-- ISSUE
-		Texture2D texture = LoadTextureFromImage(imOrigin);    // Image converted to texture, GPU memory (VRAM)
+        // NOTE: Textures MUST be loaded after Window initialization (OpenGL context is required)
 
-		Image imCopy = ImageCopy(imOrigin);
+        Image imOrigin = LoadImage("resources/parrots.png");   // Loaded in CPU memory (RAM)
+        ImageFormat(&imOrigin, PIXELFORMAT_UNCOMPRESSED_R8G8B8A8);         // Format image to RGBA 32bit (required for texture update) <-- ISSUE
+        Texture2D texture = LoadTextureFromImage(imOrigin);    // Image converted to texture, GPU memory (VRAM)
 
-		int currentProcess = (int)ImageProcess.NONE;
-		bool textureReload = false;
+        Image imCopy = ImageCopy(imOrigin);
 
-		Rectangle[] toggleRecs = new Rectangle[NUM_PROCESSES];
-		int mouseHoverRec = -1;
+        int currentProcess = (int)ImageProcess.NONE;
+        bool textureReload = false;
 
-		for (int i = 0; i < NUM_PROCESSES; i++) toggleRecs[i] = new Rectangle(40.0f, (float)(50 + 32 * i), 150.0f, 30.0f);
+        Rectangle[] toggleRecs = new Rectangle[NUM_PROCESSES];
+        int mouseHoverRec = -1;
 
-		SetTargetFPS(60);
-		//---------------------------------------------------------------------------------------
+        for (int i = 0; i < NUM_PROCESSES; i++)
+        {
+            toggleRecs[i] = new Rectangle(40.0f, 50 + (32 * i), 150.0f, 30.0f);
+        }
 
-		// Main game loop
-		while (!WindowShouldClose())    // Detect window close button or ESC key
-		{
-			// Update
-			//----------------------------------------------------------------------------------
+        SetTargetFPS(60);
 
-			// Mouse toggle group logic
-			for (int i = 0; i < NUM_PROCESSES; i++)
-			{
-				if (CheckCollisionPointRec(GetMousePosition(), toggleRecs[i]))
-				{
-					mouseHoverRec = i;
 
-					if (IsMouseButtonReleased(MOUSE_BUTTON_LEFT))
-					{
-						currentProcess = i;
-						textureReload = true;
-					}
-					break;
-				}
-				else mouseHoverRec = -1;
-			}
+        // Main game loop
+        while (!WindowShouldClose())    // Detect window close button or ESC key
+        {
+            // Update
 
-			// Keyboard toggle group logic
-			if (IsKeyPressed(KEY_DOWN))
-			{
-				currentProcess++;
-				if (currentProcess > (NUM_PROCESSES - 1)) currentProcess = 0;
-				textureReload = true;
-			}
-			else if (IsKeyPressed(KEY_UP))
-			{
-				currentProcess--;
-				if (currentProcess < 0) currentProcess = 7;
-				textureReload = true;
-			}
 
-			// Reload texture when required
-			if (textureReload)
-			{
-				UnloadImage(imCopy);                // Unload image-copy data
-				imCopy = ImageCopy(imOrigin);     // Restore image-copy from image-origin
+            // Mouse toggle group logic
+            for (int i = 0; i < NUM_PROCESSES; i++)
+            {
+                if (CheckCollisionPointRec(GetMousePosition(), toggleRecs[i]))
+                {
+                    mouseHoverRec = i;
 
-				// NOTE: Image processing is a costly CPU process to be done every frame,
-				// If image processing is required in a frame-basis, it should be done
-				// with a texture and by shaders
-				switch ((ImageProcess)currentProcess)
-				{
-					case ImageProcess.COLOR_GRAYSCALE: ImageColorGrayscale(&imCopy); break;
-					case ImageProcess.COLOR_TINT: ImageColorTint(&imCopy, GREEN); break;
-					case ImageProcess.COLOR_INVERT: ImageColorInvert(&imCopy); break;
-					case ImageProcess.COLOR_CONTRAST: ImageColorContrast(&imCopy, -40); break;
-					case ImageProcess.COLOR_BRIGHTNESS: ImageColorBrightness(&imCopy, -80); break;
-					case ImageProcess.FLIP_VERTICAL: ImageFlipVertical(&imCopy); break;
-					case ImageProcess.FLIP_HORIZONTAL: ImageFlipHorizontal(&imCopy); break;
-					default: break;
-				}
+                    if (IsMouseButtonReleased(MOUSE_BUTTON_LEFT))
+                    {
+                        currentProcess = i;
+                        textureReload = true;
+                    }
+                    break;
+                }
+                else
+                {
+                    mouseHoverRec = -1;
+                }
+            }
 
-				Color* pixels = LoadImageColors(imCopy);    // Load pixel data from image (RGBA 32bit)
-				UpdateTexture(texture, pixels);             // Update texture with new image data
-				UnloadImageColors(pixels);                  // Unload pixels data from RAM
+            // Keyboard toggle group logic
+            if (IsKeyPressed(KEY_DOWN))
+            {
+                currentProcess++;
+                if (currentProcess > (NUM_PROCESSES - 1))
+                {
+                    currentProcess = 0;
+                }
 
-				textureReload = false;
-			}
-			//----------------------------------------------------------------------------------
+                textureReload = true;
+            }
+            else if (IsKeyPressed(KEY_UP))
+            {
+                currentProcess--;
+                if (currentProcess < 0)
+                {
+                    currentProcess = 7;
+                }
 
-			// Draw
-			//----------------------------------------------------------------------------------
-			BeginDrawing();
+                textureReload = true;
+            }
 
-			ClearBackground(RAYWHITE);
+            // Reload texture when required
+            if (textureReload)
+            {
+                UnloadImage(imCopy);                // Unload image-copy data
+                imCopy = ImageCopy(imOrigin);     // Restore image-copy from image-origin
 
-			DrawText("IMAGE PROCESSING:", 40, 30, 10, DARKGRAY);
+                // NOTE: Image processing is a costly CPU process to be done every frame,
+                // If image processing is required in a frame-basis, it should be done
+                // with a texture and by shaders
+                switch ((ImageProcess)currentProcess)
+                {
+                    case ImageProcess.COLOR_GRAYSCALE:
+                        ImageColorGrayscale(&imCopy);
+                        break;
+                    case ImageProcess.COLOR_TINT:
+                        ImageColorTint(&imCopy, GREEN);
+                        break;
+                    case ImageProcess.COLOR_INVERT:
+                        ImageColorInvert(&imCopy);
+                        break;
+                    case ImageProcess.COLOR_CONTRAST:
+                        ImageColorContrast(&imCopy, -40);
+                        break;
+                    case ImageProcess.COLOR_BRIGHTNESS:
+                        ImageColorBrightness(&imCopy, -80);
+                        break;
+                    case ImageProcess.FLIP_VERTICAL:
+                        ImageFlipVertical(&imCopy);
+                        break;
+                    case ImageProcess.FLIP_HORIZONTAL:
+                        ImageFlipHorizontal(&imCopy);
+                        break;
+                    case ImageProcess.NONE:
+                        break;
+                    default:
+                        break;
+                }
 
-			// Draw rectangles
-			for (int i = 0; i < NUM_PROCESSES; i++)
-			{
-				DrawRectangleRec(toggleRecs[i], ((i == currentProcess) || (i == mouseHoverRec)) ? SKYBLUE : LIGHTGRAY);
-				DrawRectangleLines((int)toggleRecs[i].x, (int)toggleRecs[i].y, (int)toggleRecs[i].width, (int)toggleRecs[i].height, ((i == currentProcess) || (i == mouseHoverRec)) ? BLUE : GRAY);
-				DrawText(processText[i], (int)(toggleRecs[i].X + toggleRecs[i].width / 2 - MeasureText(processText[i], 10) / 2), (int)toggleRecs[i].Y + 11, 10, ((i == currentProcess) || (i == mouseHoverRec)) ? DARKBLUE : DARKGRAY);
-			}
+                Color* pixels = LoadImageColors(imCopy);    // Load pixel data from image (RGBA 32bit)
+                UpdateTexture(texture, pixels);             // Update texture with new image data
+                UnloadImageColors(pixels);                  // Unload pixels data from RAM
 
-			DrawTexture(texture, screenWidth - texture.width - 60, screenHeight / 2 - texture.height / 2, WHITE);
-			DrawRectangleLines(screenWidth - texture.width - 60, screenHeight / 2 - texture.height / 2, texture.width, texture.height, BLACK);
+                textureReload = false;
+            }
 
-			EndDrawing();
-			//----------------------------------------------------------------------------------
-		}
 
-		// De-Initialization
-		//--------------------------------------------------------------------------------------
-		UnloadTexture(texture);       // Unload texture from VRAM
-		UnloadImage(imOrigin);        // Unload image-origin from RAM
-		UnloadImage(imCopy);          // Unload image-copy from RAM
+            // Draw
 
-		CloseWindow();                // Close window and OpenGL context
-									  //--------------------------------------------------------------------------------------
+            BeginDrawing();
 
-		return 0;
-	}
+            ClearBackground(RAYWHITE);
+
+            DrawText("IMAGE PROCESSING:", 40, 30, 10, DARKGRAY);
+
+            // Draw rectangles
+            for (int i = 0; i < NUM_PROCESSES; i++)
+            {
+                DrawRectangleRec(toggleRecs[i], ((i == currentProcess) || (i == mouseHoverRec)) ? SKYBLUE : LIGHTGRAY);
+                DrawRectangleLines((int)toggleRecs[i].x, (int)toggleRecs[i].y, (int)toggleRecs[i].width, (int)toggleRecs[i].height, ((i == currentProcess) || (i == mouseHoverRec)) ? BLUE : GRAY);
+                DrawText(processText[i], (int)(toggleRecs[i].X + (toggleRecs[i].width / 2) - (MeasureText(processText[i], 10) / 2)), (int)toggleRecs[i].Y + 11, 10, ((i == currentProcess) || (i == mouseHoverRec)) ? DARKBLUE : DARKGRAY);
+            }
+
+            DrawTexture(texture, screenWidth - texture.width - 60, (screenHeight / 2) - (texture.height / 2), WHITE);
+            DrawRectangleLines(screenWidth - texture.width - 60, (screenHeight / 2) - (texture.height / 2), texture.width, texture.height, BLACK);
+
+            EndDrawing();
+
+        }
+
+        // De-Initialization
+
+        UnloadTexture(texture);       // Unload texture from VRAM
+        UnloadImage(imOrigin);        // Unload image-origin from RAM
+        UnloadImage(imCopy);          // Unload image-copy from RAM
+
+        CloseWindow();                // Close window and OpenGL context
+
+
+        return 0;
+    }
 
 }

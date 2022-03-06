@@ -1,11 +1,9 @@
-// [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] 
-// [!!] Copyright ©️ Raylib-CsLo and Contributors. 
-// [!!] This file is licensed to you under the MPL-2.0.
-// [!!] See the LICENSE file in the project root for more info. 
-// [!!] ------------------------------------------------- 
-// [!!] The code and 100+ examples are here! https://github.com/NotNotTech/Raylib-CsLo 
-// [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!]  [!!] [!!] [!!] [!!]
+// Copyright ©️ Raylib-CsLo and Contributors.
+// This file is licensed to you under the MPL-2.0.
+// See the LICENSE file in the project root for more info.
+// The code and 100+ examples are here! https://github.com/NotNotTech/Raylib-CsLo
 
+namespace Raylib_CsLo.Examples.Core;
 /*******************************************************************************************
 *
 *   raylib [core] example - Custom logging
@@ -20,126 +18,144 @@
 ********************************************************************************************/
 
 using System.Runtime.CompilerServices;
-using static Raylib_CsLo.TraceLogLevel;
 using System.Runtime.InteropServices;
 using System.Text;
+using static Raylib_CsLo.TraceLogLevel;
 
-namespace Raylib_CsLo.Examples.Core;
+// TODO remove below
+#pragma warning disable
 /// <summary>
 /// tough to implement logging.
 /// solution from : https://stackoverflow.com/a/37629480
-/// windows only.  
+/// windows only.
 /// </summary>
-public unsafe static class CustomLogging
+public static unsafe class CustomLogging
 {
 
-	[DllImport("msvcrt.dll", CharSet = CharSet.Ansi, CallingConvention = CallingConvention.Cdecl)]
-	public static extern int vsprintf(
-		StringBuilder buffer,
-		string format,
-		IntPtr args);
+    [DllImport("msvcrt.dll", CharSet = CharSet.Ansi, CallingConvention = CallingConvention.Cdecl)]
+    public static extern int vsprintf(
+        StringBuilder buffer,
+        string format,
+        IntPtr args);
 
-	[DllImport("msvcrt.dll", CallingConvention = CallingConvention.Cdecl)]
-	public static extern int _vscprintf(
-		string format,
-		IntPtr ptr);
-
-
-	// Custom logging funtion
-	//private static void LogCustom(int msgType, char* text, __arglist) //va_list args
-	[UnmanagedCallersOnly(CallConvs = new[] { typeof(System.Runtime.CompilerServices.CallConvCdecl) })]
-	private static void LogCustom(int msgType, sbyte* text, sbyte* args)
-	{
-		//Console.WriteLine("hi");
-
-		//char timeStr[64] = { 0 };
-		//time_t now = time(NULL);
-		//struct tm *tm_info = localtime(&now);
-		//strftime(timeStr, sizeof(timeStr), "%Y-%m-%d %H:%M:%S", tm_info);
-		//printf("[%s] ", timeStr);
-		Console.Write(DateTime.Now);
-
-		switch ((TraceLogLevel)msgType)
-		{
-			case LOG_INFO: Console.Write($"[INFO] {msgType} :"); break;
-			case LOG_ERROR: Console.Write($"[ERROR] {msgType} :"); break;
-			case LOG_WARNING: Console.Write($"[WARN] {msgType} :"); break;
-			case LOG_DEBUG: Console.Write($"[DEBUG] {msgType} :"); break;
-			default:
-				Console.Write($"[???] {msgType} :"); break;
-		}
-
-		//vprintf(text, args);
-		//printf("\n");
-
-		var textStr = Marshal.PtrToStringUTF8((IntPtr)text)??"";
-
-		////calc arg count?
-		//var splits = textStr.Split("%");
-		//var argsCount = splits.Length - 1;
-		//foreach (var splitStr in splits)
-		//{
-		//	if (splitStr.Length == 0)
-		//	{
-		//		argsCount--;
-		//	}
-		//}
-
-		var sb = new StringBuilder(_vscprintf(textStr, (IntPtr)args) + 1);
-		vsprintf(sb, textStr, (IntPtr)args);
-
-		//here formattedMessage has the value your are looking for
-		var formattedMessage = sb.ToString();
-		Console.WriteLine(formattedMessage);
+    [DllImport("msvcrt.dll", CallingConvention = CallingConvention.Cdecl)]
+    public static extern int _vscprintf(
+        string format,
+        IntPtr ptr);
 
 
+    // Custom logging funtion
+    //private static void LogCustom(int msgType, char* text, __arglist) //va_list args
+    [UnmanagedCallersOnly(CallConvs = new[] { typeof(CallConvCdecl) })]
+    static void LogCustom(int msgType, sbyte* text, sbyte* args)
+    {
+        //Console.WriteLine("hi");
 
-	}
+        //char timeStr[64] = { 0 };
+        //time_t now = time(NULL);
+        //struct tm *tm_info = localtime(&now);
+        //strftime(timeStr, sizeof(timeStr), "%Y-%m-%d %H:%M:%S", tm_info);
+        //printf("[%s] ", timeStr);
+        Console.Write(DateTime.Now);
+
+        switch ((TraceLogLevel)msgType)
+        {
+            case LOG_INFO:
+                Console.Write($"[INFO] {msgType} :");
+                break;
+            case LOG_ERROR:
+                Console.Write($"[ERROR] {msgType} :");
+                break;
+            case LOG_WARNING:
+                Console.Write($"[WARN] {msgType} :");
+                break;
+            case LOG_DEBUG:
+                Console.Write($"[DEBUG] {msgType} :");
+                break;
+            case LOG_ALL:
+                break;
+            case LOG_TRACE:
+                break;
+            case LOG_FATAL:
+                break;
+            case LOG_NONE:
+                break;
+            default:
+                Console.Write($"[???] {msgType} :");
+                break;
+        }
+
+        //vprintf(text, args);
+        //printf("\n");
+
+        string? textStr = Marshal.PtrToStringUTF8((IntPtr)text) ?? "";
+
+        ////calc arg count?
+        //var splits = textStr.Split("%");
+        //var argsCount = splits.Length - 1;
+        //foreach (var splitStr in splits)
+        //{
+        //	if (splitStr.Length == 0)
+        //	{
+        //		argsCount--;
+        //	}
+        //}
+
+        StringBuilder? sb = new(_vscprintf(textStr, (IntPtr)args) + 1);
+        vsprintf(sb, textStr, (IntPtr)args);
+
+        //here formattedMessage has the value your are looking for
+        string? formattedMessage = sb.ToString();
+        Console.WriteLine(formattedMessage);
 
 
-	public static int main()
-	{
-		// Initialization
-		//--------------------------------------------------------------------------------------
-		const int screenWidth = 800;
-		const int screenHeight = 450;
 
-		// First thing we do is setting our custom logger to ensure everything raylib logs
-		// will use our own logger instead of its internal one
-		SetTraceLogCallback(&LogCustom);
+    }
 
 
-		InitWindow(screenWidth, screenHeight, "raylib [core] example - custom logging");
+    public static int Example()
+    {
+        // Initialization
 
-		SetTargetFPS(60);               // Set our game to run at 60 frames-per-second
-										//--------------------------------------------------------------------------------------
+        const int screenWidth = 800;
+        const int screenHeight = 450;
 
-		// Main game loop
-		while (!WindowShouldClose())    // Detect window close button or ESC key
-		{
-			// Update
-			//----------------------------------------------------------------------------------
-			// TODO: Update your variables here
-			//----------------------------------------------------------------------------------
+        // First thing we do is setting our custom logger to ensure everything raylib logs
+        // will use our own logger instead of its internal one
+        SetTraceLogCallback(&LogCustom);
 
-			// Draw
-			//----------------------------------------------------------------------------------
-			BeginDrawing();
 
-			ClearBackground(RAYWHITE);
+        InitWindow(screenWidth, screenHeight, "raylib [core] example - custom logging");
 
-			DrawText("Check out the console output to see the custom logger in action!", 60, 200, 20, LIGHTGRAY);
+        SetTargetFPS(60);               // Set our game to run at 60 frames-per-second
 
-			EndDrawing();
-			//----------------------------------------------------------------------------------
-		}
 
-		// De-Initialization
-		//--------------------------------------------------------------------------------------
-		CloseWindow();        // Close window and OpenGL context
-							  //--------------------------------------------------------------------------------------
+        // Main game loop
+        while (!WindowShouldClose())    // Detect window close button or ESC key
+        {
+            // Update
 
-		return 0;
-	}
+            // TODO: Update your variables here
+
+
+            // Draw
+
+            BeginDrawing();
+
+            ClearBackground(RAYWHITE);
+
+            DrawText("Check out the console output to see the custom logger in action!", 60, 200, 20, LIGHTGRAY);
+
+            EndDrawing();
+
+        }
+
+        // De-Initialization
+
+        CloseWindow();        // Close window and OpenGL context
+
+
+        return 0;
+    }
 }
-
+#pragma warning restore

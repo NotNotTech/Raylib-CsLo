@@ -1,10 +1,7 @@
-﻿// [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] 
-// [!!] Copyright ©️ Raylib-CsLo and Contributors. 
-// [!!] This file is licensed to you under the MPL-2.0.
-// [!!] See the LICENSE file in the project root for more info. 
-// [!!] ------------------------------------------------- 
-// [!!] The code and 100+ examples are here! https://github.com/NotNotTech/Raylib-CsLo 
-// [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!]  [!!] [!!] [!!] [!!]
+// Copyright ©️ Raylib-CsLo and Contributors.
+// This file is licensed to you under the MPL-2.0.
+// See the LICENSE file in the project root for more info.
+// The code and 100+ examples are here! https://github.com/NotNotTech/Raylib-CsLo
 
 namespace Raylib_CsLo.Examples.Physics;
 
@@ -21,126 +18,121 @@ namespace Raylib_CsLo.Examples.Physics;
 *
 ********************************************************************************************/
 
-public unsafe static class PhysicsRestitution
+public static unsafe class PhysicsRestitution
 {
 
-	//#define PHYSAC_IMPLEMENTATION
-	//# include "extras/physac.h"
+    //#define PHYSAC_IMPLEMENTATION
+    //# include "extras/physac.h"
 
-	public static int main()
-	{
-		// Initialization
-		//--------------------------------------------------------------------------------------
-		const int screenWidth = 800;
-		const int screenHeight = 450;
+    public static int Example()
+    {
+        // Initialization
 
-		SetConfigFlags(FLAG_MSAA_4X_HINT);
-		InitWindow(screenWidth, screenHeight, "raylib [physac] example - physics restitution");
+        const int screenWidth = 800;
+        const int screenHeight = 450;
 
-		// Physac logo drawing position
-		int logoX = screenWidth - MeasureText("Physac", 30) - 10;
-		int logoY = 15;
+        SetConfigFlags(FLAG_MSAA_4X_HINT);
+        InitWindow(screenWidth, screenHeight, "raylib [physac] example - physics restitution");
 
-		// Initialize physics and default physics bodies
-		InitPhysics();
+        // Physac logo drawing position
+        int logoX = screenWidth - MeasureText("Physac", 30) - 10;
+        int logoY = 15;
 
-		// Create floor rectangle physics body
-		PhysicsBodyData* floor = CreatePhysicsBodyRectangle(new Vector2(screenWidth / 2.0f, (float)screenHeight), (float)screenWidth, 100, 10);
-		floor->enabled = false; // Disable body state to convert it to static (no dynamics, but collisions)
-		floor->restitution = 1;
+        // Initialize physics and default physics bodies
+        InitPhysics();
 
-		// Create circles physics body
-		PhysicsBodyData* circleA = CreatePhysicsBodyCircle(new Vector2(screenWidth * 0.25f, screenHeight / 2.0f), 30, 10);
-		circleA->restitution = 0;
-		PhysicsBodyData* circleB = CreatePhysicsBodyCircle(new Vector2(screenWidth * 0.5f, screenHeight / 2.0f), 30, 10);
-		circleB->restitution = 0.5f;
-		PhysicsBodyData* circleC = CreatePhysicsBodyCircle(new Vector2(screenWidth * 0.75f, screenHeight / 2.0f), 30, 10);
-		circleC->restitution = 1;
+        // Create floor rectangle physics body
+        PhysicsBodyData* floor = CreatePhysicsBodyRectangle(new Vector2(screenWidth / 2.0f, screenHeight), screenWidth, 100, 10);
+        floor->enabled = false; // Disable body state to convert it to static (no dynamics, but collisions)
+        floor->restitution = 1;
 
-		// Restitution demo needs a very tiny physics time step for a proper simulation
-		SetPhysicsTimeStep(1.0 / 60.0 / 100 * 1000);
+        // Create circles physics body
+        PhysicsBodyData* circleA = CreatePhysicsBodyCircle(new Vector2(screenWidth * 0.25f, screenHeight / 2.0f), 30, 10);
+        circleA->restitution = 0;
+        PhysicsBodyData* circleB = CreatePhysicsBodyCircle(new Vector2(screenWidth * 0.5f, screenHeight / 2.0f), 30, 10);
+        circleB->restitution = 0.5f;
+        PhysicsBodyData* circleC = CreatePhysicsBodyCircle(new Vector2(screenWidth * 0.75f, screenHeight / 2.0f), 30, 10);
+        circleC->restitution = 1;
 
-		SetTargetFPS(60);               // Set our game to run at 60 frames-per-second
-										//--------------------------------------------------------------------------------------
+        // Restitution demo needs a very tiny physics time step for a proper simulation
+        SetPhysicsTimeStep(1.0 / 60.0 / 100 * 1000);
 
-		// Main game loop
-		while (!WindowShouldClose())    // Detect window close button or ESC key
-		{
-			// Update
-			//----------------------------------------------------------------------------------
-			UpdatePhysics();            // Update physics system
+        SetTargetFPS(60);               // Set our game to run at 60 frames-per-second
 
-			if (IsKeyPressed(KEY_R))    // Reset physics input
-			{
-				// Reset circles physics bodies position and velocity
-				circleA->position = new Vector2(screenWidth * 0.25f, screenHeight / 2.0f);
-				circleA->velocity = new Vector2(0, 0);
-				circleB->position = new Vector2(screenWidth * 0.5f, screenHeight / 2.0f);
-				circleB->velocity = new Vector2(0, 0);
-				circleC->position = new Vector2(screenWidth * 0.75f, screenHeight / 2.0f);
-				circleC->velocity = new Vector2(0, 0);
-			}
-			//----------------------------------------------------------------------------------
 
-			// Draw
-			//----------------------------------------------------------------------------------
-			BeginDrawing();
+        // Main game loop
+        while (!WindowShouldClose())    // Detect window close button or ESC key
+        {
+            // Update
 
-			ClearBackground(BLACK);
+            UpdatePhysics();            // Update physics system
 
-			DrawFPS(screenWidth - 90, screenHeight - 30);
+            if (IsKeyPressed(KEY_R))    // Reset physics input
+            {
+                // Reset circles physics bodies position and velocity
+                circleA->position = new Vector2(screenWidth * 0.25f, screenHeight / 2.0f);
+                circleA->velocity = new Vector2(0, 0);
+                circleB->position = new Vector2(screenWidth * 0.5f, screenHeight / 2.0f);
+                circleB->velocity = new Vector2(0, 0);
+                circleC->position = new Vector2(screenWidth * 0.75f, screenHeight / 2.0f);
+                circleC->velocity = new Vector2(0, 0);
+            }
 
-			// Draw created physics bodies
-			int bodiesCount = GetPhysicsBodiesCount();
-			for (int i = 0; i < bodiesCount; i++)
-			{
-				PhysicsBodyData* body = GetPhysicsBody(i);
 
-				int vertexCount = GetPhysicsShapeVerticesCount(i);
-				for (int j = 0; j < vertexCount; j++)
-				{
-					// Get physics bodies shape vertices to draw lines
-					// Note: GetPhysicsShapeVertex() already calculates rotation transformations
-					Vector2 vertexA = GetPhysicsShapeVertex(body, j);
+            // Draw
 
-					int jj = (((j + 1) < vertexCount) ? (j + 1) : 0);   // Get next vertex or first to close the shape
-					Vector2 vertexB = GetPhysicsShapeVertex(body, jj);
+            BeginDrawing();
 
-					DrawLineV(vertexA, vertexB, GREEN);     // Draw a line between two vertex positions
-				}
-			}
+            ClearBackground(BLACK);
 
-			DrawText("Restitution amount", (screenWidth - MeasureText("Restitution amount", 30)) / 2, 75, 30, WHITE);
-			DrawText("0", (int)circleA->position.X - MeasureText("0", 20) / 2, circleA->position.Y - 7, 20, WHITE);
-			DrawText("0.5", (int)circleB->position.X - MeasureText("0.5", 20) / 2, circleB->position.Y - 7, 20, WHITE);
-			DrawText("1", (int)circleC->position.X - MeasureText("1", 20) / 2, circleC->position.Y - 7, 20, WHITE);
+            DrawFPS(screenWidth - 90, screenHeight - 30);
 
-			DrawText("Press 'R' to reset example", 10, 10, 10, WHITE);
+            // Draw created physics bodies
+            int bodiesCount = GetPhysicsBodiesCount();
+            for (int i = 0; i < bodiesCount; i++)
+            {
+                PhysicsBodyData* body = GetPhysicsBody(i);
 
-			DrawText("Physac", logoX, logoY, 30, WHITE);
-			DrawText("Powered by", logoX + 50, logoY - 7, 10, WHITE);
+                int vertexCount = GetPhysicsShapeVerticesCount(i);
+                for (int j = 0; j < vertexCount; j++)
+                {
+                    // Get physics bodies shape vertices to draw lines
+                    // Note: GetPhysicsShapeVertex() already calculates rotation transformations
+                    Vector2 vertexA = GetPhysicsShapeVertex(body, j);
 
-			EndDrawing();
-			//----------------------------------------------------------------------------------
-		}
+                    int jj = ((j + 1) < vertexCount) ? (j + 1) : 0;   // Get next vertex or first to close the shape
+                    Vector2 vertexB = GetPhysicsShapeVertex(body, jj);
 
-		// De-Initialization
-		//--------------------------------------------------------------------------------------
-		DestroyPhysicsBody(circleA);
-		DestroyPhysicsBody(circleB);
-		DestroyPhysicsBody(circleC);
-		DestroyPhysicsBody(floor);
+                    DrawLineV(vertexA, vertexB, GREEN);     // Draw a line between two vertex positions
+                }
+            }
 
-		ClosePhysics();       // Unitialize physics
+            DrawText("Restitution amount", (screenWidth - MeasureText("Restitution amount", 30)) / 2, 75, 30, WHITE);
+            DrawText("0", (int)circleA->position.X - (MeasureText("0", 20) / 2), circleA->position.Y - 7, 20, WHITE);
+            DrawText("0.5", (int)circleB->position.X - (MeasureText("0.5", 20) / 2), circleB->position.Y - 7, 20, WHITE);
+            DrawText("1", (int)circleC->position.X - (MeasureText("1", 20) / 2), circleC->position.Y - 7, 20, WHITE);
 
-		CloseWindow();        // Close window and OpenGL context
-							  //--------------------------------------------------------------------------------------
+            DrawText("Press 'R' to reset example", 10, 10, 10, WHITE);
 
-		return 0;
-	}
+            DrawText("Physac", logoX, logoY, 30, WHITE);
+            DrawText("Powered by", logoX + 50, logoY - 7, 10, WHITE);
+
+            EndDrawing();
+
+        }
+
+        // De-Initialization
+
+        DestroyPhysicsBody(circleA);
+        DestroyPhysicsBody(circleB);
+        DestroyPhysicsBody(circleC);
+        DestroyPhysicsBody(floor);
+
+        ClosePhysics();       // Unitialize physics
+
+        CloseWindow();        // Close window and OpenGL context
+
+
+        return 0;
+    }
 }
-
-
-
-
-

@@ -1,10 +1,7 @@
-﻿// [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] 
-// [!!] Copyright ©️ Raylib-CsLo and Contributors. 
-// [!!] This file is licensed to you under the MPL-2.0.
-// [!!] See the LICENSE file in the project root for more info. 
-// [!!] ------------------------------------------------- 
-// [!!] The code and 100+ examples are here! https://github.com/NotNotTech/Raylib-CsLo 
-// [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!]  [!!] [!!] [!!] [!!]
+// Copyright ©️ Raylib-CsLo and Contributors.
+// This file is licensed to you under the MPL-2.0.
+// See the LICENSE file in the project root for more info.
+// The code and 100+ examples are here! https://github.com/NotNotTech/Raylib-CsLo
 
 namespace Raylib_CsLo.Examples.Shaders;
 
@@ -33,69 +30,67 @@ namespace Raylib_CsLo.Examples.Shaders;
 *
 ********************************************************************************************/
 
-public unsafe static class Eratosthenes
+public static unsafe class Eratosthenes
 {
 
-	const int GLSL_VERSION = 330;
-	public static int main()
-	{
-		// Initialization
-		//--------------------------------------------------------------------------------------
-		const int screenWidth = 800;
-		const int screenHeight = 450;
+    const int GLSL_VERSION = 330;
+    public static int Example()
+    {
+        // Initialization
 
-		InitWindow(screenWidth, screenHeight, "raylib [shaders] example - Sieve of Eratosthenes");
+        const int screenWidth = 800;
+        const int screenHeight = 450;
 
-		RenderTexture2D target = LoadRenderTexture(screenWidth, screenHeight);
+        InitWindow(screenWidth, screenHeight, "raylib [shaders] example - Sieve of Eratosthenes");
 
-		// Load Eratosthenes shader
-		// NOTE: Defining 0 (NULL) for vertex shader forces usage of internal default vertex shader
-		Shader shader = LoadShader(null, TextFormat("resources/shaders/glsl%i/eratosthenes.fs", GLSL_VERSION));
+        RenderTexture2D target = LoadRenderTexture(screenWidth, screenHeight);
 
-		SetTargetFPS(60);                   // Set our game to run at 60 frames-per-second
-											//--------------------------------------------------------------------------------------
+        // Load Eratosthenes shader
+        // NOTE: Defining 0 (NULL) for vertex shader forces usage of internal default vertex shader
+        Shader shader = LoadShader(null, TextFormat("resources/shaders/glsl%i/eratosthenes.fs", GLSL_VERSION));
 
-		// Main game loop
-		while (!WindowShouldClose())        // Detect window close button or ESC key
-		{
-			// Update
-			//----------------------------------------------------------------------------------
-			// Nothing to do here, everything is happening in the shader
-			//----------------------------------------------------------------------------------
+        SetTargetFPS(60);                   // Set our game to run at 60 frames-per-second
 
-			// Draw
-			//----------------------------------------------------------------------------------
-			BeginTextureMode(target);       // Enable drawing to texture
-			ClearBackground(BLACK);     // Clear the render texture
 
-			// Draw a rectangle in shader mode to be used as shader canvas
-			// NOTE: Rectangle uses font white character texture coordinates,
-			// so shader can not be applied here directly because input vertexTexCoord
-			// do not represent full screen coordinates (space where want to apply shader)
-			DrawRectangle(0, 0, GetScreenWidth(), GetScreenHeight(), BLACK);
-			EndTextureMode();               // End drawing to texture (now we have a blank texture available for the shader)
+        // Main game loop
+        while (!WindowShouldClose())        // Detect window close button or ESC key
+        {
+            // Update
 
-			BeginDrawing();
-			ClearBackground(RAYWHITE);  // Clear screen background
+            // Nothing to do here, everything is happening in the shader
 
-			BeginShaderMode(shader);
-			// NOTE: Render texture must be y-flipped due to default OpenGL coordinates (left-bottom)
-			DrawTextureRec(target.texture, new Rectangle(0, 0, (float)target.texture.width, (float)-target.texture.height), new Vector2(0.0f, 0.0f), WHITE);
-			EndShaderMode();
-			EndDrawing();
-			//----------------------------------------------------------------------------------
-		}
 
-		// De-Initialization
-		//--------------------------------------------------------------------------------------
-		UnloadShader(shader);               // Unload shader
-		UnloadRenderTexture(target);        // Unload render texture
+            // Draw
 
-		CloseWindow();                      // Close window and OpenGL context
-											//--------------------------------------------------------------------------------------
+            BeginTextureMode(target);       // Enable drawing to texture
+            ClearBackground(BLACK);     // Clear the render texture
 
-		return 0;
-	}
+            // Draw a rectangle in shader mode to be used as shader canvas
+            // NOTE: Rectangle uses font white character texture coordinates,
+            // so shader can not be applied here directly because input vertexTexCoord
+            // do not represent full screen coordinates (space where want to apply shader)
+            DrawRectangle(0, 0, GetScreenWidth(), GetScreenHeight(), BLACK);
+            EndTextureMode();               // End drawing to texture (now we have a blank texture available for the shader)
+
+            BeginDrawing();
+            ClearBackground(RAYWHITE);  // Clear screen background
+
+            BeginShaderMode(shader);
+            // NOTE: Render texture must be y-flipped due to default OpenGL coordinates (left-bottom)
+            DrawTextureRec(target.texture, new Rectangle(0, 0, target.texture.width, -target.texture.height), new Vector2(0.0f, 0.0f), WHITE);
+            EndShaderMode();
+            EndDrawing();
+
+        }
+
+        // De-Initialization
+
+        UnloadShader(shader);               // Unload shader
+        UnloadRenderTexture(target);        // Unload render texture
+
+        CloseWindow();                      // Close window and OpenGL context
+
+
+        return 0;
+    }
 }
-
-

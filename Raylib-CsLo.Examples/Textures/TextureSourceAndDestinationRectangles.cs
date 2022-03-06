@@ -1,10 +1,7 @@
-﻿// [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] 
-// [!!] Copyright ©️ Raylib-CsLo and Contributors. 
-// [!!] This file is licensed to you under the MPL-2.0.
-// [!!] See the LICENSE file in the project root for more info. 
-// [!!] ------------------------------------------------- 
-// [!!] The code and 100+ examples are here! https://github.com/NotNotTech/Raylib-CsLo 
-// [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!]  [!!] [!!] [!!] [!!]
+// Copyright ©️ Raylib-CsLo and Contributors.
+// This file is licensed to you under the MPL-2.0.
+// See the LICENSE file in the project root for more info.
+// The code and 100+ examples are here! https://github.com/NotNotTech/Raylib-CsLo
 
 namespace Raylib_CsLo.Examples.Textures;
 
@@ -19,76 +16,76 @@ namespace Raylib_CsLo.Examples.Textures;
 *
 ********************************************************************************************/
 
-public unsafe static class TextureSourceAndDestinationRectangles
+public static unsafe class TextureSourceAndDestinationRectangles
 {
 
-	public static int main()
-	{
-		// Initialization
-		//--------------------------------------------------------------------------------------
-		const int screenWidth = 800;
-		const int screenHeight = 450;
+    public static int Example()
+    {
+        // Initialization
 
-		InitWindow(screenWidth, screenHeight, "raylib [textures] examples - texture source and destination rectangles");
+        const int screenWidth = 800;
+        const int screenHeight = 450;
 
-		// NOTE: Textures MUST be loaded after Window initialization (OpenGL context is required)
+        InitWindow(screenWidth, screenHeight, "raylib [textures] examples - texture source and destination rectangles");
 
-		Texture2D scarfy = LoadTexture("resources/scarfy.png");        // Texture loading
+        // NOTE: Textures MUST be loaded after Window initialization (OpenGL context is required)
 
-		int frameWidth = scarfy.width / 6;
-		int frameHeight = scarfy.height;
+        Texture2D scarfy = LoadTexture("resources/scarfy.png");        // Texture loading
 
-		// Source rectangle (part of the texture to use for drawing)
-		Rectangle sourceRec = new Rectangle(0.0f, 0.0f, (float)frameWidth, (float)frameHeight);
+        int frameWidth = scarfy.width / 6;
+        int frameHeight = scarfy.height;
 
-		// Destination rectangle (screen rectangle where drawing part of texture)
-		Rectangle destRec = new Rectangle(screenWidth / 2.0f, screenHeight / 2.0f, frameWidth * 2.0f, frameHeight * 2.0f);
+        // Source rectangle (part of the texture to use for drawing)
+        Rectangle sourceRec = new(0.0f, 0.0f, frameWidth, frameHeight);
 
-		// Origin of the texture (rotation/scale point), it's relative to destination rectangle size
-		Vector2 origin = new Vector2((float)frameWidth, (float)frameHeight);
+        // Destination rectangle (screen rectangle where drawing part of texture)
+        Rectangle destRec = new(screenWidth / 2.0f, screenHeight / 2.0f, frameWidth * 2.0f, frameHeight * 2.0f);
 
-		int rotation = 0;
+        // Origin of the texture (rotation/scale point), it's relative to destination rectangle size
+        Vector2 origin = new(frameWidth, frameHeight);
 
-		SetTargetFPS(60);
-		//--------------------------------------------------------------------------------------
+        int rotation = 0;
 
-		// Main game loop
-		while (!WindowShouldClose())    // Detect window close button or ESC key
-		{
-			// Update
-			//----------------------------------------------------------------------------------
-			rotation++;
-			//----------------------------------------------------------------------------------
+        SetTargetFPS(60);
 
-			// Draw
-			//----------------------------------------------------------------------------------
-			BeginDrawing();
 
-			ClearBackground(RAYWHITE);
+        // Main game loop
+        while (!WindowShouldClose())    // Detect window close button or ESC key
+        {
+            // Update
 
-			// NOTE: Using DrawTexturePro() we can easily rotate and scale the part of the texture we draw
-			// sourceRec defines the part of the texture we use for drawing
-			// destRec defines the rectangle where our texture part will fit (scaling it to fit)
-			// origin defines the point of the texture used as reference for rotation and scaling
-			// rotation defines the texture rotation (using origin as rotation point)
-			DrawTexturePro(scarfy, sourceRec, destRec, origin, (float)rotation, WHITE);
+            rotation++;
 
-			DrawLine((int)destRec.X, 0, (int)destRec.X, screenHeight, GRAY);
-			DrawLine(0, (int)destRec.Y, screenWidth, (int)destRec.Y, GRAY);
 
-			DrawText("(c) Scarfy sprite by Eiden Marsal", screenWidth - 200, screenHeight - 20, 10, GRAY);
+            // Draw
 
-			EndDrawing();
-			//----------------------------------------------------------------------------------
-		}
+            BeginDrawing();
 
-		// De-Initialization
-		//--------------------------------------------------------------------------------------
-		UnloadTexture(scarfy);        // Texture unloading
+            ClearBackground(RAYWHITE);
 
-		CloseWindow();                // Close window and OpenGL context
-									  //--------------------------------------------------------------------------------------
+            // NOTE: Using DrawTexturePro() we can easily rotate and scale the part of the texture we draw
+            // sourceRec defines the part of the texture we use for drawing
+            // destRec defines the rectangle where our texture part will fit (scaling it to fit)
+            // origin defines the point of the texture used as reference for rotation and scaling
+            // rotation defines the texture rotation (using origin as rotation point)
+            DrawTexturePro(scarfy, sourceRec, destRec, origin, rotation, WHITE);
 
-		return 0;
-	}
+            DrawLine((int)destRec.X, 0, (int)destRec.X, screenHeight, GRAY);
+            DrawLine(0, (int)destRec.Y, screenWidth, (int)destRec.Y, GRAY);
+
+            DrawText("(c) Scarfy sprite by Eiden Marsal", screenWidth - 200, screenHeight - 20, 10, GRAY);
+
+            EndDrawing();
+
+        }
+
+        // De-Initialization
+
+        UnloadTexture(scarfy);        // Texture unloading
+
+        CloseWindow();                // Close window and OpenGL context
+
+
+        return 0;
+    }
 }

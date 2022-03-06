@@ -1,10 +1,7 @@
-﻿// [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] 
-// [!!] Copyright ©️ Raylib-CsLo and Contributors. 
-// [!!] This file is licensed to you under the MPL-2.0.
-// [!!] See the LICENSE file in the project root for more info. 
-// [!!] ------------------------------------------------- 
-// [!!] The code and 100+ examples are here! https://github.com/NotNotTech/Raylib-CsLo 
-// [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!]  [!!] [!!] [!!] [!!]
+// Copyright ©️ Raylib-CsLo and Contributors.
+// This file is licensed to you under the MPL-2.0.
+// See the LICENSE file in the project root for more info.
+// The code and 100+ examples are here! https://github.com/NotNotTech/Raylib-CsLo
 
 namespace Raylib_CsLo.Examples.Textures;
 
@@ -23,85 +20,104 @@ namespace Raylib_CsLo.Examples.Textures;
 *
 ********************************************************************************************/
 
-public unsafe static class BlendModes
+public static unsafe class BlendModes
 {
 
-	public static int main()
-	{
-		// Initialization
-		//--------------------------------------------------------------------------------------
-		const int screenWidth = 800;
-		const int screenHeight = 450;
+    public static int Example()
+    {
+        // Initialization
 
-		InitWindow(screenWidth, screenHeight, "raylib [textures] example - blend modes");
+        const int screenWidth = 800;
+        const int screenHeight = 450;
 
-		// NOTE: Textures MUST be loaded after Window initialization (OpenGL context is required)
-		Image bgImage = LoadImage("resources/cyberpunk_street_background.png");     // Loaded in CPU memory (RAM)
-		Texture2D bgTexture = LoadTextureFromImage(bgImage);          // Image converted to texture, GPU memory (VRAM)
+        InitWindow(screenWidth, screenHeight, "raylib [textures] example - blend modes");
 
-		Image fgImage = LoadImage("resources/cyberpunk_street_foreground.png");     // Loaded in CPU memory (RAM)
-		Texture2D fgTexture = LoadTextureFromImage(fgImage);          // Image converted to texture, GPU memory (VRAM)
+        // NOTE: Textures MUST be loaded after Window initialization (OpenGL context is required)
+        Image bgImage = LoadImage("resources/cyberpunk_street_background.png");     // Loaded in CPU memory (RAM)
+        Texture2D bgTexture = LoadTextureFromImage(bgImage);          // Image converted to texture, GPU memory (VRAM)
 
-		// Once image has been converted to texture and uploaded to VRAM, it can be unloaded from RAM
-		UnloadImage(bgImage);
-		UnloadImage(fgImage);
+        Image fgImage = LoadImage("resources/cyberpunk_street_foreground.png");     // Loaded in CPU memory (RAM)
+        Texture2D fgTexture = LoadTextureFromImage(fgImage);          // Image converted to texture, GPU memory (VRAM)
 
-		const int blendCountMax = 4;
-		BlendMode blendMode = 0;
+        // Once image has been converted to texture and uploaded to VRAM, it can be unloaded from RAM
+        UnloadImage(bgImage);
+        UnloadImage(fgImage);
 
-		// Main game loop
-		while (!WindowShouldClose())    // Detect window close button or ESC key
-		{
-			// Update
-			//----------------------------------------------------------------------------------
-			if (IsKeyPressed(KEY_SPACE))
-			{
-				if ((int)blendMode >= (blendCountMax - 1)) blendMode = 0;
-				else blendMode++;
-			}
-			//----------------------------------------------------------------------------------
+        const int blendCountMax = 4;
+        BlendMode blendMode = 0;
 
-			// Draw
-			//----------------------------------------------------------------------------------
-			BeginDrawing();
+        // Main game loop
+        while (!WindowShouldClose())    // Detect window close button or ESC key
+        {
+            // Update
 
-			ClearBackground(RAYWHITE);
+            if (IsKeyPressed(KEY_SPACE))
+            {
+                if ((int)blendMode >= (blendCountMax - 1))
+                {
+                    blendMode = 0;
+                }
+                else
+                {
+                    blendMode++;
+                }
+            }
 
-			DrawTexture(bgTexture, screenWidth / 2 - bgTexture.width / 2, screenHeight / 2 - bgTexture.height / 2, WHITE);
 
-			// Apply the blend mode and then draw the foreground texture
-			BeginBlendMode(blendMode);
-			DrawTexture(fgTexture, screenWidth / 2 - fgTexture.width / 2, screenHeight / 2 - fgTexture.height / 2, WHITE);
-			EndBlendMode();
+            // Draw
 
-			// Draw the texts
-			DrawText("Press SPACE to change blend modes.", 310, 350, 10, GRAY);
+            BeginDrawing();
 
-			switch (blendMode)
-			{
-				case BLEND_ALPHA: DrawText("Current: BLEND_ALPHA", (screenWidth / 2) - 60, 370, 10, GRAY); break;
-				case BLEND_ADDITIVE: DrawText("Current: BLEND_ADDITIVE", (screenWidth / 2) - 60, 370, 10, GRAY); break;
-				case BLEND_MULTIPLIED: DrawText("Current: BLEND_MULTIPLIED", (screenWidth / 2) - 60, 370, 10, GRAY); break;
-				case BLEND_ADD_COLORS: DrawText("Current: BLEND_ADD_COLORS", (screenWidth / 2) - 60, 370, 10, GRAY); break;
-				default: break;
-			}
+            ClearBackground(RAYWHITE);
 
-			DrawText("(c) Cyberpunk Street Environment by Luis Zuno (@ansimuz)", screenWidth - 330, screenHeight - 20, 10, GRAY);
+            DrawTexture(bgTexture, (screenWidth / 2) - (bgTexture.width / 2), (screenHeight / 2) - (bgTexture.height / 2), WHITE);
 
-			EndDrawing();
-			//----------------------------------------------------------------------------------
-		}
+            // Apply the blend mode and then draw the foreground texture
+            BeginBlendMode(blendMode);
+            DrawTexture(fgTexture, (screenWidth / 2) - (fgTexture.width / 2), (screenHeight / 2) - (fgTexture.height / 2), WHITE);
+            EndBlendMode();
 
-		// De-Initialization
-		//--------------------------------------------------------------------------------------
-		UnloadTexture(fgTexture); // Unload foreground texture
-		UnloadTexture(bgTexture); // Unload background texture
+            // Draw the texts
+            DrawText("Press SPACE to change blend modes.", 310, 350, 10, GRAY);
 
-		CloseWindow();            // Close window and OpenGL context
-								  //--------------------------------------------------------------------------------------
+            switch (blendMode)
+            {
+                case BLEND_ALPHA:
+                    DrawText("Current: BLEND_ALPHA", (screenWidth / 2) - 60, 370, 10, GRAY);
+                    break;
+                case BLEND_ADDITIVE:
+                    DrawText("Current: BLEND_ADDITIVE", (screenWidth / 2) - 60, 370, 10, GRAY);
+                    break;
+                case BLEND_MULTIPLIED:
+                    DrawText("Current: BLEND_MULTIPLIED", (screenWidth / 2) - 60, 370, 10, GRAY);
+                    break;
+                case BLEND_ADD_COLORS:
+                    DrawText("Current: BLEND_ADD_COLORS", (screenWidth / 2) - 60, 370, 10, GRAY);
+                    break;
+                case BLEND_SUBTRACT_COLORS:
+                    break;
+                case BLEND_CUSTOM:
+                    break;
+                default:
+                    break;
+            }
 
-		return 0;
-	}
+            DrawText("(c) Cyberpunk Street Environment by Luis Zuno (@ansimuz)", screenWidth - 330, screenHeight - 20, 10, GRAY);
+
+            EndDrawing();
+
+        }
+
+        // De-Initialization
+
+        UnloadTexture(fgTexture); // Unload foreground texture
+        UnloadTexture(bgTexture); // Unload background texture
+
+        CloseWindow();            // Close window and OpenGL context
+
+
+        return 0;
+    }
 
 
 }

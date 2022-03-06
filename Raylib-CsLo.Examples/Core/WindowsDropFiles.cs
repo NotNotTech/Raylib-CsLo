@@ -1,10 +1,7 @@
-// [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] 
-// [!!] Copyright ©️ Raylib-CsLo and Contributors. 
-// [!!] This file is licensed to you under the MPL-2.0.
-// [!!] See the LICENSE file in the project root for more info. 
-// [!!] ------------------------------------------------- 
-// [!!] The code and 100+ examples are here! https://github.com/NotNotTech/Raylib-CsLo 
-// [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!]  [!!] [!!] [!!] [!!]
+// Copyright ©️ Raylib-CsLo and Contributors.
+// This file is licensed to you under the MPL-2.0.
+// See the LICENSE file in the project root for more info.
+// The code and 100+ examples are here! https://github.com/NotNotTech/Raylib-CsLo
 
 
 namespace Raylib_CsLo.Examples.Core;
@@ -21,72 +18,69 @@ namespace Raylib_CsLo.Examples.Core;
 *   Copyright (c) 2015 Ramon Santamaria (@raysan5)
 *
 ********************************************************************************************/
-public unsafe static class WindowsDropFiles
+public static unsafe class WindowsDropFiles
 {
 
-	public static int main()
-	{
-		// Initialization
-		//--------------------------------------------------------------------------------------
-		const int screenWidth = 800;
-		const int screenHeight = 450;
+    public static int Example()
+    {
+        // Initialization
 
-		InitWindow(screenWidth, screenHeight, "raylib [core] example - drop files");
+        const int screenWidth = 800;
+        const int screenHeight = 450;
 
-		int count = 0;
-		//char** droppedFiles = { 0 };
-		string[] droppedFiles=null;
+        InitWindow(screenWidth, screenHeight, "raylib [core] example - drop files");
 
-		SetTargetFPS(60);               // Set our game to run at 60 frames-per-second
-										//--------------------------------------------------------------------------------------
+        int count = 0;
+        string[] droppedFiles;
 
-		// Main game loop
-		while (!WindowShouldClose())    // Detect window close button or ESC key
-		{
-			// Update
-			//----------------------------------------------------------------------------------
-			if (IsFileDropped())
-			{
-				//droppedFiles = GetDroppedFiles(&count);
-				droppedFiles = GetDroppedFiles();
-				count = droppedFiles.Length;
-			}
-			//----------------------------------------------------------------------------------
+        SetTargetFPS(60);               // Set our game to run at 60 frames-per-second
 
-			// Draw
-			//----------------------------------------------------------------------------------
-			BeginDrawing();
+        // Main game loop
+        while (!WindowShouldClose())    // Detect window close button or ESC key
+        {
+            BeginDrawing();
 
-			ClearBackground(RAYWHITE);
+            ClearBackground(RAYWHITE);
 
-			if (count == 0) DrawText("Drop your files to this window!", 100, 40, 20, DARKGRAY);
-			else
-			{
-				DrawText("Dropped files:", 100, 40, 20, DARKGRAY);
+            if (IsFileDropped())
+            {
+                droppedFiles = GetDroppedFiles();
 
-				for (int i = 0; i < count; i++)
-				{
-					if (i % 2 == 0) DrawRectangle(0, 85 + 40 * i, screenWidth, 40, Fade(LIGHTGRAY, 0.5f));
-					else DrawRectangle(0, 85 + 40 * i, screenWidth, 40, Fade(LIGHTGRAY, 0.3f));
+                DrawText("Dropped files:", 100, 40, 20, DARKGRAY);
 
-					DrawText(droppedFiles[i], 120, 100 + 40 * i, 10, GRAY);
-				}
+                for (int i = 0; i < count; i++)
+                {
+                    if (i % 2 == 0)
+                    {
+                        DrawRectangle(0, 85 + (40 * i), screenWidth, 40, Fade(LIGHTGRAY, 0.5f));
+                    }
+                    else
+                    {
+                        DrawRectangle(0, 85 + (40 * i), screenWidth, 40, Fade(LIGHTGRAY, 0.3f));
+                    }
+                    if (IsFileDropped())
+                    {
+                        DrawText(droppedFiles[i], 120, 100 + (40 * i), 10, GRAY);
+                    }
+                }
 
-				DrawText("Drop new files...", 100, 110 + 40 * count, 20, DARKGRAY);
-			}
+                DrawText("Drop new files...", 100, 110 + (40 * count), 20, DARKGRAY);
+            }
+            else
+            {
+                DrawText("Drop your files to this window!", 100, 40, 20, DARKGRAY);
+            }
 
-			EndDrawing();
-			//----------------------------------------------------------------------------------
-		}
+            EndDrawing();
 
-		// De-Initialization
-		//--------------------------------------------------------------------------------------
-		ClearDroppedFiles();    // Clear internal buffers
+        }
 
-		CloseWindow();          // Close window and OpenGL context
-								//--------------------------------------------------------------------------------------
+        // De-Initialization
 
-		return 0;
-	}
+        ClearDroppedFiles();    // Clear internal buffers
+
+        CloseWindow();          // Close window and OpenGL context
+
+        return 0;
+    }
 }
-

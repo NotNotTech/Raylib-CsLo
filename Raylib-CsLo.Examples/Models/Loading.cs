@@ -1,10 +1,7 @@
-﻿// [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] 
-// [!!] Copyright ©️ Raylib-CsLo and Contributors. 
-// [!!] This file is licensed to you under the MPL-2.0.
-// [!!] See the LICENSE file in the project root for more info. 
-// [!!] ------------------------------------------------- 
-// [!!] The code and 100+ examples are here! https://github.com/NotNotTech/Raylib-CsLo 
-// [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!]  [!!] [!!] [!!] [!!]
+// Copyright ©️ Raylib-CsLo and Contributors.
+// This file is licensed to you under the MPL-2.0.
+// See the LICENSE file in the project root for more info.
+// The code and 100+ examples are here! https://github.com/NotNotTech/Raylib-CsLo
 
 namespace Raylib_CsLo.Examples.Models;
 
@@ -30,130 +27,142 @@ namespace Raylib_CsLo.Examples.Models;
 //*
 //********************************************************************************************/
 ///</summary>
-public unsafe static class Loading
+public static unsafe class Loading
 {
 
-	public static int main()
-	{
-		// Initialization
-		//--------------------------------------------------------------------------------------
-		const int screenWidth = 800;
-		const int screenHeight = 450;
+    public static int Example()
+    {
+        // Initialization
 
-		InitWindow(screenWidth, screenHeight, "raylib [models] example - models loading");
+        const int screenWidth = 800;
+        const int screenHeight = 450;
 
-		// Define the camera to look into our 3d world
-		Camera camera = new();
-		camera.position = new(50.0f, 50.0f, 50.0f); // Camera position
-		camera.target = new(0.0f, 10.0f, 0.0f);     // Camera looking at point
-		camera.up = new(0.0f, 1.0f, 0.0f);          // Camera up vector (rotation towards target)
-		camera.fovy = 45.0f;                                // Camera field-of-view Y
-		camera.projection_ = CAMERA_PERSPECTIVE;                   // Camera mode type
+        InitWindow(screenWidth, screenHeight, "raylib [models] example - models loading");
 
-		Model model = LoadModel("resources/models/obj/castle.obj");                 // Load model
-		Texture2D texture = LoadTexture("resources/models/obj/castle_diffuse.png"); // Load model texture
-		model.materials[0].maps[(int)MATERIAL_MAP_DIFFUSE].texture = texture;            // Set map diffuse texture
+        // Define the camera to look into our 3d world
+        Camera camera = new();
+        camera.position = new(50.0f, 50.0f, 50.0f); // Camera position
+        camera.target = new(0.0f, 10.0f, 0.0f);     // Camera looking at point
+        camera.up = new(0.0f, 1.0f, 0.0f);          // Camera up vector (rotation towards target)
+        camera.fovy = 45.0f;                                // Camera field-of-view Y
+        camera.Projection = CAMERA_PERSPECTIVE;                   // Camera mode type
 
-		Vector3 position = new(0.0f, 0.0f, 0.0f);                    // Set model position
+        Model model = LoadModel("resources/models/obj/castle.obj");                 // Load model
+        Texture2D texture = LoadTexture("resources/models/obj/castle_diffuse.png"); // Load model texture
+        model.materials[0].maps[(int)MATERIAL_MAP_DIFFUSE].texture = texture;            // Set map diffuse texture
 
-		BoundingBox bounds = GetMeshBoundingBox(model.meshes[0]);   // Set model bounds
+        Vector3 position = new(0.0f, 0.0f, 0.0f);                    // Set model position
 
-		// NOTE: bounds are calculated from the original size of the model,
-		// if model is scaled on drawing, bounds must be also scaled
+        BoundingBox bounds = GetMeshBoundingBox(model.meshes[0]);   // Set model bounds
 
-		SetCameraMode(camera, CAMERA_FREE);     // Set a free camera mode
+        // NOTE: bounds are calculated from the original size of the model,
+        // if model is scaled on drawing, bounds must be also scaled
 
-		bool selected = false;          // Selected object flag
+        SetCameraMode(camera, CAMERA_FREE);     // Set a free camera mode
 
-		SetTargetFPS(60);               // Set our game to run at 60 frames-per-second
-										//--------------------------------------------------------------------------------------
+        bool selected = false;          // Selected object flag
 
-		// Main game loop
-		while (!WindowShouldClose())    // Detect window close button or ESC key
-		{
-			// Update
-			//----------------------------------------------------------------------------------
-			UpdateCamera(ref camera);
+        SetTargetFPS(60);               // Set our game to run at 60 frames-per-second
 
-			// Load new models/textures on drag&drop
-			if (IsFileDropped())
-			{
-				int count = 0;
-				//char** droppedFiles = GetDroppedFiles(&count);
-				var droppedFiles = GetDroppedFiles();
 
-				if (count == 1) // Only support one file dropped
-				{
-					if (droppedFiles[0].EndsWith(".obj") ||
-						droppedFiles[0].EndsWith(".gltf") ||
-						droppedFiles[0].EndsWith(".glb") ||
-						droppedFiles[0].EndsWith(".vox") ||
-						droppedFiles[0].EndsWith(".iqm"))       // Model file formats supported
-					{
-						UnloadModel(model);                     // Unload previous model
-						model = LoadModel(droppedFiles[0]);     // Load new model
-						model.materials[0].maps[(int)MATERIAL_MAP_DIFFUSE].texture = texture; // Set current map diffuse texture
+        // Main game loop
+        while (!WindowShouldClose())    // Detect window close button or ESC key
+        {
+            // Update
 
-						bounds = GetMeshBoundingBox(model.meshes[0]);
+            UpdateCamera(ref camera);
 
-						// TODO: Move camera position from target enough distance to visualize model properly
-					}
-					else if (droppedFiles[0].EndsWith(".png"))  // Texture file formats supported
-					{
-						// Unload current model texture and load new one
-						UnloadTexture(texture);
-						texture = LoadTexture(droppedFiles[0]);
-						model.materials[0].maps[(int)MATERIAL_MAP_DIFFUSE].texture = texture;
-					}
-				}
+            // Load new models/textures on drag&drop
+            if (IsFileDropped())
+            {
+                int count = 0;
+                //char** droppedFiles = GetDroppedFiles(&count);
+                string[]? droppedFiles = GetDroppedFiles();
 
-				ClearDroppedFiles();    // Clear internal buffers
-			}
+                if (count == 1) // Only support one file dropped
+                {
+                    if (droppedFiles[0].EndsWith(".obj") ||
+                        droppedFiles[0].EndsWith(".gltf") ||
+                        droppedFiles[0].EndsWith(".glb") ||
+                        droppedFiles[0].EndsWith(".vox") ||
+                        droppedFiles[0].EndsWith(".iqm"))       // Model file formats supported
+                    {
+                        UnloadModel(model);                     // Unload previous model
+                        model = LoadModel(droppedFiles[0]);     // Load new model
+                        model.materials[0].maps[(int)MATERIAL_MAP_DIFFUSE].texture = texture; // Set current map diffuse texture
 
-			// Select model on mouse click
-			if (IsMouseButtonPressed(MOUSE_BUTTON_LEFT))
-			{
-				// Check collision between ray and box
-				if (GetRayCollisionBox(GetMouseRay(GetMousePosition(), camera), bounds).hit) selected = !selected;
-				else selected = false;
-			}
-			//----------------------------------------------------------------------------------
+                        bounds = GetMeshBoundingBox(model.meshes[0]);
 
-			// Draw
-			//----------------------------------------------------------------------------------
-			BeginDrawing();
+                        // TODO: Move camera position from target enough distance to visualize model properly
+                    }
+                    else if (droppedFiles[0].EndsWith(".png"))  // Texture file formats supported
+                    {
+                        // Unload current model texture and load new one
+                        UnloadTexture(texture);
+                        texture = LoadTexture(droppedFiles[0]);
+                        model.materials[0].maps[(int)MATERIAL_MAP_DIFFUSE].texture = texture;
+                    }
+                }
 
-			ClearBackground(RAYWHITE);
+                ClearDroppedFiles();    // Clear internal buffers
+            }
 
-			BeginMode3D(camera);
+            // Select model on mouse click
+            if (IsMouseButtonPressed(MOUSE_BUTTON_LEFT))
+            {
+                // Check collision between ray and box
+                if (GetRayCollisionBox(GetMouseRay(GetMousePosition(), camera), bounds).hit)
+                {
+                    selected = !selected;
+                }
+                else
+                {
+                    selected = false;
+                }
+            }
 
-			DrawModel(model, position, 1.0f, WHITE);        // Draw 3d model with texture
 
-			DrawGrid(20, 10.0f);         // Draw a grid
+            // Draw
 
-			if (selected) DrawBoundingBox(bounds, GREEN);   // Draw selection box
+            BeginDrawing();
 
-			EndMode3D();
+            ClearBackground(RAYWHITE);
 
-			DrawText("Drag & drop model to load mesh/texture.", 10, GetScreenHeight() - 20, 10, DARKGRAY);
-			if (selected) DrawText("MODEL SELECTED", GetScreenWidth() - 110, 10, 10, GREEN);
+            BeginMode3D(camera);
 
-			DrawText("(c) Castle 3D model by Alberto Cano", screenWidth - 200, screenHeight - 20, 10, GRAY);
+            DrawModel(model, position, 1.0f, WHITE);        // Draw 3d model with texture
 
-			DrawFPS(10, 10);
+            DrawGrid(20, 10.0f);         // Draw a grid
 
-			EndDrawing();
-			//----------------------------------------------------------------------------------
-		}
+            if (selected)
+            {
+                DrawBoundingBox(bounds, GREEN);   // Draw selection box
+            }
 
-		// De-Initialization
-		//--------------------------------------------------------------------------------------
-		UnloadTexture(texture);     // Unload texture
-		UnloadModel(model);         // Unload model
+            EndMode3D();
 
-		CloseWindow();              // Close window and OpenGL context
-									//--------------------------------------------------------------------------------------
+            DrawText("Drag & drop model to load mesh/texture.", 10, GetScreenHeight() - 20, 10, DARKGRAY);
+            if (selected)
+            {
+                DrawText("MODEL SELECTED", GetScreenWidth() - 110, 10, 10, GREEN);
+            }
 
-		return 0;
-	}
+            DrawText("(c) Castle 3D model by Alberto Cano", screenWidth - 200, screenHeight - 20, 10, GRAY);
+
+            DrawFPS(10, 10);
+
+            EndDrawing();
+
+        }
+
+        // De-Initialization
+
+        UnloadTexture(texture);     // Unload texture
+        UnloadModel(model);         // Unload model
+
+        CloseWindow();              // Close window and OpenGL context
+
+
+        return 0;
+    }
 }

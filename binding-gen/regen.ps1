@@ -1,8 +1,12 @@
 # change dir to folder containing script
 pushd $PSScriptRoot
+
+$autogenPath = "..\Raylib-CsLo\autogen"
+$autogenTestsPath = "..\Raylib-CsLo.Tests\autogen"
+
 # cmd script: pushd %~dp0
-del -Recurse -Force ..\Raylib-CsLo\autogen
-del -Recurse -Force ..\Raylib-CsLo.Tests\autogen
+del -Recurse -Force $autogenPath
+del -Recurse -Force $autogenTestsPath
 # del /F /Q .\output
 pushd ..\sub-modules\ClangSharp\
 dotnet build -c Release
@@ -10,7 +14,7 @@ popd
 
 $RaylibSrc = "..\sub-modules\raylib\src"
 $RaylibExtrasSrc = "../sub-modules/raylib/src/extras/"
-$RayBin = "..\sub-modules\bin\Release.DLL\" 
+$RayBin = "..\sub-modules\bin\Release.DLL\"
 
 " ################ # raylib"
 dotnet ..\sub-modules\ClangSharp\artifacts\bin\sources\ClangSharpPInvokeGenerator\Release\net6.0\ClangSharpPInvokeGenerator.dll @gen-raylib.rsp --file-directory "$RaylibSrc" --file raylib.h --methodClassName Raylib --libraryPath raylib --exclude PI DEG2RAD RAD2DEG
@@ -74,18 +78,18 @@ foreach ($file in Get-ChildItem $path) {
 	$target = $path + $file
 	#Write-Output "=========  PROCESSING:        $target"
 	##hack: replace malformed autogen content
-	$tempContents = (Get-Content $target -Raw).replace('.operator=', '=')	
+	$tempContents = (Get-Content $target -Raw).replace('.operator=', '=')
 	# make all C bools marshal properly.   see: https://stackoverflow.com/a/4621621
 	$tempContents = $tempContents.replace('public static extern Bool ', "[return: MarshalAs(UnmanagedType.U1)] public static extern bool ")
 	$tempContents = $tempContents.replace(', Bool ', ", [MarshalAs(UnmanagedType.U1)] bool ")
 	$tempContents = $tempContents.replace('(Bool ', "([MarshalAs(UnmanagedType.U1)] bool ")
-	#write the file	
+	#write the file
 	$tempContents | Out-File -FilePath $target -NoNewline
 	# $tempContents | Set-Content -Path $target
 	# try {
 	# 	Set-Content -Path $target -Value $tempContents
 	# }
-	# catch {	
+	# catch {
 	# 	try {
 	# 		Set-Content -Path $target -Value $tempContents
 	# 	}
@@ -100,5 +104,9 @@ foreach ($file in Get-ChildItem $path) {
 
 
 popd
+
+"########################## COPY .EDITORCONFIG!"
+Copy-Item .editorconfig "$autogenPath\bindings\.editorconfig"
+Copy-Item .editorconfig "$autogenTestsPath\tests\.editorconfig"
 
 "########################## DONE!"

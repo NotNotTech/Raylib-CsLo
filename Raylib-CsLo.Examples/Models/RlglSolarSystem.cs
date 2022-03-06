@@ -1,10 +1,7 @@
-﻿// [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] 
-// [!!] Copyright ©️ Raylib-CsLo and Contributors. 
-// [!!] This file is licensed to you under the MPL-2.0.
-// [!!] See the LICENSE file in the project root for more info. 
-// [!!] ------------------------------------------------- 
-// [!!] The code and 100+ examples are here! https://github.com/NotNotTech/Raylib-CsLo 
-// [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!]  [!!] [!!] [!!] [!!]
+// Copyright ©️ Raylib-CsLo and Contributors.
+// This file is licensed to you under the MPL-2.0.
+// See the LICENSE file in the project root for more info.
+// The code and 100+ examples are here! https://github.com/NotNotTech/Raylib-CsLo
 
 namespace Raylib_CsLo.Examples.Models;
 
@@ -21,152 +18,152 @@ namespace Raylib_CsLo.Examples.Models;
 //*
 //********************************************************************************************/
 ///</summary>
-public unsafe static class RlglSolarSystem
+public static unsafe class RlglSolarSystem
 {
-	public static int main()
-	{
-		// Initialization
-		//--------------------------------------------------------------------------------------
-		const int screenWidth = 800;
-		const int screenHeight = 450;
+    public static int Example()
+    {
+        // Initialization
 
-		const float sunRadius = 4.0f;
-		const float earthRadius = 0.6f;
-		const float earthOrbitRadius = 8.0f;
-		const float moonRadius = 0.16f;
-		const float moonOrbitRadius = 1.5f;
+        const int screenWidth = 800;
+        const int screenHeight = 450;
 
-		InitWindow(screenWidth, screenHeight, "raylib [models] example - rlgl module usage with push/pop matrix transformations");
+        const float sunRadius = 4.0f;
+        const float earthRadius = 0.6f;
+        const float earthOrbitRadius = 8.0f;
+        const float moonRadius = 0.16f;
+        const float moonOrbitRadius = 1.5f;
 
-		// Define the camera to look into our 3d world
-		Camera camera = new();
-		camera.position = new(16.0f, 16.0f, 16.0f);
-		camera.target = new(0.0f, 0.0f, 0.0f);
-		camera.up = new(0.0f, 1.0f, 0.0f);
-		camera.fovy = 45.0f;
-		camera.projection_ = CAMERA_PERSPECTIVE;
+        InitWindow(screenWidth, screenHeight, "raylib [models] example - rlgl module usage with push/pop matrix transformations");
 
-		SetCameraMode(camera, CAMERA_FREE);
+        // Define the camera to look into our 3d world
+        Camera camera = new();
+        camera.position = new(16.0f, 16.0f, 16.0f);
+        camera.target = new(0.0f, 0.0f, 0.0f);
+        camera.up = new(0.0f, 1.0f, 0.0f);
+        camera.fovy = 45.0f;
+        camera.Projection = CAMERA_PERSPECTIVE;
 
-		float rotationSpeed = 0.2f;         // General system rotation speed
+        SetCameraMode(camera, CAMERA_FREE);
 
-		float earthRotation = 0.0f;         // Rotation of earth around itself (days) in degrees
-		float earthOrbitRotation = 0.0f;    // Rotation of earth around the Sun (years) in degrees
-		float moonRotation = 0.0f;          // Rotation of moon around itself
-		float moonOrbitRotation = 0.0f;     // Rotation of moon around earth in degrees
+        float rotationSpeed = 0.2f;         // General system rotation speed
 
-		SetTargetFPS(60);                   // Set our game to run at 60 frames-per-second
-											//--------------------------------------------------------------------------------------
+        float earthRotation = 0.0f;         // Rotation of earth around itself (days) in degrees
+        float earthOrbitRotation = 0.0f;    // Rotation of earth around the Sun (years) in degrees
+        float moonRotation = 0.0f;          // Rotation of moon around itself
+        float moonOrbitRotation = 0.0f;     // Rotation of moon around earth in degrees
 
-		// Main game loop
-		while (!WindowShouldClose())        // Detect window close button or ESC key
-		{
-			// Update
-			//----------------------------------------------------------------------------------
-			UpdateCamera(ref camera);
+        SetTargetFPS(60);                   // Set our game to run at 60 frames-per-second
 
-			earthRotation += (5.0f * rotationSpeed);
-			earthOrbitRotation += (365 / 360.0f * (5.0f * rotationSpeed) * rotationSpeed);
-			moonRotation += (2.0f * rotationSpeed);
-			moonOrbitRotation += (8.0f * rotationSpeed);
-			//----------------------------------------------------------------------------------
 
-			// Draw
-			//----------------------------------------------------------------------------------
-			BeginDrawing();
+        // Main game loop
+        while (!WindowShouldClose())        // Detect window close button or ESC key
+        {
+            // Update
 
-			ClearBackground(RAYWHITE);
+            UpdateCamera(ref camera);
 
-			BeginMode3D(camera);
+            earthRotation += 5.0f * rotationSpeed;
+            earthOrbitRotation += 365 / 360.0f * (5.0f * rotationSpeed) * rotationSpeed;
+            moonRotation += 2.0f * rotationSpeed;
+            moonOrbitRotation += 8.0f * rotationSpeed;
 
-			rlPushMatrix();
-			rlScalef(sunRadius, sunRadius, sunRadius);          // Scale Sun
-			DrawSphereBasic(GOLD);                              // Draw the Sun
-			rlPopMatrix();
 
-			rlPushMatrix();
-			rlRotatef(earthOrbitRotation, 0.0f, 1.0f, 0.0f);    // Rotation for Earth orbit around Sun
-			rlTranslatef(earthOrbitRadius, 0.0f, 0.0f);         // Translation for Earth orbit
+            // Draw
 
-			rlPushMatrix();
-			rlRotatef(earthRotation, 0.25f, 1.0f, 0.0f);       // Rotation for Earth itself
-			rlScalef(earthRadius, earthRadius, earthRadius);// Scale Earth
+            BeginDrawing();
 
-			DrawSphereBasic(BLUE);                          // Draw the Earth
-			rlPopMatrix();
+            ClearBackground(RAYWHITE);
 
-			rlRotatef(moonOrbitRotation, 0.0f, 1.0f, 0.0f);     // Rotation for Moon orbit around Earth
-			rlTranslatef(moonOrbitRadius, 0.0f, 0.0f);          // Translation for Moon orbit
-			rlRotatef(moonRotation, 0.0f, 1.0f, 0.0f);          // Rotation for Moon itself
-			rlScalef(moonRadius, moonRadius, moonRadius);       // Scale Moon
+            BeginMode3D(camera);
 
-			DrawSphereBasic(LIGHTGRAY);                         // Draw the Moon
-			rlPopMatrix();
+            rlPushMatrix();
+            rlScalef(sunRadius, sunRadius, sunRadius);          // Scale Sun
+            DrawSphereBasic(GOLD);                              // Draw the Sun
+            rlPopMatrix();
 
-			// Some reference elements (not affected by previous matrix transformations)
-			DrawCircle3D(new(0.0f, 0.0f, 0.0f), earthOrbitRadius, new(1, 0, 0), 90.0f, Fade(RED, 0.5f));
-			DrawGrid(20, 1.0f);
+            rlPushMatrix();
+            rlRotatef(earthOrbitRotation, 0.0f, 1.0f, 0.0f);    // Rotation for Earth orbit around Sun
+            rlTranslatef(earthOrbitRadius, 0.0f, 0.0f);         // Translation for Earth orbit
 
-			EndMode3D();
+            rlPushMatrix();
+            rlRotatef(earthRotation, 0.25f, 1.0f, 0.0f);       // Rotation for Earth itself
+            rlScalef(earthRadius, earthRadius, earthRadius);// Scale Earth
 
-			DrawText("EARTH ORBITING AROUND THE SUN!", 400, 10, 20, MAROON);
-			DrawFPS(10, 10);
+            DrawSphereBasic(BLUE);                          // Draw the Earth
+            rlPopMatrix();
 
-			EndDrawing();
-			//----------------------------------------------------------------------------------
-		}
+            rlRotatef(moonOrbitRotation, 0.0f, 1.0f, 0.0f);     // Rotation for Moon orbit around Earth
+            rlTranslatef(moonOrbitRadius, 0.0f, 0.0f);          // Translation for Moon orbit
+            rlRotatef(moonRotation, 0.0f, 1.0f, 0.0f);          // Rotation for Moon itself
+            rlScalef(moonRadius, moonRadius, moonRadius);       // Scale Moon
 
-		// De-Initialization
-		//--------------------------------------------------------------------------------------
-		CloseWindow();        // Close window and OpenGL context
-							  //--------------------------------------------------------------------------------------
+            DrawSphereBasic(LIGHTGRAY);                         // Draw the Moon
+            rlPopMatrix();
 
-		return 0;
-	}
+            // Some reference elements (not affected by previous matrix transformations)
+            DrawCircle3D(new(0.0f, 0.0f, 0.0f), earthOrbitRadius, new(1, 0, 0), 90.0f, Fade(RED, 0.5f));
+            DrawGrid(20, 1.0f);
 
-	//--------------------------------------------------------------------------------------------
-	// Module Functions Definitions (local)
-	//--------------------------------------------------------------------------------------------
+            EndMode3D();
 
-	// Draw sphere without any matrix transformation
-	// NOTE: Sphere is drawn in world position ( 0, 0, 0 ) with radius 1.0f
-	static void DrawSphereBasic(Color color)
-	{
-		int rings = 16;
-		int slices = 16;
+            DrawText("EARTH ORBITING AROUND THE SUN!", 400, 10, 20, MAROON);
+            DrawFPS(10, 10);
 
-		// Make sure there is enough space in the internal render batch
-		// buffer to store all required vertex, batch is reseted if required
-		rlCheckRenderBatchLimit((rings + 2) * slices * 6);
+            EndDrawing();
 
-		rlBegin(RL_TRIANGLES);
-		rlColor4ub(color.r, color.g, color.b, color.a);
+        }
 
-		for (int i = 0; i < (rings + 2); i++)
-		{
-			for (int j = 0; j < slices; j++)
-			{
-				rlVertex3f(MathF.Cos(DEG2RAD * (270 + (180 / (rings + 1)) * i)) * MathF.Sin(DEG2RAD * (j * 360 / slices)),
-						   MathF.Sin(DEG2RAD * (270 + (180 / (rings + 1)) * i)),
-						   MathF.Cos(DEG2RAD * (270 + (180 / (rings + 1)) * i)) * MathF.Cos(DEG2RAD * (j * 360 / slices)));
-				rlVertex3f(MathF.Cos(DEG2RAD * (270 + (180 / (rings + 1)) * (i + 1))) * MathF.Sin(DEG2RAD * ((j + 1) * 360 / slices)),
-						   MathF.Sin(DEG2RAD * (270 + (180 / (rings + 1)) * (i + 1))),
-						   MathF.Cos(DEG2RAD * (270 + (180 / (rings + 1)) * (i + 1))) * MathF.Cos(DEG2RAD * ((j + 1) * 360 / slices)));
-				rlVertex3f(MathF.Cos(DEG2RAD * (270 + (180 / (rings + 1)) * (i + 1))) * MathF.Sin(DEG2RAD * (j * 360 / slices)),
-						   MathF.Sin(DEG2RAD * (270 + (180 / (rings + 1)) * (i + 1))),
-						   MathF.Cos(DEG2RAD * (270 + (180 / (rings + 1)) * (i + 1))) * MathF.Cos(DEG2RAD * (j * 360 / slices)));
+        // De-Initialization
 
-				rlVertex3f(MathF.Cos(DEG2RAD * (270 + (180 / (rings + 1)) * i)) * MathF.Sin(DEG2RAD * (j * 360 / slices)),
-						   MathF.Sin(DEG2RAD * (270 + (180 / (rings + 1)) * i)),
-						   MathF.Cos(DEG2RAD * (270 + (180 / (rings + 1)) * i)) * MathF.Cos(DEG2RAD * (j * 360 / slices)));
-				rlVertex3f(MathF.Cos(DEG2RAD * (270 + (180 / (rings + 1)) * (i))) * MathF.Sin(DEG2RAD * ((j + 1) * 360 / slices)),
-						   MathF.Sin(DEG2RAD * (270 + (180 / (rings + 1)) * (i))),
-						   MathF.Cos(DEG2RAD * (270 + (180 / (rings + 1)) * (i))) * MathF.Cos(DEG2RAD * ((j + 1) * 360 / slices)));
-				rlVertex3f(MathF.Cos(DEG2RAD * (270 + (180 / (rings + 1)) * (i + 1))) * MathF.Sin(DEG2RAD * ((j + 1) * 360 / slices)),
-						   MathF.Sin(DEG2RAD * (270 + (180 / (rings + 1)) * (i + 1))),
-						   MathF.Cos(DEG2RAD * (270 + (180 / (rings + 1)) * (i + 1))) * MathF.Cos(DEG2RAD * ((j + 1) * 360 / slices)));
-			}
-		}
-		rlEnd();
-	}
+        CloseWindow();        // Close window and OpenGL context
+
+
+        return 0;
+    }
+
+
+    // Module Functions Definitions (local)
+
+
+    // Draw sphere without any matrix transformation
+    // NOTE: Sphere is drawn in world position ( 0, 0, 0 ) with radius 1.0f
+    static void DrawSphereBasic(Color color)
+    {
+        int rings = 16;
+        int slices = 16;
+
+        // Make sure there is enough space in the internal render batch
+        // buffer to store all required vertex, batch is reseted if required
+        rlCheckRenderBatchLimit((rings + 2) * slices * 6);
+
+        rlBegin(RL_TRIANGLES);
+        rlColor4ub(color.r, color.g, color.b, color.a);
+
+        for (int i = 0; i < (rings + 2); i++)
+        {
+            for (int j = 0; j < slices; j++)
+            {
+                rlVertex3f(MathF.Cos(DEG2RAD * (270 + (180 / (rings + 1) * i))) * MathF.Sin(DEG2RAD * (j * 360 / slices)),
+                           MathF.Sin(DEG2RAD * (270 + (180 / (rings + 1) * i))),
+                           MathF.Cos(DEG2RAD * (270 + (180 / (rings + 1) * i))) * MathF.Cos(DEG2RAD * (j * 360 / slices)));
+                rlVertex3f(MathF.Cos(DEG2RAD * (270 + (180 / (rings + 1) * (i + 1)))) * MathF.Sin(DEG2RAD * ((j + 1) * 360 / slices)),
+                           MathF.Sin(DEG2RAD * (270 + (180 / (rings + 1) * (i + 1)))),
+                           MathF.Cos(DEG2RAD * (270 + (180 / (rings + 1) * (i + 1)))) * MathF.Cos(DEG2RAD * ((j + 1) * 360 / slices)));
+                rlVertex3f(MathF.Cos(DEG2RAD * (270 + (180 / (rings + 1) * (i + 1)))) * MathF.Sin(DEG2RAD * (j * 360 / slices)),
+                           MathF.Sin(DEG2RAD * (270 + (180 / (rings + 1) * (i + 1)))),
+                           MathF.Cos(DEG2RAD * (270 + (180 / (rings + 1) * (i + 1)))) * MathF.Cos(DEG2RAD * (j * 360 / slices)));
+
+                rlVertex3f(MathF.Cos(DEG2RAD * (270 + (180 / (rings + 1) * i))) * MathF.Sin(DEG2RAD * (j * 360 / slices)),
+                           MathF.Sin(DEG2RAD * (270 + (180 / (rings + 1) * i))),
+                           MathF.Cos(DEG2RAD * (270 + (180 / (rings + 1) * i))) * MathF.Cos(DEG2RAD * (j * 360 / slices)));
+                rlVertex3f(MathF.Cos(DEG2RAD * (270 + (180 / (rings + 1) * i))) * MathF.Sin(DEG2RAD * ((j + 1) * 360 / slices)),
+                           MathF.Sin(DEG2RAD * (270 + (180 / (rings + 1) * i))),
+                           MathF.Cos(DEG2RAD * (270 + (180 / (rings + 1) * i))) * MathF.Cos(DEG2RAD * ((j + 1) * 360 / slices)));
+                rlVertex3f(MathF.Cos(DEG2RAD * (270 + (180 / (rings + 1) * (i + 1)))) * MathF.Sin(DEG2RAD * ((j + 1) * 360 / slices)),
+                           MathF.Sin(DEG2RAD * (270 + (180 / (rings + 1) * (i + 1)))),
+                           MathF.Cos(DEG2RAD * (270 + (180 / (rings + 1) * (i + 1)))) * MathF.Cos(DEG2RAD * ((j + 1) * 360 / slices)));
+            }
+        }
+        rlEnd();
+    }
 }

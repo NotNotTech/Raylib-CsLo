@@ -1,10 +1,7 @@
-﻿// [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] 
-// [!!] Copyright ©️ Raylib-CsLo and Contributors. 
-// [!!] This file is licensed to you under the MPL-2.0.
-// [!!] See the LICENSE file in the project root for more info. 
-// [!!] ------------------------------------------------- 
-// [!!] The code and 100+ examples are here! https://github.com/NotNotTech/Raylib-CsLo 
-// [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!]  [!!] [!!] [!!] [!!]
+// Copyright ©️ Raylib-CsLo and Contributors.
+// This file is licensed to you under the MPL-2.0.
+// See the LICENSE file in the project root for more info.
+// The code and 100+ examples are here! https://github.com/NotNotTech/Raylib-CsLo
 
 namespace Raylib_CsLo.Examples.Shaders;
 
@@ -27,89 +24,87 @@ namespace Raylib_CsLo.Examples.Shaders;
 ********************************************************************************************/
 
 
-public unsafe static class ModelShader
+public static unsafe class ModelShader
 {
 
-	const int GLSL_VERSION = 330;
-	public static int main()
-	{
-		//var rLights = new Examples.RLights();
+    const int GLSL_VERSION = 330;
+    public static int Example()
+    {
+        //var rLights = new Examples.RLights();
 
-		// Initialization
-		//--------------------------------------------------------------------------------------
-		const int screenWidth = 800;
-		const int screenHeight = 450;
+        // Initialization
 
-		SetConfigFlags(FLAG_MSAA_4X_HINT);      // Enable Multi Sampling Anti Aliasing 4x (if available)
+        const int screenWidth = 800;
+        const int screenHeight = 450;
 
-		InitWindow(screenWidth, screenHeight, "raylib [shaders] example - model shader");
+        SetConfigFlags(FLAG_MSAA_4X_HINT);      // Enable Multi Sampling Anti Aliasing 4x (if available)
 
-		// Define the camera to look into our 3d world
-		Camera camera = new();
-		camera.position = new Vector3(4.0f, 4.0f, 4.0f);
-		camera.target = new Vector3(0.0f, 1.0f, -1.0f);
-		camera.up = new Vector3(0.0f, 1.0f, 0.0f);
-		camera.fovy = 45.0f;
-		camera.projection_ = CAMERA_PERSPECTIVE;
+        InitWindow(screenWidth, screenHeight, "raylib [shaders] example - model shader");
 
-		Model model = LoadModel("resources/models/watermill.obj");                   // Load OBJ model
-		Texture2D texture = LoadTexture("resources/models/watermill_diffuse.png");   // Load model texture
+        // Define the camera to look into our 3d world
+        Camera camera = new();
+        camera.position = new Vector3(4.0f, 4.0f, 4.0f);
+        camera.target = new Vector3(0.0f, 1.0f, -1.0f);
+        camera.up = new Vector3(0.0f, 1.0f, 0.0f);
+        camera.fovy = 45.0f;
+        camera.Projection = CAMERA_PERSPECTIVE;
 
-		// Load shader for model
-		// NOTE: Defining 0 (NULL) for vertex shader forces usage of internal default vertex shader
-		Shader shader = LoadShader(null, TextFormat("resources/shaders/glsl%i/grayscale.fs", GLSL_VERSION));
+        Model model = LoadModel("resources/models/watermill.obj");                   // Load OBJ model
+        Texture2D texture = LoadTexture("resources/models/watermill_diffuse.png");   // Load model texture
 
-		model.materials[0].shader = shader;                     // Set shader effect to 3d model
-		model.materials[0].maps[(int)MATERIAL_MAP_DIFFUSE].texture = texture; // Bind texture to model
+        // Load shader for model
+        // NOTE: Defining 0 (NULL) for vertex shader forces usage of internal default vertex shader
+        Shader shader = LoadShader(null, TextFormat("resources/shaders/glsl%i/grayscale.fs", GLSL_VERSION));
 
-		Vector3 position = new(0.0f, 0.0f, 0.0f);    // Set model position
+        model.materials[0].shader = shader;                     // Set shader effect to 3d model
+        model.materials[0].maps[(int)MATERIAL_MAP_DIFFUSE].texture = texture; // Bind texture to model
 
-		SetCameraMode(camera, CAMERA_FREE);         // Set an orbital camera mode
+        Vector3 position = new(0.0f, 0.0f, 0.0f);    // Set model position
 
-		SetTargetFPS(60);                           // Set our game to run at 60 frames-per-second
-													//--------------------------------------------------------------------------------------
+        SetCameraMode(camera, CAMERA_FREE);         // Set an orbital camera mode
 
-		// Main game loop
-		while (!WindowShouldClose())                // Detect window close button or ESC key
-		{
-			// Update
-			//----------------------------------------------------------------------------------
-			UpdateCamera(&camera);                  // Update camera
-													//----------------------------------------------------------------------------------
+        SetTargetFPS(60);                           // Set our game to run at 60 frames-per-second
 
-			// Draw
-			//----------------------------------------------------------------------------------
-			BeginDrawing();
 
-			ClearBackground(RAYWHITE);
+        // Main game loop
+        while (!WindowShouldClose())                // Detect window close button or ESC key
+        {
+            // Update
 
-			BeginMode3D(camera);
+            UpdateCamera(&camera);                  // Update camera
 
-			DrawModel(model, position, 0.2f, WHITE);   // Draw 3d model with texture
 
-			DrawGrid(10, 1.0f);     // Draw a grid
+            // Draw
 
-			EndMode3D();
+            BeginDrawing();
 
-			DrawText("(c) Watermill 3D model by Alberto Cano", screenWidth - 210, screenHeight - 20, 10, GRAY);
+            ClearBackground(RAYWHITE);
 
-			DrawFPS(10, 10);
+            BeginMode3D(camera);
 
-			EndDrawing();
-			//----------------------------------------------------------------------------------
-		}
+            DrawModel(model, position, 0.2f, WHITE);   // Draw 3d model with texture
 
-		// De-Initialization
-		//--------------------------------------------------------------------------------------
-		UnloadShader(shader);       // Unload shader
-		UnloadTexture(texture);     // Unload texture
-		UnloadModel(model);         // Unload model
+            DrawGrid(10, 1.0f);     // Draw a grid
 
-		CloseWindow();              // Close window and OpenGL context
-									//--------------------------------------------------------------------------------------
+            EndMode3D();
 
-		return 0;
-	}
+            DrawText("(c) Watermill 3D model by Alberto Cano", screenWidth - 210, screenHeight - 20, 10, GRAY);
+
+            DrawFPS(10, 10);
+
+            EndDrawing();
+
+        }
+
+        // De-Initialization
+
+        UnloadShader(shader);       // Unload shader
+        UnloadTexture(texture);     // Unload texture
+        UnloadModel(model);         // Unload model
+
+        CloseWindow();              // Close window and OpenGL context
+
+
+        return 0;
+    }
 }
-
-

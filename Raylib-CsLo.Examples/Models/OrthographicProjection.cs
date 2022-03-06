@@ -1,10 +1,7 @@
-﻿// [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] 
-// [!!] Copyright ©️ Raylib-CsLo and Contributors. 
-// [!!] This file is licensed to you under the MPL-2.0.
-// [!!] See the LICENSE file in the project root for more info. 
-// [!!] ------------------------------------------------- 
-// [!!] The code and 100+ examples are here! https://github.com/NotNotTech/Raylib-CsLo 
-// [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!]  [!!] [!!] [!!] [!!]
+// Copyright ©️ Raylib-CsLo and Contributors.
+// This file is licensed to you under the MPL-2.0.
+// See the LICENSE file in the project root for more info.
+// The code and 100+ examples are here! https://github.com/NotNotTech/Raylib-CsLo
 
 namespace Raylib_CsLo.Examples.Models;
 
@@ -23,87 +20,93 @@ namespace Raylib_CsLo.Examples.Models;
 //*
 //********************************************************************************************/
 ///</summary>
-public unsafe static class OrthographicProjection
+public static unsafe class OrthographicProjection
 {
-	const float FOVY_PERSPECTIVE = 45.0f;
-	const float WIDTH_ORTHOGRAPHIC = 10.0f;
-	public static int main()
-	{
-		// Initialization
-		//--------------------------------------------------------------------------------------
-		const int screenWidth = 800;
-		const int screenHeight = 450;
+    const float FOVY_PERSPECTIVE = 45.0f;
+    const float WIDTH_ORTHOGRAPHIC = 10.0f;
+    public static int Example()
+    {
+        // Initialization
 
-		InitWindow(screenWidth, screenHeight, "raylib [models] example - geometric shapes");
+        const int screenWidth = 800;
+        const int screenHeight = 450;
 
-		// Define the camera to look into our 3d world
-		Camera camera = new(new(0.0f, 10.0f, 10.0f), new(0.0f, 0.0f, 0.0f), new(0.0f, 1.0f, 0.0f), FOVY_PERSPECTIVE, CAMERA_PERSPECTIVE);
+        InitWindow(screenWidth, screenHeight, "raylib [models] example - geometric shapes");
 
-		SetTargetFPS(60);               // Set our game to run at 60 frames-per-second
-										//--------------------------------------------------------------------------------------
+        // Define the camera to look into our 3d world
+        Camera camera = new(new(0.0f, 10.0f, 10.0f), new(0.0f, 0.0f, 0.0f), new(0.0f, 1.0f, 0.0f), FOVY_PERSPECTIVE, CAMERA_PERSPECTIVE);
 
-		// Main game loop
-		while (!WindowShouldClose())    // Detect window close button or ESC key
-		{
-			// Update
-			//----------------------------------------------------------------------------------
-			if (IsKeyPressed(KEY_SPACE))
-			{
-				if (camera.projection_ == CAMERA_PERSPECTIVE)
-				{
-					camera.fovy = WIDTH_ORTHOGRAPHIC;
-					camera.projection_ = CAMERA_ORTHOGRAPHIC;
-				}
-				else
-				{
-					camera.fovy = FOVY_PERSPECTIVE;
-					camera.projection_ = CAMERA_PERSPECTIVE;
-				}
-			}
-			//----------------------------------------------------------------------------------
+        SetTargetFPS(60);               // Set our game to run at 60 frames-per-second
 
-			// Draw
-			//----------------------------------------------------------------------------------
-			BeginDrawing();
 
-			ClearBackground(RAYWHITE);
+        // Main game loop
+        while (!WindowShouldClose())    // Detect window close button or ESC key
+        {
+            // Update
 
-			BeginMode3D(camera);
+            if (IsKeyPressed(KEY_SPACE))
+            {
+                if (camera.Projection == CAMERA_PERSPECTIVE)
+                {
+                    camera.fovy = WIDTH_ORTHOGRAPHIC;
+                    camera.Projection = CAMERA_ORTHOGRAPHIC;
+                }
+                else
+                {
+                    camera.fovy = FOVY_PERSPECTIVE;
+                    camera.Projection = CAMERA_PERSPECTIVE;
+                }
+            }
 
-			DrawCube(new(-4.0f, 0.0f, 2.0f), 2.0f, 5.0f, 2.0f, RED);
-			DrawCubeWires(new(-4.0f, 0.0f, 2.0f), 2.0f, 5.0f, 2.0f, GOLD);
-			DrawCubeWires(new(-4.0f, 0.0f, -2.0f), 3.0f, 6.0f, 2.0f, MAROON);
 
-			DrawSphere(new(-1.0f, 0.0f, -2.0f), 1.0f, GREEN);
-			DrawSphereWires(new(1.0f, 0.0f, 2.0f), 2.0f, 16, 16, LIME);
+            // Draw
 
-			DrawCylinder(new(4.0f, 0.0f, -2.0f), 1.0f, 2.0f, 3.0f, 4, SKYBLUE);
-			DrawCylinderWires(new(4.0f, 0.0f, -2.0f), 1.0f, 2.0f, 3.0f, 4, DARKBLUE);
-			DrawCylinderWires(new(4.5f, -1.0f, 2.0f), 1.0f, 1.0f, 2.0f, 6, BROWN);
+            BeginDrawing();
 
-			DrawCylinder(new(1.0f, 0.0f, -4.0f), 0.0f, 1.5f, 3.0f, 8, GOLD);
-			DrawCylinderWires(new(1.0f, 0.0f, -4.0f), 0.0f, 1.5f, 3.0f, 8, PINK);
+            ClearBackground(RAYWHITE);
 
-			DrawGrid(10, 1.0f);        // Draw a grid
+            BeginMode3D(camera);
 
-			EndMode3D();
+            DrawCube(new(-4.0f, 0.0f, 2.0f), 2.0f, 5.0f, 2.0f, RED);
+            DrawCubeWires(new(-4.0f, 0.0f, 2.0f), 2.0f, 5.0f, 2.0f, GOLD);
+            DrawCubeWires(new(-4.0f, 0.0f, -2.0f), 3.0f, 6.0f, 2.0f, MAROON);
 
-			DrawText("Press Spacebar to switch camera type", 10, GetScreenHeight() - 30, 20, DARKGRAY);
+            DrawSphere(new(-1.0f, 0.0f, -2.0f), 1.0f, GREEN);
+            DrawSphereWires(new(1.0f, 0.0f, 2.0f), 2.0f, 16, 16, LIME);
 
-			if (camera.projection_ == CAMERA_ORTHOGRAPHIC) DrawText("ORTHOGRAPHIC", 10, 40, 20, BLACK);
-			else if (camera.projection_ == CAMERA_PERSPECTIVE) DrawText("PERSPECTIVE", 10, 40, 20, BLACK);
+            DrawCylinder(new(4.0f, 0.0f, -2.0f), 1.0f, 2.0f, 3.0f, 4, SKYBLUE);
+            DrawCylinderWires(new(4.0f, 0.0f, -2.0f), 1.0f, 2.0f, 3.0f, 4, DARKBLUE);
+            DrawCylinderWires(new(4.5f, -1.0f, 2.0f), 1.0f, 1.0f, 2.0f, 6, BROWN);
 
-			DrawFPS(10, 10);
+            DrawCylinder(new(1.0f, 0.0f, -4.0f), 0.0f, 1.5f, 3.0f, 8, GOLD);
+            DrawCylinderWires(new(1.0f, 0.0f, -4.0f), 0.0f, 1.5f, 3.0f, 8, PINK);
 
-			EndDrawing();
-			//----------------------------------------------------------------------------------
-		}
+            DrawGrid(10, 1.0f);        // Draw a grid
 
-		// De-Initialization
-		//--------------------------------------------------------------------------------------
-		CloseWindow();        // Close window and OpenGL context
-							  //--------------------------------------------------------------------------------------
+            EndMode3D();
 
-		return 0;
-	}
+            DrawText("Press Spacebar to switch camera type", 10, GetScreenHeight() - 30, 20, DARKGRAY);
+
+            if (camera.Projection == CAMERA_ORTHOGRAPHIC)
+            {
+                DrawText("ORTHOGRAPHIC", 10, 40, 20, BLACK);
+            }
+            else if (camera.Projection == CAMERA_PERSPECTIVE)
+            {
+                DrawText("PERSPECTIVE", 10, 40, 20, BLACK);
+            }
+
+            DrawFPS(10, 10);
+
+            EndDrawing();
+
+        }
+
+        // De-Initialization
+
+        CloseWindow();        // Close window and OpenGL context
+
+
+        return 0;
+    }
 }
