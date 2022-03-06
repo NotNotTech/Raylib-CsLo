@@ -1,0 +1,17 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "watch",
+            "command": "dotnet",
+            "type": "process",
+            "args": [
+                "watch",
+                "run",
+                "--project",
+                "${workspaceFolder}/Raylib-CsLo.Codegen/Raylib-CsLo.Codegen.csproj"
+            ],
+            "problemMatcher": "$msCompile"
+        }
+    ]
+}
