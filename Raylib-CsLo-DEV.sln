@@ -9,6 +9,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Raylib-CsLo.Tests", "Raylib
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Raylib-CsLo.Examples", "Raylib-CsLo.Examples\Raylib-CsLo.Examples.csproj", "{30F66300-AF37-48A0-8117-3033E72602DB}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Raylib-CsLo.Codegen", "Raylib-CsLo.Codegen\Raylib-CsLo.Codegen.csproj", "{CAB786D6-754E-49F0-8AA4-F10D927D4290}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,10 @@ Global
 		{30F66300-AF37-48A0-8117-3033E72602DB}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{30F66300-AF37-48A0-8117-3033E72602DB}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{30F66300-AF37-48A0-8117-3033E72602DB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CAB786D6-754E-49F0-8AA4-F10D927D4290}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CAB786D6-754E-49F0-8AA4-F10D927D4290}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CAB786D6-754E-49F0-8AA4-F10D927D4290}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CAB786D6-754E-49F0-8AA4-F10D927D4290}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
