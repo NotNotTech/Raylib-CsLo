@@ -36,14 +36,11 @@ public class Program
                 if (func.ParametersC != null)
                 {
                     func.Parameters = new();
-                    foreach (KeyValuePair<string, string> kvp in func.ParametersC)
+                    foreach ((string name, string type) in func.ParametersC)
                     {
                         func.Parameters.Add(kvp.Key, (string)kvp.Value.Clone());
                     }
-
-                    foreach (KeyValuePair<string, string> parameter in func.ParametersC)
-                    {
-                        func.Parameters[parameter.Key] = ConvertCTypesToCSharpParameter(parameter.Value);
+                        func.Parameters[name] = ConvertCTypesToCSharpParameter(type);
                     }
                 }
 

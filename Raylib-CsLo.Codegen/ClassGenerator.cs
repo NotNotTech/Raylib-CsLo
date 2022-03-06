@@ -67,9 +67,9 @@ public class ClassGenerator
         int index = 0;
         if (func.ParametersC != null)
         {
-            foreach (KeyValuePair<string, string> parameter in func.Parameters)
+            foreach ((string name, string type) in func.Parameters)
             {
-                parameters += $"{parameter.Value} {parameter.Key}";
+                parameters += $"{type} {name}";
 
                 if (index < func.Parameters.Count - 1)
                 {
@@ -112,9 +112,9 @@ public class ClassGenerator
         int index = 0;
         if (func.Parameters != null)
         {
-            foreach (KeyValuePair<string, string> parameter in func.Parameters)
+            foreach ((string name, string type) in func.Parameters)
             {
-                string nativeParameterName = HandleParameter(parameter.Key, parameter.Value);
+                string nativeParameterName = HandleParameter(name, type);
                 parameters += $"{nativeParameterName}";
 
                 if (index < func.Parameters.Count - 1)
