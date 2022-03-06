@@ -30,13 +30,13 @@
             -    Tested on Win10 Net6.  Please test on other platforms and [raise an issue](https://github.com/NotNotTech/Raylib-CsLo/issues) if any problems occur.
             - A focus on performance.  No runtime allocations if at all possible.
             - No intellisense docs. [read the raylib cheatsheet for docs](https://www.raylib.com/cheatsheet/cheatsheet.html) or [view the examples](https://github.com/NotNotTech/Raylib-CsLo/tree/main/Raylib-CsLo.Examples)
-        </Description>
+</Description>
         <PackageProjectUrl>https://github.com/NotNotTech/Raylib-CsLo</PackageProjectUrl>
-       
-        
+
+
         <PackageTags>raylib;gamedev;binding;NotNot;rendering;3d;2d;graphics;opengl;physics;audio;</PackageTags>
         <PackageLicenseExpression>MPL-2.0</PackageLicenseExpression>
-        <AssemblyVersion>0.0.0.*</AssemblyVersion>
+        <AssemblyVersion>0.0.0.0</AssemblyVersion>
         <Copyright>(C) NotNotTech and Contribs</Copyright>
         <PackageRequireLicenseAcceptance>True</PackageRequireLicenseAcceptance>
         <!--include pdb in nuget package, as per: https://stackoverflow.com/a/48391188 -->
@@ -53,9 +53,6 @@
         <Deterministic>False</Deterministic>
         <NoWarn>1701;1702;1591;IDE0073;</NoWarn>
     </PropertyGroup>
-
-
-
 
     <ItemGroup>
         <None Include="..\meta\logos\raylib-cslo_128x128.png">
@@ -114,24 +111,24 @@
     </ItemGroup>
 
     <ItemGroup>
-      <Content Include="raylib.dll">
-        <CopyToOutputDirectory>Always</CopyToOutputDirectory>        
-      </Content>
+        <Content Include="raylib.dll">
+            <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+        </Content>
     </ItemGroup>
 
     <ItemGroup>
-      <Compile Update="wasm.Designer.cs">
-        <DesignTime>True</DesignTime>
-        <AutoGen>True</AutoGen>
-        <DependentUpon>wasm.md</DependentUpon>
-      </Compile>
+        <Compile Update="wasm.Designer.cs">
+            <DesignTime>True</DesignTime>
+            <AutoGen>True</AutoGen>
+            <DependentUpon>wasm.md</DependentUpon>
+        </Compile>
     </ItemGroup>
 
     <ItemGroup>
-      <None Update="wasm.md">
-        <Generator>ResXFileCodeGenerator</Generator>
-        <LastGenOutput>wasm.Designer.cs</LastGenOutput>
-      </None>
+        <None Update="wasm.md">
+            <Generator>ResXFileCodeGenerator</Generator>
+            <LastGenOutput>wasm.Designer.cs</LastGenOutput>
+        </None>
     </ItemGroup>
 
 </Project>
