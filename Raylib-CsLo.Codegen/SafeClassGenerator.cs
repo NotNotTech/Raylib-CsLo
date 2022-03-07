@@ -9,13 +9,24 @@ using System.Collections.Generic;
 using System.IO;
 using System.Text;
 
-public class ClassGenerator
+public class SafeClassGenerator
 {
+    bool debug;
+
     int indent;
     List<RaylibFunction> functions;
     StringBuilder fileContents = new();
 
-    public ClassGenerator(List<RaylibFunction> functions)
+    const string ClassName = "RaylibS";
+
+    public static readonly string[] Usings =
+    {
+        "System.Numerics",
+        "Microsoft.Toolkit.HighPerformance.Buffers",
+        "Raylib_CsLo.InternalHelpers",
+    };
+
+    public SafeClassGenerator(List<RaylibFunction> functions)
     {
         this.functions = functions;
     }
@@ -25,15 +36,18 @@ public class ClassGenerator
         Line($"#pragma warning disable");
         Line($"namespace {CodegenSettings.NamespaceName};");
 
-        Usings();
+        UsingsList();
 
-        Line($"public unsafe partial class {CodegenSettings.ClassName}");
+        Line($"public unsafe partial class {ClassName}");
 
         StartBlock();
         {
             foreach (RaylibFunction func in functions)
             {
-                GenFunction(func);
+                if (!func.IsManual)
+                {
+                    GenFunction(func);
+                }
             }
         }
         EndBlock();
@@ -223,10 +237,10 @@ public class ClassGenerator
         return returnStatement;
     }
 
-    void Usings()
+    void UsingsList()
     {
         Blank();
-        foreach (string import in CodegenSettings.Usings)
+        foreach (string import in Usings)
         {
             Line("using " + import + ';');
         }
@@ -266,9 +280,10 @@ public class ClassGenerator
 
     void Debug(string v)
     {
-        _ = v;
-        _ = indent;
-        // Line($"/*|  {v}  |*/");
+        if (debug)
+        {
+            Line($"/*|  {v}  |*/");
+        }
     }
 
     public void Output()

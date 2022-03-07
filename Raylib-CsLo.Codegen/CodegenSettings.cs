@@ -8,7 +8,6 @@ using System.IO;
 
 public static class CodegenSettings
 {
-    public const string ClassName = "RaylibS";
     public const string NamespaceName = "Raylib_CsLo";
 
     public static string OutputFolder { get; } = Path.GetFullPath("../Raylib-CsLo/codegen/");
@@ -25,13 +24,6 @@ public static class CodegenSettings
         "GetPixelDataSize",
         "TextToInteger",
         "GetRayCollisionQuad"
-    };
-
-    public static readonly string[] Usings =
-    {
-        "System.Numerics",
-        "Microsoft.Toolkit.HighPerformance.Buffers",
-        "Raylib_CsLo.InternalHelpers",
     };
 
     public static readonly string[] FunctionsToHandleManually =

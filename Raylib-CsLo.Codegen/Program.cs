@@ -43,9 +43,13 @@ public class Program
         //     Console.WriteLine(item);
         // }
 
-        ClassGenerator classGenerator = new(functions);
-        classGenerator.Generate();
-        classGenerator.Output();
+        SafeClassGenerator safe = new(functions);
+        safe.Generate();
+        safe.Output();
+
+        NativeClassGenerator native = new(functions);
+        native.Generate();
+        native.Output();
     }
 
     static void ParseStructs(Dictionary<string, string> structs, JsonDocument document)
@@ -86,7 +90,7 @@ public class Program
             // Skip auto gening these functions be sure to add them manually
             if (CodegenSettings.FunctionsToHandleManually.Contains(func.Name))
             {
-                continue;
+                func.IsManual = true;
             }
 
             func.Return.TypeCs = ConvertCTypesToCSharpReturn(func.Return.TypeC);
