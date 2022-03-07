@@ -3,9 +3,9 @@
 // See the LICENSE file in the project root for more info.
 // The code and 100+ examples are here! https://github.com/NotNotTech/Raylib-CsLo
 
-namespace Raylib_CsLo.Codegen;
+namespace Raylib_CsLo;
 
-public enum RaylibModule
+public unsafe partial class RaylibS
 {
-    Core, Shapes, Textures, Text, Models, Audio
+
 }

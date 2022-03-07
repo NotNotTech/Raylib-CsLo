@@ -5,21 +5,18 @@
 
 namespace Raylib_CsLo.Codegen;
 
-using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Text;
 
 public class ClassGenerator
 {
-    readonly string module;
     int indent;
     List<RaylibFunction> functions;
     StringBuilder fileContents = new();
 
-    public ClassGenerator(RaylibModule module, List<RaylibFunction> functions)
+    public ClassGenerator(List<RaylibFunction> functions)
     {
-        this.module = Enum.GetName(typeof(RaylibModule), module);
         this.functions = functions;
     }
 
@@ -49,7 +46,7 @@ public class ClassGenerator
 
         string parameters = GenParameterDefinitions(func);
 
-        Line($"public {func.ReturnTypeCs} {func.Name}({parameters})");
+        Line($"public static {func.Return.TypeCs} {func.Name}({parameters})");
         StartBlock();
         {
             GenFunctionContents(func);
@@ -63,13 +60,13 @@ public class ClassGenerator
         string parameters = "";
 
         int index = 0;
-        if (func.ParametersC != null)
+        if (func.Parameters != null)
         {
-            foreach ((string name, string type) in func.ParametersCs)
+            foreach (RaylibParameter parameter in func.Parameters)
             {
-                parameters += $"{type} {name}";
+                parameters += $"{parameter.TypeCs} {parameter.Name}";
 
-                if (index < func.ParametersCs.Count - 1)
+                if (index < func.Parameters.Count - 1)
                 {
                     parameters += ", ";
                 }
@@ -93,14 +90,16 @@ public class ClassGenerator
         string paramaters = GenParameters(func);
 
         string returnStatement = "";
-        if (func.ReturnTypeC != "void")
+        if (func.Return.TypeC != "void")
         {
             returnStatement += "return ";
         }
 
-        returnStatement = HandleReturn(func, paramaters, returnStatement);
+        returnStatement += HandleReturn(func, paramaters);
 
         Line(returnStatement);
+
+        Debug("return " + func.Return.TypeC + " => " + func.Return.TypeCs);
     }
 
     string GenParameters(RaylibFunction func)
@@ -108,14 +107,14 @@ public class ClassGenerator
         string parameters = "";
 
         int index = 0;
-        if (func.ParametersCs != null)
+        if (func.Parameters != null)
         {
-            foreach ((string name, string type) in func.ParametersCs)
+            foreach (RaylibParameter parameter in func.Parameters)
             {
-                string parameterVariableName = HandleParameter(name, type, func.ParametersC[name]);
+                string parameterVariableName = HandleParameter(parameter.Name, parameter.TypeCs, parameter.TypeC);
                 parameters += HandleNativeCallParameter(parameterVariableName);
 
-                if (index < func.ParametersCs.Count - 1)
+                if (index < func.Parameters.Count - 1)
                 {
                     parameters += ", ";
                 }
@@ -137,9 +136,9 @@ public class ClassGenerator
     static string CastReturn(RaylibFunction func)
     {
         string returnStatement = "";
-        if (func.ReturnTypeCs != func.ReturnTypeC)
+        if (func.Return.TypeCs != func.Return.TypeC)
         {
-            returnStatement += $"({func.ReturnTypeCs})";
+            returnStatement += $"({func.Return.TypeCs})";
         }
 
         return returnStatement;
@@ -147,50 +146,69 @@ public class ClassGenerator
 
     string HandleParameter(string parameterName, string typeCs, string typeC)
     {
+        string localVariable = parameterName;
         const string localVariableSuffix = "Local";
+
         Debug($"{typeC} => {typeCs}");
+
+        string call;
         switch (typeCs)
         {
             case "string":
-                Line($"using var {parameterName + localVariableSuffix} = {parameterName}.MarshalUtf8();");
-                parameterName += localVariableSuffix;
-                parameterName += ".AsPtr()";
+                Line($"using var {localVariable + localVariableSuffix} = {localVariable}.MarshalUtf8();");
+                localVariable += localVariableSuffix;
+                localVariable += ".AsPtr()";
                 break;
 
             case "IntPtr":
-                Line($"var {parameterName + localVariableSuffix} = (void*){parameterName};");
-                parameterName += localVariableSuffix;
+                Line($"var {localVariable + localVariableSuffix} = (void*){localVariable};");
+                localVariable += localVariableSuffix;
                 break;
 
             case "byte[]":
-                string func = Call(CodegenSettings.ArrayToPtrFunction, parameterName);
-                Line($"var {parameterName + localVariableSuffix} = {func};");
-                parameterName += localVariableSuffix;
+                call = Call(CodegenSettings.ArrayToPtrFunction, localVariable);
+                Line($"var {localVariable + localVariableSuffix} = {call};");
+                localVariable += localVariableSuffix;
                 break;
 
+            case "Rectangle[]":
+                call = Call(CodegenSettings.ArrayToPtrFunction, localVariable);
+                Line($"var {parameterName + localVariableSuffix} = {call};");
+                localVariable = "&" + parameterName;
+                localVariable += localVariableSuffix;
+                break;
 
             default:
-                // Console.WriteLine($"Unhandled Parameter: {type} {name}");
                 break;
         }
-        return parameterName;
+
+        switch (typeC)
+        {
+            case "Camera*":
+                call = Call(CodegenSettings.ArrayToPtrFunction, localVariable);
+                Line($"var {parameterName + localVariableSuffix} = {call};");
+                localVariable = "&" + parameterName;
+                localVariable += localVariableSuffix;
+                break;
+
+            default:
+                break;
+        }
+
+        return localVariable;
     }
 
-    /*TODO
-            fixed (byte* variable = fileData)
-            {
-                return Raylib.LoadWaveFromMemory(fileType_.AsPtr(), variable, dataSize);
-            }
-    */
-    static string HandleReturn(RaylibFunction func, string paramaters, string returnStatement)
+    static string HandleReturn(RaylibFunction func, string paramaters)
     {
         string nativeCall = $"Raylib.{func.Name}({paramaters})";
 
-        if (func.ReturnTypeCs == "string" && func.ReturnTypeC == "const char *")
+        string returnStatement = "";
+
+        if (func.Return.TypeCs == "string" && func.Return.TypeC.EndsWith("char *"))
         {
             returnStatement += Call(CodegenSettings.Utf8ToStringFunction, nativeCall);
         }
-        else if (func.ReturnTypeCs.EndsWith("[]") && func.ReturnTypeC.EndsWith("*"))
+        else if (func.Return.TypeCs.EndsWith("[]") && func.Return.TypeC.EndsWith("*"))
         {
             returnStatement += Call(CodegenSettings.PrtToArrayFunction, nativeCall);
         }
@@ -253,6 +271,6 @@ public class ClassGenerator
 
     public void Output()
     {
-        File.WriteAllText(CodegenSettings.OutputFolder + module + ".cs", fileContents.ToString());
+        File.WriteAllText(CodegenSettings.OutputFolder + "RaylibSafe.cs", fileContents.ToString());
     }
 }

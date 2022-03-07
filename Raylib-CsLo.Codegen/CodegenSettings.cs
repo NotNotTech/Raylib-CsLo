@@ -11,7 +11,7 @@ public static class CodegenSettings
     public const string ClassName = "RaylibS";
     public const string NamespaceName = "Raylib_CsLo";
 
-    public static string OutputFolder { get; } = Path.GetFullPath("../Raylib-CsLo/autogen/wrappers/");
+    public static string OutputFolder { get; } = Path.GetFullPath("../Raylib-CsLo/codegen/");
     public static string ApiJsonFile { get; } = Path.GetFullPath("../sub-modules/raylib/parser/raylib_api.json");
 
     public const string Utf8ToStringFunction = "Helpers.Utf8ToString";
@@ -38,9 +38,20 @@ public static class CodegenSettings
     {
         "TraceLog",
         "SetTraceLogCallback",
+
         "SetLoadFileDataCallback",
         "SetSaveFileDataCallback",
         "SetLoadFileTextCallback",
         "SetSaveFileTextCallback",
+
+        "GetDirectoryFiles",
+        "GetDroppedFiles",
+
+        "LoadFileData",
+        "LoadModelAnimations",
+
+        "TextFormat",
+        "TextJoin",
+        "TextSplit",
     };
 }
