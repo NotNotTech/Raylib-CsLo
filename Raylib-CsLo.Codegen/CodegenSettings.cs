@@ -4,14 +4,16 @@
 // The code and 100+ examples are here! https://github.com/NotNotTech/Raylib-CsLo
 
 namespace Raylib_CsLo.Codegen;
+
+using System;
 using System.IO;
 
 public static class CodegenSettings
 {
     public const string NamespaceName = "Raylib_CsLo";
 
-    public static string OutputFolder { get; } = Path.GetFullPath("../Raylib-CsLo/codegen/");
-    public static string ApiJsonFile { get; } = Path.GetFullPath("../sub-modules/raylib/parser/raylib_api.json");
+    public static string OutputFolder { get; } = Path.Join(Environment.CurrentDirectory, "/Raylib-CsLo/codegen/");
+    public static string ApiJsonFile { get; } = Path.Join(Environment.CurrentDirectory, "/sub-modules/raylib/parser/raylib_api.json");
 
     public const string Utf8ToStringFunction = "Helpers.Utf8ToString";
     public const string PrtToArrayFunction = "Helpers.PrtToArray";

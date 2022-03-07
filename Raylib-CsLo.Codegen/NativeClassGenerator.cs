@@ -6,13 +6,12 @@
 namespace Raylib_CsLo.Codegen;
 using System.Collections.Generic;
 using System.IO;
-using System.Text;
 
-public class NativeClassGenerator
+public class NativeClassGenerator : ClassGenerator
 {
-    int indent;
+    bool debug = true;
+
     List<RaylibFunction> functions;
-    StringBuilder fileContents = new();
 
     const string ClassName = "RaylibN";
 
@@ -46,16 +45,39 @@ public class NativeClassGenerator
         Line($"#pragma warning restore");
     }
 
-    int test;
     void GenFunction(RaylibFunction func)
     {
-        Line("// " + test + " " + func.Name);
         Line("[DllImport(\"raylib\", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]");
-        Line($"public static extern void {func.Name}();");
-        test++;
+
+        string parameters = GenParameterDefinitions(func);
+        Line($"public static extern {func.Return.TypeCs} {func.Name}({parameters});");
+        Blank();
     }
 
-    void UsingsList()
+    static string GenParameterDefinitions(RaylibFunction func)
+    {
+        string parameters = "";
+
+        int index = 0;
+        if (func.Parameters != null)
+        {
+            foreach (RaylibParameter parameter in func.Parameters)
+            {
+                parameters += $"{parameter.TypeCs} {parameter.Name}";
+
+                if (index < func.Parameters.Count - 1)
+                {
+                    parameters += ", ";
+                }
+
+                index++;
+            }
+        }
+
+        return parameters;
+    }
+
+    public void UsingsList()
     {
         Blank();
         foreach (string import in Usings)
@@ -65,30 +87,12 @@ public class NativeClassGenerator
         Blank();
     }
 
-    void StartBlock()
+    public void Debug(string v)
     {
-        Line("{");
-        indent++;
-    }
-
-    void EndBlock()
-    {
-        indent--;
-        Line("}");
-    }
-
-    void Blank()
-    {
-        fileContents.AppendLine();
-    }
-
-    void Line(string v)
-    {
-        for (int i = 0; i < indent; i++)
+        if (debug)
         {
-            fileContents.Append("    ");
+            Line($"/*|  {v}  |*/");
         }
-        fileContents.AppendLine(v);
     }
 
     public void Output()

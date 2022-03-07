@@ -7,15 +7,12 @@ namespace Raylib_CsLo.Codegen;
 
 using System.Collections.Generic;
 using System.IO;
-using System.Text;
 
-public class SafeClassGenerator
+public class SafeClassGenerator : ClassGenerator
 {
     bool debug;
 
-    int indent;
     List<RaylibFunction> functions;
-    StringBuilder fileContents = new();
 
     const string ClassName = "RaylibS";
 
@@ -245,37 +242,6 @@ public class SafeClassGenerator
             Line("using " + import + ';');
         }
         Blank();
-    }
-
-    void StartBlock()
-    {
-        Line("{");
-        indent++;
-    }
-
-    void EndBlock()
-    {
-        indent--;
-        Line("}");
-    }
-
-    static string Call(string functionName, string contents)
-    {
-        return $"{functionName}({contents})";
-    }
-
-    void Line(string v)
-    {
-        for (int i = 0; i < indent; i++)
-        {
-            fileContents.Append("    ");
-        }
-        fileContents.AppendLine(v);
-    }
-
-    void Blank()
-    {
-        fileContents.AppendLine();
     }
 
     void Debug(string v)
