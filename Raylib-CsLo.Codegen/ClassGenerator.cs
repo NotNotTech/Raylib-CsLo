@@ -266,7 +266,9 @@ public class ClassGenerator
 
     void Debug(string v)
     {
-        Line($"/*|  {v}  |*/");
+        _ = v;
+        _ = indent;
+        // Line($"/*|  {v}  |*/");
     }
 
     public void Output()
