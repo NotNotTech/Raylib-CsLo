@@ -13,11 +13,12 @@ public class NativeClassGenerator : ClassGenerator
 
     List<RaylibFunction> functions;
 
-    const string ClassName = "RaylibN";
+    const string ClassName = "Raylib";
 
     public static readonly string[] Usings =
     {
         "System.Runtime.InteropServices",
+        "System.Numerics",
     };
 
     public NativeClassGenerator(List<RaylibFunction> functions)
@@ -50,8 +51,19 @@ public class NativeClassGenerator : ClassGenerator
         Line("[DllImport(\"raylib\", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]");
 
         string parameters = GenParameterDefinitions(func);
-        Line($"public static extern {func.Return.TypeCs} {func.Name}({parameters});");
+        string returnAtrib = GenReturnAtribute(func);
+        Line($"{returnAtrib}public static extern {func.Return.TypeCs} {func.Name}({parameters});");
         Blank();
+    }
+
+    string GenReturnAtribute(RaylibFunction func)
+    {
+        return func.Return.TypeCs switch
+        {
+            "const char *" => "[return: NativeTypeName(\"{const char *}\")] ",
+            "bool" => "[return: MarshalAs(UnmanagedType.U1)] ",
+            _ => ""
+        };
     }
 
     static string GenParameterDefinitions(RaylibFunction func)
@@ -63,7 +75,17 @@ public class NativeClassGenerator : ClassGenerator
         {
             foreach (RaylibParameter parameter in func.Parameters)
             {
-                parameters += $"{parameter.TypeCs} {parameter.Name}";
+                string resultC = parameter.TypeC switch
+                {
+                    "TraceLogCallback" => "[NativeTypeName(\"TraceLogCallback\")] delegate* unmanaged[Cdecl]<int, sbyte*, sbyte*, void>",
+                    "LoadFileDataCallback" => "[NativeTypeName(\"TraceLogCallback\")] delegate* unmanaged[Cdecl]<sbyte*, uint*, byte*>",
+                    "SaveFileDataCallback" => "[NativeTypeName(\"TraceLogCallback\")] delegate* unmanaged[Cdecl]<sbyte*, void*, uint, bool>",
+                    "LoadFileTextCallback" => "[NativeTypeName(\"TraceLogCallback\")] delegate* unmanaged[Cdecl]<sbyte*, sbyte*>",
+                    "SaveFileTextCallback" => "[NativeTypeName(\"TraceLogCallback\")] delegate* unmanaged[Cdecl]<sbyte*, sbyte*>",
+                    _ => parameter.TypeCs,
+                };
+
+                parameters += $"{resultC} {parameter.Name}";
 
                 if (index < func.Parameters.Count - 1)
                 {
