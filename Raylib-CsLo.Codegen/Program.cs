@@ -5,106 +5,148 @@
 
 namespace Raylib_CsLo.Codegen;
 
+using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Text.Json;
 
 public class Program
 {
-    public static string OutputFolder { get; } = Path.Join(Path.GetFullPath("./"), "Raylib-CsLo/autogen/wrappers/");
-    public static string ApiJsonFile { get; } = Path.Join(Path.GetFullPath("./"), "sub-modules\\raylib\\parser\\raylib_api.json");
-
-    static string[] lastFunction = { "SetCameraMoveControls", "GetCollisionRec", "GetPixelDataSize", "TextToInteger", "GetRayCollisionQuad" };
-
-
-    static readonly Dictionary<string, string> CSharpSafeEquivelent = new()
-    {
-        { "char *", "string" },
-        { "unsigned int", "uint" },
-        { "void *", "IntPtr" },
-
-        // Alias TODO: Remove later
-        { "RenderTexture2D", "RenderTexture" },
-        { "Texture2D", "Texture" },
-        { "TextureCubemap", "Texture" },
-        { "Matrix", "Matrix4x4" },
-    };
+    static List<string> types = new();
 
     public static void Main()
     {
-        if (Directory.Exists(OutputFolder))
+        Console.Clear();// For watch
+        Console.WriteLine("\n-- Raylib Code Gen --\n");
+
+        if (Directory.Exists(CodegenSettings.OutputFolder))
         {
-            Directory.Delete(OutputFolder, true);
+            Directory.Delete(CodegenSettings.OutputFolder, true);
         }
-        Directory.CreateDirectory(OutputFolder);
+        Directory.CreateDirectory(CodegenSettings.OutputFolder);
 
-        Dictionary<RaylibModule, List<RaylibFunction>> modules = new();
-        modules.Add(RaylibModule.Core, new List<RaylibFunction>());
+        Dictionary<string, string> structs = new();
+        Dictionary<string, string> enums = new();
+        List<RaylibFunction> functions = new();
 
-        using (JsonDocument document = JsonDocument.Parse(File.ReadAllText(ApiJsonFile)))
+        using (JsonDocument document = JsonDocument.Parse(File.ReadAllText(CodegenSettings.ApiJsonFile)))
         {
-            RaylibModule module = RaylibModule.Core;
-            foreach (JsonElement element in document.RootElement.GetProperty("functions").EnumerateArray())
+            ParseStructs(structs, document);
+            ParseEnums(enums, document);
+            ParseFunctions(functions, document);
+        }
+
+        Console.WriteLine("\n-- C => CSharp mapping --");
+
+        // Debug only
+        foreach (string cType in types)
+        {
+            string csType = TypeConverter.CToCsTypes(cType);
+            if (cType != csType || csType.Contains('*'))
             {
-                RaylibFunction func = JsonSerializer.Deserialize<RaylibFunction>(element);
-
-                if (CSharpSafeEquivelent.TryGetValue(SantizeTypes(func.ReturnTypeC), out string returnType))
-                {
-                    func.ReturnType = returnType;
-                }
-                else
-                {
-                    func.ReturnType = func.ReturnTypeC;
-                }
-
-                if (func.ParamatersC != null)
-                {
-                    func.Paramaters = new();
-                    foreach (KeyValuePair<string, string> kvp in func.ParamatersC)
-                    {
-                        func.Paramaters.Add(kvp.Key, (string)kvp.Value.Clone());
-                    }
-
-                    foreach (KeyValuePair<string, string> parameter in func.ParamatersC)
-                    {
-                        if (CSharpSafeEquivelent.TryGetValue(SantizeTypes(parameter.Value), out string parameterType))
-                        {
-                            func.Paramaters[parameter.Key] = parameterType;
-                        }
-                        else
-                        {
-                            func.Paramaters[parameter.Key] = func.ParamatersC[parameter.Key];
-                        }
-
-                    }
-                }
-
-                modules[module].Add(func);
-
-                if (module != RaylibModule.Audio && func.Name == lastFunction[(int)module])
-                {
-                    module++;
-                    modules.Add(module, new List<RaylibFunction>());
-                }
+                Console.WriteLine("{0,16} -> {1,-10}", cType, csType);
             }
         }
 
+        SafeClassGenerator safe = new(functions);
+        safe.Generate();
+        safe.Output();
 
-        foreach (KeyValuePair<RaylibModule, List<RaylibFunction>> module in modules)
+        NativeClassGenerator native = new(functions);
+        native.Generate();
+        native.Output();
+    }
+
+    static void ParseStructs(Dictionary<string, string> structs, JsonDocument document)
+    {
+        // Console.WriteLine("Structs");
+        foreach (JsonElement element in document.RootElement.GetProperty("structs").EnumerateArray())
         {
-            ClassGenerator classGenerator = new(module.Key, module.Value);
-            classGenerator.Generate();
-            classGenerator.Output();
+            // Console.WriteLine("\t" + element.GetProperty("name"));
+            structs.Add(element.GetProperty("name").ToString(), "TODO ADD STRUCT stuff");
+        }
+    }
+
+    static void ParseEnums(Dictionary<string, string> enums, JsonDocument document)
+    {
+        // Console.WriteLine("Enums");
+        foreach (JsonElement element in document.RootElement.GetProperty("enums").EnumerateArray())
+        {
+            // Console.WriteLine("\t" + element.GetProperty("name"));
+            enums.Add(element.GetProperty("name").ToString(), "TODO ADD STRUCT stuff");
+        }
+    }
+
+    static void ParseFunctions(List<RaylibFunction> functions, JsonDocument document)
+    {
+        foreach (JsonElement element in document.RootElement.GetProperty("functions").EnumerateArray())
+        {
+            RaylibFunction func = new();
+            func.Name = element.GetProperty("name").ToString();
+            func.Description = element.GetProperty("description").ToString();
+            func.Return = new();
+            func.Return.TypeC = element.GetProperty("returnType").ToString().Replace(" *", "*");
+
+            List<RaylibParam> parametersC = null;
+
+            if (element.TryGetProperty("params", out JsonElement val))
+            {
+                parametersC = JsonSerializer.Deserialize<List<RaylibParam>>(val);
+            }
+
+            // Skip auto gening these functions be sure to add them manually
+            if (CodegenSettings.FunctionsToHandleManually.Contains(func.Name))
+            {
+                func.IsManual = true;
+            }
+
+            if (!types.Contains(func.Return.TypeC))
+            {
+                types.Add(func.Return.TypeC);
+            }
+
+            func.Return.TypeCs = TypeConverter.CToCsTypes(func.Return.TypeC);
+
+            bool returnSame = func.Return.TypeCs == TypeConverter.CToCsTypes(func.Return.TypeC);
+            bool paramsSame = true;
+
+            if (parametersC != null)
+            {
+                func.Parameters = new();
+
+                foreach (RaylibParam param in parametersC)
+                {
+                    string typeC = param.Type.Replace(" *", "*");
+                    if (!types.Contains(typeC))
+                    {
+                        types.Add(typeC);
+                    }
+
+                    string typeCs = TypeConverter.CToCsTypes(typeC);
+
+                    if (TypeConverter.CToCsTypes(typeC) != typeCs)
+                    {
+                        paramsSame = false;
+                    }
+                    func.Parameters.Add(new RaylibParameter(param.Name, typeCs, typeC));
+                }
+            }
+
+            if (returnSame && paramsSame)
+            {
+                func.IsNative = returnSame && paramsSame;
+            }
+
+            functions.Add(func);
         }
 
-        while (true)
-        { }
+        Console.Write("Below are ignored functions to be ");
+        Console.WriteLine("implemented manually in Raylib-CsLo/wrappers/");
+        for (int i = 0; i < CodegenSettings.FunctionsToHandleManually.Length; i++)
+        {
+            string line = CodegenSettings.FunctionsToHandleManually[i];
+            Console.WriteLine(i + 1 + ".\t" + line + "()");
+        }
     }
-
-    static string SantizeTypes(string type)
-    {
-        return type
-        .Replace("const ", "");
-    }
-
 }
