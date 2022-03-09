@@ -93,7 +93,7 @@ public class NativeClassGenerator : ClassGenerator
                 }
 
                 Debug(parameter.TypeC + " => " + parameter.TypeCs);
-                string resultC = parameter.TypeCs switch
+                string resultC = parameter.TypeC switch
                 {
                     // "bool" => "[MarshalAs(UnmanagedType.U1)] bool",
 
@@ -102,24 +102,24 @@ public class NativeClassGenerator : ClassGenerator
                     "SaveFileDataCallback" => "delegate* unmanaged[Cdecl]<sbyte*, void*, uint, bool>",
                     "LoadFileTextCallback" => "delegate* unmanaged[Cdecl]<sbyte*, sbyte*>",
                     "SaveFileTextCallback" => "delegate* unmanaged[Cdecl]<sbyte*, sbyte*>",
-                    // "const char*" => "sbyte*",
-                    // "char*" => "sbyte*",
-                    // "char" => "sbyte",
-                    // "char**" => "sbyte**",
-                    // "const char**" => "sbyte**",
-                    // "const unsigned char*" => "byte*",
-                    // "unsigned int" => "uint",
-                    // "unsigned char*" => "byte*",
-                    // "unsigned int*" => "uint*",
-                    // "const void*" => "void*",
-                    // "RenderTexture2D" => "RenderTexture",
-                    // "Texture2D" => "Texture",
-                    // "Texture2D*" => "Texture*",
-                    // "const GlyphInfo*" => "GlyphInfo*",
-                    // "Camera" => "Camera3D",
-                    // "Camera*" => "Camera3D*",
-                    // "Matrix" => "Matrix4x4",
-                    // "Matrix*" => "Matrix4x4*",
+                    "const char*" => "sbyte*",
+                    "char*" => "sbyte*",
+                    "char" => "sbyte",
+                    "char**" => "sbyte**",
+                    "const char**" => "sbyte**",
+                    "const unsigned char*" => "byte*",
+                    "unsigned int" => "uint",
+                    "unsigned char*" => "byte*",
+                    "unsigned int*" => "uint*",
+                    "const void*" => "void*",
+                    "RenderTexture2D" => "RenderTexture",
+                    "Texture2D" => "Texture",
+                    "Texture2D*" => "Texture*",
+                    "const GlyphInfo*" => "GlyphInfo*",
+                    "Camera" => "Camera3D",
+                    "Camera*" => "Camera3D*",
+                    "Matrix" => "Matrix4x4",
+                    "Matrix*" => "Matrix4x4*",
                     _ => parameter.TypeCs,
                 };
 

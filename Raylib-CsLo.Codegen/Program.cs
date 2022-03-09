@@ -155,6 +155,11 @@ public class Program
 
         type = type.Replace("unsigned ", "u");
 
+        if (type.EndsWith("*"))
+        {
+            type = "ref " + type[0..(type.Length - 1)];
+        }
+
         return type;
     }
 }

@@ -21,7 +21,7 @@ global using Raylib_CsLo.InternalHelpers;
 global using static Raylib_CsLo.BlendMode;
 global using static Raylib_CsLo.CameraMode;
 global using static Raylib_CsLo.CameraProjection;
-global using static Raylib_CsLo.ConfigFlags;
+global using static Raylib_CsLo.autogen.bindings.ConfigFlags;
 global using static Raylib_CsLo.CubemapLayout;
 global using static Raylib_CsLo.Easings;
 global using static Raylib_CsLo.Examples.RLights;

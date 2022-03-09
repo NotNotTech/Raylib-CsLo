@@ -143,36 +143,34 @@ public class SafeClassGenerator : ClassGenerator
     string HandleParameter(RaylibParameter parameter)
     {
         string localVariable = parameter.Name;
-        const string localVariableSuffix = "Local";
 
         Debug($"{parameter.TypeC} => {parameter.TypeCs}");
 
-        string call;
         switch (parameter.TypeCs)
         {
-            // case "string":
-            //     Line($"using var {localVariable + localVariableSuffix} = {localVariable}.MarshalUtf8();");
-            //     localVariable += localVariableSuffix;
-            //     localVariable += ".AsPtr()";
-            //     break;
+            //     // case "string":
+            //     //     Line($"using var {localVariable + localVariableSuffix} = {localVariable}.MarshalUtf8();");
+            //     //     localVariable += localVariableSuffix;
+            //     //     localVariable += ".AsPtr()";
+            //     //     break;
 
-            case "IntPtr":
-                Line($"var {localVariable + localVariableSuffix} = (void*){localVariable};");
-                localVariable += localVariableSuffix;
-                break;
+            //     // case "IntPtr":
+            //     //     Line($"var {localVariable + localVariableSuffix} = (void*){localVariable};");
+            //     //     localVariable += localVariableSuffix;
+            //     //     break;
 
-            case "byte[]":
-                call = Call(CodegenSettings.ArrayToPtrFunction, localVariable);
-                Line($"var {localVariable + localVariableSuffix} = {call};");
-                localVariable += localVariableSuffix;
-                break;
+            //     case "byte[]":
+            //         call = Call(CodegenSettings.ArrayToPtrFunction, localVariable);
+            //         Line($"var {localVariable + localVariableSuffix} = {call};");
+            //         localVariable += localVariableSuffix;
+            //         break;
 
-            case "Rectangle[]":
-                call = Call(CodegenSettings.ArrayToPtrFunction, localVariable);
-                Line($"var {parameter.Name + localVariableSuffix} = {call};");
-                localVariable = "&" + parameter.Name;
-                localVariable += localVariableSuffix;
-                break;
+            //     case "Rectangle[]":
+            //         call = Call(CodegenSettings.ArrayToPtrFunction, localVariable);
+            //         Line($"var {parameter.Name + localVariableSuffix} = {call};");
+            //         localVariable = "&" + parameter.Name;
+            //         localVariable += localVariableSuffix;
+            //         break;
 
             default:
                 break;
@@ -180,12 +178,12 @@ public class SafeClassGenerator : ClassGenerator
 
         switch (parameter.TypeC)
         {
-            case "Camera*":
-                call = Call(CodegenSettings.ArrayToPtrFunction, localVariable);
-                Line($"var {parameter.Name + localVariableSuffix} = {call};");
-                localVariable = "&" + parameter.Name;
-                localVariable += localVariableSuffix;
-                break;
+            // case "Camera*":
+            //     call = Call(CodegenSettings.ArrayToPtrFunction, localVariable);
+            //     Line($"var {parameter.Name + localVariableSuffix} = {call};");
+            //     localVariable = "&" + parameter.Name;
+            //     localVariable += localVariableSuffix;
+            //     break;
 
             default:
                 break;
@@ -200,19 +198,20 @@ public class SafeClassGenerator : ClassGenerator
 
         string returnStatement = "";
 
-        if (func.Return.TypeCs == "string" && func.Return.TypeC.EndsWith("char*"))
-        {
-            returnStatement += Call(CodegenSettings.Utf8ToStringFunction, nativeCall);
-        }
-        else if (func.Return.TypeCs.EndsWith("[]") && func.Return.TypeC.EndsWith("*"))
-        {
-            returnStatement += Call(CodegenSettings.PrtToArrayFunction, nativeCall);
-        }
-        else
-        {
-            returnStatement += CastReturn(func);
-            returnStatement += nativeCall;
-        }
+        // if (func.Return.TypeCs == "string" && func.Return.TypeC.EndsWith("char*"))
+        // {
+        //     returnStatement += Call(CodegenSettings.Utf8ToStringFunction, nativeCall);
+        // }
+        // else
+        // if (func.Return.TypeCs.EndsWith("[]") && func.Return.TypeC.EndsWith("*"))
+        // {
+        //     returnStatement += Call(CodegenSettings.PrtToArrayFunction, nativeCall);
+        // }
+        // else
+        // {
+        returnStatement += CastReturn(func);
+        returnStatement += nativeCall;
+        // }
 
         returnStatement += ";";
 

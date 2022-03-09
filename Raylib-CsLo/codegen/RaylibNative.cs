@@ -7,7 +7,7 @@ using System.Numerics;
 public unsafe partial class Raylib
 {
     [DllImport("raylib", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
-    public static extern void InitWindow(int width, int height, string title);
+    public static extern void InitWindow(int width, int height, sbyte* title);
 
     [DllImport("raylib", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
     public static extern bool WindowShouldClose();
@@ -61,7 +61,7 @@ public unsafe partial class Raylib
     public static extern void SetWindowIcon(Image image);
 
     [DllImport("raylib", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
-    public static extern void SetWindowTitle(string title);
+    public static extern void SetWindowTitle(sbyte* title);
 
     [DllImport("raylib", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
     public static extern void SetWindowPosition(int x, int y);
@@ -127,7 +127,7 @@ public unsafe partial class Raylib
     public static extern string GetMonitorName(int monitor);
 
     [DllImport("raylib", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
-    public static extern void SetClipboardText(string text);
+    public static extern void SetClipboardText(sbyte* text);
 
     [DllImport("raylib", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
     public static extern string GetClipboardText();
@@ -181,7 +181,7 @@ public unsafe partial class Raylib
     public static extern void EndMode3D();
 
     [DllImport("raylib", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
-    public static extern void BeginTextureMode(RenderTexture2D target);
+    public static extern void BeginTextureMode(RenderTexture target);
 
     [DllImport("raylib", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
     public static extern void EndTextureMode();
@@ -217,46 +217,46 @@ public unsafe partial class Raylib
     public static extern void UnloadVrStereoConfig(VrStereoConfig config);
 
     [DllImport("raylib", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
-    public static extern Shader LoadShader(string vsFileName, string fsFileName);
+    public static extern Shader LoadShader(sbyte* vsFileName, sbyte* fsFileName);
 
     [DllImport("raylib", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
-    public static extern Shader LoadShaderFromMemory(string vsCode, string fsCode);
+    public static extern Shader LoadShaderFromMemory(sbyte* vsCode, sbyte* fsCode);
 
     [DllImport("raylib", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
-    public static extern int GetShaderLocation(Shader shader, string uniformName);
+    public static extern int GetShaderLocation(Shader shader, sbyte* uniformName);
 
     [DllImport("raylib", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
-    public static extern int GetShaderLocationAttrib(Shader shader, string attribName);
+    public static extern int GetShaderLocationAttrib(Shader shader, sbyte* attribName);
 
     [DllImport("raylib", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
-    public static extern void SetShaderValue(Shader shader, int locIndex, IntPtr value, int uniformType);
+    public static extern void SetShaderValue(Shader shader, int locIndex, void* value, int uniformType);
 
     [DllImport("raylib", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
-    public static extern void SetShaderValueV(Shader shader, int locIndex, IntPtr value, int uniformType, int count);
+    public static extern void SetShaderValueV(Shader shader, int locIndex, void* value, int uniformType, int count);
 
     [DllImport("raylib", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
-    public static extern void SetShaderValueMatrix(Shader shader, int locIndex, Matrix mat);
+    public static extern void SetShaderValueMatrix(Shader shader, int locIndex, Matrix4x4 mat);
 
     [DllImport("raylib", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
-    public static extern void SetShaderValueTexture(Shader shader, int locIndex, Texture2D texture);
+    public static extern void SetShaderValueTexture(Shader shader, int locIndex, Texture texture);
 
     [DllImport("raylib", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
     public static extern void UnloadShader(Shader shader);
 
     [DllImport("raylib", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
-    public static extern Ray GetMouseRay(Vector2 mousePosition, Camera camera);
+    public static extern Ray GetMouseRay(Vector2 mousePosition, Camera3D camera);
 
     [DllImport("raylib", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
-    public static extern Matrix GetCameraMatrix(Camera camera);
+    public static extern Matrix GetCameraMatrix(Camera3D camera);
 
     [DllImport("raylib", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
     public static extern Matrix GetCameraMatrix2D(Camera2D camera);
 
     [DllImport("raylib", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
-    public static extern Vector2 GetWorldToScreen(Vector3 position, Camera camera);
+    public static extern Vector2 GetWorldToScreen(Vector3 position, Camera3D camera);
 
     [DllImport("raylib", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
-    public static extern Vector2 GetWorldToScreenEx(Vector3 position, Camera camera, int width, int height);
+    public static extern Vector2 GetWorldToScreenEx(Vector3 position, Camera3D camera, int width, int height);
 
     [DllImport("raylib", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
     public static extern Vector2 GetWorldToScreen2D(Vector2 position, Camera2D camera);
@@ -283,13 +283,13 @@ public unsafe partial class Raylib
     public static extern void SetRandomSeed(uint seed);
 
     [DllImport("raylib", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
-    public static extern void TakeScreenshot(string fileName);
+    public static extern void TakeScreenshot(sbyte* fileName);
 
     [DllImport("raylib", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
     public static extern void SetConfigFlags(uint flags);
 
     [DllImport("raylib", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
-    public static extern void TraceLog(int logLevel, string text, params object[] args);
+    public static extern void TraceLog(int logLevel, sbyte* text, params object[] args);
 
     [DllImport("raylib", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
     public static extern void SetTraceLogLevel(int logLevel);
@@ -319,49 +319,49 @@ public unsafe partial class Raylib
     public static extern void SetSaveFileTextCallback(delegate* unmanaged[Cdecl]<sbyte*, sbyte*> callback);
 
     [DllImport("raylib", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
-    public static extern byte[] LoadFileData(string fileName, uint* bytesRead);
+    public static extern byte[] LoadFileData(sbyte* fileName, uint* bytesRead);
 
     [DllImport("raylib", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
-    public static extern void UnloadFileData(byte[] data);
+    public static extern void UnloadFileData(byte* data);
 
     [DllImport("raylib", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
-    public static extern bool SaveFileData(string fileName, IntPtr data, uint bytesToWrite);
+    public static extern bool SaveFileData(sbyte* fileName, IntPtr data, uint bytesToWrite);
 
     [DllImport("raylib", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
-    public static extern string LoadFileText(string fileName);
+    public static extern string LoadFileText(sbyte* fileName);
 
     [DllImport("raylib", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
-    public static extern void UnloadFileText(string text);
+    public static extern void UnloadFileText(sbyte* text);
 
     [DllImport("raylib", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
-    public static extern bool SaveFileText(string fileName, string text);
+    public static extern bool SaveFileText(sbyte* fileName, sbyte* text);
 
     [DllImport("raylib", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
-    public static extern bool FileExists(string fileName);
+    public static extern bool FileExists(sbyte* fileName);
 
     [DllImport("raylib", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
-    public static extern bool DirectoryExists(string dirPath);
+    public static extern bool DirectoryExists(sbyte* dirPath);
 
     [DllImport("raylib", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
-    public static extern bool IsFileExtension(string fileName, string ext);
+    public static extern bool IsFileExtension(sbyte* fileName, sbyte* ext);
 
     [DllImport("raylib", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
-    public static extern int GetFileLength(string fileName);
+    public static extern int GetFileLength(sbyte* fileName);
 
     [DllImport("raylib", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
-    public static extern string GetFileExtension(string fileName);
+    public static extern string GetFileExtension(sbyte* fileName);
 
     [DllImport("raylib", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
-    public static extern string GetFileName(string filePath);
+    public static extern string GetFileName(sbyte* filePath);
 
     [DllImport("raylib", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
-    public static extern string GetFileNameWithoutExt(string filePath);
+    public static extern string GetFileNameWithoutExt(sbyte* filePath);
 
     [DllImport("raylib", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
-    public static extern string GetDirectoryPath(string filePath);
+    public static extern string GetDirectoryPath(sbyte* filePath);
 
     [DllImport("raylib", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
-    public static extern string GetPrevDirectoryPath(string dirPath);
+    public static extern string GetPrevDirectoryPath(sbyte* dirPath);
 
     [DllImport("raylib", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
     public static extern string GetWorkingDirectory();
@@ -370,37 +370,37 @@ public unsafe partial class Raylib
     public static extern string GetApplicationDirectory();
 
     [DllImport("raylib", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
-    public static extern string[] GetDirectoryFiles(string dirPath, int* count);
+    public static extern string[] GetDirectoryFiles(sbyte* dirPath, ref int count);
 
     [DllImport("raylib", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
     public static extern void ClearDirectoryFiles();
 
     [DllImport("raylib", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
-    public static extern bool ChangeDirectory(string dir);
+    public static extern bool ChangeDirectory(sbyte* dir);
 
     [DllImport("raylib", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
     public static extern bool IsFileDropped();
 
     [DllImport("raylib", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
-    public static extern string[] GetDroppedFiles(int* count);
+    public static extern string[] GetDroppedFiles(ref int count);
 
     [DllImport("raylib", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
     public static extern void ClearDroppedFiles();
 
     [DllImport("raylib", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
-    public static extern long GetFileModTime(string fileName);
+    public static extern long GetFileModTime(sbyte* fileName);
 
     [DllImport("raylib", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
-    public static extern byte[] CompressData(byte[] data, int dataLength, int* compDataLength);
+    public static extern byte[] CompressData(byte* data, int dataLength, ref int compDataLength);
 
     [DllImport("raylib", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
-    public static extern byte[] DecompressData(byte[] compData, int compDataLength, int* dataLength);
+    public static extern byte[] DecompressData(byte* compData, int compDataLength, ref int dataLength);
 
     [DllImport("raylib", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
-    public static extern string EncodeDataBase64(byte[] data, int dataLength, int* outputLength);
+    public static extern string EncodeDataBase64(byte* data, int dataLength, ref int outputLength);
 
     [DllImport("raylib", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
-    public static extern byte[] DecodeDataBase64(byte[] data, int* outputLength);
+    public static extern byte[] DecodeDataBase64(byte* data, ref int outputLength);
 
     [DllImport("raylib", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
     public static extern bool SaveStorageValue(uint position, int value);
@@ -409,7 +409,7 @@ public unsafe partial class Raylib
     public static extern int LoadStorageValue(uint position);
 
     [DllImport("raylib", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
-    public static extern void OpenURL(string url);
+    public static extern void OpenURL(sbyte* url);
 
     [DllImport("raylib", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
     public static extern bool IsKeyPressed(int key);
@@ -460,7 +460,7 @@ public unsafe partial class Raylib
     public static extern float GetGamepadAxisMovement(int gamepad, int axis);
 
     [DllImport("raylib", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
-    public static extern int SetGamepadMappings(string mappings);
+    public static extern int SetGamepadMappings(sbyte* mappings);
 
     [DllImport("raylib", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
     public static extern bool IsMouseButtonPressed(int button);
@@ -541,10 +541,10 @@ public unsafe partial class Raylib
     public static extern float GetGesturePinchAngle();
 
     [DllImport("raylib", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
-    public static extern void SetCameraMode(Camera camera, int mode);
+    public static extern void SetCameraMode(Camera3D camera, int mode);
 
     [DllImport("raylib", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
-    public static extern void UpdateCamera(Camera* camera);
+    public static extern void UpdateCamera(Camera3D* camera);
 
     [DllImport("raylib", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
     public static extern void SetCameraPanControl(int keyPan);
@@ -559,7 +559,7 @@ public unsafe partial class Raylib
     public static extern void SetCameraMoveControls(int keyFront, int keyBack, int keyRight, int keyLeft, int keyUp, int keyDown);
 
     [DllImport("raylib", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
-    public static extern void SetShapesTexture(Texture2D texture, Rectangle source);
+    public static extern void SetShapesTexture(Texture texture, Rectangle source);
 
     [DllImport("raylib", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
     public static extern void DrawPixel(int posX, int posY, Color color);
@@ -586,7 +586,7 @@ public unsafe partial class Raylib
     public static extern void DrawLineBezierCubic(Vector2 startPos, Vector2 endPos, Vector2 startControlPos, Vector2 endControlPos, float thick, Color color);
 
     [DllImport("raylib", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
-    public static extern void DrawLineStrip(Vector2* points, int pointCount, Color color);
+    public static extern void DrawLineStrip(ref Vector2 points, int pointCount, Color color);
 
     [DllImport("raylib", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
     public static extern void DrawCircle(int centerX, int centerY, float radius, Color color);
@@ -658,10 +658,10 @@ public unsafe partial class Raylib
     public static extern void DrawTriangleLines(Vector2 v1, Vector2 v2, Vector2 v3, Color color);
 
     [DllImport("raylib", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
-    public static extern void DrawTriangleFan(Vector2* points, int pointCount, Color color);
+    public static extern void DrawTriangleFan(ref Vector2 points, int pointCount, Color color);
 
     [DllImport("raylib", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
-    public static extern void DrawTriangleStrip(Vector2* points, int pointCount, Color color);
+    public static extern void DrawTriangleStrip(ref Vector2 points, int pointCount, Color color);
 
     [DllImport("raylib", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
     public static extern void DrawPoly(Vector2 center, int sides, float radius, float rotation, Color color);
@@ -691,7 +691,7 @@ public unsafe partial class Raylib
     public static extern bool CheckCollisionPointTriangle(Vector2 point, Vector2 p1, Vector2 p2, Vector2 p3);
 
     [DllImport("raylib", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
-    public static extern bool CheckCollisionLines(Vector2 startPos1, Vector2 endPos1, Vector2 startPos2, Vector2 endPos2, Vector2* collisionPoint);
+    public static extern bool CheckCollisionLines(Vector2 startPos1, Vector2 endPos1, Vector2 startPos2, Vector2 endPos2, ref Vector2 collisionPoint);
 
     [DllImport("raylib", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
     public static extern bool CheckCollisionPointLine(Vector2 point, Vector2 p1, Vector2 p2, int threshold);
@@ -700,19 +700,19 @@ public unsafe partial class Raylib
     public static extern Rectangle GetCollisionRec(Rectangle rec1, Rectangle rec2);
 
     [DllImport("raylib", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
-    public static extern Image LoadImage(string fileName);
+    public static extern Image LoadImage(sbyte* fileName);
 
     [DllImport("raylib", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
-    public static extern Image LoadImageRaw(string fileName, int width, int height, int format, int headerSize);
+    public static extern Image LoadImageRaw(sbyte* fileName, int width, int height, int format, int headerSize);
 
     [DllImport("raylib", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
-    public static extern Image LoadImageAnim(string fileName, int* frames);
+    public static extern Image LoadImageAnim(sbyte* fileName, ref int frames);
 
     [DllImport("raylib", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
-    public static extern Image LoadImageFromMemory(string fileType, byte[] fileData, int dataSize);
+    public static extern Image LoadImageFromMemory(sbyte* fileType, byte* fileData, int dataSize);
 
     [DllImport("raylib", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
-    public static extern Image LoadImageFromTexture(Texture2D texture);
+    public static extern Image LoadImageFromTexture(Texture texture);
 
     [DllImport("raylib", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
     public static extern Image LoadImageFromScreen();
@@ -721,10 +721,10 @@ public unsafe partial class Raylib
     public static extern void UnloadImage(Image image);
 
     [DllImport("raylib", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
-    public static extern bool ExportImage(Image image, string fileName);
+    public static extern bool ExportImage(Image image, sbyte* fileName);
 
     [DllImport("raylib", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
-    public static extern bool ExportImageAsCode(Image image, string fileName);
+    public static extern bool ExportImageAsCode(Image image, sbyte* fileName);
 
     [DllImport("raylib", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
     public static extern Image GenImageColor(int width, int height, Color color);
@@ -754,88 +754,88 @@ public unsafe partial class Raylib
     public static extern Image ImageFromImage(Image image, Rectangle rec);
 
     [DllImport("raylib", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
-    public static extern Image ImageText(string text, int fontSize, Color color);
+    public static extern Image ImageText(sbyte* text, int fontSize, Color color);
 
     [DllImport("raylib", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
-    public static extern Image ImageTextEx(Font font, string text, float fontSize, float spacing, Color tint);
+    public static extern Image ImageTextEx(Font font, sbyte* text, float fontSize, float spacing, Color tint);
 
     [DllImport("raylib", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
-    public static extern void ImageFormat(Image* image, int newFormat);
+    public static extern void ImageFormat(ref Image image, int newFormat);
 
     [DllImport("raylib", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
-    public static extern void ImageToPOT(Image* image, Color fill);
+    public static extern void ImageToPOT(ref Image image, Color fill);
 
     [DllImport("raylib", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
-    public static extern void ImageCrop(Image* image, Rectangle crop);
+    public static extern void ImageCrop(ref Image image, Rectangle crop);
 
     [DllImport("raylib", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
-    public static extern void ImageAlphaCrop(Image* image, float threshold);
+    public static extern void ImageAlphaCrop(ref Image image, float threshold);
 
     [DllImport("raylib", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
-    public static extern void ImageAlphaClear(Image* image, Color color, float threshold);
+    public static extern void ImageAlphaClear(ref Image image, Color color, float threshold);
 
     [DllImport("raylib", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
-    public static extern void ImageAlphaMask(Image* image, Image alphaMask);
+    public static extern void ImageAlphaMask(ref Image image, Image alphaMask);
 
     [DllImport("raylib", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
-    public static extern void ImageAlphaPremultiply(Image* image);
+    public static extern void ImageAlphaPremultiply(ref Image image);
 
     [DllImport("raylib", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
-    public static extern void ImageResize(Image* image, int newWidth, int newHeight);
+    public static extern void ImageResize(ref Image image, int newWidth, int newHeight);
 
     [DllImport("raylib", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
-    public static extern void ImageResizeNN(Image* image, int newWidth, int newHeight);
+    public static extern void ImageResizeNN(ref Image image, int newWidth, int newHeight);
 
     [DllImport("raylib", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
-    public static extern void ImageResizeCanvas(Image* image, int newWidth, int newHeight, int offsetX, int offsetY, Color fill);
+    public static extern void ImageResizeCanvas(ref Image image, int newWidth, int newHeight, int offsetX, int offsetY, Color fill);
 
     [DllImport("raylib", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
-    public static extern void ImageMipmaps(Image* image);
+    public static extern void ImageMipmaps(ref Image image);
 
     [DllImport("raylib", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
-    public static extern void ImageDither(Image* image, int rBpp, int gBpp, int bBpp, int aBpp);
+    public static extern void ImageDither(ref Image image, int rBpp, int gBpp, int bBpp, int aBpp);
 
     [DllImport("raylib", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
-    public static extern void ImageFlipVertical(Image* image);
+    public static extern void ImageFlipVertical(ref Image image);
 
     [DllImport("raylib", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
-    public static extern void ImageFlipHorizontal(Image* image);
+    public static extern void ImageFlipHorizontal(ref Image image);
 
     [DllImport("raylib", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
-    public static extern void ImageRotateCW(Image* image);
+    public static extern void ImageRotateCW(ref Image image);
 
     [DllImport("raylib", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
-    public static extern void ImageRotateCCW(Image* image);
+    public static extern void ImageRotateCCW(ref Image image);
 
     [DllImport("raylib", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
-    public static extern void ImageColorTint(Image* image, Color color);
+    public static extern void ImageColorTint(ref Image image, Color color);
 
     [DllImport("raylib", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
-    public static extern void ImageColorInvert(Image* image);
+    public static extern void ImageColorInvert(ref Image image);
 
     [DllImport("raylib", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
-    public static extern void ImageColorGrayscale(Image* image);
+    public static extern void ImageColorGrayscale(ref Image image);
 
     [DllImport("raylib", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
-    public static extern void ImageColorContrast(Image* image, float contrast);
+    public static extern void ImageColorContrast(ref Image image, float contrast);
 
     [DllImport("raylib", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
-    public static extern void ImageColorBrightness(Image* image, int brightness);
+    public static extern void ImageColorBrightness(ref Image image, int brightness);
 
     [DllImport("raylib", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
-    public static extern void ImageColorReplace(Image* image, Color color, Color replace);
+    public static extern void ImageColorReplace(ref Image image, Color color, Color replace);
 
     [DllImport("raylib", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
-    public static extern Color* LoadImageColors(Image image);
+    public static extern ref Color LoadImageColors(Image image);
 
     [DllImport("raylib", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
-    public static extern Color* LoadImagePalette(Image image, int maxPaletteSize, int* colorCount);
+    public static extern ref Color LoadImagePalette(Image image, int maxPaletteSize, ref int colorCount);
 
     [DllImport("raylib", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
-    public static extern void UnloadImageColors(Color* colors);
+    public static extern void UnloadImageColors(ref Color colors);
 
     [DllImport("raylib", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
-    public static extern void UnloadImagePalette(Color* colors);
+    public static extern void UnloadImagePalette(ref Color colors);
 
     [DllImport("raylib", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
     public static extern Rectangle GetImageAlphaBorder(Image image, float threshold);
@@ -844,49 +844,49 @@ public unsafe partial class Raylib
     public static extern Color GetImageColor(Image image, int x, int y);
 
     [DllImport("raylib", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
-    public static extern void ImageClearBackground(Image* dst, Color color);
+    public static extern void ImageClearBackground(ref Image dst, Color color);
 
     [DllImport("raylib", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
-    public static extern void ImageDrawPixel(Image* dst, int posX, int posY, Color color);
+    public static extern void ImageDrawPixel(ref Image dst, int posX, int posY, Color color);
 
     [DllImport("raylib", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
-    public static extern void ImageDrawPixelV(Image* dst, Vector2 position, Color color);
+    public static extern void ImageDrawPixelV(ref Image dst, Vector2 position, Color color);
 
     [DllImport("raylib", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
-    public static extern void ImageDrawLine(Image* dst, int startPosX, int startPosY, int endPosX, int endPosY, Color color);
+    public static extern void ImageDrawLine(ref Image dst, int startPosX, int startPosY, int endPosX, int endPosY, Color color);
 
     [DllImport("raylib", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
-    public static extern void ImageDrawLineV(Image* dst, Vector2 start, Vector2 end, Color color);
+    public static extern void ImageDrawLineV(ref Image dst, Vector2 start, Vector2 end, Color color);
 
     [DllImport("raylib", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
-    public static extern void ImageDrawCircle(Image* dst, int centerX, int centerY, int radius, Color color);
+    public static extern void ImageDrawCircle(ref Image dst, int centerX, int centerY, int radius, Color color);
 
     [DllImport("raylib", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
-    public static extern void ImageDrawCircleV(Image* dst, Vector2 center, int radius, Color color);
+    public static extern void ImageDrawCircleV(ref Image dst, Vector2 center, int radius, Color color);
 
     [DllImport("raylib", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
-    public static extern void ImageDrawRectangle(Image* dst, int posX, int posY, int width, int height, Color color);
+    public static extern void ImageDrawRectangle(ref Image dst, int posX, int posY, int width, int height, Color color);
 
     [DllImport("raylib", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
-    public static extern void ImageDrawRectangleV(Image* dst, Vector2 position, Vector2 size, Color color);
+    public static extern void ImageDrawRectangleV(ref Image dst, Vector2 position, Vector2 size, Color color);
 
     [DllImport("raylib", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
-    public static extern void ImageDrawRectangleRec(Image* dst, Rectangle rec, Color color);
+    public static extern void ImageDrawRectangleRec(ref Image dst, Rectangle rec, Color color);
 
     [DllImport("raylib", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
-    public static extern void ImageDrawRectangleLines(Image* dst, Rectangle rec, int thick, Color color);
+    public static extern void ImageDrawRectangleLines(ref Image dst, Rectangle rec, int thick, Color color);
 
     [DllImport("raylib", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
-    public static extern void ImageDraw(Image* dst, Image src, Rectangle srcRec, Rectangle dstRec, Color tint);
+    public static extern void ImageDraw(ref Image dst, Image src, Rectangle srcRec, Rectangle dstRec, Color tint);
 
     [DllImport("raylib", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
-    public static extern void ImageDrawText(Image* dst, string text, int posX, int posY, int fontSize, Color color);
+    public static extern void ImageDrawText(ref Image dst, sbyte* text, int posX, int posY, int fontSize, Color color);
 
     [DllImport("raylib", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
-    public static extern void ImageDrawTextEx(Image* dst, Font font, string text, Vector2 position, float fontSize, float spacing, Color tint);
+    public static extern void ImageDrawTextEx(ref Image dst, Font font, sbyte* text, Vector2 position, float fontSize, float spacing, Color tint);
 
     [DllImport("raylib", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
-    public static extern Texture2D LoadTexture(string fileName);
+    public static extern Texture2D LoadTexture(sbyte* fileName);
 
     [DllImport("raylib", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
     public static extern Texture2D LoadTextureFromImage(Image image);
@@ -898,52 +898,52 @@ public unsafe partial class Raylib
     public static extern RenderTexture2D LoadRenderTexture(int width, int height);
 
     [DllImport("raylib", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
-    public static extern void UnloadTexture(Texture2D texture);
+    public static extern void UnloadTexture(Texture texture);
 
     [DllImport("raylib", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
-    public static extern void UnloadRenderTexture(RenderTexture2D target);
+    public static extern void UnloadRenderTexture(RenderTexture target);
 
     [DllImport("raylib", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
-    public static extern void UpdateTexture(Texture2D texture, IntPtr pixels);
+    public static extern void UpdateTexture(Texture texture, void* pixels);
 
     [DllImport("raylib", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
-    public static extern void UpdateTextureRec(Texture2D texture, Rectangle rec, IntPtr pixels);
+    public static extern void UpdateTextureRec(Texture texture, Rectangle rec, void* pixels);
 
     [DllImport("raylib", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
-    public static extern void GenTextureMipmaps(Texture2D* texture);
+    public static extern void GenTextureMipmaps(Texture* texture);
 
     [DllImport("raylib", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
-    public static extern void SetTextureFilter(Texture2D texture, int filter);
+    public static extern void SetTextureFilter(Texture texture, int filter);
 
     [DllImport("raylib", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
-    public static extern void SetTextureWrap(Texture2D texture, int wrap);
+    public static extern void SetTextureWrap(Texture texture, int wrap);
 
     [DllImport("raylib", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
-    public static extern void DrawTexture(Texture2D texture, int posX, int posY, Color tint);
+    public static extern void DrawTexture(Texture texture, int posX, int posY, Color tint);
 
     [DllImport("raylib", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
-    public static extern void DrawTextureV(Texture2D texture, Vector2 position, Color tint);
+    public static extern void DrawTextureV(Texture texture, Vector2 position, Color tint);
 
     [DllImport("raylib", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
-    public static extern void DrawTextureEx(Texture2D texture, Vector2 position, float rotation, float scale, Color tint);
+    public static extern void DrawTextureEx(Texture texture, Vector2 position, float rotation, float scale, Color tint);
 
     [DllImport("raylib", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
-    public static extern void DrawTextureRec(Texture2D texture, Rectangle source, Vector2 position, Color tint);
+    public static extern void DrawTextureRec(Texture texture, Rectangle source, Vector2 position, Color tint);
 
     [DllImport("raylib", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
-    public static extern void DrawTextureQuad(Texture2D texture, Vector2 tiling, Vector2 offset, Rectangle quad, Color tint);
+    public static extern void DrawTextureQuad(Texture texture, Vector2 tiling, Vector2 offset, Rectangle quad, Color tint);
 
     [DllImport("raylib", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
-    public static extern void DrawTextureTiled(Texture2D texture, Rectangle source, Rectangle dest, Vector2 origin, float rotation, float scale, Color tint);
+    public static extern void DrawTextureTiled(Texture texture, Rectangle source, Rectangle dest, Vector2 origin, float rotation, float scale, Color tint);
 
     [DllImport("raylib", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
-    public static extern void DrawTexturePro(Texture2D texture, Rectangle source, Rectangle dest, Vector2 origin, float rotation, Color tint);
+    public static extern void DrawTexturePro(Texture texture, Rectangle source, Rectangle dest, Vector2 origin, float rotation, Color tint);
 
     [DllImport("raylib", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
-    public static extern void DrawTextureNPatch(Texture2D texture, NPatchInfo nPatchInfo, Rectangle dest, Vector2 origin, float rotation, Color tint);
+    public static extern void DrawTextureNPatch(Texture texture, NPatchInfo nPatchInfo, Rectangle dest, Vector2 origin, float rotation, Color tint);
 
     [DllImport("raylib", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
-    public static extern void DrawTexturePoly(Texture2D texture, Vector2 center, Vector2* points, Vector2* texcoords, int pointCount, Color tint);
+    public static extern void DrawTexturePoly(Texture texture, Vector2 center, ref Vector2 points, ref Vector2 texcoords, int pointCount, Color tint);
 
     [DllImport("raylib", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
     public static extern Color Fade(Color color, float alpha);
@@ -985,55 +985,55 @@ public unsafe partial class Raylib
     public static extern Font GetFontDefault();
 
     [DllImport("raylib", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
-    public static extern Font LoadFont(string fileName);
+    public static extern Font LoadFont(sbyte* fileName);
 
     [DllImport("raylib", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
-    public static extern Font LoadFontEx(string fileName, int fontSize, int* fontChars, int glyphCount);
+    public static extern Font LoadFontEx(sbyte* fileName, int fontSize, ref int fontChars, int glyphCount);
 
     [DllImport("raylib", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
     public static extern Font LoadFontFromImage(Image image, Color key, int firstChar);
 
     [DllImport("raylib", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
-    public static extern Font LoadFontFromMemory(string fileType, byte[] fileData, int dataSize, int fontSize, int* fontChars, int glyphCount);
+    public static extern Font LoadFontFromMemory(sbyte* fileType, byte* fileData, int dataSize, int fontSize, ref int fontChars, int glyphCount);
 
     [DllImport("raylib", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
-    public static extern GlyphInfo* LoadFontData(byte[] fileData, int dataSize, int fontSize, int* fontChars, int glyphCount, int type);
+    public static extern ref GlyphInfo LoadFontData(byte* fileData, int dataSize, int fontSize, ref int fontChars, int glyphCount, int type);
 
     [DllImport("raylib", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
-    public static extern Image GenImageFontAtlas(GlyphInfo* chars, Rectangle** recs, int glyphCount, int fontSize, int padding, int packMethod);
+    public static extern Image GenImageFontAtlas(GlyphInfo* chars, ref Rectangle* recs, int glyphCount, int fontSize, int padding, int packMethod);
 
     [DllImport("raylib", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
-    public static extern void UnloadFontData(GlyphInfo* chars, int glyphCount);
+    public static extern void UnloadFontData(ref GlyphInfo chars, int glyphCount);
 
     [DllImport("raylib", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
     public static extern void UnloadFont(Font font);
 
     [DllImport("raylib", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
-    public static extern bool ExportFontAsCode(Font font, string fileName);
+    public static extern bool ExportFontAsCode(Font font, sbyte* fileName);
 
     [DllImport("raylib", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
     public static extern void DrawFPS(int posX, int posY);
 
     [DllImport("raylib", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
-    public static extern void DrawText(string text, int posX, int posY, int fontSize, Color color);
+    public static extern void DrawText(sbyte* text, int posX, int posY, int fontSize, Color color);
 
     [DllImport("raylib", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
-    public static extern void DrawTextEx(Font font, string text, Vector2 position, float fontSize, float spacing, Color tint);
+    public static extern void DrawTextEx(Font font, sbyte* text, Vector2 position, float fontSize, float spacing, Color tint);
 
     [DllImport("raylib", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
-    public static extern void DrawTextPro(Font font, string text, Vector2 position, Vector2 origin, float rotation, float fontSize, float spacing, Color tint);
+    public static extern void DrawTextPro(Font font, sbyte* text, Vector2 position, Vector2 origin, float rotation, float fontSize, float spacing, Color tint);
 
     [DllImport("raylib", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
     public static extern void DrawTextCodepoint(Font font, int codepoint, Vector2 position, float fontSize, Color tint);
 
     [DllImport("raylib", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
-    public static extern void DrawTextCodepoints(Font font, int* codepoints, int count, Vector2 position, float fontSize, float spacing, Color tint);
+    public static extern void DrawTextCodepoints(Font font, ref int codepoints, int count, Vector2 position, float fontSize, float spacing, Color tint);
 
     [DllImport("raylib", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
-    public static extern int MeasureText(string text, int fontSize);
+    public static extern int MeasureText(sbyte* text, int fontSize);
 
     [DllImport("raylib", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
-    public static extern Vector2 MeasureTextEx(Font font, string text, float fontSize, float spacing);
+    public static extern Vector2 MeasureTextEx(Font font, sbyte* text, float fontSize, float spacing);
 
     [DllImport("raylib", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
     public static extern int GetGlyphIndex(Font font, int codepoint);
@@ -1045,67 +1045,67 @@ public unsafe partial class Raylib
     public static extern Rectangle GetGlyphAtlasRec(Font font, int codepoint);
 
     [DllImport("raylib", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
-    public static extern int* LoadCodepoints(string text, int* count);
+    public static extern ref int LoadCodepoints(sbyte* text, ref int count);
 
     [DllImport("raylib", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
-    public static extern void UnloadCodepoints(int* codepoints);
+    public static extern void UnloadCodepoints(ref int codepoints);
 
     [DllImport("raylib", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
-    public static extern int GetCodepointCount(string text);
+    public static extern int GetCodepointCount(sbyte* text);
 
     [DllImport("raylib", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
-    public static extern int GetCodepoint(string text, int* bytesProcessed);
+    public static extern int GetCodepoint(sbyte* text, ref int bytesProcessed);
 
     [DllImport("raylib", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
-    public static extern string CodepointToUTF8(int codepoint, int* byteSize);
+    public static extern string CodepointToUTF8(int codepoint, ref int byteSize);
 
     [DllImport("raylib", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
-    public static extern string TextCodepointsToUTF8(int* codepoints, int length);
+    public static extern string TextCodepointsToUTF8(ref int codepoints, int length);
 
     [DllImport("raylib", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
-    public static extern int TextCopy(string dst, string src);
+    public static extern int TextCopy(sbyte* dst, sbyte* src);
 
     [DllImport("raylib", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
-    public static extern bool TextIsEqual(string text1, string text2);
+    public static extern bool TextIsEqual(sbyte* text1, sbyte* text2);
 
     [DllImport("raylib", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
-    public static extern uint TextLength(string text);
+    public static extern uint TextLength(sbyte* text);
 
     [DllImport("raylib", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
-    public static extern string TextFormat(string text, params object[] args);
+    public static extern string TextFormat(sbyte* text, params object[] args);
 
     [DllImport("raylib", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
-    public static extern string TextSubtext(string text, int position, int length);
+    public static extern string TextSubtext(sbyte* text, int position, int length);
 
     [DllImport("raylib", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
-    public static extern string TextReplace(string text, string replace, string by);
+    public static extern string TextReplace(sbyte* text, sbyte* replace, sbyte* by);
 
     [DllImport("raylib", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
-    public static extern string TextInsert(string text, string insert, int position);
+    public static extern string TextInsert(sbyte* text, sbyte* insert, int position);
 
     [DllImport("raylib", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
-    public static extern string TextJoin(string[] textList, int count, string delimiter);
+    public static extern string TextJoin(sbyte** textList, int count, sbyte* delimiter);
 
     [DllImport("raylib", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
-    public static extern string[] TextSplit(string text, char delimiter, int* count);
+    public static extern string[] TextSplit(sbyte* text, sbyte delimiter, ref int count);
 
     [DllImport("raylib", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
-    public static extern void TextAppend(string text, string append, int* position);
+    public static extern void TextAppend(sbyte* text, sbyte* append, ref int position);
 
     [DllImport("raylib", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
-    public static extern int TextFindIndex(string text, string find);
+    public static extern int TextFindIndex(sbyte* text, sbyte* find);
 
     [DllImport("raylib", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
-    public static extern string TextToUpper(string text);
+    public static extern string TextToUpper(sbyte* text);
 
     [DllImport("raylib", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
-    public static extern string TextToLower(string text);
+    public static extern string TextToLower(sbyte* text);
 
     [DllImport("raylib", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
-    public static extern string TextToPascal(string text);
+    public static extern string TextToPascal(sbyte* text);
 
     [DllImport("raylib", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
-    public static extern int TextToInteger(string text);
+    public static extern int TextToInteger(sbyte* text);
 
     [DllImport("raylib", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
     public static extern void DrawLine3D(Vector3 startPos, Vector3 endPos, Color color);
@@ -1120,7 +1120,7 @@ public unsafe partial class Raylib
     public static extern void DrawTriangle3D(Vector3 v1, Vector3 v2, Vector3 v3, Color color);
 
     [DllImport("raylib", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
-    public static extern void DrawTriangleStrip3D(Vector3* points, int pointCount, Color color);
+    public static extern void DrawTriangleStrip3D(ref Vector3 points, int pointCount, Color color);
 
     [DllImport("raylib", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
     public static extern void DrawCube(Vector3 position, float width, float height, float length, Color color);
@@ -1135,10 +1135,10 @@ public unsafe partial class Raylib
     public static extern void DrawCubeWiresV(Vector3 position, Vector3 size, Color color);
 
     [DllImport("raylib", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
-    public static extern void DrawCubeTexture(Texture2D texture, Vector3 position, float width, float height, float length, Color color);
+    public static extern void DrawCubeTexture(Texture texture, Vector3 position, float width, float height, float length, Color color);
 
     [DllImport("raylib", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
-    public static extern void DrawCubeTextureRec(Texture2D texture, Rectangle source, Vector3 position, float width, float height, float length, Color color);
+    public static extern void DrawCubeTextureRec(Texture texture, Rectangle source, Vector3 position, float width, float height, float length, Color color);
 
     [DllImport("raylib", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
     public static extern void DrawSphere(Vector3 centerPos, float radius, Color color);
@@ -1171,7 +1171,7 @@ public unsafe partial class Raylib
     public static extern void DrawGrid(int slices, float spacing);
 
     [DllImport("raylib", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
-    public static extern Model LoadModel(string fileName);
+    public static extern Model LoadModel(sbyte* fileName);
 
     [DllImport("raylib", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
     public static extern Model LoadModelFromMesh(Mesh mesh);
@@ -1201,40 +1201,40 @@ public unsafe partial class Raylib
     public static extern void DrawBoundingBox(BoundingBox box, Color color);
 
     [DllImport("raylib", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
-    public static extern void DrawBillboard(Camera camera, Texture2D texture, Vector3 position, float size, Color tint);
+    public static extern void DrawBillboard(Camera3D camera, Texture texture, Vector3 position, float size, Color tint);
 
     [DllImport("raylib", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
-    public static extern void DrawBillboardRec(Camera camera, Texture2D texture, Rectangle source, Vector3 position, Vector2 size, Color tint);
+    public static extern void DrawBillboardRec(Camera3D camera, Texture texture, Rectangle source, Vector3 position, Vector2 size, Color tint);
 
     [DllImport("raylib", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
-    public static extern void DrawBillboardPro(Camera camera, Texture2D texture, Rectangle source, Vector3 position, Vector3 up, Vector2 size, Vector2 origin, float rotation, Color tint);
+    public static extern void DrawBillboardPro(Camera3D camera, Texture texture, Rectangle source, Vector3 position, Vector3 up, Vector2 size, Vector2 origin, float rotation, Color tint);
 
     [DllImport("raylib", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
-    public static extern void UploadMesh(Mesh* mesh, bool dynamic);
+    public static extern void UploadMesh(ref Mesh mesh, bool dynamic);
 
     [DllImport("raylib", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
-    public static extern void UpdateMeshBuffer(Mesh mesh, int index, IntPtr data, int dataSize, int offset);
+    public static extern void UpdateMeshBuffer(Mesh mesh, int index, void* data, int dataSize, int offset);
 
     [DllImport("raylib", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
     public static extern void UnloadMesh(Mesh mesh);
 
     [DllImport("raylib", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
-    public static extern void DrawMesh(Mesh mesh, Material material, Matrix transform);
+    public static extern void DrawMesh(Mesh mesh, Material material, Matrix4x4 transform);
 
     [DllImport("raylib", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
-    public static extern void DrawMeshInstanced(Mesh mesh, Material material, Matrix* transforms, int instances);
+    public static extern void DrawMeshInstanced(Mesh mesh, Material material, ref Matrix transforms, int instances);
 
     [DllImport("raylib", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
-    public static extern bool ExportMesh(Mesh mesh, string fileName);
+    public static extern bool ExportMesh(Mesh mesh, sbyte* fileName);
 
     [DllImport("raylib", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
     public static extern BoundingBox GetMeshBoundingBox(Mesh mesh);
 
     [DllImport("raylib", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
-    public static extern void GenMeshTangents(Mesh* mesh);
+    public static extern void GenMeshTangents(ref Mesh mesh);
 
     [DllImport("raylib", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
-    public static extern void GenMeshBinormals(Mesh* mesh);
+    public static extern void GenMeshBinormals(ref Mesh mesh);
 
     [DllImport("raylib", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
     public static extern Mesh GenMeshPoly(int sides, float radius);
@@ -1270,7 +1270,7 @@ public unsafe partial class Raylib
     public static extern Mesh GenMeshCubicmap(Image cubicmap, Vector3 cubeSize);
 
     [DllImport("raylib", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
-    public static extern Material* LoadMaterials(string fileName, int* materialCount);
+    public static extern ref Material LoadMaterials(sbyte* fileName, ref int materialCount);
 
     [DllImport("raylib", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
     public static extern Material LoadMaterialDefault();
@@ -1279,13 +1279,13 @@ public unsafe partial class Raylib
     public static extern void UnloadMaterial(Material material);
 
     [DllImport("raylib", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
-    public static extern void SetMaterialTexture(Material* material, int mapType, Texture2D texture);
+    public static extern void SetMaterialTexture(ref Material material, int mapType, Texture texture);
 
     [DllImport("raylib", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
-    public static extern void SetModelMeshMaterial(Model* model, int meshId, int materialId);
+    public static extern void SetModelMeshMaterial(ref Model model, int meshId, int materialId);
 
     [DllImport("raylib", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
-    public static extern ModelAnimation* LoadModelAnimations(string fileName, uint* animCount);
+    public static extern ref ModelAnimation LoadModelAnimations(sbyte* fileName, uint* animCount);
 
     [DllImport("raylib", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
     public static extern void UpdateModelAnimation(Model model, ModelAnimation anim, int frame);
@@ -1294,7 +1294,7 @@ public unsafe partial class Raylib
     public static extern void UnloadModelAnimation(ModelAnimation anim);
 
     [DllImport("raylib", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
-    public static extern void UnloadModelAnimations(ModelAnimation* animations, uint count);
+    public static extern void UnloadModelAnimations(ref ModelAnimation animations, uint count);
 
     [DllImport("raylib", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
     public static extern bool IsModelAnimationValid(Model model, ModelAnimation anim);
@@ -1318,7 +1318,7 @@ public unsafe partial class Raylib
     public static extern RayCollision GetRayCollisionModel(Ray ray, Model model);
 
     [DllImport("raylib", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
-    public static extern RayCollision GetRayCollisionMesh(Ray ray, Mesh mesh, Matrix transform);
+    public static extern RayCollision GetRayCollisionMesh(Ray ray, Mesh mesh, Matrix4x4 transform);
 
     [DllImport("raylib", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
     public static extern RayCollision GetRayCollisionTriangle(Ray ray, Vector3 p1, Vector3 p2, Vector3 p3);
@@ -1339,19 +1339,19 @@ public unsafe partial class Raylib
     public static extern void SetMasterVolume(float volume);
 
     [DllImport("raylib", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
-    public static extern Wave LoadWave(string fileName);
+    public static extern Wave LoadWave(sbyte* fileName);
 
     [DllImport("raylib", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
-    public static extern Wave LoadWaveFromMemory(string fileType, byte[] fileData, int dataSize);
+    public static extern Wave LoadWaveFromMemory(sbyte* fileType, byte* fileData, int dataSize);
 
     [DllImport("raylib", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
-    public static extern Sound LoadSound(string fileName);
+    public static extern Sound LoadSound(sbyte* fileName);
 
     [DllImport("raylib", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
     public static extern Sound LoadSoundFromWave(Wave wave);
 
     [DllImport("raylib", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
-    public static extern void UpdateSound(Sound sound, IntPtr data, int sampleCount);
+    public static extern void UpdateSound(Sound sound, void* data, int sampleCount);
 
     [DllImport("raylib", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
     public static extern void UnloadWave(Wave wave);
@@ -1360,10 +1360,10 @@ public unsafe partial class Raylib
     public static extern void UnloadSound(Sound sound);
 
     [DllImport("raylib", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
-    public static extern bool ExportWave(Wave wave, string fileName);
+    public static extern bool ExportWave(Wave wave, sbyte* fileName);
 
     [DllImport("raylib", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
-    public static extern bool ExportWaveAsCode(Wave wave, string fileName);
+    public static extern bool ExportWaveAsCode(Wave wave, sbyte* fileName);
 
     [DllImport("raylib", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
     public static extern void PlaySound(Sound sound);
@@ -1402,22 +1402,22 @@ public unsafe partial class Raylib
     public static extern Wave WaveCopy(Wave wave);
 
     [DllImport("raylib", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
-    public static extern void WaveCrop(Wave* wave, int initSample, int finalSample);
+    public static extern void WaveCrop(ref Wave wave, int initSample, int finalSample);
 
     [DllImport("raylib", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
-    public static extern void WaveFormat(Wave* wave, int sampleRate, int sampleSize, int channels);
+    public static extern void WaveFormat(ref Wave wave, int sampleRate, int sampleSize, int channels);
 
     [DllImport("raylib", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
-    public static extern float* LoadWaveSamples(Wave wave);
+    public static extern ref float LoadWaveSamples(Wave wave);
 
     [DllImport("raylib", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
-    public static extern void UnloadWaveSamples(float* samples);
+    public static extern void UnloadWaveSamples(ref float samples);
 
     [DllImport("raylib", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
-    public static extern Music LoadMusicStream(string fileName);
+    public static extern Music LoadMusicStream(sbyte* fileName);
 
     [DllImport("raylib", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
-    public static extern Music LoadMusicStreamFromMemory(string fileType, byte[] data, int dataSize);
+    public static extern Music LoadMusicStreamFromMemory(sbyte* fileType, byte* data, int dataSize);
 
     [DllImport("raylib", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
     public static extern void UnloadMusicStream(Music music);
@@ -1465,7 +1465,7 @@ public unsafe partial class Raylib
     public static extern void UnloadAudioStream(AudioStream stream);
 
     [DllImport("raylib", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
-    public static extern void UpdateAudioStream(AudioStream stream, IntPtr data, int frameCount);
+    public static extern void UpdateAudioStream(AudioStream stream, void* data, int frameCount);
 
     [DllImport("raylib", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
     public static extern bool IsAudioStreamProcessed(AudioStream stream);

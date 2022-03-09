@@ -5,7 +5,14 @@
 
 namespace Raylib_CsLo;
 
-public unsafe partial class Raylib
-{
+using System;
 
+class NativeTypeNameAttribute : Attribute
+{
+    private string v;
+
+    public NativeTypeNameAttribute(string v)
+    {
+        this.v = v;
+    }
 }

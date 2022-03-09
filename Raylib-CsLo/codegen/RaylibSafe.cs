@@ -324,7 +324,7 @@ public unsafe partial class RaylibS
     /// </summary>
     public static string GetMonitorName(int monitor)
     {
-        return Helpers.Utf8ToString(Raylib.GetMonitorName(monitor));
+        return (string)Raylib.GetMonitorName(monitor);
     }
 
     /// <summary>
@@ -340,7 +340,7 @@ public unsafe partial class RaylibS
     /// </summary>
     public static string GetClipboardText()
     {
-        return Helpers.Utf8ToString(Raylib.GetClipboardText());
+        return (string)Raylib.GetClipboardText();
     }
 
     /// <summary>
@@ -604,8 +604,7 @@ public unsafe partial class RaylibS
     /// </summary>
     public static void SetShaderValue(Shader shader, int locIndex, IntPtr value, int uniformType)
     {
-        var valueLocal = (void*)value;
-        Raylib.SetShaderValue(shader, locIndex, valueLocal, uniformType);
+        Raylib.SetShaderValue(shader, locIndex, value, uniformType);
     }
 
     /// <summary>
@@ -613,8 +612,7 @@ public unsafe partial class RaylibS
     /// </summary>
     public static void SetShaderValueV(Shader shader, int locIndex, IntPtr value, int uniformType, int count)
     {
-        var valueLocal = (void*)value;
-        Raylib.SetShaderValueV(shader, locIndex, valueLocal, uniformType, count);
+        Raylib.SetShaderValueV(shader, locIndex, value, uniformType, count);
     }
 
     /// <summary>
@@ -782,8 +780,7 @@ public unsafe partial class RaylibS
     /// </summary>
     public static IntPtr MemRealloc(IntPtr ptr, int size)
     {
-        var ptrLocal = (void*)ptr;
-        return (IntPtr)Raylib.MemRealloc(ptrLocal, size);
+        return (IntPtr)Raylib.MemRealloc(ptr, size);
     }
 
     /// <summary>
@@ -791,8 +788,7 @@ public unsafe partial class RaylibS
     /// </summary>
     public static void MemFree(IntPtr ptr)
     {
-        var ptrLocal = (void*)ptr;
-        Raylib.MemFree(ptrLocal);
+        Raylib.MemFree(ptr);
     }
 
     /// <summary>
@@ -800,8 +796,7 @@ public unsafe partial class RaylibS
     /// </summary>
     public static void UnloadFileData(byte[] data)
     {
-        var dataLocal = Helpers.ArrayToPtr(data);
-        Raylib.UnloadFileData(dataLocal);
+        Raylib.UnloadFileData(data);
     }
 
     /// <summary>
@@ -809,8 +804,7 @@ public unsafe partial class RaylibS
     /// </summary>
     public static bool SaveFileData(string fileName, IntPtr data, uint bytesToWrite)
     {
-        var dataLocal = (void*)data;
-        return Raylib.SaveFileData(fileName, dataLocal, bytesToWrite);
+        return Raylib.SaveFileData(fileName, data, bytesToWrite);
     }
 
     /// <summary>
@@ -818,7 +812,7 @@ public unsafe partial class RaylibS
     /// </summary>
     public static string LoadFileText(string fileName)
     {
-        return Helpers.Utf8ToString(Raylib.LoadFileText(fileName));
+        return (string)Raylib.LoadFileText(fileName);
     }
 
     /// <summary>
@@ -874,7 +868,7 @@ public unsafe partial class RaylibS
     /// </summary>
     public static string GetFileExtension(string fileName)
     {
-        return Helpers.Utf8ToString(Raylib.GetFileExtension(fileName));
+        return (string)Raylib.GetFileExtension(fileName);
     }
 
     /// <summary>
@@ -882,7 +876,7 @@ public unsafe partial class RaylibS
     /// </summary>
     public static string GetFileName(string filePath)
     {
-        return Helpers.Utf8ToString(Raylib.GetFileName(filePath));
+        return (string)Raylib.GetFileName(filePath);
     }
 
     /// <summary>
@@ -890,7 +884,7 @@ public unsafe partial class RaylibS
     /// </summary>
     public static string GetFileNameWithoutExt(string filePath)
     {
-        return Helpers.Utf8ToString(Raylib.GetFileNameWithoutExt(filePath));
+        return (string)Raylib.GetFileNameWithoutExt(filePath);
     }
 
     /// <summary>
@@ -898,7 +892,7 @@ public unsafe partial class RaylibS
     /// </summary>
     public static string GetDirectoryPath(string filePath)
     {
-        return Helpers.Utf8ToString(Raylib.GetDirectoryPath(filePath));
+        return (string)Raylib.GetDirectoryPath(filePath);
     }
 
     /// <summary>
@@ -906,7 +900,7 @@ public unsafe partial class RaylibS
     /// </summary>
     public static string GetPrevDirectoryPath(string dirPath)
     {
-        return Helpers.Utf8ToString(Raylib.GetPrevDirectoryPath(dirPath));
+        return (string)Raylib.GetPrevDirectoryPath(dirPath);
     }
 
     /// <summary>
@@ -914,7 +908,7 @@ public unsafe partial class RaylibS
     /// </summary>
     public static string GetWorkingDirectory()
     {
-        return Helpers.Utf8ToString(Raylib.GetWorkingDirectory());
+        return (string)Raylib.GetWorkingDirectory();
     }
 
     /// <summary>
@@ -922,7 +916,7 @@ public unsafe partial class RaylibS
     /// </summary>
     public static string GetApplicationDirectory()
     {
-        return Helpers.Utf8ToString(Raylib.GetApplicationDirectory());
+        return (string)Raylib.GetApplicationDirectory();
     }
 
     /// <summary>
@@ -968,37 +962,33 @@ public unsafe partial class RaylibS
     /// <summary>
     /// Compress data (DEFLATE algorithm)
     /// </summary>
-    public static byte[] CompressData(byte[] data, int dataLength, int* compDataLength)
+    public static byte[] CompressData(byte[] data, int dataLength, ref int compDataLength)
     {
-        var dataLocal = Helpers.ArrayToPtr(data);
-        return Helpers.PrtToArray(Raylib.CompressData(dataLocal, dataLength, compDataLength));
+        return (byte[])Raylib.CompressData(data, dataLength, compDataLength);
     }
 
     /// <summary>
     /// Decompress data (DEFLATE algorithm)
     /// </summary>
-    public static byte[] DecompressData(byte[] compData, int compDataLength, int* dataLength)
+    public static byte[] DecompressData(byte[] compData, int compDataLength, ref int dataLength)
     {
-        var compDataLocal = Helpers.ArrayToPtr(compData);
-        return Helpers.PrtToArray(Raylib.DecompressData(compDataLocal, compDataLength, dataLength));
+        return (byte[])Raylib.DecompressData(compData, compDataLength, dataLength);
     }
 
     /// <summary>
     /// Encode data to Base64 string
     /// </summary>
-    public static string EncodeDataBase64(byte[] data, int dataLength, int* outputLength)
+    public static string EncodeDataBase64(byte[] data, int dataLength, ref int outputLength)
     {
-        var dataLocal = Helpers.ArrayToPtr(data);
-        return Helpers.Utf8ToString(Raylib.EncodeDataBase64(dataLocal, dataLength, outputLength));
+        return (string)Raylib.EncodeDataBase64(data, dataLength, outputLength);
     }
 
     /// <summary>
     /// Decode Base64 string data
     /// </summary>
-    public static byte[] DecodeDataBase64(byte[] data, int* outputLength)
+    public static byte[] DecodeDataBase64(byte[] data, ref int outputLength)
     {
-        var dataLocal = Helpers.ArrayToPtr(data);
-        return Helpers.PrtToArray(Raylib.DecodeDataBase64(dataLocal, outputLength));
+        return (byte[])Raylib.DecodeDataBase64(data, outputLength);
     }
 
     /// <summary>
@@ -1094,7 +1084,7 @@ public unsafe partial class RaylibS
     /// </summary>
     public static string GetGamepadName(int gamepad)
     {
-        return Helpers.Utf8ToString(Raylib.GetGamepadName(gamepad));
+        return (string)Raylib.GetGamepadName(gamepad);
     }
 
     /// <summary>
@@ -1380,10 +1370,9 @@ public unsafe partial class RaylibS
     /// <summary>
     /// Update camera position for selected mode
     /// </summary>
-    public static void UpdateCamera(Camera* camera)
+    public static void UpdateCamera(ref Camera camera)
     {
-        var cameraLocal = Helpers.ArrayToPtr(camera);
-        Raylib.UpdateCamera(&cameraLocal);
+        Raylib.UpdateCamera(camera);
     }
 
     /// <summary>
@@ -1493,7 +1482,7 @@ public unsafe partial class RaylibS
     /// <summary>
     /// Draw lines sequence
     /// </summary>
-    public static void DrawLineStrip(Vector2* points, int pointCount, Color color)
+    public static void DrawLineStrip(ref Vector2 points, int pointCount, Color color)
     {
         Raylib.DrawLineStrip(points, pointCount, color);
     }
@@ -1685,7 +1674,7 @@ public unsafe partial class RaylibS
     /// <summary>
     /// Draw a triangle fan defined by points (first vertex is the center)
     /// </summary>
-    public static void DrawTriangleFan(Vector2* points, int pointCount, Color color)
+    public static void DrawTriangleFan(ref Vector2 points, int pointCount, Color color)
     {
         Raylib.DrawTriangleFan(points, pointCount, color);
     }
@@ -1693,7 +1682,7 @@ public unsafe partial class RaylibS
     /// <summary>
     /// Draw a triangle strip defined by points
     /// </summary>
-    public static void DrawTriangleStrip(Vector2* points, int pointCount, Color color)
+    public static void DrawTriangleStrip(ref Vector2 points, int pointCount, Color color)
     {
         Raylib.DrawTriangleStrip(points, pointCount, color);
     }
@@ -1773,7 +1762,7 @@ public unsafe partial class RaylibS
     /// <summary>
     /// Check the collision between two lines defined by two points each, returns collision point by reference
     /// </summary>
-    public static bool CheckCollisionLines(Vector2 startPos1, Vector2 endPos1, Vector2 startPos2, Vector2 endPos2, Vector2* collisionPoint)
+    public static bool CheckCollisionLines(Vector2 startPos1, Vector2 endPos1, Vector2 startPos2, Vector2 endPos2, ref Vector2 collisionPoint)
     {
         return Raylib.CheckCollisionLines(startPos1, endPos1, startPos2, endPos2, collisionPoint);
     }
@@ -1813,7 +1802,7 @@ public unsafe partial class RaylibS
     /// <summary>
     /// Load image sequence from file (frames appended to image.data)
     /// </summary>
-    public static Image LoadImageAnim(string fileName, int* frames)
+    public static Image LoadImageAnim(string fileName, ref int frames)
     {
         return Raylib.LoadImageAnim(fileName, frames);
     }
@@ -1823,8 +1812,7 @@ public unsafe partial class RaylibS
     /// </summary>
     public static Image LoadImageFromMemory(string fileType, byte[] fileData, int dataSize)
     {
-        var fileDataLocal = Helpers.ArrayToPtr(fileData);
-        return Raylib.LoadImageFromMemory(fileType, fileDataLocal, dataSize);
+        return Raylib.LoadImageFromMemory(fileType, fileData, dataSize);
     }
 
     /// <summary>
@@ -1958,7 +1946,7 @@ public unsafe partial class RaylibS
     /// <summary>
     /// Convert image data to desired format
     /// </summary>
-    public static void ImageFormat(Image* image, int newFormat)
+    public static void ImageFormat(ref Image image, int newFormat)
     {
         Raylib.ImageFormat(image, newFormat);
     }
@@ -1966,7 +1954,7 @@ public unsafe partial class RaylibS
     /// <summary>
     /// Convert image to POT (power-of-two)
     /// </summary>
-    public static void ImageToPOT(Image* image, Color fill)
+    public static void ImageToPOT(ref Image image, Color fill)
     {
         Raylib.ImageToPOT(image, fill);
     }
@@ -1974,7 +1962,7 @@ public unsafe partial class RaylibS
     /// <summary>
     /// Crop an image to a defined rectangle
     /// </summary>
-    public static void ImageCrop(Image* image, Rectangle crop)
+    public static void ImageCrop(ref Image image, Rectangle crop)
     {
         Raylib.ImageCrop(image, crop);
     }
@@ -1982,7 +1970,7 @@ public unsafe partial class RaylibS
     /// <summary>
     /// Crop image depending on alpha value
     /// </summary>
-    public static void ImageAlphaCrop(Image* image, float threshold)
+    public static void ImageAlphaCrop(ref Image image, float threshold)
     {
         Raylib.ImageAlphaCrop(image, threshold);
     }
@@ -1990,7 +1978,7 @@ public unsafe partial class RaylibS
     /// <summary>
     /// Clear alpha channel to desired color
     /// </summary>
-    public static void ImageAlphaClear(Image* image, Color color, float threshold)
+    public static void ImageAlphaClear(ref Image image, Color color, float threshold)
     {
         Raylib.ImageAlphaClear(image, color, threshold);
     }
@@ -1998,7 +1986,7 @@ public unsafe partial class RaylibS
     /// <summary>
     /// Apply alpha mask to image
     /// </summary>
-    public static void ImageAlphaMask(Image* image, Image alphaMask)
+    public static void ImageAlphaMask(ref Image image, Image alphaMask)
     {
         Raylib.ImageAlphaMask(image, alphaMask);
     }
@@ -2006,7 +1994,7 @@ public unsafe partial class RaylibS
     /// <summary>
     /// Premultiply alpha channel
     /// </summary>
-    public static void ImageAlphaPremultiply(Image* image)
+    public static void ImageAlphaPremultiply(ref Image image)
     {
         Raylib.ImageAlphaPremultiply(image);
     }
@@ -2014,7 +2002,7 @@ public unsafe partial class RaylibS
     /// <summary>
     /// Resize image (Bicubic scaling algorithm)
     /// </summary>
-    public static void ImageResize(Image* image, int newWidth, int newHeight)
+    public static void ImageResize(ref Image image, int newWidth, int newHeight)
     {
         Raylib.ImageResize(image, newWidth, newHeight);
     }
@@ -2022,7 +2010,7 @@ public unsafe partial class RaylibS
     /// <summary>
     /// Resize image (Nearest-Neighbor scaling algorithm)
     /// </summary>
-    public static void ImageResizeNN(Image* image, int newWidth, int newHeight)
+    public static void ImageResizeNN(ref Image image, int newWidth, int newHeight)
     {
         Raylib.ImageResizeNN(image, newWidth, newHeight);
     }
@@ -2030,7 +2018,7 @@ public unsafe partial class RaylibS
     /// <summary>
     /// Resize canvas and fill with color
     /// </summary>
-    public static void ImageResizeCanvas(Image* image, int newWidth, int newHeight, int offsetX, int offsetY, Color fill)
+    public static void ImageResizeCanvas(ref Image image, int newWidth, int newHeight, int offsetX, int offsetY, Color fill)
     {
         Raylib.ImageResizeCanvas(image, newWidth, newHeight, offsetX, offsetY, fill);
     }
@@ -2038,7 +2026,7 @@ public unsafe partial class RaylibS
     /// <summary>
     /// Compute all mipmap levels for a provided image
     /// </summary>
-    public static void ImageMipmaps(Image* image)
+    public static void ImageMipmaps(ref Image image)
     {
         Raylib.ImageMipmaps(image);
     }
@@ -2046,7 +2034,7 @@ public unsafe partial class RaylibS
     /// <summary>
     /// Dither image data to 16bpp or lower (Floyd-Steinberg dithering)
     /// </summary>
-    public static void ImageDither(Image* image, int rBpp, int gBpp, int bBpp, int aBpp)
+    public static void ImageDither(ref Image image, int rBpp, int gBpp, int bBpp, int aBpp)
     {
         Raylib.ImageDither(image, rBpp, gBpp, bBpp, aBpp);
     }
@@ -2054,7 +2042,7 @@ public unsafe partial class RaylibS
     /// <summary>
     /// Flip image vertically
     /// </summary>
-    public static void ImageFlipVertical(Image* image)
+    public static void ImageFlipVertical(ref Image image)
     {
         Raylib.ImageFlipVertical(image);
     }
@@ -2062,7 +2050,7 @@ public unsafe partial class RaylibS
     /// <summary>
     /// Flip image horizontally
     /// </summary>
-    public static void ImageFlipHorizontal(Image* image)
+    public static void ImageFlipHorizontal(ref Image image)
     {
         Raylib.ImageFlipHorizontal(image);
     }
@@ -2070,7 +2058,7 @@ public unsafe partial class RaylibS
     /// <summary>
     /// Rotate image clockwise 90deg
     /// </summary>
-    public static void ImageRotateCW(Image* image)
+    public static void ImageRotateCW(ref Image image)
     {
         Raylib.ImageRotateCW(image);
     }
@@ -2078,7 +2066,7 @@ public unsafe partial class RaylibS
     /// <summary>
     /// Rotate image counter-clockwise 90deg
     /// </summary>
-    public static void ImageRotateCCW(Image* image)
+    public static void ImageRotateCCW(ref Image image)
     {
         Raylib.ImageRotateCCW(image);
     }
@@ -2086,7 +2074,7 @@ public unsafe partial class RaylibS
     /// <summary>
     /// Modify image color: tint
     /// </summary>
-    public static void ImageColorTint(Image* image, Color color)
+    public static void ImageColorTint(ref Image image, Color color)
     {
         Raylib.ImageColorTint(image, color);
     }
@@ -2094,7 +2082,7 @@ public unsafe partial class RaylibS
     /// <summary>
     /// Modify image color: invert
     /// </summary>
-    public static void ImageColorInvert(Image* image)
+    public static void ImageColorInvert(ref Image image)
     {
         Raylib.ImageColorInvert(image);
     }
@@ -2102,7 +2090,7 @@ public unsafe partial class RaylibS
     /// <summary>
     /// Modify image color: grayscale
     /// </summary>
-    public static void ImageColorGrayscale(Image* image)
+    public static void ImageColorGrayscale(ref Image image)
     {
         Raylib.ImageColorGrayscale(image);
     }
@@ -2110,7 +2098,7 @@ public unsafe partial class RaylibS
     /// <summary>
     /// Modify image color: contrast (-100 to 100)
     /// </summary>
-    public static void ImageColorContrast(Image* image, float contrast)
+    public static void ImageColorContrast(ref Image image, float contrast)
     {
         Raylib.ImageColorContrast(image, contrast);
     }
@@ -2118,7 +2106,7 @@ public unsafe partial class RaylibS
     /// <summary>
     /// Modify image color: brightness (-255 to 255)
     /// </summary>
-    public static void ImageColorBrightness(Image* image, int brightness)
+    public static void ImageColorBrightness(ref Image image, int brightness)
     {
         Raylib.ImageColorBrightness(image, brightness);
     }
@@ -2126,7 +2114,7 @@ public unsafe partial class RaylibS
     /// <summary>
     /// Modify image color: replace color
     /// </summary>
-    public static void ImageColorReplace(Image* image, Color color, Color replace)
+    public static void ImageColorReplace(ref Image image, Color color, Color replace)
     {
         Raylib.ImageColorReplace(image, color, replace);
     }
@@ -2134,23 +2122,23 @@ public unsafe partial class RaylibS
     /// <summary>
     /// Load color data from image as a Color array (RGBA - 32bit)
     /// </summary>
-    public static Color* LoadImageColors(Image image)
+    public static ref Color LoadImageColors(Image image)
     {
-        return Raylib.LoadImageColors(image);
+        return (ref Color)Raylib.LoadImageColors(image);
     }
 
     /// <summary>
     /// Load colors palette from image as a Color array (RGBA - 32bit)
     /// </summary>
-    public static Color* LoadImagePalette(Image image, int maxPaletteSize, int* colorCount)
+    public static ref Color LoadImagePalette(Image image, int maxPaletteSize, ref int colorCount)
     {
-        return Raylib.LoadImagePalette(image, maxPaletteSize, colorCount);
+        return (ref Color)Raylib.LoadImagePalette(image, maxPaletteSize, colorCount);
     }
 
     /// <summary>
     /// Unload color data loaded with LoadImageColors()
     /// </summary>
-    public static void UnloadImageColors(Color* colors)
+    public static void UnloadImageColors(ref Color colors)
     {
         Raylib.UnloadImageColors(colors);
     }
@@ -2158,7 +2146,7 @@ public unsafe partial class RaylibS
     /// <summary>
     /// Unload colors palette loaded with LoadImagePalette()
     /// </summary>
-    public static void UnloadImagePalette(Color* colors)
+    public static void UnloadImagePalette(ref Color colors)
     {
         Raylib.UnloadImagePalette(colors);
     }
@@ -2182,7 +2170,7 @@ public unsafe partial class RaylibS
     /// <summary>
     /// Clear image background with given color
     /// </summary>
-    public static void ImageClearBackground(Image* dst, Color color)
+    public static void ImageClearBackground(ref Image dst, Color color)
     {
         Raylib.ImageClearBackground(dst, color);
     }
@@ -2190,7 +2178,7 @@ public unsafe partial class RaylibS
     /// <summary>
     /// Draw pixel within an image
     /// </summary>
-    public static void ImageDrawPixel(Image* dst, int posX, int posY, Color color)
+    public static void ImageDrawPixel(ref Image dst, int posX, int posY, Color color)
     {
         Raylib.ImageDrawPixel(dst, posX, posY, color);
     }
@@ -2198,7 +2186,7 @@ public unsafe partial class RaylibS
     /// <summary>
     /// Draw pixel within an image (Vector version)
     /// </summary>
-    public static void ImageDrawPixelV(Image* dst, Vector2 position, Color color)
+    public static void ImageDrawPixelV(ref Image dst, Vector2 position, Color color)
     {
         Raylib.ImageDrawPixelV(dst, position, color);
     }
@@ -2206,7 +2194,7 @@ public unsafe partial class RaylibS
     /// <summary>
     /// Draw line within an image
     /// </summary>
-    public static void ImageDrawLine(Image* dst, int startPosX, int startPosY, int endPosX, int endPosY, Color color)
+    public static void ImageDrawLine(ref Image dst, int startPosX, int startPosY, int endPosX, int endPosY, Color color)
     {
         Raylib.ImageDrawLine(dst, startPosX, startPosY, endPosX, endPosY, color);
     }
@@ -2214,7 +2202,7 @@ public unsafe partial class RaylibS
     /// <summary>
     /// Draw line within an image (Vector version)
     /// </summary>
-    public static void ImageDrawLineV(Image* dst, Vector2 start, Vector2 end, Color color)
+    public static void ImageDrawLineV(ref Image dst, Vector2 start, Vector2 end, Color color)
     {
         Raylib.ImageDrawLineV(dst, start, end, color);
     }
@@ -2222,7 +2210,7 @@ public unsafe partial class RaylibS
     /// <summary>
     /// Draw circle within an image
     /// </summary>
-    public static void ImageDrawCircle(Image* dst, int centerX, int centerY, int radius, Color color)
+    public static void ImageDrawCircle(ref Image dst, int centerX, int centerY, int radius, Color color)
     {
         Raylib.ImageDrawCircle(dst, centerX, centerY, radius, color);
     }
@@ -2230,7 +2218,7 @@ public unsafe partial class RaylibS
     /// <summary>
     /// Draw circle within an image (Vector version)
     /// </summary>
-    public static void ImageDrawCircleV(Image* dst, Vector2 center, int radius, Color color)
+    public static void ImageDrawCircleV(ref Image dst, Vector2 center, int radius, Color color)
     {
         Raylib.ImageDrawCircleV(dst, center, radius, color);
     }
@@ -2238,7 +2226,7 @@ public unsafe partial class RaylibS
     /// <summary>
     /// Draw rectangle within an image
     /// </summary>
-    public static void ImageDrawRectangle(Image* dst, int posX, int posY, int width, int height, Color color)
+    public static void ImageDrawRectangle(ref Image dst, int posX, int posY, int width, int height, Color color)
     {
         Raylib.ImageDrawRectangle(dst, posX, posY, width, height, color);
     }
@@ -2246,7 +2234,7 @@ public unsafe partial class RaylibS
     /// <summary>
     /// Draw rectangle within an image (Vector version)
     /// </summary>
-    public static void ImageDrawRectangleV(Image* dst, Vector2 position, Vector2 size, Color color)
+    public static void ImageDrawRectangleV(ref Image dst, Vector2 position, Vector2 size, Color color)
     {
         Raylib.ImageDrawRectangleV(dst, position, size, color);
     }
@@ -2254,7 +2242,7 @@ public unsafe partial class RaylibS
     /// <summary>
     /// Draw rectangle within an image
     /// </summary>
-    public static void ImageDrawRectangleRec(Image* dst, Rectangle rec, Color color)
+    public static void ImageDrawRectangleRec(ref Image dst, Rectangle rec, Color color)
     {
         Raylib.ImageDrawRectangleRec(dst, rec, color);
     }
@@ -2262,7 +2250,7 @@ public unsafe partial class RaylibS
     /// <summary>
     /// Draw rectangle lines within an image
     /// </summary>
-    public static void ImageDrawRectangleLines(Image* dst, Rectangle rec, int thick, Color color)
+    public static void ImageDrawRectangleLines(ref Image dst, Rectangle rec, int thick, Color color)
     {
         Raylib.ImageDrawRectangleLines(dst, rec, thick, color);
     }
@@ -2270,7 +2258,7 @@ public unsafe partial class RaylibS
     /// <summary>
     /// Draw a source image within a destination image (tint applied to source)
     /// </summary>
-    public static void ImageDraw(Image* dst, Image src, Rectangle srcRec, Rectangle dstRec, Color tint)
+    public static void ImageDraw(ref Image dst, Image src, Rectangle srcRec, Rectangle dstRec, Color tint)
     {
         Raylib.ImageDraw(dst, src, srcRec, dstRec, tint);
     }
@@ -2278,7 +2266,7 @@ public unsafe partial class RaylibS
     /// <summary>
     /// Draw text (using default font) within an image (destination)
     /// </summary>
-    public static void ImageDrawText(Image* dst, string text, int posX, int posY, int fontSize, Color color)
+    public static void ImageDrawText(ref Image dst, string text, int posX, int posY, int fontSize, Color color)
     {
         Raylib.ImageDrawText(dst, text, posX, posY, fontSize, color);
     }
@@ -2286,7 +2274,7 @@ public unsafe partial class RaylibS
     /// <summary>
     /// Draw text (custom sprite font) within an image (destination)
     /// </summary>
-    public static void ImageDrawTextEx(Image* dst, Font font, string text, Vector2 position, float fontSize, float spacing, Color tint)
+    public static void ImageDrawTextEx(ref Image dst, Font font, string text, Vector2 position, float fontSize, float spacing, Color tint)
     {
         Raylib.ImageDrawTextEx(dst, font, text, position, fontSize, spacing, tint);
     }
@@ -2344,8 +2332,7 @@ public unsafe partial class RaylibS
     /// </summary>
     public static void UpdateTexture(Texture2D texture, IntPtr pixels)
     {
-        var pixelsLocal = (void*)pixels;
-        Raylib.UpdateTexture(texture, pixelsLocal);
+        Raylib.UpdateTexture(texture, pixels);
     }
 
     /// <summary>
@@ -2353,14 +2340,13 @@ public unsafe partial class RaylibS
     /// </summary>
     public static void UpdateTextureRec(Texture2D texture, Rectangle rec, IntPtr pixels)
     {
-        var pixelsLocal = (void*)pixels;
-        Raylib.UpdateTextureRec(texture, rec, pixelsLocal);
+        Raylib.UpdateTextureRec(texture, rec, pixels);
     }
 
     /// <summary>
     /// Generate GPU mipmaps for a texture
     /// </summary>
-    public static void GenTextureMipmaps(Texture2D* texture)
+    public static void GenTextureMipmaps(ref Texture2D texture)
     {
         Raylib.GenTextureMipmaps(texture);
     }
@@ -2448,7 +2434,7 @@ public unsafe partial class RaylibS
     /// <summary>
     /// Draw a textured polygon
     /// </summary>
-    public static void DrawTexturePoly(Texture2D texture, Vector2 center, Vector2* points, Vector2* texcoords, int pointCount, Color tint)
+    public static void DrawTexturePoly(Texture2D texture, Vector2 center, ref Vector2 points, ref Vector2 texcoords, int pointCount, Color tint)
     {
         Raylib.DrawTexturePoly(texture, center, points, texcoords, pointCount, tint);
     }
@@ -2530,8 +2516,7 @@ public unsafe partial class RaylibS
     /// </summary>
     public static Color GetPixelColor(IntPtr srcPtr, int format)
     {
-        var srcPtrLocal = (void*)srcPtr;
-        return Raylib.GetPixelColor(srcPtrLocal, format);
+        return Raylib.GetPixelColor(srcPtr, format);
     }
 
     /// <summary>
@@ -2539,8 +2524,7 @@ public unsafe partial class RaylibS
     /// </summary>
     public static void SetPixelColor(IntPtr dstPtr, Color color, int format)
     {
-        var dstPtrLocal = (void*)dstPtr;
-        Raylib.SetPixelColor(dstPtrLocal, color, format);
+        Raylib.SetPixelColor(dstPtr, color, format);
     }
 
     /// <summary>
@@ -2570,7 +2554,7 @@ public unsafe partial class RaylibS
     /// <summary>
     /// Load font from file with extended parameters, use NULL for fontChars and 0 for glyphCount to load the default character set
     /// </summary>
-    public static Font LoadFontEx(string fileName, int fontSize, int* fontChars, int glyphCount)
+    public static Font LoadFontEx(string fileName, int fontSize, ref int fontChars, int glyphCount)
     {
         return Raylib.LoadFontEx(fileName, fontSize, fontChars, glyphCount);
     }
@@ -2586,25 +2570,23 @@ public unsafe partial class RaylibS
     /// <summary>
     /// Load font from memory buffer, fileType refers to extension: i.e. '.ttf'
     /// </summary>
-    public static Font LoadFontFromMemory(string fileType, byte[] fileData, int dataSize, int fontSize, int* fontChars, int glyphCount)
+    public static Font LoadFontFromMemory(string fileType, byte[] fileData, int dataSize, int fontSize, ref int fontChars, int glyphCount)
     {
-        var fileDataLocal = Helpers.ArrayToPtr(fileData);
-        return Raylib.LoadFontFromMemory(fileType, fileDataLocal, dataSize, fontSize, fontChars, glyphCount);
+        return Raylib.LoadFontFromMemory(fileType, fileData, dataSize, fontSize, fontChars, glyphCount);
     }
 
     /// <summary>
     /// Load font data for further use
     /// </summary>
-    public static GlyphInfo* LoadFontData(byte[] fileData, int dataSize, int fontSize, int* fontChars, int glyphCount, int type)
+    public static ref GlyphInfo LoadFontData(byte[] fileData, int dataSize, int fontSize, ref int fontChars, int glyphCount, int type)
     {
-        var fileDataLocal = Helpers.ArrayToPtr(fileData);
-        return Raylib.LoadFontData(fileDataLocal, dataSize, fontSize, fontChars, glyphCount, type);
+        return (ref GlyphInfo)Raylib.LoadFontData(fileData, dataSize, fontSize, fontChars, glyphCount, type);
     }
 
     /// <summary>
     /// Generate image font atlas using chars info
     /// </summary>
-    public static Image GenImageFontAtlas(GlyphInfo* chars, Rectangle** recs, int glyphCount, int fontSize, int padding, int packMethod)
+    public static Image GenImageFontAtlas(ref GlyphInfo chars, ref Rectangle* recs, int glyphCount, int fontSize, int padding, int packMethod)
     {
         return Raylib.GenImageFontAtlas(chars, recs, glyphCount, fontSize, padding, packMethod);
     }
@@ -2612,7 +2594,7 @@ public unsafe partial class RaylibS
     /// <summary>
     /// Unload font chars info data (RAM)
     /// </summary>
-    public static void UnloadFontData(GlyphInfo* chars, int glyphCount)
+    public static void UnloadFontData(ref GlyphInfo chars, int glyphCount)
     {
         Raylib.UnloadFontData(chars, glyphCount);
     }
@@ -2676,7 +2658,7 @@ public unsafe partial class RaylibS
     /// <summary>
     /// Draw multiple character (codepoint)
     /// </summary>
-    public static void DrawTextCodepoints(Font font, int* codepoints, int count, Vector2 position, float fontSize, float spacing, Color tint)
+    public static void DrawTextCodepoints(Font font, ref int codepoints, int count, Vector2 position, float fontSize, float spacing, Color tint)
     {
         Raylib.DrawTextCodepoints(font, codepoints, count, position, fontSize, spacing, tint);
     }
@@ -2724,15 +2706,15 @@ public unsafe partial class RaylibS
     /// <summary>
     /// Load all codepoints from a UTF-8 text string, codepoints count returned by parameter
     /// </summary>
-    public static int* LoadCodepoints(string text, int* count)
+    public static ref int LoadCodepoints(string text, ref int count)
     {
-        return Raylib.LoadCodepoints(text, count);
+        return (ref int)Raylib.LoadCodepoints(text, count);
     }
 
     /// <summary>
     /// Unload codepoints data from memory
     /// </summary>
-    public static void UnloadCodepoints(int* codepoints)
+    public static void UnloadCodepoints(ref int codepoints)
     {
         Raylib.UnloadCodepoints(codepoints);
     }
@@ -2748,7 +2730,7 @@ public unsafe partial class RaylibS
     /// <summary>
     /// Get next codepoint in a UTF-8 encoded string, 0x3f('?') is returned on failure
     /// </summary>
-    public static int GetCodepoint(string text, int* bytesProcessed)
+    public static int GetCodepoint(string text, ref int bytesProcessed)
     {
         return Raylib.GetCodepoint(text, bytesProcessed);
     }
@@ -2756,17 +2738,17 @@ public unsafe partial class RaylibS
     /// <summary>
     /// Encode one codepoint into UTF-8 byte array (array length returned as parameter)
     /// </summary>
-    public static string CodepointToUTF8(int codepoint, int* byteSize)
+    public static string CodepointToUTF8(int codepoint, ref int byteSize)
     {
-        return Helpers.Utf8ToString(Raylib.CodepointToUTF8(codepoint, byteSize));
+        return (string)Raylib.CodepointToUTF8(codepoint, byteSize);
     }
 
     /// <summary>
     /// Encode text as codepoints array into UTF-8 text string (WARNING: memory must be freed!)
     /// </summary>
-    public static string TextCodepointsToUTF8(int* codepoints, int length)
+    public static string TextCodepointsToUTF8(ref int codepoints, int length)
     {
-        return Helpers.Utf8ToString(Raylib.TextCodepointsToUTF8(codepoints, length));
+        return (string)Raylib.TextCodepointsToUTF8(codepoints, length);
     }
 
     /// <summary>
@@ -2798,7 +2780,7 @@ public unsafe partial class RaylibS
     /// </summary>
     public static string TextSubtext(string text, int position, int length)
     {
-        return Helpers.Utf8ToString(Raylib.TextSubtext(text, position, length));
+        return (string)Raylib.TextSubtext(text, position, length);
     }
 
     /// <summary>
@@ -2806,7 +2788,7 @@ public unsafe partial class RaylibS
     /// </summary>
     public static string TextReplace(string text, string replace, string by)
     {
-        return Helpers.Utf8ToString(Raylib.TextReplace(text, replace, by));
+        return (string)Raylib.TextReplace(text, replace, by);
     }
 
     /// <summary>
@@ -2814,13 +2796,13 @@ public unsafe partial class RaylibS
     /// </summary>
     public static string TextInsert(string text, string insert, int position)
     {
-        return Helpers.Utf8ToString(Raylib.TextInsert(text, insert, position));
+        return (string)Raylib.TextInsert(text, insert, position);
     }
 
     /// <summary>
     /// Append text at specific position and move cursor!
     /// </summary>
-    public static void TextAppend(string text, string append, int* position)
+    public static void TextAppend(string text, string append, ref int position)
     {
         Raylib.TextAppend(text, append, position);
     }
@@ -2838,7 +2820,7 @@ public unsafe partial class RaylibS
     /// </summary>
     public static string TextToUpper(string text)
     {
-        return Helpers.Utf8ToString(Raylib.TextToUpper(text));
+        return (string)Raylib.TextToUpper(text);
     }
 
     /// <summary>
@@ -2846,7 +2828,7 @@ public unsafe partial class RaylibS
     /// </summary>
     public static string TextToLower(string text)
     {
-        return Helpers.Utf8ToString(Raylib.TextToLower(text));
+        return (string)Raylib.TextToLower(text);
     }
 
     /// <summary>
@@ -2854,7 +2836,7 @@ public unsafe partial class RaylibS
     /// </summary>
     public static string TextToPascal(string text)
     {
-        return Helpers.Utf8ToString(Raylib.TextToPascal(text));
+        return (string)Raylib.TextToPascal(text);
     }
 
     /// <summary>
@@ -2900,7 +2882,7 @@ public unsafe partial class RaylibS
     /// <summary>
     /// Draw a triangle strip defined by points
     /// </summary>
-    public static void DrawTriangleStrip3D(Vector3* points, int pointCount, Color color)
+    public static void DrawTriangleStrip3D(ref Vector3 points, int pointCount, Color color)
     {
         Raylib.DrawTriangleStrip3D(points, pointCount, color);
     }
@@ -3140,7 +3122,7 @@ public unsafe partial class RaylibS
     /// <summary>
     /// Upload mesh vertex data in GPU and provide VAO/VBO ids
     /// </summary>
-    public static void UploadMesh(Mesh* mesh, bool dynamic)
+    public static void UploadMesh(ref Mesh mesh, bool dynamic)
     {
         Raylib.UploadMesh(mesh, dynamic);
     }
@@ -3150,8 +3132,7 @@ public unsafe partial class RaylibS
     /// </summary>
     public static void UpdateMeshBuffer(Mesh mesh, int index, IntPtr data, int dataSize, int offset)
     {
-        var dataLocal = (void*)data;
-        Raylib.UpdateMeshBuffer(mesh, index, dataLocal, dataSize, offset);
+        Raylib.UpdateMeshBuffer(mesh, index, data, dataSize, offset);
     }
 
     /// <summary>
@@ -3173,7 +3154,7 @@ public unsafe partial class RaylibS
     /// <summary>
     /// Draw multiple mesh instances with material and different transforms
     /// </summary>
-    public static void DrawMeshInstanced(Mesh mesh, Material material, Matrix* transforms, int instances)
+    public static void DrawMeshInstanced(Mesh mesh, Material material, ref Matrix transforms, int instances)
     {
         Raylib.DrawMeshInstanced(mesh, material, transforms, instances);
     }
@@ -3197,7 +3178,7 @@ public unsafe partial class RaylibS
     /// <summary>
     /// Compute mesh tangents
     /// </summary>
-    public static void GenMeshTangents(Mesh* mesh)
+    public static void GenMeshTangents(ref Mesh mesh)
     {
         Raylib.GenMeshTangents(mesh);
     }
@@ -3205,7 +3186,7 @@ public unsafe partial class RaylibS
     /// <summary>
     /// Compute mesh binormals
     /// </summary>
-    public static void GenMeshBinormals(Mesh* mesh)
+    public static void GenMeshBinormals(ref Mesh mesh)
     {
         Raylib.GenMeshBinormals(mesh);
     }
@@ -3301,9 +3282,9 @@ public unsafe partial class RaylibS
     /// <summary>
     /// Load materials from model file
     /// </summary>
-    public static Material* LoadMaterials(string fileName, int* materialCount)
+    public static ref Material LoadMaterials(string fileName, ref int materialCount)
     {
-        return Raylib.LoadMaterials(fileName, materialCount);
+        return (ref Material)Raylib.LoadMaterials(fileName, materialCount);
     }
 
     /// <summary>
@@ -3325,7 +3306,7 @@ public unsafe partial class RaylibS
     /// <summary>
     /// Set texture for a material map type (MATERIAL_MAP_DIFFUSE, MATERIAL_MAP_SPECULAR...)
     /// </summary>
-    public static void SetMaterialTexture(Material* material, int mapType, Texture2D texture)
+    public static void SetMaterialTexture(ref Material material, int mapType, Texture2D texture)
     {
         Raylib.SetMaterialTexture(material, mapType, texture);
     }
@@ -3333,7 +3314,7 @@ public unsafe partial class RaylibS
     /// <summary>
     /// Set material for a mesh
     /// </summary>
-    public static void SetModelMeshMaterial(Model* model, int meshId, int materialId)
+    public static void SetModelMeshMaterial(ref Model model, int meshId, int materialId)
     {
         Raylib.SetModelMeshMaterial(model, meshId, materialId);
     }
@@ -3357,7 +3338,7 @@ public unsafe partial class RaylibS
     /// <summary>
     /// Unload animation array data
     /// </summary>
-    public static void UnloadModelAnimations(ModelAnimation* animations, uint count)
+    public static void UnloadModelAnimations(ref ModelAnimation animations, uint count)
     {
         Raylib.UnloadModelAnimations(animations, count);
     }
@@ -3487,8 +3468,7 @@ public unsafe partial class RaylibS
     /// </summary>
     public static Wave LoadWaveFromMemory(string fileType, byte[] fileData, int dataSize)
     {
-        var fileDataLocal = Helpers.ArrayToPtr(fileData);
-        return Raylib.LoadWaveFromMemory(fileType, fileDataLocal, dataSize);
+        return Raylib.LoadWaveFromMemory(fileType, fileData, dataSize);
     }
 
     /// <summary>
@@ -3512,8 +3492,7 @@ public unsafe partial class RaylibS
     /// </summary>
     public static void UpdateSound(Sound sound, IntPtr data, int sampleCount)
     {
-        var dataLocal = (void*)data;
-        Raylib.UpdateSound(sound, dataLocal, sampleCount);
+        Raylib.UpdateSound(sound, data, sampleCount);
     }
 
     /// <summary>
@@ -3647,7 +3626,7 @@ public unsafe partial class RaylibS
     /// <summary>
     /// Crop a wave to defined samples range
     /// </summary>
-    public static void WaveCrop(Wave* wave, int initSample, int finalSample)
+    public static void WaveCrop(ref Wave wave, int initSample, int finalSample)
     {
         Raylib.WaveCrop(wave, initSample, finalSample);
     }
@@ -3655,7 +3634,7 @@ public unsafe partial class RaylibS
     /// <summary>
     /// Convert wave data to desired format
     /// </summary>
-    public static void WaveFormat(Wave* wave, int sampleRate, int sampleSize, int channels)
+    public static void WaveFormat(ref Wave wave, int sampleRate, int sampleSize, int channels)
     {
         Raylib.WaveFormat(wave, sampleRate, sampleSize, channels);
     }
@@ -3663,15 +3642,15 @@ public unsafe partial class RaylibS
     /// <summary>
     /// Load samples data from wave as a 32bit float data array
     /// </summary>
-    public static float* LoadWaveSamples(Wave wave)
+    public static ref float LoadWaveSamples(Wave wave)
     {
-        return Raylib.LoadWaveSamples(wave);
+        return (ref float)Raylib.LoadWaveSamples(wave);
     }
 
     /// <summary>
     /// Unload samples data loaded with LoadWaveSamples()
     /// </summary>
-    public static void UnloadWaveSamples(float* samples)
+    public static void UnloadWaveSamples(ref float samples)
     {
         Raylib.UnloadWaveSamples(samples);
     }
@@ -3689,8 +3668,7 @@ public unsafe partial class RaylibS
     /// </summary>
     public static Music LoadMusicStreamFromMemory(string fileType, byte[] data, int dataSize)
     {
-        var dataLocal = Helpers.ArrayToPtr(data);
-        return Raylib.LoadMusicStreamFromMemory(fileType, dataLocal, dataSize);
+        return Raylib.LoadMusicStreamFromMemory(fileType, data, dataSize);
     }
 
     /// <summary>
@@ -3818,8 +3796,7 @@ public unsafe partial class RaylibS
     /// </summary>
     public static void UpdateAudioStream(AudioStream stream, IntPtr data, int frameCount)
     {
-        var dataLocal = (void*)data;
-        Raylib.UpdateAudioStream(stream, dataLocal, frameCount);
+        Raylib.UpdateAudioStream(stream, data, frameCount);
     }
 
     /// <summary>

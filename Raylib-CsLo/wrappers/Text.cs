@@ -5,7 +5,7 @@
 
 namespace Raylib_CsLo;
 
-public unsafe partial class RaylibS
+public unsafe partial class Raylib
 {
 
 }
