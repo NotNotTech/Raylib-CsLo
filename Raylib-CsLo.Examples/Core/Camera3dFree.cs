@@ -50,7 +50,7 @@ public static unsafe class Camera3dFree
         {
             // Update
 
-            UpdateCamera(camera);          // Update camera
+            UpdateCamera(&camera);          // Update camera
 
             if (IsKeyDown('Z'))
             {

@@ -42,7 +42,7 @@ public class Program
         // Debug only
         foreach (string cType in types)
         {
-            string csType = CToCsTypes(cType);
+            string csType = TypeConverter.CToCsTypes(cType);
             if (cType != csType || csType.Contains('*'))
             {
                 Console.WriteLine("{0,16} -> {1,-10}", cType, csType);
@@ -106,7 +106,10 @@ public class Program
                 types.Add(func.Return.TypeC);
             }
 
-            func.Return.TypeCs = CToCsTypes(func.Return.TypeC);
+            func.Return.TypeCs = TypeConverter.CToCsTypes(func.Return.TypeC);
+
+            bool returnSame = func.Return.TypeCs == TypeConverter.CToCsTypes(func.Return.TypeC);
+            bool paramsSame = true;
 
             if (parametersC != null)
             {
@@ -120,9 +123,19 @@ public class Program
                         types.Add(typeC);
                     }
 
-                    string typeCs = CToCsTypes(typeC);
+                    string typeCs = TypeConverter.CToCsTypes(typeC);
+
+                    if (TypeConverter.CToCsTypes(typeC) != typeCs)
+                    {
+                        paramsSame = false;
+                    }
                     func.Parameters.Add(new RaylibParameter(param.Name, typeCs, typeC));
                 }
+            }
+
+            if (returnSame && paramsSame)
+            {
+                func.IsNative = returnSame && paramsSame;
             }
 
             functions.Add(func);
@@ -135,31 +148,5 @@ public class Program
             string line = CodegenSettings.FunctionsToHandleManually[i];
             Console.WriteLine(i + 1 + ".\t" + line + "()");
         }
-    }
-
-    static string CToCsTypes(string type)
-    {
-        // remove const
-        type = type.Replace("const ", "");
-
-        // Convert C types to safe types
-        type = type switch
-        {
-            "void*" => "IntPtr",
-            "char*" => "string",
-            "char**" => "string[]",
-            "unsigned char*" => "byte[]",
-            "..." => "params object[]", // var args array
-            _ => type
-        };
-
-        type = type.Replace("unsigned ", "u");
-
-        if (type.EndsWith("*"))
-        {
-            type = "ref " + type[0..(type.Length - 1)];
-        }
-
-        return type;
     }
 }

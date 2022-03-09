@@ -11,6 +11,7 @@ namespace Raylib_CsLo;
 using System.Numerics;
 using System.Runtime.InteropServices;
 using Microsoft.Toolkit.HighPerformance.Buffers;
+using Raylib_CsLo.autogen.bindings;
 using Raylib_CsLo.InternalHelpers;
 
 public static class CsLoSettings
@@ -23,7 +24,7 @@ public static class CsLoSettings
     public static bool openGl43;
 }
 
-public static unsafe partial class Raylib_
+public static unsafe partial class Raylib
 {
 
 

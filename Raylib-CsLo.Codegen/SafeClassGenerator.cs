@@ -4,7 +4,6 @@
 // The code and 100+ examples are here! https://github.com/NotNotTech/Raylib-CsLo
 
 namespace Raylib_CsLo.Codegen;
-
 using System.Collections.Generic;
 using System.IO;
 
@@ -14,7 +13,7 @@ public class SafeClassGenerator : ClassGenerator
 
     List<RaylibFunction> functions;
 
-    const string ClassName = "RaylibS";
+    const string ClassName = "Raylib";
 
     public static readonly string[] Usings =
     {
@@ -41,29 +40,14 @@ public class SafeClassGenerator : ClassGenerator
         {
             foreach (RaylibFunction func in functions)
             {
-                if (!func.IsManual)
+                if (!func.IsNative)
                 {
-                    GenFunction(func);
+                    // GenFunction(func);
                 }
             }
         }
         EndBlock();
         Line($"#pragma warning restore");
-    }
-
-    void GenFunction(RaylibFunction func)
-    {
-        DocumentationBlock(func);
-
-        string parameters = GenParameterDefinitions(func);
-
-        Line($"public static {func.Return.TypeCs} {func.Name}({parameters})");
-        StartBlock();
-        {
-            GenFunctionContents(func);
-        }
-        EndBlock();
-        Blank();
     }
 
     static string GenParameterDefinitions(RaylibFunction func)
@@ -146,31 +130,34 @@ public class SafeClassGenerator : ClassGenerator
 
         Debug($"{parameter.TypeC} => {parameter.TypeCs}");
 
+        string localVariableSuffix = "_";
+        string call;
+
         switch (parameter.TypeCs)
         {
-            //     // case "string":
-            //     //     Line($"using var {localVariable + localVariableSuffix} = {localVariable}.MarshalUtf8();");
-            //     //     localVariable += localVariableSuffix;
-            //     //     localVariable += ".AsPtr()";
-            //     //     break;
+            case "string":
+                Line($"using var {localVariable + localVariableSuffix} = {localVariable}.MarshalUtf8();");
+                localVariable += localVariableSuffix;
+                localVariable += ".AsPtr()";
+                break;
 
-            //     // case "IntPtr":
-            //     //     Line($"var {localVariable + localVariableSuffix} = (void*){localVariable};");
-            //     //     localVariable += localVariableSuffix;
-            //     //     break;
+            // case "IntPtr":
+            //     Line($"var {localVariable + localVariableSuffix} = (void*){localVariable};");
+            //     localVariable += localVariableSuffix;
+            //     break;
 
-            //     case "byte[]":
-            //         call = Call(CodegenSettings.ArrayToPtrFunction, localVariable);
-            //         Line($"var {localVariable + localVariableSuffix} = {call};");
-            //         localVariable += localVariableSuffix;
-            //         break;
+            case "byte[]":
+                call = Call(CodegenSettings.ArrayToPtrFunction, localVariable);
+                Line($"var {localVariable + localVariableSuffix} = {call};");
+                localVariable += localVariableSuffix;
+                break;
 
-            //     case "Rectangle[]":
-            //         call = Call(CodegenSettings.ArrayToPtrFunction, localVariable);
-            //         Line($"var {parameter.Name + localVariableSuffix} = {call};");
-            //         localVariable = "&" + parameter.Name;
-            //         localVariable += localVariableSuffix;
-            //         break;
+            case "Rectangle[]":
+                call = Call(CodegenSettings.ArrayToPtrFunction, localVariable);
+                Line($"var {parameter.Name + localVariableSuffix} = {call};");
+                localVariable = "&" + parameter.Name;
+                localVariable += localVariableSuffix;
+                break;
 
             default:
                 break;

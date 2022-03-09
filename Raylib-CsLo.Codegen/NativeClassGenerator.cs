@@ -59,24 +59,10 @@ public class NativeClassGenerator : ClassGenerator
 
     static string GenReturnType(RaylibFunction func)
     {
-        return func.Return.TypeCs;
-        //  switch
-        // {
-        //     "const char*" => "string",
-        //     "char*" => "string",
-        //     "char**" => "string[]",
-        //     "const char**" => "sbyte**",
-        //     "unsigned char*" => "byte*",
-        //     "unsigned int*" => "uint*",
-        //     "unsigned int" => "uint",
-        //     "Matrix" => "Matrix4x4",
-        //     "Texture2D" => "Texture",
-        //     "RenderTexture2D" => "RenderTexture",
-        //     "TextureCubemap" => "Texture",
-        //     _ => func.Return.TypeC
-        // };
+        return TypeConverter.CToCsNativeTypes(func.Return.TypeC);
     }
 
+    // (...);
     string GenParameterDefinitions(RaylibFunction func)
     {
         string parameters = "";
@@ -93,35 +79,7 @@ public class NativeClassGenerator : ClassGenerator
                 }
 
                 Debug(parameter.TypeC + " => " + parameter.TypeCs);
-                string resultC = parameter.TypeC switch
-                {
-                    // "bool" => "[MarshalAs(UnmanagedType.U1)] bool",
-
-                    "TraceLogCallback" => "delegate* unmanaged[Cdecl]<int, sbyte*, sbyte*, void>",
-                    "LoadFileDataCallback" => "delegate* unmanaged[Cdecl]<sbyte*, uint*, byte*>",
-                    "SaveFileDataCallback" => "delegate* unmanaged[Cdecl]<sbyte*, void*, uint, bool>",
-                    "LoadFileTextCallback" => "delegate* unmanaged[Cdecl]<sbyte*, sbyte*>",
-                    "SaveFileTextCallback" => "delegate* unmanaged[Cdecl]<sbyte*, sbyte*>",
-                    "const char*" => "sbyte*",
-                    "char*" => "sbyte*",
-                    "char" => "sbyte",
-                    "char**" => "sbyte**",
-                    "const char**" => "sbyte**",
-                    "const unsigned char*" => "byte*",
-                    "unsigned int" => "uint",
-                    "unsigned char*" => "byte*",
-                    "unsigned int*" => "uint*",
-                    "const void*" => "void*",
-                    "RenderTexture2D" => "RenderTexture",
-                    "Texture2D" => "Texture",
-                    "Texture2D*" => "Texture*",
-                    "const GlyphInfo*" => "GlyphInfo*",
-                    "Camera" => "Camera3D",
-                    "Camera*" => "Camera3D*",
-                    "Matrix" => "Matrix4x4",
-                    "Matrix*" => "Matrix4x4*",
-                    _ => parameter.TypeCs,
-                };
+                string resultC = TypeConverter.CToCsNativeTypes(parameter.TypeC);
 
                 parameters += $"{resultC} {parameter.Name}";
 
