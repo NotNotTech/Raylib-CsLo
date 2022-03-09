@@ -574,7 +574,7 @@ public unsafe partial class Raylib
     /// Show trace log messages (LOG_DEBUG, LOG_INFO, LOG_WARNING, LOG_ERROR...)
     /// </summary>
     [DllImport("raylib", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
-    public static extern void TraceLog(int logLevel, sbyte* text, __arglist args);
+    public static extern void TraceLog(int logLevel, sbyte* text, __arglist );
 
     /// <summary>
     /// Set the current threshold (minimum) log level
@@ -2140,7 +2140,7 @@ public unsafe partial class Raylib
     /// Text formatting with variables (sprintf() style)
     /// </summary>
     [DllImport("raylib", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
-    public static extern sbyte* TextFormat(sbyte* text, __arglist args);
+    public static extern sbyte* TextFormat(sbyte* text, __arglist );
 
     /// <summary>
     /// Get a piece of a text string
