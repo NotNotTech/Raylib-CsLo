@@ -5,28 +5,19 @@
 
 namespace Raylib_CsLo.Codegen;
 
-using System;
 using System.IO;
+using System.Linq;
 
 public static class CodegenSettings
 {
     public const string NamespaceName = "Raylib_CsLo";
 
-    public static string OutputFolder { get; } = Path.Join(Environment.CurrentDirectory, "/Raylib-CsLo/codegen/");
-    public static string ApiJsonFile { get; } = Path.Join(Environment.CurrentDirectory, "/sub-modules/raylib/parser/raylib_api.json");
+    public static string OutputFolder { get; } = TryGetSolutionDirectoryInfo() + "/Raylib-CsLo/codegen/";
+    public static string ApiJsonFile { get; } = TryGetSolutionDirectoryInfo() + "/Raylib-CsLo.Codegen/bindings/raylib_api.json";
 
     public const string Utf8ToStringFunction = "Helpers.Utf8ToString";
     public const string PrtToArrayFunction = "Helpers.PrtToArray";
     public const string ArrayToPtrFunction = "Helpers.ArrayToPtr";
-
-    public static readonly string[] LastFunctionInModule =
-    {
-        "SetCameraMoveControls",
-        "GetCollisionRec",
-        "GetPixelDataSize",
-        "TextToInteger",
-        "GetRayCollisionQuad"
-    };
 
     public static readonly string[] FunctionsToHandleManually =
     {
@@ -48,4 +39,15 @@ public static class CodegenSettings
         "TextJoin",
         "TextSplit",
     };
+
+    // Thanks to the weird inconsistency between linux working dir and windows lets just do this
+    public static string TryGetSolutionDirectoryInfo()
+    {
+        DirectoryInfo directory = new(Directory.GetCurrentDirectory());
+        while (directory != null && !directory.GetFiles("*.sln").Any())
+        {
+            directory = directory.Parent;
+        }
+        return directory.FullName;
+    }
 }

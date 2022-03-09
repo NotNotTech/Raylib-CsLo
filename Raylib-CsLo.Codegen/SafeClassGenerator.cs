@@ -89,13 +89,6 @@ public class SafeClassGenerator : ClassGenerator
         return parameters;
     }
 
-    void DocumentationBlock(RaylibFunction func)
-    {
-        Line($"/// <summary>");
-        Line($"/// {func.Description}");
-        Line($"/// </summary>");
-    }
-
     void GenFunctionContents(RaylibFunction func)
     {
         string paramaters = GenParameters(func);
@@ -122,8 +115,7 @@ public class SafeClassGenerator : ClassGenerator
         {
             foreach (RaylibParameter parameter in func.Parameters)
             {
-                string parameterVariableName = HandleParameter(parameter.Name, parameter.TypeCs, parameter.TypeC);
-                parameters += HandleNativeCallParameter(parameterVariableName);
+                parameters += HandleParameter(parameter);
 
                 if (index < func.Parameters.Count - 1)
                 {
@@ -137,13 +129,6 @@ public class SafeClassGenerator : ClassGenerator
         return parameters;
     }
 
-    // Raylib.*(Theses, Params, Here);
-    static string HandleNativeCallParameter(string nativeParameterName)
-    {
-
-        return $"{nativeParameterName}";
-    }
-
     static string CastReturn(RaylibFunction func)
     {
         string returnStatement = "";
@@ -155,21 +140,21 @@ public class SafeClassGenerator : ClassGenerator
         return returnStatement;
     }
 
-    string HandleParameter(string parameterName, string typeCs, string typeC)
+    string HandleParameter(RaylibParameter parameter)
     {
-        string localVariable = parameterName;
+        string localVariable = parameter.Name;
         const string localVariableSuffix = "Local";
 
-        Debug($"{typeC} => {typeCs}");
+        Debug($"{parameter.TypeC} => {parameter.TypeCs}");
 
         string call;
-        switch (typeCs)
+        switch (parameter.TypeCs)
         {
-            case "string":
-                Line($"using var {localVariable + localVariableSuffix} = {localVariable}.MarshalUtf8();");
-                localVariable += localVariableSuffix;
-                localVariable += ".AsPtr()";
-                break;
+            // case "string":
+            //     Line($"using var {localVariable + localVariableSuffix} = {localVariable}.MarshalUtf8();");
+            //     localVariable += localVariableSuffix;
+            //     localVariable += ".AsPtr()";
+            //     break;
 
             case "IntPtr":
                 Line($"var {localVariable + localVariableSuffix} = (void*){localVariable};");
@@ -184,8 +169,8 @@ public class SafeClassGenerator : ClassGenerator
 
             case "Rectangle[]":
                 call = Call(CodegenSettings.ArrayToPtrFunction, localVariable);
-                Line($"var {parameterName + localVariableSuffix} = {call};");
-                localVariable = "&" + parameterName;
+                Line($"var {parameter.Name + localVariableSuffix} = {call};");
+                localVariable = "&" + parameter.Name;
                 localVariable += localVariableSuffix;
                 break;
 
@@ -193,12 +178,12 @@ public class SafeClassGenerator : ClassGenerator
                 break;
         }
 
-        switch (typeC)
+        switch (parameter.TypeC)
         {
             case "Camera*":
                 call = Call(CodegenSettings.ArrayToPtrFunction, localVariable);
-                Line($"var {parameterName + localVariableSuffix} = {call};");
-                localVariable = "&" + parameterName;
+                Line($"var {parameter.Name + localVariableSuffix} = {call};");
+                localVariable = "&" + parameter.Name;
                 localVariable += localVariableSuffix;
                 break;
 
@@ -215,7 +200,7 @@ public class SafeClassGenerator : ClassGenerator
 
         string returnStatement = "";
 
-        if (func.Return.TypeCs == "string" && func.Return.TypeC.EndsWith("char *"))
+        if (func.Return.TypeCs == "string" && func.Return.TypeC.EndsWith("char*"))
         {
             returnStatement += Call(CodegenSettings.Utf8ToStringFunction, nativeCall);
         }

@@ -12,8 +12,7 @@ public unsafe partial class RaylibS
     /// </summary>
     public static void InitWindow(int width, int height, string title)
     {
-        using var titleLocal = title.MarshalUtf8();
-        Raylib.InitWindow(width, height, titleLocal.AsPtr());
+        Raylib.InitWindow(width, height, title);
     }
 
     /// <summary>
@@ -97,7 +96,7 @@ public unsafe partial class RaylibS
     }
 
     /// <summary>
-    /// Set window configuration state using flags
+    /// Set window configuration state using flags (only PLATFORM_DESKTOP)
     /// </summary>
     public static void SetWindowState(uint flags)
     {
@@ -157,8 +156,7 @@ public unsafe partial class RaylibS
     /// </summary>
     public static void SetWindowTitle(string title)
     {
-        using var titleLocal = title.MarshalUtf8();
-        Raylib.SetWindowTitle(titleLocal.AsPtr());
+        Raylib.SetWindowTitle(title);
     }
 
     /// <summary>
@@ -194,6 +192,14 @@ public unsafe partial class RaylibS
     }
 
     /// <summary>
+    /// Set window opacity [0.0f..1.0f] (only PLATFORM_DESKTOP)
+    /// </summary>
+    public static void SetWindowOpacity(float opacity)
+    {
+        Raylib.SetWindowOpacity(opacity);
+    }
+
+    /// <summary>
     /// Get native window handle
     /// </summary>
     public static IntPtr GetWindowHandle()
@@ -215,6 +221,22 @@ public unsafe partial class RaylibS
     public static int GetScreenHeight()
     {
         return Raylib.GetScreenHeight();
+    }
+
+    /// <summary>
+    /// Get current render width (it considers HiDPI)
+    /// </summary>
+    public static int GetRenderWidth()
+    {
+        return Raylib.GetRenderWidth();
+    }
+
+    /// <summary>
+    /// Get current render height (it considers HiDPI)
+    /// </summary>
+    public static int GetRenderHeight()
+    {
+        return Raylib.GetRenderHeight();
     }
 
     /// <summary>
@@ -310,8 +332,7 @@ public unsafe partial class RaylibS
     /// </summary>
     public static void SetClipboardText(string text)
     {
-        using var textLocal = text.MarshalUtf8();
-        Raylib.SetClipboardText(textLocal.AsPtr());
+        Raylib.SetClipboardText(text);
     }
 
     /// <summary>
@@ -551,9 +572,7 @@ public unsafe partial class RaylibS
     /// </summary>
     public static Shader LoadShader(string vsFileName, string fsFileName)
     {
-        using var vsFileNameLocal = vsFileName.MarshalUtf8();
-        using var fsFileNameLocal = fsFileName.MarshalUtf8();
-        return Raylib.LoadShader(vsFileNameLocal.AsPtr(), fsFileNameLocal.AsPtr());
+        return Raylib.LoadShader(vsFileName, fsFileName);
     }
 
     /// <summary>
@@ -561,9 +580,7 @@ public unsafe partial class RaylibS
     /// </summary>
     public static Shader LoadShaderFromMemory(string vsCode, string fsCode)
     {
-        using var vsCodeLocal = vsCode.MarshalUtf8();
-        using var fsCodeLocal = fsCode.MarshalUtf8();
-        return Raylib.LoadShaderFromMemory(vsCodeLocal.AsPtr(), fsCodeLocal.AsPtr());
+        return Raylib.LoadShaderFromMemory(vsCode, fsCode);
     }
 
     /// <summary>
@@ -571,8 +588,7 @@ public unsafe partial class RaylibS
     /// </summary>
     public static int GetShaderLocation(Shader shader, string uniformName)
     {
-        using var uniformNameLocal = uniformName.MarshalUtf8();
-        return Raylib.GetShaderLocation(shader, uniformNameLocal.AsPtr());
+        return Raylib.GetShaderLocation(shader, uniformName);
     }
 
     /// <summary>
@@ -580,8 +596,7 @@ public unsafe partial class RaylibS
     /// </summary>
     public static int GetShaderLocationAttrib(Shader shader, string attribName)
     {
-        using var attribNameLocal = attribName.MarshalUtf8();
-        return Raylib.GetShaderLocationAttrib(shader, attribNameLocal.AsPtr());
+        return Raylib.GetShaderLocationAttrib(shader, attribName);
     }
 
     /// <summary>
@@ -735,8 +750,7 @@ public unsafe partial class RaylibS
     /// </summary>
     public static void TakeScreenshot(string fileName)
     {
-        using var fileNameLocal = fileName.MarshalUtf8();
-        Raylib.TakeScreenshot(fileNameLocal.AsPtr());
+        Raylib.TakeScreenshot(fileName);
     }
 
     /// <summary>
@@ -795,18 +809,16 @@ public unsafe partial class RaylibS
     /// </summary>
     public static bool SaveFileData(string fileName, IntPtr data, uint bytesToWrite)
     {
-        using var fileNameLocal = fileName.MarshalUtf8();
         var dataLocal = (void*)data;
-        return Raylib.SaveFileData(fileNameLocal.AsPtr(), dataLocal, bytesToWrite);
+        return Raylib.SaveFileData(fileName, dataLocal, bytesToWrite);
     }
 
     /// <summary>
-    /// Load text data from file (read), returns a ' 0' terminated string
+    /// Load text data from file (read), returns a '\0' terminated string
     /// </summary>
     public static string LoadFileText(string fileName)
     {
-        using var fileNameLocal = fileName.MarshalUtf8();
-        return Helpers.Utf8ToString(Raylib.LoadFileText(fileNameLocal.AsPtr()));
+        return Helpers.Utf8ToString(Raylib.LoadFileText(fileName));
     }
 
     /// <summary>
@@ -814,18 +826,15 @@ public unsafe partial class RaylibS
     /// </summary>
     public static void UnloadFileText(string text)
     {
-        using var textLocal = text.MarshalUtf8();
-        Raylib.UnloadFileText(textLocal.AsPtr());
+        Raylib.UnloadFileText(text);
     }
 
     /// <summary>
-    /// Save text data to file (write), string must be ' 0' terminated, returns true on success
+    /// Save text data to file (write), string must be '\0' terminated, returns true on success
     /// </summary>
     public static bool SaveFileText(string fileName, string text)
     {
-        using var fileNameLocal = fileName.MarshalUtf8();
-        using var textLocal = text.MarshalUtf8();
-        return Raylib.SaveFileText(fileNameLocal.AsPtr(), textLocal.AsPtr());
+        return Raylib.SaveFileText(fileName, text);
     }
 
     /// <summary>
@@ -833,8 +842,7 @@ public unsafe partial class RaylibS
     /// </summary>
     public static bool FileExists(string fileName)
     {
-        using var fileNameLocal = fileName.MarshalUtf8();
-        return Raylib.FileExists(fileNameLocal.AsPtr());
+        return Raylib.FileExists(fileName);
     }
 
     /// <summary>
@@ -842,8 +850,7 @@ public unsafe partial class RaylibS
     /// </summary>
     public static bool DirectoryExists(string dirPath)
     {
-        using var dirPathLocal = dirPath.MarshalUtf8();
-        return Raylib.DirectoryExists(dirPathLocal.AsPtr());
+        return Raylib.DirectoryExists(dirPath);
     }
 
     /// <summary>
@@ -851,9 +858,15 @@ public unsafe partial class RaylibS
     /// </summary>
     public static bool IsFileExtension(string fileName, string ext)
     {
-        using var fileNameLocal = fileName.MarshalUtf8();
-        using var extLocal = ext.MarshalUtf8();
-        return Raylib.IsFileExtension(fileNameLocal.AsPtr(), extLocal.AsPtr());
+        return Raylib.IsFileExtension(fileName, ext);
+    }
+
+    /// <summary>
+    /// Get file length in bytes (NOTE: GetFileSize() conflicts with windows.h)
+    /// </summary>
+    public static int GetFileLength(string fileName)
+    {
+        return Raylib.GetFileLength(fileName);
     }
 
     /// <summary>
@@ -861,8 +874,7 @@ public unsafe partial class RaylibS
     /// </summary>
     public static string GetFileExtension(string fileName)
     {
-        using var fileNameLocal = fileName.MarshalUtf8();
-        return Helpers.Utf8ToString(Raylib.GetFileExtension(fileNameLocal.AsPtr()));
+        return Helpers.Utf8ToString(Raylib.GetFileExtension(fileName));
     }
 
     /// <summary>
@@ -870,8 +882,7 @@ public unsafe partial class RaylibS
     /// </summary>
     public static string GetFileName(string filePath)
     {
-        using var filePathLocal = filePath.MarshalUtf8();
-        return Helpers.Utf8ToString(Raylib.GetFileName(filePathLocal.AsPtr()));
+        return Helpers.Utf8ToString(Raylib.GetFileName(filePath));
     }
 
     /// <summary>
@@ -879,8 +890,7 @@ public unsafe partial class RaylibS
     /// </summary>
     public static string GetFileNameWithoutExt(string filePath)
     {
-        using var filePathLocal = filePath.MarshalUtf8();
-        return Helpers.Utf8ToString(Raylib.GetFileNameWithoutExt(filePathLocal.AsPtr()));
+        return Helpers.Utf8ToString(Raylib.GetFileNameWithoutExt(filePath));
     }
 
     /// <summary>
@@ -888,8 +898,7 @@ public unsafe partial class RaylibS
     /// </summary>
     public static string GetDirectoryPath(string filePath)
     {
-        using var filePathLocal = filePath.MarshalUtf8();
-        return Helpers.Utf8ToString(Raylib.GetDirectoryPath(filePathLocal.AsPtr()));
+        return Helpers.Utf8ToString(Raylib.GetDirectoryPath(filePath));
     }
 
     /// <summary>
@@ -897,8 +906,7 @@ public unsafe partial class RaylibS
     /// </summary>
     public static string GetPrevDirectoryPath(string dirPath)
     {
-        using var dirPathLocal = dirPath.MarshalUtf8();
-        return Helpers.Utf8ToString(Raylib.GetPrevDirectoryPath(dirPathLocal.AsPtr()));
+        return Helpers.Utf8ToString(Raylib.GetPrevDirectoryPath(dirPath));
     }
 
     /// <summary>
@@ -907,6 +915,14 @@ public unsafe partial class RaylibS
     public static string GetWorkingDirectory()
     {
         return Helpers.Utf8ToString(Raylib.GetWorkingDirectory());
+    }
+
+    /// <summary>
+    /// Get the directory if the running application (uses static string)
+    /// </summary>
+    public static string GetApplicationDirectory()
+    {
+        return Helpers.Utf8ToString(Raylib.GetApplicationDirectory());
     }
 
     /// <summary>
@@ -922,8 +938,7 @@ public unsafe partial class RaylibS
     /// </summary>
     public static bool ChangeDirectory(string dir)
     {
-        using var dirLocal = dir.MarshalUtf8();
-        return Raylib.ChangeDirectory(dirLocal.AsPtr());
+        return Raylib.ChangeDirectory(dir);
     }
 
     /// <summary>
@@ -947,8 +962,7 @@ public unsafe partial class RaylibS
     /// </summary>
     public static long GetFileModTime(string fileName)
     {
-        using var fileNameLocal = fileName.MarshalUtf8();
-        return Raylib.GetFileModTime(fileNameLocal.AsPtr());
+        return Raylib.GetFileModTime(fileName);
     }
 
     /// <summary>
@@ -1008,8 +1022,7 @@ public unsafe partial class RaylibS
     /// </summary>
     public static void OpenURL(string url)
     {
-        using var urlLocal = url.MarshalUtf8();
-        Raylib.OpenURL(urlLocal.AsPtr());
+        Raylib.OpenURL(url);
     }
 
     /// <summary>
@@ -1145,8 +1158,7 @@ public unsafe partial class RaylibS
     /// </summary>
     public static int SetGamepadMappings(string mappings)
     {
-        using var mappingsLocal = mappings.MarshalUtf8();
-        return Raylib.SetGamepadMappings(mappingsLocal.AsPtr());
+        return Raylib.SetGamepadMappings(mappings);
     }
 
     /// <summary>
@@ -1370,7 +1382,8 @@ public unsafe partial class RaylibS
     /// </summary>
     public static void UpdateCamera(Camera* camera)
     {
-        Raylib.UpdateCamera(camera);
+        var cameraLocal = Helpers.ArrayToPtr(camera);
+        Raylib.UpdateCamera(&cameraLocal);
     }
 
     /// <summary>
@@ -1786,8 +1799,7 @@ public unsafe partial class RaylibS
     /// </summary>
     public static Image LoadImage(string fileName)
     {
-        using var fileNameLocal = fileName.MarshalUtf8();
-        return Raylib.LoadImage(fileNameLocal.AsPtr());
+        return Raylib.LoadImage(fileName);
     }
 
     /// <summary>
@@ -1795,8 +1807,7 @@ public unsafe partial class RaylibS
     /// </summary>
     public static Image LoadImageRaw(string fileName, int width, int height, int format, int headerSize)
     {
-        using var fileNameLocal = fileName.MarshalUtf8();
-        return Raylib.LoadImageRaw(fileNameLocal.AsPtr(), width, height, format, headerSize);
+        return Raylib.LoadImageRaw(fileName, width, height, format, headerSize);
     }
 
     /// <summary>
@@ -1804,8 +1815,7 @@ public unsafe partial class RaylibS
     /// </summary>
     public static Image LoadImageAnim(string fileName, int* frames)
     {
-        using var fileNameLocal = fileName.MarshalUtf8();
-        return Raylib.LoadImageAnim(fileNameLocal.AsPtr(), frames);
+        return Raylib.LoadImageAnim(fileName, frames);
     }
 
     /// <summary>
@@ -1813,9 +1823,8 @@ public unsafe partial class RaylibS
     /// </summary>
     public static Image LoadImageFromMemory(string fileType, byte[] fileData, int dataSize)
     {
-        using var fileTypeLocal = fileType.MarshalUtf8();
         var fileDataLocal = Helpers.ArrayToPtr(fileData);
-        return Raylib.LoadImageFromMemory(fileTypeLocal.AsPtr(), fileDataLocal, dataSize);
+        return Raylib.LoadImageFromMemory(fileType, fileDataLocal, dataSize);
     }
 
     /// <summary>
@@ -1847,8 +1856,7 @@ public unsafe partial class RaylibS
     /// </summary>
     public static bool ExportImage(Image image, string fileName)
     {
-        using var fileNameLocal = fileName.MarshalUtf8();
-        return Raylib.ExportImage(image, fileNameLocal.AsPtr());
+        return Raylib.ExportImage(image, fileName);
     }
 
     /// <summary>
@@ -1856,8 +1864,7 @@ public unsafe partial class RaylibS
     /// </summary>
     public static bool ExportImageAsCode(Image image, string fileName)
     {
-        using var fileNameLocal = fileName.MarshalUtf8();
-        return Raylib.ExportImageAsCode(image, fileNameLocal.AsPtr());
+        return Raylib.ExportImageAsCode(image, fileName);
     }
 
     /// <summary>
@@ -1937,8 +1944,7 @@ public unsafe partial class RaylibS
     /// </summary>
     public static Image ImageText(string text, int fontSize, Color color)
     {
-        using var textLocal = text.MarshalUtf8();
-        return Raylib.ImageText(textLocal.AsPtr(), fontSize, color);
+        return Raylib.ImageText(text, fontSize, color);
     }
 
     /// <summary>
@@ -1946,8 +1952,7 @@ public unsafe partial class RaylibS
     /// </summary>
     public static Image ImageTextEx(Font font, string text, float fontSize, float spacing, Color tint)
     {
-        using var textLocal = text.MarshalUtf8();
-        return Raylib.ImageTextEx(font, textLocal.AsPtr(), fontSize, spacing, tint);
+        return Raylib.ImageTextEx(font, text, fontSize, spacing, tint);
     }
 
     /// <summary>
@@ -2129,17 +2134,17 @@ public unsafe partial class RaylibS
     /// <summary>
     /// Load color data from image as a Color array (RGBA - 32bit)
     /// </summary>
-    public static Color[] LoadImageColors(Image image)
+    public static Color* LoadImageColors(Image image)
     {
-        return Helpers.PrtToArray(Raylib.LoadImageColors(image));
+        return Raylib.LoadImageColors(image);
     }
 
     /// <summary>
     /// Load colors palette from image as a Color array (RGBA - 32bit)
     /// </summary>
-    public static Color[] LoadImagePalette(Image image, int maxPaletteSize, int* colorCount)
+    public static Color* LoadImagePalette(Image image, int maxPaletteSize, int* colorCount)
     {
-        return Helpers.PrtToArray(Raylib.LoadImagePalette(image, maxPaletteSize, colorCount));
+        return Raylib.LoadImagePalette(image, maxPaletteSize, colorCount);
     }
 
     /// <summary>
@@ -2275,8 +2280,7 @@ public unsafe partial class RaylibS
     /// </summary>
     public static void ImageDrawText(Image* dst, string text, int posX, int posY, int fontSize, Color color)
     {
-        using var textLocal = text.MarshalUtf8();
-        Raylib.ImageDrawText(dst, textLocal.AsPtr(), posX, posY, fontSize, color);
+        Raylib.ImageDrawText(dst, text, posX, posY, fontSize, color);
     }
 
     /// <summary>
@@ -2284,8 +2288,7 @@ public unsafe partial class RaylibS
     /// </summary>
     public static void ImageDrawTextEx(Image* dst, Font font, string text, Vector2 position, float fontSize, float spacing, Color tint)
     {
-        using var textLocal = text.MarshalUtf8();
-        Raylib.ImageDrawTextEx(dst, font, textLocal.AsPtr(), position, fontSize, spacing, tint);
+        Raylib.ImageDrawTextEx(dst, font, text, position, fontSize, spacing, tint);
     }
 
     /// <summary>
@@ -2293,8 +2296,7 @@ public unsafe partial class RaylibS
     /// </summary>
     public static Texture2D LoadTexture(string fileName)
     {
-        using var fileNameLocal = fileName.MarshalUtf8();
-        return Raylib.LoadTexture(fileNameLocal.AsPtr());
+        return Raylib.LoadTexture(fileName);
     }
 
     /// <summary>
@@ -2562,17 +2564,15 @@ public unsafe partial class RaylibS
     /// </summary>
     public static Font LoadFont(string fileName)
     {
-        using var fileNameLocal = fileName.MarshalUtf8();
-        return Raylib.LoadFont(fileNameLocal.AsPtr());
+        return Raylib.LoadFont(fileName);
     }
 
     /// <summary>
-    /// Load font from file with extended parameters
+    /// Load font from file with extended parameters, use NULL for fontChars and 0 for glyphCount to load the default character set
     /// </summary>
     public static Font LoadFontEx(string fileName, int fontSize, int* fontChars, int glyphCount)
     {
-        using var fileNameLocal = fileName.MarshalUtf8();
-        return Raylib.LoadFontEx(fileNameLocal.AsPtr(), fontSize, fontChars, glyphCount);
+        return Raylib.LoadFontEx(fileName, fontSize, fontChars, glyphCount);
     }
 
     /// <summary>
@@ -2588,27 +2588,25 @@ public unsafe partial class RaylibS
     /// </summary>
     public static Font LoadFontFromMemory(string fileType, byte[] fileData, int dataSize, int fontSize, int* fontChars, int glyphCount)
     {
-        using var fileTypeLocal = fileType.MarshalUtf8();
         var fileDataLocal = Helpers.ArrayToPtr(fileData);
-        return Raylib.LoadFontFromMemory(fileTypeLocal.AsPtr(), fileDataLocal, dataSize, fontSize, fontChars, glyphCount);
+        return Raylib.LoadFontFromMemory(fileType, fileDataLocal, dataSize, fontSize, fontChars, glyphCount);
     }
 
     /// <summary>
     /// Load font data for further use
     /// </summary>
-    public static GlyphInfo[] LoadFontData(byte[] fileData, int dataSize, int fontSize, int* fontChars, int glyphCount, int type)
+    public static GlyphInfo* LoadFontData(byte[] fileData, int dataSize, int fontSize, int* fontChars, int glyphCount, int type)
     {
         var fileDataLocal = Helpers.ArrayToPtr(fileData);
-        return Helpers.PrtToArray(Raylib.LoadFontData(fileDataLocal, dataSize, fontSize, fontChars, glyphCount, type));
+        return Raylib.LoadFontData(fileDataLocal, dataSize, fontSize, fontChars, glyphCount, type);
     }
 
     /// <summary>
     /// Generate image font atlas using chars info
     /// </summary>
-    public static Image GenImageFontAtlas(GlyphInfo* chars, Rectangle[] recs, int glyphCount, int fontSize, int padding, int packMethod)
+    public static Image GenImageFontAtlas(GlyphInfo* chars, Rectangle** recs, int glyphCount, int fontSize, int padding, int packMethod)
     {
-        var recsLocal = Helpers.ArrayToPtr(recs);
-        return Raylib.GenImageFontAtlas(chars, &recsLocal, glyphCount, fontSize, padding, packMethod);
+        return Raylib.GenImageFontAtlas(chars, recs, glyphCount, fontSize, padding, packMethod);
     }
 
     /// <summary>
@@ -2620,11 +2618,19 @@ public unsafe partial class RaylibS
     }
 
     /// <summary>
-    /// Unload Font from GPU memory (VRAM)
+    /// Unload font from GPU memory (VRAM)
     /// </summary>
     public static void UnloadFont(Font font)
     {
         Raylib.UnloadFont(font);
+    }
+
+    /// <summary>
+    /// Export font as code file, returns true on success
+    /// </summary>
+    public static bool ExportFontAsCode(Font font, string fileName)
+    {
+        return Raylib.ExportFontAsCode(font, fileName);
     }
 
     /// <summary>
@@ -2640,8 +2646,7 @@ public unsafe partial class RaylibS
     /// </summary>
     public static void DrawText(string text, int posX, int posY, int fontSize, Color color)
     {
-        using var textLocal = text.MarshalUtf8();
-        Raylib.DrawText(textLocal.AsPtr(), posX, posY, fontSize, color);
+        Raylib.DrawText(text, posX, posY, fontSize, color);
     }
 
     /// <summary>
@@ -2649,8 +2654,7 @@ public unsafe partial class RaylibS
     /// </summary>
     public static void DrawTextEx(Font font, string text, Vector2 position, float fontSize, float spacing, Color tint)
     {
-        using var textLocal = text.MarshalUtf8();
-        Raylib.DrawTextEx(font, textLocal.AsPtr(), position, fontSize, spacing, tint);
+        Raylib.DrawTextEx(font, text, position, fontSize, spacing, tint);
     }
 
     /// <summary>
@@ -2658,8 +2662,7 @@ public unsafe partial class RaylibS
     /// </summary>
     public static void DrawTextPro(Font font, string text, Vector2 position, Vector2 origin, float rotation, float fontSize, float spacing, Color tint)
     {
-        using var textLocal = text.MarshalUtf8();
-        Raylib.DrawTextPro(font, textLocal.AsPtr(), position, origin, rotation, fontSize, spacing, tint);
+        Raylib.DrawTextPro(font, text, position, origin, rotation, fontSize, spacing, tint);
     }
 
     /// <summary>
@@ -2671,12 +2674,19 @@ public unsafe partial class RaylibS
     }
 
     /// <summary>
+    /// Draw multiple character (codepoint)
+    /// </summary>
+    public static void DrawTextCodepoints(Font font, int* codepoints, int count, Vector2 position, float fontSize, float spacing, Color tint)
+    {
+        Raylib.DrawTextCodepoints(font, codepoints, count, position, fontSize, spacing, tint);
+    }
+
+    /// <summary>
     /// Measure string width for default font
     /// </summary>
     public static int MeasureText(string text, int fontSize)
     {
-        using var textLocal = text.MarshalUtf8();
-        return Raylib.MeasureText(textLocal.AsPtr(), fontSize);
+        return Raylib.MeasureText(text, fontSize);
     }
 
     /// <summary>
@@ -2684,8 +2694,7 @@ public unsafe partial class RaylibS
     /// </summary>
     public static Vector2 MeasureTextEx(Font font, string text, float fontSize, float spacing)
     {
-        using var textLocal = text.MarshalUtf8();
-        return Raylib.MeasureTextEx(font, textLocal.AsPtr(), fontSize, spacing);
+        return Raylib.MeasureTextEx(font, text, fontSize, spacing);
     }
 
     /// <summary>
@@ -2715,10 +2724,9 @@ public unsafe partial class RaylibS
     /// <summary>
     /// Load all codepoints from a UTF-8 text string, codepoints count returned by parameter
     /// </summary>
-    public static int[] LoadCodepoints(string text, int* count)
+    public static int* LoadCodepoints(string text, int* count)
     {
-        using var textLocal = text.MarshalUtf8();
-        return Helpers.PrtToArray(Raylib.LoadCodepoints(textLocal.AsPtr(), count));
+        return Raylib.LoadCodepoints(text, count);
     }
 
     /// <summary>
@@ -2734,8 +2742,7 @@ public unsafe partial class RaylibS
     /// </summary>
     public static int GetCodepointCount(string text)
     {
-        using var textLocal = text.MarshalUtf8();
-        return Raylib.GetCodepointCount(textLocal.AsPtr());
+        return Raylib.GetCodepointCount(text);
     }
 
     /// <summary>
@@ -2743,8 +2750,7 @@ public unsafe partial class RaylibS
     /// </summary>
     public static int GetCodepoint(string text, int* bytesProcessed)
     {
-        using var textLocal = text.MarshalUtf8();
-        return Raylib.GetCodepoint(textLocal.AsPtr(), bytesProcessed);
+        return Raylib.GetCodepoint(text, bytesProcessed);
     }
 
     /// <summary>
@@ -2768,9 +2774,7 @@ public unsafe partial class RaylibS
     /// </summary>
     public static int TextCopy(string dst, string src)
     {
-        using var dstLocal = dst.MarshalUtf8();
-        using var srcLocal = src.MarshalUtf8();
-        return Raylib.TextCopy(dstLocal.AsPtr(), srcLocal.AsPtr());
+        return Raylib.TextCopy(dst, src);
     }
 
     /// <summary>
@@ -2778,18 +2782,15 @@ public unsafe partial class RaylibS
     /// </summary>
     public static bool TextIsEqual(string text1, string text2)
     {
-        using var text1Local = text1.MarshalUtf8();
-        using var text2Local = text2.MarshalUtf8();
-        return Raylib.TextIsEqual(text1Local.AsPtr(), text2Local.AsPtr());
+        return Raylib.TextIsEqual(text1, text2);
     }
 
     /// <summary>
-    /// Get text length, checks for ' 0' ending
+    /// Get text length, checks for '\0' ending
     /// </summary>
     public static uint TextLength(string text)
     {
-        using var textLocal = text.MarshalUtf8();
-        return (uint)Raylib.TextLength(textLocal.AsPtr());
+        return (uint)Raylib.TextLength(text);
     }
 
     /// <summary>
@@ -2797,8 +2798,7 @@ public unsafe partial class RaylibS
     /// </summary>
     public static string TextSubtext(string text, int position, int length)
     {
-        using var textLocal = text.MarshalUtf8();
-        return Helpers.Utf8ToString(Raylib.TextSubtext(textLocal.AsPtr(), position, length));
+        return Helpers.Utf8ToString(Raylib.TextSubtext(text, position, length));
     }
 
     /// <summary>
@@ -2806,10 +2806,7 @@ public unsafe partial class RaylibS
     /// </summary>
     public static string TextReplace(string text, string replace, string by)
     {
-        using var textLocal = text.MarshalUtf8();
-        using var replaceLocal = replace.MarshalUtf8();
-        using var byLocal = by.MarshalUtf8();
-        return Helpers.Utf8ToString(Raylib.TextReplace(textLocal.AsPtr(), replaceLocal.AsPtr(), byLocal.AsPtr()));
+        return Helpers.Utf8ToString(Raylib.TextReplace(text, replace, by));
     }
 
     /// <summary>
@@ -2817,9 +2814,7 @@ public unsafe partial class RaylibS
     /// </summary>
     public static string TextInsert(string text, string insert, int position)
     {
-        using var textLocal = text.MarshalUtf8();
-        using var insertLocal = insert.MarshalUtf8();
-        return Helpers.Utf8ToString(Raylib.TextInsert(textLocal.AsPtr(), insertLocal.AsPtr(), position));
+        return Helpers.Utf8ToString(Raylib.TextInsert(text, insert, position));
     }
 
     /// <summary>
@@ -2827,9 +2822,7 @@ public unsafe partial class RaylibS
     /// </summary>
     public static void TextAppend(string text, string append, int* position)
     {
-        using var textLocal = text.MarshalUtf8();
-        using var appendLocal = append.MarshalUtf8();
-        Raylib.TextAppend(textLocal.AsPtr(), appendLocal.AsPtr(), position);
+        Raylib.TextAppend(text, append, position);
     }
 
     /// <summary>
@@ -2837,9 +2830,7 @@ public unsafe partial class RaylibS
     /// </summary>
     public static int TextFindIndex(string text, string find)
     {
-        using var textLocal = text.MarshalUtf8();
-        using var findLocal = find.MarshalUtf8();
-        return Raylib.TextFindIndex(textLocal.AsPtr(), findLocal.AsPtr());
+        return Raylib.TextFindIndex(text, find);
     }
 
     /// <summary>
@@ -2847,8 +2838,7 @@ public unsafe partial class RaylibS
     /// </summary>
     public static string TextToUpper(string text)
     {
-        using var textLocal = text.MarshalUtf8();
-        return Helpers.Utf8ToString(Raylib.TextToUpper(textLocal.AsPtr()));
+        return Helpers.Utf8ToString(Raylib.TextToUpper(text));
     }
 
     /// <summary>
@@ -2856,8 +2846,7 @@ public unsafe partial class RaylibS
     /// </summary>
     public static string TextToLower(string text)
     {
-        using var textLocal = text.MarshalUtf8();
-        return Helpers.Utf8ToString(Raylib.TextToLower(textLocal.AsPtr()));
+        return Helpers.Utf8ToString(Raylib.TextToLower(text));
     }
 
     /// <summary>
@@ -2865,8 +2854,7 @@ public unsafe partial class RaylibS
     /// </summary>
     public static string TextToPascal(string text)
     {
-        using var textLocal = text.MarshalUtf8();
-        return Helpers.Utf8ToString(Raylib.TextToPascal(textLocal.AsPtr()));
+        return Helpers.Utf8ToString(Raylib.TextToPascal(text));
     }
 
     /// <summary>
@@ -2874,8 +2862,7 @@ public unsafe partial class RaylibS
     /// </summary>
     public static int TextToInteger(string text)
     {
-        using var textLocal = text.MarshalUtf8();
-        return Raylib.TextToInteger(textLocal.AsPtr());
+        return Raylib.TextToInteger(text);
     }
 
     /// <summary>
@@ -3051,8 +3038,7 @@ public unsafe partial class RaylibS
     /// </summary>
     public static Model LoadModel(string fileName)
     {
-        using var fileNameLocal = fileName.MarshalUtf8();
-        return Raylib.LoadModel(fileNameLocal.AsPtr());
+        return Raylib.LoadModel(fileName);
     }
 
     /// <summary>
@@ -3197,8 +3183,7 @@ public unsafe partial class RaylibS
     /// </summary>
     public static bool ExportMesh(Mesh mesh, string fileName)
     {
-        using var fileNameLocal = fileName.MarshalUtf8();
-        return Raylib.ExportMesh(mesh, fileNameLocal.AsPtr());
+        return Raylib.ExportMesh(mesh, fileName);
     }
 
     /// <summary>
@@ -3316,10 +3301,9 @@ public unsafe partial class RaylibS
     /// <summary>
     /// Load materials from model file
     /// </summary>
-    public static Material[] LoadMaterials(string fileName, int* materialCount)
+    public static Material* LoadMaterials(string fileName, int* materialCount)
     {
-        using var fileNameLocal = fileName.MarshalUtf8();
-        return Helpers.PrtToArray(Raylib.LoadMaterials(fileNameLocal.AsPtr(), materialCount));
+        return Raylib.LoadMaterials(fileName, materialCount);
     }
 
     /// <summary>
@@ -3495,8 +3479,7 @@ public unsafe partial class RaylibS
     /// </summary>
     public static Wave LoadWave(string fileName)
     {
-        using var fileNameLocal = fileName.MarshalUtf8();
-        return Raylib.LoadWave(fileNameLocal.AsPtr());
+        return Raylib.LoadWave(fileName);
     }
 
     /// <summary>
@@ -3504,9 +3487,8 @@ public unsafe partial class RaylibS
     /// </summary>
     public static Wave LoadWaveFromMemory(string fileType, byte[] fileData, int dataSize)
     {
-        using var fileTypeLocal = fileType.MarshalUtf8();
         var fileDataLocal = Helpers.ArrayToPtr(fileData);
-        return Raylib.LoadWaveFromMemory(fileTypeLocal.AsPtr(), fileDataLocal, dataSize);
+        return Raylib.LoadWaveFromMemory(fileType, fileDataLocal, dataSize);
     }
 
     /// <summary>
@@ -3514,8 +3496,7 @@ public unsafe partial class RaylibS
     /// </summary>
     public static Sound LoadSound(string fileName)
     {
-        using var fileNameLocal = fileName.MarshalUtf8();
-        return Raylib.LoadSound(fileNameLocal.AsPtr());
+        return Raylib.LoadSound(fileName);
     }
 
     /// <summary>
@@ -3556,8 +3537,7 @@ public unsafe partial class RaylibS
     /// </summary>
     public static bool ExportWave(Wave wave, string fileName)
     {
-        using var fileNameLocal = fileName.MarshalUtf8();
-        return Raylib.ExportWave(wave, fileNameLocal.AsPtr());
+        return Raylib.ExportWave(wave, fileName);
     }
 
     /// <summary>
@@ -3565,8 +3545,7 @@ public unsafe partial class RaylibS
     /// </summary>
     public static bool ExportWaveAsCode(Wave wave, string fileName)
     {
-        using var fileNameLocal = fileName.MarshalUtf8();
-        return Raylib.ExportWaveAsCode(wave, fileNameLocal.AsPtr());
+        return Raylib.ExportWaveAsCode(wave, fileName);
     }
 
     /// <summary>
@@ -3650,11 +3629,11 @@ public unsafe partial class RaylibS
     }
 
     /// <summary>
-    /// Convert wave data to desired format
+    /// Set pan for a sound (0.5 is center)
     /// </summary>
-    public static void WaveFormat(Wave* wave, int sampleRate, int sampleSize, int channels)
+    public static void SetSoundPan(Sound sound, float pan)
     {
-        Raylib.WaveFormat(wave, sampleRate, sampleSize, channels);
+        Raylib.SetSoundPan(sound, pan);
     }
 
     /// <summary>
@@ -3674,11 +3653,19 @@ public unsafe partial class RaylibS
     }
 
     /// <summary>
-    /// Load samples data from wave as a floats array
+    /// Convert wave data to desired format
     /// </summary>
-    public static float[] LoadWaveSamples(Wave wave)
+    public static void WaveFormat(Wave* wave, int sampleRate, int sampleSize, int channels)
     {
-        return Helpers.PrtToArray(Raylib.LoadWaveSamples(wave));
+        Raylib.WaveFormat(wave, sampleRate, sampleSize, channels);
+    }
+
+    /// <summary>
+    /// Load samples data from wave as a 32bit float data array
+    /// </summary>
+    public static float* LoadWaveSamples(Wave wave)
+    {
+        return Raylib.LoadWaveSamples(wave);
     }
 
     /// <summary>
@@ -3694,8 +3681,7 @@ public unsafe partial class RaylibS
     /// </summary>
     public static Music LoadMusicStream(string fileName)
     {
-        using var fileNameLocal = fileName.MarshalUtf8();
-        return Raylib.LoadMusicStream(fileNameLocal.AsPtr());
+        return Raylib.LoadMusicStream(fileName);
     }
 
     /// <summary>
@@ -3703,9 +3689,8 @@ public unsafe partial class RaylibS
     /// </summary>
     public static Music LoadMusicStreamFromMemory(string fileType, byte[] data, int dataSize)
     {
-        using var fileTypeLocal = fileType.MarshalUtf8();
         var dataLocal = Helpers.ArrayToPtr(data);
-        return Raylib.LoadMusicStreamFromMemory(fileTypeLocal.AsPtr(), dataLocal, dataSize);
+        return Raylib.LoadMusicStreamFromMemory(fileType, dataLocal, dataSize);
     }
 
     /// <summary>
@@ -3786,6 +3771,14 @@ public unsafe partial class RaylibS
     public static void SetMusicPitch(Music music, float pitch)
     {
         Raylib.SetMusicPitch(music, pitch);
+    }
+
+    /// <summary>
+    /// Set pan for a music (0.5 is center)
+    /// </summary>
+    public static void SetMusicPan(Music music, float pan)
+    {
+        Raylib.SetMusicPan(music, pan);
     }
 
     /// <summary>
@@ -3891,6 +3884,14 @@ public unsafe partial class RaylibS
     public static void SetAudioStreamPitch(AudioStream stream, float pitch)
     {
         Raylib.SetAudioStreamPitch(stream, pitch);
+    }
+
+    /// <summary>
+    /// Set pan for audio stream (0.5 is centered)
+    /// </summary>
+    public static void SetAudioStreamPan(AudioStream stream, float pan)
+    {
+        Raylib.SetAudioStreamPan(stream, pan);
     }
 
     /// <summary>

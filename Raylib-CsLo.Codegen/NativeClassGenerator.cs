@@ -4,12 +4,13 @@
 // The code and 100+ examples are here! https://github.com/NotNotTech/Raylib-CsLo
 
 namespace Raylib_CsLo.Codegen;
+
 using System.Collections.Generic;
 using System.IO;
 
 public class NativeClassGenerator : ClassGenerator
 {
-    bool debug = true;
+    bool debug;
 
     List<RaylibFunction> functions;
 
@@ -50,23 +51,33 @@ public class NativeClassGenerator : ClassGenerator
     {
         Line("[DllImport(\"raylib\", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]");
 
+        string returnType = GenReturnType(func);
         string parameters = GenParameterDefinitions(func);
-        string returnAtrib = GenReturnAtribute(func);
-        Line($"{returnAtrib}public static extern {func.Return.TypeCs} {func.Name}({parameters});");
+        Line($"public static extern {returnType} {func.Name}({parameters});");
         Blank();
     }
 
-    string GenReturnAtribute(RaylibFunction func)
+    static string GenReturnType(RaylibFunction func)
     {
-        return func.Return.TypeCs switch
-        {
-            "const char *" => "[return: NativeTypeName(\"{const char *}\")] ",
-            "bool" => "[return: MarshalAs(UnmanagedType.U1)] ",
-            _ => ""
-        };
+        return func.Return.TypeCs;
+        //  switch
+        // {
+        //     "const char*" => "string",
+        //     "char*" => "string",
+        //     "char**" => "string[]",
+        //     "const char**" => "sbyte**",
+        //     "unsigned char*" => "byte*",
+        //     "unsigned int*" => "uint*",
+        //     "unsigned int" => "uint",
+        //     "Matrix" => "Matrix4x4",
+        //     "Texture2D" => "Texture",
+        //     "RenderTexture2D" => "RenderTexture",
+        //     "TextureCubemap" => "Texture",
+        //     _ => func.Return.TypeC
+        // };
     }
 
-    static string GenParameterDefinitions(RaylibFunction func)
+    string GenParameterDefinitions(RaylibFunction func)
     {
         string parameters = "";
 
@@ -75,13 +86,40 @@ public class NativeClassGenerator : ClassGenerator
         {
             foreach (RaylibParameter parameter in func.Parameters)
             {
-                string resultC = parameter.TypeC switch
+                if (parameter.TypeC == "params object[]")
                 {
-                    "TraceLogCallback" => "[NativeTypeName(\"TraceLogCallback\")] delegate* unmanaged[Cdecl]<int, sbyte*, sbyte*, void>",
-                    "LoadFileDataCallback" => "[NativeTypeName(\"TraceLogCallback\")] delegate* unmanaged[Cdecl]<sbyte*, uint*, byte*>",
-                    "SaveFileDataCallback" => "[NativeTypeName(\"TraceLogCallback\")] delegate* unmanaged[Cdecl]<sbyte*, void*, uint, bool>",
-                    "LoadFileTextCallback" => "[NativeTypeName(\"TraceLogCallback\")] delegate* unmanaged[Cdecl]<sbyte*, sbyte*>",
-                    "SaveFileTextCallback" => "[NativeTypeName(\"TraceLogCallback\")] delegate* unmanaged[Cdecl]<sbyte*, sbyte*>",
+                    parameters = parameters.Remove(parameters.LastIndexOf(","), 2);
+                    continue;
+                }
+
+                Debug(parameter.TypeC + " => " + parameter.TypeCs);
+                string resultC = parameter.TypeCs switch
+                {
+                    // "bool" => "[MarshalAs(UnmanagedType.U1)] bool",
+
+                    "TraceLogCallback" => "delegate* unmanaged[Cdecl]<int, sbyte*, sbyte*, void>",
+                    "LoadFileDataCallback" => "delegate* unmanaged[Cdecl]<sbyte*, uint*, byte*>",
+                    "SaveFileDataCallback" => "delegate* unmanaged[Cdecl]<sbyte*, void*, uint, bool>",
+                    "LoadFileTextCallback" => "delegate* unmanaged[Cdecl]<sbyte*, sbyte*>",
+                    "SaveFileTextCallback" => "delegate* unmanaged[Cdecl]<sbyte*, sbyte*>",
+                    // "const char*" => "sbyte*",
+                    // "char*" => "sbyte*",
+                    // "char" => "sbyte",
+                    // "char**" => "sbyte**",
+                    // "const char**" => "sbyte**",
+                    // "const unsigned char*" => "byte*",
+                    // "unsigned int" => "uint",
+                    // "unsigned char*" => "byte*",
+                    // "unsigned int*" => "uint*",
+                    // "const void*" => "void*",
+                    // "RenderTexture2D" => "RenderTexture",
+                    // "Texture2D" => "Texture",
+                    // "Texture2D*" => "Texture*",
+                    // "const GlyphInfo*" => "GlyphInfo*",
+                    // "Camera" => "Camera3D",
+                    // "Camera*" => "Camera3D*",
+                    // "Matrix" => "Matrix4x4",
+                    // "Matrix*" => "Matrix4x4*",
                     _ => parameter.TypeCs,
                 };
 

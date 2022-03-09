@@ -43,4 +43,11 @@ public class ClassGenerator
         }
         fileContents.AppendLine(v);
     }
+
+    public void DocumentationBlock(RaylibFunction func)
+    {
+        Line($"/// <summary>");
+        Line($"/// {func.Description}");
+        Line($"/// </summary>");
+    }
 }

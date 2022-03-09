@@ -6,7 +6,7 @@
 namespace Raylib_CsLo.Codegen;
 
 using System.Collections.Generic;
-
+using System.Text.Json.Serialization;
 
 public class RaylibFunction
 {
@@ -36,4 +36,10 @@ public class RaylibReturn
 {
     public string TypeCs { get; set; }
     public string TypeC { get; set; }
+}
+
+public class RaylibParam
+{
+    [JsonPropertyName("type")] public string Type { get; set; }
+    [JsonPropertyName("name")] public string Name { get; set; }
 }

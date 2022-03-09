@@ -37,11 +37,17 @@ public class Program
             ParseFunctions(functions, document);
         }
 
+        Console.WriteLine("\n-- C => CSharp mapping --");
+
         // Debug only
-        // foreach (string item in types)
-        // {
-        //     Console.WriteLine(item);
-        // }
+        foreach (string cType in types)
+        {
+            string csType = CToCsTypes(cType);
+            if (cType != csType || csType.Contains('*'))
+            {
+                Console.WriteLine("{0,16} -> {1,-10}", cType, csType);
+            }
+        }
 
         SafeClassGenerator safe = new(functions);
         safe.Generate();
@@ -80,11 +86,13 @@ public class Program
             func.Name = element.GetProperty("name").ToString();
             func.Description = element.GetProperty("description").ToString();
             func.Return = new();
-            func.Return.TypeC = element.GetProperty("returnType").ToString();
-            Dictionary<string, string> parametersC = null;
+            func.Return.TypeC = element.GetProperty("returnType").ToString().Replace(" *", "*");
+
+            List<RaylibParam> parametersC = null;
+
             if (element.TryGetProperty("params", out JsonElement val))
             {
-                parametersC = JsonSerializer.Deserialize<Dictionary<string, string>>(val);
+                parametersC = JsonSerializer.Deserialize<List<RaylibParam>>(val);
             }
 
             // Skip auto gening these functions be sure to add them manually
@@ -93,29 +101,27 @@ public class Program
                 func.IsManual = true;
             }
 
-            func.Return.TypeCs = ConvertCTypesToCSharpReturn(func.Return.TypeC);
+            if (!types.Contains(func.Return.TypeC))
+            {
+                types.Add(func.Return.TypeC);
+            }
+
+            func.Return.TypeCs = CToCsTypes(func.Return.TypeC);
 
             if (parametersC != null)
             {
-                // Variable len args have name and type of ""
-                if (parametersC.ContainsKey(""))
-                {
-                    parametersC.Remove("");
-                    parametersC.Add("args", "params object[]");
-                }
-
                 func.Parameters = new();
-                // disable this when generating all functions
-                // including one that are already safe
-                // bool duplicateFunction = true;
-                foreach ((string name, string type) in parametersC)
+
+                foreach (RaylibParam param in parametersC)
                 {
-                    string typeCs = ConvertCTypesToCSharpParameter(type);
-                    // if (typeCs != type)
-                    // {
-                    //     duplicateFunction = false;
-                    // }
-                    func.Parameters.Add(new RaylibParameter(name, typeCs, type));
+                    string typeC = param.Type.Replace(" *", "*");
+                    if (!types.Contains(typeC))
+                    {
+                        types.Add(typeC);
+                    }
+
+                    string typeCs = CToCsTypes(typeC);
+                    func.Parameters.Add(new RaylibParameter(param.Name, typeCs, typeC));
                 }
             }
 
@@ -131,58 +137,23 @@ public class Program
         }
     }
 
-    static string ConvertCTypesToCSharpParameter(string type)
-    {
-        type = ConvertCTypesToCSharpBase(type);
-
-        // Fix the formatting
-        type = type.Replace(" *", "*");
-
-        // Debug pruposes only
-        if (!types.Contains(type))
-        {
-            types.Add(type);
-        }
-
-        return type;
-    }
-
-    static string ConvertCTypesToCSharpReturn(string type)
-    {
-        type = ConvertCTypesToCSharpBase(type);
-
-        type = type.Replace(" *", "[]");
-
-        // Debug pruposes only
-        if (!types.Contains(type))
-        {
-            types.Add(type);
-        }
-
-        return type;
-    }
-
-    static string ConvertCTypesToCSharpBase(string type)
+    static string CToCsTypes(string type)
     {
         // remove const
         type = type.Replace("const ", "");
 
-        // Convert C types to param and return safe types
+        // Convert C types to safe types
         type = type switch
         {
-            "void *" => "IntPtr",
-
-            "char *" => "string",
-            "char **" => "string[]",
-
-            "unsigned int *" => "uint",
-            "unsigned int" => "uint",
-
-            "Rectangle **" => "Rectangle[]",
-            "unsigned char *" => "byte[]",
-
+            "void*" => "IntPtr",
+            "char*" => "string",
+            "char**" => "string[]",
+            "unsigned char*" => "byte[]",
+            "..." => "params object[]", // var args array
             _ => type
         };
+
+        type = type.Replace("unsigned ", "u");
 
         return type;
     }
