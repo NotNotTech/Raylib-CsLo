@@ -49,6 +49,8 @@ public class NativeClassGenerator : ClassGenerator
 
     void GenFunction(RaylibFunction func)
     {
+        DocumentationBlock(func);
+
         Line("[DllImport(\"raylib\", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]");
 
         string returnType = GenReturnType(func);
