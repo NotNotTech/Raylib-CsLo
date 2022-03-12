@@ -13,6 +13,9 @@ public class ClassGenerator
     public StringBuilder fileContents = new();
 
 
+    public bool Debug { get; protected set; }
+    public bool Commented { get; protected set; }
+
     public void StartBlock()
     {
         Line("{");
@@ -35,13 +38,32 @@ public class ClassGenerator
         fileContents.AppendLine();
     }
 
+
     public void Line(string v)
     {
         for (int i = 0; i < indent; i++)
         {
-            fileContents.Append("    ");
+            if (Commented && i == 0)
+            {
+                fileContents.Append("//  ");
+            }
+            else
+            {
+                fileContents.Append("    ");
+            }
         }
+
+
+
         fileContents.AppendLine(v);
+    }
+
+    public void DebugLine(string v)
+    {
+        if (Debug)
+        {
+            Line($"// {v}");
+        }
     }
 
     public void DocumentationBlock(RaylibFunction func)

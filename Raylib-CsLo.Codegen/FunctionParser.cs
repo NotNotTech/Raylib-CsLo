@@ -12,15 +12,15 @@ using System.Text.Json;
 
 public static class FunctionParser
 {
-    static List<string> types = new();
-
     public static void Parse(List<RaylibFunction> functions, JsonDocument document)
     {
-        Console.WriteLine("\n-- Parsing Functions --");
+        Console.WriteLine("\n-- Parsing Functions --\n");
         ExtractFromJson(functions, document);
 
-        Console.WriteLine("\n-- Implemented Manually in wrappers/ --");
+        Console.WriteLine("\n-- Implemented Manually in wrappers/ --\n");
         ManuallyImplement();
+
+        UnhandledTypeConversions();
     }
 
     static void ExtractFromJson(List<RaylibFunction> functions, JsonDocument document)
@@ -30,62 +30,48 @@ public static class FunctionParser
             RaylibFunction func = new();
             func.Name = element.GetProperty("name").ToString();
             func.Description = element.GetProperty("description").ToString();
-            func.Return = new();
-            func.Return.TypeC = element.GetProperty("returnType").ToString().Replace(" *", "*");
+            func.Return = element.GetProperty("returnType").ToString().Replace(" *", "*");
 
-            List<RaylibParam> parametersC = null;
+            List<RaylibParam> parameters = null;
 
             if (element.TryGetProperty("params", out JsonElement val))
             {
-                parametersC = JsonSerializer.Deserialize<List<RaylibParam>>(val);
+                parameters = JsonSerializer.Deserialize<List<RaylibParam>>(val);
             }
 
             // Skip auto gening these functions be sure to add them manually
             if (CodegenSettings.FunctionsToHandleManually.Contains(func.Name))
             {
-                func.IsManual = true;
+                func.Manual = true;
             }
 
-            if (!types.Contains(func.Return.TypeC))
-            {
-                types.Add(func.Return.TypeC);
-            }
-
-            func.Return.TypeCs = TypeConverter.CToCsTypes(func.Return.TypeC);
-
-            bool returnSame = func.Return.TypeCs == TypeConverter.CToCsTypes(func.Return.TypeC);
-            bool paramsSame = true;
-
-            if (parametersC != null)
+            bool isReturnSame = TypeConverter.FromCToUnsafeCs(func.Return).Equals(TypeConverter.FromCToSafeCs(func.Return), StringComparison.Ordinal);
+            bool isParamsSame = true;
+            if (parameters != null)
             {
                 func.Parameters = new();
 
-                foreach (RaylibParam param in parametersC)
+                foreach (RaylibParam param in parameters)
                 {
-                    string typeC = param.Type.Replace(" *", "*");
-                    if (!types.Contains(typeC))
+                    string type = param.Type.Replace(" *", "*");
+
+                    if (TypeConverter.FromCToUnsafeCs(func.Return) != TypeConverter.FromCToSafeCs(func.Return))
                     {
-                        types.Add(typeC);
+                        isParamsSame = false;
                     }
 
-                    string typeCs = TypeConverter.CToCsTypes(typeC);
-
-                    if (TypeConverter.CToCsTypes(typeC) != typeCs)
-                    {
-                        paramsSame = false;
-                    }
-                    func.Parameters.Add(new RaylibParameter(param.Name, typeCs, typeC));
+                    func.Parameters.Add(new RaylibParameter(param.Name, type));
                 }
             }
 
-            if (returnSame && paramsSame)
+            if (isReturnSame && isParamsSame)
             {
-                func.IsNativeOnly = returnSame && paramsSame;
+                func.SameTypes = true;
             }
 
             functions.Add(func);
 
-            Console.WriteLine("{0,-30} NativeOnly={1,-5} Manual={2,-5}", func.Name + "()", func.IsNativeOnly, func.IsManual);
+            Console.WriteLine("{0,-34} {1,15} {2,5}", func.Name + "()", func.SameTypes ? "SameTypes" : "", func.Manual ? "Manual" : "");
         }
     }
 
@@ -95,6 +81,21 @@ public static class FunctionParser
         {
             string line = CodegenSettings.FunctionsToHandleManually[i];
             Console.WriteLine(i + 1 + ".\t" + line + "()");
+        }
+    }
+
+    static void UnhandledTypeConversions()
+    {
+        Console.WriteLine("\n-- Unhandled Unsafe Types --");
+        foreach (string type in TypeConverter.UnsafePrinted)
+        {
+            Console.WriteLine(type);
+        }
+
+        Console.WriteLine("\n-- Unhandled Safe Types --");
+        foreach (string type in TypeConverter.SafePrinted)
+        {
+            Console.WriteLine(type);
         }
     }
 }

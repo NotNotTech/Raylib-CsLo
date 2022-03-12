@@ -1,16 +1,11 @@
-// [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!]
-// [!!] Copyright ©️ Raylib-CsLo and Contributors.
-// [!!] This file is licensed to you under the MPL-2.0.
-// [!!] See the LICENSE file in the project root for more info.
-// [!!] -------------------------------------------------
-// [!!] The code and 100+ examples are here! https://github.com/NotNotTech/Raylib-CsLo
-// [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!]  [!!] [!!] [!!] [!!]
+// Copyright ©️ Raylib-CsLo and Contributors.
+// This file is licensed to you under the MPL-2.0.
+// See the LICENSE file in the project root for more info.
+// The code and 100+ examples are here! https://github.com/NotNotTech/Raylib-CsLo
 
 namespace Raylib_CsLo;
 
 using System.Numerics;
-
-
 
 public static unsafe partial class RlGl
 {
@@ -124,32 +119,32 @@ public partial struct Color
     }
 
     // Alias for Raylib-Cs
-    public static readonly Color LIGHTGRAY = Raylib.LIGHTGRAY;
-    public static readonly Color GRAY = Raylib.GRAY;
-    public static readonly Color DARKGRAY = Raylib.DARKGRAY;
-    public static readonly Color YELLOW = Raylib.YELLOW;
-    public static readonly Color GOLD = Raylib.GOLD;
-    public static readonly Color ORANGE = Raylib.ORANGE;
-    public static readonly Color PINK = Raylib.PINK;
-    public static readonly Color RED = Raylib.RED;
-    public static readonly Color MAROON = Raylib.MAROON;
-    public static readonly Color GREEN = Raylib.GREEN;
-    public static readonly Color LIME = Raylib.LIME;
-    public static readonly Color DARKGREEN = Raylib.DARKGREEN;
-    public static readonly Color SKYBLUE = Raylib.SKYBLUE;
-    public static readonly Color BLUE = Raylib.BLUE;
-    public static readonly Color DARKBLUE = Raylib.DARKBLUE;
-    public static readonly Color PURPLE = Raylib.PURPLE;
-    public static readonly Color VIOLET = Raylib.VIOLET;
-    public static readonly Color DARKPURPLE = Raylib.DARKPURPLE;
-    public static readonly Color BEIGE = Raylib.BEIGE;
-    public static readonly Color BROWN = Raylib.BROWN;
-    public static readonly Color DARKBROWN = Raylib.DARKBROWN;
-    public static readonly Color WHITE = Raylib.WHITE;
-    public static readonly Color BLACK = Raylib.BLACK;
-    public static readonly Color BLANK = Raylib.BLANK;
-    public static readonly Color MAGENTA = Raylib.MAGENTA;
-    public static readonly Color RAYWHITE = Raylib.RAYWHITE;
+    public static readonly Color LIGHTGRAY = RaylibS.LIGHTGRAY;
+    public static readonly Color GRAY = RaylibS.GRAY;
+    public static readonly Color DARKGRAY = RaylibS.DARKGRAY;
+    public static readonly Color YELLOW = RaylibS.YELLOW;
+    public static readonly Color GOLD = RaylibS.GOLD;
+    public static readonly Color ORANGE = RaylibS.ORANGE;
+    public static readonly Color PINK = RaylibS.PINK;
+    public static readonly Color RED = RaylibS.RED;
+    public static readonly Color MAROON = RaylibS.MAROON;
+    public static readonly Color GREEN = RaylibS.GREEN;
+    public static readonly Color LIME = RaylibS.LIME;
+    public static readonly Color DARKGREEN = RaylibS.DARKGREEN;
+    public static readonly Color SKYBLUE = RaylibS.SKYBLUE;
+    public static readonly Color BLUE = RaylibS.BLUE;
+    public static readonly Color DARKBLUE = RaylibS.DARKBLUE;
+    public static readonly Color PURPLE = RaylibS.PURPLE;
+    public static readonly Color VIOLET = RaylibS.VIOLET;
+    public static readonly Color DARKPURPLE = RaylibS.DARKPURPLE;
+    public static readonly Color BEIGE = RaylibS.BEIGE;
+    public static readonly Color BROWN = RaylibS.BROWN;
+    public static readonly Color DARKBROWN = RaylibS.DARKBROWN;
+    public static readonly Color WHITE = RaylibS.WHITE;
+    public static readonly Color BLACK = RaylibS.BLACK;
+    public static readonly Color BLANK = RaylibS.BLANK;
+    public static readonly Color MAGENTA = RaylibS.MAGENTA;
+    public static readonly Color RAYWHITE = RaylibS.RAYWHITE;
 }
 public partial struct BoundingBox
 {

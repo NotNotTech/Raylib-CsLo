@@ -33,5 +33,9 @@ public class Program
         NativeClassGenerator native = new(functions);
         native.Generate();
         native.Output();
+
+        SafeClassGenerator safe = new(functions);
+        safe.Generate();
+        safe.Output();
     }
 }

@@ -10,8 +10,6 @@ using System.IO;
 
 public class NativeClassGenerator : ClassGenerator
 {
-    bool debug;
-
     List<RaylibFunction> functions;
 
     const string ClassName = "Raylib";
@@ -25,11 +23,17 @@ public class NativeClassGenerator : ClassGenerator
     public NativeClassGenerator(List<RaylibFunction> functions)
     {
         this.functions = functions;
+        Debug = false;
     }
 
     public void Generate()
     {
+        Line(CodegenSettings.CodeHeader);
+        Blank();
+
         Line($"#pragma warning disable");
+        Blank();
+
         Line($"namespace {CodegenSettings.NamespaceName};");
 
         UsingsList();
@@ -44,6 +48,7 @@ public class NativeClassGenerator : ClassGenerator
             }
         }
         EndBlock();
+        Blank();
         Line($"#pragma warning restore");
     }
 
@@ -61,7 +66,7 @@ public class NativeClassGenerator : ClassGenerator
 
     static string GenReturnType(RaylibFunction func)
     {
-        return TypeConverter.CToCsNativeTypes(func.Return.TypeC);
+        return TypeConverter.FromCToUnsafeCs(func.Return);
     }
 
     // (...);
@@ -74,16 +79,22 @@ public class NativeClassGenerator : ClassGenerator
         {
             foreach (RaylibParameter parameter in func.Parameters)
             {
-                if (parameter.TypeC == "params object[]")
+                if (parameter.Type == "params object[]")
                 {
                     parameters = parameters.Remove(parameters.LastIndexOf(","), 2);
                     continue;
                 }
 
-                Debug(parameter.TypeC + " => " + parameter.TypeCs);
-                string resultC = TypeConverter.CToCsNativeTypes(parameter.TypeC);
+                DebugLine(parameter.Type + " => " + TypeConverter.FromCToUnsafeCs(parameter.Type));
+                string type = TypeConverter.FromCToUnsafeCs(parameter.Type);
+                string name = parameter.Name;
 
-                parameters += $"{resultC} {parameter.Name}";
+                if (parameter.Type == "...")
+                {
+                    name = "";
+                }
+
+                parameters += $"{type} {name}";
 
                 if (index < func.Parameters.Count - 1)
                 {
@@ -105,14 +116,6 @@ public class NativeClassGenerator : ClassGenerator
             Line("using " + import + ';');
         }
         Blank();
-    }
-
-    public void Debug(string v)
-    {
-        if (debug)
-        {
-            Line($"/*|  {v}  |*/");
-        }
     }
 
     public void Output()

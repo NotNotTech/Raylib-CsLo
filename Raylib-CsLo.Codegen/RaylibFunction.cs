@@ -13,29 +13,21 @@ public class RaylibFunction
     public string Name { get; set; }
     public string Description { get; set; }
     public List<RaylibParameter> Parameters { get; set; }
-    public RaylibReturn Return { get; set; }
-    public bool IsNativeOnly { get; set; }
-    public bool IsManual { get; set; }
+    public string Return { get; set; }
+    public bool SameTypes { get; set; }
+    public bool Manual { get; set; }
 }
 
 public class RaylibParameter
 {
     public string Name { get; set; }
-    public string TypeCs { get; set; }
-    public string TypeC { get; set; }
+    public string Type { get; set; }
 
-    public RaylibParameter(string name, string typeCs, string typeC)
+    public RaylibParameter(string name, string type)
     {
         Name = name;
-        TypeCs = typeCs;
-        TypeC = typeC;
+        Type = type;
     }
-}
-
-public class RaylibReturn
-{
-    public string TypeCs { get; set; }
-    public string TypeC { get; set; }
 }
 
 public class RaylibParam

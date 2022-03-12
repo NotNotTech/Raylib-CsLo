@@ -19,10 +19,11 @@ public static class CodegenSettings
     public const string PrtToArrayFunction = "Helpers.PrtToArray";
     public const string ArrayToPtrFunction = "Helpers.ArrayToPtr";
 
+    public const string CodeHeader = "// Copyright ©️ Raylib-CsLo and Contributors.\n// This file is licensed to you under the MPL-2.0.\n// See the LICENSE file in the project root for more info.\n// The code and 100+ examples are here! https://github.com/NotNotTech/Raylib-CsLo\n\n// Warning This file is auto generated and changes will be lost";
+
     public static readonly string[] FunctionsToHandleManually =
     {
         "TraceLog",
-        "SetTraceLogCallback",
 
         "SetLoadFileDataCallback",
         "SetSaveFileDataCallback",
@@ -31,9 +32,12 @@ public static class CodegenSettings
 
         "GetDirectoryFiles",
         "GetDroppedFiles",
+        "GetGestureDetected",
 
         "LoadFileData",
         "LoadModelAnimations",
+
+        "TraceLog",
 
         "TextFormat",
         "TextJoin",
