@@ -23,7 +23,7 @@ public class SafeClassGenerator : ClassGenerator
     public SafeClassGenerator(List<RaylibFunction> functions)
     {
         this.functions = functions;
-        Debug = true;
+        Debug = false;
     }
 
     public void Generate()
