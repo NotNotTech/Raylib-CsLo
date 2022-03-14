@@ -39,7 +39,7 @@ public static unsafe class Billboard
         Texture2D bill = LoadTexture("resources/billboard.png");     // Our texture billboard
         Vector3 billPosition = new(0.0f, 2.0f, 0.0f);                 // Position where draw billboard
 
-        SetCameraMode(camera, CAMERA_ORBITAL);  // Set an orbital camera mode
+        SetCameraMode(ref camera, CAMERA_ORBITAL);  // Set an orbital camera mode
 
         SetTargetFPS(60);                       // Set our game to run at 60 frames-per-second
 
@@ -58,11 +58,11 @@ public static unsafe class Billboard
 
             ClearBackground(RAYWHITE);
 
-            BeginMode3D(camera);
+            BeginMode3D(ref camera);
 
             DrawGrid(10, 1.0f);        // Draw a grid
 
-            DrawBillboard(camera, bill, billPosition, 2.0f, WHITE);
+            DrawBillboard(ref camera, bill, billPosition, 2.0f, WHITE);
 
             EndMode3D();
 

@@ -348,25 +348,7 @@
 
 
 
-//     /// <summary>
-//     /// free animations via UnloadModelAnimation() when done
-//     /// </summary>
-//     /// <param name="fileName"></param>
-//     /// <returns></returns>
-//     public static ModelAnimation[] LoadModelAnimations(string fileName)
-//     {
-//         using SpanOwner<sbyte> soFileName = fileName.MarshalUtf8();
-//         uint count;
-//         ModelAnimation* p_animations = LoadModelAnimations(soFileName.AsPtr(), &count);
-//         ModelAnimation[] toReturn = new ModelAnimation[count];
-//         for (int i = 0; i < count; i++)
-//         {
-//             toReturn[i] = p_animations[i];
-//         }
-//         //this ptr isn't needed.
-//         MemFree(p_animations);
-//         return toReturn;
-//     }
+
 //     public static void UnloadModelAnimations(Span<ModelAnimation> modelAnimations)
 //     {
 //         foreach (ModelAnimation modelAnimation in modelAnimations)

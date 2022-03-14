@@ -11,18 +11,17 @@ using System.IO;
 public class NativeClassGenerator : ClassGenerator
 {
     List<RaylibFunction> functions;
-
-    const string ClassName = "Raylib";
-
+    string className;
     public static readonly string[] Usings =
     {
         "System.Runtime.InteropServices",
         "System.Numerics",
     };
 
-    public NativeClassGenerator(List<RaylibFunction> functions)
+    public NativeClassGenerator(List<RaylibFunction> functions, string className)
     {
         this.functions = functions;
+        this.className = className;
         Debug = false;
     }
 
@@ -38,7 +37,7 @@ public class NativeClassGenerator : ClassGenerator
 
         UsingsList();
 
-        Line($"public unsafe partial class {ClassName}");
+        Line($"public unsafe partial class {className}");
 
         StartBlock();
         {
@@ -56,7 +55,7 @@ public class NativeClassGenerator : ClassGenerator
     {
         DocumentationBlock(func);
 
-        Line("[DllImport(\"raylib\", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]");
+        Line($"[DllImport(\"{className.ToLowerInvariant()}\", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]");
 
         string returnType = GenReturnType(func);
         string parameters = GenParameterDefinitions(func);
@@ -118,8 +117,8 @@ public class NativeClassGenerator : ClassGenerator
         Blank();
     }
 
-    public void Output()
+    public void Output(string fileName)
     {
-        File.WriteAllText(CodegenSettings.OutputFolder + "RaylibNative.cs", fileContents.ToString());
+        File.WriteAllText(CodegenSettings.OutputFolder + "Native/" + fileName + ".cs", fileContents.ToString());
     }
 }

@@ -50,7 +50,7 @@ public static unsafe class SdfFonts
 
         // Loading font data from memory data
         // Parameters > font size: 16, no glyphs array provided (0), glyphs count: 95 (autogenerate chars array)
-        fontDefault.glyphs = LoadFontData(fileData, (int)fileSize, 16, (int*)0, 95, FONT_DEFAULT);
+        fontDefault.glyphs = Raylib.LoadFontData(fileData, (int)fileSize, 16, (int*)0, 95, (int)FONT_DEFAULT);
         // Parameters > glyphs count: 95, font size: 16, glyphs padding in image: 4 px, pack method: 0 (default)
         Image atlas = GenImageFontAtlas(fontDefault.glyphs, &fontDefault.recs, 95, 16, 4, 0);
         fontDefault.texture = LoadTextureFromImage(atlas);
@@ -61,13 +61,13 @@ public static unsafe class SdfFonts
         fontSDF.baseSize = 16;
         fontSDF.glyphCount = 95;
         // Parameters > font size: 16, no glyphs array provided (0), glyphs count: 0 (defaults to 95)
-        fontSDF.glyphs = LoadFontData(fileData, (int)fileSize, 16, (int*)0, 0, FONT_SDF);
+        fontSDF.glyphs = Raylib.LoadFontData(fileData, (int)fileSize, 16, (int*)0, 0, (int)FONT_SDF);
         // Parameters > glyphs count: 95, font size: 16, glyphs padding in image: 0 px, pack method: 1 (Skyline algorythm)
         atlas = GenImageFontAtlas(fontSDF.glyphs, &fontSDF.recs, 95, 16, 0, 1);
         fontSDF.texture = LoadTextureFromImage(atlas);
         UnloadImage(atlas);
 
-        UnloadFileData(fileData);      // Free memory from loaded file
+        Raylib.UnloadFileData(fileData);      // Free memory from loaded file
 
         // Load SDF required shader (we use default vertex shader)
         Shader shader = LoadShader(null, TextFormat("resources/shaders/glsl%i/sdf.fs", GLSL_VERSION));

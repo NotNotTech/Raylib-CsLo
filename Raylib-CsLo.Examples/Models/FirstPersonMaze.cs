@@ -42,12 +42,12 @@ public static unsafe class FirstPersonMaze
         model.materials[0].maps[(int)MATERIAL_MAP_DIFFUSE].texture = texture;             // Set map diffuse texture
 
         // Get map image data to be used for collision detection
-        Color* mapPixels = LoadImageColors(imMap);
+        Color[] mapPixels = LoadImageColors(imMap);
         UnloadImage(imMap);             // Unload image from RAM
 
         Vector3 mapPosition = new(-16.0f, 0.0f, -8.0f);  // Set model position
 
-        SetCameraMode(camera, CAMERA_FIRST_PERSON);     // Set camera mode
+        SetCameraMode(ref camera, CAMERA_FIRST_PERSON);     // Set camera mode
 
         SetTargetFPS(60);               // Set our game to run at 60 frames-per-second
 
@@ -110,7 +110,7 @@ public static unsafe class FirstPersonMaze
 
             ClearBackground(RAYWHITE);
 
-            BeginMode3D(camera);
+            BeginMode3D(ref camera);
             DrawModel(model, mapPosition, 1.0f, WHITE);                     // Draw maze map
             EndMode3D();
 

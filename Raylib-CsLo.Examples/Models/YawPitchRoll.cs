@@ -127,7 +127,7 @@ public static unsafe class YawPitchRoll
             ClearBackground(RAYWHITE);
 
             // Draw 3D model (recomended to draw 3D always before 2D)
-            BeginMode3D(camera);
+            BeginMode3D(ref camera);
 
             DrawModel(model, new(0.0f, -8.0f, 0.0f), 1.0f, WHITE);   // Draw 3d model with texture
             DrawGrid(10, 10.0f);

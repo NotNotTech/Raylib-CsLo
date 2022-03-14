@@ -44,7 +44,7 @@ public static unsafe class RaymarchingShapes
         camera.up = new Vector3(0.0f, 1.0f, 0.0f);          // Camera up vector (rotation towards target)
         camera.fovy = 65.0f;                                // Camera field-of-view Y
 
-        SetCameraMode(camera, CAMERA_FREE);                 // Set camera mode
+        SetCameraMode(ref camera, CAMERA_FREE);                 // Set camera mode
 
         // Load raymarching shader
         // NOTE: Defining 0 (NULL) for vertex shader forces usage of internal default vertex shader
@@ -69,7 +69,7 @@ public static unsafe class RaymarchingShapes
         {
             // Update
 
-            UpdateCamera(&camera);              // Update camera
+            UpdateCamera(ref camera);              // Update camera
 
             Vector3 cameraPos = new(camera.position.X, camera.position.Y, camera.position.Z);
             Vector3 cameraTarget = new(camera.target.X, camera.target.Y, camera.target.Z);

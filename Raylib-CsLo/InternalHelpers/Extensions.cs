@@ -6,6 +6,7 @@ using System.Numerics;
 using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 using System.Text;
+using Microsoft.Toolkit.HighPerformance;
 using Microsoft.Toolkit.HighPerformance.Buffers;
 
 
@@ -23,6 +24,7 @@ public static unsafe class Extensions
 
         int length = Encoding.UTF8.GetByteCount(text) + 1;//need Length+1 so that we always can guarantee a null terminated ending char
         SpanOwner<sbyte> toReturn = SpanOwner<sbyte>.Allocate(length, AllocationMode.Clear);
+        Encoding.UTF8.GetBytes(text.AsSpan(), toReturn.Span.AsBytes());
         return toReturn;
     }
 

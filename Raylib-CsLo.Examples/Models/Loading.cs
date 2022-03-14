@@ -58,7 +58,7 @@ public static unsafe class Loading
         // NOTE: bounds are calculated from the original size of the model,
         // if model is scaled on drawing, bounds must be also scaled
 
-        SetCameraMode(camera, CAMERA_FREE);     // Set a free camera mode
+        SetCameraMode(ref camera, CAMERA_FREE);     // Set a free camera mode
 
         bool selected = false;          // Selected object flag
 
@@ -111,7 +111,7 @@ public static unsafe class Loading
             if (IsMouseButtonPressed(MOUSE_BUTTON_LEFT))
             {
                 // Check collision between ray and box
-                if (GetRayCollisionBox(GetMouseRay(GetMousePosition(), camera), bounds).hit)
+                if (GetRayCollisionBox(GetMouseRay(GetMousePosition(), ref camera), bounds).hit)
                 {
                     selected = !selected;
                 }
@@ -128,7 +128,7 @@ public static unsafe class Loading
 
             ClearBackground(RAYWHITE);
 
-            BeginMode3D(camera);
+            BeginMode3D(ref camera);
 
             DrawModel(model, position, 1.0f, WHITE);        // Draw 3d model with texture
 

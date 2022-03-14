@@ -87,7 +87,7 @@ public static unsafe class Draw2dIn3d
         camera.fovy = 45.0f;                                    // Camera field-of-view Y
         camera.Projection = CAMERA_PERSPECTIVE;                 // Camera mode type
 
-        SetCameraMode(camera, CAMERA_ORBITAL);
+        SetCameraMode(ref camera, CAMERA_ORBITAL);
 
         Vector3 cubePosition = new(0.0f, 1.0f, 0.0f);
         Vector3 cubeSize = new(2.0f, 2.0f, 2.0f);
@@ -176,19 +176,19 @@ public static unsafe class Draw2dIn3d
                 if (spin)
                 {
                     camera.position = new Vector3(-10.0f, 15.0f, -10.0f);   // Camera position
-                    SetCameraMode(camera, CAMERA_ORBITAL);
+                    SetCameraMode(ref camera, CAMERA_ORBITAL);
                 }
                 else
                 {
                     camera.position = new Vector3(10.0f, 10.0f, -10.0f);   // Camera position
-                    SetCameraMode(camera, CAMERA_FREE);
+                    SetCameraMode(ref camera, CAMERA_FREE);
                 }
             }
 
             // Handle clicking the cube
             if (IsMouseButtonPressed(MOUSE_BUTTON_LEFT))
             {
-                Ray ray = GetMouseRay(GetMousePosition(), camera);
+                Ray ray = GetMouseRay(GetMousePosition(), ref camera);
 
                 // Check collision between ray and box
                 RayCollision collision = GetRayCollisionBox(ray,
@@ -305,7 +305,7 @@ public static unsafe class Draw2dIn3d
             // Measure 3D text so we can center it
             Vector3 tbox = MeasureTextWave3D(font, text, fontSize, fontSpacing, lineSpacing);
 
-            UpdateCamera(&camera);          // Update camera
+            UpdateCamera(ref camera);          // Update camera
             int quads = 0;
             time += GetFrameTime();         // Update timer needed by `DrawTextWave3D()`
 
@@ -316,7 +316,7 @@ public static unsafe class Draw2dIn3d
 
             ClearBackground(RAYWHITE);
 
-            BeginMode3D(camera);
+            BeginMode3D(ref camera);
             DrawCubeV(cubePosition, cubeSize, dark);
             DrawCubeWires(cubePosition, 2.1f, 2.1f, 2.1f, light);
 

@@ -111,7 +111,7 @@ public static unsafe class MeshGeneration
 
         int currentModel = 0;
 
-        SetCameraMode(camera, CAMERA_ORBITAL);  // Set a orbital camera mode
+        SetCameraMode(ref camera, CAMERA_ORBITAL);  // Set a orbital camera mode
 
         SetTargetFPS(60);               // Set our game to run at 60 frames-per-second
 
@@ -152,10 +152,10 @@ public static unsafe class MeshGeneration
 
             ClearBackground(RAYWHITE);
 
-            BeginMode3D(camera);
+            BeginMode3D(ref camera);
 
             DrawModel(models[currentModel], position, 1.0f, WHITE);
-            DrawGrid(10, 1.0);
+            DrawGrid(10, 1.0f);
 
             EndMode3D();
 

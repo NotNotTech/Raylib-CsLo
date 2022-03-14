@@ -48,7 +48,7 @@ public static unsafe class Camera3dFirstPerson
             colors[i] = new(GetRandomValue(20, 255), GetRandomValue(10, 55), 30, 255);
         }
 
-        SetCameraMode(camera, CAMERA_FIRST_PERSON); // Set a first person camera mode
+        SetCameraMode(ref camera, CAMERA_FIRST_PERSON); // Set a first person camera mode
 
         SetTargetFPS(60);                           // Set our game to run at 60 frames-per-second
 
@@ -67,7 +67,7 @@ public static unsafe class Camera3dFirstPerson
 
             ClearBackground(RAYWHITE);
 
-            BeginMode3D(camera);
+            BeginMode3D(ref camera);
 
             DrawPlane(new(0.0f, 0.0f, 0.0f), new(32.0f, 32.0f), LIGHTGRAY); // Draw ground
             DrawCube(new(-16.0f, 2.5f, 0.0f), 1.0f, 5.0f, 32.0f, BLUE);     // Draw a blue wall

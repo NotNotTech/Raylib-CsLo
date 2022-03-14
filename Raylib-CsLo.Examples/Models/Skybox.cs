@@ -92,7 +92,7 @@ public static unsafe class Skybox
             UnloadImage(img);
         }
 
-        SetCameraMode(camera, CAMERA_FIRST_PERSON);  // Set a first person camera mode
+        SetCameraMode(ref camera, CAMERA_FIRST_PERSON);  // Set a first person camera mode
 
         SetTargetFPS(60);                       // Set our game to run at 60 frames-per-second
 
@@ -151,7 +151,7 @@ public static unsafe class Skybox
 
             ClearBackground(RAYWHITE);
 
-            BeginMode3D(camera);
+            BeginMode3D(ref camera);
 
             // We are inside the cube, we need to disable backface culling!
             rlDisableBackfaceCulling();

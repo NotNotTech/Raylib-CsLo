@@ -78,7 +78,7 @@ public static unsafe class BasicLighting
         lights[2] = rLights.CreateLight(LIGHT_POINT, new Vector3(-2, 1, 2), Vector3Zero(), GREEN, shader);
         lights[3] = rLights.CreateLight(LIGHT_POINT, new Vector3(2, 1, -2), Vector3Zero(), BLUE, shader);
 
-        SetCameraMode(camera, CAMERA_ORBITAL);  // Set an orbital camera mode
+        SetCameraMode(ref camera, CAMERA_ORBITAL);  // Set an orbital camera mode
 
         SetTargetFPS(60);                       // Set our game to run at 60 frames-per-second
 
@@ -88,7 +88,7 @@ public static unsafe class BasicLighting
         {
             // Update
 
-            UpdateCamera(&camera);              // Update camera
+            UpdateCamera(ref camera);              // Update camera
 
             // Check key inputs to enable/disable lights
             if (IsKeyPressed(KEY_Y))
@@ -117,7 +117,7 @@ public static unsafe class BasicLighting
 
             ClearBackground(RAYWHITE);
 
-            BeginMode3D(camera);
+            BeginMode3D(ref camera);
 
             DrawModel(model, Vector3Zero(), 1.0f, WHITE);
             DrawModel(cube, Vector3Zero(), 1.0f, WHITE);

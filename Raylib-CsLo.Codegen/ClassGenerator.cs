@@ -45,15 +45,13 @@ public class ClassGenerator
         {
             if (Commented && i == 0)
             {
-                fileContents.Append("//  ");
+                fileContents.Append("    //  ");
             }
             else
             {
                 fileContents.Append("    ");
             }
         }
-
-
 
         fileContents.AppendLine(v);
     }

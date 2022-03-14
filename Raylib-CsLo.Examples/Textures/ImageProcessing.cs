@@ -60,7 +60,7 @@ public static unsafe class ImageProcessing
         // NOTE: Textures MUST be loaded after Window initialization (OpenGL context is required)
 
         Image imOrigin = LoadImage("resources/parrots.png");   // Loaded in CPU memory (RAM)
-        ImageFormat(&imOrigin, PIXELFORMAT_UNCOMPRESSED_R8G8B8A8);         // Format image to RGBA 32bit (required for texture update) <-- ISSUE
+        ImageFormat(ref imOrigin, PIXELFORMAT_UNCOMPRESSED_R8G8B8A8);         // Format image to RGBA 32bit (required for texture update) <-- ISSUE
         Texture2D texture = LoadTextureFromImage(imOrigin);    // Image converted to texture, GPU memory (VRAM)
 
         Image imCopy = ImageCopy(imOrigin);
@@ -139,25 +139,25 @@ public static unsafe class ImageProcessing
                 switch ((ImageProcess)currentProcess)
                 {
                     case ImageProcess.COLOR_GRAYSCALE:
-                        ImageColorGrayscale(&imCopy);
+                        ImageColorGrayscale(ref imCopy);
                         break;
                     case ImageProcess.COLOR_TINT:
-                        ImageColorTint(&imCopy, GREEN);
+                        ImageColorTint(ref imCopy, GREEN);
                         break;
                     case ImageProcess.COLOR_INVERT:
-                        ImageColorInvert(&imCopy);
+                        ImageColorInvert(ref imCopy);
                         break;
                     case ImageProcess.COLOR_CONTRAST:
-                        ImageColorContrast(&imCopy, -40);
+                        ImageColorContrast(ref imCopy, -40);
                         break;
                     case ImageProcess.COLOR_BRIGHTNESS:
-                        ImageColorBrightness(&imCopy, -80);
+                        ImageColorBrightness(ref imCopy, -80);
                         break;
                     case ImageProcess.FLIP_VERTICAL:
-                        ImageFlipVertical(&imCopy);
+                        ImageFlipVertical(ref imCopy);
                         break;
                     case ImageProcess.FLIP_HORIZONTAL:
-                        ImageFlipHorizontal(&imCopy);
+                        ImageFlipHorizontal(ref imCopy);
                         break;
                     case ImageProcess.NONE:
                         break;
@@ -165,7 +165,7 @@ public static unsafe class ImageProcessing
                         break;
                 }
 
-                Color* pixels = LoadImageColors(imCopy);    // Load pixel data from image (RGBA 32bit)
+                Color[] pixels = LoadImageColors(imCopy);    // Load pixel data from image (RGBA 32bit)
                 UpdateTexture(texture, pixels);             // Update texture with new image data
                 UnloadImageColors(pixels);                  // Unload pixels data from RAM
 

@@ -13,7 +13,7 @@
 
 // using Raylib_CsLo.InternalHelpers;
 
-// public static unsafe partial class RayGui_
+// public static unsafe partial class RayGui
 // {
 
 
@@ -124,7 +124,7 @@
 //     }
 
 
-//     public static float GuiSlider(Rectangle bounds, string? textLeft, string? textRight, float value, float minValue, float maxValue)
+//     public static async float GuiSlider(Rectangle bounds, string? textLeft, string? textRight, float value, float minValue, float maxValue)
 //     {
 //         using Microsoft.Toolkit.HighPerformance.Buffers.SpanOwner<sbyte> sotextLeft = textLeft.MarshalUtf8();
 //         using Microsoft.Toolkit.HighPerformance.Buffers.SpanOwner<sbyte> sotextRight = textRight.MarshalUtf8();
@@ -175,17 +175,13 @@
 //     {
 
 //         sbyte** p_utf8 = stackalloc sbyte*[textArray.Length];
-//         for (int i = 0;
-// i < textArray.Length;
-// i++)
+//         for (int i = 0; i < textArray.Length; i++)
 //         {
 //             p_utf8[i] = (sbyte*)Marshal.StringToCoTaskMemUTF8(textArray[i]);
 //         }
 //         int toReturn = GuiListViewEx(bounds, p_utf8, count, focus, scrollIndex, active);
 
-//         for (int i = 0;
-// i < textArray.Length;
-// i++)
+//         for (int i = 0; i < textArray.Length; i++)
 //         {
 //             Marshal.ZeroFreeCoTaskMemUTF8((IntPtr)p_utf8[i]);
 //         }

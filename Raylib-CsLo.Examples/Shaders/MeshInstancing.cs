@@ -96,7 +96,7 @@ public static unsafe class MeshInstancing
         material.shader = shader;
         material.maps[(int)MATERIAL_MAP_DIFFUSE].color = RED;
 
-        SetCameraMode(camera, CAMERA_ORBITAL);  // Set an orbital camera mode
+        SetCameraMode(ref camera, CAMERA_ORBITAL);  // Set an orbital camera mode
 
         int textPositionY = 300;
         int framesCounter = 0;                  // Simple frames counter to manage animation
@@ -223,7 +223,7 @@ public static unsafe class MeshInstancing
                 transforms[i] = MatrixMultiply(transforms[i], MatrixTranslate(0.0f, y, 0.0f));
             }
 
-            UpdateCamera(&camera);
+            UpdateCamera(ref camera);
 
 
             // Draw
@@ -232,7 +232,7 @@ public static unsafe class MeshInstancing
 
             ClearBackground(RAYWHITE);
 
-            BeginMode3D(camera);
+            BeginMode3D(ref camera);
             //DrawMesh(cube, material, MatrixIdentity());
             for (int i = 0; i < transforms.Length; i++)
             {

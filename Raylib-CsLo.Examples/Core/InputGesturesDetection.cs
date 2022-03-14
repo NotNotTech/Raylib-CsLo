@@ -46,7 +46,7 @@ public static class InputGesturesDetection
             // Update
 
             Gesture lastGesture = currentGesture;
-            currentGesture = GetGestureDetected_();
+            currentGesture = GetGestureDetected();
             Vector2 touchPosition = GetTouchPosition(0);
 
             if (CheckCollisionPointRec(touchPosition, touchArea) && (currentGesture != GESTURE_NONE))

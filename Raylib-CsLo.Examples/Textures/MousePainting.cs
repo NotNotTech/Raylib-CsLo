@@ -136,7 +136,7 @@ public static unsafe class MousePainting
                 EndTextureMode();
             }
 
-            if (IsMouseButtonDown(MOUSE_BUTTON_LEFT) || (GetGestureDetected_() == GESTURE_DRAG))
+            if (IsMouseButtonDown(MOUSE_BUTTON_LEFT) || (GetGestureDetected() == GESTURE_DRAG))
             {
                 // Paint circle into render texture
                 // NOTE: To avoid discontinuous circles, we could store
@@ -191,7 +191,7 @@ public static unsafe class MousePainting
             if ((btnSaveMouseHover && IsMouseButtonReleased(MOUSE_BUTTON_LEFT)) || IsKeyPressed(KEY_S))
             {
                 Image image = LoadImageFromTexture(target.texture);
-                ImageFlipVertical(&image);
+                ImageFlipVertical(ref image);
                 ExportImage(image, "my_amazing_texture_painting.png");
                 UnloadImage(image);
                 showSaveMessage = true;

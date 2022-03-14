@@ -66,7 +66,7 @@ public static unsafe class WavingCubes
 
             ClearBackground(RAYWHITE);
 
-            BeginMode3D(camera);
+            BeginMode3D(ref camera);
 
             DrawGrid(10, 5.0f);
 

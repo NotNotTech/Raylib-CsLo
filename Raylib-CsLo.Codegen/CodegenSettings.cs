@@ -5,6 +5,7 @@
 
 namespace Raylib_CsLo.Codegen;
 
+using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 
@@ -13,7 +14,7 @@ public static class CodegenSettings
     public const string NamespaceName = "Raylib_CsLo";
 
     public static string OutputFolder { get; } = TryGetSolutionDirectoryInfo() + "/Raylib-CsLo/codegen/";
-    public static string ApiJsonFile { get; } = TryGetSolutionDirectoryInfo() + "/Raylib-CsLo.Codegen/bindings/raylib_api.json";
+    public static string BindingsFolder { get; } = TryGetSolutionDirectoryInfo() + "/Raylib-CsLo.Codegen/bindings/";
 
     public const string Utf8ToStringFunction = "Helpers.Utf8ToString";
     public const string PrtToArrayFunction = "Helpers.PrtToArray";
@@ -23,25 +24,76 @@ public static class CodegenSettings
 
     public static readonly string[] FunctionsToHandleManually =
     {
-        "TraceLog",
-
-        "SetLoadFileDataCallback",
-        "SetSaveFileDataCallback",
-        "SetLoadFileTextCallback",
-        "SetSaveFileTextCallback",
-
+        "GetCodepoint",
         "GetDirectoryFiles",
         "GetDroppedFiles",
         "GetGestureDetected",
-
         "LoadFileData",
         "LoadModelAnimations",
-
-        "TraceLog",
-
+        "SetLoadFileDataCallback",
+        "SetLoadFileTextCallback",
+        "SetSaveFileDataCallback",
+        "SetSaveFileTextCallback",
         "TextFormat",
         "TextJoin",
+        "TextLength",
         "TextSplit",
+        "TraceLog",
+        "UpdateAudioStream",
+        "UpdateTexture",
+    };
+
+    // Overrides a parameter of a function with the name to be the safe enum type instead of int
+    public static readonly Dictionary<string, (string type, string name)> ParamTypeEnumOverride = new()
+    {
+        { "BeginBlendMode", ("BlendMode", "mode") },
+        { "ClearWindowState", ("ConfigFlags", "flags") },
+        { "GetGamepadAxisMovement", ("GamepadAxis", "axis") },
+        { "ImageFormat", ("PixelFormat", "newFormat") },
+        { "IsGamepadButtonDown", ("GamepadButton", "button") },
+        { "IsGamepadButtonPressed", ("GamepadButton", "button") },
+        { "IsGamepadButtonReleased", ("GamepadButton", "button") },
+        { "IsGamepadButtonUp", ("GamepadButton", "button") },
+        { "IsGestureDetected", ("Gesture", "gesture") },
+        { "IsKeyDown", ("KeyboardKey", "key") },
+        { "IsKeyPressed", ("KeyboardKey", "key") },
+        { "IsKeyReleased", ("KeyboardKey", "key") },
+        { "IsKeyUp", ("KeyboardKey", "key") },
+        { "IsMouseButtonDown", ("MouseButton", "button") },
+        { "IsMouseButtonPressed", ("MouseButton", "button") },
+        { "IsMouseButtonReleased", ("MouseButton", "button") },
+        { "IsMouseButtonUp", ("MouseButton", "button") },
+        { "IsWindowState", ("ConfigFlags", "flag") },
+        { "LoadImageRaw", ("PixelFormat", "format") },
+        { "LoadTextureCubemap", ("CubemapLayout", "layout") },
+        { "SetCameraMode", ("CameraMode", "mode") },
+        { "SetConfigFlags", ("ConfigFlags", "flags") },
+        { "SetExitKey", ("KeyboardKey", "key") },
+        { "SetMaterialTexture", ("MaterialMapIndex", "mapType") },
+        { "SetMouseCursor", ("MouseCursor", "cursor") },
+        { "SetTextureFilter", ("TextureFilter", "filter") },
+        { "SetTextureWrap", ("TextureWrap", "wrap") },
+        { "SetWindowState", ("ConfigFlags", "flags") },
+    };
+
+    // casts the above back to unsafe int type usually
+    public static readonly Dictionary<string, string> EnumCastType = new()
+    {
+        { "ConfigFlags", "(uint)" },
+
+        { "BlendMode", "(int)" },
+        { "CameraMode", "(int)" },
+        { "CubemapLayout", "(int)" },
+        { "GamepadAxis", "(int)" },
+        { "GamepadButton", "(int)" },
+        { "Gesture", "(int)" },
+        { "KeyboardKey", "(int)" },
+        { "MaterialMapIndex", "(int)" },
+        { "MouseButton", "(int)" },
+        { "MouseCursor", "(int)" },
+        { "PixelFormat", "(int)" },
+        { "TextureFilter", "(int)" },
+        { "TextureWrap", "(int)" },
     };
 
     // Thanks to the weird inconsistency between linux working dir and windows lets just do this

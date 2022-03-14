@@ -43,7 +43,7 @@ public static unsafe class Picking3d
 
         RayCollision collision = new();
 
-        SetCameraMode(camera, CAMERA_FREE); // Set a free camera mode
+        SetCameraMode(ref camera, CAMERA_FREE); // Set a free camera mode
 
         SetTargetFPS(60);                   // Set our game to run at 60 frames-per-second
 
@@ -53,13 +53,13 @@ public static unsafe class Picking3d
         {
             // Update
 
-            UpdateCamera(&camera);          // Update camera
+            UpdateCamera(ref camera);          // Update camera
 
             if (IsMouseButtonPressed(MOUSE_BUTTON_LEFT))
             {
                 if (!collision.hit)
                 {
-                    ray = GetMouseRay(GetMousePosition(), camera);
+                    ray = GetMouseRay(GetMousePosition(), ref camera);
 
                     // Check collision between ray and box
                     collision = GetRayCollisionBox(ray,
@@ -81,7 +81,7 @@ public static unsafe class Picking3d
 
             ClearBackground(RAYWHITE);
 
-            BeginMode3D(camera);
+            BeginMode3D(ref camera);
 
             if (collision.hit)
             {

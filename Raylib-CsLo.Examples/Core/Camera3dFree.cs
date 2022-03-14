@@ -38,7 +38,7 @@ public static unsafe class Camera3dFree
 
         Vector3 cubePosition = new(0.0f, 0.0f, 0.0f);
 
-        SetCameraMode(camera, CAMERA_FREE); // Set a free camera mode
+        SetCameraMode(ref camera, CAMERA_FREE); // Set a free camera mode
 
         SetCameraPanControl((int)MOUSE_BUTTON_RIGHT);
 
@@ -50,7 +50,7 @@ public static unsafe class Camera3dFree
         {
             // Update
 
-            UpdateCamera(&camera);          // Update camera
+            UpdateCamera(ref camera);          // Update camera
 
             if (IsKeyDown('Z'))
             {
@@ -69,7 +69,7 @@ public static unsafe class Camera3dFree
 
             ClearBackground(RAYWHITE);
 
-            BeginMode3D(camera);
+            BeginMode3D(ref camera);
 
             DrawCube(cubePosition, 2.0f, 2.0f, 2.0f, RED);
             DrawCubeWires(cubePosition, 2.0f, 2.0f, 2.0f, MAROON);

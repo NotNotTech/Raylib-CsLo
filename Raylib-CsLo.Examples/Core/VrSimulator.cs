@@ -95,7 +95,7 @@ public static unsafe class VrSimulator
 
         Vector3 cubePosition = new(0.0f, 0.0f, 0.0f);
 
-        SetCameraMode(camera, CAMERA_FIRST_PERSON);         // Set first person camera mode
+        SetCameraMode(ref camera, CAMERA_FIRST_PERSON);         // Set first person camera mode
 
         SetTargetFPS(90);                   // Set our game to run at 90 frames-per-second
 
@@ -105,7 +105,7 @@ public static unsafe class VrSimulator
         {
             // Update
 
-            UpdateCamera(&camera);          // Update camera (simulator mode)
+            UpdateCamera(ref camera);          // Update camera (simulator mode)
 
 
             // Draw
@@ -113,7 +113,7 @@ public static unsafe class VrSimulator
             BeginTextureMode(target);
             ClearBackground(RAYWHITE);
             BeginVrStereoMode(config);
-            BeginMode3D(camera);
+            BeginMode3D(ref camera);
 
             DrawCube(cubePosition, 2.0f, 2.0f, 2.0f, RED);
             DrawCubeWires(cubePosition, 2.0f, 2.0f, 2.0f, MAROON);

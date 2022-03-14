@@ -65,7 +65,7 @@ public static unsafe class MeshPicking
         Vector3 sp = new(-30.0f, 5.0f, 5.0f);
         float sr = 4.0f;
 
-        SetCameraMode(camera, CAMERA_FREE); // Set a free camera mode
+        SetCameraMode(ref camera, CAMERA_FREE); // Set a free camera mode
 
         SetTargetFPS(60);                   // Set our game to run at 60 frames-per-second
 
@@ -84,7 +84,7 @@ public static unsafe class MeshPicking
             Color cursorColor = WHITE;
 
             // Get ray and test against objects
-            ray = GetMouseRay(GetMousePosition(), camera);
+            ray = GetMouseRay(GetMousePosition(), ref camera);
 
             // Check ray collision against ground quad
             RayCollision groundHitInfo = GetRayCollisionQuad(ray, g0, g1, g2, g3);
@@ -146,7 +146,7 @@ public static unsafe class MeshPicking
 
             ClearBackground(RAYWHITE);
 
-            BeginMode3D(camera);
+            BeginMode3D(ref camera);
 
             // Draw the tower
             // WARNING: If scale is different than 1.0f,

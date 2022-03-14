@@ -56,7 +56,7 @@ public static unsafe class Animation
         ModelAnimation[] anims = LoadModelAnimations("resources/models/iqm/guyanim.iqm");
         int animFrameCounter = 0;
 
-        SetCameraMode(camera, CAMERA_FREE); // Set free camera mode
+        SetCameraMode(ref camera, CAMERA_FREE); // Set free camera mode
 
         SetTargetFPS(60);                   // Set our game to run at 60 frames-per-second
 
@@ -86,7 +86,7 @@ public static unsafe class Animation
 
             ClearBackground(RAYWHITE);
 
-            BeginMode3D(camera);
+            BeginMode3D(ref camera);
 
             DrawModelEx(model, position, new(1.0f, 0.0f, 0.0f), -90.0f, new(1.0f, 1.0f, 1.0f), WHITE);
 

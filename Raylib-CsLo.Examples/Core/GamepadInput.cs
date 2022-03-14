@@ -79,9 +79,9 @@ public static class GamepadInput
 
             if (IsGamepadAvailable(0))
             {
-                DrawText(TextFormat("GP1: %s", GetGamepadName_(0)), 10, 10, 10, BLACK);
+                DrawText(TextFormat("GP1: %s", GetGamepadName(0)), 10, 10, 10, BLACK);
 
-                if (TextIsEqual(GetGamepadName_(0), XBOX360_NAME_ID) || TextIsEqual(GetGamepadName_(0), XBOX360_LEGACY_NAME_ID))
+                if (TextIsEqual(GetGamepadName(0), XBOX360_NAME_ID) || TextIsEqual(GetGamepadName(0), XBOX360_LEGACY_NAME_ID))
                 {
                     DrawTexture(texXboxPad, 0, 0, DARKGRAY);
 
@@ -177,7 +177,7 @@ public static class GamepadInput
                     //DrawText(TextFormat("Xbox axis LT: %02.02f", GetGamepadAxisMovement(0, GAMEPAD_AXIS_LEFT_TRIGGER)), 10, 40, 10, BLACK);
                     //DrawText(TextFormat("Xbox axis RT: %02.02f", GetGamepadAxisMovement(0, GAMEPAD_AXIS_RIGHT_TRIGGER)), 10, 60, 10, BLACK);
                 }
-                else if (TextIsEqual(GetGamepadName_(0), PS3_NAME_ID))
+                else if (TextIsEqual(GetGamepadName(0), PS3_NAME_ID))
                 {
                     DrawTexture(texPs3Pad, 0, 0, DARKGRAY);
 
@@ -281,7 +281,7 @@ public static class GamepadInput
 
                 for (int i = 0; i < GetGamepadAxisCount(0); i++)
                 {
-                    DrawText(TextFormat("AXIS %i: %.02f", i, GetGamepadAxisMovement(0, i)), 20, 70 + (20 * i), 10, DARKGRAY);
+                    DrawText(TextFormat("AXIS %i: %.02f", i, GetGamepadAxisMovement(0, (GamepadAxis)i)), 20, 70 + (20 * i), 10, DARKGRAY);
                 }
 
                 if (GetGamepadButtonPressed() != -1)

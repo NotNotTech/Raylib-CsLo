@@ -60,6 +60,12 @@ public static class FunctionParser
                         isParamsSame = false;
                     }
 
+                    // Handle C# keyword named variables
+                    if (param.Name == "checked")
+                    {
+                        param.Name = "@checked";
+                    }
+
                     func.Parameters.Add(new RaylibParameter(param.Name, type));
                 }
             }

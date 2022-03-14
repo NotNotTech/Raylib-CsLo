@@ -108,7 +108,7 @@ public static unsafe class SimpleMask
             // Rotate one of the models
             model1.transform = MatrixRotateXYZ(rotation);
 
-            UpdateCamera(&camera);
+            UpdateCamera(ref camera);
 
 
             // Draw
@@ -117,7 +117,7 @@ public static unsafe class SimpleMask
 
             ClearBackground(DARKBLUE);
 
-            BeginMode3D(camera);
+            BeginMode3D(ref camera);
 
             DrawModel(model1, new Vector3(0.5f, 0, 0), 1, WHITE);
             DrawModelEx(model2, new Vector3(-.5f, 0, 0), new Vector3(1, 1, 0), 50, new Vector3(1, 1, 1), WHITE);

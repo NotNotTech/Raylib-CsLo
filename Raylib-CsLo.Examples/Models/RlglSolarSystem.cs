@@ -43,7 +43,7 @@ public static unsafe class RlglSolarSystem
         camera.fovy = 45.0f;
         camera.Projection = CAMERA_PERSPECTIVE;
 
-        SetCameraMode(camera, CAMERA_FREE);
+        SetCameraMode(ref camera, CAMERA_FREE);
 
         float rotationSpeed = 0.2f;         // General system rotation speed
 
@@ -74,7 +74,7 @@ public static unsafe class RlglSolarSystem
 
             ClearBackground(RAYWHITE);
 
-            BeginMode3D(camera);
+            BeginMode3D(ref camera);
 
             rlPushMatrix();
             rlScalef(sunRadius, sunRadius, sunRadius);          // Scale Sun

@@ -121,7 +121,7 @@ public static unsafe class QuatConversions
 
             ClearBackground(RAYWHITE);
 
-            BeginMode3D(camera);
+            BeginMode3D(ref camera);
 
             model.transform = Matrix.Transpose(m1);
             DrawModel(model, new(-1, 0, 0), 1.0f, RED);

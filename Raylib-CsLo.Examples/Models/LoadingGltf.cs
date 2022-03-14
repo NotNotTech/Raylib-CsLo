@@ -58,7 +58,7 @@ public static unsafe class LoadingGltf
 
         Vector3 position = new(0.0f, 0.0f, 0.0f);    // Set model position
 
-        SetCameraMode(camera, CAMERA_FREE); // Set free camera mode
+        SetCameraMode(ref camera, CAMERA_FREE); // Set free camera mode
 
         SetTargetFPS(60);                   // Set our game to run at 60 frames-per-second
 
@@ -95,7 +95,7 @@ public static unsafe class LoadingGltf
 
             ClearBackground(SKYBLUE);
 
-            BeginMode3D(camera);
+            BeginMode3D(ref camera);
 
             DrawModel(model[currentModel], position, 1.0f, WHITE);
             DrawGrid(10, 1.0f);         // Draw a grid

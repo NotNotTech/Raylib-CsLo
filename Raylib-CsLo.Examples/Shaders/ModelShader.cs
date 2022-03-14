@@ -61,7 +61,7 @@ public static unsafe class ModelShader
 
         Vector3 position = new(0.0f, 0.0f, 0.0f);    // Set model position
 
-        SetCameraMode(camera, CAMERA_FREE);         // Set an orbital camera mode
+        SetCameraMode(ref camera, CAMERA_FREE);         // Set an orbital camera mode
 
         SetTargetFPS(60);                           // Set our game to run at 60 frames-per-second
 
@@ -71,7 +71,7 @@ public static unsafe class ModelShader
         {
             // Update
 
-            UpdateCamera(&camera);                  // Update camera
+            UpdateCamera(ref camera);                  // Update camera
 
 
             // Draw
@@ -80,7 +80,7 @@ public static unsafe class ModelShader
 
             ClearBackground(RAYWHITE);
 
-            BeginMode3D(camera);
+            BeginMode3D(ref camera);
 
             DrawModel(model, position, 0.2f, WHITE);   // Draw 3d model with texture
 

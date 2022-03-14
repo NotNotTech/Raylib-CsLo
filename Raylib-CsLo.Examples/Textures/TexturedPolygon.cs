@@ -96,8 +96,7 @@ public static unsafe class TexturedPolygon
 
             DrawText("textured polygon", 20, 20, 20, DARKGRAY);
 
-            DrawTexturePoly(texture, new Vector2(GetScreenWidth() / 2, GetScreenHeight() / 2),
-                            positions, texcoords, MAX_POINTS, WHITE);
+            DrawTexturePoly(texture, new Vector2(GetScreenWidth() / 2, GetScreenHeight() / 2), positions, texcoords, MAX_POINTS, WHITE);
 
             EndDrawing();
 

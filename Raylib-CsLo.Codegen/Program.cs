@@ -8,6 +8,7 @@ namespace Raylib_CsLo.Codegen;
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Text;
 using System.Text.Json;
 
 public class Program
@@ -22,20 +23,33 @@ public class Program
             Directory.Delete(CodegenSettings.OutputFolder, true);
         }
         Directory.CreateDirectory(CodegenSettings.OutputFolder);
+        Directory.CreateDirectory(CodegenSettings.OutputFolder + "Native/");
+        Directory.CreateDirectory(CodegenSettings.OutputFolder + "Safe/");
 
-        List<RaylibFunction> functions = new();
-
-        using (JsonDocument document = JsonDocument.Parse(File.ReadAllText(CodegenSettings.ApiJsonFile)))
+        foreach (string binding in Directory.GetFiles(CodegenSettings.BindingsFolder))
         {
-            FunctionParser.Parse(functions, document);
+            List<RaylibFunction> functions = new();
+
+            StringBuilder fileName = new(Path.GetFileNameWithoutExtension(binding.Replace("_api", "")));
+            fileName[0] = char.ToUpperInvariant(fileName[0]);
+
+            if (!fileName.Equals("Raylib") && !fileName.Equals("Raygui"))
+            {
+                continue;
+            }
+
+            using (JsonDocument document = JsonDocument.Parse(File.ReadAllText(binding)))
+            {
+                FunctionParser.Parse(functions, document);
+            }
+
+            NativeClassGenerator native = new(functions, fileName.ToString());
+            native.Generate();
+            native.Output(fileName.ToString());
+
+            SafeClassGenerator safe = new(functions, fileName.ToString());
+            safe.Generate();
+            safe.Output(fileName.ToString());
         }
-
-        NativeClassGenerator native = new(functions);
-        native.Generate();
-        native.Output();
-
-        SafeClassGenerator safe = new(functions);
-        safe.Generate();
-        safe.Output();
     }
 }

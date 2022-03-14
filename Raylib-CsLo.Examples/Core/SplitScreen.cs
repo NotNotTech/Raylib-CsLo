@@ -126,7 +126,7 @@ public static unsafe class SplitScreen
             // Draw Player1 view to the render texture
             BeginTextureMode(screenPlayer1);
             ClearBackground(SKYBLUE);
-            BeginMode3D(cameraPlayer1);
+            BeginMode3D(ref cameraPlayer1);
             DrawScene();
             EndMode3D();
             DrawText("PLAYER1 W/S to move", 10, 10, 20, RED);
@@ -135,7 +135,7 @@ public static unsafe class SplitScreen
             // Draw Player2 view to the render texture
             BeginTextureMode(screenPlayer2);
             ClearBackground(SKYBLUE);
-            BeginMode3D(cameraPlayer2);
+            BeginMode3D(ref cameraPlayer2);
             DrawScene();
             EndMode3D();
             DrawText("PLAYER2 UP/DOWN to move", 10, 10, 20, BLUE);

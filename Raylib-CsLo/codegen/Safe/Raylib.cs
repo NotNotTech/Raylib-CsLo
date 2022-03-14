@@ -99,25 +99,25 @@ public unsafe partial class RaylibS
     /// <summary>
     /// Check if one specific window flag is enabled
     /// </summary>
-    public static bool IsWindowState(uint flag)
+    public static bool IsWindowState(ConfigFlags flag)
     {
-        return Raylib.IsWindowState(flag);
+        return Raylib.IsWindowState((uint)flag);
     }
 
     /// <summary>
     /// Set window configuration state using flags (only PLATFORM_DESKTOP)
     /// </summary>
-    public static void SetWindowState(uint flags)
+    public static void SetWindowState(ConfigFlags flags)
     {
-        Raylib.SetWindowState(flags);
+        Raylib.SetWindowState((uint)flags);
     }
 
     /// <summary>
     /// Clear window configuration state flags
     /// </summary>
-    public static void ClearWindowState(uint flags)
+    public static void ClearWindowState(ConfigFlags flags)
     {
-        Raylib.ClearWindowState(flags);
+        Raylib.ClearWindowState((uint)flags);
     }
 
     /// <summary>
@@ -469,7 +469,7 @@ public unsafe partial class RaylibS
     /// <summary>
     /// Begin 3D mode with custom camera (3D)
     /// </summary>
-    public static void BeginMode3D(Camera3D camera)
+    public static void BeginMode3D(ref Camera3D camera)
     {
         Raylib.BeginMode3D(camera);
     }
@@ -517,9 +517,9 @@ public unsafe partial class RaylibS
     /// <summary>
     /// Begin blending mode (alpha, additive, multiplied, subtract, custom)
     /// </summary>
-    public static void BeginBlendMode(int mode)
+    public static void BeginBlendMode(BlendMode mode)
     {
-        Raylib.BeginBlendMode(mode);
+        Raylib.BeginBlendMode((int)mode);
     }
 
     /// <summary>
@@ -661,7 +661,7 @@ public unsafe partial class RaylibS
     /// <summary>
     /// Get a ray trace from mouse position
     /// </summary>
-    public static Ray GetMouseRay(Vector2 mousePosition, Camera3D camera)
+    public static Ray GetMouseRay(Vector2 mousePosition, ref Camera3D camera)
     {
         return Raylib.GetMouseRay(mousePosition, camera);
     }
@@ -669,7 +669,7 @@ public unsafe partial class RaylibS
     /// <summary>
     /// Get camera transform matrix (view matrix)
     /// </summary>
-    public static Matrix4x4 GetCameraMatrix(Camera3D camera)
+    public static Matrix4x4 GetCameraMatrix(ref Camera3D camera)
     {
         return Raylib.GetCameraMatrix(camera);
     }
@@ -685,7 +685,7 @@ public unsafe partial class RaylibS
     /// <summary>
     /// Get the screen space position for a 3d world space position
     /// </summary>
-    public static Vector2 GetWorldToScreen(Vector3 position, Camera3D camera)
+    public static Vector2 GetWorldToScreen(Vector3 position, ref Camera3D camera)
     {
         return Raylib.GetWorldToScreen(position, camera);
     }
@@ -693,7 +693,7 @@ public unsafe partial class RaylibS
     /// <summary>
     /// Get size position for a 3d world space position
     /// </summary>
-    public static Vector2 GetWorldToScreenEx(Vector3 position, Camera3D camera, int width, int height)
+    public static Vector2 GetWorldToScreenEx(Vector3 position, ref Camera3D camera, int width, int height)
     {
         return Raylib.GetWorldToScreenEx(position, camera, width, height);
     }
@@ -774,9 +774,9 @@ public unsafe partial class RaylibS
     /// <summary>
     /// Setup init configuration flags (view FLAGS)
     /// </summary>
-    public static void SetConfigFlags(uint flags)
+    public static void SetConfigFlags(ConfigFlags flags)
     {
-        Raylib.SetConfigFlags(flags);
+        Raylib.SetConfigFlags((uint)flags);
     }
 
     //  /// <summary>
@@ -1139,41 +1139,41 @@ public unsafe partial class RaylibS
     /// <summary>
     /// Check if a key has been pressed once
     /// </summary>
-    public static bool IsKeyPressed(int key)
+    public static bool IsKeyPressed(KeyboardKey key)
     {
-        return Raylib.IsKeyPressed(key);
+        return Raylib.IsKeyPressed((int)key);
     }
 
     /// <summary>
     /// Check if a key is being pressed
     /// </summary>
-    public static bool IsKeyDown(int key)
+    public static bool IsKeyDown(KeyboardKey key)
     {
-        return Raylib.IsKeyDown(key);
+        return Raylib.IsKeyDown((int)key);
     }
 
     /// <summary>
     /// Check if a key has been released once
     /// </summary>
-    public static bool IsKeyReleased(int key)
+    public static bool IsKeyReleased(KeyboardKey key)
     {
-        return Raylib.IsKeyReleased(key);
+        return Raylib.IsKeyReleased((int)key);
     }
 
     /// <summary>
     /// Check if a key is NOT being pressed
     /// </summary>
-    public static bool IsKeyUp(int key)
+    public static bool IsKeyUp(KeyboardKey key)
     {
-        return Raylib.IsKeyUp(key);
+        return Raylib.IsKeyUp((int)key);
     }
 
     /// <summary>
     /// Set a custom key to exit program (default is ESC)
     /// </summary>
-    public static void SetExitKey(int key)
+    public static void SetExitKey(KeyboardKey key)
     {
-        Raylib.SetExitKey(key);
+        Raylib.SetExitKey((int)key);
     }
 
     /// <summary>
@@ -1211,33 +1211,33 @@ public unsafe partial class RaylibS
     /// <summary>
     /// Check if a gamepad button has been pressed once
     /// </summary>
-    public static bool IsGamepadButtonPressed(int gamepad, int button)
+    public static bool IsGamepadButtonPressed(int gamepad, GamepadButton button)
     {
-        return Raylib.IsGamepadButtonPressed(gamepad, button);
+        return Raylib.IsGamepadButtonPressed(gamepad, (int)button);
     }
 
     /// <summary>
     /// Check if a gamepad button is being pressed
     /// </summary>
-    public static bool IsGamepadButtonDown(int gamepad, int button)
+    public static bool IsGamepadButtonDown(int gamepad, GamepadButton button)
     {
-        return Raylib.IsGamepadButtonDown(gamepad, button);
+        return Raylib.IsGamepadButtonDown(gamepad, (int)button);
     }
 
     /// <summary>
     /// Check if a gamepad button has been released once
     /// </summary>
-    public static bool IsGamepadButtonReleased(int gamepad, int button)
+    public static bool IsGamepadButtonReleased(int gamepad, GamepadButton button)
     {
-        return Raylib.IsGamepadButtonReleased(gamepad, button);
+        return Raylib.IsGamepadButtonReleased(gamepad, (int)button);
     }
 
     /// <summary>
     /// Check if a gamepad button is NOT being pressed
     /// </summary>
-    public static bool IsGamepadButtonUp(int gamepad, int button)
+    public static bool IsGamepadButtonUp(int gamepad, GamepadButton button)
     {
-        return Raylib.IsGamepadButtonUp(gamepad, button);
+        return Raylib.IsGamepadButtonUp(gamepad, (int)button);
     }
 
     /// <summary>
@@ -1259,9 +1259,9 @@ public unsafe partial class RaylibS
     /// <summary>
     /// Get axis movement value for a gamepad axis
     /// </summary>
-    public static float GetGamepadAxisMovement(int gamepad, int axis)
+    public static float GetGamepadAxisMovement(int gamepad, GamepadAxis axis)
     {
-        return Raylib.GetGamepadAxisMovement(gamepad, axis);
+        return Raylib.GetGamepadAxisMovement(gamepad, (int)axis);
     }
 
     /// <summary>
@@ -1276,33 +1276,33 @@ public unsafe partial class RaylibS
     /// <summary>
     /// Check if a mouse button has been pressed once
     /// </summary>
-    public static bool IsMouseButtonPressed(int button)
+    public static bool IsMouseButtonPressed(MouseButton button)
     {
-        return Raylib.IsMouseButtonPressed(button);
+        return Raylib.IsMouseButtonPressed((int)button);
     }
 
     /// <summary>
     /// Check if a mouse button is being pressed
     /// </summary>
-    public static bool IsMouseButtonDown(int button)
+    public static bool IsMouseButtonDown(MouseButton button)
     {
-        return Raylib.IsMouseButtonDown(button);
+        return Raylib.IsMouseButtonDown((int)button);
     }
 
     /// <summary>
     /// Check if a mouse button has been released once
     /// </summary>
-    public static bool IsMouseButtonReleased(int button)
+    public static bool IsMouseButtonReleased(MouseButton button)
     {
-        return Raylib.IsMouseButtonReleased(button);
+        return Raylib.IsMouseButtonReleased((int)button);
     }
 
     /// <summary>
     /// Check if a mouse button is NOT being pressed
     /// </summary>
-    public static bool IsMouseButtonUp(int button)
+    public static bool IsMouseButtonUp(MouseButton button)
     {
-        return Raylib.IsMouseButtonUp(button);
+        return Raylib.IsMouseButtonUp((int)button);
     }
 
     /// <summary>
@@ -1372,9 +1372,9 @@ public unsafe partial class RaylibS
     /// <summary>
     /// Set mouse cursor
     /// </summary>
-    public static void SetMouseCursor(int cursor)
+    public static void SetMouseCursor(MouseCursor cursor)
     {
-        Raylib.SetMouseCursor(cursor);
+        Raylib.SetMouseCursor((int)cursor);
     }
 
     /// <summary>
@@ -1428,9 +1428,9 @@ public unsafe partial class RaylibS
     /// <summary>
     /// Check if a gesture have been detected
     /// </summary>
-    public static bool IsGestureDetected(int gesture)
+    public static bool IsGestureDetected(Gesture gesture)
     {
-        return Raylib.IsGestureDetected(gesture);
+        return Raylib.IsGestureDetected((int)gesture);
     }
 
     //  /// <summary>
@@ -1484,17 +1484,17 @@ public unsafe partial class RaylibS
     /// <summary>
     /// Set camera mode (multiple camera modes available)
     /// </summary>
-    public static void SetCameraMode(Camera3D camera, int mode)
+    public static void SetCameraMode(ref Camera3D camera, CameraMode mode)
     {
-        Raylib.SetCameraMode(camera, mode);
+        Raylib.SetCameraMode(camera, (int)mode);
     }
 
     /// <summary>
     /// Update camera position for selected mode
     /// </summary>
-    public static void UpdateCamera(Camera3D* camera)
+    public static void UpdateCamera(Camera3D camera)
     {
-        Raylib.UpdateCamera(camera);
+        Raylib.UpdateCamera(&camera);
     }
 
     /// <summary>
@@ -1604,9 +1604,10 @@ public unsafe partial class RaylibS
     /// <summary>
     /// Draw lines sequence
     /// </summary>
-    public static void DrawLineStrip(Vector2* points, int pointCount, Color color)
+    public static void DrawLineStrip(Vector2[] points, int pointCount, Color color)
     {
-        Raylib.DrawLineStrip(points, pointCount, color);
+        var points_ = Helpers.ArrayToPtr(points);
+        Raylib.DrawLineStrip(points_, pointCount, color);
     }
 
     /// <summary>
@@ -1796,17 +1797,19 @@ public unsafe partial class RaylibS
     /// <summary>
     /// Draw a triangle fan defined by points (first vertex is the center)
     /// </summary>
-    public static void DrawTriangleFan(Vector2* points, int pointCount, Color color)
+    public static void DrawTriangleFan(Vector2[] points, int pointCount, Color color)
     {
-        Raylib.DrawTriangleFan(points, pointCount, color);
+        var points_ = Helpers.ArrayToPtr(points);
+        Raylib.DrawTriangleFan(points_, pointCount, color);
     }
 
     /// <summary>
     /// Draw a triangle strip defined by points
     /// </summary>
-    public static void DrawTriangleStrip(Vector2* points, int pointCount, Color color)
+    public static void DrawTriangleStrip(Vector2[] points, int pointCount, Color color)
     {
-        Raylib.DrawTriangleStrip(points, pointCount, color);
+        var points_ = Helpers.ArrayToPtr(points);
+        Raylib.DrawTriangleStrip(points_, pointCount, color);
     }
 
     /// <summary>
@@ -1884,9 +1887,10 @@ public unsafe partial class RaylibS
     /// <summary>
     /// Check the collision between two lines defined by two points each, returns collision point by reference
     /// </summary>
-    public static bool CheckCollisionLines(Vector2 startPos1, Vector2 endPos1, Vector2 startPos2, Vector2 endPos2, Vector2* collisionPoint)
+    public static bool CheckCollisionLines(Vector2 startPos1, Vector2 endPos1, Vector2 startPos2, Vector2 endPos2, Vector2[] collisionPoint)
     {
-        return Raylib.CheckCollisionLines(startPos1, endPos1, startPos2, endPos2, collisionPoint);
+        var collisionPoint_ = Helpers.ArrayToPtr(collisionPoint);
+        return Raylib.CheckCollisionLines(startPos1, endPos1, startPos2, endPos2, collisionPoint_);
     }
 
     /// <summary>
@@ -1917,10 +1921,10 @@ public unsafe partial class RaylibS
     /// <summary>
     /// Load image from RAW file data
     /// </summary>
-    public static Image LoadImageRaw(string fileName, int width, int height, int format, int headerSize)
+    public static Image LoadImageRaw(string fileName, int width, int height, PixelFormat format, int headerSize)
     {
         using var fileName_ = fileName.MarshalUtf8();
-        return Raylib.LoadImageRaw(fileName_.AsPtr(), width, height, format, headerSize);
+        return Raylib.LoadImageRaw(fileName_.AsPtr(), width, height, (int)format, headerSize);
     }
 
     /// <summary>
@@ -2077,177 +2081,243 @@ public unsafe partial class RaylibS
     /// <summary>
     /// Convert image data to desired format
     /// </summary>
-    public static void ImageFormat(Image* image, int newFormat)
+    public static void ImageFormat(ref Image image, PixelFormat newFormat)
     {
-        Raylib.ImageFormat(image, newFormat);
+        fixed(Image* image_ = &image)
+        {
+            Raylib.ImageFormat(image_, (int)newFormat);
+        }
     }
 
     /// <summary>
     /// Convert image to POT (power-of-two)
     /// </summary>
-    public static void ImageToPOT(Image* image, Color fill)
+    public static void ImageToPOT(ref Image image, Color fill)
     {
-        Raylib.ImageToPOT(image, fill);
+        fixed(Image* image_ = &image)
+        {
+            Raylib.ImageToPOT(image_, fill);
+        }
     }
 
     /// <summary>
     /// Crop an image to a defined rectangle
     /// </summary>
-    public static void ImageCrop(Image* image, Rectangle crop)
+    public static void ImageCrop(ref Image image, Rectangle crop)
     {
-        Raylib.ImageCrop(image, crop);
+        fixed(Image* image_ = &image)
+        {
+            Raylib.ImageCrop(image_, crop);
+        }
     }
 
     /// <summary>
     /// Crop image depending on alpha value
     /// </summary>
-    public static void ImageAlphaCrop(Image* image, float threshold)
+    public static void ImageAlphaCrop(ref Image image, float threshold)
     {
-        Raylib.ImageAlphaCrop(image, threshold);
+        fixed(Image* image_ = &image)
+        {
+            Raylib.ImageAlphaCrop(image_, threshold);
+        }
     }
 
     /// <summary>
     /// Clear alpha channel to desired color
     /// </summary>
-    public static void ImageAlphaClear(Image* image, Color color, float threshold)
+    public static void ImageAlphaClear(ref Image image, Color color, float threshold)
     {
-        Raylib.ImageAlphaClear(image, color, threshold);
+        fixed(Image* image_ = &image)
+        {
+            Raylib.ImageAlphaClear(image_, color, threshold);
+        }
     }
 
     /// <summary>
     /// Apply alpha mask to image
     /// </summary>
-    public static void ImageAlphaMask(Image* image, Image alphaMask)
+    public static void ImageAlphaMask(ref Image image, Image alphaMask)
     {
-        Raylib.ImageAlphaMask(image, alphaMask);
+        fixed(Image* image_ = &image)
+        {
+            Raylib.ImageAlphaMask(image_, alphaMask);
+        }
     }
 
     /// <summary>
     /// Premultiply alpha channel
     /// </summary>
-    public static void ImageAlphaPremultiply(Image* image)
+    public static void ImageAlphaPremultiply(ref Image image)
     {
-        Raylib.ImageAlphaPremultiply(image);
+        fixed(Image* image_ = &image)
+        {
+            Raylib.ImageAlphaPremultiply(image_);
+        }
     }
 
     /// <summary>
     /// Resize image (Bicubic scaling algorithm)
     /// </summary>
-    public static void ImageResize(Image* image, int newWidth, int newHeight)
+    public static void ImageResize(ref Image image, int newWidth, int newHeight)
     {
-        Raylib.ImageResize(image, newWidth, newHeight);
+        fixed(Image* image_ = &image)
+        {
+            Raylib.ImageResize(image_, newWidth, newHeight);
+        }
     }
 
     /// <summary>
     /// Resize image (Nearest-Neighbor scaling algorithm)
     /// </summary>
-    public static void ImageResizeNN(Image* image, int newWidth, int newHeight)
+    public static void ImageResizeNN(ref Image image, int newWidth, int newHeight)
     {
-        Raylib.ImageResizeNN(image, newWidth, newHeight);
+        fixed(Image* image_ = &image)
+        {
+            Raylib.ImageResizeNN(image_, newWidth, newHeight);
+        }
     }
 
     /// <summary>
     /// Resize canvas and fill with color
     /// </summary>
-    public static void ImageResizeCanvas(Image* image, int newWidth, int newHeight, int offsetX, int offsetY, Color fill)
+    public static void ImageResizeCanvas(ref Image image, int newWidth, int newHeight, int offsetX, int offsetY, Color fill)
     {
-        Raylib.ImageResizeCanvas(image, newWidth, newHeight, offsetX, offsetY, fill);
+        fixed(Image* image_ = &image)
+        {
+            Raylib.ImageResizeCanvas(image_, newWidth, newHeight, offsetX, offsetY, fill);
+        }
     }
 
     /// <summary>
     /// Compute all mipmap levels for a provided image
     /// </summary>
-    public static void ImageMipmaps(Image* image)
+    public static void ImageMipmaps(ref Image image)
     {
-        Raylib.ImageMipmaps(image);
+        fixed(Image* image_ = &image)
+        {
+            Raylib.ImageMipmaps(image_);
+        }
     }
 
     /// <summary>
     /// Dither image data to 16bpp or lower (Floyd-Steinberg dithering)
     /// </summary>
-    public static void ImageDither(Image* image, int rBpp, int gBpp, int bBpp, int aBpp)
+    public static void ImageDither(ref Image image, int rBpp, int gBpp, int bBpp, int aBpp)
     {
-        Raylib.ImageDither(image, rBpp, gBpp, bBpp, aBpp);
+        fixed(Image* image_ = &image)
+        {
+            Raylib.ImageDither(image_, rBpp, gBpp, bBpp, aBpp);
+        }
     }
 
     /// <summary>
     /// Flip image vertically
     /// </summary>
-    public static void ImageFlipVertical(Image* image)
+    public static void ImageFlipVertical(ref Image image)
     {
-        Raylib.ImageFlipVertical(image);
+        fixed(Image* image_ = &image)
+        {
+            Raylib.ImageFlipVertical(image_);
+        }
     }
 
     /// <summary>
     /// Flip image horizontally
     /// </summary>
-    public static void ImageFlipHorizontal(Image* image)
+    public static void ImageFlipHorizontal(ref Image image)
     {
-        Raylib.ImageFlipHorizontal(image);
+        fixed(Image* image_ = &image)
+        {
+            Raylib.ImageFlipHorizontal(image_);
+        }
     }
 
     /// <summary>
     /// Rotate image clockwise 90deg
     /// </summary>
-    public static void ImageRotateCW(Image* image)
+    public static void ImageRotateCW(ref Image image)
     {
-        Raylib.ImageRotateCW(image);
+        fixed(Image* image_ = &image)
+        {
+            Raylib.ImageRotateCW(image_);
+        }
     }
 
     /// <summary>
     /// Rotate image counter-clockwise 90deg
     /// </summary>
-    public static void ImageRotateCCW(Image* image)
+    public static void ImageRotateCCW(ref Image image)
     {
-        Raylib.ImageRotateCCW(image);
+        fixed(Image* image_ = &image)
+        {
+            Raylib.ImageRotateCCW(image_);
+        }
     }
 
     /// <summary>
     /// Modify image color: tint
     /// </summary>
-    public static void ImageColorTint(Image* image, Color color)
+    public static void ImageColorTint(ref Image image, Color color)
     {
-        Raylib.ImageColorTint(image, color);
+        fixed(Image* image_ = &image)
+        {
+            Raylib.ImageColorTint(image_, color);
+        }
     }
 
     /// <summary>
     /// Modify image color: invert
     /// </summary>
-    public static void ImageColorInvert(Image* image)
+    public static void ImageColorInvert(ref Image image)
     {
-        Raylib.ImageColorInvert(image);
+        fixed(Image* image_ = &image)
+        {
+            Raylib.ImageColorInvert(image_);
+        }
     }
 
     /// <summary>
     /// Modify image color: grayscale
     /// </summary>
-    public static void ImageColorGrayscale(Image* image)
+    public static void ImageColorGrayscale(ref Image image)
     {
-        Raylib.ImageColorGrayscale(image);
+        fixed(Image* image_ = &image)
+        {
+            Raylib.ImageColorGrayscale(image_);
+        }
     }
 
     /// <summary>
     /// Modify image color: contrast (-100 to 100)
     /// </summary>
-    public static void ImageColorContrast(Image* image, float contrast)
+    public static void ImageColorContrast(ref Image image, float contrast)
     {
-        Raylib.ImageColorContrast(image, contrast);
+        fixed(Image* image_ = &image)
+        {
+            Raylib.ImageColorContrast(image_, contrast);
+        }
     }
 
     /// <summary>
     /// Modify image color: brightness (-255 to 255)
     /// </summary>
-    public static void ImageColorBrightness(Image* image, int brightness)
+    public static void ImageColorBrightness(ref Image image, int brightness)
     {
-        Raylib.ImageColorBrightness(image, brightness);
+        fixed(Image* image_ = &image)
+        {
+            Raylib.ImageColorBrightness(image_, brightness);
+        }
     }
 
     /// <summary>
     /// Modify image color: replace color
     /// </summary>
-    public static void ImageColorReplace(Image* image, Color color, Color replace)
+    public static void ImageColorReplace(ref Image image, Color color, Color replace)
     {
-        Raylib.ImageColorReplace(image, color, replace);
+        fixed(Image* image_ = &image)
+        {
+            Raylib.ImageColorReplace(image_, color, replace);
+        }
     }
 
     /// <summary>
@@ -2303,115 +2373,157 @@ public unsafe partial class RaylibS
     /// <summary>
     /// Clear image background with given color
     /// </summary>
-    public static void ImageClearBackground(Image* dst, Color color)
+    public static void ImageClearBackground(ref Image dst, Color color)
     {
-        Raylib.ImageClearBackground(dst, color);
+        fixed(Image* dst_ = &dst)
+        {
+            Raylib.ImageClearBackground(dst_, color);
+        }
     }
 
     /// <summary>
     /// Draw pixel within an image
     /// </summary>
-    public static void ImageDrawPixel(Image* dst, int posX, int posY, Color color)
+    public static void ImageDrawPixel(ref Image dst, int posX, int posY, Color color)
     {
-        Raylib.ImageDrawPixel(dst, posX, posY, color);
+        fixed(Image* dst_ = &dst)
+        {
+            Raylib.ImageDrawPixel(dst_, posX, posY, color);
+        }
     }
 
     /// <summary>
     /// Draw pixel within an image (Vector version)
     /// </summary>
-    public static void ImageDrawPixelV(Image* dst, Vector2 position, Color color)
+    public static void ImageDrawPixelV(ref Image dst, Vector2 position, Color color)
     {
-        Raylib.ImageDrawPixelV(dst, position, color);
+        fixed(Image* dst_ = &dst)
+        {
+            Raylib.ImageDrawPixelV(dst_, position, color);
+        }
     }
 
     /// <summary>
     /// Draw line within an image
     /// </summary>
-    public static void ImageDrawLine(Image* dst, int startPosX, int startPosY, int endPosX, int endPosY, Color color)
+    public static void ImageDrawLine(ref Image dst, int startPosX, int startPosY, int endPosX, int endPosY, Color color)
     {
-        Raylib.ImageDrawLine(dst, startPosX, startPosY, endPosX, endPosY, color);
+        fixed(Image* dst_ = &dst)
+        {
+            Raylib.ImageDrawLine(dst_, startPosX, startPosY, endPosX, endPosY, color);
+        }
     }
 
     /// <summary>
     /// Draw line within an image (Vector version)
     /// </summary>
-    public static void ImageDrawLineV(Image* dst, Vector2 start, Vector2 end, Color color)
+    public static void ImageDrawLineV(ref Image dst, Vector2 start, Vector2 end, Color color)
     {
-        Raylib.ImageDrawLineV(dst, start, end, color);
+        fixed(Image* dst_ = &dst)
+        {
+            Raylib.ImageDrawLineV(dst_, start, end, color);
+        }
     }
 
     /// <summary>
     /// Draw circle within an image
     /// </summary>
-    public static void ImageDrawCircle(Image* dst, int centerX, int centerY, int radius, Color color)
+    public static void ImageDrawCircle(ref Image dst, int centerX, int centerY, int radius, Color color)
     {
-        Raylib.ImageDrawCircle(dst, centerX, centerY, radius, color);
+        fixed(Image* dst_ = &dst)
+        {
+            Raylib.ImageDrawCircle(dst_, centerX, centerY, radius, color);
+        }
     }
 
     /// <summary>
     /// Draw circle within an image (Vector version)
     /// </summary>
-    public static void ImageDrawCircleV(Image* dst, Vector2 center, int radius, Color color)
+    public static void ImageDrawCircleV(ref Image dst, Vector2 center, int radius, Color color)
     {
-        Raylib.ImageDrawCircleV(dst, center, radius, color);
+        fixed(Image* dst_ = &dst)
+        {
+            Raylib.ImageDrawCircleV(dst_, center, radius, color);
+        }
     }
 
     /// <summary>
     /// Draw rectangle within an image
     /// </summary>
-    public static void ImageDrawRectangle(Image* dst, int posX, int posY, int width, int height, Color color)
+    public static void ImageDrawRectangle(ref Image dst, int posX, int posY, int width, int height, Color color)
     {
-        Raylib.ImageDrawRectangle(dst, posX, posY, width, height, color);
+        fixed(Image* dst_ = &dst)
+        {
+            Raylib.ImageDrawRectangle(dst_, posX, posY, width, height, color);
+        }
     }
 
     /// <summary>
     /// Draw rectangle within an image (Vector version)
     /// </summary>
-    public static void ImageDrawRectangleV(Image* dst, Vector2 position, Vector2 size, Color color)
+    public static void ImageDrawRectangleV(ref Image dst, Vector2 position, Vector2 size, Color color)
     {
-        Raylib.ImageDrawRectangleV(dst, position, size, color);
+        fixed(Image* dst_ = &dst)
+        {
+            Raylib.ImageDrawRectangleV(dst_, position, size, color);
+        }
     }
 
     /// <summary>
     /// Draw rectangle within an image
     /// </summary>
-    public static void ImageDrawRectangleRec(Image* dst, Rectangle rec, Color color)
+    public static void ImageDrawRectangleRec(ref Image dst, Rectangle rec, Color color)
     {
-        Raylib.ImageDrawRectangleRec(dst, rec, color);
+        fixed(Image* dst_ = &dst)
+        {
+            Raylib.ImageDrawRectangleRec(dst_, rec, color);
+        }
     }
 
     /// <summary>
     /// Draw rectangle lines within an image
     /// </summary>
-    public static void ImageDrawRectangleLines(Image* dst, Rectangle rec, int thick, Color color)
+    public static void ImageDrawRectangleLines(ref Image dst, Rectangle rec, int thick, Color color)
     {
-        Raylib.ImageDrawRectangleLines(dst, rec, thick, color);
+        fixed(Image* dst_ = &dst)
+        {
+            Raylib.ImageDrawRectangleLines(dst_, rec, thick, color);
+        }
     }
 
     /// <summary>
     /// Draw a source image within a destination image (tint applied to source)
     /// </summary>
-    public static void ImageDraw(Image* dst, Image src, Rectangle srcRec, Rectangle dstRec, Color tint)
+    public static void ImageDraw(ref Image dst, Image src, Rectangle srcRec, Rectangle dstRec, Color tint)
     {
-        Raylib.ImageDraw(dst, src, srcRec, dstRec, tint);
+        fixed(Image* dst_ = &dst)
+        {
+            Raylib.ImageDraw(dst_, src, srcRec, dstRec, tint);
+        }
     }
 
     /// <summary>
     /// Draw text (using default font) within an image (destination)
     /// </summary>
-    public static void ImageDrawText(Image* dst, string text, int posX, int posY, int fontSize, Color color)
+    public static void ImageDrawText(ref Image dst, string text, int posX, int posY, int fontSize, Color color)
     {
-        using var text_ = text.MarshalUtf8();
-        Raylib.ImageDrawText(dst, text_.AsPtr(), posX, posY, fontSize, color);
+        fixed(Image* dst_ = &dst)
+        {
+            using var text_ = text.MarshalUtf8();
+            Raylib.ImageDrawText(dst_, text_.AsPtr(), posX, posY, fontSize, color);
+        }
     }
 
     /// <summary>
     /// Draw text (custom sprite font) within an image (destination)
     /// </summary>
-    public static void ImageDrawTextEx(Image* dst, Font font, string text, Vector2 position, float fontSize, float spacing, Color tint)
+    public static void ImageDrawTextEx(ref Image dst, Font font, string text, Vector2 position, float fontSize, float spacing, Color tint)
     {
-        using var text_ = text.MarshalUtf8();
-        Raylib.ImageDrawTextEx(dst, font, text_.AsPtr(), position, fontSize, spacing, tint);
+        fixed(Image* dst_ = &dst)
+        {
+            using var text_ = text.MarshalUtf8();
+            Raylib.ImageDrawTextEx(dst_, font, text_.AsPtr(), position, fontSize, spacing, tint);
+        }
     }
 
     /// <summary>
@@ -2434,9 +2546,9 @@ public unsafe partial class RaylibS
     /// <summary>
     /// Load cubemap from image, multiple image cubemap layouts supported
     /// </summary>
-    public static TextureCubemap LoadTextureCubemap(Image image, int layout)
+    public static TextureCubemap LoadTextureCubemap(Image image, CubemapLayout layout)
     {
-        return Raylib.LoadTextureCubemap(image, layout);
+        return Raylib.LoadTextureCubemap(image, (int)layout);
     }
 
     /// <summary>
@@ -2463,14 +2575,14 @@ public unsafe partial class RaylibS
         Raylib.UnloadRenderTexture(target);
     }
 
-    /// <summary>
-    /// Update GPU texture with new data
-    /// </summary>
-    public static void UpdateTexture(Texture texture, IntPtr pixels)
-    {
-        var pixels_ = (void*)pixels;
-        Raylib.UpdateTexture(texture, pixels_);
-    }
+    //  /// <summary>
+    //  /// Update GPU texture with new data
+    //  /// </summary>
+    //  public static void UpdateTexture(Texture texture, IntPtr pixels)
+    //  {
+    //      var pixels_ = (void*)pixels;
+    //      Raylib.UpdateTexture(texture, pixels_);
+    //  }
 
     /// <summary>
     /// Update GPU texture rectangle with new data
@@ -2492,17 +2604,17 @@ public unsafe partial class RaylibS
     /// <summary>
     /// Set texture scaling filter mode
     /// </summary>
-    public static void SetTextureFilter(Texture texture, int filter)
+    public static void SetTextureFilter(Texture texture, TextureFilter filter)
     {
-        Raylib.SetTextureFilter(texture, filter);
+        Raylib.SetTextureFilter(texture, (int)filter);
     }
 
     /// <summary>
     /// Set texture wrapping mode
     /// </summary>
-    public static void SetTextureWrap(Texture texture, int wrap)
+    public static void SetTextureWrap(Texture texture, TextureWrap wrap)
     {
-        Raylib.SetTextureWrap(texture, wrap);
+        Raylib.SetTextureWrap(texture, (int)wrap);
     }
 
     /// <summary>
@@ -2572,9 +2684,11 @@ public unsafe partial class RaylibS
     /// <summary>
     /// Draw a textured polygon
     /// </summary>
-    public static void DrawTexturePoly(Texture texture, Vector2 center, Vector2* points, Vector2* texcoords, int pointCount, Color tint)
+    public static void DrawTexturePoly(Texture texture, Vector2 center, Vector2[] points, Vector2[] texcoords, int pointCount, Color tint)
     {
-        Raylib.DrawTexturePoly(texture, center, points, texcoords, pointCount, tint);
+        var points_ = Helpers.ArrayToPtr(points);
+        var texcoords_ = Helpers.ArrayToPtr(texcoords);
+        Raylib.DrawTexturePoly(texture, center, points_, texcoords_, pointCount, tint);
     }
 
     /// <summary>
@@ -2880,14 +2994,14 @@ public unsafe partial class RaylibS
         return Raylib.GetCodepointCount(text_.AsPtr());
     }
 
-    /// <summary>
-    /// Get next codepoint in a UTF-8 encoded string, 0x3f('?') is returned on failure
-    /// </summary>
-    public static int GetCodepoint(string text, int* bytesProcessed)
-    {
-        using var text_ = text.MarshalUtf8();
-        return Raylib.GetCodepoint(text_.AsPtr(), bytesProcessed);
-    }
+    //  /// <summary>
+    //  /// Get next codepoint in a UTF-8 encoded string, 0x3f('?') is returned on failure
+    //  /// </summary>
+    //  public static int GetCodepoint(string text, int* bytesProcessed)
+    //  {
+    //      using var text_ = text.MarshalUtf8();
+    //      return Raylib.GetCodepoint(text_.AsPtr(), bytesProcessed);
+    //  }
 
     /// <summary>
     /// Encode one codepoint into UTF-8 byte array (array length returned as parameter)
@@ -2925,14 +3039,14 @@ public unsafe partial class RaylibS
         return Raylib.TextIsEqual(text1_.AsPtr(), text2_.AsPtr());
     }
 
-    /// <summary>
-    /// Get text length, checks for '\0' ending
-    /// </summary>
-    public static uint TextLength(string text)
-    {
-        using var text_ = text.MarshalUtf8();
-        return Raylib.TextLength(text_.AsPtr());
-    }
+    //  /// <summary>
+    //  /// Get text length, checks for '\0' ending
+    //  /// </summary>
+    //  public static uint TextLength(string text)
+    //  {
+    //      using var text_ = text.MarshalUtf8();
+    //      return Raylib.TextLength(text_.AsPtr());
+    //  }
 
     //  /// <summary>
     //  /// Text formatting with variables (sprintf() style)
@@ -3299,7 +3413,7 @@ public unsafe partial class RaylibS
     /// <summary>
     /// Draw a billboard texture
     /// </summary>
-    public static void DrawBillboard(Camera3D camera, Texture texture, Vector3 position, float size, Color tint)
+    public static void DrawBillboard(ref Camera3D camera, Texture texture, Vector3 position, float size, Color tint)
     {
         Raylib.DrawBillboard(camera, texture, position, size, tint);
     }
@@ -3307,7 +3421,7 @@ public unsafe partial class RaylibS
     /// <summary>
     /// Draw a billboard texture defined by source
     /// </summary>
-    public static void DrawBillboardRec(Camera3D camera, Texture texture, Rectangle source, Vector3 position, Vector2 size, Color tint)
+    public static void DrawBillboardRec(ref Camera3D camera, Texture texture, Rectangle source, Vector3 position, Vector2 size, Color tint)
     {
         Raylib.DrawBillboardRec(camera, texture, source, position, size, tint);
     }
@@ -3315,7 +3429,7 @@ public unsafe partial class RaylibS
     /// <summary>
     /// Draw a billboard texture defined by source and rotation
     /// </summary>
-    public static void DrawBillboardPro(Camera3D camera, Texture texture, Rectangle source, Vector3 position, Vector3 up, Vector2 size, Vector2 origin, float rotation, Color tint)
+    public static void DrawBillboardPro(ref Camera3D camera, Texture texture, Rectangle source, Vector3 position, Vector3 up, Vector2 size, Vector2 origin, float rotation, Color tint)
     {
         Raylib.DrawBillboardPro(camera, texture, source, position, up, size, origin, rotation, tint);
     }
@@ -3356,9 +3470,10 @@ public unsafe partial class RaylibS
     /// <summary>
     /// Draw multiple mesh instances with material and different transforms
     /// </summary>
-    public static void DrawMeshInstanced(Mesh mesh, Material material, Matrix4x4* transforms, int instances)
+    public static void DrawMeshInstanced(Mesh mesh, Material material, Matrix4x4[] transforms, int instances)
     {
-        Raylib.DrawMeshInstanced(mesh, material, transforms, instances);
+        var transforms_ = Helpers.ArrayToPtr(transforms);
+        Raylib.DrawMeshInstanced(mesh, material, transforms_, instances);
     }
 
     /// <summary>
@@ -3510,9 +3625,9 @@ public unsafe partial class RaylibS
     /// <summary>
     /// Set texture for a material map type (MATERIAL_MAP_DIFFUSE, MATERIAL_MAP_SPECULAR...)
     /// </summary>
-    public static void SetMaterialTexture(Material* material, int mapType, Texture texture)
+    public static void SetMaterialTexture(Material* material, MaterialMapIndex mapType, Texture texture)
     {
-        Raylib.SetMaterialTexture(material, mapType, texture);
+        Raylib.SetMaterialTexture(material, (int)mapType, texture);
     }
 
     /// <summary>
@@ -4014,14 +4129,14 @@ public unsafe partial class RaylibS
         Raylib.UnloadAudioStream(stream);
     }
 
-    /// <summary>
-    /// Update audio stream buffers with data
-    /// </summary>
-    public static void UpdateAudioStream(AudioStream stream, IntPtr data, int frameCount)
-    {
-        var data_ = (void*)data;
-        Raylib.UpdateAudioStream(stream, data_, frameCount);
-    }
+    //  /// <summary>
+    //  /// Update audio stream buffers with data
+    //  /// </summary>
+    //  public static void UpdateAudioStream(AudioStream stream, IntPtr data, int frameCount)
+    //  {
+    //      var data_ = (void*)data;
+    //      Raylib.UpdateAudioStream(stream, data_, frameCount);
+    //  }
 
     /// <summary>
     /// Check if any audio stream buffers requires refill

@@ -9,8 +9,6 @@ using System.IO;
 
 public class SafeClassGenerator : ClassGenerator
 {
-    const string ClassName = "RaylibS";
-
     public static readonly string[] Usings =
     {
         "System.Numerics",
@@ -19,10 +17,13 @@ public class SafeClassGenerator : ClassGenerator
     };
 
     List<RaylibFunction> functions;
+    string className;
+    int numClosingBrackets;// for fixed(type* variable = array)
 
-    public SafeClassGenerator(List<RaylibFunction> functions)
+    public SafeClassGenerator(List<RaylibFunction> functions, string className)
     {
         this.functions = functions;
+        this.className = className;
         Debug = false;
     }
 
@@ -38,11 +39,22 @@ public class SafeClassGenerator : ClassGenerator
 
         GenUsings();
 
-        Line($"public unsafe partial class {ClassName}");
+        Line($"public unsafe partial class {className}S");
 
         StartBlock();
         foreach (RaylibFunction func in functions)
         {
+            if (CodegenSettings.ParamTypeEnumOverride.TryGetValue(func.Name, out (string type, string name) value))
+            {
+                for (int i = 0; i < func.Parameters.Count; i++)
+                {
+                    if (func.Parameters[i].Name == value.name)
+                    {
+                        func.Parameters[i].Type = value.type;
+                    }
+                }
+            }
+
             if (!func.Manual)
             {
                 GenFunction(func);
@@ -74,6 +86,12 @@ public class SafeClassGenerator : ClassGenerator
         StartBlock();
         {
             GenFunctionContents(func);
+
+            for (int i = 0; i < numClosingBrackets; i++)
+            {
+                EndBlock();
+            }
+            numClosingBrackets = 0;
         }
         EndBlock();
 
@@ -127,7 +145,7 @@ public class SafeClassGenerator : ClassGenerator
             }
         }
 
-        string unsafeCall = $"Raylib.{func.Name}({parameters})";
+        string unsafeCall = $"{className}.{func.Name}({parameters})";
 
         DebugLine($"return {TypeConverter.FromCToUnsafeCs(func.Return)} => {TypeConverter.FromCToSafeCs(func.Return)}");
 
@@ -196,10 +214,9 @@ public class SafeClassGenerator : ClassGenerator
     /// </summary>
     string GenParameter(RaylibFunction func, RaylibParameter parameter, int i)
     {
-        string cast = "";
-
         DebugLine($"{TypeConverter.FromCToUnsafeCs(parameter.Type)} => {TypeConverter.FromCToSafeCs(parameter.Type)}");
 
+        string cast = CastEnumParams(parameter.Type);
         string parameters = cast + GenParameterConversion(parameter);
 
         // var arg __arglist handling
@@ -217,6 +234,21 @@ public class SafeClassGenerator : ClassGenerator
     }
 
     /// <summary>
+    /// Cast any enum parameters to ints
+    /// </summary>
+    static string CastEnumParams(string type)
+    {
+        if (CodegenSettings.EnumCastType.TryGetValue(type, out string value))
+        {
+            return value;
+        }
+        else
+        {
+            return "";
+        }
+    }
+
+    /// <summary>
     /// Convert parameters to unsafe as needed to pass to unsafe call
     /// </summary>
     string GenParameterConversion(RaylibParameter parameter)
@@ -226,53 +258,51 @@ public class SafeClassGenerator : ClassGenerator
         string localVariable = parameter.Name;
         string call;
 
-        switch (TypeConverter.FromCToSafeCs(parameter.Type))
+        switch (parameter.Type)
         {
-            case "string":
+            case "const char*":
+            case "char*":
                 Line($"using var {localVariable + localVariableSuffix} = {localVariable}.MarshalUtf8();");
                 localVariable += localVariableSuffix;
                 localVariable += ".AsPtr()";
                 break;
 
-            case "IntPtr":
+            case "const void*":
+            case "void*":
                 Line($"var {localVariable + localVariableSuffix} = (void*){localVariable};");
                 localVariable += localVariableSuffix;
                 break;
 
-            case "Vector2[]":
+            case "unsigned char*":
+            case "const unsigned char*":
                 call = Call(CodegenSettings.ArrayToPtrFunction, localVariable);
                 Line($"var {localVariable + localVariableSuffix} = {call};");
                 localVariable += localVariableSuffix;
                 break;
 
-            case "byte[]":
+            case "const Matrix*":
+            case "Matrix*":
+            case "Vector2*":
+            case "Color*":
                 call = Call(CodegenSettings.ArrayToPtrFunction, localVariable);
                 Line($"var {localVariable + localVariableSuffix} = {call};");
                 localVariable += localVariableSuffix;
                 break;
 
-            case "Color[]":
-                call = Call(CodegenSettings.ArrayToPtrFunction, localVariable);
-                Line($"var {localVariable + localVariableSuffix} = {call};");
-                localVariable += localVariableSuffix;
+            case "Camera*":
+                localVariable = "&" + parameter.Name;
                 break;
-
-            // case "Rectangle[]":
-            //     call = Call(CodegenSettings.ArrayToPtrFunction, localVariable);
-            //     Line($"var {parameter.Name + localVariableSuffix} = {call};");
-            //     localVariable = "&" + parameter.Name;
-            //     localVariable += localVariableSuffix;
-            //     break;
-
-            // case "Camera*":
-            //     call = Call(CodegenSettings.ArrayToPtrFunction, localVariable);
-            //     Line($"var {parameter.Name + localVariableSuffix} = {call};");
-            //     localVariable = "&" + parameter.Name;
-            //     localVariable += localVariableSuffix;
-            //     break;
 
             default:
                 break;
+        }
+
+        if (TypeConverter.FromCToSafeCs(parameter.Type).Contains("ref ") && parameter.Type.EndsWith('*'))
+        {
+            Line($"fixed({parameter.Type} {localVariable + localVariableSuffix} = &{localVariable})");
+            StartBlock();
+            localVariable += localVariableSuffix;
+            numClosingBrackets++;
         }
 
         return localVariable;
@@ -289,8 +319,8 @@ public class SafeClassGenerator : ClassGenerator
         Blank();
     }
 
-    public void Output()
+    public void Output(string fileName)
     {
-        File.WriteAllText(CodegenSettings.OutputFolder + "RaylibSafe.cs", fileContents.ToString());
+        File.WriteAllText(CodegenSettings.OutputFolder + "Safe/" + fileName + ".cs", fileContents.ToString());
     }
 }

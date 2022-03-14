@@ -38,7 +38,7 @@ public static unsafe class WorldToScreen
 
         Vector3 cubePosition = new(1.0f, 5.0f, 5.0f);
 
-        SetCameraMode(camera, CAMERA_FREE); // Set a free camera mode
+        SetCameraMode(ref camera, CAMERA_FREE); // Set a free camera mode
 
         SetTargetFPS(60);                   // Set our game to run at 60 frames-per-second
 
@@ -48,10 +48,10 @@ public static unsafe class WorldToScreen
         {
             // Update
 
-            UpdateCamera(&camera);          // Update camera
+            UpdateCamera(ref camera);          // Update camera
 
             // Calculate cube screen space position (with a little offset to be in top)
-            Vector2 cubeScreenPosition = GetWorldToScreen(new(cubePosition.X, cubePosition.Y + 2.5f, cubePosition.Z), camera);
+            Vector2 cubeScreenPosition = GetWorldToScreen(new(cubePosition.X, cubePosition.Y + 2.5f, cubePosition.Z), ref camera);
 
 
             // Draw
@@ -60,7 +60,7 @@ public static unsafe class WorldToScreen
 
             ClearBackground(RAYWHITE);
 
-            BeginMode3D(camera);
+            BeginMode3D(ref camera);
 
             DrawCube(cubePosition, 2.0f, 2.0f, 2.0f, RED);
             DrawCubeWires(cubePosition, 2.0f, 2.0f, 2.0f, MAROON);
