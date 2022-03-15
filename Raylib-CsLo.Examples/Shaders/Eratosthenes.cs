@@ -47,7 +47,7 @@ public static unsafe class Eratosthenes
 
         // Load Eratosthenes shader
         // NOTE: Defining 0 (NULL) for vertex shader forces usage of internal default vertex shader
-        Shader shader = LoadShader(null, TextFormat("resources/shaders/glsl%i/eratosthenes.fs", GLSL_VERSION));
+        Shader shader = LoadFShader(TextFormat("resources/shaders/glsl%i/eratosthenes.fs", GLSL_VERSION));
 
         SetTargetFPS(60);                   // Set our game to run at 60 frames-per-second
 

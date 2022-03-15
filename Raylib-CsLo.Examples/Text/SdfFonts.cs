@@ -70,7 +70,7 @@ public static unsafe class SdfFonts
         Raylib.UnloadFileData(fileData);      // Free memory from loaded file
 
         // Load SDF required shader (we use default vertex shader)
-        Shader shader = LoadShader(null, TextFormat("resources/shaders/glsl%i/sdf.fs", GLSL_VERSION));
+        Shader shader = LoadFShader(TextFormat("resources/shaders/glsl%i/sdf.fs", GLSL_VERSION));
         SetTextureFilter(fontSDF.texture, TEXTURE_FILTER_BILINEAR);    // Required for SDF font
 
         Vector2 fontPosition = new(40, (screenHeight / 2.0f) - 50);

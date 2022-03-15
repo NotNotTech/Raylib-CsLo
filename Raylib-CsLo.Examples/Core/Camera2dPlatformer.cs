@@ -248,7 +248,7 @@ public static unsafe class Camera2dPlatformer
             camera.target = Vector2.Add(camera.target, diff * (speed * delta / length));
         }
     }
-    internal static int Example()
+    public static int Example()
     {
         // Initialization
 

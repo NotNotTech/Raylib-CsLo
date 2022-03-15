@@ -5,13 +5,18 @@
     "version": "0.2.0",
     "configurations": [
         {
+            // Use IntelliSense to find out which attributes exist for C# debugging
+            // Use hover for the description of the existing attributes
+            // For further information visit https://github.com/OmniSharp/omnisharp-vscode/blob/master/debugger-launchjson.md
             "name": ".NET Core Launch (console)",
             "type": "coreclr",
             "request": "launch",
             "preLaunchTask": "build",
-            "program": "${workspaceFolder}/Playground/bin/Debug/net6.0/Playground.dll",
+            // If you have changed target frameworks, make sure to update the program path.
+            "program": "${workspaceFolder}/Raylib-CsLo.Examples/bin/Debug/net6.0/Raylib-CsLo.Examples.dll",
             "args": [],
-            "cwd": "${workspaceFolder}/Playground",
+            "cwd": "${workspaceFolder}/Raylib-CsLo.Examples",
+            // For more information about the 'console' field, see https://aka.ms/VSCode-CS-LaunchJson-Console
             "console": "internalConsole",
             "stopAtEntry": false
         }

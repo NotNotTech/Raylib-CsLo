@@ -80,39 +80,39 @@ public static class Program
 
         /////////////////////////////////////////
         //////////////////  CORE
-        Raylib_CsLo.Examples.Core.BasicWindow.Example();
-        Raylib_CsLo.Examples.Core.BasicScreenManager.Example();
-        Raylib_CsLo.Examples.Core.KeyboardInput.Example();
-        Raylib_CsLo.Examples.Core.InputMouse.Example();
-        Raylib_CsLo.Examples.Core.InputMouseWheel.Example();
-        Raylib_CsLo.Examples.Core.GamepadInput.Example();
-        Raylib_CsLo.Examples.Core.InputMultitouch.Example();
-        Raylib_CsLo.Examples.Core.InputGesturesDetection.Example();
-        Raylib_CsLo.Examples.Core.Camera2d.Example();
-        Raylib_CsLo.Examples.Core.Camera2dPlatformer.Example();
-        Raylib_CsLo.Examples.Core.Camera3dMode.Example();
-        Raylib_CsLo.Examples.Core.Camera3dFree.Example();
-        Raylib_CsLo.Examples.Core.Camera3dFirstPerson.Example();
-        Raylib_CsLo.Examples.Core.Picking3d.Example();
-        Raylib_CsLo.Examples.Core.WorldToScreen.Example();
-        Raylib_CsLo.Examples.Core.CustomLogging.Example();
-        Raylib_CsLo.Examples.Core.WindowLetterbox.Example();
-        Raylib_CsLo.Examples.Core.WindowsDropFiles.Example();
-        Raylib_CsLo.Examples.Core.ScissorTest.Example();
-        Raylib_CsLo.Examples.Core.VrSimulator.Example();
-        Raylib_CsLo.Examples.Core.QuatConversions.Example();
-        Raylib_CsLo.Examples.Core.WindowFlags.Example();
-        Raylib_CsLo.Examples.Core.SplitScreen.Example();
-        Raylib_CsLo.Examples.Core.SmoothPixelPerfectCamera.Example();
-        //the following example requires a custom build of raylib to work.  see it's docs for info.
-        Raylib_CsLo.Examples.Core.CustomFrameControl.Example();
+        // Raylib_CsLo.Examples.Core.BasicWindow.Example();
+        // Raylib_CsLo.Examples.Core.BasicScreenManager.Example();
+        // Raylib_CsLo.Examples.Core.KeyboardInput.Example();
+        // Raylib_CsLo.Examples.Core.InputMouse.Example();
+        // Raylib_CsLo.Examples.Core.InputMouseWheel.Example();
+        // Raylib_CsLo.Examples.Core.GamepadInput.Example();
+        // Raylib_CsLo.Examples.Core.InputMultitouch.Example();
+        // Raylib_CsLo.Examples.Core.InputGesturesDetection.Example();
+        // Raylib_CsLo.Examples.Core.Camera2d.Example();
+        // Raylib_CsLo.Examples.Core.Camera2dPlatformer.Example();
+        // Raylib_CsLo.Examples.Core.Camera3dMode.Example();
+        // Raylib_CsLo.Examples.Core.Camera3dFree.Example();
+        // Raylib_CsLo.Examples.Core.Camera3dFirstPerson.Example();
+        // Raylib_CsLo.Examples.Core.Picking3d.Example();
+        // Raylib_CsLo.Examples.Core.WorldToScreen.Example();
+        // Raylib_CsLo.Examples.Core.CustomLogging.Example();
+        // Raylib_CsLo.Examples.Core.WindowLetterbox.Example();
+        // Raylib_CsLo.Examples.Core.WindowsDropFiles.Example();
+        // Raylib_CsLo.Examples.Core.ScissorTest.Example();
+        // Raylib_CsLo.Examples.Core.VrSimulator.Example();
+        // Raylib_CsLo.Examples.Core.QuatConversions.Example();
+        // Raylib_CsLo.Examples.Core.WindowFlags.Example();
+        // Raylib_CsLo.Examples.Core.SplitScreen.Example();
+        // Raylib_CsLo.Examples.Core.SmoothPixelPerfectCamera.Example();
+        // //the following example requires a custom build of raylib to work.  see it's docs for info.
+        // Raylib_CsLo.Examples.Core.CustomFrameControl.Example();
 
 
         /////////////////////////////////////////
         ////////////  MODELS
-        Raylib_CsLo.Examples.Models.Animation.Example();
-        Raylib_CsLo.Examples.Models.Billboard.Example();
-        Raylib_CsLo.Examples.Models.BoxCollisions.Example();
+        // Raylib_CsLo.Examples.Models.Animation.Example();
+        // Raylib_CsLo.Examples.Models.Billboard.Example();
+        // Raylib_CsLo.Examples.Models.BoxCollisions.Example();
         Raylib_CsLo.Examples.Models.Cubicmap.Example();
         Raylib_CsLo.Examples.Models.FirstPersonMaze.Example();
         Raylib_CsLo.Examples.Models.GeometricShapes.Example();
@@ -193,7 +193,7 @@ public static class Program
 
         /////////////////////////////////////////
         ////////////////////// SHAPES
-        Raylib_CsLo.Examples.Shapes.BasicShapesDrawing.Example();
+        Raylib_CsLo.Examples.Shapes.BasicShapes.Example();
         Raylib_CsLo.Examples.Shapes.BoundingBall.Example();
         Raylib_CsLo.Examples.Shapes.CollisionArea.Example();
         Raylib_CsLo.Examples.Shapes.ColorsPalette.Example();

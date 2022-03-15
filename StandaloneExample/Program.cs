@@ -1,7 +1,8 @@
+namespace StandaloneExample;
+
 using Raylib_CsLo;
 using System.Threading.Tasks;
 
-namespace StandaloneExample;
 public static class Program
 {
     public static async Task Main(string[] args)

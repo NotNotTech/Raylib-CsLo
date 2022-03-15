@@ -34,7 +34,7 @@ public static unsafe class ImageTextDrawing
         Font font = LoadFontEx("resources/KAISG.ttf", 64, (int*)0, 0);
 
         // Draw over image using custom font
-        ImageDrawTextEx(&parrots, font, "[Parrots font drawing]", new Vector2(20.0f, 20.0f), font.baseSize, 0.0f, RED);
+        ImageDrawTextEx(ref parrots, font, "[Parrots font drawing]", new Vector2(20.0f, 20.0f), font.baseSize, 0.0f, RED);
 
         Texture2D texture = LoadTextureFromImage(parrots);  // Image converted to texture, uploaded to GPU memory (VRAM)
         UnloadImage(parrots);   // Once image has been converted to texture and uploaded to VRAM, it can be unloaded from RAM

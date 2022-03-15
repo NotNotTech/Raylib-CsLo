@@ -42,7 +42,7 @@ public static unsafe class TextureOutline
 
         Texture2D texture = LoadTexture("resources/fudesumi.png");
 
-        Shader shdrOutline = LoadShader(null, TextFormat("resources/shaders/glsl%i/outline.fs", GLSL_VERSION));
+        Shader shdrOutline = LoadFShader(TextFormat("resources/shaders/glsl%i/outline.fs", GLSL_VERSION));
 
         float outlineSize = 2.0f;
         Vector4 outlineColor = new(1.0f, 0.0f, 0.0f, 1.0f);     // Normalized RED color

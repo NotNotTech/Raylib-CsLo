@@ -10,7 +10,7 @@
 # 4) run this script and pick the package you just built (if your key is set via env var, you can skip re-entering the key when prompted)
 
 #help on passing args: https://morgantechspace.com/2014/12/How-to-pass-arguments-to-PowerShell-script.html
-param( 
+param(
 	[Parameter(Mandatory = $true, HelpMessage = "either set env:NUGET_KEY = 'your_key' or input it now")] $NugetKey
 	#, [Parameter(Mandatory = $true)] 	$NugetPackage
 )
@@ -26,7 +26,7 @@ pushd $PSScriptRoot
 #Select-Object -First 1 -Wait
 
 
-Write-Output "********  SELECT NUGET PACKAGE FROM $PSScriptRoot ********  (see selection prompt)" 
+Write-Output "********  SELECT NUGET PACKAGE FROM $PSScriptRoot ********  (see selection prompt)"
 
 # #$NugetPackage = "./bin/Release/Raylib-CsLo.4.0.0-rc.1.nupkg"
 
@@ -42,8 +42,8 @@ $NugetPackage = "$PSScriptRoot\bin\Release\" + $NugetPackage
 # 	Title            = "Select the nuget package to publish"
 # 	Multiselect      = $false # Multiple files can be chosen
 # 	InitialDirectory = "$PSScriptRoot\bin\Release\"
-# 	Filter           = 'Nuget Packages (*.nupkg)|*.nupkg' # Specified file types	
-# } 
+# 	Filter           = 'Nuget Packages (*.nupkg)|*.nupkg' # Specified file types
+# }
 # [void]$FileBrowser.ShowDialog()
 # $NugetPackage = $FileBrowser.FileName;
 
@@ -60,4 +60,3 @@ dotnet nuget push "$NugetPackage" --source https://api.nuget.org/v3/index.json -
 
 popd
 Write-Output "********  PUBLISH DONE! ******** "
-

@@ -36,8 +36,7 @@ public static unsafe class CustomFrameControl
 
     public static int Example()
     {
-        System.Diagnostics.Debug.Assert(false,
-            "this example requires a recompile of raylib with the SUPPORT_CUSTOM_FRAME_CONTROL flag.  see above docs");
+        System.Diagnostics.Debug.Assert(false, "this example requires a recompile of raylib with the SUPPORT_CUSTOM_FRAME_CONTROL flag.  see above docs");
         // Initialization
 
         const int screenWidth = 800;

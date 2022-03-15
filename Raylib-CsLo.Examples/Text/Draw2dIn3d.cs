@@ -118,7 +118,7 @@ public static unsafe class Draw2dIn3d
         Color dark = RED;
 
         // Load the alpha discard shader
-        Shader alphaDiscard = LoadShader(null, "resources/shaders/glsl330/alpha_discard.fs");
+        Shader alphaDiscard = LoadFShader("resources/shaders/glsl330/alpha_discard.fs");
 
         // Array filled with multiple random colors (when multicolor mode is set)
         Color[] multi = new Color[TEXT_MAX_LAYERS];

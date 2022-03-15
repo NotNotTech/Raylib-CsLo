@@ -54,8 +54,7 @@ public static unsafe class BasicLighting
         Model model = LoadModelFromMesh(GenMeshPlane(10.0f, 10.0f, 3, 3));
         Model cube = LoadModelFromMesh(GenMeshCube(2.0f, 4.0f, 2.0f));
 
-        Shader shader = LoadShader(TextFormat("resources/shaders/glsl%i/base_lighting.vs", GLSL_VERSION),
-                                   TextFormat("resources/shaders/glsl%i/lighting.fs", GLSL_VERSION));
+        Shader shader = LoadShader(TextFormat("resources/shaders/glsl%i/base_lighting.vs", GLSL_VERSION), TextFormat("resources/shaders/glsl%i/lighting.fs", GLSL_VERSION));
 
         // Get some required shader loactions
         shader.locs[(int)SHADER_LOC_VECTOR_VIEW] = GetShaderLocation(shader, "viewPos");

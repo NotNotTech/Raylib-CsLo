@@ -53,4 +53,3 @@ void main()
         finalColor = vec4(red, green, blue, 1.0);
     }
 }
-

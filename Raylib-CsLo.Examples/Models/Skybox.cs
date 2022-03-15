@@ -50,16 +50,14 @@ public static unsafe class Skybox
 
         // Load skybox shader and set required locations
         // NOTE: Some locations are automatically set at shader loading
-        skybox.materials[0].shader = LoadShader(TextFormat("resources/shaders/glsl%i/skybox.vs", GLSL_VERSION),
-                                                TextFormat("resources/shaders/glsl%i/skybox.fs", GLSL_VERSION));
+        skybox.materials[0].shader = LoadShader(TextFormat("resources/shaders/glsl%i/skybox.vs", GLSL_VERSION), TextFormat("resources/shaders/glsl%i/skybox.fs", GLSL_VERSION));
 
         SetShaderValue(skybox.materials[0].shader, GetShaderLocation(skybox.materials[0].shader, "environmentMap"), MATERIAL_MAP_CUBEMAP, SHADER_UNIFORM_INT);
         SetShaderValue(skybox.materials[0].shader, GetShaderLocation(skybox.materials[0].shader, "doGamma"), useHDR ? 1 : 0, SHADER_UNIFORM_INT);
         SetShaderValue(skybox.materials[0].shader, GetShaderLocation(skybox.materials[0].shader, "vflipped"), useHDR ? 1 : 0, SHADER_UNIFORM_INT);
 
         // Load cubemap shader and setup required shader locations
-        Shader shdrCubemap = LoadShader(TextFormat("resources/shaders/glsl%i/cubemap.vs", GLSL_VERSION),
-                                        TextFormat("resources/shaders/glsl%i/cubemap.fs", GLSL_VERSION));
+        Shader shdrCubemap = LoadShader(TextFormat("resources/shaders/glsl%i/cubemap.vs", GLSL_VERSION), TextFormat("resources/shaders/glsl%i/cubemap.fs", GLSL_VERSION));
 
         SetShaderValue(shdrCubemap, GetShaderLocation(shdrCubemap, "equirectangularMap"), 0, SHADER_UNIFORM_INT);
 

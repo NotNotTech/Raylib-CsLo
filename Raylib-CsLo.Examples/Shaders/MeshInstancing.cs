@@ -76,8 +76,7 @@ public static unsafe class MeshInstancing
 
         Matrix[] transforms = new Matrix[MAX_INSTANCES];   // Pre-multiplied transformations passed to rlgl
 
-        Shader shader = LoadShader(TextFormat("resources/shaders/glsl%i/base_lighting_instanced.vs", GLSL_VERSION),
-                                   TextFormat("resources/shaders/glsl%i/lighting.fs", GLSL_VERSION));
+        Shader shader = LoadShader(TextFormat("resources/shaders/glsl%i/base_lighting_instanced.vs", GLSL_VERSION), TextFormat("resources/shaders/glsl%i/lighting.fs", GLSL_VERSION));
 
         // Get some shader loactions
         shader.locs[(int)SHADER_LOC_MATRIX_MVP] = GetShaderLocation(shader, "mvp");

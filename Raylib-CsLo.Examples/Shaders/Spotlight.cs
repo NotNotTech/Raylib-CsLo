@@ -99,7 +99,7 @@ public static unsafe class Spotlight
         int frameCounter = 0;
 
         // Use default vert shader
-        Shader shdrSpot = LoadShader(null, TextFormat("resources/shaders/glsl%i/spotlight.fs", GLSL_VERSION));
+        Shader shdrSpot = LoadFShader(TextFormat("resources/shaders/glsl%i/spotlight.fs", GLSL_VERSION));
 
         // Get the locations of spots in the shader
         Spot[] spots = new Spot[MAX_SPOTS];

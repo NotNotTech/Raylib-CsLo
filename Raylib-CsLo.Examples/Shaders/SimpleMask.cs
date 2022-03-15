@@ -65,7 +65,7 @@ public static unsafe class SimpleMask
         Model model3 = LoadModelFromMesh(sphere);
 
         // Load the shader
-        Shader shader = LoadShader(null, TextFormat("resources/shaders/glsl%i/mask.fs", GLSL_VERSION));
+        Shader shader = LoadFShader(TextFormat("resources/shaders/glsl%i/mask.fs", GLSL_VERSION));
 
         // Load and apply the diffuse texture (colour map)
         Texture texDiffuse = LoadTexture("resources/plasma.png");

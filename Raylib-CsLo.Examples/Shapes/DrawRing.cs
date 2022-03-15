@@ -85,13 +85,13 @@ public static unsafe class DrawRing
 
             // Draw GUI controls
 
-            startAngle = GuiSliderBar(new Rectangle(600, 40, 120, 20), "StartAngle", null, startAngle, -450, 450);
-            endAngle = GuiSliderBar(new Rectangle(600, 70, 120, 20), "EndAngle", null, endAngle, -450, 450);
+            startAngle = GuiSliderBar(new Rectangle(600, 40, 120, 20), "StartAngle", "", startAngle, -450, 450);
+            endAngle = GuiSliderBar(new Rectangle(600, 70, 120, 20), "EndAngle", "", endAngle, -450, 450);
 
-            innerRadius = GuiSliderBar(new Rectangle(600, 140, 120, 20), "InnerRadius", null, innerRadius, 0, 100);
-            outerRadius = GuiSliderBar(new Rectangle(600, 170, 120, 20), "OuterRadius", null, outerRadius, 0, 200);
+            innerRadius = GuiSliderBar(new Rectangle(600, 140, 120, 20), "InnerRadius", "", innerRadius, 0, 100);
+            outerRadius = GuiSliderBar(new Rectangle(600, 170, 120, 20), "OuterRadius", "", outerRadius, 0, 200);
 
-            segments = (int)GuiSliderBar(new Rectangle(600, 240, 120, 20), "Segments", null, segments, 0, 100);
+            segments = (int)GuiSliderBar(new Rectangle(600, 240, 120, 20), "Segments", "", segments, 0, 100);
 
             drawRing = GuiCheckBox(new Rectangle(600, 320, 20, 20), "Draw Ring", drawRing);
             drawRingLines = GuiCheckBox(new Rectangle(600, 350, 20, 20), "Draw RingLines", drawRingLines);

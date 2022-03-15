@@ -97,18 +97,18 @@ public static unsafe class PostProcessingShader
         Shader[] shaders = new Shader[MAX_POSTPRO_SHADERS];
 
         // NOTE: Defining 0 (NULL) for vertex shader forces usage of internal default vertex shader
-        shaders[(int)PostproShader.FX_GRAYSCALE] = LoadShader(null, TextFormat("resources/shaders/glsl%i/grayscale.fs", GLSL_VERSION));
-        shaders[(int)PostproShader.FX_POSTERIZATION] = LoadShader(null, TextFormat("resources/shaders/glsl%i/posterization.fs", GLSL_VERSION));
-        shaders[(int)PostproShader.FX_DREAM_VISION] = LoadShader(null, TextFormat("resources/shaders/glsl%i/dream_vision.fs", GLSL_VERSION));
-        shaders[(int)PostproShader.FX_PIXELIZER] = LoadShader(null, TextFormat("resources/shaders/glsl%i/pixelizer.fs", GLSL_VERSION));
-        shaders[(int)PostproShader.FX_CROSS_HATCHING] = LoadShader(null, TextFormat("resources/shaders/glsl%i/cross_hatching.fs", GLSL_VERSION));
-        shaders[(int)PostproShader.FX_CROSS_STITCHING] = LoadShader(null, TextFormat("resources/shaders/glsl%i/cross_stitching.fs", GLSL_VERSION));
-        shaders[(int)PostproShader.FX_PREDATOR_VIEW] = LoadShader(null, TextFormat("resources/shaders/glsl%i/predator.fs", GLSL_VERSION));
-        shaders[(int)PostproShader.FX_SCANLINES] = LoadShader(null, TextFormat("resources/shaders/glsl%i/scanlines.fs", GLSL_VERSION));
-        shaders[(int)PostproShader.FX_FISHEYE] = LoadShader(null, TextFormat("resources/shaders/glsl%i/fisheye.fs", GLSL_VERSION));
-        shaders[(int)PostproShader.FX_SOBEL] = LoadShader(null, TextFormat("resources/shaders/glsl%i/sobel.fs", GLSL_VERSION));
-        shaders[(int)PostproShader.FX_BLOOM] = LoadShader(null, TextFormat("resources/shaders/glsl%i/bloom.fs", GLSL_VERSION));
-        shaders[(int)PostproShader.FX_BLUR] = LoadShader(null, TextFormat("resources/shaders/glsl%i/blur.fs", GLSL_VERSION));
+        shaders[(int)PostproShader.FX_GRAYSCALE] = LoadFShader(TextFormat("resources/shaders/glsl%i/grayscale.fs", GLSL_VERSION));
+        shaders[(int)PostproShader.FX_POSTERIZATION] = LoadFShader(TextFormat("resources/shaders/glsl%i/posterization.fs", GLSL_VERSION));
+        shaders[(int)PostproShader.FX_DREAM_VISION] = LoadFShader(TextFormat("resources/shaders/glsl%i/dream_vision.fs", GLSL_VERSION));
+        shaders[(int)PostproShader.FX_PIXELIZER] = LoadFShader(TextFormat("resources/shaders/glsl%i/pixelizer.fs", GLSL_VERSION));
+        shaders[(int)PostproShader.FX_CROSS_HATCHING] = LoadFShader(TextFormat("resources/shaders/glsl%i/cross_hatching.fs", GLSL_VERSION));
+        shaders[(int)PostproShader.FX_CROSS_STITCHING] = LoadFShader(TextFormat("resources/shaders/glsl%i/cross_stitching.fs", GLSL_VERSION));
+        shaders[(int)PostproShader.FX_PREDATOR_VIEW] = LoadFShader(TextFormat("resources/shaders/glsl%i/predator.fs", GLSL_VERSION));
+        shaders[(int)PostproShader.FX_SCANLINES] = LoadFShader(TextFormat("resources/shaders/glsl%i/scanlines.fs", GLSL_VERSION));
+        shaders[(int)PostproShader.FX_FISHEYE] = LoadFShader(TextFormat("resources/shaders/glsl%i/fisheye.fs", GLSL_VERSION));
+        shaders[(int)PostproShader.FX_SOBEL] = LoadFShader(TextFormat("resources/shaders/glsl%i/sobel.fs", GLSL_VERSION));
+        shaders[(int)PostproShader.FX_BLOOM] = LoadFShader(TextFormat("resources/shaders/glsl%i/bloom.fs", GLSL_VERSION));
+        shaders[(int)PostproShader.FX_BLUR] = LoadFShader(TextFormat("resources/shaders/glsl%i/blur.fs", GLSL_VERSION));
 
         int currentShader = (int)PostproShader.FX_GRAYSCALE;
 

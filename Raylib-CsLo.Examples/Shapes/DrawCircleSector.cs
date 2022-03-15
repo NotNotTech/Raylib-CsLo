@@ -66,11 +66,11 @@ public static unsafe class DrawCircleSector
 
             // Draw GUI controls
 
-            startAngle = GuiSliderBar(new Rectangle(600, 40, 120, 20), "StartAngle", null, startAngle, 0, 720);
-            endAngle = GuiSliderBar(new Rectangle(600, 70, 120, 20), "EndAngle", null, endAngle, 0, 720);
+            startAngle = GuiSliderBar(new Rectangle(600, 40, 120, 20), "StartAngle", "", startAngle, 0, 720);
+            endAngle = GuiSliderBar(new Rectangle(600, 70, 120, 20), "EndAngle", "", endAngle, 0, 720);
 
-            outerRadius = GuiSliderBar(new Rectangle(600, 140, 120, 20), "Radius", null, outerRadius, 0, 200);
-            segments = (int)GuiSliderBar(new Rectangle(600, 170, 120, 20), "Segments", null, segments, 0, 100);
+            outerRadius = GuiSliderBar(new Rectangle(600, 140, 120, 20), "Radius", "", outerRadius, 0, 200);
+            segments = (int)GuiSliderBar(new Rectangle(600, 170, 120, 20), "Segments", "", segments, 0, 100);
 
 
             int minSegments = (int)MathF.Ceiling((endAngle - startAngle) / 90);

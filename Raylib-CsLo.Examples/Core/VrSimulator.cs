@@ -60,7 +60,7 @@ public static unsafe class VrSimulator
         VrStereoConfig config = LoadVrStereoConfig(device);
 
         // Distortion shader (uses device lens distortion and chroma)
-        Shader distortion = LoadShader(null, TextFormat("resources/distortion%i.fs", GLSL_VERSION));
+        Shader distortion = LoadFShader(TextFormat("resources/distortion%i.fs", GLSL_VERSION));
 
         // Update distortion shader with lens and distortion-scale parameters
         SetShaderValue(distortion, GetShaderLocation(distortion, "leftLensCenter"),

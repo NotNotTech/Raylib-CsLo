@@ -22,4 +22,3 @@ void main()
 
     finalColor = texelColor*colDiffuse;
 }
-

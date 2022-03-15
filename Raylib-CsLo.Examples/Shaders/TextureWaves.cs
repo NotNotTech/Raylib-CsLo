@@ -48,7 +48,7 @@ public static unsafe class TextureWaves
         Texture2D texture = LoadTexture("resources/space.png");
 
         // Load shader and setup location points and values
-        Shader shader = LoadShader(null, TextFormat("resources/shaders/glsl%i/wave.fs", GLSL_VERSION));
+        Shader shader = LoadFShader(TextFormat("resources/shaders/glsl%i/wave.fs", GLSL_VERSION));
 
         int secondsLoc = GetShaderLocation(shader, "secondes");
         int freqXLoc = GetShaderLocation(shader, "freqX");

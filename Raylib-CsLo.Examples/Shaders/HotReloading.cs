@@ -41,7 +41,7 @@ public static unsafe class HotReloading
 
         // Load raymarching shader
         // NOTE: Defining 0 (NULL) for vertex shader forces usage of internal default vertex shader
-        Shader shader = LoadShader(null, TextFormat(fragShaderFileName, GLSL_VERSION));
+        Shader shader = LoadFShader(TextFormat(fragShaderFileName, GLSL_VERSION));
 
         // Get shader locations for required uniforms
         int resolutionLoc = GetShaderLocation(shader, "resolution");
@@ -79,7 +79,7 @@ public static unsafe class HotReloading
                 if (currentFragShaderModTime != fragShaderFileModTime)
                 {
                     // Try reloading updated shader
-                    Shader updatedShader = LoadShader(null, TextFormat(fragShaderFileName, GLSL_VERSION));
+                    Shader updatedShader = LoadFShader(TextFormat(fragShaderFileName, GLSL_VERSION));
 
                     if (updatedShader.id != rlGetShaderIdDefault())      // It was correctly loaded
                     {

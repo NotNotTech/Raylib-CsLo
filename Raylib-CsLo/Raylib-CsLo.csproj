@@ -1,10 +1,7 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
     <PropertyGroup>
-        <!--<TargetFramework>net6.0</TargetFramework>-->
         <TargetFramework>netstandard2.1</TargetFramework>
-        <!--<EnablePreviewFeatures>True</EnablePreviewFeatures>
-        <LangVersion>Preview</LangVersion>-->
         <LangVersion>10</LangVersion>
         <RootNamespace>Raylib_CsLo</RootNamespace>
         <ImplicitUsings>enable</ImplicitUsings>
@@ -16,6 +13,7 @@
         <PackageReadmeFile>README.md</PackageReadmeFile>
         <PackageIcon>raylib-cslo_128x128.png</PackageIcon>
         <Version>4.0.0</Version>
+        <icon>Icon.png</icon>
         <PackageReleaseNotes>Release Notes: No breaking changes. Broaden DotNet support to Net5+, etc (via NetStandard 2.1)</PackageReleaseNotes>
         <Authors>Novaleaf</Authors>
         <Company>NotNotTech</Company>
@@ -24,16 +22,14 @@
             - Win/Linux/OsX supported.
             - Includes bindings for raylib extras: RayGui, Easings, Physac, RlGl, RayMath.
             - Minimal bindings + convenience wrappers to make it easier to use.
-            - Tested and verified via more than 100 examples (**ALL** Raylib examples ported).  These [examples are available to you in the GitHub Repo](https://github.com/NotNotTech/Raylib-CsLo/tree/main/Raylib-CsLo.Examples)
-            -    Requires `unsafe` for 3d workflows.
-            -    Supports net5+, Mono 6.4+, NetCore3.0
-            -    Tested on Win10 Net6.  Please test on other platforms and [raise an issue](https://github.com/NotNotTech/Raylib-CsLo/issues) if any problems occur.
-            - A focus on performance.  No runtime allocations if at all possible.
+            - Tested and verified via more than 100 examples (**ALL** Raylib examples ported). These [examples are available to you in the GitHub Repo](https://github.com/NotNotTech/Raylib-CsLo/tree/main/Raylib-CsLo.Examples)
+                - Requires `unsafe` for 3d workflows.
+                - Supports net5+, Mono 6.4+, NetCore3.0
+                - Tested on Win10 Net6. Please test on other platforms and [raise an issue](https://github.com/NotNotTech/Raylib-CsLo/issues) if any problems occur.
+            - A focus on performance. No runtime allocations if at all possible.
             - No intellisense docs. [read the raylib cheatsheet for docs](https://www.raylib.com/cheatsheet/cheatsheet.html) or [view the examples](https://github.com/NotNotTech/Raylib-CsLo/tree/main/Raylib-CsLo.Examples)
         </Description>
         <PackageProjectUrl>https://github.com/NotNotTech/Raylib-CsLo</PackageProjectUrl>
-
-
         <PackageTags>raylib;gamedev;binding;NotNot;rendering;3d;2d;graphics;opengl;physics;audio;</PackageTags>
         <PackageLicenseExpression>MPL-2.0</PackageLicenseExpression>
         <AssemblyVersion>0.0.0.0</AssemblyVersion>
@@ -44,19 +40,8 @@
         <IsPublishable>True</IsPublishable>
     </PropertyGroup>
 
-    <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
-        <Deterministic>False</Deterministic>
-        <NoWarn>1701;1702;1591;IDE0073;</NoWarn>
-    </PropertyGroup>
-
-    <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
-        <Deterministic>False</Deterministic>
-        <NoWarn>1701;1702;1591;IDE0073;</NoWarn>
-    </PropertyGroup>
-
-
     <ItemGroup>
-        <None Include="..\meta\logos\raylib-cslo_128x128.png">
+        <None Include="Icon.png">
             <Pack>True</Pack>
             <PackagePath>\</PackagePath>
         </None>
@@ -67,69 +52,17 @@
     </ItemGroup>
 
     <ItemGroup>
-        <PackageReference Include="Microsoft.Toolkit.HighPerformance" Version="7.1.2" />
-    </ItemGroup>
-
-    <ItemGroup>
-        <!--<Content Include="resources\**">
-            <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-        </Content>-->
         <Content Include="runtimes\**">
             <CopyToOutputDirectory>Always</CopyToOutputDirectory>
             <Pack>true</Pack>
             <PackagePath>runtimes</PackagePath>
         </Content>
-        <!--<Content Include="raylib.dll">
-            <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-            <Pack>true</Pack>
-            <PackagePath>lib\net6.0</PackagePath>
-        </Content>
-        <Content Include="raylib.pdb">
-            <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-            <Pack>true</Pack>
-            <PackagePath>lib\net6.0</PackagePath>
-        </Content>
-        <Content Include="raygui.dll">
-            <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-            <Pack>true</Pack>
-            <PackagePath>lib\net6.0</PackagePath>
-        </Content>
-        <Content Include="raygui.pdb">
-            <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-            <Pack>true</Pack>
-            <PackagePath>lib\net6.0</PackagePath>
-        </Content>
-        <Content Include="physac.dll">
-            <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-            <Pack>true</Pack>
-            <PackagePath>lib\net6.0</PackagePath>
-        </Content>
-        <Content Include="physac.pdb">
-            <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-            <Pack>true</Pack>
-            <PackagePath>lib\net6.0</PackagePath>
-        </Content>-->
     </ItemGroup>
 
     <ItemGroup>
         <Content Include="raylib.dll">
             <CopyToOutputDirectory>Always</CopyToOutputDirectory>
         </Content>
-    </ItemGroup>
-
-    <ItemGroup>
-        <Compile Update="wasm.Designer.cs">
-            <DesignTime>True</DesignTime>
-            <AutoGen>True</AutoGen>
-            <DependentUpon>wasm.md</DependentUpon>
-        </Compile>
-    </ItemGroup>
-
-    <ItemGroup>
-        <None Update="wasm.md">
-            <Generator>ResXFileCodeGenerator</Generator>
-            <LastGenOutput>wasm.Designer.cs</LastGenOutput>
-        </None>
     </ItemGroup>
 
 </Project>

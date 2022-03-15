@@ -49,7 +49,7 @@ public static unsafe class MultiSample2d
         Texture texBlue = LoadTextureFromImage(imBlue);
         UnloadImage(imBlue);
 
-        Shader shader = LoadShader(null, TextFormat("resources/shaders/glsl%i/color_mix.fs", GLSL_VERSION));
+        Shader shader = LoadFShader(TextFormat("resources/shaders/glsl%i/color_mix.fs", GLSL_VERSION));
 
         // Get an additional sampler2D location to be enabled on drawing
         int texBlueLoc = GetShaderLocation(shader, "texture1");

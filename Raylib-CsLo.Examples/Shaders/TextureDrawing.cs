@@ -3,7 +3,6 @@
 // See the LICENSE file in the project root for more info.
 // The code and 100+ examples are here! https://github.com/NotNotTech/Raylib-CsLo
 
-
 namespace Raylib_CsLo.Examples.Shaders;
 
 /*******************************************************************************************
@@ -44,7 +43,7 @@ public static unsafe class TextureDrawing
         UnloadImage(imBlank);
 
         // NOTE: Using GLSL 330 shader version, on OpenGL ES 2.0 use GLSL 100 shader version
-        Shader shader = LoadShader(null, TextFormat("resources/shaders/glsl%i/cubes_panning.fs", GLSL_VERSION));
+        Shader shader = LoadFShader(TextFormat("resources/shaders/glsl%i/cubes_panning.fs", GLSL_VERSION));
 
         float time = 0.0f;
         int timeLoc = GetShaderLocation(shader, "uTime");
