@@ -396,6 +396,21 @@
       ]
     },
     {
+      "name": "Vector2DistanceSqr",
+      "description": "",
+      "returnType": "float",
+      "params": [
+        {
+          "type": "Vector2",
+          "name": "v1"
+        },
+        {
+          "type": "Vector2",
+          "name": "v2"
+        }
+      ]
+    },
+    {
       "name": "Vector2Angle",
       "description": "",
       "returnType": "float",
@@ -725,6 +740,21 @@
     },
     {
       "name": "Vector3Distance",
+      "description": "",
+      "returnType": "float",
+      "params": [
+        {
+          "type": "Vector3",
+          "name": "v1"
+        },
+        {
+          "type": "Vector3",
+          "name": "v2"
+        }
+      ]
+    },
+    {
+      "name": "Vector3DistanceSqr",
       "description": "",
       "returnType": "float",
       "params": [
