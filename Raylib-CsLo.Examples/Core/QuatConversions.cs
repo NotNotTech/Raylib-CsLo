@@ -57,17 +57,17 @@ public static unsafe class QuatConversions
 
             if (v2.X < 0)
             {
-                v2.X += PI * 2;
+                v2.X += MathF.PI * 2;
             }
 
             if (v2.Y < 0)
             {
-                v2.Y += PI * 2;
+                v2.Y += MathF.PI * 2;
             }
 
             if (v2.Z < 0)
             {
-                v2.Z += PI * 2;
+                v2.Z += MathF.PI * 2;
             }
 
             if (!IsKeyDown(KEY_SPACE))
@@ -77,19 +77,19 @@ public static unsafe class QuatConversions
                 v1.Z += 0.05f;
             }
 
-            if (v1.X > PI * 2)
+            if (v1.X > MathF.PI * 2)
             {
-                v1.X -= PI * 2;
+                v1.X -= MathF.PI * 2;
             }
 
-            if (v1.Y > PI * 2)
+            if (v1.Y > MathF.PI * 2)
             {
-                v1.Y -= PI * 2;
+                v1.Y -= MathF.PI * 2;
             }
 
-            if (v1.Z > PI * 2)
+            if (v1.Z > MathF.PI * 2)
             {
-                v1.Z -= PI * 2;
+                v1.Z -= MathF.PI * 2;
             }
 
 

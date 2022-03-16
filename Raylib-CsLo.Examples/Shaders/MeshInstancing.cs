@@ -93,7 +93,7 @@ public static unsafe class MeshInstancing
         // to be used on mesh drawing with DrawMeshInstanced()
         Material material = LoadMaterialDefault();
         material.shader = shader;
-        material.maps[(int)MATERIAL_MAP_DIFFUSE].color = RED;
+        material.maps[(int)MATERIAL_MAP_ALBEDO].color = RED;
 
         SetCameraMode(ref camera, CAMERA_ORBITAL);  // Set an orbital camera mode
 
@@ -214,7 +214,7 @@ public static unsafe class MeshInstancing
                 loop = (float)((framesCounter + (int)((float)(i % groups) / groups * speed)) % speed) / speed;
 
                 // Calculate the y according to loop cycle
-                y = MathF.Sin(loop * PI * 2) * amp * (1 - variance + (variance * (i % (groups * 10)) / (groups * 10)));
+                y = MathF.Sin(loop * MathF.PI * 2) * amp * (1 - variance + (variance * (i % (groups * 10)) / (groups * 10)));
 
                 // Clamp to floor
                 y = (y < 0) ? 0.0f : y;

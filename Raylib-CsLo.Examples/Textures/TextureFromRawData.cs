@@ -4,6 +4,7 @@
 // The code and 100+ examples are here! https://github.com/NotNotTech/Raylib-CsLo
 
 namespace Raylib_CsLo.Examples.Textures;
+
 using System.Runtime.CompilerServices;
 using Microsoft.Toolkit.HighPerformance;
 

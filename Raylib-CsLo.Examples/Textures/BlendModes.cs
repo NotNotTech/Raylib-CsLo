@@ -98,6 +98,8 @@ public static unsafe class BlendModes
                     break;
                 case BLEND_CUSTOM:
                     break;
+                case BLEND_ALPHA_PREMUL:
+                    break;
                 default:
                     break;
             }

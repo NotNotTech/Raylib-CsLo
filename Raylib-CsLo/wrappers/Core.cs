@@ -192,6 +192,24 @@ public unsafe partial class RaylibS
     }
 
     /// <summary>
+    /// Load fragment shader from files and bind default locations
+    /// </summary>
+    public static Shader LoadFShader(string fsFileName)
+    {
+        using var fsFileName_ = fsFileName.MarshalUtf8();
+        return Raylib.LoadShader(null, fsFileName_.AsPtr());
+    }
+
+    /// <summary>
+    /// Load vertex shader from files and bind default locations
+    /// </summary>
+    public static Shader LoadVShader(string vsFileName)
+    {
+        using var vsFileName_ = vsFileName.MarshalUtf8();
+        return Raylib.LoadShader(vsFileName_.AsPtr(), null);
+    }
+
+    /// <summary>
     /// free animations via UnloadModelAnimation() when done
     /// </summary>
     public static ModelAnimation[] LoadModelAnimations(string fileName)

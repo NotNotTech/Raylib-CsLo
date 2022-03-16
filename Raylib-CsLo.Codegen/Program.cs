@@ -8,8 +8,9 @@ namespace Raylib_CsLo.Codegen;
 using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Text;
 using System.Text.Json;
+using Raylib_CsLo.Codegen.Generators;
+using Raylib_CsLo.Codegen.Parsers;
 
 public class Program
 {
@@ -22,34 +23,42 @@ public class Program
         {
             Directory.Delete(CodegenSettings.OutputFolder, true);
         }
-        Directory.CreateDirectory(CodegenSettings.OutputFolder);
-        Directory.CreateDirectory(CodegenSettings.OutputFolder + "Native/");
-        Directory.CreateDirectory(CodegenSettings.OutputFolder + "Safe/");
 
-        foreach (string binding in Directory.GetFiles(CodegenSettings.BindingsFolder))
+        Directory.CreateDirectory(CodegenSettings.OutputFolder);
+        foreach (string bindingPath in Directory.GetFiles(CodegenSettings.BindingsFolder))
         {
             List<RaylibFunction> functions = new();
+            List<RaylibDefine> defines = new();
+            List<RaylibEnumType> enums = new();
 
-            StringBuilder fileName = new(Path.GetFileNameWithoutExtension(binding.Replace("_api", "")));
-            fileName[0] = char.ToUpperInvariant(fileName[0]);
+            string fileName = new(Path.GetFileNameWithoutExtension(bindingPath.Replace("_api", "")));
 
-            if (!fileName.Equals("Raylib") && !fileName.Equals("Raygui"))
+            fileName = fileName switch
             {
-                continue;
-            }
+                "raylib" => "Raylib",
+                "raygui" => "RayGui",
+                "rlgl" => "RlGl",
+                _ => fileName,
+            };
 
-            using (JsonDocument document = JsonDocument.Parse(File.ReadAllText(binding)))
+            using (JsonDocument document = JsonDocument.Parse(File.ReadAllText(bindingPath)))
             {
                 FunctionParser.Parse(functions, document);
+                DefineParser.Parse(defines, document);
+                EnumParser.Parse(enums, document);
             }
 
-            NativeClassGenerator native = new(functions, fileName.ToString());
-            native.Generate();
-            native.Output(fileName.ToString());
+            NativeClassGenerator nativeGenerator = new(functions, fileName.ToString());
+            nativeGenerator.Generate();
 
-            SafeClassGenerator safe = new(functions, fileName.ToString());
-            safe.Generate();
-            safe.Output(fileName.ToString());
+            SafeClassGenerator safeGenerator = new(functions, fileName.ToString());
+            safeGenerator.Generate();
+
+            DefineGenerator defineGenerator = new(defines, fileName.ToString());
+            defineGenerator.Generate();
+
+            EnumGenerator enumGenerator = new(enums, fileName.ToString());
+            enumGenerator.Generate();
         }
     }
 }

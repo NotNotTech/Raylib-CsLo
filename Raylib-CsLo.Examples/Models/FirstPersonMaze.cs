@@ -39,7 +39,7 @@ public static unsafe class FirstPersonMaze
 
         // NOTE: By default each cube is mapped to one part of texture atlas
         Texture2D texture = LoadTexture("resources/cubicmap_atlas.png");    // Load map texture
-        model.materials[0].maps[(int)MATERIAL_MAP_DIFFUSE].texture = texture;             // Set map diffuse texture
+        model.materials[0].maps[(int)MATERIAL_MAP_ALBEDO].texture = texture;             // Set map diffuse texture
 
         // Get map image data to be used for collision detection
         Color[] mapPixels = LoadImageColors(imMap);

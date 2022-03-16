@@ -57,7 +57,7 @@ public static unsafe class ModelShader
         Shader shader = LoadFShader(TextFormat("resources/shaders/glsl%i/grayscale.fs", GLSL_VERSION));
 
         model.materials[0].shader = shader;                     // Set shader effect to 3d model
-        model.materials[0].maps[(int)MATERIAL_MAP_DIFFUSE].texture = texture; // Bind texture to model
+        model.materials[0].maps[(int)MATERIAL_MAP_ALBEDO].texture = texture; // Bind texture to model
 
         Vector3 position = new(0.0f, 0.0f, 0.0f);    // Set model position
 

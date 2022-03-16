@@ -10,7 +10,6 @@ using System.Numerics;
 public static unsafe partial class RlGl
 {
 #pragma warning disable IDE1006
-
     public static void rlFramebufferAttach(uint fboId, uint texId, rlFramebufferAttachType attachType, rlFramebufferAttachTextureType texType, int mipLevel)
     {
         rlFramebufferAttach(fboId, texId, (int)attachType, (int)texType, mipLevel);

@@ -39,7 +39,7 @@ public static unsafe class YawPitchRoll
 
         Model model = LoadModel("resources/models/obj/plane.obj");                  // Load model
         Texture2D texture = LoadTexture("resources/models/obj/plane_diffuse.png");  // Load model texture
-        model.materials[0].maps[(int)MATERIAL_MAP_DIFFUSE].texture = texture;            // Set map diffuse texture
+        model.materials[0].maps[(int)MATERIAL_MAP_ALBEDO].texture = texture;            // Set map diffuse texture
 
         float pitch = 0.0f;
         float roll = 0.0f;

@@ -1,8 +1,6 @@
 {
-  "structs": [
-  ],
-  "enums": [
-  ],
+  "structs": [],
+  "enums": [],
   "defines": [
     {
       "name": "EASINGS_H",
@@ -26,7 +24,7 @@
       "name": "PI",
       "type": "FLOAT",
       "value": 3.14159265358979323846,
-      "description": "equired as PI is not always defined in math.h"
+      "description": "equired asMathF.PI is not always defined in math.h"
     }
   ],
   "functions": [

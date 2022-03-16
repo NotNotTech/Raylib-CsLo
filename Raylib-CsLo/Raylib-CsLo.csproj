@@ -45,24 +45,10 @@
             <Pack>True</Pack>
             <PackagePath>\</PackagePath>
         </None>
-        <None Include="..\README.md">
-            <Pack>True</Pack>
-            <PackagePath>\</PackagePath>
-        </None>
     </ItemGroup>
 
     <ItemGroup>
-        <Content Include="runtimes\**">
-            <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-            <Pack>true</Pack>
-            <PackagePath>runtimes</PackagePath>
-        </Content>
-    </ItemGroup>
-
-    <ItemGroup>
-        <Content Include="raylib.dll">
-            <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-        </Content>
+        <PackageReference Include="Microsoft.Toolkit.HighPerformance" Version="7.1.2" />
     </ItemGroup>
 
 </Project>

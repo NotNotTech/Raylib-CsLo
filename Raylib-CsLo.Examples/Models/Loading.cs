@@ -49,7 +49,7 @@ public static unsafe class Loading
 
         Model model = LoadModel("resources/models/obj/castle.obj");                 // Load model
         Texture2D texture = LoadTexture("resources/models/obj/castle_diffuse.png"); // Load model texture
-        model.materials[0].maps[(int)MATERIAL_MAP_DIFFUSE].texture = texture;            // Set map diffuse texture
+        model.materials[0].maps[(int)MATERIAL_MAP_ALBEDO].texture = texture;            // Set map diffuse texture
 
         Vector3 position = new(0.0f, 0.0f, 0.0f);                    // Set model position
 
@@ -89,7 +89,7 @@ public static unsafe class Loading
                     {
                         UnloadModel(model);                     // Unload previous model
                         model = LoadModel(droppedFiles[0]);     // Load new model
-                        model.materials[0].maps[(int)MATERIAL_MAP_DIFFUSE].texture = texture; // Set current map diffuse texture
+                        model.materials[0].maps[(int)MATERIAL_MAP_ALBEDO].texture = texture; // Set current map diffuse texture
 
                         bounds = GetMeshBoundingBox(model.meshes[0]);
 
@@ -100,7 +100,7 @@ public static unsafe class Loading
                         // Unload current model texture and load new one
                         UnloadTexture(texture);
                         texture = LoadTexture(droppedFiles[0]);
-                        model.materials[0].maps[(int)MATERIAL_MAP_DIFFUSE].texture = texture;
+                        model.materials[0].maps[(int)MATERIAL_MAP_ALBEDO].texture = texture;
                     }
                 }
 

@@ -8,7 +8,7 @@ in vec4 fragColor;
 out vec4 finalColor;
 
 // Custom variables
-#define PI 3.14159265358979323846
+#defineMathF.PI 3.14159265358979323846
 uniform float uTime = 0.0;
 
 float divisions = 5.0;

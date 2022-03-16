@@ -43,7 +43,7 @@ public static unsafe class MeshPicking
 
         Model tower = LoadModel("resources/models/obj/turret.obj");                 // Load OBJ model
         Texture2D texture = LoadTexture("resources/models/obj/turret_diffuse.png"); // Load model texture
-        tower.materials[0].maps[(int)MATERIAL_MAP_DIFFUSE].texture = texture;            // Set model diffuse texture
+        tower.materials[0].maps[(int)MATERIAL_MAP_ALBEDO].texture = texture;            // Set model diffuse texture
 
         Vector3 towerPos = new(0.0f, 0.0f, 0.0f);                        // Set model position
         BoundingBox towerBBox = GetMeshBoundingBox(tower.meshes[0]);    // Get mesh bounding box

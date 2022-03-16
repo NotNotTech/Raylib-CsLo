@@ -60,9 +60,9 @@ public static unsafe class Fog
         Texture texture = LoadTexture("resources/texel_checker.png");
 
         // Assign texture to default model material
-        modelA.materials[0].maps[(int)MATERIAL_MAP_DIFFUSE].texture = texture;
-        modelB.materials[0].maps[(int)MATERIAL_MAP_DIFFUSE].texture = texture;
-        modelC.materials[0].maps[(int)MATERIAL_MAP_DIFFUSE].texture = texture;
+        modelA.materials[0].maps[(int)MATERIAL_MAP_ALBEDO].texture = texture;
+        modelB.materials[0].maps[(int)MATERIAL_MAP_ALBEDO].texture = texture;
+        modelC.materials[0].maps[(int)MATERIAL_MAP_ALBEDO].texture = texture;
 
         // Load shader and set up some uniforms
         Shader shader = LoadShader(TextFormat("resources/shaders/glsl%i/base_lighting.vs", GLSL_VERSION), TextFormat("resources/shaders/glsl%i/fog.fs", GLSL_VERSION));

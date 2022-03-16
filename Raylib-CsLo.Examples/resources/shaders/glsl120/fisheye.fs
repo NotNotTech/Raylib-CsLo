@@ -10,7 +10,7 @@ uniform vec4 colDiffuse;
 
 // NOTE: Add here your custom variables
 
-const float PI = 3.1415926535;
+const floatMathF.PI = 3.1415926535;
 
 void main()
 {

@@ -37,7 +37,7 @@ global using static Raylib_CsLo.MouseCursor;
 global using static Raylib_CsLo.NPatchLayout;
 global using static Raylib_CsLo.Physac;
 global using static Raylib_CsLo.PixelFormat;
-global using static Raylib_CsLo.RayguiS;
+global using static Raylib_CsLo.RayGuiS;
 global using static Raylib_CsLo.RaylibS;
 global using static Raylib_CsLo.RayMath;
 global using static Raylib_CsLo.rlFramebufferAttachTextureType;

@@ -1,3 +1,7 @@
+// Copyright ©️ Raylib-CsLo and Contributors.
+// This file is licensed to you under the MPL-2.0.
+// See the LICENSE file in the project root for more info.
+// The code and 100+ examples are here! https://github.com/NotNotTech/Raylib-CsLo
 
 namespace Raylib_CsLo.InternalHelpers;
 
@@ -13,12 +17,6 @@ public static unsafe class Helpers
 
     // TODO implement
     public static T[] PrtToArray<T>(T* ptrToArray) where T : unmanaged
-    {
-        throw new NotImplementedException();
-    }
-
-    // TODO implement
-    public static T* ArrayToPtr<T>(T[] ptrToArray) where T : unmanaged
     {
         throw new NotImplementedException();
     }

@@ -100,7 +100,7 @@ public static unsafe class MeshGeneration
         // Set checkedImage texture as default diffuse component for all models material
         for (int i = 0; i < NUM_MODELS; i++)
         {
-            models[i].materials[0].maps[(int)MATERIAL_MAP_DIFFUSE].texture = texture;
+            models[i].materials[0].maps[(int)MATERIAL_MAP_ALBEDO].texture = texture;
         }
 
         // Define the camera to look into our 3d world

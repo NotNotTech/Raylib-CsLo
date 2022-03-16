@@ -69,8 +69,8 @@ public static unsafe class SimpleMask
 
         // Load and apply the diffuse texture (colour map)
         Texture texDiffuse = LoadTexture("resources/plasma.png");
-        model1.materials[0].maps[(int)MATERIAL_MAP_DIFFUSE].texture = texDiffuse;
-        model2.materials[0].maps[(int)MATERIAL_MAP_DIFFUSE].texture = texDiffuse;
+        model1.materials[0].maps[(int)MATERIAL_MAP_ALBEDO].texture = texDiffuse;
+        model2.materials[0].maps[(int)MATERIAL_MAP_ALBEDO].texture = texDiffuse;
 
         // Using MATERIAL_MAP_EMISSION as a spare slot to use for 2nd texture
         // NOTE: Don't use MATERIAL_MAP_IRRADIANCE, MATERIAL_MAP_PREFILTER or  MATERIAL_MAP_CUBEMAP as they are bound as cube maps

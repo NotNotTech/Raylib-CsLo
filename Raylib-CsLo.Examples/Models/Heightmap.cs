@@ -37,7 +37,7 @@ public static unsafe class Heightmap
         Mesh mesh = GenMeshHeightmap(image, new(16, 8, 16));    // Generate heightmap mesh (RAM and VRAM)
         Model model = LoadModelFromMesh(mesh);                          // Load model from generated mesh
 
-        model.materials[0].maps[(int)MATERIAL_MAP_DIFFUSE].texture = texture;         // Set map diffuse texture
+        model.materials[0].maps[(int)MATERIAL_MAP_ALBEDO].texture = texture;         // Set map diffuse texture
         Vector3 mapPosition = new(-8.0f, 0.0f, -8.0f);                   // Define model position
 
         UnloadImage(image);                     // Unload heightmap image from RAM, already uploaded to VRAM

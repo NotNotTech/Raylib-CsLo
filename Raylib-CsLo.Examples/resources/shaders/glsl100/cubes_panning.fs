@@ -7,7 +7,7 @@ varying vec2 fragTexCoord;
 varying vec4 fragColor;
 
 // Custom variables
-const float PI = 3.14159265358979323846;
+const floatMathF.PI = 3.14159265358979323846;
 uniform float uTime;
 
 float divisions = 5.0;
