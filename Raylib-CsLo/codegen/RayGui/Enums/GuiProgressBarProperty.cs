@@ -7,13 +7,9 @@
 
 namespace Raylib_CsLo;
 
-/// <summary>
-/// ProgressBar
-/// </summary>
+/// <summary> ProgressBar </summary>
 public enum GuiProgressBarProperty
 {
-    /// <summary>
-    /// 
-    /// </summary>
+    /// <summary>  </summary>
     PROGRESS_PADDING = 16,
 }

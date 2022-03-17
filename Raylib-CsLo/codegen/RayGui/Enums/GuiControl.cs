@@ -7,73 +7,39 @@
 
 namespace Raylib_CsLo;
 
-/// <summary>
-/// Gui controls
-/// </summary>
+/// <summary> Gui controls </summary>
 public enum GuiControl
 {
-    /// <summary>
-    /// Generic control -> populates to all controls when set
-    /// </summary>
+    /// <summary> Generic control -> populates to all controls when set </summary>
     DEFAULT = 0,
-    /// <summary>
-    /// Used also for: LABELBUTTON
-    /// </summary>
+    /// <summary> Used also for: LABELBUTTON </summary>
     LABEL = 1,
-    /// <summary>
-    /// 
-    /// </summary>
+    /// <summary>  </summary>
     BUTTON = 2,
-    /// <summary>
-    /// Used also for: TOGGLEGROUP
-    /// </summary>
+    /// <summary> Used also for: TOGGLEGROUP </summary>
     TOGGLE = 3,
-    /// <summary>
-    /// Used also for: SLIDERBAR
-    /// </summary>
+    /// <summary> Used also for: SLIDERBAR </summary>
     SLIDER = 4,
-    /// <summary>
-    /// 
-    /// </summary>
+    /// <summary>  </summary>
     PROGRESSBAR = 5,
-    /// <summary>
-    /// 
-    /// </summary>
+    /// <summary>  </summary>
     CHECKBOX = 6,
-    /// <summary>
-    /// 
-    /// </summary>
+    /// <summary>  </summary>
     COMBOBOX = 7,
-    /// <summary>
-    /// 
-    /// </summary>
+    /// <summary>  </summary>
     DROPDOWNBOX = 8,
-    /// <summary>
-    /// Used also for: TEXTBOXMULTI
-    /// </summary>
+    /// <summary> Used also for: TEXTBOXMULTI </summary>
     TEXTBOX = 9,
-    /// <summary>
-    /// 
-    /// </summary>
+    /// <summary>  </summary>
     VALUEBOX = 10,
-    /// <summary>
-    /// 
-    /// </summary>
+    /// <summary>  </summary>
     SPINNER = 11,
-    /// <summary>
-    /// 
-    /// </summary>
+    /// <summary>  </summary>
     LISTVIEW = 12,
-    /// <summary>
-    /// 
-    /// </summary>
+    /// <summary>  </summary>
     COLORPICKER = 13,
-    /// <summary>
-    /// 
-    /// </summary>
+    /// <summary>  </summary>
     SCROLLBAR = 14,
-    /// <summary>
-    /// 
-    /// </summary>
+    /// <summary>  </summary>
     STATUSBAR = 15,
 }

@@ -7,25 +7,15 @@
 
 namespace Raylib_CsLo;
 
-/// <summary>
-/// DEFAULT extended properties
-/// </summary>
+/// <summary> DEFAULT extended properties </summary>
 public enum GuiDefaultProperty
 {
-    /// <summary>
-    /// 
-    /// </summary>
+    /// <summary>  </summary>
     TEXT_SIZE = 16,
-    /// <summary>
-    /// 
-    /// </summary>
+    /// <summary>  </summary>
     TEXT_SPACING = 17,
-    /// <summary>
-    /// 
-    /// </summary>
+    /// <summary>  </summary>
     LINE_COLOR = 18,
-    /// <summary>
-    /// 
-    /// </summary>
+    /// <summary>  </summary>
     BACKGROUND_COLOR = 19,
 }

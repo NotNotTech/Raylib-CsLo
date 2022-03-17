@@ -7,7 +7,7 @@ namespace Raylib_CsLo.Codegen;
 
 using System.Text;
 
-public class ClassGenerator
+public class BaseGenerator
 {
     int indent;
     public StringBuilder fileContents = new();
@@ -65,8 +65,6 @@ public class ClassGenerator
 
     public void DocumentationBlock(string description)
     {
-        Line($"/// <summary>");
-        Line($"/// {description}");
-        Line($"/// </summary>");
+        Line($"/// <summary> {description} </summary>");
     }
 }

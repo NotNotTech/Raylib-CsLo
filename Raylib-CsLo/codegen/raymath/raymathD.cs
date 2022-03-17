@@ -8,7 +8,7 @@
 #pragma warning disable
 
 namespace Raylib_CsLo;
-public unsafe partial class raymath
+public unsafe partial class RayMath
 {
     // GUARD RAYMATH_H 
 

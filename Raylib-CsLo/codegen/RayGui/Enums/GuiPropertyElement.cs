@@ -7,25 +7,15 @@
 
 namespace Raylib_CsLo;
 
-/// <summary>
-/// Gui control property style color element
-/// </summary>
+/// <summary> Gui control property style color element </summary>
 public enum GuiPropertyElement
 {
-    /// <summary>
-    /// 
-    /// </summary>
+    /// <summary>  </summary>
     BORDER = 0,
-    /// <summary>
-    /// 
-    /// </summary>
+    /// <summary>  </summary>
     BASE = 1,
-    /// <summary>
-    /// 
-    /// </summary>
+    /// <summary>  </summary>
     TEXT = 2,
-    /// <summary>
-    /// 
-    /// </summary>
+    /// <summary>  </summary>
     OTHER = 3,
 }

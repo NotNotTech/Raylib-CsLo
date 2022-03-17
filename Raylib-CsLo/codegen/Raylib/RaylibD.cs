@@ -46,134 +46,82 @@ public unsafe partial class Raylib
 
     // GUARD RL_MATRIX_TYPE 
 
-    /// <summary>
-    /// Light Gray
-    /// </summary>
+    /// <summary> Light Gray </summary>
     public static readonly Color LIGHTGRAY = new Color(200, 200, 200, 255);
 
-    /// <summary>
-    /// Gray
-    /// </summary>
+    /// <summary> Gray </summary>
     public static readonly Color GRAY = new Color(130, 130, 130, 255);
 
-    /// <summary>
-    /// Dark Gray
-    /// </summary>
+    /// <summary> Dark Gray </summary>
     public static readonly Color DARKGRAY = new Color(80, 80, 80, 255);
 
-    /// <summary>
-    /// Yellow
-    /// </summary>
+    /// <summary> Yellow </summary>
     public static readonly Color YELLOW = new Color(253, 249, 0, 255);
 
-    /// <summary>
-    /// Gold
-    /// </summary>
+    /// <summary> Gold </summary>
     public static readonly Color GOLD = new Color(255, 203, 0, 255);
 
-    /// <summary>
-    /// Orange
-    /// </summary>
+    /// <summary> Orange </summary>
     public static readonly Color ORANGE = new Color(255, 161, 0, 255);
 
-    /// <summary>
-    /// Pink
-    /// </summary>
+    /// <summary> Pink </summary>
     public static readonly Color PINK = new Color(255, 109, 194, 255);
 
-    /// <summary>
-    /// Red
-    /// </summary>
+    /// <summary> Red </summary>
     public static readonly Color RED = new Color(230, 41, 55, 255);
 
-    /// <summary>
-    /// Maroon
-    /// </summary>
+    /// <summary> Maroon </summary>
     public static readonly Color MAROON = new Color(190, 33, 55, 255);
 
-    /// <summary>
-    /// Green
-    /// </summary>
+    /// <summary> Green </summary>
     public static readonly Color GREEN = new Color(0, 228, 48, 255);
 
-    /// <summary>
-    /// Lime
-    /// </summary>
+    /// <summary> Lime </summary>
     public static readonly Color LIME = new Color(0, 158, 47, 255);
 
-    /// <summary>
-    /// Dark Green
-    /// </summary>
+    /// <summary> Dark Green </summary>
     public static readonly Color DARKGREEN = new Color(0, 117, 44, 255);
 
-    /// <summary>
-    /// Sky Blue
-    /// </summary>
+    /// <summary> Sky Blue </summary>
     public static readonly Color SKYBLUE = new Color(102, 191, 255, 255);
 
-    /// <summary>
-    /// Blue
-    /// </summary>
+    /// <summary> Blue </summary>
     public static readonly Color BLUE = new Color(0, 121, 241, 255);
 
-    /// <summary>
-    /// Dark Blue
-    /// </summary>
+    /// <summary> Dark Blue </summary>
     public static readonly Color DARKBLUE = new Color(0, 82, 172, 255);
 
-    /// <summary>
-    /// Purple
-    /// </summary>
+    /// <summary> Purple </summary>
     public static readonly Color PURPLE = new Color(200, 122, 255, 255);
 
-    /// <summary>
-    /// Violet
-    /// </summary>
+    /// <summary> Violet </summary>
     public static readonly Color VIOLET = new Color(135, 60, 190, 255);
 
-    /// <summary>
-    /// Dark Purple
-    /// </summary>
+    /// <summary> Dark Purple </summary>
     public static readonly Color DARKPURPLE = new Color(112, 31, 126, 255);
 
-    /// <summary>
-    /// Beige
-    /// </summary>
+    /// <summary> Beige </summary>
     public static readonly Color BEIGE = new Color(211, 176, 131, 255);
 
-    /// <summary>
-    /// Brown
-    /// </summary>
+    /// <summary> Brown </summary>
     public static readonly Color BROWN = new Color(127, 106, 79, 255);
 
-    /// <summary>
-    /// Dark Brown
-    /// </summary>
+    /// <summary> Dark Brown </summary>
     public static readonly Color DARKBROWN = new Color(76, 63, 47, 255);
 
-    /// <summary>
-    /// White
-    /// </summary>
+    /// <summary> White </summary>
     public static readonly Color WHITE = new Color(255, 255, 255, 255);
 
-    /// <summary>
-    /// Black
-    /// </summary>
+    /// <summary> Black </summary>
     public static readonly Color BLACK = new Color(0, 0, 0, 255);
 
-    /// <summary>
-    /// Blank (Transparent)
-    /// </summary>
+    /// <summary> Blank (Transparent) </summary>
     public static readonly Color BLANK = new Color(0, 0, 0, 0);
 
-    /// <summary>
-    /// Magenta
-    /// </summary>
+    /// <summary> Magenta </summary>
     public static readonly Color MAGENTA = new Color(255, 0, 255, 255);
 
-    /// <summary>
-    /// My own White (raylib logo)
-    /// </summary>
+    /// <summary> My own White (raylib logo) </summary>
     public static readonly Color RAYWHITE = new Color(245, 245, 245, 255);
 
     // GUARD RL_BOOL_TYPE 

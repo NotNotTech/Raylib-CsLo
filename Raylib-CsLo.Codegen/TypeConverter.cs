@@ -4,6 +4,7 @@
 // The code and 100+ examples are here! https://github.com/NotNotTech/Raylib-CsLo
 
 namespace Raylib_CsLo.Codegen;
+
 public static class TypeConverter
 {
     // Used in gen of DllImport
@@ -25,6 +26,7 @@ public static class TypeConverter
             "Matrix" => "Matrix4x4",
             "Matrix*" => "Matrix4x4*",
             "PhysicsBody" => "PhysicsBodyData",
+            "PhysicsBody*" => "PhysicsBodyData*",
             "RenderTexture2D" => "RenderTexture",
             "SaveFileDataCallback" => "delegate* unmanaged[Cdecl]<sbyte*, void*, uint, bool>",
             "SaveFileTextCallback" => "delegate* unmanaged[Cdecl]<sbyte*, sbyte*>",

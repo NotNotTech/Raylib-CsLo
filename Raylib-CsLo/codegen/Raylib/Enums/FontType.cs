@@ -7,21 +7,13 @@
 
 namespace Raylib_CsLo;
 
-/// <summary>
-/// Font type, defines generation method
-/// </summary>
+/// <summary> Font type, defines generation method </summary>
 public enum FontType
 {
-    /// <summary>
-    /// Default font generation, anti-aliased
-    /// </summary>
+    /// <summary> Default font generation, anti-aliased </summary>
     FONT_DEFAULT = 0,
-    /// <summary>
-    /// Bitmap font generation, no anti-aliasing
-    /// </summary>
+    /// <summary> Bitmap font generation, no anti-aliasing </summary>
     FONT_BITMAP = 1,
-    /// <summary>
-    /// SDF font generation, requires external shader
-    /// </summary>
+    /// <summary> SDF font generation, requires external shader </summary>
     FONT_SDF = 2,
 }

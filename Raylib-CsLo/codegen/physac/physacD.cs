@@ -8,7 +8,7 @@
 #pragma warning disable
 
 namespace Raylib_CsLo;
-public unsafe partial class physac
+public unsafe partial class Physac
 {
     // GUARD PHYSAC_H 
 
@@ -20,24 +20,16 @@ public unsafe partial class physac
 
     // MACRO PHYSAC_FREE(ptr) free(ptr)
 
-    /// <summary>
-    /// Maximum number of physic bodies supported
-    /// </summary>
+    /// <summary> Maximum number of physic bodies supported </summary>
     public static readonly int PHYSAC_MAX_BODIES = 64;
 
-    /// <summary>
-    /// Maximum number of physic bodies interactions (64x64)
-    /// </summary>
+    /// <summary> Maximum number of physic bodies interactions (64x64) </summary>
     public static readonly int PHYSAC_MAX_MANIFOLDS = 4096;
 
-    /// <summary>
-    /// Maximum number of vertex for polygons shapes
-    /// </summary>
+    /// <summary> Maximum number of vertex for polygons shapes </summary>
     public static readonly int PHYSAC_MAX_VERTICES = 24;
 
-    /// <summary>
-    /// Default number of vertices for circle shapes
-    /// </summary>
+    /// <summary> Default number of vertices for circle shapes </summary>
     public static readonly int PHYSAC_DEFAULT_CIRCLE_VERTICES = 24;
 
     public static readonly int PHYSAC_COLLISION_ITERATIONS = 100;
@@ -52,9 +44,7 @@ public unsafe partial class physac
 
     // MACRO TRACELOG(...) printf(__VA_ARGS__)
 
-    /// <summary>
-    /// Required for CLOCK_MONOTONIC if compiled with c99 without gnu ext.
-    /// </summary>
+    /// <summary> Required for CLOCK_MONOTONIC if compiled with c99 without gnu ext. </summary>
     public static readonly long _POSIX_C_SOURCE = 199309;
 
     // MACRO CLITERAL(type) type

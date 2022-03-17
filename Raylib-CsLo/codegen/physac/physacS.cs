@@ -9,162 +9,120 @@
 
 namespace Raylib_CsLo;
 
-using System.Numerics;
-using Microsoft.Toolkit.HighPerformance.Buffers;
-using Raylib_CsLo.InternalHelpers;
-
-public unsafe partial class physacS
+public unsafe partial class PhysacS
 {
-    /// <summary>
-    /// Initializes physics system
-    /// </summary>
+    /// <summary> Initializes physics system </summary>
     public static void InitPhysics()
     {
-        physac.InitPhysics();
+        Physac.InitPhysics();
     }
 
-    /// <summary>
-    /// Update physics system
-    /// </summary>
+    /// <summary> Update physics system </summary>
     public static void UpdatePhysics()
     {
-        physac.UpdatePhysics();
+        Physac.UpdatePhysics();
     }
 
-    /// <summary>
-    /// Reset physics system (global variables)
-    /// </summary>
+    /// <summary> Reset physics system (global variables) </summary>
     public static void ResetPhysics()
     {
-        physac.ResetPhysics();
+        Physac.ResetPhysics();
     }
 
-    /// <summary>
-    /// Close physics system and unload used memory
-    /// </summary>
+    /// <summary> Close physics system and unload used memory </summary>
     public static void ClosePhysics()
     {
-        physac.ClosePhysics();
+        Physac.ClosePhysics();
     }
 
-    /// <summary>
-    /// Sets physics fixed time step in milliseconds. 1.666666 by default
-    /// </summary>
+    /// <summary> Sets physics fixed time step in milliseconds. 1.666666 by default </summary>
     public static void SetPhysicsTimeStep(double delta)
     {
-        physac.SetPhysicsTimeStep(delta);
+        Physac.SetPhysicsTimeStep(delta);
     }
 
-    /// <summary>
-    /// Sets physics global gravity force
-    /// </summary>
+    /// <summary> Sets physics global gravity force </summary>
     public static void SetPhysicsGravity(float x, float y)
     {
-        physac.SetPhysicsGravity(x, y);
+        Physac.SetPhysicsGravity(x, y);
     }
 
-    /// <summary>
-    /// Creates a new circle physics body with generic parameters
-    /// </summary>
+    /// <summary> Creates a new circle physics body with generic parameters </summary>
     public static PhysicsBodyData CreatePhysicsBodyCircle(Vector2 pos, float radius, float density)
     {
-        return physac.CreatePhysicsBodyCircle(pos, radius, density);
+        return Physac.CreatePhysicsBodyCircle(pos, radius, density);
     }
 
-    /// <summary>
-    /// Creates a new rectangle physics body with generic parameters
-    /// </summary>
+    /// <summary> Creates a new rectangle physics body with generic parameters </summary>
     public static PhysicsBodyData CreatePhysicsBodyRectangle(Vector2 pos, float width, float height, float density)
     {
-        return physac.CreatePhysicsBodyRectangle(pos, width, height, density);
+        return Physac.CreatePhysicsBodyRectangle(pos, width, height, density);
     }
 
-    /// <summary>
-    /// Creates a new polygon physics body with generic parameters
-    /// </summary>
+    /// <summary> Creates a new polygon physics body with generic parameters </summary>
     public static PhysicsBodyData CreatePhysicsBodyPolygon(Vector2 pos, float radius, int sides, float density)
     {
-        return physac.CreatePhysicsBodyPolygon(pos, radius, sides, density);
+        return Physac.CreatePhysicsBodyPolygon(pos, radius, sides, density);
     }
 
-    /// <summary>
-    /// Destroy a physics body
-    /// </summary>
+    /// <summary> Destroy a physics body </summary>
     public static void DestroyPhysicsBody(PhysicsBodyData body)
     {
-        physac.DestroyPhysicsBody(body);
+        Physac.DestroyPhysicsBody(body);
     }
 
-    /// <summary>
-    /// Adds a force to a physics body
-    /// </summary>
+    /// <summary> Adds a force to a physics body </summary>
     public static void PhysicsAddForce(PhysicsBodyData body, Vector2 force)
     {
-        physac.PhysicsAddForce(body, force);
+        Physac.PhysicsAddForce(body, force);
     }
 
-    /// <summary>
-    /// Adds an angular force to a physics body
-    /// </summary>
+    /// <summary> Adds an angular force to a physics body </summary>
     public static void PhysicsAddTorque(PhysicsBodyData body, float amount)
     {
-        physac.PhysicsAddTorque(body, amount);
+        Physac.PhysicsAddTorque(body, amount);
     }
 
-    /// <summary>
-    /// Shatters a polygon shape physics body to little physics bodies with explosion force
-    /// </summary>
+    /// <summary> Shatters a polygon shape physics body to little physics bodies with explosion force </summary>
     public static void PhysicsShatter(PhysicsBodyData body, Vector2 position, float force)
     {
-        physac.PhysicsShatter(body, position, force);
+        Physac.PhysicsShatter(body, position, force);
     }
 
-    /// <summary>
-    /// Sets physics body shape transform based on radians parameter
-    /// </summary>
+    /// <summary> Sets physics body shape transform based on radians parameter </summary>
     public static void SetPhysicsBodyRotation(PhysicsBodyData body, float radians)
     {
-        physac.SetPhysicsBodyRotation(body, radians);
+        Physac.SetPhysicsBodyRotation(body, radians);
     }
 
-    /// <summary>
-    /// Returns a physics body of the bodies pool at a specific index
-    /// </summary>
+    /// <summary> Returns a physics body of the bodies pool at a specific index </summary>
     public static PhysicsBodyData GetPhysicsBody(int index)
     {
-        return physac.GetPhysicsBody(index);
+        return Physac.GetPhysicsBody(index);
     }
 
-    /// <summary>
-    /// Returns the current amount of created physics bodies
-    /// </summary>
+    /// <summary> Returns the current amount of created physics bodies </summary>
     public static int GetPhysicsBodiesCount()
     {
-        return physac.GetPhysicsBodiesCount();
+        return Physac.GetPhysicsBodiesCount();
     }
 
-    /// <summary>
-    /// Returns the physics body shape type (PHYSICS_CIRCLE or PHYSICS_POLYGON)
-    /// </summary>
+    /// <summary> Returns the physics body shape type (PHYSICS_CIRCLE or PHYSICS_POLYGON) </summary>
     public static int GetPhysicsShapeType(int index)
     {
-        return physac.GetPhysicsShapeType(index);
+        return Physac.GetPhysicsShapeType(index);
     }
 
-    /// <summary>
-    /// Returns the amount of vertices of a physics body shape
-    /// </summary>
+    /// <summary> Returns the amount of vertices of a physics body shape </summary>
     public static int GetPhysicsShapeVerticesCount(int index)
     {
-        return physac.GetPhysicsShapeVerticesCount(index);
+        return Physac.GetPhysicsShapeVerticesCount(index);
     }
 
-    /// <summary>
-    /// Returns transformed position of a body shape (body position + vertex transformed position)
-    /// </summary>
+    /// <summary> Returns transformed position of a body shape (body position + vertex transformed position) </summary>
     public static Vector2 GetPhysicsShapeVertex(PhysicsBodyData body, int vertex)
     {
-        return physac.GetPhysicsShapeVertex(body, vertex);
+        return Physac.GetPhysicsShapeVertex(body, vertex);
     }
 
 }

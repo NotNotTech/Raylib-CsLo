@@ -7,17 +7,21 @@ namespace Raylib_CsLo.Codegen.Generators;
 
 using System.Collections.Generic;
 using System.IO;
+using System.Text.Json;
 
-public class DefineGenerator : ClassGenerator
+public class DefineGenerator : BaseGenerator
 {
     List<RaylibDefine> defines;
+    readonly JsonDocument document;
     readonly string fileName;
 
-    public DefineGenerator(List<RaylibDefine> defines, string fileName)
+    public DefineGenerator(JsonDocument document, string fileName)
     {
-        this.defines = defines;
+        this.document = document;
         this.fileName = fileName;
         Debug = false;
+
+        Parse();
     }
 
     public void Generate()
@@ -107,5 +111,21 @@ public class DefineGenerator : ClassGenerator
         string file = CodegenSettings.OutputFolder + fileName + "/" + fileName + "D.cs";
         Directory.CreateDirectory(Path.GetDirectoryName(file));
         File.WriteAllText(file, fileContents.ToString());
+    }
+
+    public void Parse()
+    {
+        defines = new();
+
+        foreach (JsonElement element in document.RootElement.GetProperty("defines").EnumerateArray())
+        {
+            RaylibDefine define = new();
+            define.Name = element.GetProperty("name").ToString();
+            define.Value = element.GetProperty("value").ToString();
+            define.Type = element.GetProperty("type").ToString();
+            define.Description = element.GetProperty("description").ToString();
+
+            defines.Add(define);
+        }
     }
 }

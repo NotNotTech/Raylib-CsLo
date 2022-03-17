@@ -12,17 +12,10 @@ using System.Text.Json;
 
 public static class FunctionParser
 {
-    public static void Parse(List<RaylibFunction> functions, JsonDocument document)
+    public static List<RaylibFunction> Parse(JsonDocument document)
     {
-        Console.WriteLine("\n-- Parsing Functions --\n");
-        ExtractFromJson(functions, document);
+        List<RaylibFunction> funcs = new();
 
-        Console.WriteLine("\n-- Implemented Manually in wrappers/ --\n");
-        ManuallyImplement();
-    }
-
-    static void ExtractFromJson(List<RaylibFunction> functions, JsonDocument document)
-    {
         foreach (JsonElement element in document.RootElement.GetProperty("functions").EnumerateArray())
         {
             RaylibFunction func = new();
@@ -77,18 +70,9 @@ public static class FunctionParser
                 func.SameTypes = true;
             }
 
-            functions.Add(func);
-
-            // Console.WriteLine("{0,-34} {1,15} {2,5}", func.Name + "()", func.SameTypes ? "SameTypes" : "", func.Manual ? "Manual" : "");
+            funcs.Add(func);
         }
-    }
 
-    static void ManuallyImplement()
-    {
-        for (int i = 0; i < CodegenSettings.FunctionsToHandleManually.Length; i++)
-        {
-            string line = CodegenSettings.FunctionsToHandleManually[i];
-            Console.WriteLine(i + 1 + ".\t" + line + "()");
-        }
+        return funcs;
     }
 }

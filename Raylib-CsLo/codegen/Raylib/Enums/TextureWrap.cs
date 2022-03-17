@@ -7,25 +7,15 @@
 
 namespace Raylib_CsLo;
 
-/// <summary>
-/// Texture parameters: wrap mode
-/// </summary>
+/// <summary> Texture parameters: wrap mode </summary>
 public enum TextureWrap
 {
-    /// <summary>
-    /// Repeats texture in tiled mode
-    /// </summary>
+    /// <summary> Repeats texture in tiled mode </summary>
     TEXTURE_WRAP_REPEAT = 0,
-    /// <summary>
-    /// Clamps texture to edge pixel in tiled mode
-    /// </summary>
+    /// <summary> Clamps texture to edge pixel in tiled mode </summary>
     TEXTURE_WRAP_CLAMP = 1,
-    /// <summary>
-    /// Mirrors and repeats the texture in tiled mode
-    /// </summary>
+    /// <summary> Mirrors and repeats the texture in tiled mode </summary>
     TEXTURE_WRAP_MIRROR_REPEAT = 2,
-    /// <summary>
-    /// Mirrors and clamps to border the texture in tiled mode
-    /// </summary>
+    /// <summary> Mirrors and clamps to border the texture in tiled mode </summary>
     TEXTURE_WRAP_MIRROR_CLAMP = 3,
 }

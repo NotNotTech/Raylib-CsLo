@@ -4,27 +4,25 @@
 // The code and 100+ examples are here! https://github.com/NotNotTech/Raylib-CsLo
 
 namespace Raylib_CsLo.Codegen.Generators;
+
 using System.Collections.Generic;
 using System.IO;
+using System.Text.Json;
+using Raylib_CsLo.Codegen.Parsers;
 
-public class SafeClassGenerator : ClassGenerator
+public class SafeClassGenerator : BaseGenerator
 {
-    public static readonly string[] Usings =
-    {
-        "System.Numerics",
-        "Microsoft.Toolkit.HighPerformance.Buffers",
-        "Raylib_CsLo.InternalHelpers",
-    };
-
     List<RaylibFunction> functions;
     string fileName;
+
     int numClosingBrackets;
 
-    public SafeClassGenerator(List<RaylibFunction> functions, string fileName)
+    public SafeClassGenerator(JsonDocument document, string fileName)
     {
-        this.functions = functions;
         this.fileName = fileName;
         Debug = false;
+
+        functions = FunctionParser.Parse(document);
     }
 
     public void Generate()
@@ -37,7 +35,7 @@ public class SafeClassGenerator : ClassGenerator
 
         Line($"namespace {CodegenSettings.NamespaceName};");
 
-        GenUsings();
+        Blank();
 
         Line($"public unsafe partial class {fileName}S");
 
@@ -210,7 +208,16 @@ public class SafeClassGenerator : ClassGenerator
                 return unsafeCall;
         }
 
-        return Call(helper, unsafeCall);
+        RaylibParameter param = func.Parameters?.Find((p) => p.Name.ToLowerInvariant().Contains("length"));
+
+        if (param != null)
+        {
+            return Call(helper, unsafeCall + ", " + param.Name);
+        }
+        else
+        {
+            return Call(helper, unsafeCall);
+        }
     }
 
     /// <summary>
@@ -311,16 +318,5 @@ public class SafeClassGenerator : ClassGenerator
         }
 
         return localVariable;
-    }
-
-    // Gen class usings at top
-    void GenUsings()
-    {
-        Blank();
-        foreach (string import in Usings)
-        {
-            Line("using " + import + ';');
-        }
-        Blank();
     }
 }

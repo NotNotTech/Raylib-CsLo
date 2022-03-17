@@ -7,17 +7,21 @@ namespace Raylib_CsLo.Codegen.Generators;
 
 using System.Collections.Generic;
 using System.IO;
+using System.Text.Json;
 
-public class EnumGenerator : ClassGenerator
+public class EnumGenerator : BaseGenerator
 {
     List<RaylibEnumType> enumTypes;
+    readonly JsonDocument document;
     readonly string fileName;
 
-    public EnumGenerator(List<RaylibEnumType> enumTypes, string fileName)
+    public EnumGenerator(JsonDocument document, string fileName)
     {
-        this.enumTypes = enumTypes;
+        this.document = document;
         this.fileName = fileName;
         Debug = false;
+
+        Parse();
     }
 
     public void Generate()
@@ -46,6 +50,25 @@ public class EnumGenerator : ClassGenerator
             Directory.CreateDirectory(Path.GetDirectoryName(file));
             File.WriteAllText(file, fileContents.ToString());
             fileContents.Clear();
+        }
+    }
+
+    public void Parse()
+    {
+        enumTypes = new();
+
+        foreach (JsonElement element in document.RootElement.GetProperty("enums").EnumerateArray())
+        {
+            RaylibEnumType enumType = new();
+            enumType.Name = element.GetProperty("name").ToString();
+            enumType.Description = element.GetProperty("description").ToString();
+
+            if (element.TryGetProperty("values", out JsonElement val))
+            {
+                enumType.Values = val.Deserialize<List<RaylibEnumValue>>().ToArray();
+            }
+
+            enumTypes.Add(enumType);
         }
     }
 }

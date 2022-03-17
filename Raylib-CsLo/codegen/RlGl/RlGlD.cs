@@ -34,214 +34,130 @@ public unsafe partial class RlGl
 
     public static readonly int RL_DEFAULT_BATCH_BUFFER_ELEMENTS = 8192;
 
-    /// <summary>
-    /// Default number of batch buffers (multi-buffering)
-    /// </summary>
+    /// <summary> Default number of batch buffers (multi-buffering) </summary>
     public static readonly int RL_DEFAULT_BATCH_BUFFERS = 1;
 
-    /// <summary>
-    /// Default number of batch draw calls (by state changes: mode, texture)
-    /// </summary>
+    /// <summary> Default number of batch draw calls (by state changes: mode, texture) </summary>
     public static readonly int RL_DEFAULT_BATCH_DRAWCALLS = 256;
 
-    /// <summary>
-    /// Maximum number of textures units that can be activated on batch drawing (SetShaderValueTexture())
-    /// </summary>
+    /// <summary> Maximum number of textures units that can be activated on batch drawing (SetShaderValueTexture()) </summary>
     public static readonly int RL_DEFAULT_BATCH_MAX_TEXTURE_UNITS = 4;
 
-    /// <summary>
-    /// Maximum size of Matrix stack
-    /// </summary>
+    /// <summary> Maximum size of Matrix stack </summary>
     public static readonly int RL_MAX_MATRIX_STACK_SIZE = 32;
 
-    /// <summary>
-    /// Maximum number of shader locations supported
-    /// </summary>
+    /// <summary> Maximum number of shader locations supported </summary>
     public static readonly int RL_MAX_SHADER_LOCATIONS = 32;
 
-    /// <summary>
-    /// Default near cull distance
-    /// </summary>
+    /// <summary> Default near cull distance </summary>
     public static readonly double RL_CULL_DISTANCE_NEAR = 0.01;
 
-    /// <summary>
-    /// Default far cull distance
-    /// </summary>
+    /// <summary> Default far cull distance </summary>
     public static readonly double RL_CULL_DISTANCE_FAR = 1000.0;
 
-    /// <summary>
-    /// GL_TEXTURE_WRAP_S
-    /// </summary>
+    /// <summary> GL_TEXTURE_WRAP_S </summary>
     public static readonly int RL_TEXTURE_WRAP_S = 10242;
 
-    /// <summary>
-    /// GL_TEXTURE_WRAP_T
-    /// </summary>
+    /// <summary> GL_TEXTURE_WRAP_T </summary>
     public static readonly int RL_TEXTURE_WRAP_T = 10243;
 
-    /// <summary>
-    /// GL_TEXTURE_MAG_FILTER
-    /// </summary>
+    /// <summary> GL_TEXTURE_MAG_FILTER </summary>
     public static readonly int RL_TEXTURE_MAG_FILTER = 10240;
 
-    /// <summary>
-    /// GL_TEXTURE_MIN_FILTER
-    /// </summary>
+    /// <summary> GL_TEXTURE_MIN_FILTER </summary>
     public static readonly int RL_TEXTURE_MIN_FILTER = 10241;
 
-    /// <summary>
-    /// GL_NEAREST
-    /// </summary>
+    /// <summary> GL_NEAREST </summary>
     public static readonly int RL_TEXTURE_FILTER_NEAREST = 9728;
 
-    /// <summary>
-    /// GL_LINEAR
-    /// </summary>
+    /// <summary> GL_LINEAR </summary>
     public static readonly int RL_TEXTURE_FILTER_LINEAR = 9729;
 
-    /// <summary>
-    /// GL_NEAREST_MIPMAP_NEAREST
-    /// </summary>
+    /// <summary> GL_NEAREST_MIPMAP_NEAREST </summary>
     public static readonly int RL_TEXTURE_FILTER_MIP_NEAREST = 9984;
 
-    /// <summary>
-    /// GL_NEAREST_MIPMAP_LINEAR
-    /// </summary>
+    /// <summary> GL_NEAREST_MIPMAP_LINEAR </summary>
     public static readonly int RL_TEXTURE_FILTER_NEAREST_MIP_LINEAR = 9986;
 
-    /// <summary>
-    /// GL_LINEAR_MIPMAP_NEAREST
-    /// </summary>
+    /// <summary> GL_LINEAR_MIPMAP_NEAREST </summary>
     public static readonly int RL_TEXTURE_FILTER_LINEAR_MIP_NEAREST = 9985;
 
-    /// <summary>
-    /// GL_LINEAR_MIPMAP_LINEAR
-    /// </summary>
+    /// <summary> GL_LINEAR_MIPMAP_LINEAR </summary>
     public static readonly int RL_TEXTURE_FILTER_MIP_LINEAR = 9987;
 
-    /// <summary>
-    /// Anisotropic filter (custom identifier)
-    /// </summary>
+    /// <summary> Anisotropic filter (custom identifier) </summary>
     public static readonly int RL_TEXTURE_FILTER_ANISOTROPIC = 12288;
 
-    /// <summary>
-    /// GL_REPEAT
-    /// </summary>
+    /// <summary> GL_REPEAT </summary>
     public static readonly int RL_TEXTURE_WRAP_REPEAT = 10497;
 
-    /// <summary>
-    /// GL_CLAMP_TO_EDGE
-    /// </summary>
+    /// <summary> GL_CLAMP_TO_EDGE </summary>
     public static readonly int RL_TEXTURE_WRAP_CLAMP = 33071;
 
-    /// <summary>
-    /// GL_MIRRORED_REPEAT
-    /// </summary>
+    /// <summary> GL_MIRRORED_REPEAT </summary>
     public static readonly int RL_TEXTURE_WRAP_MIRROR_REPEAT = 33648;
 
-    /// <summary>
-    /// GL_MIRROR_CLAMP_EXT
-    /// </summary>
+    /// <summary> GL_MIRROR_CLAMP_EXT </summary>
     public static readonly int RL_TEXTURE_WRAP_MIRROR_CLAMP = 34626;
 
-    /// <summary>
-    /// GL_MODELVIEW
-    /// </summary>
+    /// <summary> GL_MODELVIEW </summary>
     public static readonly int RL_MODELVIEW = 5888;
 
-    /// <summary>
-    /// GL_PROJECTION
-    /// </summary>
+    /// <summary> GL_PROJECTION </summary>
     public static readonly int RL_PROJECTION = 5889;
 
-    /// <summary>
-    /// GL_TEXTURE
-    /// </summary>
+    /// <summary> GL_TEXTURE </summary>
     public static readonly int RL_TEXTURE = 5890;
 
-    /// <summary>
-    /// GL_LINES
-    /// </summary>
+    /// <summary> GL_LINES </summary>
     public static readonly int RL_LINES = 1;
 
-    /// <summary>
-    /// GL_TRIANGLES
-    /// </summary>
+    /// <summary> GL_TRIANGLES </summary>
     public static readonly int RL_TRIANGLES = 4;
 
-    /// <summary>
-    /// GL_QUADS
-    /// </summary>
+    /// <summary> GL_QUADS </summary>
     public static readonly int RL_QUADS = 7;
 
-    /// <summary>
-    /// GL_UNSIGNED_BYTE
-    /// </summary>
+    /// <summary> GL_UNSIGNED_BYTE </summary>
     public static readonly int RL_UNSIGNED_BYTE = 5121;
 
-    /// <summary>
-    /// GL_FLOAT
-    /// </summary>
+    /// <summary> GL_FLOAT </summary>
     public static readonly int RL_FLOAT = 5126;
 
-    /// <summary>
-    /// GL_STREAM_DRAW
-    /// </summary>
+    /// <summary> GL_STREAM_DRAW </summary>
     public static readonly int RL_STREAM_DRAW = 35040;
 
-    /// <summary>
-    /// GL_STREAM_READ
-    /// </summary>
+    /// <summary> GL_STREAM_READ </summary>
     public static readonly int RL_STREAM_READ = 35041;
 
-    /// <summary>
-    /// GL_STREAM_COPY
-    /// </summary>
+    /// <summary> GL_STREAM_COPY </summary>
     public static readonly int RL_STREAM_COPY = 35042;
 
-    /// <summary>
-    /// GL_STATIC_DRAW
-    /// </summary>
+    /// <summary> GL_STATIC_DRAW </summary>
     public static readonly int RL_STATIC_DRAW = 35044;
 
-    /// <summary>
-    /// GL_STATIC_READ
-    /// </summary>
+    /// <summary> GL_STATIC_READ </summary>
     public static readonly int RL_STATIC_READ = 35045;
 
-    /// <summary>
-    /// GL_STATIC_COPY
-    /// </summary>
+    /// <summary> GL_STATIC_COPY </summary>
     public static readonly int RL_STATIC_COPY = 35046;
 
-    /// <summary>
-    /// GL_DYNAMIC_DRAW
-    /// </summary>
+    /// <summary> GL_DYNAMIC_DRAW </summary>
     public static readonly int RL_DYNAMIC_DRAW = 35048;
 
-    /// <summary>
-    /// GL_DYNAMIC_READ
-    /// </summary>
+    /// <summary> GL_DYNAMIC_READ </summary>
     public static readonly int RL_DYNAMIC_READ = 35049;
 
-    /// <summary>
-    /// GL_DYNAMIC_COPY
-    /// </summary>
+    /// <summary> GL_DYNAMIC_COPY </summary>
     public static readonly int RL_DYNAMIC_COPY = 35050;
 
-    /// <summary>
-    /// GL_FRAGMENT_SHADER
-    /// </summary>
+    /// <summary> GL_FRAGMENT_SHADER </summary>
     public static readonly int RL_FRAGMENT_SHADER = 35632;
 
-    /// <summary>
-    /// GL_VERTEX_SHADER
-    /// </summary>
+    /// <summary> GL_VERTEX_SHADER </summary>
     public static readonly int RL_VERTEX_SHADER = 35633;
 
-    /// <summary>
-    /// GL_COMPUTE_SHADER
-    /// </summary>
+    /// <summary> GL_COMPUTE_SHADER </summary>
     public static readonly int RL_COMPUTE_SHADER = 37305;
 
     // GUARD RL_MATRIX_TYPE 
@@ -312,79 +228,49 @@ public unsafe partial class RlGl
 
     // UNKNOWN GL_DRAW_FRAMEBUFFER GL_FRAMEBUFFER
 
-    /// <summary>
-    /// Binded by default to shader location: 0
-    /// </summary>
+    /// <summary> Binded by default to shader location: 0 </summary>
     public static readonly string RL_DEFAULT_SHADER_ATTRIB_NAME_POSITION = "vertexPosition";
 
-    /// <summary>
-    /// Binded by default to shader location: 1
-    /// </summary>
+    /// <summary> Binded by default to shader location: 1 </summary>
     public static readonly string RL_DEFAULT_SHADER_ATTRIB_NAME_TEXCOORD = "vertexTexCoord";
 
-    /// <summary>
-    /// Binded by default to shader location: 2
-    /// </summary>
+    /// <summary> Binded by default to shader location: 2 </summary>
     public static readonly string RL_DEFAULT_SHADER_ATTRIB_NAME_NORMAL = "vertexNormal";
 
-    /// <summary>
-    /// Binded by default to shader location: 3
-    /// </summary>
+    /// <summary> Binded by default to shader location: 3 </summary>
     public static readonly string RL_DEFAULT_SHADER_ATTRIB_NAME_COLOR = "vertexColor";
 
-    /// <summary>
-    /// Binded by default to shader location: 4
-    /// </summary>
+    /// <summary> Binded by default to shader location: 4 </summary>
     public static readonly string RL_DEFAULT_SHADER_ATTRIB_NAME_TANGENT = "vertexTangent";
 
-    /// <summary>
-    /// Binded by default to shader location: 5
-    /// </summary>
+    /// <summary> Binded by default to shader location: 5 </summary>
     public static readonly string RL_DEFAULT_SHADER_ATTRIB_NAME_TEXCOORD2 = "vertexTexCoord2";
 
-    /// <summary>
-    /// model-view-projection matrix
-    /// </summary>
+    /// <summary> model-view-projection matrix </summary>
     public static readonly string RL_DEFAULT_SHADER_UNIFORM_NAME_MVP = "mvp";
 
-    /// <summary>
-    /// view matrix
-    /// </summary>
+    /// <summary> view matrix </summary>
     public static readonly string RL_DEFAULT_SHADER_UNIFORM_NAME_VIEW = "matView";
 
-    /// <summary>
-    /// projection matrix
-    /// </summary>
+    /// <summary> projection matrix </summary>
     public static readonly string RL_DEFAULT_SHADER_UNIFORM_NAME_PROJECTION = "matProjection";
 
-    /// <summary>
-    /// model matrix
-    /// </summary>
+    /// <summary> model matrix </summary>
     public static readonly string RL_DEFAULT_SHADER_UNIFORM_NAME_MODEL = "matModel";
 
-    /// <summary>
-    /// normal matrix (transpose(inverse(matModelView))
-    /// </summary>
+    /// <summary> normal matrix (transpose(inverse(matModelView)) </summary>
     public static readonly string RL_DEFAULT_SHADER_UNIFORM_NAME_NORMAL = "matNormal";
 
-    /// <summary>
-    /// color diffuse (base tint color, multiplied by texture color)
-    /// </summary>
+    /// <summary> color diffuse (base tint color, multiplied by texture color) </summary>
     public static readonly string RL_DEFAULT_SHADER_UNIFORM_NAME_COLOR = "colDiffuse";
 
-    /// <summary>
-    /// texture0 (texture slot active 0)
-    /// </summary>
+    /// <summary> texture0 (texture slot active 0) </summary>
     public static readonly string RL_DEFAULT_SHADER_SAMPLER2D_NAME_TEXTURE0 = "texture0";
 
-    /// <summary>
-    /// texture1 (texture slot active 1)
-    /// </summary>
+    /// <summary> texture1 (texture slot active 1) </summary>
     public static readonly string RL_DEFAULT_SHADER_SAMPLER2D_NAME_TEXTURE1 = "texture1";
 
-    /// <summary>
-    /// texture2 (texture slot active 2)
-    /// </summary>
+    /// <summary> texture2 (texture slot active 2) </summary>
     public static readonly string RL_DEFAULT_SHADER_SAMPLER2D_NAME_TEXTURE2 = "texture2";
 
     // MACRO MIN(a,b) (((a)<(b))?(a):(b))

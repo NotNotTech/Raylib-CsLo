@@ -42,6 +42,15 @@ public static class CodegenSettings
         "UpdateTexture",
     };
 
+    public static readonly string[] StructsOverride =
+    {
+        "Color",
+        "Matrix2x2",
+        "Vector2",
+        "Vector3",
+        "Rectangle",
+    };
+
     // Overrides a parameter of a function with the name to be the safe enum type instead of int
     public static readonly Dictionary<string, (string type, string name)> ParamTypeEnumOverride = new()
     {

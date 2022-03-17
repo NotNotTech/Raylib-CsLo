@@ -7,41 +7,23 @@
 
 namespace Raylib_CsLo;
 
-/// <summary>
-/// edef enum {
-/// </summary>
+/// <summary> edef enum { </summary>
 public enum rlFramebufferAttachTextureType
 {
-    /// <summary>
-    /// 
-    /// </summary>
+    /// <summary>  </summary>
     RL_ATTACHMENT_CUBEMAP_POSITIVE_X = 0,
-    /// <summary>
-    /// 
-    /// </summary>
+    /// <summary>  </summary>
     RL_ATTACHMENT_CUBEMAP_NEGATIVE_X = 1,
-    /// <summary>
-    /// 
-    /// </summary>
+    /// <summary>  </summary>
     RL_ATTACHMENT_CUBEMAP_POSITIVE_Y = 2,
-    /// <summary>
-    /// 
-    /// </summary>
+    /// <summary>  </summary>
     RL_ATTACHMENT_CUBEMAP_NEGATIVE_Y = 3,
-    /// <summary>
-    /// 
-    /// </summary>
+    /// <summary>  </summary>
     RL_ATTACHMENT_CUBEMAP_POSITIVE_Z = 4,
-    /// <summary>
-    /// 
-    /// </summary>
+    /// <summary>  </summary>
     RL_ATTACHMENT_CUBEMAP_NEGATIVE_Z = 5,
-    /// <summary>
-    /// 
-    /// </summary>
+    /// <summary>  </summary>
     RL_ATTACHMENT_TEXTURE2D = 100,
-    /// <summary>
-    /// 
-    /// </summary>
+    /// <summary>  </summary>
     RL_ATTACHMENT_RENDERBUFFER = 200,
 }

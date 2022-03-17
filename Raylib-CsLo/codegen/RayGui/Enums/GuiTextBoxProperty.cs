@@ -7,25 +7,15 @@
 
 namespace Raylib_CsLo;
 
-/// <summary>
-/// TextBox/TextBoxMulti/ValueBox/Spinner
-/// </summary>
+/// <summary> TextBox/TextBoxMulti/ValueBox/Spinner </summary>
 public enum GuiTextBoxProperty
 {
-    /// <summary>
-    /// 
-    /// </summary>
+    /// <summary>  </summary>
     TEXT_INNER_PADDING = 16,
-    /// <summary>
-    /// 
-    /// </summary>
+    /// <summary>  </summary>
     TEXT_LINES_PADDING = 17,
-    /// <summary>
-    /// 
-    /// </summary>
+    /// <summary>  </summary>
     COLOR_SELECTED_FG = 18,
-    /// <summary>
-    /// 
-    /// </summary>
+    /// <summary>  </summary>
     COLOR_SELECTED_BG = 19,
 }

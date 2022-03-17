@@ -7,17 +7,11 @@
 
 namespace Raylib_CsLo;
 
-/// <summary>
-/// DropdownBox
-/// </summary>
+/// <summary> DropdownBox </summary>
 public enum GuiDropdownBoxProperty
 {
-    /// <summary>
-    /// 
-    /// </summary>
+    /// <summary>  </summary>
     ARROW_PADDING = 16,
-    /// <summary>
-    /// 
-    /// </summary>
+    /// <summary>  </summary>
     DROPDOWN_ITEMS_PADDING = 17,
 }

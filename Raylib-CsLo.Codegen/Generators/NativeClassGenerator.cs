@@ -7,22 +7,22 @@ namespace Raylib_CsLo.Codegen.Generators;
 
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
+using System.Text.Json;
 
-public class NativeClassGenerator : ClassGenerator
+public class NativeClassGenerator : BaseGenerator
 {
     List<RaylibFunction> functions;
+    readonly JsonDocument document;
     string fileName;
-    public static readonly string[] Usings =
-    {
-        "System.Runtime.InteropServices",
-        "System.Numerics",
-    };
 
-    public NativeClassGenerator(List<RaylibFunction> functions, string fileName)
+    public NativeClassGenerator(JsonDocument document, string fileName)
     {
-        this.functions = functions;
+        this.document = document;
         this.fileName = fileName;
         Debug = false;
+
+        Parse();
     }
 
     public void Generate()
@@ -35,7 +35,7 @@ public class NativeClassGenerator : ClassGenerator
 
         Line($"namespace {CodegenSettings.NamespaceName};");
 
-        UsingsList();
+        Blank();
 
         Line($"public unsafe partial class {fileName}");
 
@@ -72,7 +72,6 @@ public class NativeClassGenerator : ClassGenerator
         return TypeConverter.FromCToUnsafeCs(func.Return);
     }
 
-    // (...);
     string GenParameterDefinitions(RaylibFunction func)
     {
         string parameters = "";
@@ -111,13 +110,65 @@ public class NativeClassGenerator : ClassGenerator
         return parameters;
     }
 
-    public void UsingsList()
+    void Parse()
     {
-        Blank();
-        foreach (string import in Usings)
+        functions = new();
+
+        foreach (JsonElement element in document.RootElement.GetProperty("functions").EnumerateArray())
         {
-            Line("using " + import + ';');
+            RaylibFunction func = new();
+            func.Name = element.GetProperty("name").ToString();
+            func.Description = element.GetProperty("description").ToString();
+            func.Return = element.GetProperty("returnType").ToString().Replace(" *", "*");
+
+            List<RaylibParam> parameters = null;
+
+            if (element.TryGetProperty("params", out JsonElement val))
+            {
+                parameters = val.Deserialize<List<RaylibParam>>();
+            }
+
+            // Skip auto gening these functions be sure to add them manually
+            if (CodegenSettings.FunctionsToHandleManually.Contains(func.Name))
+            {
+                func.Manual = true;
+            }
+
+            bool isReturnSame = TypeConverter.FromCToUnsafeCs(func.Return).Equals(TypeConverter.FromCToSafeCs(func.Return), System.StringComparison.Ordinal);
+            bool isParamsSame = true;
+            if (parameters != null)
+            {
+                func.Parameters = new();
+
+                foreach (RaylibParam param in parameters)
+                {
+                    string type = param.Type.Replace(" *", "*");
+
+                    if (TypeConverter.FromCToUnsafeCs(func.Return) != TypeConverter.FromCToSafeCs(func.Return))
+                    {
+                        isParamsSame = false;
+                    }
+
+                    // Handle C# keyword named variables
+                    if (param.Name == "checked")
+                    {
+                        param.Name = "@checked";
+                    }
+                    else if (param.Name == "readonly")
+                    {
+                        param.Name = "@readonly";
+                    }
+
+                    func.Parameters.Add(new RaylibParameter(param.Name, type));
+                }
+            }
+
+            if (isReturnSame && isParamsSame)
+            {
+                func.SameTypes = true;
+            }
+
+            functions.Add(func);
         }
-        Blank();
     }
 }

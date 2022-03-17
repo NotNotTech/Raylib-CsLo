@@ -28,36 +28,24 @@ public unsafe partial class RayGui
 
     // GUARD RICONS_IMPLEMENTATION 
 
-    /// <summary>
-    /// Size of icons (squared)
-    /// </summary>
+    /// <summary> Size of icons (squared) </summary>
     public static readonly int RICON_SIZE = 16;
 
-    /// <summary>
-    /// Maximum number of icons
-    /// </summary>
+    /// <summary> Maximum number of icons </summary>
     public static readonly int RICON_MAX_ICONS = 256;
 
-    /// <summary>
-    /// Maximum length of icon name id
-    /// </summary>
+    /// <summary> Maximum length of icon name id </summary>
     public static readonly int RICON_MAX_NAME_LENGTH = 32;
 
     // UNKNOWN RICON_DATA_ELEMENTS (RICON_SIZE*RICON_SIZE/32)
 
-    /// <summary>
-    /// Maximum number of standard controls
-    /// </summary>
+    /// <summary> Maximum number of standard controls </summary>
     public static readonly int RAYGUI_MAX_CONTROLS = 16;
 
-    /// <summary>
-    /// Maximum number of standard properties
-    /// </summary>
+    /// <summary> Maximum number of standard properties </summary>
     public static readonly int RAYGUI_MAX_PROPS_BASE = 16;
 
-    /// <summary>
-    /// Maximum number of extended properties
-    /// </summary>
+    /// <summary> Maximum number of extended properties </summary>
     public static readonly int RAYGUI_MAX_PROPS_EXTENDED = 8;
 
     public static readonly int KEY_RIGHT = 262;
@@ -102,9 +90,7 @@ public unsafe partial class RayGui
 
     public static readonly int TEXTINPUTBOX_MAX_TEXT_LENGTH = 256;
 
-    /// <summary>
-    /// Grid lines alpha amount
-    /// </summary>
+    /// <summary> Grid lines alpha amount </summary>
     public static readonly float GRID_COLOR_ALPHA = 0.15f;
 
     // MACRO BIT_CHECK(a,b) ((a) & (1<<(b)))
@@ -123,14 +109,10 @@ public unsafe partial class RayGui
 
     public static readonly int MAX_FORMATTEXT_LENGTH = 64;
 
-    /// <summary>
-    /// Size of static buffer: TextSplit()
-    /// </summary>
+    /// <summary> Size of static buffer: TextSplit() </summary>
     public static readonly int TEXTSPLIT_MAX_TEXT_BUFFER_LENGTH = 1024;
 
-    /// <summary>
-    /// Size of static pointers array: TextSplit()
-    /// </summary>
+    /// <summary> Size of static pointers array: TextSplit() </summary>
     public static readonly int TEXTSPLIT_MAX_SUBSTRINGS_COUNT = 128;
 
 }

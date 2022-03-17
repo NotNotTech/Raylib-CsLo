@@ -73,7 +73,7 @@
           "description": "Shape type (circle or polygon)"
         },
         {
-          "type": "PhysicsBody",
+          "type": "PhysicsBody*",
           "name": "body",
           "description": "Shape physics body data pointer"
         },
@@ -252,8 +252,7 @@
       ]
     }
   ],
-  "enums": [
-  ],
+  "enums": [],
   "defines": [
     {
       "name": "PHYSAC_H",

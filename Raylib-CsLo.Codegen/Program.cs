@@ -6,15 +6,12 @@
 namespace Raylib_CsLo.Codegen;
 
 using System;
-using System.Collections.Generic;
 using System.IO;
 using System.Text.Json;
 using Raylib_CsLo.Codegen.Generators;
-using Raylib_CsLo.Codegen.Parsers;
 
 public class Program
 {
-
     public static void Main()
     {
         Console.WriteLine("\n-- Raylib Code Gen --\n");
@@ -27,38 +24,35 @@ public class Program
         Directory.CreateDirectory(CodegenSettings.OutputFolder);
         foreach (string bindingPath in Directory.GetFiles(CodegenSettings.BindingsFolder))
         {
-            List<RaylibFunction> functions = new();
-            List<RaylibDefine> defines = new();
-            List<RaylibEnumType> enums = new();
-
-            string fileName = new(Path.GetFileNameWithoutExtension(bindingPath.Replace("_api", "")));
+            string fileName = Path.GetFileNameWithoutExtension(bindingPath).Replace("_api", "");
 
             fileName = fileName switch
             {
                 "raylib" => "Raylib",
                 "raygui" => "RayGui",
                 "rlgl" => "RlGl",
+                "easings" => "Easings",
+                "physac" => "Physac",
+                "raymath" => "RayMath",
                 _ => fileName,
             };
 
-            using (JsonDocument document = JsonDocument.Parse(File.ReadAllText(bindingPath)))
-            {
-                FunctionParser.Parse(functions, document);
-                DefineParser.Parse(defines, document);
-                EnumParser.Parse(enums, document);
-            }
+            using JsonDocument document = JsonDocument.Parse(File.ReadAllText(bindingPath));
 
-            NativeClassGenerator nativeGenerator = new(functions, fileName.ToString());
+            NativeClassGenerator nativeGenerator = new(document, fileName.ToString());
             nativeGenerator.Generate();
 
-            SafeClassGenerator safeGenerator = new(functions, fileName.ToString());
+            SafeClassGenerator safeGenerator = new(document, fileName.ToString());
             safeGenerator.Generate();
 
-            DefineGenerator defineGenerator = new(defines, fileName.ToString());
+            DefineGenerator defineGenerator = new(document, fileName.ToString());
             defineGenerator.Generate();
 
-            EnumGenerator enumGenerator = new(enums, fileName.ToString());
+            EnumGenerator enumGenerator = new(document, fileName.ToString());
             enumGenerator.Generate();
+
+            StructGenerator structGenerator = new(document, fileName.ToString());
+            structGenerator.Generate();
         }
     }
 }

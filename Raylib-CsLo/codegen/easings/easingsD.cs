@@ -8,7 +8,7 @@
 #pragma warning disable
 
 namespace Raylib_CsLo;
-public unsafe partial class easings
+public unsafe partial class Easings
 {
     // GUARD EASINGS_H 
 
@@ -16,9 +16,7 @@ public unsafe partial class easings
 
     // UNKNOWN EASEDEF static inline
 
-    /// <summary>
-    /// equired asMathF.PI is not always defined in math.h
-    /// </summary>
+    /// <summary> equired asMathF.PI is not always defined in math.h </summary>
     public static readonly float PI = 3.14159265358979323846f;
 
 }

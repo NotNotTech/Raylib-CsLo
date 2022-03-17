@@ -7,17 +7,11 @@
 
 namespace Raylib_CsLo;
 
-/// <summary>
-/// ScrollBar side
-/// </summary>
+/// <summary> ScrollBar side </summary>
 public enum GuiScrollBarSide
 {
-    /// <summary>
-    /// 
-    /// </summary>
+    /// <summary>  </summary>
     SCROLLBAR_LEFT_SIDE = 0,
-    /// <summary>
-    /// 
-    /// </summary>
+    /// <summary>  </summary>
     SCROLLBAR_RIGHT_SIDE = 1,
 }

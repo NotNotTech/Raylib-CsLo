@@ -56,11 +56,6 @@ global using static Raylib_CsLo.TraceLogLevel;
 /////////////////////////////////////////
 /////////////////////////////////////////
 /////////////////////////////////////////
-global using Camera = Raylib_CsLo.Camera3D;
-global using RenderTexture2D = Raylib_CsLo.RenderTexture;
-global using Texture2D = Raylib_CsLo.Texture;
-global using TextureCubemap = Raylib_CsLo.Texture;
-global using Matrix = System.Numerics.Matrix4x4;
 
 
 #pragma warning disable CA1050
@@ -113,7 +108,7 @@ public static class Program
         // Raylib_CsLo.Examples.Models.Animation.Example();
         // Raylib_CsLo.Examples.Models.Billboard.Example();
         // Raylib_CsLo.Examples.Models.BoxCollisions.Example();
-        Raylib_CsLo.Examples.Models.Cubicmap.Example();
+        // Raylib_CsLo.Examples.Models.Cubicmap.Example();
         Raylib_CsLo.Examples.Models.FirstPersonMaze.Example();
         Raylib_CsLo.Examples.Models.GeometricShapes.Example();
         Raylib_CsLo.Examples.Models.Heightmap.Example();

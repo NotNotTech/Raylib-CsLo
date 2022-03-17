@@ -7,33 +7,19 @@
 
 namespace Raylib_CsLo;
 
-/// <summary>
-/// Cubemap layouts
-/// </summary>
+/// <summary> Cubemap layouts </summary>
 public enum CubemapLayout
 {
-    /// <summary>
-    /// Automatically detect layout type
-    /// </summary>
+    /// <summary> Automatically detect layout type </summary>
     CUBEMAP_LAYOUT_AUTO_DETECT = 0,
-    /// <summary>
-    /// Layout is defined by a vertical line with faces
-    /// </summary>
+    /// <summary> Layout is defined by a vertical line with faces </summary>
     CUBEMAP_LAYOUT_LINE_VERTICAL = 1,
-    /// <summary>
-    /// Layout is defined by an horizontal line with faces
-    /// </summary>
+    /// <summary> Layout is defined by an horizontal line with faces </summary>
     CUBEMAP_LAYOUT_LINE_HORIZONTAL = 2,
-    /// <summary>
-    /// Layout is defined by a 3x4 cross with cubemap faces
-    /// </summary>
+    /// <summary> Layout is defined by a 3x4 cross with cubemap faces </summary>
     CUBEMAP_LAYOUT_CROSS_THREE_BY_FOUR = 3,
-    /// <summary>
-    /// Layout is defined by a 4x3 cross with cubemap faces
-    /// </summary>
+    /// <summary> Layout is defined by a 4x3 cross with cubemap faces </summary>
     CUBEMAP_LAYOUT_CROSS_FOUR_BY_THREE = 4,
-    /// <summary>
-    /// Layout is defined by a panorama image (equirectangular map)
-    /// </summary>
+    /// <summary> Layout is defined by a panorama image (equirectangular map) </summary>
     CUBEMAP_LAYOUT_PANORAMA = 5,
 }

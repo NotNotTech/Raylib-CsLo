@@ -7,33 +7,19 @@
 
 namespace Raylib_CsLo;
 
-/// <summary>
-/// ScrollBar
-/// </summary>
+/// <summary> ScrollBar </summary>
 public enum GuiScrollBarProperty
 {
-    /// <summary>
-    /// 
-    /// </summary>
+    /// <summary>  </summary>
     ARROWS_SIZE = 16,
-    /// <summary>
-    /// 
-    /// </summary>
+    /// <summary>  </summary>
     ARROWS_VISIBLE = 17,
-    /// <summary>
-    /// 
-    /// </summary>
+    /// <summary>  </summary>
     SCROLL_SLIDER_PADDING = 18,
-    /// <summary>
-    /// 
-    /// </summary>
+    /// <summary>  </summary>
     SCROLL_SLIDER_SIZE = 19,
-    /// <summary>
-    /// 
-    /// </summary>
+    /// <summary>  </summary>
     SCROLL_PADDING = 20,
-    /// <summary>
-    /// 
-    /// </summary>
+    /// <summary>  </summary>
     SCROLL_SPEED = 21,
 }

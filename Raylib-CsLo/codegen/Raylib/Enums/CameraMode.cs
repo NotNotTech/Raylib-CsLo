@@ -7,29 +7,17 @@
 
 namespace Raylib_CsLo;
 
-/// <summary>
-/// Camera system modes
-/// </summary>
+/// <summary> Camera system modes </summary>
 public enum CameraMode
 {
-    /// <summary>
-    /// Custom camera
-    /// </summary>
+    /// <summary> Custom camera </summary>
     CAMERA_CUSTOM = 0,
-    /// <summary>
-    /// Free camera
-    /// </summary>
+    /// <summary> Free camera </summary>
     CAMERA_FREE = 1,
-    /// <summary>
-    /// Orbital camera
-    /// </summary>
+    /// <summary> Orbital camera </summary>
     CAMERA_ORBITAL = 2,
-    /// <summary>
-    /// First person camera
-    /// </summary>
+    /// <summary> First person camera </summary>
     CAMERA_FIRST_PERSON = 3,
-    /// <summary>
-    /// Third person camera
-    /// </summary>
+    /// <summary> Third person camera </summary>
     CAMERA_THIRD_PERSON = 4,
 }

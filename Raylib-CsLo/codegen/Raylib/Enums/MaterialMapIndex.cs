@@ -7,53 +7,29 @@
 
 namespace Raylib_CsLo;
 
-/// <summary>
-/// Material map index
-/// </summary>
+/// <summary> Material map index </summary>
 public enum MaterialMapIndex
 {
-    /// <summary>
-    /// Albedo material (same as: MATERIAL_MAP_DIFFUSE)
-    /// </summary>
+    /// <summary> Albedo material (same as: MATERIAL_MAP_DIFFUSE) </summary>
     MATERIAL_MAP_ALBEDO = 0,
-    /// <summary>
-    /// Metalness material (same as: MATERIAL_MAP_SPECULAR)
-    /// </summary>
+    /// <summary> Metalness material (same as: MATERIAL_MAP_SPECULAR) </summary>
     MATERIAL_MAP_METALNESS = 1,
-    /// <summary>
-    /// Normal material
-    /// </summary>
+    /// <summary> Normal material </summary>
     MATERIAL_MAP_NORMAL = 2,
-    /// <summary>
-    /// Roughness material
-    /// </summary>
+    /// <summary> Roughness material </summary>
     MATERIAL_MAP_ROUGHNESS = 3,
-    /// <summary>
-    /// Ambient occlusion material
-    /// </summary>
+    /// <summary> Ambient occlusion material </summary>
     MATERIAL_MAP_OCCLUSION = 4,
-    /// <summary>
-    /// Emission material
-    /// </summary>
+    /// <summary> Emission material </summary>
     MATERIAL_MAP_EMISSION = 5,
-    /// <summary>
-    /// Heightmap material
-    /// </summary>
+    /// <summary> Heightmap material </summary>
     MATERIAL_MAP_HEIGHT = 6,
-    /// <summary>
-    /// Cubemap material (NOTE: Uses GL_TEXTURE_CUBE_MAP)
-    /// </summary>
+    /// <summary> Cubemap material (NOTE: Uses GL_TEXTURE_CUBE_MAP) </summary>
     MATERIAL_MAP_CUBEMAP = 7,
-    /// <summary>
-    /// Irradiance material (NOTE: Uses GL_TEXTURE_CUBE_MAP)
-    /// </summary>
+    /// <summary> Irradiance material (NOTE: Uses GL_TEXTURE_CUBE_MAP) </summary>
     MATERIAL_MAP_IRRADIANCE = 8,
-    /// <summary>
-    /// Prefilter material (NOTE: Uses GL_TEXTURE_CUBE_MAP)
-    /// </summary>
+    /// <summary> Prefilter material (NOTE: Uses GL_TEXTURE_CUBE_MAP) </summary>
     MATERIAL_MAP_PREFILTER = 9,
-    /// <summary>
-    /// Brdf material
-    /// </summary>
+    /// <summary> Brdf material </summary>
     MATERIAL_MAP_BRDF = 10,
 }

@@ -7,29 +7,17 @@
 
 namespace Raylib_CsLo;
 
-/// <summary>
-/// ColorPicker
-/// </summary>
+/// <summary> ColorPicker </summary>
 public enum GuiColorPickerProperty
 {
-    /// <summary>
-    /// 
-    /// </summary>
+    /// <summary>  </summary>
     COLOR_SELECTOR_SIZE = 16,
-    /// <summary>
-    /// Right hue bar width
-    /// </summary>
+    /// <summary> Right hue bar width </summary>
     HUEBAR_WIDTH = 17,
-    /// <summary>
-    /// Right hue bar separation from panel
-    /// </summary>
+    /// <summary> Right hue bar separation from panel </summary>
     HUEBAR_PADDING = 18,
-    /// <summary>
-    /// Right hue bar selector height
-    /// </summary>
+    /// <summary> Right hue bar selector height </summary>
     HUEBAR_SELECTOR_HEIGHT = 19,
-    /// <summary>
-    /// Right hue bar selector overflow
-    /// </summary>
+    /// <summary> Right hue bar selector overflow </summary>
     HUEBAR_SELECTOR_OVERFLOW = 20,
 }

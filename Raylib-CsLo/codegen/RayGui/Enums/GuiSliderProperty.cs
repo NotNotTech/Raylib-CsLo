@@ -7,17 +7,11 @@
 
 namespace Raylib_CsLo;
 
-/// <summary>
-/// Slider/SliderBar
-/// </summary>
+/// <summary> Slider/SliderBar </summary>
 public enum GuiSliderProperty
 {
-    /// <summary>
-    /// 
-    /// </summary>
+    /// <summary>  </summary>
     SLIDER_WIDTH = 16,
-    /// <summary>
-    /// 
-    /// </summary>
+    /// <summary>  </summary>
     SLIDER_PADDING = 17,
 }

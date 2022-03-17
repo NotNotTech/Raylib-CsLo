@@ -7,25 +7,15 @@
 
 namespace Raylib_CsLo;
 
-/// <summary>
-/// ListView
-/// </summary>
+/// <summary> ListView </summary>
 public enum GuiListViewProperty
 {
-    /// <summary>
-    /// 
-    /// </summary>
+    /// <summary>  </summary>
     LIST_ITEMS_HEIGHT = 16,
-    /// <summary>
-    /// 
-    /// </summary>
+    /// <summary>  </summary>
     LIST_ITEMS_PADDING = 17,
-    /// <summary>
-    /// 
-    /// </summary>
+    /// <summary>  </summary>
     SCROLLBAR_WIDTH = 18,
-    /// <summary>
-    /// 
-    /// </summary>
+    /// <summary>  </summary>
     SCROLLBAR_SIDE = 19,
 }

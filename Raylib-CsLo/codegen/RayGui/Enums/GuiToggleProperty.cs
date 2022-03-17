@@ -7,13 +7,9 @@
 
 namespace Raylib_CsLo;
 
-/// <summary>
-/// Toggle/ToggleGroup
-/// </summary>
+/// <summary> Toggle/ToggleGroup </summary>
 public enum GuiToggleProperty
 {
-    /// <summary>
-    /// 
-    /// </summary>
+    /// <summary>  </summary>
     GROUP_PADDING = 16,
 }

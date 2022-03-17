@@ -7,13 +7,9 @@
 
 namespace Raylib_CsLo;
 
-/// <summary>
-/// CheckBox
-/// </summary>
+/// <summary> CheckBox </summary>
 public enum GuiCheckBoxProperty
 {
-    /// <summary>
-    /// 
-    /// </summary>
+    /// <summary>  </summary>
     CHECK_PADDING = 16,
 }
