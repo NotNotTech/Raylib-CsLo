@@ -43,14 +43,14 @@ public static unsafe class NPatchDrawing
         Rectangle dstRecV = new(92.0f, 160.0f, 32.0f, 32.0f);
 
         // A 9-patch (NPATCH_NINE_PATCH) changes its sizes in both axis
-        NPatchInfo ninePatchInfo1 = new(new Rectangle(0.0f, 0.0f, 64.0f, 64.0f), 12, 40, 12, 12, NPATCH_NINE_PATCH);
-        NPatchInfo ninePatchInfo2 = new(new Rectangle(0.0f, 128.0f, 64.0f, 64.0f), 16, 16, 16, 16, NPATCH_NINE_PATCH);
+        NPatchInfo ninePatchInfo1 = new(new Rectangle(0.0f, 0.0f, 64.0f, 64.0f), 12, 40, 12, 12, NpatchNinePatch);
+        NPatchInfo ninePatchInfo2 = new(new Rectangle(0.0f, 128.0f, 64.0f, 64.0f), 16, 16, 16, 16, NpatchNinePatch);
 
         // A horizontal 3-patch (NPATCH_THREE_PATCH_HORIZONTAL) changes its sizes along the x axis only
-        NPatchInfo h3PatchInfo = new(new Rectangle(0.0f, 64.0f, 64.0f, 64.0f), 8, 8, 8, 8, NPATCH_THREE_PATCH_HORIZONTAL);
+        NPatchInfo h3PatchInfo = new(new Rectangle(0.0f, 64.0f, 64.0f, 64.0f), 8, 8, 8, 8, NpatchThreePatchHorizontal);
 
         // A vertical 3-patch (NPATCH_THREE_PATCH_VERTICAL) changes its sizes along the y axis only
-        NPatchInfo v3PatchInfo = new(new Rectangle(0.0f, 192.0f, 64.0f, 64.0f), 6, 6, 6, 6, NPATCH_THREE_PATCH_VERTICAL);
+        NPatchInfo v3PatchInfo = new(new Rectangle(0.0f, 192.0f, 64.0f, 64.0f), 6, 6, 6, 6, NpatchThreePatchVertical);
 
         SetTargetFPS(60);
 
@@ -63,52 +63,52 @@ public static unsafe class NPatchDrawing
             Vector2 mousePosition = GetMousePosition();
 
             // Resize the n-patches based on mouse position
-            dstRec1.width = mousePosition.X - dstRec1.X;
-            dstRec1.height = mousePosition.Y - dstRec1.Y;
-            dstRec2.width = mousePosition.X - dstRec2.X;
-            dstRec2.height = mousePosition.Y - dstRec2.Y;
-            dstRecH.width = mousePosition.X - dstRecH.X;
-            dstRecV.height = mousePosition.Y - dstRecV.Y;
+            dstRec1.Width = mousePosition.X - dstRec1.X;
+            dstRec1.Height = mousePosition.Y - dstRec1.Y;
+            dstRec2.Width = mousePosition.X - dstRec2.X;
+            dstRec2.Height = mousePosition.Y - dstRec2.Y;
+            dstRecH.Width = mousePosition.X - dstRecH.X;
+            dstRecV.Height = mousePosition.Y - dstRecV.Y;
 
             // Set a minimum width and/or height
-            if (dstRec1.width < 1.0f)
+            if (dstRec1.Width < 1.0f)
             {
-                dstRec1.width = 1.0f;
+                dstRec1.Width = 1.0f;
             }
 
-            if (dstRec1.width > 300.0f)
+            if (dstRec1.Width > 300.0f)
             {
-                dstRec1.width = 300.0f;
+                dstRec1.Width = 300.0f;
             }
 
-            if (dstRec1.height < 1.0f)
+            if (dstRec1.Height < 1.0f)
             {
-                dstRec1.height = 1.0f;
+                dstRec1.Height = 1.0f;
             }
 
-            if (dstRec2.width < 1.0f)
+            if (dstRec2.Width < 1.0f)
             {
-                dstRec2.width = 1.0f;
+                dstRec2.Width = 1.0f;
             }
 
-            if (dstRec2.width > 300.0f)
+            if (dstRec2.Width > 300.0f)
             {
-                dstRec2.width = 300.0f;
+                dstRec2.Width = 300.0f;
             }
 
-            if (dstRec2.height < 1.0f)
+            if (dstRec2.Height < 1.0f)
             {
-                dstRec2.height = 1.0f;
+                dstRec2.Height = 1.0f;
             }
 
-            if (dstRecH.width < 1.0f)
+            if (dstRecH.Width < 1.0f)
             {
-                dstRecH.width = 1.0f;
+                dstRecH.Width = 1.0f;
             }
 
-            if (dstRecV.height < 1.0f)
+            if (dstRecV.Height < 1.0f)
             {
-                dstRecV.height = 1.0f;
+                dstRecV.Height = 1.0f;
             }
 
 
@@ -116,20 +116,20 @@ public static unsafe class NPatchDrawing
 
             BeginDrawing();
 
-            ClearBackground(RAYWHITE);
+            ClearBackground(Raywhite);
 
             // Draw the n-patches
-            DrawTextureNPatch(nPatchTexture, ninePatchInfo2, dstRec2, origin, 0.0f, WHITE);
-            DrawTextureNPatch(nPatchTexture, ninePatchInfo1, dstRec1, origin, 0.0f, WHITE);
-            DrawTextureNPatch(nPatchTexture, h3PatchInfo, dstRecH, origin, 0.0f, WHITE);
-            DrawTextureNPatch(nPatchTexture, v3PatchInfo, dstRecV, origin, 0.0f, WHITE);
+            DrawTextureNPatch(nPatchTexture, ninePatchInfo2, dstRec2, origin, 0.0f, White);
+            DrawTextureNPatch(nPatchTexture, ninePatchInfo1, dstRec1, origin, 0.0f, White);
+            DrawTextureNPatch(nPatchTexture, h3PatchInfo, dstRecH, origin, 0.0f, White);
+            DrawTextureNPatch(nPatchTexture, v3PatchInfo, dstRecV, origin, 0.0f, White);
 
             // Draw the source texture
-            DrawRectangleLines(5, 88, 74, 266, BLUE);
-            DrawTexture(nPatchTexture, 10, 93, WHITE);
-            DrawText("TEXTURE", 15, 360, 10, DARKGRAY);
+            DrawRectangleLines(5, 88, 74, 266, Blue);
+            DrawTexture(nPatchTexture, 10, 93, White);
+            DrawText("TEXTURE", 15, 360, 10, Darkgray);
 
-            DrawText("Move the mouse to stretch or shrink the n-patches", 10, 20, 20, DARKGRAY);
+            DrawText("Move the mouse to stretch or shrink the n-patches", 10, 20, 20, Darkgray);
 
             EndDrawing();
 

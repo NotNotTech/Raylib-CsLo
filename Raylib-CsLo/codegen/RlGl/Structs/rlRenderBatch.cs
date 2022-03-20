@@ -4,10 +4,11 @@
 // The code and 100+ examples are here! https://github.com/NotNotTech/Raylib-CsLo
 
 // Warning This file is auto generated and changes will be lost
+
 namespace Raylib_CsLo;
 
 /// <summary> rlRenderBatch type </summary>
-public unsafe partial struct rlRenderBatch
+public unsafe partial struct RlRenderBatch
 {
     /// <summary> Number of vertex buffers (multi-buffering support) </summary>
     public int bufferCount;
@@ -16,10 +17,10 @@ public unsafe partial struct rlRenderBatch
     public int currentBuffer;
 
     /// <summary> Dynamic buffer(s) for vertex data </summary>
-    public rlVertexBuffer * vertexBuffer;
+    public RlVertexBuffer* vertexBuffer;
 
     /// <summary> Draw calls array, depends on textureId </summary>
-    public rlDrawCall * draws;
+    public RlDrawCall* draws;
 
     /// <summary> Draw calls counter </summary>
     public int drawCounter;

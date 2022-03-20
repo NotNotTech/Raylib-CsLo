@@ -8,18 +8,18 @@
 namespace Raylib_CsLo;
 
 /// <summary> Texture parameters: filter mode </summary>
-public enum rlTextureFilter
+public enum RlTextureFilter
 {
     /// <summary> No filter, just pixel approximation </summary>
-    RL_TEXTURE_FILTER_POINT = 0,
+    RlTextureFilterPoint = 0,
     /// <summary> Linear filtering </summary>
-    RL_TEXTURE_FILTER_BILINEAR = 1,
+    RlTextureFilterBilinear = 1,
     /// <summary> Trilinear filtering (linear with mipmaps) </summary>
-    RL_TEXTURE_FILTER_TRILINEAR = 2,
+    RlTextureFilterTrilinear = 2,
     /// <summary> Anisotropic filtering 4x </summary>
-    RL_TEXTURE_FILTER_ANISOTROPIC_4X = 3,
+    RlTextureFilterAnisotropic4x = 3,
     /// <summary> Anisotropic filtering 8x </summary>
-    RL_TEXTURE_FILTER_ANISOTROPIC_8X = 4,
+    RlTextureFilterAnisotropic8x = 4,
     /// <summary> Anisotropic filtering 16x </summary>
-    RL_TEXTURE_FILTER_ANISOTROPIC_16X = 5,
+    RlTextureFilterAnisotropic16x = 5,
 }

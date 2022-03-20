@@ -4,6 +4,7 @@
 // The code and 100+ examples are here! https://github.com/NotNotTech/Raylib-CsLo
 
 // Warning This file is auto generated and changes will be lost
+
 namespace Raylib_CsLo;
 
 /// <summary> ModelAnimation </summary>
@@ -16,9 +17,9 @@ public unsafe partial struct ModelAnimation
     public int frameCount;
 
     /// <summary> Bones information (skeleton) </summary>
-    public BoneInfo * bones;
+    public BoneInfo* bones;
 
     /// <summary> Poses array by frame </summary>
-    public Transform ** framePoses;
+    public Transform** framePoses;
 
 }

@@ -64,38 +64,38 @@ public static unsafe class VrSimulator
 
         // Update distortion shader with lens and distortion-scale parameters
         SetShaderValue(distortion, GetShaderLocation(distortion, "leftLensCenter"),
-                       config.leftLensCenter, SHADER_UNIFORM_VEC2);
+                       config.leftLensCenter, ShaderUniformVec2);
         SetShaderValue(distortion, GetShaderLocation(distortion, "rightLensCenter"),
-                       config.rightLensCenter, SHADER_UNIFORM_VEC2);
+                       config.rightLensCenter, ShaderUniformVec2);
         SetShaderValue(distortion, GetShaderLocation(distortion, "leftScreenCenter"),
-                       config.leftScreenCenter, SHADER_UNIFORM_VEC2);
+                       config.leftScreenCenter, ShaderUniformVec2);
         SetShaderValue(distortion, GetShaderLocation(distortion, "rightScreenCenter"),
-                       config.rightScreenCenter, SHADER_UNIFORM_VEC2);
+                       config.rightScreenCenter, ShaderUniformVec2);
 
         SetShaderValue(distortion, GetShaderLocation(distortion, "scale"),
-                       config.scale, SHADER_UNIFORM_VEC2);
+                       config.scale, ShaderUniformVec2);
         SetShaderValue(distortion, GetShaderLocation(distortion, "scaleIn"),
-                       config.scaleIn, SHADER_UNIFORM_VEC2);
+                       config.scaleIn, ShaderUniformVec2);
         SetShaderValue(distortion, GetShaderLocation(distortion, "deviceWarpParam"),
-                       device.lensDistortionValues, SHADER_UNIFORM_VEC4);
+                       device.lensDistortionValues, ShaderUniformVec4);
         SetShaderValue(distortion, GetShaderLocation(distortion, "chromaAbParam"),
-                       device.chromaAbCorrection, SHADER_UNIFORM_VEC4);
+                       device.chromaAbCorrection, ShaderUniformVec4);
 
         // Initialize framebuffer for stereo rendering
         // NOTE: Screen size should match HMD aspect ratio
-        RenderTexture2D target = LoadRenderTexture(GetScreenWidth(), GetScreenHeight());
+        RenderTexture target = LoadRenderTexture(GetScreenWidth(), GetScreenHeight());
 
         // Define the camera to look into our 3d world
-        Camera camera = new();
+        Camera3D camera = new();
         camera.position = new(5.0f, 2.0f, 5.0f);    // Camera position
         camera.target = new(0.0f, 2.0f, 0.0f);      // Camera looking at point
         camera.up = new(0.0f, 1.0f, 0.0f);          // Camera up vector
         camera.fovy = 60.0f;                                // Camera field-of-view Y
-        camera.Projection = CAMERA_PERSPECTIVE;             // Camera type
+        camera.Projection = CameraPerspective;             // Camera type
 
         Vector3 cubePosition = new(0.0f, 0.0f, 0.0f);
 
-        SetCameraMode(ref camera, CAMERA_FIRST_PERSON);         // Set first person camera mode
+        SetCameraMode(camera, CameraFirstPerson);         // Set first person camera mode
 
         SetTargetFPS(90);                   // Set our game to run at 90 frames-per-second
 
@@ -111,12 +111,12 @@ public static unsafe class VrSimulator
             // Draw
 
             BeginTextureMode(target);
-            ClearBackground(RAYWHITE);
+            ClearBackground(Raywhite);
             BeginVrStereoMode(config);
-            BeginMode3D(ref camera);
+            BeginMode3D(camera);
 
-            DrawCube(cubePosition, 2.0f, 2.0f, 2.0f, RED);
-            DrawCubeWires(cubePosition, 2.0f, 2.0f, 2.0f, MAROON);
+            DrawCube(cubePosition, 2.0f, 2.0f, 2.0f, Red);
+            DrawCubeWires(cubePosition, 2.0f, 2.0f, 2.0f, Maroon);
             DrawGrid(40, 1.0f);
 
             EndMode3D();
@@ -124,11 +124,11 @@ public static unsafe class VrSimulator
             EndTextureMode();
 
             BeginDrawing();
-            ClearBackground(RAYWHITE);
+            ClearBackground(Raywhite);
             BeginShaderMode(distortion);
             DrawTextureRec(target.texture, new(
                 0, 0, target.texture.width,
-                              -target.texture.height), new(0.0f, 0.0f), WHITE);
+                              -target.texture.height), new(0.0f, 0.0f), White);
             EndShaderMode();
             DrawFPS(10, 10);
             EndDrawing();

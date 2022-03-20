@@ -4,6 +4,7 @@
 // The code and 100+ examples are here! https://github.com/NotNotTech/Raylib-CsLo
 
 // Warning This file is auto generated and changes will be lost
+
 namespace Raylib_CsLo;
 
 /// <summary> Camera2D, defines position/orientation in 2d space </summary>

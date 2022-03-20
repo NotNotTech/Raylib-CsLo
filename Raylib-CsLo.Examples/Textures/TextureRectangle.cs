@@ -64,11 +64,11 @@ public static unsafe class TextureRectangle
                 frameRec.X = currentFrame * (float)scarfy.width / 6;
             }
 
-            if (IsKeyPressed(KEY_RIGHT))
+            if (IsKeyPressed(KeyRight))
             {
                 framesSpeed++;
             }
-            else if (IsKeyPressed(KEY_LEFT))
+            else if (IsKeyPressed(KeyLeft))
             {
                 framesSpeed--;
             }
@@ -87,29 +87,29 @@ public static unsafe class TextureRectangle
 
             BeginDrawing();
 
-            ClearBackground(RAYWHITE);
+            ClearBackground(Raywhite);
 
-            DrawTexture(scarfy, 15, 40, WHITE);
-            DrawRectangleLines(15, 40, scarfy.width, scarfy.height, LIME);
-            DrawRectangleLines(15 + (int)frameRec.X, 40 + (int)frameRec.Y, (int)frameRec.width, (int)frameRec.height, RED);
+            DrawTexture(scarfy, 15, 40, White);
+            DrawRectangleLines(15, 40, scarfy.width, scarfy.height, Lime);
+            DrawRectangleLines(15 + (int)frameRec.X, 40 + (int)frameRec.Y, (int)frameRec.Width, (int)frameRec.Height, Red);
 
-            DrawText("FRAME SPEED: ", 165, 210, 10, DARKGRAY);
-            DrawText(TextFormat("%02i FPS", framesSpeed), 575, 210, 10, DARKGRAY);
-            DrawText("PRESS RIGHT/LEFT KEYS to CHANGE SPEED!", 290, 240, 10, DARKGRAY);
+            DrawText("FRAME SPEED: ", 165, 210, 10, Darkgray);
+            DrawText(TextFormat("%02i FPS", framesSpeed), 575, 210, 10, Darkgray);
+            DrawText("PRESS RIGHT/LEFT KEYS to CHANGE SPEED!", 290, 240, 10, Darkgray);
 
             for (int i = 0; i < MAX_FRAME_SPEED; i++)
             {
                 if (i < framesSpeed)
                 {
-                    DrawRectangle(250 + (21 * i), 205, 20, 20, RED);
+                    DrawRectangle(250 + (21 * i), 205, 20, 20, Red);
                 }
 
-                DrawRectangleLines(250 + (21 * i), 205, 20, 20, MAROON);
+                DrawRectangleLines(250 + (21 * i), 205, 20, 20, Maroon);
             }
 
-            DrawTextureRec(scarfy, frameRec, position, WHITE);  // Draw part of the texture
+            DrawTextureRec(scarfy, frameRec, position, White);  // Draw part of the texture
 
-            DrawText("(c) Scarfy sprite by Eiden Marsal", screenWidth - 200, screenHeight - 20, 10, GRAY);
+            DrawText("(c) Scarfy sprite by Eiden Marsal", screenWidth - 200, screenHeight - 20, 10, Gray);
 
             EndDrawing();
 

@@ -2,40 +2,41 @@
 
     <PropertyGroup>
         <TargetFramework>netstandard2.1</TargetFramework>
-        <LangVersion>10</LangVersion>
-        <RootNamespace>Raylib_CsLo</RootNamespace>
+        <LangVersion>latest</LangVersion>
+        <IsPublishable>True</IsPublishable>
         <AllowUnsafeBlocks>True</AllowUnsafeBlocks>
         <ImplicitUsings>enable</ImplicitUsings>
         <GenerateDocumentationFile>True</GenerateDocumentationFile>
-        <RepositoryUrl>https://github.com/NotNotTech/Raylib-CsLo</RepositoryUrl>
-        <PackageReadmeFile>README.md</PackageReadmeFile>
-        <PackageIcon>Icon.png</PackageIcon>
+    </PropertyGroup>
+
+    <!-- Nuget Instructions -->
+    <PropertyGroup>
         <Version>4.0.0</Version>
-        <icon>Icon.png</icon>
-        <PackageReleaseNotes>Release Notes: No breaking changes. Broaden DotNet support to Net5+, etc (via NetStandard 2.1)</PackageReleaseNotes>
         <Authors>Novaleaf</Authors>
         <Company>NotNotTech</Company>
-        <Description>
-            Managed C# bindings to Raylib, a friendly 2d/3d game framework similar to XNA / MonoGame.
-            - Win/Linux/OsX supported.
-            - Includes bindings for raylib extras: RayGui, Easings, Physac, RlGl, RayMath.
-            - Minimal bindings + convenience wrappers to make it easier to use.
-            - Tested and verified via more than 100 examples (**ALL** Raylib examples ported). These [examples are available to you in the GitHub Repo](https://github.com/NotNotTech/Raylib-CsLo/tree/main/Raylib-CsLo.Examples)
-                - Requires `unsafe` for 3d workflows.
-                - Supports net5+, Mono 6.4+, NetCore3.0
-                - Tested on Win10 Net6. Please test on other platforms and [raise an issue](https://github.com/NotNotTech/Raylib-CsLo/issues) if any problems occur.
-            - A focus on performance. No runtime allocations if at all possible.
-            - No intellisense docs. [read the raylib cheatsheet for docs](https://www.raylib.com/cheatsheet/cheatsheet.html) or [view the examples](https://github.com/NotNotTech/Raylib-CsLo/tree/main/Raylib-CsLo.Examples)
-        </Description>
+        <Product>Raylib_CsLo</Product>
+        <PackageId>Raylib_CsLo</PackageId>
+        <Description>Managed C# bindings to Raylib, a friendly 2d/3d game framework similar to XNA / MonoGame.</Description>
         <PackageProjectUrl>https://github.com/NotNotTech/Raylib-CsLo</PackageProjectUrl>
+        <RepositoryUrl>https://github.com/NotNotTech/Raylib-CsLo</RepositoryUrl>
         <PackageTags>raylib;gamedev;binding;NotNot;rendering;3d;2d;graphics;opengl;physics;audio;</PackageTags>
+        <PackageIcon>Icon.png</PackageIcon>
+        <RepositoryType>git</RepositoryType>
+
+        <Copyright>© NotNotTech and Contribs</Copyright>
+
         <PackageLicenseExpression>MPL-2.0</PackageLicenseExpression>
-        <AssemblyVersion>0.0.0.0</AssemblyVersion>
-        <Copyright>(C) NotNotTech and Contribs</Copyright>
         <PackageRequireLicenseAcceptance>True</PackageRequireLicenseAcceptance>
+
         <!--include pdb in nuget package, as per: https://stackoverflow.com/a/48391188 -->
         <AllowedOutputExtensionsInPackageBuildOutputFolder>$(AllowedOutputExtensionsInPackageBuildOutputFolder);.pdb</AllowedOutputExtensionsInPackageBuildOutputFolder>
-        <IsPublishable>True</IsPublishable>
+
+        <PublishRepositoryUrl>true</PublishRepositoryUrl>
+        <IncludeSymbols>true</IncludeSymbols>
+        <SymbolPackageFormat>snupkg</SymbolPackageFormat>
+        <EmbedUntrackedSources>true</EmbedUntrackedSources>
+
+        <PackageReleaseNotes>Release Notes: No breaking changes. Broaden DotNet support to Net5+, etc (via NetStandard 2.1)</PackageReleaseNotes>
     </PropertyGroup>
 
     <ItemGroup>
@@ -47,8 +48,9 @@
             <Pack>True</Pack>
             <PackagePath>\</PackagePath>
         </None>
-        <Content Include="raylib.dll">
+        <Content Include="runtimes\win-x64\native\raylib.dll">
             <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+            <TargetPath>raylib.dll</TargetPath>
         </Content>
     </ItemGroup>
 

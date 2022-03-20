@@ -5,6 +5,7 @@
 
 namespace Raylib_CsLo.Codegen.Generators;
 
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -12,6 +13,8 @@ using System.Text.Json;
 
 public class StructGenerator : BaseGenerator
 {
+    static List<string> structs = new();
+
     List<RaylibStructType> structTypes;
     readonly JsonDocument document;
     readonly string fileName;
@@ -29,25 +32,84 @@ public class StructGenerator : BaseGenerator
     {
         foreach (RaylibStructType structType in structTypes)
         {
-            if (CodegenSettings.StructsOverride.Contains(structType.Name))
+            if (structs.Contains(structType.Name) || CodegenSettings.StructsOverride.Contains(structType.Name))
             {
                 continue;
             }
+
+            structs.Add(structType.Name);
             Line(CodegenSettings.CodeHeader);
+
+            Blank();
 
             Line($"namespace {CodegenSettings.NamespaceName};");
 
             Blank();
 
             DocumentationBlock(structType.Description);
-            Line($"public unsafe partial struct {structType.Name}");
+            Line($"public unsafe partial struct {char.ToUpperInvariant(structType.Name[0]) + structType.Name[1..]}");
             StartBlock();
             if (structType.Fields != null)
             {
                 foreach (RaylibStructValue value in structType.Fields)
                 {
                     DocumentationBlock(value.Description);
-                    Line($"public {TypeConverter.FromCToUnsafeCs(value.Type)} {value.Name};");
+
+                    string name = value.Name;
+
+                    bool isArray = name.Contains('[');
+                    string type = Converter.FromCToUnsafeCs(value.Type.Replace(" *", "*"));
+
+                    if (name.StartsWith("params"))
+                    {
+                        name = name.Replace("params", "@params");
+                    }
+
+                    if (isArray)
+                    {
+                        if (type == "Matrix4x4")
+                        {
+                            type = "FixedMatrix4x4";
+                            Line($"public {type} {name[0..name.IndexOf('[')]};");
+                        }
+                        else
+                        {
+                            int startArray = name.IndexOf('[');
+                            int endArray = name.IndexOf(']');
+
+                            int multiplier = 1;
+
+                            if (type == "Vector2")
+                            {
+                                type = "float";
+                                multiplier *= 2;
+                            }
+                            else if (type == "Vector3")
+                            {
+                                type = "float";
+                                multiplier *= 3;
+                            }
+                            else if (type == "Vector4")
+                            {
+                                type = "float";
+                                multiplier *= 4;
+                            }
+
+                            if (int.TryParse(name[(startArray + 1)..endArray], out int arraySize))
+                            {
+                                _ = " * " + multiplier;
+                                Line($"public fixed {type} {name[..startArray]}[{arraySize}];");
+                            }
+                            else
+                            {
+                                Line($"public fixed {type} {name};");
+                            }
+                        }
+                    }
+                    else
+                    {
+                        Line($"public {type} {name};");
+                    }
                     Blank();
                 }
             }

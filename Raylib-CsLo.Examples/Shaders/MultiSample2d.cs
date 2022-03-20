@@ -39,14 +39,12 @@ public static unsafe class MultiSample2d
 
         InitWindow(screenWidth, screenHeight, "raylib - multiple sample2D");
 
-        Image imRed = GenImageColor(800, 450, new Color(
-            255, 0, 0, 255));
-        Texture texRed = LoadTextureFromImage(imRed);
+        Image imRed = GenImageColor(800, 450, new(255, 0, 0, 255));
+        Texture2D texRed = LoadTextureFromImage(imRed);
         UnloadImage(imRed);
 
-        Image imBlue = GenImageColor(800, 450, new Color(
-            0, 0, 255, 255));
-        Texture texBlue = LoadTextureFromImage(imBlue);
+        Image imBlue = GenImageColor(800, 450, new(0, 0, 255, 255));
+        Texture2D texBlue = LoadTextureFromImage(imBlue);
         UnloadImage(imBlue);
 
         Shader shader = LoadFShader(TextFormat("resources/shaders/glsl%i/color_mix.fs", GLSL_VERSION));
@@ -66,11 +64,11 @@ public static unsafe class MultiSample2d
         {
             // Update
 
-            if (IsKeyDown(KEY_RIGHT))
+            if (IsKeyDown(KeyRight))
             {
                 dividerValue += 0.01f;
             }
-            else if (IsKeyDown(KEY_LEFT))
+            else if (IsKeyDown(KeyLeft))
             {
                 dividerValue -= 0.01f;
             }
@@ -84,14 +82,14 @@ public static unsafe class MultiSample2d
                 dividerValue = 1.0f;
             }
 
-            SetShaderValue(shader, dividerLoc, &dividerValue, SHADER_UNIFORM_FLOAT);
+            SetShaderValue(shader, dividerLoc, &dividerValue, ShaderUniformFloat);
 
 
             // Draw
 
             BeginDrawing();
 
-            ClearBackground(RAYWHITE);
+            ClearBackground(Raywhite);
 
             BeginShaderMode(shader);
 
@@ -102,11 +100,11 @@ public static unsafe class MultiSample2d
 
             // We are drawing texRed using default sampler2D texture0 but
             // an additional texture units is enabled for texBlue (sampler2D texture1)
-            DrawTexture(texRed, 0, 0, WHITE);
+            DrawTexture(texRed, 0, 0, White);
 
             EndShaderMode();
 
-            DrawText("Use KEY_LEFT/KEY_RIGHT to move texture mixing in shader!", 80, GetScreenHeight() - 40, 20, RAYWHITE);
+            DrawText("Use KeyLeft/KEY_RIGHT to move texture mixing in shader!", 80, GetScreenHeight() - 40, 20, Raywhite);
 
             EndDrawing();
 

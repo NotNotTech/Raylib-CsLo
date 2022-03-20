@@ -47,12 +47,12 @@ public static class InputMouseWheel
 
             BeginDrawing();
 
-            ClearBackground(RAYWHITE);
+            ClearBackground(Raywhite);
 
-            DrawRectangle((screenWidth / 2) - 40, boxPositionY, 80, 80, MAROON);
+            DrawRectangle((screenWidth / 2) - 40, boxPositionY, 80, 80, Maroon);
 
-            DrawText("Use mouse wheel to move the cube up and down!", 10, 10, 20, GRAY);
-            DrawText(TextFormat("Box position Y: %03i", boxPositionY), 10, 40, 20, LIGHTGRAY);
+            DrawText("Use mouse wheel to move the cube up and down!", 10, 10, 20, Gray);
+            DrawText(TextFormat("Box position Y: %03i", boxPositionY), 10, 40, 20, Lightgray);
 
             EndDrawing();
 

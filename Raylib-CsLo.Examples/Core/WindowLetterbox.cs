@@ -27,7 +27,7 @@ public static unsafe class WindowLetterbox
         const int windowHeight = 450;
 
         // Enable config flags for resizable window and vertical synchro
-        SetConfigFlags(FLAG_WINDOW_RESIZABLE | FLAG_VSYNC_HINT);
+        SetConfigFlags(FlagWindowResizable | FlagVsyncHint);
         InitWindow(windowWidth, windowHeight, "raylib [core] example - window scale letterbox");
         SetWindowMinSize(320, 240);
 
@@ -35,8 +35,8 @@ public static unsafe class WindowLetterbox
         int gameScreenHeight = 480;
 
         // Render texture initialization, used to hold the rendering result so we can easily resize it
-        RenderTexture2D target = LoadRenderTexture(gameScreenWidth, gameScreenHeight);
-        SetTextureFilter(target.texture, TEXTURE_FILTER_BILINEAR);  // Texture scale filter to use
+        RenderTexture target = LoadRenderTexture(gameScreenWidth, gameScreenHeight);
+        SetTextureFilter(target.texture, TextureFilterBilinear);  // Texture scale filter to use
 
         Color[] colors = new Color[10];
         for (int i = 0; i < 10; i++)
@@ -55,7 +55,7 @@ public static unsafe class WindowLetterbox
             // Compute required framebuffer scaling
             float scale = MathF.Min((float)GetScreenWidth() / gameScreenWidth, (float)GetScreenHeight() / gameScreenHeight);
 
-            if (IsKeyPressed(KEY_SPACE))
+            if (IsKeyPressed(KeySpace))
             {
                 // Recalculate random colors for the bars
                 for (int i = 0; i < 10; i++)
@@ -80,26 +80,26 @@ public static unsafe class WindowLetterbox
 
             // Draw everything in the render texture, note this will not be rendered on screen, yet
             BeginTextureMode(target);
-            ClearBackground(RAYWHITE);  // Clear render texture background color
+            ClearBackground(Raywhite);  // Clear render texture background color
 
             for (int i = 0; i < 10; i++)
             {
                 DrawRectangle(0, gameScreenHeight / 10 * i, gameScreenWidth, gameScreenHeight / 10, colors[i]);
             }
 
-            DrawText("If executed inside a window,\nyou can resize the window,\nand see the screen scaling!", 10, 25, 20, WHITE);
-            DrawText(TextFormat("Default Mouse: [%i , %i]", (int)mouse.X, (int)mouse.Y), 350, 25, 20, GREEN);
-            DrawText(TextFormat("Virtual Mouse: [%i , %i]", (int)virtualMouse.X, (int)virtualMouse.Y), 350, 55, 20, YELLOW);
+            DrawText("If executed inside a window,\nyou can resize the window,\nand see the screen scaling!", 10, 25, 20, White);
+            DrawText(TextFormat("Default Mouse: [%i , %i]", (int)mouse.X, (int)mouse.Y), 350, 25, 20, Green);
+            DrawText(TextFormat("Virtual Mouse: [%i , %i]", (int)virtualMouse.X, (int)virtualMouse.Y), 350, 55, 20, Yellow);
             EndTextureMode();
 
             BeginDrawing();
-            ClearBackground(BLACK);     // Clear screen background
+            ClearBackground(Black);     // Clear screen background
 
             // Draw render texture to screen, properly scaled
             DrawTexturePro(target.texture, new(0.0f, 0.0f, target.texture.width, -target.texture.height),
                           new(
                 (GetScreenWidth() - (gameScreenWidth * scale)) * 0.5f, (GetScreenHeight() - (gameScreenHeight * scale)) * 0.5f,
-                           gameScreenWidth * scale, gameScreenHeight * scale), new(0, 0), 0.0f, WHITE);
+                           gameScreenWidth * scale, gameScreenHeight * scale), new(0, 0), 0.0f, White);
             EndDrawing();
 
         }

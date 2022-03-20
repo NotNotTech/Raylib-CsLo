@@ -4,6 +4,7 @@
 // The code and 100+ examples are here! https://github.com/NotNotTech/Raylib-CsLo
 
 // Warning This file is auto generated and changes will be lost
+
 namespace Raylib_CsLo;
 
 /// <summary> Font, font texture and GlyphInfo array data </summary>
@@ -19,12 +20,12 @@ public unsafe partial struct Font
     public int glyphPadding;
 
     /// <summary> Texture atlas containing the glyphs </summary>
-    public Texture texture;
+    public Texture2D texture;
 
     /// <summary> Rectangles in texture for the glyphs </summary>
-    public Rectangle * recs;
+    public Rectangle* recs;
 
     /// <summary> Glyphs info data </summary>
-    public GlyphInfo * glyphs;
+    public GlyphInfo* glyphs;
 
 }

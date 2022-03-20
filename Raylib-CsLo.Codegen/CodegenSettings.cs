@@ -23,12 +23,17 @@ public static class CodegenSettings
 
     public static readonly string[] FunctionsToHandleManually =
     {
+        "DecodeDataBase64",
+        "EncodeDataBase64",
         "GetCodepoint",
         "GetDirectoryFiles",
         "GetDroppedFiles",
         "GetGestureDetected",
         "LoadFileData",
+        "LoadImageColors",
+        "LoadImagePalette",
         "LoadModelAnimations",
+        "rlReadScreenPixels",
         "SetLoadFileDataCallback",
         "SetLoadFileTextCallback",
         "SetSaveFileDataCallback",
@@ -39,16 +44,29 @@ public static class CodegenSettings
         "TextSplit",
         "TraceLog",
         "UpdateAudioStream",
+        "UpdateCamera",
         "UpdateTexture",
     };
 
     public static readonly string[] StructsOverride =
     {
-        "Color",
-        "Matrix2x2",
+        "Matrix",
+        "Quaternion",
+        "Rectangle",
+        "Texture",
         "Vector2",
         "Vector3",
-        "Rectangle",
+        "Vector4",
+    };
+
+    public static readonly string[] DefinesOverride =
+    {
+        "KEY_RIGHT",
+        "KEY_LEFT",
+        "KEY_DOWN",
+        "KEY_UP",
+        "KEY_BACKSPACE",
+        "KEY_ENTER",
     };
 
     // Overrides a parameter of a function with the name to be the safe enum type instead of int
@@ -104,7 +122,6 @@ public static class CodegenSettings
         { "TextureWrap", "(int)" },
     };
 
-    // Thanks to the weird inconsistency between linux working dir and windows lets just do this
     public static string TryGetSolutionDirectoryInfo()
     {
         DirectoryInfo directory = new(Directory.GetCurrentDirectory());

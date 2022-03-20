@@ -156,21 +156,20 @@ public unsafe class RLights
     public static void UpdateLightValues(Shader shader, Light light)
     {
         // Send to shader light enabled state and type
-        SetShaderValue(shader, light.enabledLoc, &light.enabled, SHADER_UNIFORM_INT);
-        SetShaderValue(shader, light.typeLoc, &light.type, SHADER_UNIFORM_INT);
+        SetShaderValue(shader, light.enabledLoc, &light.enabled, ShaderUniformInt);
+        SetShaderValue(shader, light.typeLoc, &light.type, ShaderUniformInt);
 
         // Send to shader light position values
         Vector3 position = new(light.position.X, light.position.Y, light.position.Z);
-        SetShaderValue(shader, light.posLoc, position, SHADER_UNIFORM_VEC3);
+        SetShaderValue(shader, light.posLoc, position, ShaderUniformVec3);
 
         // Send to shader light target position values
         Vector3 target = new(light.target.X, light.target.Y, light.target.Z);
-        SetShaderValue(shader, light.targetLoc, target, SHADER_UNIFORM_VEC3);
+        SetShaderValue(shader, light.targetLoc, target, ShaderUniformVec3);
 
         // Send to shader light color values
-        Vector4 color = new(light.color.r / (float)255, light.color.g / (float)255,
-                           light.color.b / (float)255, light.color.a / (float)255);
-        SetShaderValue(shader, light.colorLoc, color, SHADER_UNIFORM_VEC4);
+        Vector4 color = new(light.color.r / (float)255, light.color.g / (float)255, light.color.b / (float)255, light.color.a / (float)255);
+        SetShaderValue(shader, light.colorLoc, color, ShaderUniformVec4);
     }
 
 }

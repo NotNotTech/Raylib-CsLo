@@ -56,13 +56,13 @@ public static unsafe class DrawCircleSector
 
             BeginDrawing();
 
-            ClearBackground(RAYWHITE);
+            ClearBackground(Raywhite);
 
-            DrawLine(500, 0, 500, GetScreenHeight(), Fade(LIGHTGRAY, 0.6f));
-            DrawRectangle(500, 0, GetScreenWidth() - 500, GetScreenHeight(), Fade(LIGHTGRAY, 0.3f));
+            DrawLine(500, 0, 500, GetScreenHeight(), Fade(Lightgray, 0.6f));
+            DrawRectangle(500, 0, GetScreenWidth() - 500, GetScreenHeight(), Fade(Lightgray, 0.3f));
 
-            DrawCircleSector(center, outerRadius, startAngle, endAngle, segments, Fade(MAROON, 0.3f));
-            DrawCircleSectorLines(center, outerRadius, startAngle, endAngle, segments, Fade(MAROON, 0.6f));
+            DrawCircleSector(center, outerRadius, startAngle, endAngle, segments, Fade(Maroon, 0.3f));
+            DrawCircleSectorLines(center, outerRadius, startAngle, endAngle, segments, Fade(Maroon, 0.6f));
 
             // Draw GUI controls
 
@@ -74,7 +74,7 @@ public static unsafe class DrawCircleSector
 
 
             int minSegments = (int)MathF.Ceiling((endAngle - startAngle) / 90);
-            DrawText(TextFormat("MODE: %s", (segments >= minSegments) ? "MANUAL" : "AUTO"), 600, 200, 10, (segments >= minSegments) ? MAROON : DARKGRAY);
+            DrawText(TextFormat("MODE: %s", (segments >= minSegments) ? "MANUAL" : "AUTO"), 600, 200, 10, (segments >= minSegments) ? Maroon : Darkgray);
 
             DrawFPS(10, 10);
 

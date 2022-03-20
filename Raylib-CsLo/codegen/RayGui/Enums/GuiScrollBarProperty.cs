@@ -11,15 +11,15 @@ namespace Raylib_CsLo;
 public enum GuiScrollBarProperty
 {
     /// <summary>  </summary>
-    ARROWS_SIZE = 16,
+    ArrowsSize = 16,
     /// <summary>  </summary>
-    ARROWS_VISIBLE = 17,
+    ArrowsVisible = 17,
     /// <summary>  </summary>
-    SCROLL_SLIDER_PADDING = 18,
+    ScrollSliderPadding = 18,
     /// <summary>  </summary>
-    SCROLL_SLIDER_SIZE = 19,
+    ScrollSliderSize = 19,
     /// <summary>  </summary>
-    SCROLL_PADDING = 20,
+    ScrollPadding = 20,
     /// <summary>  </summary>
-    SCROLL_SPEED = 21,
+    ScrollSpeed = 21,
 }

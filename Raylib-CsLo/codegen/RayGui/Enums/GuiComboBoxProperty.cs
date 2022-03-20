@@ -11,7 +11,7 @@ namespace Raylib_CsLo;
 public enum GuiComboBoxProperty
 {
     /// <summary>  </summary>
-    COMBO_BUTTON_WIDTH = 16,
+    ComboButtonWidth = 16,
     /// <summary>  </summary>
-    COMBO_BUTTON_PADDING = 17,
+    ComboButtonPadding = 17,
 }

@@ -43,36 +43,36 @@ public static unsafe class BasicShapes
 
             BeginDrawing();
 
-            ClearBackground(RAYWHITE);
+            ClearBackground(Raywhite);
 
-            DrawText("some basic shapes available on raylib", 20, 20, 20, DARKGRAY);
+            DrawText("some basic shapes available on raylib", 20, 20, 20, Darkgray);
 
             // Circle shapes and lines
-            DrawCircle(screenWidth / 5, 120, 35, DARKBLUE);
-            DrawCircleGradient(screenWidth / 5, 220, 60, GREEN, SKYBLUE);
-            DrawCircleLines(screenWidth / 5, 340, 80, DARKBLUE);
+            DrawCircle(screenWidth / 5, 120, 35, Darkblue);
+            DrawCircleGradient(screenWidth / 5, 220, 60, Green, Skyblue);
+            DrawCircleLines(screenWidth / 5, 340, 80, Darkblue);
 
             // Rectangle shapes and ines
-            DrawRectangle((screenWidth / 4 * 2) - 60, 100, 120, 60, RED);
-            DrawRectangleGradientH((screenWidth / 4 * 2) - 90, 170, 180, 130, MAROON, GOLD);
-            DrawRectangleLines((screenWidth / 4 * 2) - 40, 320, 80, 60, ORANGE);  // NOTE: Uses QUADS internally, not lines
+            DrawRectangle((screenWidth / 4 * 2) - 60, 100, 120, 60, Red);
+            DrawRectangleGradientH((screenWidth / 4 * 2) - 90, 170, 180, 130, Maroon, Gold);
+            DrawRectangleLines((screenWidth / 4 * 2) - 40, 320, 80, 60, Orange);  // NOTE: Uses QUADS internally, not lines
 
             // Triangle shapes and lines
             DrawTriangle(new Vector2(screenWidth / 4.0f * 3.0f, 80.0f),
                          new Vector2((screenWidth / 4.0f * 3.0f) - 60.0f, 150.0f),
-                         new Vector2((screenWidth / 4.0f * 3.0f) + 60.0f, 150.0f), VIOLET);
+                         new Vector2((screenWidth / 4.0f * 3.0f) + 60.0f, 150.0f), Violet);
 
             DrawTriangleLines(new Vector2(screenWidth / 4.0f * 3.0f, 160.0f),
                               new Vector2((screenWidth / 4.0f * 3.0f) - 20.0f, 230.0f),
-                              new Vector2((screenWidth / 4.0f * 3.0f) + 20.0f, 230.0f), DARKBLUE);
+                              new Vector2((screenWidth / 4.0f * 3.0f) + 20.0f, 230.0f), Darkblue);
 
             // Polygon shapes and lines
-            DrawPoly(new Vector2(screenWidth / 4.0f * 3, 320), 6, 80, 0, BROWN);
-            DrawPolyLinesEx(new Vector2(screenWidth / 4.0f * 3, 320), 6, 80, 0, 6, BEIGE);
+            DrawPoly(new Vector2(screenWidth / 4.0f * 3, 320), 6, 80, 0, Brown);
+            DrawPolyLinesEx(new Vector2(screenWidth / 4.0f * 3, 320), 6, 80, 0, 6, Beige);
 
             // NOTE: We draw all LINES based shapes together to optimize internal drawing,
             // this way, all LINES are rendered in a single draw pass
-            DrawLine(18, 42, screenWidth - 18, 42, BLACK);
+            DrawLine(18, 42, screenWidth - 18, 42, Black);
             EndDrawing();
 
         }

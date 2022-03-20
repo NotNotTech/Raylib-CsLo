@@ -36,14 +36,14 @@ public static unsafe class RlglSolarSystem
         InitWindow(screenWidth, screenHeight, "raylib [models] example - rlgl module usage with push/pop matrix transformations");
 
         // Define the camera to look into our 3d world
-        Camera camera = new();
+        Camera3D camera = new();
         camera.position = new(16.0f, 16.0f, 16.0f);
         camera.target = new(0.0f, 0.0f, 0.0f);
         camera.up = new(0.0f, 1.0f, 0.0f);
         camera.fovy = 45.0f;
-        camera.Projection = CAMERA_PERSPECTIVE;
+        camera.Projection = CameraPerspective;
 
-        SetCameraMode(ref camera, CAMERA_FREE);
+        SetCameraMode(camera, CameraFree);
 
         float rotationSpeed = 0.2f;         // General system rotation speed
 
@@ -72,13 +72,13 @@ public static unsafe class RlglSolarSystem
 
             BeginDrawing();
 
-            ClearBackground(RAYWHITE);
+            ClearBackground(Raywhite);
 
-            BeginMode3D(ref camera);
+            BeginMode3D(camera);
 
             rlPushMatrix();
             rlScalef(sunRadius, sunRadius, sunRadius);          // Scale Sun
-            DrawSphereBasic(GOLD);                              // Draw the Sun
+            DrawSphereBasic(Gold);                              // Draw the Sun
             rlPopMatrix();
 
             rlPushMatrix();
@@ -89,7 +89,7 @@ public static unsafe class RlglSolarSystem
             rlRotatef(earthRotation, 0.25f, 1.0f, 0.0f);       // Rotation for Earth itself
             rlScalef(earthRadius, earthRadius, earthRadius);// Scale Earth
 
-            DrawSphereBasic(BLUE);                          // Draw the Earth
+            DrawSphereBasic(Blue);                          // Draw the Earth
             rlPopMatrix();
 
             rlRotatef(moonOrbitRotation, 0.0f, 1.0f, 0.0f);     // Rotation for Moon orbit around Earth
@@ -97,16 +97,16 @@ public static unsafe class RlglSolarSystem
             rlRotatef(moonRotation, 0.0f, 1.0f, 0.0f);          // Rotation for Moon itself
             rlScalef(moonRadius, moonRadius, moonRadius);       // Scale Moon
 
-            DrawSphereBasic(LIGHTGRAY);                         // Draw the Moon
+            DrawSphereBasic(Lightgray);                         // Draw the Moon
             rlPopMatrix();
 
             // Some reference elements (not affected by previous matrix transformations)
-            DrawCircle3D(new(0.0f, 0.0f, 0.0f), earthOrbitRadius, new(1, 0, 0), 90.0f, Fade(RED, 0.5f));
+            DrawCircle3D(new(0.0f, 0.0f, 0.0f), earthOrbitRadius, new(1, 0, 0), 90.0f, Fade(Red, 0.5f));
             DrawGrid(20, 1.0f);
 
             EndMode3D();
 
-            DrawText("EARTH ORBITING AROUND THE SUN!", 400, 10, 20, MAROON);
+            DrawText("EARTH ORBITING AROUND THE SUN!", 400, 10, 20, Maroon);
             DrawFPS(10, 10);
 
             EndDrawing();
@@ -136,32 +136,32 @@ public static unsafe class RlglSolarSystem
         // buffer to store all required vertex, batch is reseted if required
         rlCheckRenderBatchLimit((rings + 2) * slices * 6);
 
-        rlBegin(RL_TRIANGLES);
+        rlBegin(RlGl.RlTriangles);
         rlColor4ub(color.r, color.g, color.b, color.a);
 
         for (int i = 0; i < (rings + 2); i++)
         {
             for (int j = 0; j < slices; j++)
             {
-                rlVertex3f(MathF.Cos(DEG2RAD * (270 + (180 / (rings + 1) * i))) * MathF.Sin(DEG2RAD * (j * 360 / slices)),
-                           MathF.Sin(DEG2RAD * (270 + (180 / (rings + 1) * i))),
-                           MathF.Cos(DEG2RAD * (270 + (180 / (rings + 1) * i))) * MathF.Cos(DEG2RAD * (j * 360 / slices)));
-                rlVertex3f(MathF.Cos(DEG2RAD * (270 + (180 / (rings + 1) * (i + 1)))) * MathF.Sin(DEG2RAD * ((j + 1) * 360 / slices)),
-                           MathF.Sin(DEG2RAD * (270 + (180 / (rings + 1) * (i + 1)))),
-                           MathF.Cos(DEG2RAD * (270 + (180 / (rings + 1) * (i + 1)))) * MathF.Cos(DEG2RAD * ((j + 1) * 360 / slices)));
-                rlVertex3f(MathF.Cos(DEG2RAD * (270 + (180 / (rings + 1) * (i + 1)))) * MathF.Sin(DEG2RAD * (j * 360 / slices)),
-                           MathF.Sin(DEG2RAD * (270 + (180 / (rings + 1) * (i + 1)))),
-                           MathF.Cos(DEG2RAD * (270 + (180 / (rings + 1) * (i + 1)))) * MathF.Cos(DEG2RAD * (j * 360 / slices)));
+                rlVertex3f(MathF.Cos(MathF.PI / 180 * (270 + (180 / (rings + 1) * i))) * MathF.Sin(MathF.PI / 180 * (j * 360 / slices)),
+                           MathF.Sin(MathF.PI / 180 * (270 + (180 / (rings + 1) * i))),
+                           MathF.Cos(MathF.PI / 180 * (270 + (180 / (rings + 1) * i))) * MathF.Cos(MathF.PI / 180 * (j * 360 / slices)));
+                rlVertex3f(MathF.Cos(MathF.PI / 180 * (270 + (180 / (rings + 1) * (i + 1)))) * MathF.Sin(MathF.PI / 180 * ((j + 1) * 360 / slices)),
+                           MathF.Sin(MathF.PI / 180 * (270 + (180 / (rings + 1) * (i + 1)))),
+                           MathF.Cos(MathF.PI / 180 * (270 + (180 / (rings + 1) * (i + 1)))) * MathF.Cos(MathF.PI / 180 * ((j + 1) * 360 / slices)));
+                rlVertex3f(MathF.Cos(MathF.PI / 180 * (270 + (180 / (rings + 1) * (i + 1)))) * MathF.Sin(MathF.PI / 180 * (j * 360 / slices)),
+                           MathF.Sin(MathF.PI / 180 * (270 + (180 / (rings + 1) * (i + 1)))),
+                           MathF.Cos(MathF.PI / 180 * (270 + (180 / (rings + 1) * (i + 1)))) * MathF.Cos(MathF.PI / 180 * (j * 360 / slices)));
 
-                rlVertex3f(MathF.Cos(DEG2RAD * (270 + (180 / (rings + 1) * i))) * MathF.Sin(DEG2RAD * (j * 360 / slices)),
-                           MathF.Sin(DEG2RAD * (270 + (180 / (rings + 1) * i))),
-                           MathF.Cos(DEG2RAD * (270 + (180 / (rings + 1) * i))) * MathF.Cos(DEG2RAD * (j * 360 / slices)));
-                rlVertex3f(MathF.Cos(DEG2RAD * (270 + (180 / (rings + 1) * i))) * MathF.Sin(DEG2RAD * ((j + 1) * 360 / slices)),
-                           MathF.Sin(DEG2RAD * (270 + (180 / (rings + 1) * i))),
-                           MathF.Cos(DEG2RAD * (270 + (180 / (rings + 1) * i))) * MathF.Cos(DEG2RAD * ((j + 1) * 360 / slices)));
-                rlVertex3f(MathF.Cos(DEG2RAD * (270 + (180 / (rings + 1) * (i + 1)))) * MathF.Sin(DEG2RAD * ((j + 1) * 360 / slices)),
-                           MathF.Sin(DEG2RAD * (270 + (180 / (rings + 1) * (i + 1)))),
-                           MathF.Cos(DEG2RAD * (270 + (180 / (rings + 1) * (i + 1)))) * MathF.Cos(DEG2RAD * ((j + 1) * 360 / slices)));
+                rlVertex3f(MathF.Cos(MathF.PI / 180 * (270 + (180 / (rings + 1) * i))) * MathF.Sin(MathF.PI / 180 * (j * 360 / slices)),
+                           MathF.Sin(MathF.PI / 180 * (270 + (180 / (rings + 1) * i))),
+                           MathF.Cos(MathF.PI / 180 * (270 + (180 / (rings + 1) * i))) * MathF.Cos(MathF.PI / 180 * (j * 360 / slices)));
+                rlVertex3f(MathF.Cos(MathF.PI / 180 * (270 + (180 / (rings + 1) * i))) * MathF.Sin(MathF.PI / 180 * ((j + 1) * 360 / slices)),
+                           MathF.Sin(MathF.PI / 180 * (270 + (180 / (rings + 1) * i))),
+                           MathF.Cos(MathF.PI / 180 * (270 + (180 / (rings + 1) * i))) * MathF.Cos(MathF.PI / 180 * ((j + 1) * 360 / slices)));
+                rlVertex3f(MathF.Cos(MathF.PI / 180 * (270 + (180 / (rings + 1) * (i + 1)))) * MathF.Sin(MathF.PI / 180 * ((j + 1) * 360 / slices)),
+                           MathF.Sin(MathF.PI / 180 * (270 + (180 / (rings + 1) * (i + 1)))),
+                           MathF.Cos(MathF.PI / 180 * (270 + (180 / (rings + 1) * (i + 1)))) * MathF.Cos(MathF.PI / 180 * ((j + 1) * 360 / slices)));
             }
         }
         rlEnd();

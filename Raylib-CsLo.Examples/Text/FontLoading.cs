@@ -61,7 +61,7 @@ public static unsafe class FontLoading
             bool useTtf;
             // Update
 
-            if (IsKeyDown(KEY_SPACE))
+            if (IsKeyDown(KeySpace))
             {
                 useTtf = true;
             }
@@ -75,19 +75,19 @@ public static unsafe class FontLoading
 
             BeginDrawing();
 
-            ClearBackground(RAYWHITE);
+            ClearBackground(Raywhite);
 
-            DrawText("Hold SPACE to use TTF generated font", 20, 20, 20, LIGHTGRAY);
+            DrawText("Hold SPACE to use TTF generated font", 20, 20, 20, Lightgray);
 
             if (!useTtf)
             {
-                DrawTextEx(fontBm, msg, new Vector2(20.0f, 100.0f), fontBm.baseSize, 2, MAROON);
-                DrawText("Using BMFont (Angelcode) imported", 20, GetScreenHeight() - 30, 20, GRAY);
+                DrawTextEx(fontBm, msg, new Vector2(20.0f, 100.0f), fontBm.baseSize, 2, Maroon);
+                DrawText("Using BMFont (Angelcode) imported", 20, GetScreenHeight() - 30, 20, Gray);
             }
             else
             {
-                DrawTextEx(fontTtf, msg, new Vector2(20.0f, 100.0f), fontTtf.baseSize, 2, LIME);
-                DrawText("Using TTF font generated", 20, GetScreenHeight() - 30, 20, GRAY);
+                DrawTextEx(fontTtf, msg, new Vector2(20.0f, 100.0f), fontTtf.baseSize, 2, Lime);
+                DrawText("Using TTF font generated", 20, GetScreenHeight() - 30, 20, Gray);
             }
 
             EndDrawing();

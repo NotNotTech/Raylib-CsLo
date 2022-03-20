@@ -47,7 +47,7 @@ public static unsafe class FontFilters
         Vector2 fontPosition = new(40.0f, (screenHeight / 2.0f) - 80.0f);
 
         // Setup texture scaling filter
-        SetTextureFilter(font.texture, TEXTURE_FILTER_POINT);
+        SetTextureFilter(font.texture, TextureFilterPoint);
         int currentFontFilter = 0;      // TEXTURE_FILTER_POINT
 
         SetTargetFPS(60);               // Set our game to run at 60 frames-per-second
@@ -61,30 +61,30 @@ public static unsafe class FontFilters
             fontSize += GetMouseWheelMove() * 4.0f;
 
             // Choose font texture filter method
-            if (IsKeyPressed(KEY_ONE))
+            if (IsKeyPressed(KeyOne))
             {
-                SetTextureFilter(font.texture, TEXTURE_FILTER_POINT);
+                SetTextureFilter(font.texture, TextureFilterPoint);
                 currentFontFilter = 0;
             }
-            else if (IsKeyPressed(KEY_TWO))
+            else if (IsKeyPressed(KeyTwo))
             {
-                SetTextureFilter(font.texture, TEXTURE_FILTER_BILINEAR);
+                SetTextureFilter(font.texture, TextureFilterBilinear);
                 currentFontFilter = 1;
             }
-            else if (IsKeyPressed(KEY_THREE))
+            else if (IsKeyPressed(KeyThree))
             {
                 // NOTE: Trilinear filter won't be noticed on 2D drawing
-                SetTextureFilter(font.texture, TEXTURE_FILTER_TRILINEAR);
+                SetTextureFilter(font.texture, TextureFilterTrilinear);
                 currentFontFilter = 2;
             }
 
             Vector2 textSize = MeasureTextEx(font, msg, fontSize, 0);
 
-            if (IsKeyDown(KEY_LEFT))
+            if (IsKeyDown(KeyLeft))
             {
                 fontPosition.X -= 10;
             }
-            else if (IsKeyDown(KEY_RIGHT))
+            else if (IsKeyDown(KeyRight))
             {
                 fontPosition.X += 10;
             }
@@ -112,34 +112,34 @@ public static unsafe class FontFilters
 
             BeginDrawing();
 
-            ClearBackground(RAYWHITE);
+            ClearBackground(Raywhite);
 
-            DrawText("Use mouse wheel to change font size", 20, 20, 10, GRAY);
-            DrawText("Use KEY_RIGHT and KEY_LEFT to move text", 20, 40, 10, GRAY);
-            DrawText("Use 1, 2, 3 to change texture filter", 20, 60, 10, GRAY);
-            DrawText("Drop a new TTF font for dynamic loading", 20, 80, 10, DARKGRAY);
+            DrawText("Use mouse wheel to change font size", 20, 20, 10, Gray);
+            DrawText("Use KEY_RIGHT and KeyLeft to move text", 20, 40, 10, Gray);
+            DrawText("Use 1, 2, 3 to change texture filter", 20, 60, 10, Gray);
+            DrawText("Drop a new TTF font for dynamic loading", 20, 80, 10, Darkgray);
 
-            DrawTextEx(font, msg, fontPosition, fontSize, 0, BLACK);
+            DrawTextEx(font, msg, fontPosition, fontSize, 0, Black);
 
             // TODO: It seems texSize measurement is not accurate due to chars offsets...
-            //DrawRectangleLines(fontPosition.X, fontPosition.Y, textSize.X, textSize.Y, RED);
+            //DrawRectangleLines(fontPosition.X, fontPosition.Y, textSize.X, textSize.Y, Red);
 
-            DrawRectangle(0, screenHeight - 80, screenWidth, 80, LIGHTGRAY);
-            DrawText(TextFormat("Font size: %02.02f", fontSize), 20, screenHeight - 50, 10, DARKGRAY);
-            DrawText(TextFormat("Text size: [%02.02f, %02.02f]", textSize.X, textSize.Y), 20, screenHeight - 30, 10, DARKGRAY);
-            DrawText("CURRENT TEXTURE FILTER:", 250, 400, 20, GRAY);
+            DrawRectangle(0, screenHeight - 80, screenWidth, 80, Lightgray);
+            DrawText(TextFormat("Font size: %02.02f", fontSize), 20, screenHeight - 50, 10, Darkgray);
+            DrawText(TextFormat("Text size: [%02.02f, %02.02f]", textSize.X, textSize.Y), 20, screenHeight - 30, 10, Darkgray);
+            DrawText("CURRENT TEXTURE FILTER:", 250, 400, 20, Gray);
 
             if (currentFontFilter == 0)
             {
-                DrawText("POINT", 570, 400, 20, BLACK);
+                DrawText("POINT", 570, 400, 20, Black);
             }
             else if (currentFontFilter == 1)
             {
-                DrawText("BILINEAR", 570, 400, 20, BLACK);
+                DrawText("BILINEAR", 570, 400, 20, Black);
             }
             else if (currentFontFilter == 2)
             {
-                DrawText("TRILINEAR", 570, 400, 20, BLACK);
+                DrawText("TRILINEAR", 570, 400, 20, Black);
             }
 
             EndDrawing();

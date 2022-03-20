@@ -51,7 +51,7 @@ public static unsafe class BlendModes
         {
             // Update
 
-            if (IsKeyPressed(KEY_SPACE))
+            if (IsKeyPressed(KeySpace))
             {
                 if ((int)blendMode >= (blendCountMax - 1))
                 {
@@ -68,43 +68,43 @@ public static unsafe class BlendModes
 
             BeginDrawing();
 
-            ClearBackground(RAYWHITE);
+            ClearBackground(Raywhite);
 
-            DrawTexture(bgTexture, (screenWidth / 2) - (bgTexture.width / 2), (screenHeight / 2) - (bgTexture.height / 2), WHITE);
+            DrawTexture(bgTexture, (screenWidth / 2) - (bgTexture.width / 2), (screenHeight / 2) - (bgTexture.height / 2), White);
 
             // Apply the blend mode and then draw the foreground texture
             BeginBlendMode(blendMode);
-            DrawTexture(fgTexture, (screenWidth / 2) - (fgTexture.width / 2), (screenHeight / 2) - (fgTexture.height / 2), WHITE);
+            DrawTexture(fgTexture, (screenWidth / 2) - (fgTexture.width / 2), (screenHeight / 2) - (fgTexture.height / 2), White);
             EndBlendMode();
 
             // Draw the texts
-            DrawText("Press SPACE to change blend modes.", 310, 350, 10, GRAY);
+            DrawText("Press SPACE to change blend modes.", 310, 350, 10, Gray);
 
             switch (blendMode)
             {
-                case BLEND_ALPHA:
-                    DrawText("Current: BLEND_ALPHA", (screenWidth / 2) - 60, 370, 10, GRAY);
+                case BlendAlpha:
+                    DrawText("Current: BLEND_ALPHA", (screenWidth / 2) - 60, 370, 10, Gray);
                     break;
-                case BLEND_ADDITIVE:
-                    DrawText("Current: BLEND_ADDITIVE", (screenWidth / 2) - 60, 370, 10, GRAY);
+                case BlendAdditive:
+                    DrawText("Current: BLEND_ADDITIVE", (screenWidth / 2) - 60, 370, 10, Gray);
                     break;
-                case BLEND_MULTIPLIED:
-                    DrawText("Current: BLEND_MULTIPLIED", (screenWidth / 2) - 60, 370, 10, GRAY);
+                case BlendMultiplied:
+                    DrawText("Current: BLEND_MULTIPLIED", (screenWidth / 2) - 60, 370, 10, Gray);
                     break;
-                case BLEND_ADD_COLORS:
-                    DrawText("Current: BLEND_ADD_COLORS", (screenWidth / 2) - 60, 370, 10, GRAY);
+                case BlendAddColors:
+                    DrawText("Current: BLEND_ADD_COLORS", (screenWidth / 2) - 60, 370, 10, Gray);
                     break;
-                case BLEND_SUBTRACT_COLORS:
+                case BlendSubtractColors:
                     break;
-                case BLEND_CUSTOM:
+                case BlendCustom:
                     break;
-                case BLEND_ALPHA_PREMUL:
+                case BlendAlphaPremul:
                     break;
                 default:
                     break;
             }
 
-            DrawText("(c) Cyberpunk Street Environment by Luis Zuno (@ansimuz)", screenWidth - 330, screenHeight - 20, 10, GRAY);
+            DrawText("(c) Cyberpunk Street Environment by Luis Zuno (@ansimuz)", screenWidth - 330, screenHeight - 20, 10, Gray);
 
             EndDrawing();
 

@@ -4,6 +4,7 @@
 // The code and 100+ examples are here! https://github.com/NotNotTech/Raylib-CsLo
 
 // Warning This file is auto generated and changes will be lost
+
 namespace Raylib_CsLo;
 
 /// <summary> Model, meshes, materials and animation data </summary>
@@ -19,21 +20,21 @@ public unsafe partial struct Model
     public int materialCount;
 
     /// <summary> Meshes array </summary>
-    public Mesh * meshes;
+    public Mesh* meshes;
 
     /// <summary> Materials array </summary>
-    public Material * materials;
+    public Material* materials;
 
     /// <summary> Mesh material number </summary>
-    public int * meshMaterial;
+    public int* meshMaterial;
 
     /// <summary> Number of bones </summary>
     public int boneCount;
 
     /// <summary> Bones information (skeleton) </summary>
-    public BoneInfo * bones;
+    public BoneInfo* bones;
 
     /// <summary> Bones base transformation (pose) </summary>
-    public Transform * bindPose;
+    public Transform* bindPose;
 
 }

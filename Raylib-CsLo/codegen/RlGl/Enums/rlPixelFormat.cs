@@ -8,48 +8,48 @@
 namespace Raylib_CsLo;
 
 /// <summary> Texture formats (support depends on OpenGL version) </summary>
-public enum rlPixelFormat
+public enum RlPixelFormat
 {
     /// <summary> 8 bit per pixel (no alpha) </summary>
-    RL_PIXELFORMAT_UNCOMPRESSED_GRAYSCALE = 1,
+    RlPixelformatUncompressedGrayscale = 1,
     /// <summary> 8*2 bpp (2 channels) </summary>
-    RL_PIXELFORMAT_UNCOMPRESSED_GRAY_ALPHA = 2,
+    RlPixelformatUncompressedGrayAlpha = 2,
     /// <summary> 16 bpp </summary>
-    RL_PIXELFORMAT_UNCOMPRESSED_R5G6B5 = 3,
+    RlPixelformatUncompressedR5g6b5 = 3,
     /// <summary> 24 bpp </summary>
-    RL_PIXELFORMAT_UNCOMPRESSED_R8G8B8 = 4,
+    RlPixelformatUncompressedR8g8b8 = 4,
     /// <summary> 16 bpp (1 bit alpha) </summary>
-    RL_PIXELFORMAT_UNCOMPRESSED_R5G5B5A1 = 5,
+    RlPixelformatUncompressedR5g5b5a1 = 5,
     /// <summary> 16 bpp (4 bit alpha) </summary>
-    RL_PIXELFORMAT_UNCOMPRESSED_R4G4B4A4 = 6,
+    RlPixelformatUncompressedR4g4b4a4 = 6,
     /// <summary> 32 bpp </summary>
-    RL_PIXELFORMAT_UNCOMPRESSED_R8G8B8A8 = 7,
+    RlPixelformatUncompressedR8g8b8a8 = 7,
     /// <summary> 32 bpp (1 channel - float) </summary>
-    RL_PIXELFORMAT_UNCOMPRESSED_R32 = 8,
+    RlPixelformatUncompressedR32 = 8,
     /// <summary> 32*3 bpp (3 channels - float) </summary>
-    RL_PIXELFORMAT_UNCOMPRESSED_R32G32B32 = 9,
+    RlPixelformatUncompressedR32g32b32 = 9,
     /// <summary> 32*4 bpp (4 channels - float) </summary>
-    RL_PIXELFORMAT_UNCOMPRESSED_R32G32B32A32 = 10,
+    RlPixelformatUncompressedR32g32b32a32 = 10,
     /// <summary> 4 bpp (no alpha) </summary>
-    RL_PIXELFORMAT_COMPRESSED_DXT1_RGB = 11,
+    RlPixelformatCompressedDxt1Rgb = 11,
     /// <summary> 4 bpp (1 bit alpha) </summary>
-    RL_PIXELFORMAT_COMPRESSED_DXT1_RGBA = 12,
+    RlPixelformatCompressedDxt1Rgba = 12,
     /// <summary> 8 bpp </summary>
-    RL_PIXELFORMAT_COMPRESSED_DXT3_RGBA = 13,
+    RlPixelformatCompressedDxt3Rgba = 13,
     /// <summary> 8 bpp </summary>
-    RL_PIXELFORMAT_COMPRESSED_DXT5_RGBA = 14,
+    RlPixelformatCompressedDxt5Rgba = 14,
     /// <summary> 4 bpp </summary>
-    RL_PIXELFORMAT_COMPRESSED_ETC1_RGB = 15,
+    RlPixelformatCompressedEtc1Rgb = 15,
     /// <summary> 4 bpp </summary>
-    RL_PIXELFORMAT_COMPRESSED_ETC2_RGB = 16,
+    RlPixelformatCompressedEtc2Rgb = 16,
     /// <summary> 8 bpp </summary>
-    RL_PIXELFORMAT_COMPRESSED_ETC2_EAC_RGBA = 17,
+    RlPixelformatCompressedEtc2EacRgba = 17,
     /// <summary> 4 bpp </summary>
-    RL_PIXELFORMAT_COMPRESSED_PVRT_RGB = 18,
+    RlPixelformatCompressedPvrtRgb = 18,
     /// <summary> 4 bpp </summary>
-    RL_PIXELFORMAT_COMPRESSED_PVRT_RGBA = 19,
+    RlPixelformatCompressedPvrtRgba = 19,
     /// <summary> 8 bpp </summary>
-    RL_PIXELFORMAT_COMPRESSED_ASTC_4x4_RGBA = 20,
+    RlPixelformatCompressedAstc4x4Rgba = 20,
     /// <summary> 2 bpp </summary>
-    RL_PIXELFORMAT_COMPRESSED_ASTC_8x8_RGBA = 21,
+    RlPixelformatCompressedAstc8x8Rgba = 21,
 }

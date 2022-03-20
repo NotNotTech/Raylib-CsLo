@@ -40,13 +40,13 @@ public static unsafe class ImageDrawing
         Image parrots = LoadImage("resources/parrots.png");     // Load image in CPU memory (RAM)
 
         // Draw one image over the other with a scaling of 1.5f
-        ImageDraw(ref parrots, cat, new Rectangle(0, 0, cat.width, cat.height), new Rectangle(30, 40, cat.width * 1.5f, cat.height * 1.5f), WHITE);
+        ImageDraw(ref parrots, cat, new Rectangle(0, 0, cat.width, cat.height), new Rectangle(30, 40, cat.width * 1.5f, cat.height * 1.5f), White);
         ImageCrop(ref parrots, new Rectangle(0, 50, parrots.width, (float)parrots.height - 100)); // Crop resulting image
 
         // Draw on the image with a few image draw methods
-        ImageDrawPixel(ref parrots, 10, 10, RAYWHITE);
-        ImageDrawCircle(ref parrots, 10, 10, 5, RAYWHITE);
-        ImageDrawRectangle(ref parrots, 5, 20, 10, 10, RAYWHITE);
+        ImageDrawPixel(ref parrots, 10, 10, Raywhite);
+        ImageDrawCircle(ref parrots, 10, 10, 5, Raywhite);
+        ImageDrawRectangle(ref parrots, 5, 20, 10, 10, Raywhite);
 
         UnloadImage(cat);       // Unload image from RAM
 
@@ -54,7 +54,7 @@ public static unsafe class ImageDrawing
         Font font = LoadFont("resources/custom_jupiter_crash.png");
 
         // Draw over image using custom font
-        ImageDrawTextEx(ref parrots, font, "PARROTS & CAT", new Vector2(300, 230), font.baseSize, -2, WHITE);
+        ImageDrawTextEx(ref parrots, font, "PARROTS & CAT", new Vector2(300, 230), font.baseSize, -2, White);
 
         UnloadFont(font);       // Unload custom font (already drawn used on image)
 
@@ -76,13 +76,13 @@ public static unsafe class ImageDrawing
 
             BeginDrawing();
 
-            ClearBackground(RAYWHITE);
+            ClearBackground(Raywhite);
 
-            DrawTexture(texture, (screenWidth / 2) - (texture.width / 2), (screenHeight / 2) - (texture.height / 2) - 40, WHITE);
-            DrawRectangleLines((screenWidth / 2) - (texture.width / 2), (screenHeight / 2) - (texture.height / 2) - 40, texture.width, texture.height, DARKGRAY);
+            DrawTexture(texture, (screenWidth / 2) - (texture.width / 2), (screenHeight / 2) - (texture.height / 2) - 40, White);
+            DrawRectangleLines((screenWidth / 2) - (texture.width / 2), (screenHeight / 2) - (texture.height / 2) - 40, texture.width, texture.height, Darkgray);
 
-            DrawText("We are drawing only one texture from various images composed!", 240, 350, 10, DARKGRAY);
-            DrawText("Source images have been cropped, scaled, flipped and copied one over the other.", 190, 370, 10, DARKGRAY);
+            DrawText("We are drawing only one texture from various images composed!", 240, 350, 10, Darkgray);
+            DrawText("Source images have been cropped, scaled, flipped and copied one over the other.", 190, 370, 10, Darkgray);
 
             EndDrawing();
 

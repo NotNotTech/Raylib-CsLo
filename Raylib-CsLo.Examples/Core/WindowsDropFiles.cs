@@ -30,7 +30,6 @@ public static unsafe class WindowsDropFiles
 
         InitWindow(screenWidth, screenHeight, "raylib [core] example - drop files");
 
-        int count = 0;
         string[] droppedFiles;
 
         SetTargetFPS(60);               // Set our game to run at 60 frames-per-second
@@ -40,35 +39,37 @@ public static unsafe class WindowsDropFiles
         {
             BeginDrawing();
 
-            ClearBackground(RAYWHITE);
+            ClearBackground(Raywhite);
 
             if (IsFileDropped())
             {
                 droppedFiles = GetDroppedFiles();
 
-                DrawText("Dropped files:", 100, 40, 20, DARKGRAY);
+                Console.WriteLine(droppedFiles[0]);
 
-                for (int i = 0; i < count; i++)
+                DrawText("Dropped files:", 100, 40, 20, Darkgray);
+
+                for (int i = 0; i < droppedFiles.Length; i++)
                 {
                     if (i % 2 == 0)
                     {
-                        DrawRectangle(0, 85 + (40 * i), screenWidth, 40, Fade(LIGHTGRAY, 0.5f));
+                        DrawRectangle(0, 85 + (40 * i), screenWidth, 40, Fade(Lightgray, 0.5f));
                     }
                     else
                     {
-                        DrawRectangle(0, 85 + (40 * i), screenWidth, 40, Fade(LIGHTGRAY, 0.3f));
+                        DrawRectangle(0, 85 + (40 * i), screenWidth, 40, Fade(Lightgray, 0.3f));
                     }
                     if (IsFileDropped())
                     {
-                        DrawText(droppedFiles[i], 120, 100 + (40 * i), 10, GRAY);
+                        DrawText(droppedFiles[i], 120, 100 + (40 * i), 10, Gray);
                     }
                 }
 
-                DrawText("Drop new files...", 100, 110 + (40 * count), 20, DARKGRAY);
+                DrawText("Drop new files...", 100, 110 + (40 * droppedFiles.Length), 20, Darkgray);
             }
             else
             {
-                DrawText("Drop your files to this window!", 100, 40, 20, DARKGRAY);
+                DrawText("Drop your files to this window!", 100, 40, 20, Darkgray);
             }
 
             EndDrawing();

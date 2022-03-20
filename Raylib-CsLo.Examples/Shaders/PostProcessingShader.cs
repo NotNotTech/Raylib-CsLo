@@ -76,18 +76,18 @@ public static unsafe class PostProcessingShader
         const int screenWidth = 800;
         const int screenHeight = 450;
 
-        SetConfigFlags(FLAG_MSAA_4X_HINT);      // Enable Multi Sampling Anti Aliasing 4x (if available)
+        SetConfigFlags(FlagMsaa4xHint);      // Enable Multi Sampling Anti Aliasing 4x (if available)
 
         InitWindow(screenWidth, screenHeight, "raylib [shaders] example - postprocessing shader");
 
         // Define the camera to look into our 3d world
-        Camera camera = new(new(2.0f, 3.0f, 2.0f), new(
+        Camera3D camera = new(new(2.0f, 3.0f, 2.0f), new(
         0.0f, 1.0f, 0.0f), new(
             0.0f, 1.0f, 0.0f), 45.0f, 0);
 
         Model model = LoadModel("resources/models/church.obj");                 // Load OBJ model
         Texture2D texture = LoadTexture("resources/models/church_diffuse.png"); // Load model texture (diffuse map)
-        model.materials[0].maps[(int)MATERIAL_MAP_ALBEDO].texture = texture;                     // Set model diffuse texture
+        model.materials[0].maps[(int)MaterialMapAlbedo].texture = texture;                     // Set model diffuse texture
 
         Vector3 position = new(0.0f, 0.0f, 0.0f);                             // Set model position
 
@@ -113,10 +113,10 @@ public static unsafe class PostProcessingShader
         int currentShader = (int)PostproShader.FX_GRAYSCALE;
 
         // Create a RenderTexture2D to be used for render to texture
-        RenderTexture2D target = LoadRenderTexture(screenWidth, screenHeight);
+        RenderTexture target = LoadRenderTexture(screenWidth, screenHeight);
 
         // Setup orbital camera
-        SetCameraMode(ref camera, CAMERA_ORBITAL);  // Set an orbital camera mode
+        SetCameraMode(camera, CameraOrbital);  // Set an orbital camera mode
 
         SetTargetFPS(60);                       // Set our game to run at 60 frames-per-second
 
@@ -128,11 +128,11 @@ public static unsafe class PostProcessingShader
 
             UpdateCamera(ref camera);              // Update camera
 
-            if (IsKeyPressed(KEY_RIGHT))
+            if (IsKeyPressed(KeyRight))
             {
                 currentShader++;
             }
-            else if (IsKeyPressed(KEY_LEFT))
+            else if (IsKeyPressed(KeyLeft))
             {
                 currentShader--;
             }
@@ -150,31 +150,31 @@ public static unsafe class PostProcessingShader
             // Draw
 
             BeginTextureMode(target);       // Enable drawing to texture
-            ClearBackground(RAYWHITE);  // Clear texture background
+            ClearBackground(Raywhite);  // Clear texture background
 
-            BeginMode3D(ref camera);        // Begin 3d mode drawing
-            DrawModel(model, position, 0.1f, WHITE);   // Draw 3d model with texture
+            BeginMode3D(camera);        // Begin 3d mode drawing
+            DrawModel(model, position, 0.1f, White);   // Draw 3d model with texture
             DrawGrid(10, 1.0f);     // Draw a grid
             EndMode3D();                // End 3d mode drawing, returns to orthographic 2d mode
             EndTextureMode();               // End drawing to texture (now we have a texture available for next passes)
 
             BeginDrawing();
-            ClearBackground(RAYWHITE);  // Clear screen background
+            ClearBackground(Raywhite);  // Clear screen background
 
             // Render generated texture using selected postprocessing shader
             BeginShaderMode(shaders[currentShader]);
             // NOTE: Render texture must be y-flipped due to default OpenGL coordinates (left-bottom)
             DrawTextureRec(target.texture, new Rectangle(0, 0, target.texture.width, -target.texture.height), new Vector2(
-                0, 0), WHITE);
+                0, 0), White);
             EndShaderMode();
 
             // Draw 2d shapes and text over drawn texture
-            DrawRectangle(0, 9, 580, 30, Fade(LIGHTGRAY, 0.7f));
+            DrawRectangle(0, 9, 580, 30, Fade(Lightgray, 0.7f));
 
-            DrawText("(c) Church 3D model by Alberto Cano", screenWidth - 200, screenHeight - 20, 10, GRAY);
-            DrawText("CURRENT POSTPRO SHADER:", 10, 15, 20, BLACK);
-            DrawText(postproShaderText[currentShader], 330, 15, 20, RED);
-            DrawText("< >", 540, 10, 30, DARKBLUE);
+            DrawText("(c) Church 3D model by Alberto Cano", screenWidth - 200, screenHeight - 20, 10, Gray);
+            DrawText("CURRENT POSTPRO SHADER:", 10, 15, 20, Black);
+            DrawText(postproShaderText[currentShader], 330, 15, 20, Red);
+            DrawText("< >", 540, 10, 30, Darkblue);
             DrawFPS(700, 15);
             EndDrawing();
 

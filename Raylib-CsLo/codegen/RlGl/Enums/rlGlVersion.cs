@@ -8,16 +8,16 @@
 namespace Raylib_CsLo;
 
 /// <summary> edef enum { </summary>
-public enum rlGlVersion
+public enum RlGlVersion
 {
     /// <summary>  </summary>
-    OPENGL_11 = 1,
+    Opengl11 = 1,
     /// <summary>  </summary>
-    OPENGL_21 = 2,
+    Opengl21 = 2,
     /// <summary>  </summary>
-    OPENGL_33 = 3,
+    Opengl33 = 3,
     /// <summary>  </summary>
-    OPENGL_43 = 4,
+    Opengl43 = 4,
     /// <summary>  </summary>
-    OPENGL_ES_20 = 5,
+    OpenglEs20 = 5,
 }

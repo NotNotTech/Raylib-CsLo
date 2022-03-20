@@ -10,7 +10,7 @@ using System.Numerics;
 public static unsafe partial class RlGl
 {
 #pragma warning disable IDE1006
-    public static void rlFramebufferAttach(uint fboId, uint texId, rlFramebufferAttachType attachType, rlFramebufferAttachTextureType texType, int mipLevel)
+    public static void rlFramebufferAttach(uint fboId, uint texId, RlFramebufferAttachType attachType, RlFramebufferAttachTextureType texType, int mipLevel)
     {
         rlFramebufferAttach(fboId, texId, (int)attachType, (int)texType, mipLevel);
     }
@@ -36,42 +36,6 @@ public partial struct Ray
     }
 }
 
-
-public partial struct Rectangle
-{
-    public Rectangle(float x, float y, float width, float height)
-    {
-        this.x = x;
-        this.y = y;
-        this.width = width;
-        this.height = height;
-    }
-
-    public float X
-    {
-        get
-        {
-            return x;
-        }
-
-        set
-        {
-            x = value;
-        }
-    }
-    public float Y
-    {
-        get
-        {
-            return y;
-        }
-
-        set
-        {
-            y = value;
-        }
-    }
-}
 
 public partial struct Camera3D
 {
@@ -99,52 +63,6 @@ public partial struct Camera3D
     }
 
 }
-
-public partial struct Color
-{
-    public Color(byte r, byte g, byte b, byte a)
-    {
-        this.r = r;
-        this.g = g;
-        this.b = b;
-        this.a = a;
-    }
-    public Color(int r, int g, int b, int a)
-    {
-        this.r = (byte)r;
-        this.g = (byte)g;
-        this.b = (byte)b;
-        this.a = (byte)a;
-    }
-
-    // Alias for Raylib-Cs
-    public static readonly Color LIGHTGRAY = RaylibS.LIGHTGRAY;
-    public static readonly Color GRAY = RaylibS.GRAY;
-    public static readonly Color DARKGRAY = RaylibS.DARKGRAY;
-    public static readonly Color YELLOW = RaylibS.YELLOW;
-    public static readonly Color GOLD = RaylibS.GOLD;
-    public static readonly Color ORANGE = RaylibS.ORANGE;
-    public static readonly Color PINK = RaylibS.PINK;
-    public static readonly Color RED = RaylibS.RED;
-    public static readonly Color MAROON = RaylibS.MAROON;
-    public static readonly Color GREEN = RaylibS.GREEN;
-    public static readonly Color LIME = RaylibS.LIME;
-    public static readonly Color DARKGREEN = RaylibS.DARKGREEN;
-    public static readonly Color SKYBLUE = RaylibS.SKYBLUE;
-    public static readonly Color BLUE = RaylibS.BLUE;
-    public static readonly Color DARKBLUE = RaylibS.DARKBLUE;
-    public static readonly Color PURPLE = RaylibS.PURPLE;
-    public static readonly Color VIOLET = RaylibS.VIOLET;
-    public static readonly Color DARKPURPLE = RaylibS.DARKPURPLE;
-    public static readonly Color BEIGE = RaylibS.BEIGE;
-    public static readonly Color BROWN = RaylibS.BROWN;
-    public static readonly Color DARKBROWN = RaylibS.DARKBROWN;
-    public static readonly Color WHITE = RaylibS.WHITE;
-    public static readonly Color BLACK = RaylibS.BLACK;
-    public static readonly Color BLANK = RaylibS.BLANK;
-    public static readonly Color MAGENTA = RaylibS.MAGENTA;
-    public static readonly Color RAYWHITE = RaylibS.RAYWHITE;
-}
 public partial struct BoundingBox
 {
     public BoundingBox(Vector3 min, Vector3 max)
@@ -153,35 +71,20 @@ public partial struct BoundingBox
         this.max = max;
     }
 }
-public unsafe partial struct float3
+public unsafe partial struct Float3
 {
-    public static float3 FromVector3(Vector3 vector)
+    public static Float3 FromVector3(Vector3 vector)
     {
-        float3* p_toReturn = (float3*)&vector;
+        Float3* p_toReturn = (Float3*)&vector;
         return *p_toReturn;
     }
 }
-public unsafe partial struct float16
+public unsafe partial struct Float16
 {
-    public static float16 FromMatrix(Matrix4x4 matrix)
+    public static Float16 FromMatrix(Matrix4x4 matrix)
     {
-        float16* p_toReturn = (float16*)&matrix;
+        Float16* p_toReturn = (Float16*)&matrix;
         return *p_toReturn;
-    }
-}
-public partial struct Texture
-{
-    public PixelFormat Format
-    {
-        get
-        {
-            return (PixelFormat)format;
-        }
-
-        set
-        {
-            format = (int)value;
-        }
     }
 }
 public partial struct NPatchInfo
@@ -195,39 +98,5 @@ public partial struct NPatchInfo
         this.right = right;
         this.bottom = bottom;
         this.layout = (int)layout;
-    }
-}
-
-public partial class Easings
-{
-    public static float EaseElasticInOut(float t, float b, float c, float d)
-    {
-        if (t == 0.0f)
-        {
-            return b;
-        }
-
-        if ((t /= d / 2.0f) == 2.0f)
-        {
-            return b + c;
-        }
-
-        float p = d * (0.3f * 1.5f);
-        float a = c;
-        float s = p / 4.0f;
-
-        if (t < 1.0f)
-        {
-            float postFix = a * MathF.Pow(2.0f, 10.0f * (t -= 1.0f));
-
-            return (-0.5f * (postFix * MathF.Sin(((t * d) - s) * (2.0f * 3.14159265358979323846f) / p))) + b;
-        }
-        else //RAYLIB-CSLO: bugfix in codegen, add else
-        {
-
-            float postFix = a * MathF.Pow(2.0f, -10.0f * (t -= 1.0f));
-
-            return (postFix * MathF.Sin(((t * d) - s) * (2.0f * 3.14159265358979323846f) / p) * 0.5f) + c + b;
-        }
     }
 }

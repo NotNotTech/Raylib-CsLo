@@ -4,6 +4,7 @@
 // The code and 100+ examples are here! https://github.com/NotNotTech/Raylib-CsLo
 
 // Warning This file is auto generated and changes will be lost
+
 namespace Raylib_CsLo;
 
 /// <summary> Material, includes shader and maps </summary>
@@ -13,9 +14,9 @@ public unsafe partial struct Material
     public Shader shader;
 
     /// <summary> Material maps array (MAX_MATERIAL_MAPS) </summary>
-    public MaterialMap * maps;
+    public MaterialMap* maps;
 
     /// <summary> Material generic parameters (if required) </summary>
-    public float params[4];
+    public fixed float @params[4];
 
 }

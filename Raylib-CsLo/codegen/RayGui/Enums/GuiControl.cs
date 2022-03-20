@@ -11,35 +11,35 @@ namespace Raylib_CsLo;
 public enum GuiControl
 {
     /// <summary> Generic control -> populates to all controls when set </summary>
-    DEFAULT = 0,
+    Default = 0,
     /// <summary> Used also for: LABELBUTTON </summary>
-    LABEL = 1,
+    Label = 1,
     /// <summary>  </summary>
-    BUTTON = 2,
+    Button = 2,
     /// <summary> Used also for: TOGGLEGROUP </summary>
-    TOGGLE = 3,
+    Toggle = 3,
     /// <summary> Used also for: SLIDERBAR </summary>
-    SLIDER = 4,
+    Slider = 4,
     /// <summary>  </summary>
-    PROGRESSBAR = 5,
+    Progressbar = 5,
     /// <summary>  </summary>
-    CHECKBOX = 6,
+    Checkbox = 6,
     /// <summary>  </summary>
-    COMBOBOX = 7,
+    Combobox = 7,
     /// <summary>  </summary>
-    DROPDOWNBOX = 8,
+    Dropdownbox = 8,
     /// <summary> Used also for: TEXTBOXMULTI </summary>
-    TEXTBOX = 9,
+    Textbox = 9,
     /// <summary>  </summary>
-    VALUEBOX = 10,
+    Valuebox = 10,
     /// <summary>  </summary>
-    SPINNER = 11,
+    Spinner = 11,
     /// <summary>  </summary>
-    LISTVIEW = 12,
+    Listview = 12,
     /// <summary>  </summary>
-    COLORPICKER = 13,
+    Colorpicker = 13,
     /// <summary>  </summary>
-    SCROLLBAR = 14,
+    Scrollbar = 14,
     /// <summary>  </summary>
-    STATUSBAR = 15,
+    Statusbar = 15,
 }

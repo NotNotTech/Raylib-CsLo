@@ -11,5 +11,5 @@ namespace Raylib_CsLo;
 public enum GuiToggleProperty
 {
     /// <summary>  </summary>
-    GROUP_PADDING = 16,
+    GroupPadding = 16,
 }

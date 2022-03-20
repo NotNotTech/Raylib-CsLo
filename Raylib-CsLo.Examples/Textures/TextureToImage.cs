@@ -54,11 +54,11 @@ public static unsafe class TextureToImage
 
             BeginDrawing();
 
-            ClearBackground(RAYWHITE);
+            ClearBackground(Raywhite);
 
-            DrawTexture(texture, (screenWidth / 2) - (texture.width / 2), (screenHeight / 2) - (texture.height / 2), WHITE);
+            DrawTexture(texture, (screenWidth / 2) - (texture.width / 2), (screenHeight / 2) - (texture.height / 2), White);
 
-            DrawText("this IS a texture loaded from an image!", 300, 370, 10, GRAY);
+            DrawText("this IS a texture loaded from an image!", 300, 370, 10, Gray);
 
             EndDrawing();
 

@@ -29,12 +29,12 @@ public static unsafe class Picking3d
         InitWindow(screenWidth, screenHeight, "raylib [core] example - 3d picking");
 
         // Define the camera to look into our 3d world
-        Camera camera = new();
+        Camera3D camera = new();
         camera.position = new(10.0f, 10.0f, 10.0f); // Camera position
         camera.target = new(0.0f, 0.0f, 0.0f);      // Camera looking at point
         camera.up = new(0.0f, 1.0f, 0.0f);          // Camera up vector (rotation towards target)
         camera.fovy = 45.0f;                                // Camera field-of-view Y
-        camera.Projection = CAMERA_PERSPECTIVE;                   // Camera mode type
+        camera.Projection = CameraPerspective;                   // Camera mode type
 
         Vector3 cubePosition = new(0.0f, 1.0f, 0.0f);
         Vector3 cubeSize = new(2.0f, 2.0f, 2.0f);
@@ -43,7 +43,7 @@ public static unsafe class Picking3d
 
         RayCollision collision = new();
 
-        SetCameraMode(ref camera, CAMERA_FREE); // Set a free camera mode
+        SetCameraMode(camera, CameraFree); // Set a free camera mode
 
         SetTargetFPS(60);                   // Set our game to run at 60 frames-per-second
 
@@ -55,11 +55,11 @@ public static unsafe class Picking3d
 
             UpdateCamera(ref camera);          // Update camera
 
-            if (IsMouseButtonPressed(MOUSE_BUTTON_LEFT))
+            if (IsMouseButtonPressed(MouseButtonLeft))
             {
                 if (!collision.hit)
                 {
-                    ray = GetMouseRay(GetMousePosition(), ref camera);
+                    ray = GetMouseRay(GetMousePosition(), camera);
 
                     // Check collision between ray and box
                     collision = GetRayCollisionBox(ray,
@@ -79,33 +79,33 @@ public static unsafe class Picking3d
 
             BeginDrawing();
 
-            ClearBackground(RAYWHITE);
+            ClearBackground(Raywhite);
 
-            BeginMode3D(ref camera);
+            BeginMode3D(camera);
 
             if (collision.hit)
             {
-                DrawCube(cubePosition, cubeSize.X, cubeSize.Y, cubeSize.Z, RED);
-                DrawCubeWires(cubePosition, cubeSize.X, cubeSize.Y, cubeSize.Z, MAROON);
+                DrawCube(cubePosition, cubeSize.X, cubeSize.Y, cubeSize.Z, Red);
+                DrawCubeWires(cubePosition, cubeSize.X, cubeSize.Y, cubeSize.Z, Maroon);
 
-                DrawCubeWires(cubePosition, cubeSize.X + 0.2f, cubeSize.Y + 0.2f, cubeSize.Z + 0.2f, GREEN);
+                DrawCubeWires(cubePosition, cubeSize.X + 0.2f, cubeSize.Y + 0.2f, cubeSize.Z + 0.2f, Green);
             }
             else
             {
-                DrawCube(cubePosition, cubeSize.X, cubeSize.Y, cubeSize.Z, GRAY);
-                DrawCubeWires(cubePosition, cubeSize.X, cubeSize.Y, cubeSize.Z, DARKGRAY);
+                DrawCube(cubePosition, cubeSize.X, cubeSize.Y, cubeSize.Z, Gray);
+                DrawCubeWires(cubePosition, cubeSize.X, cubeSize.Y, cubeSize.Z, Darkgray);
             }
 
-            DrawRay(ray, MAROON);
+            DrawRay(ray, Maroon);
             DrawGrid(10, 1.0f);
 
             EndMode3D();
 
-            DrawText("Try selecting the box with mouse!", 240, 10, 20, DARKGRAY);
+            DrawText("Try selecting the box with mouse!", 240, 10, 20, Darkgray);
 
             if (collision.hit)
             {
-                DrawText("BOX SELECTED", (screenWidth - MeasureText("BOX SELECTED", 30)) / 2, (int)(screenHeight * 0.1f), 30, GREEN);
+                DrawText("BOX SELECTED", (screenWidth - MeasureText("BOX SELECTED", 30)) / 2, (int)(screenHeight * 0.1f), 30, Green);
             }
 
             DrawFPS(10, 10);

@@ -7,6 +7,7 @@ namespace Raylib_CsLo.Codegen.Generators;
 
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Text.Json;
 
 public class DefineGenerator : BaseGenerator
@@ -27,20 +28,30 @@ public class DefineGenerator : BaseGenerator
     public void Generate()
     {
         Line(CodegenSettings.CodeHeader);
+
         Blank();
 
         Line($"#pragma warning disable");
+
         Blank();
 
         Line($"namespace {CodegenSettings.NamespaceName};");
 
+        Blank();
 
-        Line($"public unsafe partial class {fileName}");
+        string definition = $"public unsafe partial class {fileName}";
+        Line(definition);
 
         StartBlock();
         {
             foreach (RaylibDefine define in defines)
             {
+                if (CodegenSettings.DefinesOverride.Contains(define.Name))
+                {
+                    continue;
+                }
+
+                string name = Converter.FromSnakeToPascalCase(define.Name);
 
                 switch (define.Type)
                 {
@@ -49,7 +60,7 @@ public class DefineGenerator : BaseGenerator
                         {
                             DocumentationBlock(define.Description);
                         }
-                        Line($"public static readonly string {define.Name} = \"{define.Value}\";");
+                        Line($"public const string {name} = \"{define.Value}\";");
                         break;
 
                     case "FLOAT":
@@ -57,7 +68,7 @@ public class DefineGenerator : BaseGenerator
                         {
                             DocumentationBlock(define.Description);
                         }
-                        Line($"public static readonly float {define.Name} = {define.Value}f;");
+                        Line($"public const float {name} = {define.Value}f;");
                         break;
 
                     case "DOUBLE":
@@ -65,7 +76,7 @@ public class DefineGenerator : BaseGenerator
                         {
                             DocumentationBlock(define.Description);
                         }
-                        Line($"public static readonly double {define.Name} = {define.Value};");
+                        Line($"public const double {name} = {define.Value};");
                         break;
 
                     case "INT":
@@ -73,7 +84,7 @@ public class DefineGenerator : BaseGenerator
                         {
                             DocumentationBlock(define.Description);
                         }
-                        Line($"public static readonly int {define.Name} = {define.Value};");
+                        Line($"public const int {name} = {define.Value};");
                         break;
 
                     case "LONG":
@@ -81,7 +92,7 @@ public class DefineGenerator : BaseGenerator
                         {
                             DocumentationBlock(define.Description);
                         }
-                        Line($"public static readonly long {define.Name} = {define.Value};");
+                        Line($"public const long {name} = {define.Value};");
                         break;
 
                     case "COLOR":
@@ -89,15 +100,15 @@ public class DefineGenerator : BaseGenerator
                         {
                             DocumentationBlock(define.Description);
                         }
-                        string val = define.Value.Replace("CLITERAL", "new").Replace("(", " ").Replace(")", "").Replace("{ ", "(").Replace(" }", ")");
-                        Line($"public static readonly Color {define.Name} = {val};");
+                        string val = define.Value.Replace("CLITERAL(Color)", "new Color").Replace("{ ", "(").Replace(" }", ")");
+                        Line($"public static readonly Color {name} = {val};");
                         break;
 
                     case "GUARD":
                     case "MAKRO":
                     case "UNKNOWN":
                     default:
-                        Line($"// {define.Type} {define.Name} {define.Value}");
+                        Line($"// {define.Type} {name} {define.Value}");
                         break;
                 }
 
@@ -108,8 +119,13 @@ public class DefineGenerator : BaseGenerator
         Blank();
         Line($"#pragma warning restore");
 
-        string file = CodegenSettings.OutputFolder + fileName + "/" + fileName + "D.cs";
+        string file = CodegenSettings.OutputFolder + fileName + "/" + fileName + "Defines.cs";
         Directory.CreateDirectory(Path.GetDirectoryName(file));
+        File.WriteAllText(file, fileContents.ToString());
+
+        file = CodegenSettings.OutputFolder + fileName + "/" + fileName + "SafeDefines.cs";
+        Directory.CreateDirectory(Path.GetDirectoryName(file));
+        fileContents.Replace(definition, definition + "S");
         File.WriteAllText(file, fileContents.ToString());
     }
 

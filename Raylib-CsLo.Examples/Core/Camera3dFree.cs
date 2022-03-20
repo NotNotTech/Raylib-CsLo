@@ -34,13 +34,13 @@ public static unsafe class Camera3dFree
         camera.target = new(0.0f, 0.0f, 0.0f);      // Camera looking at point
         camera.up = new(0.0f, 1.0f, 0.0f);          // Camera up vector (rotation towards target)
         camera.fovy = 45.0f;                                // Camera field-of-view Y
-        camera.Projection = CAMERA_PERSPECTIVE;                   // Camera mode type
+        camera.Projection = CameraPerspective;                   // Camera mode type
 
         Vector3 cubePosition = new(0.0f, 0.0f, 0.0f);
 
-        SetCameraMode(ref camera, CAMERA_FREE); // Set a free camera mode
+        SetCameraMode(camera, CameraFree); // Set a free camera mode
 
-        SetCameraPanControl((int)MOUSE_BUTTON_RIGHT);
+        SetCameraPanControl((int)MouseButtonRight);
 
         SetTargetFPS(60);                   // Set our game to run at 60 frames-per-second
 
@@ -67,26 +67,26 @@ public static unsafe class Camera3dFree
 
             BeginDrawing();
 
-            ClearBackground(RAYWHITE);
+            ClearBackground(Raywhite);
 
-            BeginMode3D(ref camera);
+            BeginMode3D(camera);
 
-            DrawCube(cubePosition, 2.0f, 2.0f, 2.0f, RED);
-            DrawCubeWires(cubePosition, 2.0f, 2.0f, 2.0f, MAROON);
+            DrawCube(cubePosition, 2.0f, 2.0f, 2.0f, Red);
+            DrawCubeWires(cubePosition, 2.0f, 2.0f, 2.0f, Maroon);
 
             DrawGrid(10, 1.0f);
 
             EndMode3D();
 
-            DrawRectangle(10, 10, 320, 133, Fade(SKYBLUE, 0.5f));
-            DrawRectangleLines(10, 10, 320, 133, BLUE);
+            DrawRectangle(10, 10, 320, 133, Fade(Skyblue, 0.5f));
+            DrawRectangleLines(10, 10, 320, 133, Blue);
 
-            DrawText("Free camera default controls:", 20, 20, 10, BLACK);
-            DrawText("- Mouse Wheel to Zoom in-out", 40, 40, 10, DARKGRAY);
-            DrawText("- Mouse Right Pressed to Pan", 40, 60, 10, DARKGRAY);
-            DrawText("- Alt + Mouse Right Pressed to Rotate", 40, 80, 10, DARKGRAY);
-            DrawText("- Alt + Ctrl + Mouse Right Pressed for Smooth Zoom", 40, 100, 10, DARKGRAY);
-            DrawText("- Z to zoom to (0, 0, 0)", 40, 120, 10, DARKGRAY);
+            DrawText("Free camera default controls:", 20, 20, 10, Black);
+            DrawText("- Mouse Wheel to Zoom in-out", 40, 40, 10, Darkgray);
+            DrawText("- Mouse Right Pressed to Pan", 40, 60, 10, Darkgray);
+            DrawText("- Alt + Mouse Right Pressed to Rotate", 40, 80, 10, Darkgray);
+            DrawText("- Alt + Ctrl + Mouse Right Pressed for Smooth Zoom", 40, 100, 10, Darkgray);
+            DrawText("- Z to zoom to (0, 0, 0)", 40, 120, 10, Darkgray);
 
             EndDrawing();
 

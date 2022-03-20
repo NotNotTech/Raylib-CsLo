@@ -34,20 +34,20 @@ void main()
 
     if (any(bvec2(clamp(tcBlue, screenCenter - vec2(0.25, 0.5), screenCenter + vec2(0.25, 0.5)) - tcBlue)))
     {
-        // Set black fragment for everything outside the lens border
+        // Set Black fragment for everything outside the lens border
         finalColor = vec4(0.0, 0.0, 0.0, 1.0);
     }
     else
     {
         // Compute color chroma aberration
-        float blue = texture(texture0, tcBlue).b;
+        float Blue = texture(texture0, tcBlue).b;
         vec2 tcGreen = lensCenter + scale*theta1;
-        float green = texture(texture0, tcGreen).g;
+        float Green = texture(texture0, tcGreen).g;
 
         vec2 thetaRed = theta1*(chromaAbParam.x + chromaAbParam.y*rSq);
         vec2 tcRed = lensCenter + scale*thetaRed;
 
-        float red = texture(texture0, tcRed).r;
-        finalColor = vec4(red, green, blue, 1.0);
+        float Red = texture(texture0, tcRed).r;
+        finalColor = vec4(Red, Green, Blue, 1.0);
     }
 }

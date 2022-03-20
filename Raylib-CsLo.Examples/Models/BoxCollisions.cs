@@ -29,7 +29,7 @@ public static unsafe class BoxCollisions
         InitWindow(screenWidth, screenHeight, "raylib [models] example - box collisions");
 
         // Define the camera to look into our 3d world
-        Camera camera = new(new(0.0f, 10.0f, 10.0f), new(0.0f, 0.0f, 0.0f), new(0.0f, 1.0f, 0.0f), 45.0f, 0);
+        Camera3D camera = new(new(0.0f, 10.0f, 10.0f), new(0.0f, 0.0f, 0.0f), new(0.0f, 1.0f, 0.0f), 45.0f, 0);
 
         Vector3 playerPosition = new(0.0f, 1.0f, 2.0f);
         Vector3 playerSize = new(1.0f, 2.0f, 1.0f);
@@ -50,19 +50,19 @@ public static unsafe class BoxCollisions
 
 
             // Move player
-            if (IsKeyDown(KEY_RIGHT))
+            if (IsKeyDown(KeyRight))
             {
                 playerPosition.X += 0.2f;
             }
-            else if (IsKeyDown(KEY_LEFT))
+            else if (IsKeyDown(KeyLeft))
             {
                 playerPosition.X -= 0.2f;
             }
-            else if (IsKeyDown(KEY_DOWN))
+            else if (IsKeyDown(KeyDown))
             {
                 playerPosition.Z += 0.2f;
             }
-            else if (IsKeyDown(KEY_UP))
+            else if (IsKeyDown(KeyUp))
             {
                 playerPosition.Z -= 0.2f;
             }
@@ -115,11 +115,11 @@ public static unsafe class BoxCollisions
             Color playerColor;
             if (collision)
             {
-                playerColor = RED;
+                playerColor = Red;
             }
             else
             {
-                playerColor = GREEN;
+                playerColor = Green;
             }
 
 
@@ -127,17 +127,17 @@ public static unsafe class BoxCollisions
 
             BeginDrawing();
 
-            ClearBackground(RAYWHITE);
+            ClearBackground(Raywhite);
 
-            BeginMode3D(ref camera);
+            BeginMode3D(camera);
 
             // Draw enemy-box
-            DrawCube(enemyBoxPos, enemyBoxSize.X, enemyBoxSize.Y, enemyBoxSize.Z, GRAY);
-            DrawCubeWires(enemyBoxPos, enemyBoxSize.X, enemyBoxSize.Y, enemyBoxSize.Z, DARKGRAY);
+            DrawCube(enemyBoxPos, enemyBoxSize.X, enemyBoxSize.Y, enemyBoxSize.Z, Gray);
+            DrawCubeWires(enemyBoxPos, enemyBoxSize.X, enemyBoxSize.Y, enemyBoxSize.Z, Darkgray);
 
             // Draw enemy-sphere
-            DrawSphere(enemySpherePos, enemySphereSize, GRAY);
-            DrawSphereWires(enemySpherePos, enemySphereSize, 16, 16, DARKGRAY);
+            DrawSphere(enemySpherePos, enemySphereSize, Gray);
+            DrawSphereWires(enemySpherePos, enemySphereSize, 16, 16, Darkgray);
 
             // Draw player
             DrawCubeV(playerPosition, playerSize, playerColor);
@@ -146,7 +146,7 @@ public static unsafe class BoxCollisions
 
             EndMode3D();
 
-            DrawText("Move player with cursors to collide", 220, 40, 20, GRAY);
+            DrawText("Move player with cursors to collide", 220, 40, 20, Gray);
 
             DrawFPS(10, 10);
 

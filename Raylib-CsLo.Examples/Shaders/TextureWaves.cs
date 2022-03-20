@@ -67,13 +67,13 @@ public static unsafe class TextureWaves
         float speedY = 8.0f;
 
         Vector2 screenSize = new(GetScreenWidth(), GetScreenHeight());
-        SetShaderValue(shader, GetShaderLocation(shader, "size"), &screenSize, SHADER_UNIFORM_VEC2);
-        SetShaderValue(shader, freqXLoc, &freqX, SHADER_UNIFORM_FLOAT);
-        SetShaderValue(shader, freqYLoc, &freqY, SHADER_UNIFORM_FLOAT);
-        SetShaderValue(shader, ampXLoc, &ampX, SHADER_UNIFORM_FLOAT);
-        SetShaderValue(shader, ampYLoc, &ampY, SHADER_UNIFORM_FLOAT);
-        SetShaderValue(shader, speedXLoc, &speedX, SHADER_UNIFORM_FLOAT);
-        SetShaderValue(shader, speedYLoc, &speedY, SHADER_UNIFORM_FLOAT);
+        SetShaderValue(shader, GetShaderLocation(shader, "size"), &screenSize, ShaderUniformVec2);
+        SetShaderValue(shader, freqXLoc, &freqX, ShaderUniformFloat);
+        SetShaderValue(shader, freqYLoc, &freqY, ShaderUniformFloat);
+        SetShaderValue(shader, ampXLoc, &ampX, ShaderUniformFloat);
+        SetShaderValue(shader, ampYLoc, &ampY, ShaderUniformFloat);
+        SetShaderValue(shader, speedXLoc, &speedX, ShaderUniformFloat);
+        SetShaderValue(shader, speedYLoc, &speedY, ShaderUniformFloat);
 
         float seconds = 0.0f;
 
@@ -87,19 +87,19 @@ public static unsafe class TextureWaves
 
             seconds += GetFrameTime();
 
-            SetShaderValue(shader, secondsLoc, &seconds, SHADER_UNIFORM_FLOAT);
+            SetShaderValue(shader, secondsLoc, &seconds, ShaderUniformFloat);
 
 
             // Draw
 
             BeginDrawing();
 
-            ClearBackground(RAYWHITE);
+            ClearBackground(Raywhite);
 
             BeginShaderMode(shader);
 
-            DrawTexture(texture, 0, 0, WHITE);
-            DrawTexture(texture, texture.width, 0, WHITE);
+            DrawTexture(texture, 0, 0, White);
+            DrawTexture(texture, texture.width, 0, White);
 
             EndShaderMode();
 

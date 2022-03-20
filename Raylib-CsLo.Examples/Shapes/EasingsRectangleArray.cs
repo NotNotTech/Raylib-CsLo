@@ -49,8 +49,8 @@ public static unsafe class EasingsRectangleArray
             {
                 recs[(y * MAX_RECS_X) + x].X = (RECS_WIDTH / 2.0f) + (RECS_WIDTH * x);
                 recs[(y * MAX_RECS_X) + x].Y = (RECS_HEIGHT / 2.0f) + (RECS_HEIGHT * y);
-                recs[(y * MAX_RECS_X) + x].width = RECS_WIDTH;
-                recs[(y * MAX_RECS_X) + x].height = RECS_HEIGHT;
+                recs[(y * MAX_RECS_X) + x].Width = RECS_WIDTH;
+                recs[(y * MAX_RECS_X) + x].Height = RECS_HEIGHT;
             }
         }
 
@@ -72,20 +72,20 @@ public static unsafe class EasingsRectangleArray
 
                 for (int i = 0; i < MAX_RECS_X * MAX_RECS_Y; i++)
                 {
-                    recs[i].height = EaseCircOut(framesCounter, RECS_HEIGHT, -RECS_HEIGHT, PLAY_TIME_IN_FRAMES);
-                    recs[i].width = EaseCircOut(framesCounter, RECS_WIDTH, -RECS_WIDTH, PLAY_TIME_IN_FRAMES);
+                    recs[i].Height = EaseCircOut(framesCounter, RECS_HEIGHT, -RECS_HEIGHT, PLAY_TIME_IN_FRAMES);
+                    recs[i].Width = EaseCircOut(framesCounter, RECS_WIDTH, -RECS_WIDTH, PLAY_TIME_IN_FRAMES);
 
-                    if (recs[i].height < 0)
+                    if (recs[i].Height < 0)
                     {
-                        recs[i].height = 0;
+                        recs[i].Height = 0;
                     }
 
-                    if (recs[i].width < 0)
+                    if (recs[i].Width < 0)
                     {
-                        recs[i].width = 0;
+                        recs[i].Width = 0;
                     }
 
-                    if ((recs[i].height == 0) && (recs[i].width == 0))
+                    if ((recs[i].Height == 0) && (recs[i].Width == 0))
                     {
                         state = 1;   // Finish playing
                     }
@@ -93,15 +93,15 @@ public static unsafe class EasingsRectangleArray
                     rotation = EaseLinearIn(framesCounter, 0.0f, 360.0f, PLAY_TIME_IN_FRAMES);
                 }
             }
-            else if ((state == 1) && IsKeyPressed(KEY_SPACE))
+            else if ((state == 1) && IsKeyPressed(KeySpace))
             {
                 // When animation has finished, press space to restart
                 framesCounter = 0;
 
                 for (int i = 0; i < MAX_RECS_X * MAX_RECS_Y; i++)
                 {
-                    recs[i].height = RECS_HEIGHT;
-                    recs[i].width = RECS_WIDTH;
+                    recs[i].Height = RECS_HEIGHT;
+                    recs[i].Width = RECS_WIDTH;
                 }
 
                 state = 0;
@@ -112,18 +112,18 @@ public static unsafe class EasingsRectangleArray
 
             BeginDrawing();
 
-            ClearBackground(RAYWHITE);
+            ClearBackground(Raywhite);
 
             if (state == 0)
             {
                 for (int i = 0; i < MAX_RECS_X * MAX_RECS_Y; i++)
                 {
-                    DrawRectanglePro(recs[i], new Vector2(recs[i].width / 2, recs[i].height / 2), rotation, RED);
+                    DrawRectanglePro(recs[i], new Vector2(recs[i].Width / 2, recs[i].Height / 2), rotation, Red);
                 }
             }
             else if (state == 1)
             {
-                DrawText("PRESS [SPACE] TO PLAY AGAIN!", 240, 200, 20, GRAY);
+                DrawText("PRESS [SPACE] TO PLAY AGAIN!", 240, 200, 20, Gray);
             }
 
             EndDrawing();

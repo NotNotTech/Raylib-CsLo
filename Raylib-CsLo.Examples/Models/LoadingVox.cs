@@ -36,12 +36,12 @@ public static unsafe class LoadingVox
         InitWindow(screenWidth, screenHeight, "raylib [models] example - magicavoxel loading");
 
         // Define the camera to look into our 3d world
-        Camera camera = new();
+        Camera3D camera = new();
         camera.position = new(10.0f, 10.0f, 10.0f); // Camera position
         camera.target = new(0.0f, 0.0f, 0.0f);      // Camera looking at point
         camera.up = new(0.0f, 1.0f, 0.0f);          // Camera up vector (rotation towards target)
         camera.fovy = 45.0f;                                // Camera field-of-view Y
-        camera.Projection = CAMERA_PERSPECTIVE;             // Camera mode type
+        camera.Projection = CameraPerspective;             // Camera mode type
 
         // Load MagicaVoxel files
         Model[] models = new Model[MAX_VOX_FILES];
@@ -53,7 +53,7 @@ public static unsafe class LoadingVox
             models[i] = LoadModel(voxFileNames[i]);
             double t1 = GetTime() * 1000.0;
 
-            TraceLog(LOG_WARNING, TextFormat("[%s] File loaded in %.3f ms", voxFileNames[i], t1 - t0));
+            TraceLog(LogWarning, TextFormat("[%s] File loaded in %.3f ms", voxFileNames[i], t1 - t0));
 
             // Compute model translation matrix to center model on draw position (0, 0 , 0)
             BoundingBox bb = GetModelBoundingBox(models[i]);
@@ -61,13 +61,13 @@ public static unsafe class LoadingVox
             center.X = bb.min.X + ((bb.max.X - bb.min.X) / 2);
             center.Z = bb.min.Z + ((bb.max.Z - bb.min.Z) / 2);
 
-            Matrix matTranslate = Matrix4x4.CreateTranslation(-center.X, 0, -center.Z);
+            Matrix4x4 matTranslate = Matrix4x4.CreateTranslation(-center.X, 0, -center.Z);
             models[i].transform = Matrix4x4.Transpose(matTranslate);
         }
 
         int currentModel = 0;
 
-        SetCameraMode(ref camera, CAMERA_ORBITAL);  // Set a orbital camera mode
+        SetCameraMode(camera, CameraOrbital);  // Set a orbital camera mode
 
         SetTargetFPS(60);               // Set our game to run at 60 frames-per-second
 
@@ -80,13 +80,13 @@ public static unsafe class LoadingVox
             UpdateCamera(ref camera);      // Update our camera to orbit
 
             // Cycle between models on mouse click
-            if (IsMouseButtonPressed(MOUSE_BUTTON_LEFT))
+            if (IsMouseButtonPressed(MouseButtonLeft))
             {
                 currentModel = (currentModel + 1) % MAX_VOX_FILES;
             }
 
             // Cycle between models on key pressed
-            if (IsKeyPressed(KEY_RIGHT))
+            if (IsKeyPressed(KeyRight))
             {
                 currentModel++;
                 if (currentModel >= MAX_VOX_FILES)
@@ -94,7 +94,7 @@ public static unsafe class LoadingVox
                     currentModel = 0;
                 }
             }
-            else if (IsKeyPressed(KEY_LEFT))
+            else if (IsKeyPressed(KeyLeft))
             {
                 currentModel--;
                 if (currentModel < 0)
@@ -108,21 +108,21 @@ public static unsafe class LoadingVox
 
             BeginDrawing();
 
-            ClearBackground(RAYWHITE);
+            ClearBackground(Raywhite);
 
             // Draw 3D model
-            BeginMode3D(ref camera);
+            BeginMode3D(camera);
 
-            DrawModel(models[currentModel], new(0, 0, 0), 1.0f, WHITE);
+            DrawModel(models[currentModel], new(0, 0, 0), 1.0f, White);
             DrawGrid(10, 1.0f);
 
             EndMode3D();
 
             // Display info
-            DrawRectangle(10, 400, 310, 30, Fade(SKYBLUE, 0.5f));
-            DrawRectangleLines(10, 400, 310, 30, Fade(DARKBLUE, 0.5f));
-            DrawText("MOUSE LEFT BUTTON to CYCLE VOX MODELS", 40, 410, 10, BLUE);
-            DrawText(TextFormat("File: %s", GetFileName(voxFileNames[currentModel])), 10, 10, 20, GRAY);
+            DrawRectangle(10, 400, 310, 30, Fade(Skyblue, 0.5f));
+            DrawRectangleLines(10, 400, 310, 30, Fade(Darkblue, 0.5f));
+            DrawText("MOUSE LEFT BUTTON to CYCLE VOX MODELS", 40, 410, 10, Blue);
+            DrawText(TextFormat("File: %s", GetFileName(voxFileNames[currentModel])), 10, 10, 20, Gray);
 
             EndDrawing();
 

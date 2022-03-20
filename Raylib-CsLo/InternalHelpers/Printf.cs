@@ -3,7 +3,7 @@
 // See the LICENSE file in the project root for more info.
 // The code and 100+ examples are here! https://github.com/NotNotTech/Raylib-CsLo
 
-namespace Raylib_CsLo.InternalHelpers;
+namespace Raylib_CsLo;
 
 using System;
 using System.Collections.Generic;
@@ -177,7 +177,7 @@ class FormatObject
     FormatStringPart[] parts;
     string[] staticParts;
 
-    string? finalString;
+    string finalString;
 
     enum ParseMode
     {
@@ -221,9 +221,9 @@ class FormatObject
 
         //Static mode: not in a % block, Format mode: in a % block
         ParseMode mode = ParseMode.Static;
-        FormatStringPart? part = null;
+        FormatStringPart part = null;
         FormatStep step = FormatStep.Flags;
-        StringBuilder? tempBuffer = null;
+        StringBuilder tempBuffer = null;
 
         for (int i = 0; i < format.Length; ++i)
         {
@@ -455,7 +455,7 @@ class FormatObject
             for (int i = 0, j = 0; i < parts.Length; ++i, ++j)
             {
                 final.Append(staticParts[i]);
-                FormatStringPart? f = parts[j];
+                FormatStringPart f = parts[j];
                 if (f.width == -1)
                 {
                     f.width = (int)args[j];
@@ -568,7 +568,7 @@ class FormatObject
 
     void LoadDefaultFormatters()
     {
-        System.Globalization.NumberFormatInfo? format = new();
+        System.Globalization.NumberFormatInfo format = new();
         format.NumberDecimalSeparator = ".";
 
         FormatResult charFormatter(FormatStringPart part, object arg)

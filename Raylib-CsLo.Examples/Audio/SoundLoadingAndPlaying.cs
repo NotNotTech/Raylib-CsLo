@@ -40,12 +40,12 @@ public static unsafe class SoundLoadingAndPlaying
         {
             // Update
 
-            if (IsKeyPressed(KEY_SPACE))
+            if (IsKeyPressed(KeySpace))
             {
                 PlaySound(fxWav);      // Play WAV sound
             }
 
-            if (IsKeyPressed(KEY_ENTER))
+            if (IsKeyPressed(KeyEnter))
             {
                 PlaySound(fxOgg);      // Play OGG sound
             }
@@ -55,10 +55,10 @@ public static unsafe class SoundLoadingAndPlaying
 
             BeginDrawing();
 
-            ClearBackground(RAYWHITE);
+            ClearBackground(Raywhite);
 
-            DrawText("Press SPACE to PLAY the WAV sound!", 200, 180, 20, LIGHTGRAY);
-            DrawText("Press ENTER to PLAY the OGG sound!", 200, 220, 20, LIGHTGRAY);
+            DrawText("Press SPACE to PLAY the WAV sound!", 200, 180, 20, Lightgray);
+            DrawText("Press ENTER to PLAY the OGG sound!", 200, 220, 20, Lightgray);
 
             EndDrawing();
 

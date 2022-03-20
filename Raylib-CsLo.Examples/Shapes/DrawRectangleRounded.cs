@@ -62,24 +62,24 @@ public static unsafe class DrawRectangleRounded
 
             BeginDrawing();
 
-            ClearBackground(RAYWHITE);
+            ClearBackground(Raywhite);
 
-            DrawLine(560, 0, 560, GetScreenHeight(), Fade(LIGHTGRAY, 0.6f));
-            DrawRectangle(560, 0, GetScreenWidth() - 500, GetScreenHeight(), Fade(LIGHTGRAY, 0.3f));
+            DrawLine(560, 0, 560, GetScreenHeight(), Fade(Lightgray, 0.6f));
+            DrawRectangle(560, 0, GetScreenWidth() - 500, GetScreenHeight(), Fade(Lightgray, 0.3f));
 
             if (drawRect)
             {
-                DrawRectangleRec(rec, Fade(GOLD, 0.6f));
+                DrawRectangleRec(rec, Fade(Gold, 0.6f));
             }
 
             if (drawRoundedRect)
             {
-                DrawRectangleRounded(rec, roundness, segments, Fade(MAROON, 0.2f));
+                DrawRectangleRounded(rec, roundness, segments, Fade(Maroon, 0.2f));
             }
 
             if (drawRoundedLines)
             {
-                DrawRectangleRoundedLines(rec, roundness, segments, lineThick, Fade(MAROON, 0.4f));
+                DrawRectangleRoundedLines(rec, roundness, segments, lineThick, Fade(Maroon, 0.4f));
             }
 
             // Draw GUI controls
@@ -95,7 +95,7 @@ public static unsafe class DrawRectangleRounded
             drawRect = GuiCheckBox(new Rectangle(640, 380, 20, 20), "DrawRect", drawRect);
 
 
-            DrawText(TextFormat("MODE: %s", (segments >= 4) ? "MANUAL" : "AUTO"), 640, 280, 10, (segments >= 4) ? MAROON : DARKGRAY);
+            DrawText(TextFormat("MODE: %s", (segments >= 4) ? "MANUAL" : "AUTO"), 640, 280, 10, (segments >= 4) ? Maroon : Darkgray);
 
             DrawFPS(10, 10);
 

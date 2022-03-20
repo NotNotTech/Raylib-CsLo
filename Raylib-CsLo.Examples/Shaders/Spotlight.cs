@@ -78,7 +78,7 @@ public static unsafe class Spotlight
         InitWindow(screenWidth, screenHeight, "raylib - shader spotlight");
         HideCursor();
 
-        Texture texRay = LoadTexture("resources/raysan.png");
+        Texture2D texRay = LoadTexture("resources/raysan.png");
 
         Star[] stars = new Star[MAX_STARS];
 
@@ -121,10 +121,10 @@ public static unsafe class Spotlight
         }
 
         // Tell the shader how wide the screen is so we can have
-        // a pitch black half and a dimly lit half.
+        // a pitch Black half and a dimly lit half.
         int wLoc = GetShaderLocation(shdrSpot, "screenWidth");
         float sw = GetScreenWidth();
-        SetShaderValue(shdrSpot, wLoc, &sw, SHADER_UNIFORM_FLOAT);
+        SetShaderValue(shdrSpot, wLoc, &sw, ShaderUniformFloat);
 
         // Randomize the locations and velocities of the spotlights
         // and initialize the shader locations
@@ -143,9 +143,9 @@ public static unsafe class Spotlight
             spots[i].inner = 28.0f * (i + 1);
             spots[i].radius = 48.0f * (i + 1);
 
-            SetShaderValue(shdrSpot, spots[i].posLoc, spots[i].pos.X, SHADER_UNIFORM_VEC2);
-            SetShaderValue(shdrSpot, spots[i].innerLoc, spots[i].inner, SHADER_UNIFORM_FLOAT);
-            SetShaderValue(shdrSpot, spots[i].radiusLoc, spots[i].radius, SHADER_UNIFORM_FLOAT);
+            SetShaderValue(shdrSpot, spots[i].posLoc, spots[i].pos.X, ShaderUniformVec2);
+            SetShaderValue(shdrSpot, spots[i].innerLoc, spots[i].inner, ShaderUniformFloat);
+            SetShaderValue(shdrSpot, spots[i].radiusLoc, spots[i].radius, ShaderUniformFloat);
         }
 
         SetTargetFPS(60);               // Set  to run at 60 frames-per-second
@@ -199,27 +199,27 @@ public static unsafe class Spotlight
                     }
                 }
 
-                SetShaderValue(shdrSpot, spots[i].posLoc, ref spots[i].pos.X, SHADER_UNIFORM_VEC2);
+                SetShaderValue(shdrSpot, spots[i].posLoc, ref spots[i].pos.X, ShaderUniformVec2);
             }
 
             // Draw
 
             BeginDrawing();
 
-            ClearBackground(DARKBLUE);
+            ClearBackground(Darkblue);
 
             // Draw stars and bobs
             for (int n = 0; n < MAX_STARS; n++)
             {
                 // Single pixel is just too small these days!
-                DrawRectangle((int)stars[n].pos.X, (int)stars[n].pos.Y, 2, 2, WHITE);
+                DrawRectangle((int)stars[n].pos.X, (int)stars[n].pos.Y, 2, 2, White);
             }
 
             for (int i = 0; i < 16; i++)
             {
                 DrawTexture(texRay,
                     (int)((screenWidth / 2.0f) + (Math.Cos((frameCounter + (i * 8)) / 51.45f) * (screenWidth / 2.2f)) - 32),
-                    (int)((screenHeight / 2.0f) + (Math.Sin((frameCounter + (i * 8)) / 17.87f) * (screenHeight / 4.2f))), WHITE);
+                    (int)((screenHeight / 2.0f) + (Math.Sin((frameCounter + (i * 8)) / 17.87f) * (screenHeight / 4.2f))), White);
             }
 
             // Draw spot lights
@@ -228,14 +228,14 @@ public static unsafe class Spotlight
             // a render texture of the full screen used to do screen
             // scaling (slight adjustment to shader would be required
             // to actually pay attention to the colour!)
-            DrawRectangle(0, 0, screenWidth, screenHeight, WHITE);
+            DrawRectangle(0, 0, screenWidth, screenHeight, White);
             EndShaderMode();
 
             DrawFPS(10, 10);
 
-            DrawText("Move the mouse!", 10, 30, 20, GREEN);
-            DrawText("Pitch Black", (int)(screenWidth * 0.2f), screenHeight / 2, 20, GREEN);
-            DrawText("Dark", (int)(screenWidth * .66f), screenHeight / 2, 20, GREEN);
+            DrawText("Move the mouse!", 10, 30, 20, Green);
+            DrawText("Pitch Black", (int)(screenWidth * 0.2f), screenHeight / 2, 20, Green);
+            DrawText("Dark", (int)(screenWidth * .66f), screenHeight / 2, 20, Green);
 
 
             EndDrawing();

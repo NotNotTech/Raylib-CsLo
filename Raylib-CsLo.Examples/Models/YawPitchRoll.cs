@@ -27,19 +27,19 @@ public static unsafe class YawPitchRoll
         const int screenWidth = 800;
         const int screenHeight = 450;
 
-        //SetConfigFlags(FLAG_MSAA_4X_HINT | FLAG_WINDOW_HIGHDPI);
+        //SetConfigFlags(FlagMsaa4xHint | FLAG_WINDOW_HIGHDPI);
         InitWindow(screenWidth, screenHeight, "raylib [models] example - plane rotations (yaw, pitch, roll)");
 
-        Camera camera = new();
+        Camera3D camera = new();
         camera.position = new(0.0f, 50.0f, -120.0f);// Camera position perspective
         camera.target = new(0.0f, 0.0f, 0.0f);      // Camera looking at point
         camera.up = new(0.0f, 1.0f, 0.0f);          // Camera up vector (rotation towards target)
         camera.fovy = 30.0f;                                // Camera field-of-view Y
-        camera.Projection = CAMERA_PERSPECTIVE;             // Camera type
+        camera.Projection = CameraPerspective;             // Camera type
 
         Model model = LoadModel("resources/models/obj/plane.obj");                  // Load model
         Texture2D texture = LoadTexture("resources/models/obj/plane_diffuse.png");  // Load model texture
-        model.materials[0].maps[(int)MATERIAL_MAP_ALBEDO].texture = texture;            // Set map diffuse texture
+        model.materials[0].maps[(int)MaterialMapAlbedo].texture = texture;            // Set map diffuse texture
 
         float pitch = 0.0f;
         float roll = 0.0f;
@@ -54,11 +54,11 @@ public static unsafe class YawPitchRoll
             // Update
 
             // Plane pitch (x-axis) controls
-            if (IsKeyDown(KEY_DOWN))
+            if (IsKeyDown(KeyDown))
             {
                 pitch += 0.6f;
             }
-            else if (IsKeyDown(KEY_UP))
+            else if (IsKeyDown(KeyUp))
             {
                 pitch -= 0.6f;
             }
@@ -75,11 +75,11 @@ public static unsafe class YawPitchRoll
             }
 
             // Plane yaw (y-axis) controls
-            if (IsKeyDown(KEY_S))
+            if (IsKeyDown(KeyS))
             {
                 yaw += 1.0f;
             }
-            else if (IsKeyDown(KEY_A))
+            else if (IsKeyDown(KeyA))
             {
                 yaw -= 1.0f;
             }
@@ -96,11 +96,11 @@ public static unsafe class YawPitchRoll
             }
 
             // Plane roll (z-axis) controls
-            if (IsKeyDown(KEY_LEFT))
+            if (IsKeyDown(KeyLeft))
             {
                 roll -= 1.0f;
             }
-            else if (IsKeyDown(KEY_RIGHT))
+            else if (IsKeyDown(KeyRight))
             {
                 roll += 1.0f;
             }
@@ -117,31 +117,31 @@ public static unsafe class YawPitchRoll
             }
 
             // Tranformation matrix for rotations
-            model.transform = Matrix.Transpose(Matrix4x4.CreateFromYawPitchRoll(DEG2RAD * yaw, DEG2RAD * pitch, DEG2RAD * roll));
+            model.transform = Matrix4x4.Transpose(Matrix4x4.CreateFromYawPitchRoll(MathF.PI / 180 * yaw, MathF.PI / 180 * pitch, MathF.PI / 180 * roll));
 
 
             // Draw
 
             BeginDrawing();
 
-            ClearBackground(RAYWHITE);
+            ClearBackground(Raywhite);
 
             // Draw 3D model (recomended to draw 3D always before 2D)
-            BeginMode3D(ref camera);
+            BeginMode3D(camera);
 
-            DrawModel(model, new(0.0f, -8.0f, 0.0f), 1.0f, WHITE);   // Draw 3d model with texture
+            DrawModel(model, new(0.0f, -8.0f, 0.0f), 1.0f, White);   // Draw 3d model with texture
             DrawGrid(10, 10.0f);
 
             EndMode3D();
 
             // Draw controls info
-            DrawRectangle(30, 370, 260, 70, Fade(GREEN, 0.5f));
-            DrawRectangleLines(30, 370, 260, 70, Fade(DARKGREEN, 0.5f));
-            DrawText("Pitch controlled with: KEY_UP / KEY_DOWN", 40, 380, 10, DARKGRAY);
-            DrawText("Roll controlled with: KEY_LEFT / KEY_RIGHT", 40, 400, 10, DARKGRAY);
-            DrawText("Yaw controlled with: KEY_A / KEY_S", 40, 420, 10, DARKGRAY);
+            DrawRectangle(30, 370, 260, 70, Fade(Green, 0.5f));
+            DrawRectangleLines(30, 370, 260, 70, Fade(Darkgreen, 0.5f));
+            DrawText("Pitch controlled with: KeyUp / KeyDown", 40, 380, 10, Darkgray);
+            DrawText("Roll controlled with: KeyLeft / KEY_RIGHT", 40, 400, 10, Darkgray);
+            DrawText("Yaw controlled with: KEY_A / KEY_S", 40, 420, 10, Darkgray);
 
-            DrawText("(c) WWI Plane Model created by GiaHanLam", screenWidth - 240, screenHeight - 20, 10, DARKGRAY);
+            DrawText("(c) WWI Plane Model created by GiaHanLam", screenWidth - 240, screenHeight - 20, 10, Darkgray);
 
             EndDrawing();
 

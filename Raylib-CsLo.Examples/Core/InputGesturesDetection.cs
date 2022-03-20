@@ -33,7 +33,7 @@ public static class InputGesturesDetection
         //char gestureStrings[MAX_GESTURE_STRINGS][32];
         string[] gestureStrings = new string[MAX_GESTURE_STRINGS];
 
-        Gesture currentGesture = GESTURE_NONE;
+        Gesture currentGesture = GestureNone;
 
         //SetGesturesEnabled(0b0000000000001001);   // Enable only some gestures to be detected
 
@@ -49,44 +49,44 @@ public static class InputGesturesDetection
             currentGesture = GetGestureDetected();
             Vector2 touchPosition = GetTouchPosition(0);
 
-            if (CheckCollisionPointRec(touchPosition, touchArea) && (currentGesture != GESTURE_NONE))
+            if (CheckCollisionPointRec(touchPosition, touchArea) && (currentGesture != GestureNone))
             {
                 if (currentGesture != lastGesture)
                 {
                     // Store gesture string
                     switch (currentGesture)
                     {
-                        case GESTURE_TAP:
+                        case GestureTap:
                             gestureStrings[gesturesCount] = "GESTURE TAP";
                             break;
-                        case GESTURE_DOUBLETAP:
+                        case GestureDoubletap:
                             gestureStrings[gesturesCount] = "GESTURE DOUBLETAP";
                             break;
-                        case GESTURE_HOLD:
+                        case GestureHold:
                             gestureStrings[gesturesCount] = "GESTURE HOLD";
                             break;
-                        case GESTURE_DRAG:
+                        case GestureDrag:
                             gestureStrings[gesturesCount] = "GESTURE DRAG";
                             break;
-                        case GESTURE_SWIPE_RIGHT:
+                        case GestureSwipeRight:
                             gestureStrings[gesturesCount] = "GESTURE SWIPE RIGHT";
                             break;
-                        case GESTURE_SWIPE_LEFT:
+                        case GestureSwipeLeft:
                             gestureStrings[gesturesCount] = "GESTURE SWIPE LEFT";
                             break;
-                        case GESTURE_SWIPE_UP:
+                        case GestureSwipeUp:
                             gestureStrings[gesturesCount] = "GESTURE SWIPE UP";
                             break;
-                        case GESTURE_SWIPE_DOWN:
+                        case GestureSwipeDown:
                             gestureStrings[gesturesCount] = "GESTURE SWIPE DOWN";
                             break;
-                        case GESTURE_PINCH_IN:
+                        case GesturePinchIn:
                             gestureStrings[gesturesCount] = "GESTURE PINCH IN";
                             break;
-                        case GESTURE_PINCH_OUT:
+                        case GesturePinchOut:
                             gestureStrings[gesturesCount] = "GESTURE PINCH OUT";
                             break;
-                        case GESTURE_NONE:
+                        case GestureNone:
                             break;
                         default:
                             break;
@@ -112,40 +112,40 @@ public static class InputGesturesDetection
 
             BeginDrawing();
 
-            ClearBackground(RAYWHITE);
+            ClearBackground(Raywhite);
 
-            DrawRectangleRec(touchArea, GRAY);
-            DrawRectangle(225, 15, screenWidth - 240, screenHeight - 30, RAYWHITE);
+            DrawRectangleRec(touchArea, Gray);
+            DrawRectangle(225, 15, screenWidth - 240, screenHeight - 30, Raywhite);
 
-            DrawText("GESTURES TEST AREA", screenWidth - 270, screenHeight - 40, 20, Fade(GRAY, 0.5f));
+            DrawText("GESTURES TEST AREA", screenWidth - 270, screenHeight - 40, 20, Fade(Gray, 0.5f));
 
             for (int i = 0; i < gesturesCount; i++)
             {
                 if (i % 2 == 0)
                 {
-                    DrawRectangle(10, 30 + (20 * i), 200, 20, Fade(LIGHTGRAY, 0.5f));
+                    DrawRectangle(10, 30 + (20 * i), 200, 20, Fade(Lightgray, 0.5f));
                 }
                 else
                 {
-                    DrawRectangle(10, 30 + (20 * i), 200, 20, Fade(LIGHTGRAY, 0.3f));
+                    DrawRectangle(10, 30 + (20 * i), 200, 20, Fade(Lightgray, 0.3f));
                 }
 
                 if (i < gesturesCount - 1)
                 {
-                    DrawText(gestureStrings[i], 35, 36 + (20 * i), 10, DARKGRAY);
+                    DrawText(gestureStrings[i], 35, 36 + (20 * i), 10, Darkgray);
                 }
                 else
                 {
-                    DrawText(gestureStrings[i], 35, 36 + (20 * i), 10, MAROON);
+                    DrawText(gestureStrings[i], 35, 36 + (20 * i), 10, Maroon);
                 }
             }
 
-            DrawRectangleLines(10, 29, 200, screenHeight - 50, GRAY);
-            DrawText("DETECTED GESTURES", 50, 15, 10, GRAY);
+            DrawRectangleLines(10, 29, 200, screenHeight - 50, Gray);
+            DrawText("DETECTED GESTURES", 50, 15, 10, Gray);
 
-            if (currentGesture != GESTURE_NONE)
+            if (currentGesture != GestureNone)
             {
-                DrawCircleV(touchPosition, 30, MAROON);
+                DrawCircleV(touchPosition, 30, Maroon);
             }
 
             EndDrawing();

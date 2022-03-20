@@ -59,7 +59,14 @@ public class NativeClassGenerator : BaseGenerator
     {
         DocumentationBlock(func.Description);
 
-        Line($"[DllImport(\"{fileName.ToLowerInvariant()}\", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]");
+        string importname = fileName.ToLowerInvariant();
+
+        if (importname != "raygui" || importname != "physac")
+        {
+            importname = "raylib";
+        }
+
+        Line($"[DllImport(\"{importname}\", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]");
 
         string returnType = GenReturnType(func);
         string parameters = GenParameterDefinitions(func);
@@ -69,7 +76,7 @@ public class NativeClassGenerator : BaseGenerator
 
     static string GenReturnType(RaylibFunction func)
     {
-        return TypeConverter.FromCToUnsafeCs(func.Return);
+        return Converter.FromCToUnsafeCs(func.Return);
     }
 
     string GenParameterDefinitions(RaylibFunction func)
@@ -87,8 +94,8 @@ public class NativeClassGenerator : BaseGenerator
                     continue;
                 }
 
-                DebugLine(parameter.Type + " => " + TypeConverter.FromCToUnsafeCs(parameter.Type));
-                string type = TypeConverter.FromCToUnsafeCs(parameter.Type);
+                DebugLine(parameter.Type + " => " + Converter.FromCToUnsafeCs(parameter.Type));
+                string type = Converter.FromCToUnsafeCs(parameter.Type);
                 string name = parameter.Name;
 
                 if (parameter.Type == "...")
@@ -134,7 +141,7 @@ public class NativeClassGenerator : BaseGenerator
                 func.Manual = true;
             }
 
-            bool isReturnSame = TypeConverter.FromCToUnsafeCs(func.Return).Equals(TypeConverter.FromCToSafeCs(func.Return), System.StringComparison.Ordinal);
+            bool isReturnSame = Converter.FromCToUnsafeCs(func.Return).Equals(Converter.FromCToSafeCs(func.Return), System.StringComparison.Ordinal);
             bool isParamsSame = true;
             if (parameters != null)
             {
@@ -144,7 +151,7 @@ public class NativeClassGenerator : BaseGenerator
                 {
                     string type = param.Type.Replace(" *", "*");
 
-                    if (TypeConverter.FromCToUnsafeCs(func.Return) != TypeConverter.FromCToSafeCs(func.Return))
+                    if (Converter.FromCToUnsafeCs(func.Return) != Converter.FromCToSafeCs(func.Return))
                     {
                         isParamsSame = false;
                     }

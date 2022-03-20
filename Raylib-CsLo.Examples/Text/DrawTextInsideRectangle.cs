@@ -39,7 +39,7 @@ public static unsafe class DrawTextInsideRectangle
         bool wordWrap = true;
 
         Rectangle container = new(25.0f, 25.0f, screenWidth - 50.0f, screenHeight - 250.0f);
-        Rectangle resizer = new(container.X + container.width - 17, container.Y + container.height - 17, 14, 14);
+        Rectangle resizer = new(container.X + container.Width - 17, container.Y + container.Height - 17, 14, 14);
 
         // Minimum width and heigh for the container rectangle
         const float minWidth = 60;
@@ -48,7 +48,7 @@ public static unsafe class DrawTextInsideRectangle
         const float maxHeight = screenHeight - 160.0f;
 
         Vector2 lastMouse = new(0.0f, 0.0f); // Stores last mouse coordinates
-        Color borderColor = MAROON;         // Container border color
+        Color borderColor = Maroon;         // Container border color
         Font font = GetFontDefault();       // Get default system font
 
         SetTargetFPS(60);                   // Set our game to run at 60 frames-per-second
@@ -59,7 +59,7 @@ public static unsafe class DrawTextInsideRectangle
         {
             // Update
 
-            if (IsKeyPressed(KEY_SPACE))
+            if (IsKeyPressed(KeySpace))
             {
                 wordWrap = !wordWrap;
             }
@@ -69,39 +69,39 @@ public static unsafe class DrawTextInsideRectangle
             // Check if the mouse is inside the container and toggle border color
             if (CheckCollisionPointRec(mouse, container))
             {
-                borderColor = Fade(MAROON, 0.4f);
+                borderColor = Fade(Maroon, 0.4f);
             }
             else if (!resizing)
             {
-                borderColor = MAROON;
+                borderColor = Maroon;
             }
 
             // Container resizing logic
             if (resizing)
             {
-                if (IsMouseButtonReleased(MOUSE_BUTTON_LEFT))
+                if (IsMouseButtonReleased(MouseButtonLeft))
                 {
                     resizing = false;
                 }
 
-                float width = container.width + (mouse.X - lastMouse.X);
-                container.width = (width > minWidth) ? ((width < maxWidth) ? width : maxWidth) : minWidth;
+                float width = container.Width + (mouse.X - lastMouse.X);
+                container.Width = (width > minWidth) ? ((width < maxWidth) ? width : maxWidth) : minWidth;
 
-                float height = container.height + (mouse.Y - lastMouse.Y);
-                container.height = (height > minHeight) ? ((height < maxHeight) ? height : maxHeight) : minHeight;
+                float height = container.Height + (mouse.Y - lastMouse.Y);
+                container.Height = (height > minHeight) ? ((height < maxHeight) ? height : maxHeight) : minHeight;
             }
             else
             {
                 // Check if we're resizing
-                if (IsMouseButtonDown(MOUSE_BUTTON_LEFT) && CheckCollisionPointRec(mouse, resizer))
+                if (IsMouseButtonDown(MouseButtonLeft) && CheckCollisionPointRec(mouse, resizer))
                 {
                     resizing = true;
                 }
             }
 
             // Move resizer rectangle properly
-            resizer.X = container.X + container.width - 17;
-            resizer.Y = container.Y + container.height - 17;
+            resizer.X = container.X + container.Width - 17;
+            resizer.Y = container.Y + container.Height - 17;
 
             lastMouse = mouse; // Update mouse
 
@@ -110,32 +110,32 @@ public static unsafe class DrawTextInsideRectangle
 
             BeginDrawing();
 
-            ClearBackground(RAYWHITE);
+            ClearBackground(Raywhite);
 
             DrawRectangleLinesEx(container, 3, borderColor);    // Draw container border
 
             // Draw text in container (add some padding)
-            DrawTextBoxed(font, text, new Rectangle(container.X + 4, container.Y + 4, container.width - 4, container.height - 4), 20.0f, 2.0f, wordWrap, GRAY);
+            DrawTextBoxed(font, text, new Rectangle(container.X + 4, container.Y + 4, container.Width - 4, container.Height - 4), 20.0f, 2.0f, wordWrap, Gray);
 
             DrawRectangleRec(resizer, borderColor);             // Draw the resize box
 
             // Draw bottom info
-            DrawRectangle(0, screenHeight - 54, screenWidth, 54, GRAY);
-            DrawRectangleRec(new Rectangle(382.0f, screenHeight - 34.0f, 12.0f, 12.0f), MAROON);
+            DrawRectangle(0, screenHeight - 54, screenWidth, 54, Gray);
+            DrawRectangleRec(new Rectangle(382.0f, screenHeight - 34.0f, 12.0f, 12.0f), Maroon);
 
-            DrawText("Word Wrap: ", 313, screenHeight - 115, 20, BLACK);
+            DrawText("Word Wrap: ", 313, screenHeight - 115, 20, Black);
             if (wordWrap)
             {
-                DrawText("ON", 447, screenHeight - 115, 20, RED);
+                DrawText("ON", 447, screenHeight - 115, 20, Red);
             }
             else
             {
-                DrawText("OFF", 447, screenHeight - 115, 20, BLACK);
+                DrawText("OFF", 447, screenHeight - 115, 20, Black);
             }
 
-            DrawText("Press [SPACE] to toggle word wrap", 218, screenHeight - 86, 20, GRAY);
+            DrawText("Press [SPACE] to toggle word wrap", 218, screenHeight - 86, 20, Gray);
 
-            DrawText("Click hold & drag the    to resize the container", 155, screenHeight - 38, 20, RAYWHITE);
+            DrawText("Click hold & drag the    to resize the container", 155, screenHeight - 38, 20, Raywhite);
 
             EndDrawing();
 
@@ -157,7 +157,7 @@ public static unsafe class DrawTextInsideRectangle
     // Draw text using font inside rectangle limits
     static void DrawTextBoxed(Font font, string text, Rectangle rec, float fontSize, float spacing, bool wordWrap, Color tint)
     {
-        DrawTextBoxedSelectable(font, text, rec, fontSize, spacing, wordWrap, tint, 0, 0, WHITE, WHITE);
+        DrawTextBoxedSelectable(font, text, rec, fontSize, spacing, wordWrap, tint, 0, 0, White, White);
     }
 
 
@@ -198,7 +198,7 @@ public static unsafe class DrawTextInsideRectangle
             float glyphWidth = 0;
             if (codepoint != '\n')
             {
-                glyphWidth = (font.glyphs[index].advanceX == 0) ? font.recs[index].width * scaleFactor : font.glyphs[index].advanceX * scaleFactor;
+                glyphWidth = (font.glyphs[index].advanceX == 0) ? font.recs[index].Width * scaleFactor : font.glyphs[index].advanceX * scaleFactor;
 
                 if (i + 1 < length)
                 {
@@ -220,7 +220,7 @@ public static unsafe class DrawTextInsideRectangle
                     endLine = i;
                 }
 
-                if ((textOffsetX + glyphWidth) > rec.width)
+                if ((textOffsetX + glyphWidth) > rec.Width)
                 {
                     endLine = (endLine < 1) ? i : endLine;
                     if (i == endLine)
@@ -269,14 +269,14 @@ public static unsafe class DrawTextInsideRectangle
                 }
                 else
                 {
-                    if (!wordWrap && ((textOffsetX + glyphWidth) > rec.width))
+                    if (!wordWrap && ((textOffsetX + glyphWidth) > rec.Width))
                     {
                         textOffsetY += (font.baseSize + (font.baseSize / 2)) * scaleFactor;
                         textOffsetX = 0;
                     }
 
                     // When text overflows rectangle height limit, just stop drawing
-                    if ((textOffsetY + (font.baseSize * scaleFactor)) > rec.height)
+                    if ((textOffsetY + (font.baseSize * scaleFactor)) > rec.Height)
                     {
                         break;
                     }

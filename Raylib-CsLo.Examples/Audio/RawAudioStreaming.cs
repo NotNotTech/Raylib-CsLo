@@ -80,7 +80,7 @@ public static unsafe class RawAudioStreaming
             // Sample mouse input.
             Vector2 mousePosition = GetMousePosition();
 
-            if (IsMouseButtonDown(MOUSE_BUTTON_LEFT))
+            if (IsMouseButtonDown(MouseButtonLeft))
             {
                 float fp = mousePosition.Y;
                 frequency = 40.0f + (float)fp;
@@ -152,10 +152,10 @@ public static unsafe class RawAudioStreaming
 
             BeginDrawing();
 
-            ClearBackground(RAYWHITE);
+            ClearBackground(Raywhite);
 
-            DrawText(TextFormat("sine frequency: %i", (int)frequency), GetScreenWidth() - 220, 10, 20, RED);
-            DrawText("click mouse button to change frequency", 10, 10, 20, DARKGRAY);
+            DrawText(TextFormat("sine frequency: %i", (int)frequency), GetScreenWidth() - 220, 10, 20, Red);
+            DrawText("click mouse button to change frequency", 10, 10, 20, Darkgray);
 
             // Draw the current buffer state proportionate to the screen
             for (int i = 0; i < screenWidth; i++)
@@ -163,7 +163,7 @@ public static unsafe class RawAudioStreaming
                 position.X = i;
                 position.Y = 250 + (50 * data[i * MAX_SAMPLES / screenWidth] / 32000.0f);
 
-                DrawPixelV(position, RED);
+                DrawPixelV(position, Red);
             }
 
             EndDrawing();

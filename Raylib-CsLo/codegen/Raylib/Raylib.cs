@@ -321,7 +321,7 @@ public unsafe partial class Raylib
 
     /// <summary> Set shader uniform value for texture (sampler2d) </summary>
     [DllImport("raylib", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
-    public static extern void SetShaderValueTexture(Shader shader, int locIndex, Texture texture);
+    public static extern void SetShaderValueTexture(Shader shader, int locIndex, Texture2D texture);
 
     /// <summary> Unload shader from GPU memory (VRAM) </summary>
     [DllImport("raylib", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
@@ -389,7 +389,7 @@ public unsafe partial class Raylib
 
     /// <summary> Show trace log messages (LOG_DEBUG, LOG_INFO, LOG_WARNING, LOG_ERROR...) </summary>
     [DllImport("raylib", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
-    public static extern void TraceLog(int logLevel, sbyte* text, __arglist );
+    public static extern void TraceLog(int logLevel, sbyte* text, __arglist);
 
     /// <summary> Set the current threshold (minimum) log level </summary>
     [DllImport("raylib", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
@@ -749,7 +749,7 @@ public unsafe partial class Raylib
 
     /// <summary> Set texture and rectangle to be used on shapes drawing </summary>
     [DllImport("raylib", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
-    public static extern void SetShapesTexture(Texture texture, Rectangle source);
+    public static extern void SetShapesTexture(Texture2D texture, Rectangle source);
 
     /// <summary> Draw a pixel </summary>
     [DllImport("raylib", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
@@ -953,7 +953,7 @@ public unsafe partial class Raylib
 
     /// <summary> Load image from GPU texture data </summary>
     [DllImport("raylib", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
-    public static extern Image LoadImageFromTexture(Texture texture);
+    public static extern Image LoadImageFromTexture(Texture2D texture);
 
     /// <summary> Load image from screen buffer and (screenshot) </summary>
     [DllImport("raylib", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
@@ -1185,15 +1185,15 @@ public unsafe partial class Raylib
 
     /// <summary> Load texture from file into GPU memory (VRAM) </summary>
     [DllImport("raylib", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
-    public static extern Texture LoadTexture(sbyte* fileName);
+    public static extern Texture2D LoadTexture(sbyte* fileName);
 
     /// <summary> Load texture from image data </summary>
     [DllImport("raylib", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
-    public static extern Texture LoadTextureFromImage(Image image);
+    public static extern Texture2D LoadTextureFromImage(Image image);
 
     /// <summary> Load cubemap from image, multiple image cubemap layouts supported </summary>
     [DllImport("raylib", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
-    public static extern Texture LoadTextureCubemap(Image image, int layout);
+    public static extern Texture2D LoadTextureCubemap(Image image, int layout);
 
     /// <summary> Load texture for rendering (framebuffer) </summary>
     [DllImport("raylib", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
@@ -1201,7 +1201,7 @@ public unsafe partial class Raylib
 
     /// <summary> Unload texture from GPU memory (VRAM) </summary>
     [DllImport("raylib", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
-    public static extern void UnloadTexture(Texture texture);
+    public static extern void UnloadTexture(Texture2D texture);
 
     /// <summary> Unload render texture from GPU memory (VRAM) </summary>
     [DllImport("raylib", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
@@ -1209,59 +1209,59 @@ public unsafe partial class Raylib
 
     /// <summary> Update GPU texture with new data </summary>
     [DllImport("raylib", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
-    public static extern void UpdateTexture(Texture texture, void* pixels);
+    public static extern void UpdateTexture(Texture2D texture, void* pixels);
 
     /// <summary> Update GPU texture rectangle with new data </summary>
     [DllImport("raylib", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
-    public static extern void UpdateTextureRec(Texture texture, Rectangle rec, void* pixels);
+    public static extern void UpdateTextureRec(Texture2D texture, Rectangle rec, void* pixels);
 
     /// <summary> Generate GPU mipmaps for a texture </summary>
     [DllImport("raylib", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
-    public static extern void GenTextureMipmaps(Texture* texture);
+    public static extern void GenTextureMipmaps(Texture2D* texture);
 
     /// <summary> Set texture scaling filter mode </summary>
     [DllImport("raylib", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
-    public static extern void SetTextureFilter(Texture texture, int filter);
+    public static extern void SetTextureFilter(Texture2D texture, int filter);
 
     /// <summary> Set texture wrapping mode </summary>
     [DllImport("raylib", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
-    public static extern void SetTextureWrap(Texture texture, int wrap);
+    public static extern void SetTextureWrap(Texture2D texture, int wrap);
 
     /// <summary> Draw a Texture2D </summary>
     [DllImport("raylib", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
-    public static extern void DrawTexture(Texture texture, int posX, int posY, Color tint);
+    public static extern void DrawTexture(Texture2D texture, int posX, int posY, Color tint);
 
     /// <summary> Draw a Texture2D with position defined as Vector2 </summary>
     [DllImport("raylib", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
-    public static extern void DrawTextureV(Texture texture, Vector2 position, Color tint);
+    public static extern void DrawTextureV(Texture2D texture, Vector2 position, Color tint);
 
     /// <summary> Draw a Texture2D with extended parameters </summary>
     [DllImport("raylib", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
-    public static extern void DrawTextureEx(Texture texture, Vector2 position, float rotation, float scale, Color tint);
+    public static extern void DrawTextureEx(Texture2D texture, Vector2 position, float rotation, float scale, Color tint);
 
     /// <summary> Draw a part of a texture defined by a rectangle </summary>
     [DllImport("raylib", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
-    public static extern void DrawTextureRec(Texture texture, Rectangle source, Vector2 position, Color tint);
+    public static extern void DrawTextureRec(Texture2D texture, Rectangle source, Vector2 position, Color tint);
 
     /// <summary> Draw texture quad with tiling and offset parameters </summary>
     [DllImport("raylib", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
-    public static extern void DrawTextureQuad(Texture texture, Vector2 tiling, Vector2 offset, Rectangle quad, Color tint);
+    public static extern void DrawTextureQuad(Texture2D texture, Vector2 tiling, Vector2 offset, Rectangle quad, Color tint);
 
     /// <summary> Draw part of a texture (defined by a rectangle) with rotation and scale tiled into dest. </summary>
     [DllImport("raylib", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
-    public static extern void DrawTextureTiled(Texture texture, Rectangle source, Rectangle dest, Vector2 origin, float rotation, float scale, Color tint);
+    public static extern void DrawTextureTiled(Texture2D texture, Rectangle source, Rectangle dest, Vector2 origin, float rotation, float scale, Color tint);
 
     /// <summary> Draw a part of a texture defined by a rectangle with 'pro' parameters </summary>
     [DllImport("raylib", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
-    public static extern void DrawTexturePro(Texture texture, Rectangle source, Rectangle dest, Vector2 origin, float rotation, Color tint);
+    public static extern void DrawTexturePro(Texture2D texture, Rectangle source, Rectangle dest, Vector2 origin, float rotation, Color tint);
 
     /// <summary> Draws a texture (or part of it) that stretches or shrinks nicely </summary>
     [DllImport("raylib", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
-    public static extern void DrawTextureNPatch(Texture texture, NPatchInfo nPatchInfo, Rectangle dest, Vector2 origin, float rotation, Color tint);
+    public static extern void DrawTextureNPatch(Texture2D texture, NPatchInfo nPatchInfo, Rectangle dest, Vector2 origin, float rotation, Color tint);
 
     /// <summary> Draw a textured polygon </summary>
     [DllImport("raylib", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
-    public static extern void DrawTexturePoly(Texture texture, Vector2 center, Vector2* points, Vector2* texcoords, int pointCount, Color tint);
+    public static extern void DrawTexturePoly(Texture2D texture, Vector2 center, Vector2* points, Vector2* texcoords, int pointCount, Color tint);
 
     /// <summary> Get color with alpha applied, alpha goes from 0.0f to 1.0f </summary>
     [DllImport("raylib", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
@@ -1433,7 +1433,7 @@ public unsafe partial class Raylib
 
     /// <summary> Text formatting with variables (sprintf() style) </summary>
     [DllImport("raylib", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
-    public static extern sbyte* TextFormat(sbyte* text, __arglist );
+    public static extern sbyte* TextFormat(sbyte* text, __arglist);
 
     /// <summary> Get a piece of a text string </summary>
     [DllImport("raylib", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
@@ -1517,11 +1517,11 @@ public unsafe partial class Raylib
 
     /// <summary> Draw cube textured </summary>
     [DllImport("raylib", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
-    public static extern void DrawCubeTexture(Texture texture, Vector3 position, float width, float height, float length, Color color);
+    public static extern void DrawCubeTexture(Texture2D texture, Vector3 position, float width, float height, float length, Color color);
 
     /// <summary> Draw cube with a region of a texture </summary>
     [DllImport("raylib", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
-    public static extern void DrawCubeTextureRec(Texture texture, Rectangle source, Vector3 position, float width, float height, float length, Color color);
+    public static extern void DrawCubeTextureRec(Texture2D texture, Rectangle source, Vector3 position, float width, float height, float length, Color color);
 
     /// <summary> Draw sphere </summary>
     [DllImport("raylib", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
@@ -1605,15 +1605,15 @@ public unsafe partial class Raylib
 
     /// <summary> Draw a billboard texture </summary>
     [DllImport("raylib", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
-    public static extern void DrawBillboard(Camera3D camera, Texture texture, Vector3 position, float size, Color tint);
+    public static extern void DrawBillboard(Camera3D camera, Texture2D texture, Vector3 position, float size, Color tint);
 
     /// <summary> Draw a billboard texture defined by source </summary>
     [DllImport("raylib", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
-    public static extern void DrawBillboardRec(Camera3D camera, Texture texture, Rectangle source, Vector3 position, Vector2 size, Color tint);
+    public static extern void DrawBillboardRec(Camera3D camera, Texture2D texture, Rectangle source, Vector3 position, Vector2 size, Color tint);
 
     /// <summary> Draw a billboard texture defined by source and rotation </summary>
     [DllImport("raylib", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
-    public static extern void DrawBillboardPro(Camera3D camera, Texture texture, Rectangle source, Vector3 position, Vector3 up, Vector2 size, Vector2 origin, float rotation, Color tint);
+    public static extern void DrawBillboardPro(Camera3D camera, Texture2D texture, Rectangle source, Vector3 position, Vector3 up, Vector2 size, Vector2 origin, float rotation, Color tint);
 
     /// <summary> Upload mesh vertex data in GPU and provide VAO/VBO ids </summary>
     [DllImport("raylib", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
@@ -1709,7 +1709,7 @@ public unsafe partial class Raylib
 
     /// <summary> Set texture for a material map type (MATERIAL_MAP_DIFFUSE, MATERIAL_MAP_SPECULAR...) </summary>
     [DllImport("raylib", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
-    public static extern void SetMaterialTexture(Material* material, int mapType, Texture texture);
+    public static extern void SetMaterialTexture(Material* material, int mapType, Texture2D texture);
 
     /// <summary> Set material for a mesh </summary>
     [DllImport("raylib", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]

@@ -11,35 +11,35 @@ namespace Raylib_CsLo;
 public enum GuiControlProperty
 {
     /// <summary>  </summary>
-    BORDER_COLOR_NORMAL = 0,
+    BorderColorNormal = 0,
     /// <summary>  </summary>
-    BASE_COLOR_NORMAL = 1,
+    BaseColorNormal = 1,
     /// <summary>  </summary>
-    TEXT_COLOR_NORMAL = 2,
+    TextColorNormal = 2,
     /// <summary>  </summary>
-    BORDER_COLOR_FOCUSED = 3,
+    BorderColorFocused = 3,
     /// <summary>  </summary>
-    BASE_COLOR_FOCUSED = 4,
+    BaseColorFocused = 4,
     /// <summary>  </summary>
-    TEXT_COLOR_FOCUSED = 5,
+    TextColorFocused = 5,
     /// <summary>  </summary>
-    BORDER_COLOR_PRESSED = 6,
+    BorderColorPressed = 6,
     /// <summary>  </summary>
-    BASE_COLOR_PRESSED = 7,
+    BaseColorPressed = 7,
     /// <summary>  </summary>
-    TEXT_COLOR_PRESSED = 8,
+    TextColorPressed = 8,
     /// <summary>  </summary>
-    BORDER_COLOR_DISABLED = 9,
+    BorderColorDisabled = 9,
     /// <summary>  </summary>
-    BASE_COLOR_DISABLED = 10,
+    BaseColorDisabled = 10,
     /// <summary>  </summary>
-    TEXT_COLOR_DISABLED = 11,
+    TextColorDisabled = 11,
     /// <summary>  </summary>
-    BORDER_WIDTH = 12,
+    BorderWidth = 12,
     /// <summary>  </summary>
-    TEXT_PADDING = 13,
+    TextPadding = 13,
     /// <summary>  </summary>
-    TEXT_ALIGNMENT = 14,
+    TextAlignment = 14,
     /// <summary>  </summary>
-    RESERVED = 15,
+    Reserved = 15,
 }

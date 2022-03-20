@@ -34,7 +34,7 @@ public static unsafe class Camera3dFirstPerson
         camera.target = new(0.0f, 1.8f, 0.0f);
         camera.up = new(0.0f, 1.0f, 0.0f);
         camera.fovy = 60.0f;
-        camera.Projection = CAMERA_PERSPECTIVE;
+        camera.Projection = CameraPerspective;
 
         // Generates some random columns
         float[] heights = new float[MAX_COLUMNS];
@@ -48,7 +48,7 @@ public static unsafe class Camera3dFirstPerson
             colors[i] = new(GetRandomValue(20, 255), GetRandomValue(10, 55), 30, 255);
         }
 
-        SetCameraMode(ref camera, CAMERA_FIRST_PERSON); // Set a first person camera mode
+        SetCameraMode(camera, CameraFirstPerson); // Set a first person camera mode
 
         SetTargetFPS(60);                           // Set our game to run at 60 frames-per-second
 
@@ -65,30 +65,29 @@ public static unsafe class Camera3dFirstPerson
 
             BeginDrawing();
 
-            ClearBackground(RAYWHITE);
+            ClearBackground(Raywhite);
 
-            BeginMode3D(ref camera);
+            BeginMode3D(camera);
 
-            DrawPlane(new(0.0f, 0.0f, 0.0f), new(32.0f, 32.0f), LIGHTGRAY); // Draw ground
-            DrawCube(new(-16.0f, 2.5f, 0.0f), 1.0f, 5.0f, 32.0f, BLUE);     // Draw a blue wall
-            DrawCube(new(16.0f, 2.5f, 0.0f), 1.0f, 5.0f, 32.0f, LIME);      // Draw a green wall
-            DrawCube(new(0.0f, 2.5f, 16.0f), 32.0f, 5.0f, 1.0f, GOLD);      // Draw a yellow wall
+            DrawPlane(new(0.0f, 0.0f, 0.0f), new(32.0f, 32.0f), Lightgray); // Draw ground
+            DrawCube(new(-16.0f, 2.5f, 0.0f), 1.0f, 5.0f, 32.0f, Blue);     // Draw a Blue wall
+            DrawCube(new(16.0f, 2.5f, 0.0f), 1.0f, 5.0f, 32.0f, Lime);      // Draw a Green wall
+            DrawCube(new(0.0f, 2.5f, 16.0f), 32.0f, 5.0f, 1.0f, Gold);      // Draw a Yellow wall
 
             // Draw some cubes around
             for (int i = 0; i < MAX_COLUMNS; i++)
             {
                 DrawCube(positions[i], 2.0f, heights[i], 2.0f, colors[i]);
-                DrawCubeWires(positions[i], 2.0f, heights[i], 2.0f, MAROON);
+                DrawCubeWires(positions[i], 2.0f, heights[i], 2.0f, Maroon);
             }
 
             EndMode3D();
 
-            DrawRectangle(10, 10, 220, 70, Fade(SKYBLUE, 0.5f));
-            DrawRectangleLines(10, 10, 220, 70, BLUE);
+            DrawRectangle(10, 10, 220, 70, Fade(Skyblue, 0.5f));
+            DrawRectangleLines(10, 10, 220, 70, Blue);
 
-            DrawText("First person camera default controls:", 20, 20, 10, BLACK);
-            DrawText("- Move with keys: W, A, S, D", 40, 40, 10, DARKGRAY);
-            DrawText("- Mouse move to look around", 40, 60, 10, DARKGRAY);
+            DrawText("First person camera default controls:", 20, 20, 10, Black);
+            DrawText("- Move with keys: W, A, S, D", 40, 40, 10, Darkgray);
 
             EndDrawing();
 

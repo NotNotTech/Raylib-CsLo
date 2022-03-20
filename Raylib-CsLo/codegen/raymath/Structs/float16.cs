@@ -4,12 +4,13 @@
 // The code and 100+ examples are here! https://github.com/NotNotTech/Raylib-CsLo
 
 // Warning This file is auto generated and changes will be lost
+
 namespace Raylib_CsLo;
 
 /// <summary>  </summary>
-public unsafe partial struct float16
+public unsafe partial struct Float16
 {
     /// <summary>  </summary>
-    public float v[16];
+    public fixed float v[16];
 
 }

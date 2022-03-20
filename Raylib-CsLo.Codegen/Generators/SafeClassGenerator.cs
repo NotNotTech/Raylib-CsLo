@@ -82,7 +82,7 @@ public class SafeClassGenerator : BaseGenerator
         DocumentationBlock(func.Description);
 
         string paramters = GenDefinitionParameters(func);
-        string returnType = TypeConverter.FromCToSafeCs(func.Return);
+        string returnType = Converter.FromCToSafeCs(func.Return);
 
         Line($"public static {returnType} {func.Name}({paramters})");
         StartBlock();
@@ -112,7 +112,7 @@ public class SafeClassGenerator : BaseGenerator
         {
             foreach (RaylibParameter parameter in func.Parameters)
             {
-                string paramType = TypeConverter.FromCToSafeCs(parameter.Type);
+                string paramType = Converter.FromCToSafeCs(parameter.Type);
                 if (Debug)
                 {
                     parameters += $"/* {parameter.Type} */ ";
@@ -149,7 +149,7 @@ public class SafeClassGenerator : BaseGenerator
 
         string unsafeCall = $"{fileName}.{func.Name}({parameters})";
 
-        DebugLine($"return {TypeConverter.FromCToUnsafeCs(func.Return)} => {TypeConverter.FromCToSafeCs(func.Return)}");
+        DebugLine($"return {Converter.FromCToUnsafeCs(func.Return)} => {Converter.FromCToSafeCs(func.Return)}");
 
         string line = "";
 
@@ -173,7 +173,7 @@ public class SafeClassGenerator : BaseGenerator
     /// </summary>
     static string CastToReturn(string type)
     {
-        string unsafeType = TypeConverter.FromCToUnsafeCs(type);
+        string unsafeType = Converter.FromCToUnsafeCs(type);
 
         return unsafeType switch
         {
@@ -187,7 +187,7 @@ public class SafeClassGenerator : BaseGenerator
     /// </summary>
     static string ConvertReturnUsingHelper(RaylibFunction func, string unsafeCall)
     {
-        string unsafeType = TypeConverter.FromCToUnsafeCs(func.Return);
+        string unsafeType = Converter.FromCToUnsafeCs(func.Return);
         string helper;
 
         switch (unsafeType)
@@ -210,7 +210,7 @@ public class SafeClassGenerator : BaseGenerator
 
         RaylibParameter param = func.Parameters?.Find((p) => p.Name.ToLowerInvariant().Contains("length"));
 
-        if (param != null)
+        if (param != null && helper == CodegenSettings.PrtToArrayFunction)
         {
             return Call(helper, unsafeCall + ", " + param.Name);
         }
@@ -225,7 +225,7 @@ public class SafeClassGenerator : BaseGenerator
     /// </summary>
     string GenParameter(RaylibFunction func, RaylibParameter parameter, int i)
     {
-        DebugLine($"{TypeConverter.FromCToUnsafeCs(parameter.Type)} => {TypeConverter.FromCToSafeCs(parameter.Type)}");
+        DebugLine($"{Converter.FromCToUnsafeCs(parameter.Type)} => {Converter.FromCToSafeCs(parameter.Type)}");
 
         string cast = CastEnumParams(parameter.Type);
         string parameters = cast + GenParameterConversion(parameter);
@@ -285,7 +285,7 @@ public class SafeClassGenerator : BaseGenerator
 
             case "unsigned char*":
             case "const unsigned char*":
-                Line($"fixed ({TypeConverter.FromCToUnsafeCs(parameter.Type)} {localVariable + localVariableSuffix} = {localVariable})");
+                Line($"fixed ({Converter.FromCToUnsafeCs(parameter.Type)} {localVariable + localVariableSuffix} = {localVariable})");
                 StartBlock();
                 localVariable += localVariableSuffix;
                 numClosingBrackets++;
@@ -295,7 +295,7 @@ public class SafeClassGenerator : BaseGenerator
             case "Matrix*":
             case "Vector2*":
             case "Color*":
-                Line($"fixed ({TypeConverter.FromCToUnsafeCs(parameter.Type)} {localVariable + localVariableSuffix} = {localVariable})");
+                Line($"fixed ({Converter.FromCToUnsafeCs(parameter.Type)} {localVariable + localVariableSuffix} = {localVariable})");
                 StartBlock();
                 localVariable += localVariableSuffix;
                 numClosingBrackets++;
@@ -309,9 +309,9 @@ public class SafeClassGenerator : BaseGenerator
                 break;
         }
 
-        if (TypeConverter.FromCToSafeCs(parameter.Type).Contains("ref ") && parameter.Type.EndsWith('*'))
+        if (Converter.FromCToSafeCs(parameter.Type).Contains("ref ") && parameter.Type.EndsWith('*'))
         {
-            Line($"fixed ({TypeConverter.FromCToUnsafeCs(parameter.Type)} {localVariable + localVariableSuffix} = &{localVariable})");
+            Line($"fixed ({Converter.FromCToUnsafeCs(parameter.Type)} {localVariable + localVariableSuffix} = &{localVariable})");
             StartBlock();
             localVariable += localVariableSuffix;
             numClosingBrackets++;

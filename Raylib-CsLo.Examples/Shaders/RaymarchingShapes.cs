@@ -35,16 +35,16 @@ public static unsafe class RaymarchingShapes
         int screenWidth = 800;
         int screenHeight = 450;
 
-        SetConfigFlags(FLAG_WINDOW_RESIZABLE);
+        SetConfigFlags(FlagWindowResizable);
         InitWindow(screenWidth, screenHeight, "raylib [shaders] example - raymarching shapes");
 
-        Camera camera = new();
+        Camera3D camera = new();
         camera.position = new Vector3(2.5f, 2.5f, 3.0f);    // Camera position
         camera.target = new Vector3(0.0f, 0.0f, 0.7f);      // Camera looking at point
         camera.up = new Vector3(0.0f, 1.0f, 0.0f);          // Camera up vector (rotation towards target)
         camera.fovy = 65.0f;                                // Camera field-of-view Y
 
-        SetCameraMode(ref camera, CAMERA_FREE);                 // Set camera mode
+        SetCameraMode(camera, CameraFree);                 // Set camera mode
 
         // Load raymarching shader
         // NOTE: Defining 0 (NULL) for vertex shader forces usage of internal default vertex shader
@@ -57,7 +57,7 @@ public static unsafe class RaymarchingShapes
         int resolutionLoc = GetShaderLocation(shader, "resolution");
 
         Vector2 resolution = new(screenWidth, screenHeight);
-        SetShaderValue(shader, resolutionLoc, resolution, SHADER_UNIFORM_VEC2);
+        SetShaderValue(shader, resolutionLoc, resolution, ShaderUniformVec2);
 
         float runTime = 0.0f;
 
@@ -78,9 +78,9 @@ public static unsafe class RaymarchingShapes
             runTime += deltaTime;
 
             // Set shader required uniform values
-            SetShaderValue(shader, viewEyeLoc, cameraPos, SHADER_UNIFORM_VEC3);
-            SetShaderValue(shader, viewCenterLoc, cameraTarget, SHADER_UNIFORM_VEC3);
-            SetShaderValue(shader, runTimeLoc, &runTime, SHADER_UNIFORM_FLOAT);
+            SetShaderValue(shader, viewEyeLoc, cameraPos, ShaderUniformVec3);
+            SetShaderValue(shader, viewCenterLoc, cameraTarget, ShaderUniformVec3);
+            SetShaderValue(shader, runTimeLoc, &runTime, ShaderUniformFloat);
 
             // Check if screen is resized
             if (IsWindowResized())
@@ -88,7 +88,7 @@ public static unsafe class RaymarchingShapes
                 screenWidth = GetScreenWidth();
                 screenHeight = GetScreenHeight();
                 resolution = new(screenWidth, screenHeight);
-                SetShaderValue(shader, resolutionLoc, resolution, SHADER_UNIFORM_VEC2);
+                SetShaderValue(shader, resolutionLoc, resolution, ShaderUniformVec2);
             }
 
 
@@ -96,15 +96,15 @@ public static unsafe class RaymarchingShapes
 
             BeginDrawing();
 
-            ClearBackground(RAYWHITE);
+            ClearBackground(Raywhite);
 
-            // We only draw a white full-screen rectangle,
+            // We only draw a White full-screen rectangle,
             // frame is generated in shader using raymarching
             BeginShaderMode(shader);
-            DrawRectangle(0, 0, screenWidth, screenHeight, WHITE);
+            DrawRectangle(0, 0, screenWidth, screenHeight, White);
             EndShaderMode();
 
-            DrawText("(c) Raymarching shader by Iñigo Quilez. MIT License.", screenWidth - 280, screenHeight - 20, 10, BLACK);
+            DrawText("(c) Raymarching shader by Iñigo Quilez. MIT License.", screenWidth - 280, screenHeight - 20, 10, Black);
 
             EndDrawing();
 

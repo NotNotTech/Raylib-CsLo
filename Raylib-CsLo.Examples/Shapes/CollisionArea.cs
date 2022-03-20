@@ -57,28 +57,28 @@ public static unsafe class CollisionArea
             }
 
             // Bounce box on x screen limits
-            if (((boxA.X + boxA.width) >= GetScreenWidth()) || (boxA.X <= 0))
+            if (((boxA.X + boxA.Width) >= GetScreenWidth()) || (boxA.X <= 0))
             {
                 boxASpeedX *= -1;
             }
 
             // Update player-controlled-box (box02)
-            boxB.X = GetMouseX() - (boxB.width / 2);
-            boxB.Y = GetMouseY() - (boxB.height / 2);
+            boxB.X = GetMouseX() - (boxB.Width / 2);
+            boxB.Y = GetMouseY() - (boxB.Height / 2);
 
             // Make sure Box B does not go out of move area limits
-            if ((boxB.X + boxB.width) >= GetScreenWidth())
+            if ((boxB.X + boxB.Width) >= GetScreenWidth())
             {
-                boxB.X = GetScreenWidth() - boxB.width;
+                boxB.X = GetScreenWidth() - boxB.Width;
             }
             else if (boxB.X <= 0)
             {
                 boxB.X = 0;
             }
 
-            if ((boxB.Y + boxB.height) >= GetScreenHeight())
+            if ((boxB.Y + boxB.Height) >= GetScreenHeight())
             {
-                boxB.Y = GetScreenHeight() - boxB.height;
+                boxB.Y = GetScreenHeight() - boxB.Height;
             }
             else if (boxB.Y <= screenUpperLimit)
             {
@@ -95,7 +95,7 @@ public static unsafe class CollisionArea
             }
 
             // Pause Box A movement
-            if (IsKeyPressed(KEY_SPACE))
+            if (IsKeyPressed(KeySpace))
             {
                 pause = !pause;
             }
@@ -105,23 +105,23 @@ public static unsafe class CollisionArea
 
             BeginDrawing();
 
-            ClearBackground(RAYWHITE);
+            ClearBackground(Raywhite);
 
-            DrawRectangle(0, 0, screenWidth, screenUpperLimit, collision ? RED : BLACK);
+            DrawRectangle(0, 0, screenWidth, screenUpperLimit, collision ? Red : Black);
 
-            DrawRectangleRec(boxA, GOLD);
-            DrawRectangleRec(boxB, BLUE);
+            DrawRectangleRec(boxA, Gold);
+            DrawRectangleRec(boxB, Blue);
 
             if (collision)
             {
                 // Draw collision area
-                DrawRectangleRec(boxCollision, LIME);
+                DrawRectangleRec(boxCollision, Lime);
 
                 // Draw collision message
-                DrawText("COLLISION!", (GetScreenWidth() / 2) - (MeasureText("COLLISION!", 20) / 2), (screenUpperLimit / 2) - 10, 20, BLACK);
+                DrawText("COLLISION!", (GetScreenWidth() / 2) - (MeasureText("COLLISION!", 20) / 2), (screenUpperLimit / 2) - 10, 20, Black);
 
                 // Draw collision area
-                DrawText(TextFormat("Collision Area: %i", (int)boxCollision.width * (int)boxCollision.height), (GetScreenWidth() / 2) - 100, screenUpperLimit + 10, 20, BLACK);
+                DrawText(TextFormat("Collision Area: %i", (int)boxCollision.Width * (int)boxCollision.Height), (GetScreenWidth() / 2) - 100, screenUpperLimit + 10, 20, Black);
             }
 
             DrawFPS(10, 10);

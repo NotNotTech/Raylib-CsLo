@@ -38,16 +38,16 @@ public static unsafe class Animation
         InitWindow(screenWidth, screenHeight, "raylib [models] example - model animation");
 
         // Define the camera to look into our 3d world
-        Camera camera = new();
+        Camera3D camera = new();
         camera.position = new(10.0f, 10.0f, 10.0f); // Camera position
         camera.target = new(0.0f, 0.0f, 0.0f);      // Camera looking at point
         camera.up = new(0.0f, 1.0f, 0.0f);          // Camera up vector (rotation towards target)
         camera.fovy = 45.0f;                                // Camera field-of-view Y
-        camera.Projection = CAMERA_PERSPECTIVE;             // Camera mode type
+        camera.Projection = CameraPerspective;             // Camera mode type
 
         Model model = LoadModel("resources/models/iqm/guy.iqm");                    // Load the animated model mesh and basic data
         Texture2D texture = LoadTexture("resources/models/iqm/guytex.png");         // Load model texture and set material
-        SetMaterialTexture(&model.materials[0], MATERIAL_MAP_ALBEDO, texture);     // Set model material map texture
+        SetMaterialTexture(&model.materials[0], MaterialMapAlbedo, texture);     // Set model material map texture
 
         Vector3 position = new(0.0f, 0.0f, 0.0f);            // Set model position
 
@@ -56,7 +56,7 @@ public static unsafe class Animation
         ModelAnimation[] anims = LoadModelAnimations("resources/models/iqm/guyanim.iqm");
         int animFrameCounter = 0;
 
-        SetCameraMode(ref camera, CAMERA_FREE); // Set free camera mode
+        SetCameraMode(camera, CameraFree); // Set free camera mode
 
         SetTargetFPS(60);                   // Set our game to run at 60 frames-per-second
 
@@ -69,7 +69,7 @@ public static unsafe class Animation
             UpdateCamera(ref camera);
 
             // Play animation when spacebar is held down
-            if (IsKeyDown(KEY_SPACE))
+            if (IsKeyDown(KeySpace))
             {
                 animFrameCounter++;
                 UpdateModelAnimation(model, anims[0], animFrameCounter);
@@ -84,23 +84,23 @@ public static unsafe class Animation
 
             BeginDrawing();
 
-            ClearBackground(RAYWHITE);
+            ClearBackground(Raywhite);
 
-            BeginMode3D(ref camera);
+            BeginMode3D(camera);
 
-            DrawModelEx(model, position, new(1.0f, 0.0f, 0.0f), -90.0f, new(1.0f, 1.0f, 1.0f), WHITE);
+            DrawModelEx(model, position, new(1.0f, 0.0f, 0.0f), -90.0f, new(1.0f, 1.0f, 1.0f), White);
 
             for (int i = 0; i < model.boneCount; i++)
             {
-                DrawCube(anims[0].framePoses[animFrameCounter][i].translation, 0.2f, 0.2f, 0.2f, RED);
+                DrawCube(anims[0].framePoses[animFrameCounter][i].translation, 0.2f, 0.2f, 0.2f, Red);
             }
 
             DrawGrid(10, 1.0f);         // Draw a grid
 
             EndMode3D();
 
-            DrawText("PRESS SPACE to PLAY MODEL ANIMATION", 10, 10, 20, MAROON);
-            DrawText("(c) Guy IQM 3D model by @culacant", screenWidth - 200, screenHeight - 20, 10, GRAY);
+            DrawText("PRESS SPACE to PLAY MODEL ANIMATION", 10, 10, 20, Maroon);
+            DrawText("(c) Guy IQM 3D model by @culacant", screenWidth - 200, screenHeight - 20, 10, Gray);
 
             EndDrawing();
 

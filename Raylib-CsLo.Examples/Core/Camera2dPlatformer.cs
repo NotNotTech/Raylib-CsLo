@@ -132,15 +132,15 @@ public static unsafe class Camera2dPlatformer
 
     public static void UpdatePlayer(Player player, EnvItem[] envItems, int envItemsLength, float delta)
     {
-        if (IsKeyDown(KEY_LEFT))
+        if (IsKeyDown(KeyLeft))
         {
             player.position.X -= DefineConstants.PLAYER_HOR_SPD * delta;
         }
-        if (IsKeyDown(KEY_RIGHT))
+        if (IsKeyDown(KeyRight))
         {
             player.position.X += DefineConstants.PLAYER_HOR_SPD * delta;
         }
-        if (IsKeyDown(KEY_SPACE) && player.canJump)
+        if (IsKeyDown(KeySpace) && player.canJump)
         {
             player.speed = -DefineConstants.PLAYER_JUMP_SPD;
             player.canJump = false;
@@ -151,11 +151,11 @@ public static unsafe class Camera2dPlatformer
         {
             EnvItem ei = envItems[i];
             Vector2 p = player.position;
-            if (ei.blocking != 0 && ei.rect.x <= p.X && ei.rect.x + ei.rect.width >= p.X && ei.rect.y >= p.Y && ei.rect.y < p.Y + (player.speed * delta))
+            if (ei.blocking != 0 && ei.rect.X <= p.X && ei.rect.X + ei.rect.Width >= p.X && ei.rect.Y >= p.Y && ei.rect.Y < p.Y + (player.speed * delta))
             {
                 hitObstacle = 1;
                 player.speed = 0.0f;
-                p.Y = ei.rect.y;
+                p.Y = ei.rect.Y;
             }
         }
 
@@ -193,10 +193,10 @@ public static unsafe class Camera2dPlatformer
         for (int i = 0; i < envItemsLength; i++)
         {
             EnvItem ei = envItems[i];
-            minX = MathF.Min(ei.rect.x, minX);
-            maxX = MathF.Max(ei.rect.x + ei.rect.width, maxX);
-            minY = MathF.Min(ei.rect.y, minY);
-            maxY = MathF.Max(ei.rect.y + ei.rect.height, maxY);
+            minX = MathF.Min(ei.rect.X, minX);
+            maxX = MathF.Max(ei.rect.X + ei.rect.Width, maxX);
+            minY = MathF.Min(ei.rect.Y, minY);
+            maxY = MathF.Max(ei.rect.Y + ei.rect.Height, maxY);
 
         }
 
@@ -265,11 +265,11 @@ public static unsafe class Camera2dPlatformer
         player.canJump = false;
         EnvItem[] envItems =
         {
-            new EnvItem() {rect = new(0, 0, 1000, 400), blocking = 0, color = LIGHTGRAY},
-            new EnvItem() {rect = new(0, 400, 1000, 200), blocking = 1, color = GRAY},
-            new EnvItem() {rect = new(300, 200, 400, 10), blocking = 1, color = GRAY},
-            new EnvItem() {rect = new(250, 300, 100, 10), blocking = 1, color = GRAY},
-            new EnvItem() {rect = new(650, 300, 100, 10), blocking = 1, color = GRAY}
+            new EnvItem() {rect = new(0, 0, 1000, 400), blocking = 0, color = Lightgray},
+            new EnvItem() {rect = new(0, 400, 1000, 200), blocking = 1, color = Gray},
+            new EnvItem() {rect = new(300, 200, 400, 10), blocking = 1, color = Gray},
+            new EnvItem() {rect = new(250, 300, 100, 10), blocking = 1, color = Gray},
+            new EnvItem() {rect = new(650, 300, 100, 10), blocking = 1, color = Gray}
         };
 
         //C++ TO C# CONVERTER WARNING: This 'sizeof' ratio was replaced with a direct reference to the array length:
@@ -319,7 +319,7 @@ public static unsafe class Camera2dPlatformer
                 camera.zoom = 0.25f;
             }
 
-            if (IsKeyPressed(KEY_R))
+            if (IsKeyPressed(KeyR))
             {
                 camera.zoom = 1.0f;
                 player.position = new(
@@ -327,7 +327,7 @@ public static unsafe class Camera2dPlatformer
                 );
             }
 
-            if (IsKeyPressed(KEY_C))
+            if (IsKeyPressed(KeyC))
             {
                 cameraOption = (cameraOption + 1) % cameraUpdatersLength;
             }
@@ -340,7 +340,7 @@ public static unsafe class Camera2dPlatformer
 
             BeginDrawing();
 
-            ClearBackground(LIGHTGRAY);
+            ClearBackground(Lightgray);
 
             BeginMode2D(camera);
 
@@ -349,18 +349,18 @@ public static unsafe class Camera2dPlatformer
                 DrawRectangleRec(envItems[i].rect, envItems[i].color);
             }
 
-            Rectangle playerRect = new(player.position.X - 20, player.position.Y - 40, 40, 40);
-            DrawRectangleRec(playerRect, RED);
+            Rectangle playerRect = new((int)player.position.X - 20, (int)player.position.Y - 40, 40, 40);
+            DrawRectangleRec(playerRect, Red);
 
             EndMode2D();
 
-            DrawText("Controls:", 20, 20, 10, BLACK);
-            DrawText("- Right/Left to move", 40, 40, 10, DARKGRAY);
-            DrawText("- Space to jump", 40, 60, 10, DARKGRAY);
-            DrawText("- Mouse Wheel to Zoom in-out, R to reset zoom", 40, 80, 10, DARKGRAY);
-            DrawText("- C to change camera mode", 40, 100, 10, DARKGRAY);
-            DrawText("Current camera mode:", 20, 120, 10, BLACK);
-            DrawText(cameraDescriptions[cameraOption], 40, 140, 10, DARKGRAY);
+            DrawText("Controls:", 20, 20, 10, Black);
+            DrawText("- Right/Left to move", 40, 40, 10, Darkgray);
+            DrawText("- Space to jump", 40, 60, 10, Darkgray);
+            DrawText("- Mouse Wheel to Zoom in-out, R to reset zoom", 40, 80, 10, Darkgray);
+            DrawText("- C to change camera mode", 40, 100, 10, Darkgray);
+            DrawText("Current camera mode:", 20, 120, 10, Black);
+            DrawText(cameraDescriptions[cameraOption], 40, 140, 10, Darkgray);
 
             EndDrawing();
 

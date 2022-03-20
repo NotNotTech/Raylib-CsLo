@@ -44,11 +44,11 @@ public static unsafe class LoadingAndDrawing
 
             BeginDrawing();
 
-            ClearBackground(RAYWHITE);
+            ClearBackground(Raywhite);
 
-            DrawTexture(texture, (screenWidth / 2) - (texture.width / 2), (screenHeight / 2) - (texture.height / 2), WHITE);
+            DrawTexture(texture, (screenWidth / 2) - (texture.width / 2), (screenHeight / 2) - (texture.height / 2), White);
 
-            DrawText("this IS a texture!", 360, 370, 10, GRAY);
+            DrawText("this IS a texture!", 360, 370, 10, Gray);
 
             EndDrawing();
 

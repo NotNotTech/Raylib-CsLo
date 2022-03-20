@@ -3,7 +3,7 @@
 // See the LICENSE file in the project root for more info.
 // The code and 100+ examples are here! https://github.com/NotNotTech/Raylib-CsLo
 
-namespace Raylib_CsLo.InternalHelpers;
+namespace Raylib_CsLo;
 
 using System.Numerics;
 using System.Runtime.CompilerServices;
@@ -17,14 +17,11 @@ public static unsafe class Extensions
 {
     public static GCHandle GcPin(this object obj)
     {
-        GCHandle handle = GCHandle.Alloc(obj, GCHandleType.Pinned);
-        return handle;
+        return GCHandle.Alloc(obj, GCHandleType.Pinned);
     }
 
-    public static SpanOwner<sbyte> MarshalUtf8(this string? text)
+    public static SpanOwner<sbyte> MarshalUtf8(this string text)
     {
-        text ??= "";
-
         int length = Encoding.UTF8.GetByteCount(text) + 1;//need Length+1 so that we always can guarantee a null terminated ending char
         SpanOwner<sbyte> toReturn = SpanOwner<sbyte>.Allocate(length, AllocationMode.Clear);
         Encoding.UTF8.GetBytes(text.AsSpan(), toReturn.Span.AsBytes());
@@ -39,8 +36,7 @@ public static unsafe class Extensions
 
     public static string SPrintF(this string format, params object[] args)
     {
-        string? toReturn = Printf.sprintf(format, args);
-        return toReturn;
+        return Printf.sprintf(format, args);
     }
 
     public static void CreateYawPitchRoll(this Quaternion r, out float yaw, out float pitch, out float roll)
@@ -57,6 +53,6 @@ public static unsafe class Extensions
         float yaw = MathF.Atan2(2.0f * ((r.Y * r.W) + (r.X * r.Z)), 1.0f - (2.0f * ((r.X * r.X) + (r.Y * r.Y))));
         float pitch = MathF.Asin(2.0f * ((r.X * r.W) - (r.Y * r.Z)));
         float roll = MathF.Atan2(2.0f * ((r.X * r.Y) + (r.Z * r.W)), 1.0f - (2.0f * ((r.X * r.X) + (r.Z * r.Z))));
-        return new(yaw, pitch, roll);
+        return new Vector3(yaw, pitch, roll);
     }
 }

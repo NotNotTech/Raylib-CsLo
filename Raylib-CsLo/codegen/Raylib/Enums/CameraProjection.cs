@@ -11,7 +11,7 @@ namespace Raylib_CsLo;
 public enum CameraProjection
 {
     /// <summary> Perspective projection </summary>
-    CAMERA_PERSPECTIVE = 0,
+    CameraPerspective = 0,
     /// <summary> Orthographic projection </summary>
-    CAMERA_ORTHOGRAPHIC = 1,
+    CameraOrthographic = 1,
 }

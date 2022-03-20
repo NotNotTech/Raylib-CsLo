@@ -81,7 +81,7 @@ public static unsafe class MeshGeneration
         InitWindow(screenWidth, screenHeight, "raylib [models] example - mesh generation");
 
         // We generate a checked image for texturing
-        Image checkedImage = GenImageChecked(2, 2, 1, 1, RED, GREEN);
+        Image checkedImage = GenImageChecked(2, 2, 1, 1, Red, Green);
         Texture2D texture = LoadTextureFromImage(checkedImage);
         UnloadImage(checkedImage);
 
@@ -100,18 +100,18 @@ public static unsafe class MeshGeneration
         // Set checkedImage texture as default diffuse component for all models material
         for (int i = 0; i < NUM_MODELS; i++)
         {
-            models[i].materials[0].maps[(int)MATERIAL_MAP_ALBEDO].texture = texture;
+            models[i].materials[0].maps[(int)MaterialMapAlbedo].texture = texture;
         }
 
         // Define the camera to look into our 3d world
-        Camera camera = new(new(5.0f, 5.0f, 5.0f), new(0.0f, 0.0f, 0.0f), new(0.0f, 1.0f, 0.0f), 45.0f, 0);
+        Camera3D camera = new(new(5.0f, 5.0f, 5.0f), new(0.0f, 0.0f, 0.0f), new(0.0f, 1.0f, 0.0f), 45.0f, 0);
 
         // Model drawing position
         Vector3 position = new(0.0f, 0.0f, 0.0f);
 
         int currentModel = 0;
 
-        SetCameraMode(ref camera, CAMERA_ORBITAL);  // Set a orbital camera mode
+        SetCameraMode(camera, CameraOrbital);  // Set a orbital camera mode
 
         SetTargetFPS(60);               // Set our game to run at 60 frames-per-second
 
@@ -123,12 +123,12 @@ public static unsafe class MeshGeneration
 
             UpdateCamera(ref camera);      // Update internal camera and our camera
 
-            if (IsMouseButtonPressed(MOUSE_BUTTON_LEFT))
+            if (IsMouseButtonPressed(MouseButtonLeft))
             {
                 currentModel = (currentModel + 1) % NUM_MODELS; // Cycle between the textures
             }
 
-            if (IsKeyPressed(KEY_RIGHT))
+            if (IsKeyPressed(KeyRight))
             {
                 currentModel++;
                 if (currentModel >= NUM_MODELS)
@@ -136,7 +136,7 @@ public static unsafe class MeshGeneration
                     currentModel = 0;
                 }
             }
-            else if (IsKeyPressed(KEY_LEFT))
+            else if (IsKeyPressed(KeyLeft))
             {
                 currentModel--;
                 if (currentModel < 0)
@@ -150,47 +150,47 @@ public static unsafe class MeshGeneration
 
             BeginDrawing();
 
-            ClearBackground(RAYWHITE);
+            ClearBackground(Raywhite);
 
-            BeginMode3D(ref camera);
+            BeginMode3D(camera);
 
-            DrawModel(models[currentModel], position, 1.0f, WHITE);
+            DrawModel(models[currentModel], position, 1.0f, White);
             DrawGrid(10, 1.0f);
 
             EndMode3D();
 
-            DrawRectangle(30, 400, 310, 30, Fade(SKYBLUE, 0.5f));
-            DrawRectangleLines(30, 400, 310, 30, Fade(DARKBLUE, 0.5f));
-            DrawText("MOUSE LEFT BUTTON to CYCLE PROCEDURAL MODELS", 40, 410, 10, BLUE);
+            DrawRectangle(30, 400, 310, 30, Fade(Skyblue, 0.5f));
+            DrawRectangleLines(30, 400, 310, 30, Fade(Darkblue, 0.5f));
+            DrawText("MOUSE LEFT BUTTON to CYCLE PROCEDURAL MODELS", 40, 410, 10, Blue);
 
             switch (currentModel)
             {
                 case 0:
-                    DrawText("PLANE", 680, 10, 20, DARKBLUE);
+                    DrawText("PLANE", 680, 10, 20, Darkblue);
                     break;
                 case 1:
-                    DrawText("CUBE", 680, 10, 20, DARKBLUE);
+                    DrawText("CUBE", 680, 10, 20, Darkblue);
                     break;
                 case 2:
-                    DrawText("SPHERE", 680, 10, 20, DARKBLUE);
+                    DrawText("SPHERE", 680, 10, 20, Darkblue);
                     break;
                 case 3:
-                    DrawText("HEMISPHERE", 640, 10, 20, DARKBLUE);
+                    DrawText("HEMISPHERE", 640, 10, 20, Darkblue);
                     break;
                 case 4:
-                    DrawText("CYLINDER", 680, 10, 20, DARKBLUE);
+                    DrawText("CYLINDER", 680, 10, 20, Darkblue);
                     break;
                 case 5:
-                    DrawText("TORUS", 680, 10, 20, DARKBLUE);
+                    DrawText("TORUS", 680, 10, 20, Darkblue);
                     break;
                 case 6:
-                    DrawText("KNOT", 680, 10, 20, DARKBLUE);
+                    DrawText("KNOT", 680, 10, 20, Darkblue);
                     break;
                 case 7:
-                    DrawText("POLY", 680, 10, 20, DARKBLUE);
+                    DrawText("POLY", 680, 10, 20, Darkblue);
                     break;
                 case 8:
-                    DrawText("Parametric(custom)", 580, 10, 20, DARKBLUE);
+                    DrawText("Parametric(custom)", 580, 10, 20, Darkblue);
                     break;
                 default:
                     break;

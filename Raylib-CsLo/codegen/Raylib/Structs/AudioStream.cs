@@ -4,13 +4,14 @@
 // The code and 100+ examples are here! https://github.com/NotNotTech/Raylib-CsLo
 
 // Warning This file is auto generated and changes will be lost
+
 namespace Raylib_CsLo;
 
 /// <summary> AudioStream, custom audio stream </summary>
 public unsafe partial struct AudioStream
 {
     /// <summary> Pointer to internal data used by the audio system </summary>
-    public rAudioBuffer * buffer;
+    public RAudioBuffer* buffer;
 
     /// <summary> Frequency (samples per second) </summary>
     public uint sampleRate;

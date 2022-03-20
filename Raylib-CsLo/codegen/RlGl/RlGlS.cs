@@ -470,25 +470,25 @@ public unsafe partial class RlGlS
     }
 
     /// <summary> Load a render batch system </summary>
-    public static rlRenderBatch rlLoadRenderBatch(int numBuffers, int bufferElements)
+    public static RlRenderBatch rlLoadRenderBatch(int numBuffers, int bufferElements)
     {
         return RlGl.rlLoadRenderBatch(numBuffers, bufferElements);
     }
 
     /// <summary> Unload render batch system </summary>
-    public static void rlUnloadRenderBatch(rlRenderBatch batch)
+    public static void rlUnloadRenderBatch(RlRenderBatch batch)
     {
         RlGl.rlUnloadRenderBatch(batch);
     }
 
     /// <summary> Draw render batch data (Update->Draw->Reset) </summary>
-    public static void rlDrawRenderBatch(rlRenderBatch* batch)
+    public static void rlDrawRenderBatch(RlRenderBatch* batch)
     {
         RlGl.rlDrawRenderBatch(batch);
     }
 
     /// <summary> Set the active render batch for rlgl (NULL for default internal) </summary>
-    public static void rlSetRenderBatchActive(rlRenderBatch* batch)
+    public static void rlSetRenderBatchActive(RlRenderBatch* batch)
     {
         RlGl.rlSetRenderBatchActive(batch);
     }
@@ -660,11 +660,11 @@ public unsafe partial class RlGlS
         return (IntPtr)RlGl.rlReadTexturePixels(id, width, height, format);
     }
 
-    /// <summary> Read screen pixel data (color buffer) </summary>
-    public static byte[] rlReadScreenPixels(int width, int height)
-    {
-        return Helpers.PrtToArray(RlGl.rlReadScreenPixels(width, height));
-    }
+    //  /// <summary> Read screen pixel data (color buffer) </summary>
+    //  public static byte[] rlReadScreenPixels(int width, int height)
+    //  {
+    //      return Helpers.PrtToArray(RlGl.rlReadScreenPixels(width, height));
+    //  }
 
     /// <summary> Load an empty framebuffer </summary>
     public static uint rlLoadFramebuffer(int width, int height)

@@ -11,25 +11,25 @@ namespace Raylib_CsLo;
 public enum Gesture
 {
     /// <summary> No gesture </summary>
-    GESTURE_NONE = 0,
+    GestureNone = 0,
     /// <summary> Tap gesture </summary>
-    GESTURE_TAP = 1,
+    GestureTap = 1,
     /// <summary> Double tap gesture </summary>
-    GESTURE_DOUBLETAP = 2,
+    GestureDoubletap = 2,
     /// <summary> Hold gesture </summary>
-    GESTURE_HOLD = 4,
+    GestureHold = 4,
     /// <summary> Drag gesture </summary>
-    GESTURE_DRAG = 8,
+    GestureDrag = 8,
     /// <summary> Swipe right gesture </summary>
-    GESTURE_SWIPE_RIGHT = 16,
+    GestureSwipeRight = 16,
     /// <summary> Swipe left gesture </summary>
-    GESTURE_SWIPE_LEFT = 32,
+    GestureSwipeLeft = 32,
     /// <summary> Swipe up gesture </summary>
-    GESTURE_SWIPE_UP = 64,
+    GestureSwipeUp = 64,
     /// <summary> Swipe down gesture </summary>
-    GESTURE_SWIPE_DOWN = 128,
+    GestureSwipeDown = 128,
     /// <summary> Pinch in gesture </summary>
-    GESTURE_PINCH_IN = 256,
+    GesturePinchIn = 256,
     /// <summary> Pinch out gesture </summary>
-    GESTURE_PINCH_OUT = 512,
+    GesturePinchOut = 512,
 }

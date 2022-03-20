@@ -351,7 +351,7 @@ public unsafe partial class RaylibS
     }
 
     /// <summary> Begin 3D mode with custom camera (3D) </summary>
-    public static void BeginMode3D(ref Camera3D camera)
+    public static void BeginMode3D(Camera3D camera)
     {
         Raylib.BeginMode3D(camera);
     }
@@ -485,7 +485,7 @@ public unsafe partial class RaylibS
     }
 
     /// <summary> Set shader uniform value for texture (sampler2d) </summary>
-    public static void SetShaderValueTexture(Shader shader, int locIndex, Texture texture)
+    public static void SetShaderValueTexture(Shader shader, int locIndex, Texture2D texture)
     {
         Raylib.SetShaderValueTexture(shader, locIndex, texture);
     }
@@ -497,13 +497,13 @@ public unsafe partial class RaylibS
     }
 
     /// <summary> Get a ray trace from mouse position </summary>
-    public static Ray GetMouseRay(Vector2 mousePosition, ref Camera3D camera)
+    public static Ray GetMouseRay(Vector2 mousePosition, Camera3D camera)
     {
         return Raylib.GetMouseRay(mousePosition, camera);
     }
 
     /// <summary> Get camera transform matrix (view matrix) </summary>
-    public static Matrix4x4 GetCameraMatrix(ref Camera3D camera)
+    public static Matrix4x4 GetCameraMatrix(Camera3D camera)
     {
         return Raylib.GetCameraMatrix(camera);
     }
@@ -515,13 +515,13 @@ public unsafe partial class RaylibS
     }
 
     /// <summary> Get the screen space position for a 3d world space position </summary>
-    public static Vector2 GetWorldToScreen(Vector3 position, ref Camera3D camera)
+    public static Vector2 GetWorldToScreen(Vector3 position, Camera3D camera)
     {
         return Raylib.GetWorldToScreen(position, camera);
     }
 
     /// <summary> Get size position for a 3d world space position </summary>
-    public static Vector2 GetWorldToScreenEx(Vector3 position, ref Camera3D camera, int width, int height)
+    public static Vector2 GetWorldToScreenEx(Vector3 position, Camera3D camera, int width, int height)
     {
         return Raylib.GetWorldToScreenEx(position, camera, width, height);
     }
@@ -835,23 +835,23 @@ public unsafe partial class RaylibS
         }
     }
 
-    /// <summary> Encode data to Base64 string </summary>
-    public static string EncodeDataBase64(byte[] data, int dataLength, int* outputLength)
-    {
-        fixed (byte* data_ = data)
-        {
-            return Helpers.Utf8ToString(Raylib.EncodeDataBase64(data_, dataLength, outputLength), dataLength);
-        }
-    }
+    //  /// <summary> Encode data to Base64 string </summary>
+    //  public static string EncodeDataBase64(byte[] data, int dataLength, int* outputLength)
+    //  {
+    //      fixed (byte* data_ = data)
+    //      {
+    //          return Helpers.Utf8ToString(Raylib.EncodeDataBase64(data_, dataLength, outputLength));
+    //      }
+    //  }
 
-    /// <summary> Decode Base64 string data </summary>
-    public static byte[] DecodeDataBase64(byte[] data, int* outputLength)
-    {
-        fixed (byte* data_ = data)
-        {
-            return Helpers.PrtToArray(Raylib.DecodeDataBase64(data_, outputLength), outputLength);
-        }
-    }
+    //  /// <summary> Decode Base64 string data </summary>
+    //  public static byte[] DecodeDataBase64(byte[] data, int* outputLength)
+    //  {
+    //      fixed (byte* data_ = data)
+    //      {
+    //          return Helpers.PrtToArray(Raylib.DecodeDataBase64(data_, outputLength), outputLength);
+    //      }
+    //  }
 
     /// <summary> Save integer value to storage file (to defined position), returns true on success </summary>
     public static bool SaveStorageValue(uint position, int value)
@@ -1132,16 +1132,19 @@ public unsafe partial class RaylibS
     }
 
     /// <summary> Set camera mode (multiple camera modes available) </summary>
-    public static void SetCameraMode(ref Camera3D camera, CameraMode mode)
+    public static void SetCameraMode(Camera3D camera, CameraMode mode)
     {
         Raylib.SetCameraMode(camera, (int)mode);
     }
 
-    /// <summary> Update camera position for selected mode </summary>
-    public static void UpdateCamera(Camera3D camera)
-    {
-        Raylib.UpdateCamera(&camera);
-    }
+    //  /// <summary> Update camera position for selected mode </summary>
+    //  public static void UpdateCamera(ref Camera3D camera)
+    //  {
+    //      fixed (Camera3D* &camera_ = &&camera)
+    //      {
+    //          Raylib.UpdateCamera(&camera_);
+    //      }
+    //  }
 
     /// <summary> Set camera pan key to combine with mouse movement (free camera) </summary>
     public static void SetCameraPanControl(int keyPan)
@@ -1168,7 +1171,7 @@ public unsafe partial class RaylibS
     }
 
     /// <summary> Set texture and rectangle to be used on shapes drawing </summary>
-    public static void SetShapesTexture(Texture texture, Rectangle source)
+    public static void SetShapesTexture(Texture2D texture, Rectangle source)
     {
         Raylib.SetShapesTexture(texture, source);
     }
@@ -1493,7 +1496,7 @@ public unsafe partial class RaylibS
     }
 
     /// <summary> Load image from GPU texture data </summary>
-    public static Image LoadImageFromTexture(Texture texture)
+    public static Image LoadImageFromTexture(Texture2D texture)
     {
         return Raylib.LoadImageFromTexture(texture);
     }
@@ -1790,17 +1793,17 @@ public unsafe partial class RaylibS
         }
     }
 
-    /// <summary> Load color data from image as a Color array (RGBA - 32bit) </summary>
-    public static Color[] LoadImageColors(Image image)
-    {
-        return Helpers.PrtToArray(Raylib.LoadImageColors(image));
-    }
+    //  /// <summary> Load color data from image as a Color array (RGBA - 32bit) </summary>
+    //  public static Color[] LoadImageColors(Image image)
+    //  {
+    //      return Helpers.PrtToArray(Raylib.LoadImageColors(image));
+    //  }
 
-    /// <summary> Load colors palette from image as a Color array (RGBA - 32bit) </summary>
-    public static Color[] LoadImagePalette(Image image, int maxPaletteSize, int* colorCount)
-    {
-        return Helpers.PrtToArray(Raylib.LoadImagePalette(image, maxPaletteSize, colorCount));
-    }
+    //  /// <summary> Load colors palette from image as a Color array (RGBA - 32bit) </summary>
+    //  public static Color[] LoadImagePalette(Image image, int maxPaletteSize, int* colorCount)
+    //  {
+    //      return Helpers.PrtToArray(Raylib.LoadImagePalette(image, maxPaletteSize, colorCount));
+    //  }
 
     /// <summary> Unload color data loaded with LoadImageColors() </summary>
     public static void UnloadImageColors(Color[] colors)
@@ -1961,20 +1964,20 @@ public unsafe partial class RaylibS
     }
 
     /// <summary> Load texture from file into GPU memory (VRAM) </summary>
-    public static Texture LoadTexture(string fileName)
+    public static Texture2D LoadTexture(string fileName)
     {
         using var fileName_ = fileName.MarshalUtf8();
         return Raylib.LoadTexture(fileName_.AsPtr());
     }
 
     /// <summary> Load texture from image data </summary>
-    public static Texture LoadTextureFromImage(Image image)
+    public static Texture2D LoadTextureFromImage(Image image)
     {
         return Raylib.LoadTextureFromImage(image);
     }
 
     /// <summary> Load cubemap from image, multiple image cubemap layouts supported </summary>
-    public static Texture LoadTextureCubemap(Image image, CubemapLayout layout)
+    public static Texture2D LoadTextureCubemap(Image image, CubemapLayout layout)
     {
         return Raylib.LoadTextureCubemap(image, (int)layout);
     }
@@ -1986,7 +1989,7 @@ public unsafe partial class RaylibS
     }
 
     /// <summary> Unload texture from GPU memory (VRAM) </summary>
-    public static void UnloadTexture(Texture texture)
+    public static void UnloadTexture(Texture2D texture)
     {
         Raylib.UnloadTexture(texture);
     }
@@ -1998,87 +2001,87 @@ public unsafe partial class RaylibS
     }
 
     //  /// <summary> Update GPU texture with new data </summary>
-    //  public static void UpdateTexture(Texture texture, IntPtr pixels)
+    //  public static void UpdateTexture(Texture2D texture, IntPtr pixels)
     //  {
     //      var pixels_ = (void*)pixels;
     //      Raylib.UpdateTexture(texture, pixels_);
     //  }
 
     /// <summary> Update GPU texture rectangle with new data </summary>
-    public static void UpdateTextureRec(Texture texture, Rectangle rec, IntPtr pixels)
+    public static void UpdateTextureRec(Texture2D texture, Rectangle rec, IntPtr pixels)
     {
         var pixels_ = (void*)pixels;
         Raylib.UpdateTextureRec(texture, rec, pixels_);
     }
 
     /// <summary> Generate GPU mipmaps for a texture </summary>
-    public static void GenTextureMipmaps(Texture* texture)
+    public static void GenTextureMipmaps(Texture2D* texture)
     {
         Raylib.GenTextureMipmaps(texture);
     }
 
     /// <summary> Set texture scaling filter mode </summary>
-    public static void SetTextureFilter(Texture texture, TextureFilter filter)
+    public static void SetTextureFilter(Texture2D texture, TextureFilter filter)
     {
         Raylib.SetTextureFilter(texture, (int)filter);
     }
 
     /// <summary> Set texture wrapping mode </summary>
-    public static void SetTextureWrap(Texture texture, TextureWrap wrap)
+    public static void SetTextureWrap(Texture2D texture, TextureWrap wrap)
     {
         Raylib.SetTextureWrap(texture, (int)wrap);
     }
 
     /// <summary> Draw a Texture2D </summary>
-    public static void DrawTexture(Texture texture, int posX, int posY, Color tint)
+    public static void DrawTexture(Texture2D texture, int posX, int posY, Color tint)
     {
         Raylib.DrawTexture(texture, posX, posY, tint);
     }
 
     /// <summary> Draw a Texture2D with position defined as Vector2 </summary>
-    public static void DrawTextureV(Texture texture, Vector2 position, Color tint)
+    public static void DrawTextureV(Texture2D texture, Vector2 position, Color tint)
     {
         Raylib.DrawTextureV(texture, position, tint);
     }
 
     /// <summary> Draw a Texture2D with extended parameters </summary>
-    public static void DrawTextureEx(Texture texture, Vector2 position, float rotation, float scale, Color tint)
+    public static void DrawTextureEx(Texture2D texture, Vector2 position, float rotation, float scale, Color tint)
     {
         Raylib.DrawTextureEx(texture, position, rotation, scale, tint);
     }
 
     /// <summary> Draw a part of a texture defined by a rectangle </summary>
-    public static void DrawTextureRec(Texture texture, Rectangle source, Vector2 position, Color tint)
+    public static void DrawTextureRec(Texture2D texture, Rectangle source, Vector2 position, Color tint)
     {
         Raylib.DrawTextureRec(texture, source, position, tint);
     }
 
     /// <summary> Draw texture quad with tiling and offset parameters </summary>
-    public static void DrawTextureQuad(Texture texture, Vector2 tiling, Vector2 offset, Rectangle quad, Color tint)
+    public static void DrawTextureQuad(Texture2D texture, Vector2 tiling, Vector2 offset, Rectangle quad, Color tint)
     {
         Raylib.DrawTextureQuad(texture, tiling, offset, quad, tint);
     }
 
     /// <summary> Draw part of a texture (defined by a rectangle) with rotation and scale tiled into dest. </summary>
-    public static void DrawTextureTiled(Texture texture, Rectangle source, Rectangle dest, Vector2 origin, float rotation, float scale, Color tint)
+    public static void DrawTextureTiled(Texture2D texture, Rectangle source, Rectangle dest, Vector2 origin, float rotation, float scale, Color tint)
     {
         Raylib.DrawTextureTiled(texture, source, dest, origin, rotation, scale, tint);
     }
 
     /// <summary> Draw a part of a texture defined by a rectangle with 'pro' parameters </summary>
-    public static void DrawTexturePro(Texture texture, Rectangle source, Rectangle dest, Vector2 origin, float rotation, Color tint)
+    public static void DrawTexturePro(Texture2D texture, Rectangle source, Rectangle dest, Vector2 origin, float rotation, Color tint)
     {
         Raylib.DrawTexturePro(texture, source, dest, origin, rotation, tint);
     }
 
     /// <summary> Draws a texture (or part of it) that stretches or shrinks nicely </summary>
-    public static void DrawTextureNPatch(Texture texture, NPatchInfo nPatchInfo, Rectangle dest, Vector2 origin, float rotation, Color tint)
+    public static void DrawTextureNPatch(Texture2D texture, NPatchInfo nPatchInfo, Rectangle dest, Vector2 origin, float rotation, Color tint)
     {
         Raylib.DrawTextureNPatch(texture, nPatchInfo, dest, origin, rotation, tint);
     }
 
     /// <summary> Draw a textured polygon </summary>
-    public static void DrawTexturePoly(Texture texture, Vector2 center, Vector2[] points, Vector2[] texcoords, int pointCount, Color tint)
+    public static void DrawTexturePoly(Texture2D texture, Vector2 center, Vector2[] points, Vector2[] texcoords, int pointCount, Color tint)
     {
         fixed (Vector2* points_ = points)
         {
@@ -2340,7 +2343,7 @@ public unsafe partial class RaylibS
     /// <summary> Encode text as codepoints array into UTF-8 text string (WARNING: memory must be freed!) </summary>
     public static string TextCodepointsToUTF8(int* codepoints, int length)
     {
-        return Helpers.Utf8ToString(Raylib.TextCodepointsToUTF8(codepoints, length), length);
+        return Helpers.Utf8ToString(Raylib.TextCodepointsToUTF8(codepoints, length));
     }
 
     /// <summary> Copy one string to another, returns bytes copied </summary>
@@ -2377,7 +2380,7 @@ public unsafe partial class RaylibS
     public static string TextSubtext(string text, int position, int length)
     {
         using var text_ = text.MarshalUtf8();
-        return Helpers.Utf8ToString(Raylib.TextSubtext(text_.AsPtr(), position, length), length);
+        return Helpers.Utf8ToString(Raylib.TextSubtext(text_.AsPtr(), position, length));
     }
 
     /// <summary> Replace text string (WARNING: memory must be freed!) </summary>
@@ -2510,13 +2513,13 @@ public unsafe partial class RaylibS
     }
 
     /// <summary> Draw cube textured </summary>
-    public static void DrawCubeTexture(Texture texture, Vector3 position, float width, float height, float length, Color color)
+    public static void DrawCubeTexture(Texture2D texture, Vector3 position, float width, float height, float length, Color color)
     {
         Raylib.DrawCubeTexture(texture, position, width, height, length, color);
     }
 
     /// <summary> Draw cube with a region of a texture </summary>
-    public static void DrawCubeTextureRec(Texture texture, Rectangle source, Vector3 position, float width, float height, float length, Color color)
+    public static void DrawCubeTextureRec(Texture2D texture, Rectangle source, Vector3 position, float width, float height, float length, Color color)
     {
         Raylib.DrawCubeTextureRec(texture, source, position, width, height, length, color);
     }
@@ -2643,19 +2646,19 @@ public unsafe partial class RaylibS
     }
 
     /// <summary> Draw a billboard texture </summary>
-    public static void DrawBillboard(ref Camera3D camera, Texture texture, Vector3 position, float size, Color tint)
+    public static void DrawBillboard(Camera3D camera, Texture2D texture, Vector3 position, float size, Color tint)
     {
         Raylib.DrawBillboard(camera, texture, position, size, tint);
     }
 
     /// <summary> Draw a billboard texture defined by source </summary>
-    public static void DrawBillboardRec(ref Camera3D camera, Texture texture, Rectangle source, Vector3 position, Vector2 size, Color tint)
+    public static void DrawBillboardRec(Camera3D camera, Texture2D texture, Rectangle source, Vector3 position, Vector2 size, Color tint)
     {
         Raylib.DrawBillboardRec(camera, texture, source, position, size, tint);
     }
 
     /// <summary> Draw a billboard texture defined by source and rotation </summary>
-    public static void DrawBillboardPro(ref Camera3D camera, Texture texture, Rectangle source, Vector3 position, Vector3 up, Vector2 size, Vector2 origin, float rotation, Color tint)
+    public static void DrawBillboardPro(Camera3D camera, Texture2D texture, Rectangle source, Vector3 position, Vector3 up, Vector2 size, Vector2 origin, float rotation, Color tint)
     {
         Raylib.DrawBillboardPro(camera, texture, source, position, up, size, origin, rotation, tint);
     }
@@ -2805,7 +2808,7 @@ public unsafe partial class RaylibS
     }
 
     /// <summary> Set texture for a material map type (MATERIAL_MAP_DIFFUSE, MATERIAL_MAP_SPECULAR...) </summary>
-    public static void SetMaterialTexture(Material* material, MaterialMapIndex mapType, Texture texture)
+    public static void SetMaterialTexture(Material* material, MaterialMapIndex mapType, Texture2D texture)
     {
         Raylib.SetMaterialTexture(material, (int)mapType, texture);
     }

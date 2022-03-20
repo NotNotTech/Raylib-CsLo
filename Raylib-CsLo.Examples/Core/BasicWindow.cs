@@ -51,9 +51,9 @@ public static class BasicWindow
 
             BeginDrawing();
 
-            ClearBackground(RAYWHITE);
+            ClearBackground(Raywhite);
 
-            DrawText("Congrats! You created your first window!", 190, 200, 20, LIGHTGRAY);
+            DrawText("Congrats! You created your first window!", 190, 200, 20, Lightgray);
 
             EndDrawing();
 

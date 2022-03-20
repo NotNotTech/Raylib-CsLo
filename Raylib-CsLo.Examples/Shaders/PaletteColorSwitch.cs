@@ -42,19 +42,19 @@ public static unsafe class PaletteColorSwitch
 
     static int[,] palettes = new int[MAX_PALETTES, COLORS_PER_PALETTE * VALUES_PER_COLOR]{
             {   // 3-BIT RGB
-			//black
+			//Black
 			0,
             0,
             0,
-			//red
+			//Red
 			255,
             0,
             0,
-			//green
+			//Green
 			0,
             255,
             0,
-			//blue
+			//Blue
 			0,
             0,
             255,
@@ -66,11 +66,11 @@ public static unsafe class PaletteColorSwitch
 			255,
             0,
             255,
-			//yellow
+			//Yellow
 			255,
             255,
             0,
-			//white
+			//White
 			255,
             255,
             255,
@@ -166,11 +166,11 @@ public static unsafe class PaletteColorSwitch
         {
             // Update
 
-            if (IsKeyPressed(KEY_RIGHT))
+            if (IsKeyPressed(KeyRight))
             {
                 currentPalette++;
             }
-            else if (IsKeyPressed(KEY_LEFT))
+            else if (IsKeyPressed(KeyLeft))
             {
                 currentPalette--;
             }
@@ -186,14 +186,14 @@ public static unsafe class PaletteColorSwitch
 
             // Send new value to the shader to be used on drawing.
             // NOTE: We are sending RGB triplets w/o the alpha channel
-            SetShaderValueV(shader, paletteLoc, ref palettes[currentPalette, 0], SHADER_UNIFORM_IVEC3, COLORS_PER_PALETTE);
+            SetShaderValueV(shader, paletteLoc, ref palettes[currentPalette, 0], ShaderUniformIvec3, COLORS_PER_PALETTE);
 
 
             // Draw
 
             BeginDrawing();
 
-            ClearBackground(RAYWHITE);
+            ClearBackground(Raywhite);
 
             BeginShaderMode(shader);
 
@@ -201,14 +201,14 @@ public static unsafe class PaletteColorSwitch
             {
                 // Draw horizontal screen-wide rectangles with increasing "palette index"
                 // The used palette index is encoded in the RGB components of the pixel
-                DrawRectangle(0, lineHeight * i, GetScreenWidth(), lineHeight, new Color(i, i, i, 255));
+                DrawRectangle(0, lineHeight * i, GetScreenWidth(), lineHeight, new(i, i, i, 255));
             }
 
             EndShaderMode();
 
-            DrawText("< >", 10, 10, 30, DARKBLUE);
-            DrawText("CURRENT PALETTE:", 60, 15, 20, RAYWHITE);
-            DrawText(paletteText[currentPalette], 300, 15, 20, RED);
+            DrawText("< >", 10, 10, 30, Darkblue);
+            DrawText("CURRENT PALETTE:", 60, 15, 20, Raywhite);
+            DrawText(paletteText[currentPalette], 300, 15, 20, Red);
 
             DrawFPS(700, 15);
 

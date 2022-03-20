@@ -32,7 +32,7 @@ public static unsafe class MeshInstancing
         const int screenHeight = 450;
         const int fps = 60;
 
-        SetConfigFlags(FLAG_MSAA_4X_HINT);  // Enable Multi Sampling Anti Aliasing 4x (if available)
+        SetConfigFlags(FlagMsaa4xHint);  // Enable Multi Sampling Anti Aliasing 4x (if available)
         InitWindow(screenWidth, screenHeight, "raylib [shaders] example - mesh instancing");
 
         int speed = 30;                 // Speed of jump animation
@@ -43,18 +43,18 @@ public static unsafe class MeshInstancing
         float x = 0.0f, y = 0.0f, z = 0.0f; // Used for various 3D coordinate & vector ops
 
         // Define the camera to look into our 3d world
-        Camera camera = new();
+        Camera3D camera = new();
         camera.position = new Vector3(-125.0f, 125.0f, -125.0f);
         camera.target = new Vector3(0.0f, 0.0f, 0.0f);
         camera.up = new Vector3(0.0f, 1.0f, 0.0f);
         camera.fovy = 45.0f;
-        camera.Projection = CAMERA_PERSPECTIVE;
+        camera.Projection = CameraPerspective;
 
         Mesh cube = GenMeshCube(1.0f, 1.0f, 1.0f);
 
-        Matrix[] rotations = new Matrix[MAX_INSTANCES];    // Rotation state of instances
-        Matrix[] rotationsInc = new Matrix[MAX_INSTANCES]; // Per-frame rotation animation of instances
-        Matrix[] translations = new Matrix[MAX_INSTANCES]; // Locations of instances
+        Matrix4x4[] rotations = new Matrix4x4[MAX_INSTANCES];    // Rotation state of instances
+        Matrix4x4[] rotationsInc = new Matrix4x4[MAX_INSTANCES]; // Per-frame rotation animation of instances
+        Matrix4x4[] translations = new Matrix4x4[MAX_INSTANCES]; // Locations of instances
 
         // Scatter random cubes around
         for (int i = 0; i < MAX_INSTANCES; i++)
@@ -68,34 +68,34 @@ public static unsafe class MeshInstancing
             y = GetRandomValue(0, 360);
             z = GetRandomValue(0, 360);
             Vector3 axis = Vector3Normalize(new Vector3(x, y, z));
-            float angle = GetRandomValue(0, 10) * DEG2RAD;
+            float angle = GetRandomValue(0, 10) * MathF.PI / 180;
 
             rotationsInc[i] = MatrixRotate(axis, angle);
             rotations[i] = MatrixIdentity();
         }
 
-        Matrix[] transforms = new Matrix[MAX_INSTANCES];   // Pre-multiplied transformations passed to rlgl
+        Matrix4x4[] transforms = new Matrix4x4[MAX_INSTANCES];   // Pre-multiplied transformations passed to rlgl
 
         Shader shader = LoadShader(TextFormat("resources/shaders/glsl%i/base_lighting_instanced.vs", GLSL_VERSION), TextFormat("resources/shaders/glsl%i/lighting.fs", GLSL_VERSION));
 
         // Get some shader loactions
-        shader.locs[(int)SHADER_LOC_MATRIX_MVP] = GetShaderLocation(shader, "mvp");
-        shader.locs[(int)SHADER_LOC_VECTOR_VIEW] = GetShaderLocation(shader, "viewPos");
-        shader.locs[(int)SHADER_LOC_MATRIX_MODEL] = GetShaderLocationAttrib(shader, "instanceTransform");
+        shader.locs[(int)ShaderLocMatrixMvp] = GetShaderLocation(shader, "mvp");
+        shader.locs[(int)ShaderLocVectorView] = GetShaderLocation(shader, "viewPos");
+        shader.locs[(int)ShaderLocMatrixModel] = GetShaderLocationAttrib(shader, "instanceTransform");
 
         // Ambient light level
         int ambientLoc = GetShaderLocation(shader, "ambient");
-        SetShaderValue(shader, ambientLoc, new Vector4(0.2f, 0.2f, 0.2f, 1.0f), SHADER_UNIFORM_VEC4);
+        SetShaderValue(shader, ambientLoc, new Vector4(0.2f, 0.2f, 0.2f, 1.0f), ShaderUniformVec4);
 
-        rLights.CreateLight(LIGHT_DIRECTIONAL, new Vector3(50.0f, 50.0f, 0.0f), Vector3Zero(), WHITE, shader);
+        rLights.CreateLight(LIGHT_DIRECTIONAL, new Vector3(50.0f, 50.0f, 0.0f), Vector3Zero(), White, shader);
 
         // NOTE: We are assigning the intancing shader to material.shader
         // to be used on mesh drawing with DrawMeshInstanced()
         Material material = LoadMaterialDefault();
         material.shader = shader;
-        material.maps[(int)MATERIAL_MAP_ALBEDO].color = RED;
+        material.maps[(int)MaterialMapAlbedo].color = Red;
 
-        SetCameraMode(ref camera, CAMERA_ORBITAL);  // Set an orbital camera mode
+        SetCameraMode(camera, CameraOrbital);  // Set an orbital camera mode
 
         int textPositionY = 300;
         int framesCounter = 0;                  // Simple frames counter to manage animation
@@ -112,97 +112,97 @@ public static unsafe class MeshInstancing
             textPositionY = 300;
             framesCounter++;
 
-            if (IsKeyDown(KEY_UP))
+            if (IsKeyDown(KeyUp))
             {
                 amp += 0.5f;
             }
 
-            if (IsKeyDown(KEY_DOWN))
+            if (IsKeyDown(KeyDown))
             {
                 amp = (amp <= 1) ? 1.0f : (amp - 1.0f);
             }
 
-            if (IsKeyDown(KEY_LEFT))
+            if (IsKeyDown(KeyLeft))
             {
                 variance = (variance <= 0.0f) ? 0.0f : (variance - 0.01f);
             }
 
-            if (IsKeyDown(KEY_RIGHT))
+            if (IsKeyDown(KeyRight))
             {
                 variance = (variance >= 1.0f) ? 1.0f : (variance + 0.01f);
             }
 
-            if (IsKeyDown(KEY_ONE))
+            if (IsKeyDown(KeyOne))
             {
                 groups = 1;
             }
 
-            if (IsKeyDown(KEY_TWO))
+            if (IsKeyDown(KeyTwo))
             {
                 groups = 2;
             }
 
-            if (IsKeyDown(KEY_THREE))
+            if (IsKeyDown(KeyThree))
             {
                 groups = 3;
             }
 
-            if (IsKeyDown(KEY_FOUR))
+            if (IsKeyDown(KeyFour))
             {
                 groups = 4;
             }
 
-            if (IsKeyDown(KEY_FIVE))
+            if (IsKeyDown(KeyFive))
             {
                 groups = 5;
             }
 
-            if (IsKeyDown(KEY_SIX))
+            if (IsKeyDown(KeySix))
             {
                 groups = 6;
             }
 
-            if (IsKeyDown(KEY_SEVEN))
+            if (IsKeyDown(KeySeven))
             {
                 groups = 7;
             }
 
-            if (IsKeyDown(KEY_EIGHT))
+            if (IsKeyDown(KeyEight))
             {
                 groups = 8;
             }
 
-            if (IsKeyDown(KEY_NINE))
+            if (IsKeyDown(KeyNine))
             {
                 groups = 9;
             }
 
-            if (IsKeyDown(KEY_W))
+            if (IsKeyDown(KeyW))
             { groups = 7; amp = 25; speed = 18; variance = 0.70f; }
 
-            if (IsKeyDown(KEY_EQUAL))
+            if (IsKeyDown(KeyEqual))
             {
                 speed = (speed <= (fps * 0.25f)) ? (int)(fps * 0.25f) : (int)(speed * 0.95f);
             }
 
-            if (IsKeyDown(KEY_KP_ADD))
+            if (IsKeyDown(KeyKpAdd))
             {
                 speed = (speed <= (fps * 0.25f)) ? (int)(fps * 0.25f) : (int)(speed * 0.95f);
             }
 
-            if (IsKeyDown(KEY_MINUS))
+            if (IsKeyDown(KeyMinus))
             {
                 speed = (int)MathF.Max(speed * 1.02f, speed + 1);
             }
 
-            if (IsKeyDown(KEY_KP_SUBTRACT))
+            if (IsKeyDown(KeyKpSubtract))
             {
                 speed = (int)MathF.Max(speed * 1.02f, speed + 1);
             }
 
             // Update the light shader with the camera view position
             Vector3 cameraPos = new(camera.position.X, camera.position.Y, camera.position.Z);
-            SetShaderValue(shader, shader.locs[(int)SHADER_LOC_VECTOR_VIEW], cameraPos, SHADER_UNIFORM_VEC3);
+            SetShaderValue(shader, shader.locs[(int)ShaderLocVectorView], cameraPos, ShaderUniformVec3);
 
             // Apply per-instance transformations
             for (int i = 0; i < MAX_INSTANCES; i++)
@@ -229,48 +229,48 @@ public static unsafe class MeshInstancing
 
             BeginDrawing();
 
-            ClearBackground(RAYWHITE);
+            ClearBackground(Raywhite);
 
-            BeginMode3D(ref camera);
+            BeginMode3D(camera);
             //DrawMesh(cube, material, MatrixIdentity());
             for (int i = 0; i < transforms.Length; i++)
             {
                 //flip for opengl column major
-                transforms[i] = Matrix.Transpose(transforms[i]);
+                transforms[i] = Matrix4x4.Transpose(transforms[i]);
             }
             DrawMeshInstanced(cube, material, transforms, MAX_INSTANCES);
             EndMode3D();
 
-            DrawText("A CUBE OF DANCING CUBES!", 490, 10, 20, MAROON);
-            DrawText("PRESS KEYS:", 10, textPositionY, 20, BLACK);
+            DrawText("A CUBE OF DANCING CUBES!", 490, 10, 20, Maroon);
+            DrawText("PRESS KEYS:", 10, textPositionY, 20, Black);
 
-            DrawText("1 - 9", 10, textPositionY += 25, 10, BLACK);
-            DrawText(": Number of groups", 50, textPositionY, 10, BLACK);
-            DrawText(TextFormat(": %d", groups), 160, textPositionY, 10, BLACK);
+            DrawText("1 - 9", 10, textPositionY += 25, 10, Black);
+            DrawText(": Number of groups", 50, textPositionY, 10, Black);
+            DrawText(TextFormat(": %d", groups), 160, textPositionY, 10, Black);
 
-            DrawText("UP", 10, textPositionY += 15, 10, BLACK);
-            DrawText(": increase amplitude", 50, textPositionY, 10, BLACK);
-            DrawText(TextFormat(": %.2f", amp), 160, textPositionY, 10, BLACK);
+            DrawText("UP", 10, textPositionY += 15, 10, Black);
+            DrawText(": increase amplitude", 50, textPositionY, 10, Black);
+            DrawText(TextFormat(": %.2f", amp), 160, textPositionY, 10, Black);
 
-            DrawText("DOWN", 10, textPositionY += 15, 10, BLACK);
-            DrawText(": decrease amplitude", 50, textPositionY, 10, BLACK);
+            DrawText("DOWN", 10, textPositionY += 15, 10, Black);
+            DrawText(": decrease amplitude", 50, textPositionY, 10, Black);
 
-            DrawText("LEFT", 10, textPositionY += 15, 10, BLACK);
-            DrawText(": decrease variance", 50, textPositionY, 10, BLACK);
-            DrawText(TextFormat(": %.2f", variance), 160, textPositionY, 10, BLACK);
+            DrawText("LEFT", 10, textPositionY += 15, 10, Black);
+            DrawText(": decrease variance", 50, textPositionY, 10, Black);
+            DrawText(TextFormat(": %.2f", variance), 160, textPositionY, 10, Black);
 
-            DrawText("RIGHT", 10, textPositionY += 15, 10, BLACK);
-            DrawText(": increase variance", 50, textPositionY, 10, BLACK);
+            DrawText("RIGHT", 10, textPositionY += 15, 10, Black);
+            DrawText(": increase variance", 50, textPositionY, 10, Black);
 
-            DrawText("+/=", 10, textPositionY += 15, 10, BLACK);
-            DrawText(": increase speed", 50, textPositionY, 10, BLACK);
-            DrawText(TextFormat(": %d = %f loops/sec", speed, (float)fps / speed), 160, textPositionY, 10, BLACK);
+            DrawText("+/=", 10, textPositionY += 15, 10, Black);
+            DrawText(": increase speed", 50, textPositionY, 10, Black);
+            DrawText(TextFormat(": %d = %f loops/sec", speed, (float)fps / speed), 160, textPositionY, 10, Black);
 
-            DrawText("-", 10, textPositionY += 15, 10, BLACK);
-            DrawText(": decrease speed", 50, textPositionY, 10, BLACK);
+            DrawText("-", 10, textPositionY += 15, 10, Black);
+            DrawText(": decrease speed", 50, textPositionY, 10, Black);
 
-            DrawText("W", 10, textPositionY += 15, 10, BLACK);
-            DrawText(": Wild setup!", 50, textPositionY, 10, BLACK);
+            DrawText("W", 10, textPositionY += 15, 10, Black);
+            DrawText(": Wild setup!", 50, textPositionY, 10, Black);
 
             DrawFPS(10, 10);
 

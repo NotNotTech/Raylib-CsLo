@@ -6,28 +6,24 @@
 namespace Raylib_CsLo;
 
 using Microsoft.Toolkit.HighPerformance.Buffers;
-using Raylib_CsLo.InternalHelpers;
 
 #pragma warning disable IDE0008
 
 // TODO organzie into the correct modules im just throwing them all cause lazy
 public unsafe partial class RaylibS
 {
-    /// <summary>
-    /// Show trace log messages (LOG_DEBUG, LOG_INFO, LOG_WARNING, LOG_ERROR...)
-    /// </summary>
-    public static void TraceLog(int logLevel, string text)
+    /// <summary> Show trace log messages (LOG_DEBUG, LOG_INFO, LOG_WARNING, LOG_ERROR...) </summary>
+    public static void TraceLog(int logLevel, string text, params object[] args)
     {
-        TraceLog(logLevel, text);
+        using var text_ = text.MarshalUtf8();
+        Raylib.TraceLog(logLevel, text_.AsPtr(), __arglist(args));
     }
 
-    /// <summary>
-    /// Show trace log messages (LOG_DEBUG, LOG_INFO, LOG_WARNING, LOG_ERROR...)
-    /// </summary>
+    /// <summary> Show trace log messages (LOG_DEBUG, LOG_INFO, LOG_WARNING, LOG_ERROR...) </summary>
     public static void TraceLog(TraceLogLevel logLevel, string text, params object[] args)
     {
         text = text.SPrintF(args);
-        TraceLog((int)logLevel, text);
+        TraceLog((int)logLevel, text, args);
     }
 
     /// <summary>
@@ -141,7 +137,7 @@ public unsafe partial class RaylibS
     {
         int count;
         sbyte** buffer = Raylib.GetDroppedFiles(&count);
-        string[]? files = new string[count];
+        string[] files = new string[count];
 
         for (int i = 0; i < count; i++)
         {
@@ -153,7 +149,7 @@ public unsafe partial class RaylibS
 
     public static string[] GetDroppedFilesAndClear()
     {
-        string[]? files = GetDroppedFiles();
+        string[] files = GetDroppedFiles();
         ClearDroppedFiles();
         return files;
     }
@@ -230,12 +226,18 @@ public unsafe partial class RaylibS
     /// <summary>
     /// Update GPU texture with new data
     /// </summary>
-    public static void UpdateTexture(Texture texture, Color[] pixels)
+    public static void UpdateTexture(Texture2D texture, Color[] pixels)
     {
         fixed (void* pixels_ = pixels)
         {
             Raylib.UpdateTexture(texture, pixels_);
         }
+    }
+
+    /// <summary> Load color data from image as a Color array (RGBA - 32bit) </summary>
+    public static Color[] LoadImageColors(Image image)
+    {
+        return Helpers.PrtToArray(Raylib.LoadImageColors(image), image.width * image.height);
     }
 }
 #pragma warning restore IDE0008

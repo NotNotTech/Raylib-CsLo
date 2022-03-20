@@ -8,518 +8,518 @@
 namespace Raylib_CsLo;
 
 /// <summary> Icons enumeration </summary>
-public enum guiIconName
+public enum GuiIconName
 {
     /// <summary>  </summary>
-    RICON_NONE = 0,
+    RiconNone = 0,
     /// <summary>  </summary>
-    RICON_FOLDER_FILE_OPEN = 1,
+    RiconFolderFileOpen = 1,
     /// <summary>  </summary>
-    RICON_FILE_SAVE_CLASSIC = 2,
+    RiconFileSaveClassic = 2,
     /// <summary>  </summary>
-    RICON_FOLDER_OPEN = 3,
+    RiconFolderOpen = 3,
     /// <summary>  </summary>
-    RICON_FOLDER_SAVE = 4,
+    RiconFolderSave = 4,
     /// <summary>  </summary>
-    RICON_FILE_OPEN = 5,
+    RiconFileOpen = 5,
     /// <summary>  </summary>
-    RICON_FILE_SAVE = 6,
+    RiconFileSave = 6,
     /// <summary>  </summary>
-    RICON_FILE_EXPORT = 7,
+    RiconFileExport = 7,
     /// <summary>  </summary>
-    RICON_FILE_NEW = 8,
+    RiconFileNew = 8,
     /// <summary>  </summary>
-    RICON_FILE_DELETE = 9,
+    RiconFileDelete = 9,
     /// <summary>  </summary>
-    RICON_FILETYPE_TEXT = 10,
+    RiconFiletypeText = 10,
     /// <summary>  </summary>
-    RICON_FILETYPE_AUDIO = 11,
+    RiconFiletypeAudio = 11,
     /// <summary>  </summary>
-    RICON_FILETYPE_IMAGE = 12,
+    RiconFiletypeImage = 12,
     /// <summary>  </summary>
-    RICON_FILETYPE_PLAY = 13,
+    RiconFiletypePlay = 13,
     /// <summary>  </summary>
-    RICON_FILETYPE_VIDEO = 14,
+    RiconFiletypeVideo = 14,
     /// <summary>  </summary>
-    RICON_FILETYPE_INFO = 15,
+    RiconFiletypeInfo = 15,
     /// <summary>  </summary>
-    RICON_FILE_COPY = 16,
+    RiconFileCopy = 16,
     /// <summary>  </summary>
-    RICON_FILE_CUT = 17,
+    RiconFileCut = 17,
     /// <summary>  </summary>
-    RICON_FILE_PASTE = 18,
+    RiconFilePaste = 18,
     /// <summary>  </summary>
-    RICON_CURSOR_HAND = 19,
+    RiconCursorHand = 19,
     /// <summary>  </summary>
-    RICON_CURSOR_POINTER = 20,
+    RiconCursorPointer = 20,
     /// <summary>  </summary>
-    RICON_CURSOR_CLASSIC = 21,
+    RiconCursorClassic = 21,
     /// <summary>  </summary>
-    RICON_PENCIL = 22,
+    RiconPencil = 22,
     /// <summary>  </summary>
-    RICON_PENCIL_BIG = 23,
+    RiconPencilBig = 23,
     /// <summary>  </summary>
-    RICON_BRUSH_CLASSIC = 24,
+    RiconBrushClassic = 24,
     /// <summary>  </summary>
-    RICON_BRUSH_PAINTER = 25,
+    RiconBrushPainter = 25,
     /// <summary>  </summary>
-    RICON_WATER_DROP = 26,
+    RiconWaterDrop = 26,
     /// <summary>  </summary>
-    RICON_COLOR_PICKER = 27,
+    RiconColorPicker = 27,
     /// <summary>  </summary>
-    RICON_RUBBER = 28,
+    RiconRubber = 28,
     /// <summary>  </summary>
-    RICON_COLOR_BUCKET = 29,
+    RiconColorBucket = 29,
     /// <summary>  </summary>
-    RICON_TEXT_T = 30,
+    RiconTextT = 30,
     /// <summary>  </summary>
-    RICON_TEXT_A = 31,
+    RiconTextA = 31,
     /// <summary>  </summary>
-    RICON_SCALE = 32,
+    RiconScale = 32,
     /// <summary>  </summary>
-    RICON_RESIZE = 33,
+    RiconResize = 33,
     /// <summary>  </summary>
-    RICON_FILTER_POINT = 34,
+    RiconFilterPoint = 34,
     /// <summary>  </summary>
-    RICON_FILTER_BILINEAR = 35,
+    RiconFilterBilinear = 35,
     /// <summary>  </summary>
-    RICON_CROP = 36,
+    RiconCrop = 36,
     /// <summary>  </summary>
-    RICON_CROP_ALPHA = 37,
+    RiconCropAlpha = 37,
     /// <summary>  </summary>
-    RICON_SQUARE_TOGGLE = 38,
+    RiconSquareToggle = 38,
     /// <summary>  </summary>
-    RICON_SYMMETRY = 39,
+    RiconSymmetry = 39,
     /// <summary>  </summary>
-    RICON_SYMMETRY_HORIZONTAL = 40,
+    RiconSymmetryHorizontal = 40,
     /// <summary>  </summary>
-    RICON_SYMMETRY_VERTICAL = 41,
+    RiconSymmetryVertical = 41,
     /// <summary>  </summary>
-    RICON_LENS = 42,
+    RiconLens = 42,
     /// <summary>  </summary>
-    RICON_LENS_BIG = 43,
+    RiconLensBig = 43,
     /// <summary>  </summary>
-    RICON_EYE_ON = 44,
+    RiconEyeOn = 44,
     /// <summary>  </summary>
-    RICON_EYE_OFF = 45,
+    RiconEyeOff = 45,
     /// <summary>  </summary>
-    RICON_FILTER_TOP = 46,
+    RiconFilterTop = 46,
     /// <summary>  </summary>
-    RICON_FILTER = 47,
+    RiconFilter = 47,
     /// <summary>  </summary>
-    RICON_TARGET_POINT = 48,
+    RiconTargetPoint = 48,
     /// <summary>  </summary>
-    RICON_TARGET_SMALL = 49,
+    RiconTargetSmall = 49,
     /// <summary>  </summary>
-    RICON_TARGET_BIG = 50,
+    RiconTargetBig = 50,
     /// <summary>  </summary>
-    RICON_TARGET_MOVE = 51,
+    RiconTargetMove = 51,
     /// <summary>  </summary>
-    RICON_CURSOR_MOVE = 52,
+    RiconCursorMove = 52,
     /// <summary>  </summary>
-    RICON_CURSOR_SCALE = 53,
+    RiconCursorScale = 53,
     /// <summary>  </summary>
-    RICON_CURSOR_SCALE_RIGHT = 54,
+    RiconCursorScaleRight = 54,
     /// <summary>  </summary>
-    RICON_CURSOR_SCALE_LEFT = 55,
+    RiconCursorScaleLeft = 55,
     /// <summary>  </summary>
-    RICON_UNDO = 56,
+    RiconUndo = 56,
     /// <summary>  </summary>
-    RICON_REDO = 57,
+    RiconRedo = 57,
     /// <summary>  </summary>
-    RICON_REREDO = 58,
+    RiconReredo = 58,
     /// <summary>  </summary>
-    RICON_MUTATE = 59,
+    RiconMutate = 59,
     /// <summary>  </summary>
-    RICON_ROTATE = 60,
+    RiconRotate = 60,
     /// <summary>  </summary>
-    RICON_REPEAT = 61,
+    RiconRepeat = 61,
     /// <summary>  </summary>
-    RICON_SHUFFLE = 62,
+    RiconShuffle = 62,
     /// <summary>  </summary>
-    RICON_EMPTYBOX = 63,
+    RiconEmptybox = 63,
     /// <summary>  </summary>
-    RICON_TARGET = 64,
+    RiconTarget = 64,
     /// <summary>  </summary>
-    RICON_TARGET_SMALL_FILL = 65,
+    RiconTargetSmallFill = 65,
     /// <summary>  </summary>
-    RICON_TARGET_BIG_FILL = 66,
+    RiconTargetBigFill = 66,
     /// <summary>  </summary>
-    RICON_TARGET_MOVE_FILL = 67,
+    RiconTargetMoveFill = 67,
     /// <summary>  </summary>
-    RICON_CURSOR_MOVE_FILL = 68,
+    RiconCursorMoveFill = 68,
     /// <summary>  </summary>
-    RICON_CURSOR_SCALE_FILL = 69,
+    RiconCursorScaleFill = 69,
     /// <summary>  </summary>
-    RICON_CURSOR_SCALE_RIGHT_FILL = 70,
+    RiconCursorScaleRightFill = 70,
     /// <summary>  </summary>
-    RICON_CURSOR_SCALE_LEFT_FILL = 71,
+    RiconCursorScaleLeftFill = 71,
     /// <summary>  </summary>
-    RICON_UNDO_FILL = 72,
+    RiconUndoFill = 72,
     /// <summary>  </summary>
-    RICON_REDO_FILL = 73,
+    RiconRedoFill = 73,
     /// <summary>  </summary>
-    RICON_REREDO_FILL = 74,
+    RiconReredoFill = 74,
     /// <summary>  </summary>
-    RICON_MUTATE_FILL = 75,
+    RiconMutateFill = 75,
     /// <summary>  </summary>
-    RICON_ROTATE_FILL = 76,
+    RiconRotateFill = 76,
     /// <summary>  </summary>
-    RICON_REPEAT_FILL = 77,
+    RiconRepeatFill = 77,
     /// <summary>  </summary>
-    RICON_SHUFFLE_FILL = 78,
+    RiconShuffleFill = 78,
     /// <summary>  </summary>
-    RICON_EMPTYBOX_SMALL = 79,
+    RiconEmptyboxSmall = 79,
     /// <summary>  </summary>
-    RICON_BOX = 80,
+    RiconBox = 80,
     /// <summary>  </summary>
-    RICON_BOX_TOP = 81,
+    RiconBoxTop = 81,
     /// <summary>  </summary>
-    RICON_BOX_TOP_RIGHT = 82,
+    RiconBoxTopRight = 82,
     /// <summary>  </summary>
-    RICON_BOX_RIGHT = 83,
+    RiconBoxRight = 83,
     /// <summary>  </summary>
-    RICON_BOX_BOTTOM_RIGHT = 84,
+    RiconBoxBottomRight = 84,
     /// <summary>  </summary>
-    RICON_BOX_BOTTOM = 85,
+    RiconBoxBottom = 85,
     /// <summary>  </summary>
-    RICON_BOX_BOTTOM_LEFT = 86,
+    RiconBoxBottomLeft = 86,
     /// <summary>  </summary>
-    RICON_BOX_LEFT = 87,
+    RiconBoxLeft = 87,
     /// <summary>  </summary>
-    RICON_BOX_TOP_LEFT = 88,
+    RiconBoxTopLeft = 88,
     /// <summary>  </summary>
-    RICON_BOX_CENTER = 89,
+    RiconBoxCenter = 89,
     /// <summary>  </summary>
-    RICON_BOX_CIRCLE_MASK = 90,
+    RiconBoxCircleMask = 90,
     /// <summary>  </summary>
-    RICON_POT = 91,
+    RiconPot = 91,
     /// <summary>  </summary>
-    RICON_ALPHA_MULTIPLY = 92,
+    RiconAlphaMultiply = 92,
     /// <summary>  </summary>
-    RICON_ALPHA_CLEAR = 93,
+    RiconAlphaClear = 93,
     /// <summary>  </summary>
-    RICON_DITHERING = 94,
+    RiconDithering = 94,
     /// <summary>  </summary>
-    RICON_MIPMAPS = 95,
+    RiconMipmaps = 95,
     /// <summary>  </summary>
-    RICON_BOX_GRID = 96,
+    RiconBoxGrid = 96,
     /// <summary>  </summary>
-    RICON_GRID = 97,
+    RiconGrid = 97,
     /// <summary>  </summary>
-    RICON_BOX_CORNERS_SMALL = 98,
+    RiconBoxCornersSmall = 98,
     /// <summary>  </summary>
-    RICON_BOX_CORNERS_BIG = 99,
+    RiconBoxCornersBig = 99,
     /// <summary>  </summary>
-    RICON_FOUR_BOXES = 100,
+    RiconFourBoxes = 100,
     /// <summary>  </summary>
-    RICON_GRID_FILL = 101,
+    RiconGridFill = 101,
     /// <summary>  </summary>
-    RICON_BOX_MULTISIZE = 102,
+    RiconBoxMultisize = 102,
     /// <summary>  </summary>
-    RICON_ZOOM_SMALL = 103,
+    RiconZoomSmall = 103,
     /// <summary>  </summary>
-    RICON_ZOOM_MEDIUM = 104,
+    RiconZoomMedium = 104,
     /// <summary>  </summary>
-    RICON_ZOOM_BIG = 105,
+    RiconZoomBig = 105,
     /// <summary>  </summary>
-    RICON_ZOOM_ALL = 106,
+    RiconZoomAll = 106,
     /// <summary>  </summary>
-    RICON_ZOOM_CENTER = 107,
+    RiconZoomCenter = 107,
     /// <summary>  </summary>
-    RICON_BOX_DOTS_SMALL = 108,
+    RiconBoxDotsSmall = 108,
     /// <summary>  </summary>
-    RICON_BOX_DOTS_BIG = 109,
+    RiconBoxDotsBig = 109,
     /// <summary>  </summary>
-    RICON_BOX_CONCENTRIC = 110,
+    RiconBoxConcentric = 110,
     /// <summary>  </summary>
-    RICON_BOX_GRID_BIG = 111,
+    RiconBoxGridBig = 111,
     /// <summary>  </summary>
-    RICON_OK_TICK = 112,
+    RiconOkTick = 112,
     /// <summary>  </summary>
-    RICON_CROSS = 113,
+    RiconCross = 113,
     /// <summary>  </summary>
-    RICON_ARROW_LEFT = 114,
+    RiconArrowLeft = 114,
     /// <summary>  </summary>
-    RICON_ARROW_RIGHT = 115,
+    RiconArrowRight = 115,
     /// <summary>  </summary>
-    RICON_ARROW_DOWN = 116,
+    RiconArrowDown = 116,
     /// <summary>  </summary>
-    RICON_ARROW_UP = 117,
+    RiconArrowUp = 117,
     /// <summary>  </summary>
-    RICON_ARROW_LEFT_FILL = 118,
+    RiconArrowLeftFill = 118,
     /// <summary>  </summary>
-    RICON_ARROW_RIGHT_FILL = 119,
+    RiconArrowRightFill = 119,
     /// <summary>  </summary>
-    RICON_ARROW_DOWN_FILL = 120,
+    RiconArrowDownFill = 120,
     /// <summary>  </summary>
-    RICON_ARROW_UP_FILL = 121,
+    RiconArrowUpFill = 121,
     /// <summary>  </summary>
-    RICON_AUDIO = 122,
+    RiconAudio = 122,
     /// <summary>  </summary>
-    RICON_FX = 123,
+    RiconFx = 123,
     /// <summary>  </summary>
-    RICON_WAVE = 124,
+    RiconWave = 124,
     /// <summary>  </summary>
-    RICON_WAVE_SINUS = 125,
+    RiconWaveSinus = 125,
     /// <summary>  </summary>
-    RICON_WAVE_SQUARE = 126,
+    RiconWaveSquare = 126,
     /// <summary>  </summary>
-    RICON_WAVE_TRIANGULAR = 127,
+    RiconWaveTriangular = 127,
     /// <summary>  </summary>
-    RICON_CROSS_SMALL = 128,
+    RiconCrossSmall = 128,
     /// <summary>  </summary>
-    RICON_PLAYER_PREVIOUS = 129,
+    RiconPlayerPrevious = 129,
     /// <summary>  </summary>
-    RICON_PLAYER_PLAY_BACK = 130,
+    RiconPlayerPlayBack = 130,
     /// <summary>  </summary>
-    RICON_PLAYER_PLAY = 131,
+    RiconPlayerPlay = 131,
     /// <summary>  </summary>
-    RICON_PLAYER_PAUSE = 132,
+    RiconPlayerPause = 132,
     /// <summary>  </summary>
-    RICON_PLAYER_STOP = 133,
+    RiconPlayerStop = 133,
     /// <summary>  </summary>
-    RICON_PLAYER_NEXT = 134,
+    RiconPlayerNext = 134,
     /// <summary>  </summary>
-    RICON_PLAYER_RECORD = 135,
+    RiconPlayerRecord = 135,
     /// <summary>  </summary>
-    RICON_MAGNET = 136,
+    RiconMagnet = 136,
     /// <summary>  </summary>
-    RICON_LOCK_CLOSE = 137,
+    RiconLockClose = 137,
     /// <summary>  </summary>
-    RICON_LOCK_OPEN = 138,
+    RiconLockOpen = 138,
     /// <summary>  </summary>
-    RICON_CLOCK = 139,
+    RiconClock = 139,
     /// <summary>  </summary>
-    RICON_TOOLS = 140,
+    RiconTools = 140,
     /// <summary>  </summary>
-    RICON_GEAR = 141,
+    RiconGear = 141,
     /// <summary>  </summary>
-    RICON_GEAR_BIG = 142,
+    RiconGearBig = 142,
     /// <summary>  </summary>
-    RICON_BIN = 143,
+    RiconBin = 143,
     /// <summary>  </summary>
-    RICON_HAND_POINTER = 144,
+    RiconHandPointer = 144,
     /// <summary>  </summary>
-    RICON_LASER = 145,
+    RiconLaser = 145,
     /// <summary>  </summary>
-    RICON_COIN = 146,
+    RiconCoin = 146,
     /// <summary>  </summary>
-    RICON_EXPLOSION = 147,
+    RiconExplosion = 147,
     /// <summary>  </summary>
-    RICON_1UP = 148,
+    Ricon1up = 148,
     /// <summary>  </summary>
-    RICON_PLAYER = 149,
+    RiconPlayer = 149,
     /// <summary>  </summary>
-    RICON_PLAYER_JUMP = 150,
+    RiconPlayerJump = 150,
     /// <summary>  </summary>
-    RICON_KEY = 151,
+    RiconKey = 151,
     /// <summary>  </summary>
-    RICON_DEMON = 152,
+    RiconDemon = 152,
     /// <summary>  </summary>
-    RICON_TEXT_POPUP = 153,
+    RiconTextPopup = 153,
     /// <summary>  </summary>
-    RICON_GEAR_EX = 154,
+    RiconGearEx = 154,
     /// <summary>  </summary>
-    RICON_CRACK = 155,
+    RiconCrack = 155,
     /// <summary>  </summary>
-    RICON_CRACK_POINTS = 156,
+    RiconCrackPoints = 156,
     /// <summary>  </summary>
-    RICON_STAR = 157,
+    RiconStar = 157,
     /// <summary>  </summary>
-    RICON_DOOR = 158,
+    RiconDoor = 158,
     /// <summary>  </summary>
-    RICON_EXIT = 159,
+    RiconExit = 159,
     /// <summary>  </summary>
-    RICON_MODE_2D = 160,
+    RiconMode2d = 160,
     /// <summary>  </summary>
-    RICON_MODE_3D = 161,
+    RiconMode3d = 161,
     /// <summary>  </summary>
-    RICON_CUBE = 162,
+    RiconCube = 162,
     /// <summary>  </summary>
-    RICON_CUBE_FACE_TOP = 163,
+    RiconCubeFaceTop = 163,
     /// <summary>  </summary>
-    RICON_CUBE_FACE_LEFT = 164,
+    RiconCubeFaceLeft = 164,
     /// <summary>  </summary>
-    RICON_CUBE_FACE_FRONT = 165,
+    RiconCubeFaceFront = 165,
     /// <summary>  </summary>
-    RICON_CUBE_FACE_BOTTOM = 166,
+    RiconCubeFaceBottom = 166,
     /// <summary>  </summary>
-    RICON_CUBE_FACE_RIGHT = 167,
+    RiconCubeFaceRight = 167,
     /// <summary>  </summary>
-    RICON_CUBE_FACE_BACK = 168,
+    RiconCubeFaceBack = 168,
     /// <summary>  </summary>
-    RICON_CAMERA = 169,
+    RiconCamera = 169,
     /// <summary>  </summary>
-    RICON_SPECIAL = 170,
+    RiconSpecial = 170,
     /// <summary>  </summary>
-    RICON_LINK_NET = 171,
+    RiconLinkNet = 171,
     /// <summary>  </summary>
-    RICON_LINK_BOXES = 172,
+    RiconLinkBoxes = 172,
     /// <summary>  </summary>
-    RICON_LINK_MULTI = 173,
+    RiconLinkMulti = 173,
     /// <summary>  </summary>
-    RICON_LINK = 174,
+    RiconLink = 174,
     /// <summary>  </summary>
-    RICON_LINK_BROKE = 175,
+    RiconLinkBroke = 175,
     /// <summary>  </summary>
-    RICON_TEXT_NOTES = 176,
+    RiconTextNotes = 176,
     /// <summary>  </summary>
-    RICON_NOTEBOOK = 177,
+    RiconNotebook = 177,
     /// <summary>  </summary>
-    RICON_SUITCASE = 178,
+    RiconSuitcase = 178,
     /// <summary>  </summary>
-    RICON_SUITCASE_ZIP = 179,
+    RiconSuitcaseZip = 179,
     /// <summary>  </summary>
-    RICON_MAILBOX = 180,
+    RiconMailbox = 180,
     /// <summary>  </summary>
-    RICON_MONITOR = 181,
+    RiconMonitor = 181,
     /// <summary>  </summary>
-    RICON_PRINTER = 182,
+    RiconPrinter = 182,
     /// <summary>  </summary>
-    RICON_PHOTO_CAMERA = 183,
+    RiconPhotoCamera = 183,
     /// <summary>  </summary>
-    RICON_PHOTO_CAMERA_FLASH = 184,
+    RiconPhotoCameraFlash = 184,
     /// <summary>  </summary>
-    RICON_HOUSE = 185,
+    RiconHouse = 185,
     /// <summary>  </summary>
-    RICON_HEART = 186,
+    RiconHeart = 186,
     /// <summary>  </summary>
-    RICON_CORNER = 187,
+    RiconCorner = 187,
     /// <summary>  </summary>
-    RICON_VERTICAL_BARS = 188,
+    RiconVerticalBars = 188,
     /// <summary>  </summary>
-    RICON_VERTICAL_BARS_FILL = 189,
+    RiconVerticalBarsFill = 189,
     /// <summary>  </summary>
-    RICON_LIFE_BARS = 190,
+    RiconLifeBars = 190,
     /// <summary>  </summary>
-    RICON_INFO = 191,
+    RiconInfo = 191,
     /// <summary>  </summary>
-    RICON_CROSSLINE = 192,
+    RiconCrossline = 192,
     /// <summary>  </summary>
-    RICON_HELP = 193,
+    RiconHelp = 193,
     /// <summary>  </summary>
-    RICON_FILETYPE_ALPHA = 194,
+    RiconFiletypeAlpha = 194,
     /// <summary>  </summary>
-    RICON_FILETYPE_HOME = 195,
+    RiconFiletypeHome = 195,
     /// <summary>  </summary>
-    RICON_LAYERS_VISIBLE = 196,
+    RiconLayersVisible = 196,
     /// <summary>  </summary>
-    RICON_LAYERS = 197,
+    RiconLayers = 197,
     /// <summary>  </summary>
-    RICON_WINDOW = 198,
+    RiconWindow = 198,
     /// <summary>  </summary>
-    RICON_HIDPI = 199,
+    RiconHidpi = 199,
     /// <summary>  </summary>
-    RICON_200 = 200,
+    Ricon200 = 200,
     /// <summary>  </summary>
-    RICON_201 = 201,
+    Ricon201 = 201,
     /// <summary>  </summary>
-    RICON_202 = 202,
+    Ricon202 = 202,
     /// <summary>  </summary>
-    RICON_203 = 203,
+    Ricon203 = 203,
     /// <summary>  </summary>
-    RICON_204 = 204,
+    Ricon204 = 204,
     /// <summary>  </summary>
-    RICON_205 = 205,
+    Ricon205 = 205,
     /// <summary>  </summary>
-    RICON_206 = 206,
+    Ricon206 = 206,
     /// <summary>  </summary>
-    RICON_207 = 207,
+    Ricon207 = 207,
     /// <summary>  </summary>
-    RICON_208 = 208,
+    Ricon208 = 208,
     /// <summary>  </summary>
-    RICON_209 = 209,
+    Ricon209 = 209,
     /// <summary>  </summary>
-    RICON_210 = 210,
+    Ricon210 = 210,
     /// <summary>  </summary>
-    RICON_211 = 211,
+    Ricon211 = 211,
     /// <summary>  </summary>
-    RICON_212 = 212,
+    Ricon212 = 212,
     /// <summary>  </summary>
-    RICON_213 = 213,
+    Ricon213 = 213,
     /// <summary>  </summary>
-    RICON_214 = 214,
+    Ricon214 = 214,
     /// <summary>  </summary>
-    RICON_215 = 215,
+    Ricon215 = 215,
     /// <summary>  </summary>
-    RICON_216 = 216,
+    Ricon216 = 216,
     /// <summary>  </summary>
-    RICON_217 = 217,
+    Ricon217 = 217,
     /// <summary>  </summary>
-    RICON_218 = 218,
+    Ricon218 = 218,
     /// <summary>  </summary>
-    RICON_219 = 219,
+    Ricon219 = 219,
     /// <summary>  </summary>
-    RICON_220 = 220,
+    Ricon220 = 220,
     /// <summary>  </summary>
-    RICON_221 = 221,
+    Ricon221 = 221,
     /// <summary>  </summary>
-    RICON_222 = 222,
+    Ricon222 = 222,
     /// <summary>  </summary>
-    RICON_223 = 223,
+    Ricon223 = 223,
     /// <summary>  </summary>
-    RICON_224 = 224,
+    Ricon224 = 224,
     /// <summary>  </summary>
-    RICON_225 = 225,
+    Ricon225 = 225,
     /// <summary>  </summary>
-    RICON_226 = 226,
+    Ricon226 = 226,
     /// <summary>  </summary>
-    RICON_227 = 227,
+    Ricon227 = 227,
     /// <summary>  </summary>
-    RICON_228 = 228,
+    Ricon228 = 228,
     /// <summary>  </summary>
-    RICON_229 = 229,
+    Ricon229 = 229,
     /// <summary>  </summary>
-    RICON_230 = 230,
+    Ricon230 = 230,
     /// <summary>  </summary>
-    RICON_231 = 231,
+    Ricon231 = 231,
     /// <summary>  </summary>
-    RICON_232 = 232,
+    Ricon232 = 232,
     /// <summary>  </summary>
-    RICON_233 = 233,
+    Ricon233 = 233,
     /// <summary>  </summary>
-    RICON_234 = 234,
+    Ricon234 = 234,
     /// <summary>  </summary>
-    RICON_235 = 235,
+    Ricon235 = 235,
     /// <summary>  </summary>
-    RICON_236 = 236,
+    Ricon236 = 236,
     /// <summary>  </summary>
-    RICON_237 = 237,
+    Ricon237 = 237,
     /// <summary>  </summary>
-    RICON_238 = 238,
+    Ricon238 = 238,
     /// <summary>  </summary>
-    RICON_239 = 239,
+    Ricon239 = 239,
     /// <summary>  </summary>
-    RICON_240 = 240,
+    Ricon240 = 240,
     /// <summary>  </summary>
-    RICON_241 = 241,
+    Ricon241 = 241,
     /// <summary>  </summary>
-    RICON_242 = 242,
+    Ricon242 = 242,
     /// <summary>  </summary>
-    RICON_243 = 243,
+    Ricon243 = 243,
     /// <summary>  </summary>
-    RICON_244 = 244,
+    Ricon244 = 244,
     /// <summary>  </summary>
-    RICON_245 = 245,
+    Ricon245 = 245,
     /// <summary>  </summary>
-    RICON_246 = 246,
+    Ricon246 = 246,
     /// <summary>  </summary>
-    RICON_247 = 247,
+    Ricon247 = 247,
     /// <summary>  </summary>
-    RICON_248 = 248,
+    Ricon248 = 248,
     /// <summary>  </summary>
-    RICON_249 = 249,
+    Ricon249 = 249,
     /// <summary>  </summary>
-    RICON_250 = 250,
+    Ricon250 = 250,
     /// <summary>  </summary>
-    RICON_251 = 251,
+    Ricon251 = 251,
     /// <summary>  </summary>
-    RICON_252 = 252,
+    Ricon252 = 252,
     /// <summary>  </summary>
-    RICON_253 = 253,
+    Ricon253 = 253,
     /// <summary>  </summary>
-    RICON_254 = 254,
+    Ricon254 = 254,
     /// <summary>  </summary>
-    RICON_255 = 255,
+    Ricon255 = 255,
 }

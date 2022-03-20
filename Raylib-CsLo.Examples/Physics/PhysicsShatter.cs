@@ -24,7 +24,6 @@ public static unsafe class PhysicsShatter
     //#define PHYSAC_IMPLEMENTATION
     //# include "extras/physac.h"
 
-    static readonly int* NULL = (int*)0;
     public static int Example()
     {
         // Initialization
@@ -32,7 +31,7 @@ public static unsafe class PhysicsShatter
         const int screenWidth = 800;
         const int screenHeight = 450;
 
-        SetConfigFlags(FLAG_MSAA_4X_HINT);
+        SetConfigFlags(FlagMsaa4xHint);
         InitWindow(screenWidth, screenHeight, "raylib [physac] example - physics shatter");
 
         // Physac logo drawing position
@@ -55,23 +54,23 @@ public static unsafe class PhysicsShatter
 
             UpdatePhysics();            // Update physics system
 
-            if (IsKeyPressed(KEY_R))    // Reset physics input
+            if (IsKeyPressed(KeyR))    // Reset physics input
             {
                 ResetPhysics();
 
                 CreatePhysicsBodyPolygon(new Vector2(screenWidth / 2.0f, screenHeight / 2.0f), GetRandomValue(80, 200), GetRandomValue(3, 8), 10);
             }
 
-            if (IsMouseButtonPressed(MOUSE_BUTTON_LEFT))    // Physics shatter input
+            if (IsMouseButtonPressed(MouseButtonLeft))    // Physics shatter input
             {
                 int count = GetPhysicsBodiesCount();
                 for (int i = count - 1; i >= 0; i--)
                 {
-                    PhysicsBodyData* currentBody = GetPhysicsBody(i);
+                    PhysicsBodyData? currentBody = GetPhysicsBody(i);
 
-                    if (currentBody != NULL)
+                    if (currentBody != null)
                     {
-                        PhysicsShatter(currentBody, GetMousePosition(), 10 / currentBody->inverseMass);
+                        PhysicsShatter(currentBody.Value, GetMousePosition(), 10 / currentBody.Value.inverseMass);
                     }
                 }
             }
@@ -81,13 +80,13 @@ public static unsafe class PhysicsShatter
 
             BeginDrawing();
 
-            ClearBackground(BLACK);
+            ClearBackground(Black);
 
             // Draw created physics bodies
             int bodiesCount = GetPhysicsBodiesCount();
             for (int i = 0; i < bodiesCount; i++)
             {
-                PhysicsBodyData* currentBody = GetPhysicsBody(i);
+                PhysicsBodyData currentBody = GetPhysicsBody(i);
 
                 int vertexCount = GetPhysicsShapeVerticesCount(i);
                 for (int j = 0; j < vertexCount; j++)
@@ -99,14 +98,14 @@ public static unsafe class PhysicsShatter
                     int jj = ((j + 1) < vertexCount) ? (j + 1) : 0;   // Get next vertex or first to close the shape
                     Vector2 vertexB = GetPhysicsShapeVertex(currentBody, jj);
 
-                    DrawLineV(vertexA, vertexB, GREEN);     // Draw a line between two vertex positions
+                    DrawLineV(vertexA, vertexB, Green);     // Draw a line between two vertex positions
                 }
             }
 
-            DrawText("Left mouse button in polygon area to shatter body\nPress 'R' to reset example", 10, 10, 10, WHITE);
+            DrawText("Left mouse button in polygon area to shatter body\nPress 'R' to reset example", 10, 10, 10, White);
 
-            DrawText("Physac", logoX, logoY, 30, WHITE);
-            DrawText("Powered by", logoX + 50, logoY - 7, 10, WHITE);
+            DrawText("Physac", logoX, logoY, 30, White);
+            DrawText("Powered by", logoX + 50, logoY - 7, 10, White);
 
             EndDrawing();
 

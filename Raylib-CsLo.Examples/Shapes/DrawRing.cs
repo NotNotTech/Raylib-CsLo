@@ -63,24 +63,24 @@ public static unsafe class DrawRing
 
             BeginDrawing();
 
-            ClearBackground(RAYWHITE);
+            ClearBackground(Raywhite);
 
-            DrawLine(500, 0, 500, GetScreenHeight(), Fade(LIGHTGRAY, 0.6f));
-            DrawRectangle(500, 0, GetScreenWidth() - 500, GetScreenHeight(), Fade(LIGHTGRAY, 0.3f));
+            DrawLine(500, 0, 500, GetScreenHeight(), Fade(Lightgray, 0.6f));
+            DrawRectangle(500, 0, GetScreenWidth() - 500, GetScreenHeight(), Fade(Lightgray, 0.3f));
 
             if (drawRing)
             {
-                DrawRing(center, innerRadius, outerRadius, startAngle, endAngle, segments, Fade(MAROON, 0.3f));
+                DrawRing(center, innerRadius, outerRadius, startAngle, endAngle, segments, Fade(Maroon, 0.3f));
             }
 
             if (drawRingLines)
             {
-                DrawRingLines(center, innerRadius, outerRadius, startAngle, endAngle, segments, Fade(BLACK, 0.4f));
+                DrawRingLines(center, innerRadius, outerRadius, startAngle, endAngle, segments, Fade(Black, 0.4f));
             }
 
             if (drawCircleLines)
             {
-                DrawCircleSectorLines(center, outerRadius, startAngle, endAngle, segments, Fade(BLACK, 0.4f));
+                DrawCircleSectorLines(center, outerRadius, startAngle, endAngle, segments, Fade(Black, 0.4f));
             }
 
             // Draw GUI controls
@@ -99,7 +99,7 @@ public static unsafe class DrawRing
 
 
             int minSegments = (int)MathF.Ceiling((endAngle - startAngle) / 90);
-            DrawText(TextFormat("MODE: %s", (segments >= minSegments) ? "MANUAL" : "AUTO"), 600, 270, 10, (segments >= minSegments) ? MAROON : DARKGRAY);
+            DrawText(TextFormat("MODE: %s", (segments >= minSegments) ? "MANUAL" : "AUTO"), 600, 270, 10, (segments >= minSegments) ? Maroon : Darkgray);
 
             DrawFPS(10, 10);
 

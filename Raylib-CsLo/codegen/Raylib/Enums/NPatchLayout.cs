@@ -11,9 +11,9 @@ namespace Raylib_CsLo;
 public enum NPatchLayout
 {
     /// <summary> Npatch layout: 3x3 tiles </summary>
-    NPATCH_NINE_PATCH = 0,
+    NpatchNinePatch = 0,
     /// <summary> Npatch layout: 1x3 tiles </summary>
-    NPATCH_THREE_PATCH_VERTICAL = 1,
+    NpatchThreePatchVertical = 1,
     /// <summary> Npatch layout: 3x1 tiles </summary>
-    NPATCH_THREE_PATCH_HORIZONTAL = 2,
+    NpatchThreePatchHorizontal = 2,
 }

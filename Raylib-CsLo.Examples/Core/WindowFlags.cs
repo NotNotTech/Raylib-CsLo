@@ -30,7 +30,7 @@ public static unsafe class WindowFlags
         /*
 		FLAG_VSYNC_HINT
 		FLAG_FULLSCREEN_MODE    -> not working properly -> wrong scaling!
-		FLAG_WINDOW_RESIZABLE
+		FlagWindowResizable
 		FLAG_WINDOW_UNDECORATED
 		FLAG_WINDOW_TRANSPARENT
 		FLAG_WINDOW_HIDDEN
@@ -40,11 +40,11 @@ public static unsafe class WindowFlags
 		FLAG_WINDOW_TOPMOST
 		FLAG_WINDOW_HIGHDPI     -> errors after minimize-resize, fb size is recalculated
 		FLAG_WINDOW_ALWAYS_RUN
-		FLAG_MSAA_4X_HINT
+		FlagMsaa4xHint
 		*/
 
         // Set configuration flags for window creation
-        //SetConfigFlags(FLAG_VSYNC_HINT | FLAG_MSAA_4X_HINT | FLAG_WINDOW_HIGHDPI);
+        //SetConfigFlags(FLAG_VSYNC_HINT | FlagMsaa4xHint | FLAG_WINDOW_HIGHDPI);
         InitWindow(screenWidth, screenHeight, "raylib [core] example - window flags");
 
         Vector2 ballPosition = new(GetScreenWidth() / 2.0f, GetScreenHeight() / 2.0f);
@@ -61,57 +61,57 @@ public static unsafe class WindowFlags
         {
             // Update
 
-            if (IsKeyPressed(KEY_F))
+            if (IsKeyPressed(KeyF))
             {
                 ToggleFullscreen();  // modifies window size when scaling!
             }
 
-            if (IsKeyPressed(KEY_R))
+            if (IsKeyPressed(KeyR))
             {
-                if (IsWindowState(FLAG_WINDOW_RESIZABLE))
+                if (IsWindowState(FlagWindowResizable))
                 {
-                    ClearWindowState(FLAG_WINDOW_RESIZABLE);
+                    ClearWindowState(FlagWindowResizable);
                 }
                 else
                 {
-                    SetWindowState(FLAG_WINDOW_RESIZABLE);
+                    SetWindowState(FlagWindowResizable);
                 }
             }
 
-            if (IsKeyPressed(KEY_D))
+            if (IsKeyPressed(KeyD))
             {
-                if (IsWindowState(FLAG_WINDOW_UNDECORATED))
+                if (IsWindowState(FlagWindowUndecorated))
                 {
-                    ClearWindowState(FLAG_WINDOW_UNDECORATED);
+                    ClearWindowState(FlagWindowUndecorated);
                 }
                 else
                 {
-                    SetWindowState(FLAG_WINDOW_UNDECORATED);
+                    SetWindowState(FlagWindowUndecorated);
                 }
             }
 
-            if (IsKeyPressed(KEY_H))
+            if (IsKeyPressed(KeyH))
             {
-                if (!IsWindowState(FLAG_WINDOW_HIDDEN))
+                if (!IsWindowState(FlagWindowHidden))
                 {
-                    SetWindowState(FLAG_WINDOW_HIDDEN);
+                    SetWindowState(FlagWindowHidden);
                 }
 
                 framesCounter = 0;
             }
 
-            if (IsWindowState(FLAG_WINDOW_HIDDEN))
+            if (IsWindowState(FlagWindowHidden))
             {
                 framesCounter++;
                 if (framesCounter >= 240)
                 {
-                    ClearWindowState(FLAG_WINDOW_HIDDEN); // Show window after 3 seconds
+                    ClearWindowState(FlagWindowHidden); // Show window after 3 seconds
                 }
             }
 
-            if (IsKeyPressed(KEY_N))
+            if (IsKeyPressed(KeyN))
             {
-                if (!IsWindowState(FLAG_WINDOW_MINIMIZED))
+                if (!IsWindowState(FlagWindowMinimized))
                 {
                     MinimizeWindow();
                 }
@@ -119,7 +119,7 @@ public static unsafe class WindowFlags
                 framesCounter = 0;
             }
 
-            if (IsWindowState(FLAG_WINDOW_MINIMIZED))
+            if (IsWindowState(FlagWindowMinimized))
             {
                 framesCounter++;
                 if (framesCounter >= 240)
@@ -128,10 +128,10 @@ public static unsafe class WindowFlags
                 }
             }
 
-            if (IsKeyPressed(KEY_M))
+            if (IsKeyPressed(KeyM))
             {
-                // NOTE: Requires FLAG_WINDOW_RESIZABLE enabled!
-                if (IsWindowState(FLAG_WINDOW_MAXIMIZED))
+                // NOTE: Requires FlagWindowResizable enabled!
+                if (IsWindowState(FlagWindowMaximized))
                 {
                     RestoreWindow();
                 }
@@ -141,51 +141,51 @@ public static unsafe class WindowFlags
                 }
             }
 
-            if (IsKeyPressed(KEY_U))
+            if (IsKeyPressed(KeyU))
             {
-                if (IsWindowState(FLAG_WINDOW_UNFOCUSED))
+                if (IsWindowState(FlagWindowUnfocused))
                 {
-                    ClearWindowState(FLAG_WINDOW_UNFOCUSED);
+                    ClearWindowState(FlagWindowUnfocused);
                 }
                 else
                 {
-                    SetWindowState(FLAG_WINDOW_UNFOCUSED);
+                    SetWindowState(FlagWindowUnfocused);
                 }
             }
 
-            if (IsKeyPressed(KEY_T))
+            if (IsKeyPressed(KeyT))
             {
-                if (IsWindowState(FLAG_WINDOW_TOPMOST))
+                if (IsWindowState(FlagWindowTopmost))
                 {
-                    ClearWindowState(FLAG_WINDOW_TOPMOST);
+                    ClearWindowState(FlagWindowTopmost);
                 }
                 else
                 {
-                    SetWindowState(FLAG_WINDOW_TOPMOST);
+                    SetWindowState(FlagWindowTopmost);
                 }
             }
 
-            if (IsKeyPressed(KEY_A))
+            if (IsKeyPressed(KeyA))
             {
-                if (IsWindowState(FLAG_WINDOW_ALWAYS_RUN))
+                if (IsWindowState(FlagWindowAlwaysRun))
                 {
-                    ClearWindowState(FLAG_WINDOW_ALWAYS_RUN);
+                    ClearWindowState(FlagWindowAlwaysRun);
                 }
                 else
                 {
-                    SetWindowState(FLAG_WINDOW_ALWAYS_RUN);
+                    SetWindowState(FlagWindowAlwaysRun);
                 }
             }
 
-            if (IsKeyPressed(KEY_V))
+            if (IsKeyPressed(KeyV))
             {
-                if (IsWindowState(FLAG_VSYNC_HINT))
+                if (IsWindowState(FlagVsyncHint))
                 {
-                    ClearWindowState(FLAG_VSYNC_HINT);
+                    ClearWindowState(FlagVsyncHint);
                 }
                 else
                 {
-                    SetWindowState(FLAG_VSYNC_HINT);
+                    SetWindowState(FlagVsyncHint);
                 }
             }
 
@@ -207,142 +207,142 @@ public static unsafe class WindowFlags
 
             BeginDrawing();
 
-            if (IsWindowState(FLAG_WINDOW_TRANSPARENT))
+            if (IsWindowState(FlagWindowTransparent))
             {
-                ClearBackground(BLANK);
+                ClearBackground(Blank);
             }
             else
             {
-                ClearBackground(RAYWHITE);
+                ClearBackground(Raywhite);
             }
 
-            DrawCircleV(ballPosition, ballRadius, MAROON);
-            DrawRectangleLinesEx(new(0, 0, GetScreenWidth(), GetScreenHeight()), 4, RAYWHITE);
+            DrawCircleV(ballPosition, ballRadius, Maroon);
+            DrawRectangleLinesEx(new(0, 0, GetScreenWidth(), GetScreenHeight()), 4, Raywhite);
 
-            DrawCircleV(GetMousePosition(), 10, DARKBLUE);
+            DrawCircleV(GetMousePosition(), 10, Darkblue);
 
             DrawFPS(10, 10);
 
-            DrawText(TextFormat("Screen Size: [%i, %i]", GetScreenWidth(), GetScreenHeight()), 10, 40, 10, GREEN);
+            DrawText(TextFormat("Screen Size: [%i, %i]", GetScreenWidth(), GetScreenHeight()), 10, 40, 10, Green);
 
             // Draw window state info
-            DrawText("Following flags can be set after window creation:", 10, 60, 10, GRAY);
-            if (IsWindowState(FLAG_FULLSCREEN_MODE))
+            DrawText("Following flags can be set after window creation:", 10, 60, 10, Gray);
+            if (IsWindowState(FlagFullscreenMode))
             {
-                DrawText("[F] FLAG_FULLSCREEN_MODE: on", 10, 80, 10, LIME);
+                DrawText("[F] FLAG_FULLSCREEN_MODE: on", 10, 80, 10, Lime);
             }
             else
             {
-                DrawText("[F] FLAG_FULLSCREEN_MODE: off", 10, 80, 10, MAROON);
+                DrawText("[F] FLAG_FULLSCREEN_MODE: off", 10, 80, 10, Maroon);
             }
 
-            if (IsWindowState(FLAG_WINDOW_RESIZABLE))
+            if (IsWindowState(FlagWindowResizable))
             {
-                DrawText("[R] FLAG_WINDOW_RESIZABLE: on", 10, 100, 10, LIME);
+                DrawText("[R] FlagWindowResizable: on", 10, 100, 10, Lime);
             }
             else
             {
-                DrawText("[R] FLAG_WINDOW_RESIZABLE: off", 10, 100, 10, MAROON);
+                DrawText("[R] FlagWindowResizable: off", 10, 100, 10, Maroon);
             }
 
-            if (IsWindowState(FLAG_WINDOW_UNDECORATED))
+            if (IsWindowState(FlagWindowUndecorated))
             {
-                DrawText("[D] FLAG_WINDOW_UNDECORATED: on", 10, 120, 10, LIME);
+                DrawText("[D] FLAG_WINDOW_UNDECORATED: on", 10, 120, 10, Lime);
             }
             else
             {
-                DrawText("[D] FLAG_WINDOW_UNDECORATED: off", 10, 120, 10, MAROON);
+                DrawText("[D] FLAG_WINDOW_UNDECORATED: off", 10, 120, 10, Maroon);
             }
 
-            if (IsWindowState(FLAG_WINDOW_HIDDEN))
+            if (IsWindowState(FlagWindowHidden))
             {
-                DrawText("[H] FLAG_WINDOW_HIDDEN: on", 10, 140, 10, LIME);
+                DrawText("[H] FLAG_WINDOW_HIDDEN: on", 10, 140, 10, Lime);
             }
             else
             {
-                DrawText("[H] FLAG_WINDOW_HIDDEN: off", 10, 140, 10, MAROON);
+                DrawText("[H] FLAG_WINDOW_HIDDEN: off", 10, 140, 10, Maroon);
             }
 
-            if (IsWindowState(FLAG_WINDOW_MINIMIZED))
+            if (IsWindowState(FlagWindowMinimized))
             {
-                DrawText("[N] FLAG_WINDOW_MINIMIZED: on", 10, 160, 10, LIME);
+                DrawText("[N] FLAG_WINDOW_MINIMIZED: on", 10, 160, 10, Lime);
             }
             else
             {
-                DrawText("[N] FLAG_WINDOW_MINIMIZED: off", 10, 160, 10, MAROON);
+                DrawText("[N] FLAG_WINDOW_MINIMIZED: off", 10, 160, 10, Maroon);
             }
 
-            if (IsWindowState(FLAG_WINDOW_MAXIMIZED))
+            if (IsWindowState(FlagWindowMaximized))
             {
-                DrawText("[M] FLAG_WINDOW_MAXIMIZED: on", 10, 180, 10, LIME);
+                DrawText("[M] FLAG_WINDOW_MAXIMIZED: on", 10, 180, 10, Lime);
             }
             else
             {
-                DrawText("[M] FLAG_WINDOW_MAXIMIZED: off", 10, 180, 10, MAROON);
+                DrawText("[M] FLAG_WINDOW_MAXIMIZED: off", 10, 180, 10, Maroon);
             }
 
-            if (IsWindowState(FLAG_WINDOW_UNFOCUSED))
+            if (IsWindowState(FlagWindowUnfocused))
             {
-                DrawText("[G] FLAG_WINDOW_UNFOCUSED: on", 10, 200, 10, LIME);
+                DrawText("[G] FLAG_WINDOW_UNFOCUSED: on", 10, 200, 10, Lime);
             }
             else
             {
-                DrawText("[U] FLAG_WINDOW_UNFOCUSED: off", 10, 200, 10, MAROON);
+                DrawText("[U] FLAG_WINDOW_UNFOCUSED: off", 10, 200, 10, Maroon);
             }
 
-            if (IsWindowState(FLAG_WINDOW_TOPMOST))
+            if (IsWindowState(FlagWindowTopmost))
             {
-                DrawText("[T] FLAG_WINDOW_TOPMOST: on", 10, 220, 10, LIME);
+                DrawText("[T] FLAG_WINDOW_TOPMOST: on", 10, 220, 10, Lime);
             }
             else
             {
-                DrawText("[T] FLAG_WINDOW_TOPMOST: off", 10, 220, 10, MAROON);
+                DrawText("[T] FLAG_WINDOW_TOPMOST: off", 10, 220, 10, Maroon);
             }
 
-            if (IsWindowState(FLAG_WINDOW_ALWAYS_RUN))
+            if (IsWindowState(FlagWindowAlwaysRun))
             {
-                DrawText("[A] FLAG_WINDOW_ALWAYS_RUN: on", 10, 240, 10, LIME);
+                DrawText("[A] FLAG_WINDOW_ALWAYS_RUN: on", 10, 240, 10, Lime);
             }
             else
             {
-                DrawText("[A] FLAG_WINDOW_ALWAYS_RUN: off", 10, 240, 10, MAROON);
+                DrawText("[A] FLAG_WINDOW_ALWAYS_RUN: off", 10, 240, 10, Maroon);
             }
 
-            if (IsWindowState(FLAG_VSYNC_HINT))
+            if (IsWindowState(FlagVsyncHint))
             {
-                DrawText("[V] FLAG_VSYNC_HINT: on", 10, 260, 10, LIME);
+                DrawText("[V] FLAG_VSYNC_HINT: on", 10, 260, 10, Lime);
             }
             else
             {
-                DrawText("[V] FLAG_VSYNC_HINT: off", 10, 260, 10, MAROON);
+                DrawText("[V] FLAG_VSYNC_HINT: off", 10, 260, 10, Maroon);
             }
 
-            DrawText("Following flags can only be set before window creation:", 10, 300, 10, GRAY);
-            if (IsWindowState(FLAG_WINDOW_HIGHDPI))
+            DrawText("Following flags can only be set before window creation:", 10, 300, 10, Gray);
+            if (IsWindowState(FlagWindowHighdpi))
             {
-                DrawText("FLAG_WINDOW_HIGHDPI: on", 10, 320, 10, LIME);
+                DrawText("FLAG_WINDOW_HIGHDPI: on", 10, 320, 10, Lime);
             }
             else
             {
-                DrawText("FLAG_WINDOW_HIGHDPI: off", 10, 320, 10, MAROON);
+                DrawText("FLAG_WINDOW_HIGHDPI: off", 10, 320, 10, Maroon);
             }
 
-            if (IsWindowState(FLAG_WINDOW_TRANSPARENT))
+            if (IsWindowState(FlagWindowTransparent))
             {
-                DrawText("FLAG_WINDOW_TRANSPARENT: on", 10, 340, 10, LIME);
+                DrawText("FLAG_WINDOW_TRANSPARENT: on", 10, 340, 10, Lime);
             }
             else
             {
-                DrawText("FLAG_WINDOW_TRANSPARENT: off", 10, 340, 10, MAROON);
+                DrawText("FLAG_WINDOW_TRANSPARENT: off", 10, 340, 10, Maroon);
             }
 
-            if (IsWindowState(FLAG_MSAA_4X_HINT))
+            if (IsWindowState(FlagMsaa4xHint))
             {
-                DrawText("FLAG_MSAA_4X_HINT: on", 10, 360, 10, LIME);
+                DrawText("FlagMsaa4xHint: on", 10, 360, 10, Lime);
             }
             else
             {
-                DrawText("FLAG_MSAA_4X_HINT: off", 10, 360, 10, MAROON);
+                DrawText("FlagMsaa4xHint: off", 10, 360, 10, Maroon);
             }
 
             EndDrawing();

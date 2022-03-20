@@ -29,7 +29,7 @@ public static unsafe class Heightmap
         InitWindow(screenWidth, screenHeight, "raylib [models] example - heightmap loading and drawing");
 
         // Define our custom camera to look into our 3d world
-        Camera camera = new(new(18.0f, 18.0f, 18.0f), new(0.0f, 0.0f, 0.0f), new(0.0f, 1.0f, 0.0f), 45.0f, 0);
+        Camera3D camera = new(new(18.0f, 18.0f, 18.0f), new(0.0f, 0.0f, 0.0f), new(0.0f, 1.0f, 0.0f), 45.0f, 0);
 
         Image image = LoadImage("resources/heightmap.png");             // Load heightmap image (RAM)
         Texture2D texture = LoadTextureFromImage(image);                // Convert image to texture (VRAM)
@@ -37,12 +37,12 @@ public static unsafe class Heightmap
         Mesh mesh = GenMeshHeightmap(image, new(16, 8, 16));    // Generate heightmap mesh (RAM and VRAM)
         Model model = LoadModelFromMesh(mesh);                          // Load model from generated mesh
 
-        model.materials[0].maps[(int)MATERIAL_MAP_ALBEDO].texture = texture;         // Set map diffuse texture
+        model.materials[0].maps[(int)MaterialMapAlbedo].texture = texture;         // Set map diffuse texture
         Vector3 mapPosition = new(-8.0f, 0.0f, -8.0f);                   // Define model position
 
         UnloadImage(image);                     // Unload heightmap image from RAM, already uploaded to VRAM
 
-        SetCameraMode(ref camera, CAMERA_ORBITAL);  // Set an orbital camera mode
+        SetCameraMode(camera, CameraOrbital);  // Set an orbital camera mode
 
         SetTargetFPS(60);                       // Set our game to run at 60 frames-per-second
 
@@ -59,18 +59,18 @@ public static unsafe class Heightmap
 
             BeginDrawing();
 
-            ClearBackground(RAYWHITE);
+            ClearBackground(Raywhite);
 
-            BeginMode3D(ref camera);
+            BeginMode3D(camera);
 
-            DrawModel(model, mapPosition, 1.0f, RED);
+            DrawModel(model, mapPosition, 1.0f, Red);
 
             DrawGrid(20, 1.0f);
 
             EndMode3D();
 
-            DrawTexture(texture, screenWidth - texture.width - 20, 20, WHITE);
-            DrawRectangleLines(screenWidth - texture.width - 20, 20, texture.width, texture.height, GREEN);
+            DrawTexture(texture, screenWidth - texture.width - 20, 20, White);
+            DrawRectangleLines(screenWidth - texture.width - 20, 20, texture.width, texture.height, Green);
 
             DrawFPS(10, 10);
 

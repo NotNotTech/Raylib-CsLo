@@ -43,7 +43,7 @@ public static unsafe class BoundingBall
         {
             // Update
 
-            if (IsKeyPressed(KEY_SPACE))
+            if (IsKeyPressed(KeySpace))
             {
                 pause = !pause;
             }
@@ -74,15 +74,15 @@ public static unsafe class BoundingBall
 
             BeginDrawing();
 
-            ClearBackground(RAYWHITE);
+            ClearBackground(Raywhite);
 
-            DrawCircleV(ballPosition, ballRadius, MAROON);
-            DrawText("PRESS SPACE to PAUSE BALL MOVEMENT", 10, GetScreenHeight() - 25, 20, LIGHTGRAY);
+            DrawCircleV(ballPosition, ballRadius, Maroon);
+            DrawText("PRESS SPACE to PAUSE BALL MOVEMENT", 10, GetScreenHeight() - 25, 20, Lightgray);
 
             // On pause, we draw a blinking message
             if (pause && (framesCounter / 30 % 2) != 0)
             {
-                DrawText("PAUSED", 350, 200, 30, GRAY);
+                DrawText("PAUSED", 350, 200, 30, Gray);
             }
 
             DrawFPS(10, 10);

@@ -43,7 +43,7 @@ public static unsafe class Eratosthenes
 
         InitWindow(screenWidth, screenHeight, "raylib [shaders] example - Sieve of Eratosthenes");
 
-        RenderTexture2D target = LoadRenderTexture(screenWidth, screenHeight);
+        RenderTexture target = LoadRenderTexture(screenWidth, screenHeight);
 
         // Load Eratosthenes shader
         // NOTE: Defining 0 (NULL) for vertex shader forces usage of internal default vertex shader
@@ -63,21 +63,21 @@ public static unsafe class Eratosthenes
             // Draw
 
             BeginTextureMode(target);       // Enable drawing to texture
-            ClearBackground(BLACK);     // Clear the render texture
+            ClearBackground(Black);     // Clear the render texture
 
             // Draw a rectangle in shader mode to be used as shader canvas
-            // NOTE: Rectangle uses font white character texture coordinates,
+            // NOTE: Rectangle uses font White character texture coordinates,
             // so shader can not be applied here directly because input vertexTexCoord
             // do not represent full screen coordinates (space where want to apply shader)
-            DrawRectangle(0, 0, GetScreenWidth(), GetScreenHeight(), BLACK);
+            DrawRectangle(0, 0, GetScreenWidth(), GetScreenHeight(), Black);
             EndTextureMode();               // End drawing to texture (now we have a blank texture available for the shader)
 
             BeginDrawing();
-            ClearBackground(RAYWHITE);  // Clear screen background
+            ClearBackground(Raywhite);  // Clear screen background
 
             BeginShaderMode(shader);
             // NOTE: Render texture must be y-flipped due to default OpenGL coordinates (left-bottom)
-            DrawTextureRec(target.texture, new Rectangle(0, 0, target.texture.width, -target.texture.height), new Vector2(0.0f, 0.0f), WHITE);
+            DrawTextureRec(target.texture, new Rectangle(0, 0, target.texture.width, -target.texture.height), new Vector2(0.0f, 0.0f), White);
             EndShaderMode();
             EndDrawing();
 

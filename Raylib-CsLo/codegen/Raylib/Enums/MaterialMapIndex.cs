@@ -11,25 +11,25 @@ namespace Raylib_CsLo;
 public enum MaterialMapIndex
 {
     /// <summary> Albedo material (same as: MATERIAL_MAP_DIFFUSE) </summary>
-    MATERIAL_MAP_ALBEDO = 0,
+    MaterialMapAlbedo = 0,
     /// <summary> Metalness material (same as: MATERIAL_MAP_SPECULAR) </summary>
-    MATERIAL_MAP_METALNESS = 1,
+    MaterialMapMetalness = 1,
     /// <summary> Normal material </summary>
-    MATERIAL_MAP_NORMAL = 2,
+    MaterialMapNormal = 2,
     /// <summary> Roughness material </summary>
-    MATERIAL_MAP_ROUGHNESS = 3,
+    MaterialMapRoughness = 3,
     /// <summary> Ambient occlusion material </summary>
-    MATERIAL_MAP_OCCLUSION = 4,
+    MaterialMapOcclusion = 4,
     /// <summary> Emission material </summary>
-    MATERIAL_MAP_EMISSION = 5,
+    MaterialMapEmission = 5,
     /// <summary> Heightmap material </summary>
-    MATERIAL_MAP_HEIGHT = 6,
+    MaterialMapHeight = 6,
     /// <summary> Cubemap material (NOTE: Uses GL_TEXTURE_CUBE_MAP) </summary>
-    MATERIAL_MAP_CUBEMAP = 7,
+    MaterialMapCubemap = 7,
     /// <summary> Irradiance material (NOTE: Uses GL_TEXTURE_CUBE_MAP) </summary>
-    MATERIAL_MAP_IRRADIANCE = 8,
+    MaterialMapIrradiance = 8,
     /// <summary> Prefilter material (NOTE: Uses GL_TEXTURE_CUBE_MAP) </summary>
-    MATERIAL_MAP_PREFILTER = 9,
+    MaterialMapPrefilter = 9,
     /// <summary> Brdf material </summary>
-    MATERIAL_MAP_BRDF = 10,
+    MaterialMapBrdf = 10,
 }

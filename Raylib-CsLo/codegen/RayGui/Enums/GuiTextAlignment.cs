@@ -11,9 +11,9 @@ namespace Raylib_CsLo;
 public enum GuiTextAlignment
 {
     /// <summary>  </summary>
-    GUI_TEXT_ALIGN_LEFT = 0,
+    GuiTextAlignLeft = 0,
     /// <summary>  </summary>
-    GUI_TEXT_ALIGN_CENTER = 1,
+    GuiTextAlignCenter = 1,
     /// <summary>  </summary>
-    GUI_TEXT_ALIGN_RIGHT = 2,
+    GuiTextAlignRight = 2,
 }

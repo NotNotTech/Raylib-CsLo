@@ -45,7 +45,7 @@ public static unsafe class TextureOutline
         Shader shdrOutline = LoadFShader(TextFormat("resources/shaders/glsl%i/outline.fs", GLSL_VERSION));
 
         float outlineSize = 2.0f;
-        Vector4 outlineColor = new(1.0f, 0.0f, 0.0f, 1.0f);     // Normalized RED color
+        Vector4 outlineColor = new(1.0f, 0.0f, 0.0f, 1.0f);     // Normalized Red color
         Vector2 textureSize = new(texture.width, texture.height);
 
         // Get shader locations
@@ -54,9 +54,9 @@ public static unsafe class TextureOutline
         int textureSizeLoc = GetShaderLocation(shdrOutline, "textureSize");
 
         // Set shader values (they can be changed later)
-        SetShaderValue(shdrOutline, outlineSizeLoc, &outlineSize, SHADER_UNIFORM_FLOAT);
-        SetShaderValue(shdrOutline, outlineColorLoc, outlineColor, SHADER_UNIFORM_VEC4);
-        SetShaderValue(shdrOutline, textureSizeLoc, textureSize, SHADER_UNIFORM_VEC2);
+        SetShaderValue(shdrOutline, outlineSizeLoc, &outlineSize, ShaderUniformFloat);
+        SetShaderValue(shdrOutline, outlineColorLoc, outlineColor, ShaderUniformVec4);
+        SetShaderValue(shdrOutline, textureSizeLoc, textureSize, ShaderUniformVec2);
 
         SetTargetFPS(60);               // Set our game to run at 60 frames-per-second
 
@@ -72,24 +72,24 @@ public static unsafe class TextureOutline
                 outlineSize = 1.0f;
             }
 
-            SetShaderValue(shdrOutline, outlineSizeLoc, &outlineSize, SHADER_UNIFORM_FLOAT);
+            SetShaderValue(shdrOutline, outlineSizeLoc, &outlineSize, ShaderUniformFloat);
 
 
             // Draw
 
             BeginDrawing();
 
-            ClearBackground(RAYWHITE);
+            ClearBackground(Raywhite);
 
             BeginShaderMode(shdrOutline);
 
-            DrawTexture(texture, (GetScreenWidth() / 2) - (texture.width / 2), -30, WHITE);
+            DrawTexture(texture, (GetScreenWidth() / 2) - (texture.width / 2), -30, White);
 
             EndShaderMode();
 
-            DrawText("Shader-based\ntexture\noutline", 10, 10, 20, GRAY);
+            DrawText("Shader-based\ntexture\noutline", 10, 10, 20, Gray);
 
-            DrawText(TextFormat("Outline size: %i px", (int)outlineSize), 10, 120, 20, MAROON);
+            DrawText(TextFormat("Outline size: %i px", (int)outlineSize), 10, 120, 20, Maroon);
 
             DrawFPS(710, 10);
 

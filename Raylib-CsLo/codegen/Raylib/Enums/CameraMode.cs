@@ -11,13 +11,13 @@ namespace Raylib_CsLo;
 public enum CameraMode
 {
     /// <summary> Custom camera </summary>
-    CAMERA_CUSTOM = 0,
+    CameraCustom = 0,
     /// <summary> Free camera </summary>
-    CAMERA_FREE = 1,
+    CameraFree = 1,
     /// <summary> Orbital camera </summary>
-    CAMERA_ORBITAL = 2,
+    CameraOrbital = 2,
     /// <summary> First person camera </summary>
-    CAMERA_FIRST_PERSON = 3,
+    CameraFirstPerson = 3,
     /// <summary> Third person camera </summary>
-    CAMERA_THIRD_PERSON = 4,
+    CameraThirdPerson = 4,
 }

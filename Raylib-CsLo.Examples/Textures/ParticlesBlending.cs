@@ -60,7 +60,7 @@ public static unsafe class ParticlesBlending
 
         Texture2D smoke = LoadTexture("resources/spark_flame.png");
 
-        BlendMode blending = BLEND_ALPHA;
+        BlendMode blending = BlendAlpha;
 
         SetTargetFPS(60);
 
@@ -102,15 +102,15 @@ public static unsafe class ParticlesBlending
                 }
             }
 
-            if (IsKeyPressed(KEY_SPACE))
+            if (IsKeyPressed(KeySpace))
             {
-                if (blending == BLEND_ALPHA)
+                if (blending == BlendAlpha)
                 {
-                    blending = BLEND_ADDITIVE;
+                    blending = BlendAdditive;
                 }
                 else
                 {
-                    blending = BLEND_ALPHA;
+                    blending = BlendAlpha;
                 }
             }
 
@@ -119,7 +119,7 @@ public static unsafe class ParticlesBlending
 
             BeginDrawing();
 
-            ClearBackground(DARKGRAY);
+            ClearBackground(Darkgray);
 
             BeginBlendMode(blending);
 
@@ -137,15 +137,15 @@ public static unsafe class ParticlesBlending
 
             EndBlendMode();
 
-            DrawText("PRESS SPACE to CHANGE BLENDING MODE", 180, 20, 20, BLACK);
+            DrawText("PRESS SPACE to CHANGE BLENDING MODE", 180, 20, 20, Black);
 
-            if (blending == BLEND_ALPHA)
+            if (blending == BlendAlpha)
             {
-                DrawText("ALPHA BLENDING", 290, screenHeight - 40, 20, BLACK);
+                DrawText("ALPHA BLENDING", 290, screenHeight - 40, 20, Black);
             }
             else
             {
-                DrawText("ADDITIVE BLENDING", 280, screenHeight - 40, 20, RAYWHITE);
+                DrawText("ADDITIVE BLENDING", 280, screenHeight - 40, 20, Raywhite);
             }
 
             EndDrawing();

@@ -4,19 +4,17 @@
 // The code and 100+ examples are here! https://github.com/NotNotTech/Raylib-CsLo
 
 // Warning This file is auto generated and changes will be lost
+
 namespace Raylib_CsLo;
 
 /// <summary>  </summary>
-public unsafe partial struct rlglData
+public unsafe partial struct RlglData
 {
     /// <summary> Current render batch </summary>
-    public rlRenderBatch * currentBatch;
+    public RlRenderBatch* currentBatch;
 
     /// <summary> Default internal render batch </summary>
-    public rlRenderBatch defaultBatch;
-
-    /// <summary> Current active render batch vertex counter (generic, used for all batches) </summary>
-    public struct { vertexCounter;
+    public RlRenderBatch* defaultBatch;
 
     /// <summary> Current active render batch vertex counter (generic, used for all batches) </summary>
     public int vertexCounter;
@@ -34,7 +32,7 @@ public unsafe partial struct rlglData
     public int currentMatrixMode;
 
     /// <summary> Current matrix pointer </summary>
-    public Matrix * currentMatrix;
+    public Matrix4x4* currentMatrix;
 
     /// <summary> Default modelview matrix </summary>
     public Matrix4x4 modelview;
@@ -49,7 +47,7 @@ public unsafe partial struct rlglData
     public bool transformRequired;
 
     /// <summary> Matrix stack for push/pop </summary>
-    public Matrix4x4 stack[RL_MAX_MATRIX_STACK_SIZE];
+    public FixedMatrix4x4 stack;
 
     /// <summary> Matrix stack counter </summary>
     public int stackCounter;
@@ -58,7 +56,7 @@ public unsafe partial struct rlglData
     public uint defaultTextureId;
 
     /// <summary> Active texture ids to be enabled on batch drawing (0 active by default) </summary>
-    public uint activeTextureId[RL_DEFAULT_BATCH_MAX_TEXTURE_UNITS];
+    public fixed uint activeTextureId[RL_DEFAULT_BATCH_MAX_TEXTURE_UNITS];
 
     /// <summary> Default vertex shader id (used by default shader program) </summary>
     public uint defaultVShaderId;
@@ -70,22 +68,22 @@ public unsafe partial struct rlglData
     public uint defaultShaderId;
 
     /// <summary> Default shader locations pointer to be used on rendering </summary>
-    public int * defaultShaderLocs;
+    public int* defaultShaderLocs;
 
     /// <summary> Current shader id to be used on rendering (by default, defaultShaderId) </summary>
     public uint currentShaderId;
 
     /// <summary> Current shader locations pointer to be used on rendering (by default, defaultShaderLocs) </summary>
-    public int * currentShaderLocs;
+    public int* currentShaderLocs;
 
     /// <summary> Stereo rendering flag </summary>
     public bool stereoRender;
 
     /// <summary> VR stereo rendering eyes projection matrices </summary>
-    public Matrix4x4 projectionStereo[2];
+    public FixedMatrix4x4 projectionStereo;
 
     /// <summary> VR stereo rendering eyes view offset matrices </summary>
-    public Matrix4x4 viewOffsetStereo[2];
+    public FixedMatrix4x4 viewOffsetStereo;
 
     /// <summary> Blending mode active </summary>
     public int currentBlendMode;

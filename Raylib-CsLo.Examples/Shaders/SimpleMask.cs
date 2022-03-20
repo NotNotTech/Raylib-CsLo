@@ -46,12 +46,12 @@ public static unsafe class SimpleMask
         InitWindow(screenWidth, screenHeight, "raylib - simple shader mask");
 
         // Define the camera to look into our 3d world
-        Camera camera = new();
+        Camera3D camera = new();
         camera.position = new Vector3(0.0f, 1.0f, 2.0f);
         camera.target = new Vector3(0.0f, 0.0f, 0.0f);
         camera.up = new Vector3(0.0f, 1.0f, 0.0f);
         camera.fovy = 45.0f;
-        camera.Projection = CAMERA_PERSPECTIVE;
+        camera.Projection = CameraPerspective;
 
         // Define our three models to show the shader on
         Mesh torus = GenMeshTorus(0.3f, 1, 16, 32);
@@ -68,16 +68,16 @@ public static unsafe class SimpleMask
         Shader shader = LoadFShader(TextFormat("resources/shaders/glsl%i/mask.fs", GLSL_VERSION));
 
         // Load and apply the diffuse texture (colour map)
-        Texture texDiffuse = LoadTexture("resources/plasma.png");
-        model1.materials[0].maps[(int)MATERIAL_MAP_ALBEDO].texture = texDiffuse;
-        model2.materials[0].maps[(int)MATERIAL_MAP_ALBEDO].texture = texDiffuse;
+        Texture2D texDiffuse = LoadTexture("resources/plasma.png");
+        model1.materials[0].maps[(int)MaterialMapAlbedo].texture = texDiffuse;
+        model2.materials[0].maps[(int)MaterialMapAlbedo].texture = texDiffuse;
 
         // Using MATERIAL_MAP_EMISSION as a spare slot to use for 2nd texture
         // NOTE: Don't use MATERIAL_MAP_IRRADIANCE, MATERIAL_MAP_PREFILTER or  MATERIAL_MAP_CUBEMAP as they are bound as cube maps
-        Texture texMask = LoadTexture("resources/mask.png");
-        model1.materials[0].maps[(int)MATERIAL_MAP_EMISSION].texture = texMask;
-        model2.materials[0].maps[(int)MATERIAL_MAP_EMISSION].texture = texMask;
-        shader.locs[(int)SHADER_LOC_MAP_EMISSION] = GetShaderLocation(shader, "mask");
+        Texture2D texMask = LoadTexture("resources/mask.png");
+        model1.materials[0].maps[(int)MaterialMapEmission].texture = texMask;
+        model2.materials[0].maps[(int)MaterialMapEmission].texture = texMask;
+        shader.locs[(int)ShaderLocMapEmission] = GetShaderLocation(shader, "mask");
 
         // Frame is incremented each frame to animate the shader
         int shaderFrame = GetShaderLocation(shader, "frame");
@@ -103,7 +103,7 @@ public static unsafe class SimpleMask
             rotation.Z -= 0.0025f;
 
             // Send frames counter to shader for animation
-            SetShaderValue(shader, shaderFrame, &framesCounter, SHADER_UNIFORM_INT);
+            SetShaderValue(shader, shaderFrame, &framesCounter, ShaderUniformInt);
 
             // Rotate one of the models
             model1.transform = MatrixRotateXYZ(rotation);
@@ -115,19 +115,19 @@ public static unsafe class SimpleMask
 
             BeginDrawing();
 
-            ClearBackground(DARKBLUE);
+            ClearBackground(Darkblue);
 
-            BeginMode3D(ref camera);
+            BeginMode3D(camera);
 
-            DrawModel(model1, new Vector3(0.5f, 0, 0), 1, WHITE);
-            DrawModelEx(model2, new Vector3(-.5f, 0, 0), new Vector3(1, 1, 0), 50, new Vector3(1, 1, 1), WHITE);
-            DrawModel(model3, new Vector3(0, 0, -1.5f), 1, WHITE);
+            DrawModel(model1, new Vector3(0.5f, 0, 0), 1, White);
+            DrawModelEx(model2, new Vector3(-.5f, 0, 0), new Vector3(1, 1, 0), 50, new Vector3(1, 1, 1), White);
+            DrawModel(model3, new Vector3(0, 0, -1.5f), 1, White);
             DrawGrid(10, 1.0f);        // Draw a grid
 
             EndMode3D();
 
-            DrawRectangle(16, 698, MeasureText(TextFormat("Frame: %i", framesCounter), 20) + 8, 42, BLUE);
-            DrawText(TextFormat("Frame: %i", framesCounter), 20, 700, 20, WHITE);
+            DrawRectangle(16, 698, MeasureText(TextFormat("Frame: %i", framesCounter), 20) + 8, 42, Blue);
+            DrawText(TextFormat("Frame: %i", framesCounter), 20, 700, 20, White);
 
             DrawFPS(10, 10);
 

@@ -31,14 +31,14 @@ public static unsafe class ColorsPalette
         InitWindow(screenWidth, screenHeight, "raylib [shapes] example - colors palette");
 
         Color[] colors = new Color[MAX_COLORS_COUNT] {
-        DARKGRAY, MAROON, ORANGE, DARKGREEN, DARKBLUE, DARKPURPLE, DARKBROWN,
-        GRAY, RED, GOLD, LIME, BLUE, VIOLET, BROWN, LIGHTGRAY, PINK, YELLOW,
-        GREEN, SKYBLUE, PURPLE, BEIGE };
+        Darkgray, Maroon, Orange, Darkgreen, Darkblue, Darkpurple, Darkbrown,
+        Gray, Red, Gold, Lime, Blue, Violet, Brown, Lightgray, Pink, Yellow,
+        Green, Skyblue, Purple, Beige };
 
         string[] colorNames = new string[MAX_COLORS_COUNT] {
-        "DARKGRAY", "MAROON", "ORANGE", "DARKGREEN", "DARKBLUE", "DARKPURPLE",
-        "DARKBROWN", "GRAY", "RED", "GOLD", "LIME", "BLUE", "VIOLET", "BROWN",
-        "LIGHTGRAY", "PINK", "YELLOW", "GREEN", "SKYBLUE", "PURPLE", "BEIGE" };
+        "Darkgray", "Maroon", "Orange", "Darkgreen", "Darkblue", "Darkpurple",
+        "Darkbrown", "Gray", "Red", "Gold", "Lime", "Blue", "Violet", "Brown",
+        "Lightgray", "Pink", "Yellow", "Green", "Skyblue", "Purple", "Beige" };
 
         Rectangle[] colorsRecs = new Rectangle[MAX_COLORS_COUNT];     // Rectangles array
 
@@ -47,8 +47,8 @@ public static unsafe class ColorsPalette
         {
             colorsRecs[i].X = 20.0f + (100.0f * (i % 7)) + (10.0f * (i % 7));
             colorsRecs[i].Y = 80.0f + (100.0f * (i / 7)) + (10.0f * (i / 7));
-            colorsRecs[i].width = 100.0f;
-            colorsRecs[i].height = 100.0f;
+            colorsRecs[i].Width = 100.0f;
+            colorsRecs[i].Height = 100.0f;
         }
 
         int[] colorState = new int[MAX_COLORS_COUNT];           // Color state: 0-DEFAULT, 1-MOUSE_HOVER
@@ -80,21 +80,21 @@ public static unsafe class ColorsPalette
 
             BeginDrawing();
 
-            ClearBackground(RAYWHITE);
+            ClearBackground(Raywhite);
 
-            DrawText("raylib colors palette", 28, 42, 20, BLACK);
-            DrawText("press SPACE to see all colors", GetScreenWidth() - 180, GetScreenHeight() - 40, 10, GRAY);
+            DrawText("raylib colors palette", 28, 42, 20, Black);
+            DrawText("press SPACE to see all colors", GetScreenWidth() - 180, GetScreenHeight() - 40, 10, Gray);
 
             for (int i = 0; i < MAX_COLORS_COUNT; i++)    // Draw all rectangles
             {
                 DrawRectangleRec(colorsRecs[i], Fade(colors[i], colorState[i] == 1 ? 0.6f : 1.0f));
 
-                if (IsKeyDown(KEY_SPACE) || colorState[i] == 1)
+                if (IsKeyDown(KeySpace) || colorState[i] == 1)
                 {
-                    DrawRectangle((int)colorsRecs[i].X, (int)(colorsRecs[i].Y + colorsRecs[i].height - 26), (int)colorsRecs[i].width, 20, BLACK);
-                    DrawRectangleLinesEx(colorsRecs[i], 6, Fade(BLACK, 0.3f));
-                    DrawText(colorNames[i], (int)(colorsRecs[i].X + colorsRecs[i].width - MeasureText(colorNames[i], 10) - 12),
-                        (int)(colorsRecs[i].Y + colorsRecs[i].height - 20), 10, colors[i]);
+                    DrawRectangle((int)colorsRecs[i].X, (int)(colorsRecs[i].Y + colorsRecs[i].Height - 26), (int)colorsRecs[i].Width, 20, Black);
+                    DrawRectangleLinesEx(colorsRecs[i], 6, Fade(Black, 0.3f));
+                    DrawText(colorNames[i], (int)(colorsRecs[i].X + colorsRecs[i].Width - MeasureText(colorNames[i], 10) - 12),
+                        (int)(colorsRecs[i].Y + colorsRecs[i].Height - 20), 10, colors[i]);
                 }
             }
 

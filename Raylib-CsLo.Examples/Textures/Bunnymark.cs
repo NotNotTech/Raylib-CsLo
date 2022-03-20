@@ -59,7 +59,7 @@ public static unsafe class Bunnymark
         {
             // Update
 
-            if (IsMouseButtonDown(MOUSE_BUTTON_LEFT))
+            if (IsMouseButtonDown(MouseButtonLeft))
             {
                 // Create more bunnies
                 for (int i = 0; i < 100; i++)
@@ -101,7 +101,7 @@ public static unsafe class Bunnymark
 
             BeginDrawing();
 
-            ClearBackground(RAYWHITE);
+            ClearBackground(Raywhite);
 
             for (int i = 0; i < bunniesCount; i++)
             {
@@ -114,9 +114,9 @@ public static unsafe class Bunnymark
                 DrawTexture(texBunny, (int)bunnies[i].position.X, (int)bunnies[i].position.Y, bunnies[i].color);
             }
 
-            DrawRectangle(0, 0, screenWidth, 40, BLACK);
-            DrawText(TextFormat("bunnies: %i", bunniesCount), 120, 10, 20, GREEN);
-            DrawText(TextFormat("batched draw calls: %i", 1 + (bunniesCount / MAX_BATCH_ELEMENTS)), 320, 10, 20, MAROON);
+            DrawRectangle(0, 0, screenWidth, 40, Black);
+            DrawText(TextFormat("bunnies: %i", bunniesCount), 120, 10, 20, Green);
+            DrawText(TextFormat("batched draw calls: %i", 1 + (bunniesCount / MAX_BATCH_ELEMENTS)), 320, 10, 20, Maroon);
 
             DrawFPS(10, 10);
 

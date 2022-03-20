@@ -36,7 +36,7 @@ public static class FunctionParser
                 func.Manual = true;
             }
 
-            bool isReturnSame = TypeConverter.FromCToUnsafeCs(func.Return).Equals(TypeConverter.FromCToSafeCs(func.Return), StringComparison.Ordinal);
+            bool isReturnSame = Converter.FromCToUnsafeCs(func.Return).Equals(Converter.FromCToSafeCs(func.Return), StringComparison.Ordinal);
             bool isParamsSame = true;
             if (parameters != null)
             {
@@ -46,7 +46,7 @@ public static class FunctionParser
                 {
                     string type = param.Type.Replace(" *", "*");
 
-                    if (TypeConverter.FromCToUnsafeCs(func.Return) != TypeConverter.FromCToSafeCs(func.Return))
+                    if (Converter.FromCToUnsafeCs(func.Return) != Converter.FromCToSafeCs(func.Return))
                     {
                         isParamsSame = false;
                     }

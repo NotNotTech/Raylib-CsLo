@@ -11,15 +11,15 @@ namespace Raylib_CsLo;
 public enum TextureFilter
 {
     /// <summary> No filter, just pixel approximation </summary>
-    TEXTURE_FILTER_POINT = 0,
+    TextureFilterPoint = 0,
     /// <summary> Linear filtering </summary>
-    TEXTURE_FILTER_BILINEAR = 1,
+    TextureFilterBilinear = 1,
     /// <summary> Trilinear filtering (linear with mipmaps) </summary>
-    TEXTURE_FILTER_TRILINEAR = 2,
+    TextureFilterTrilinear = 2,
     /// <summary> Anisotropic filtering 4x </summary>
-    TEXTURE_FILTER_ANISOTROPIC_4X = 3,
+    TextureFilterAnisotropic4x = 3,
     /// <summary> Anisotropic filtering 8x </summary>
-    TEXTURE_FILTER_ANISOTROPIC_8X = 4,
+    TextureFilterAnisotropic8x = 4,
     /// <summary> Anisotropic filtering 16x </summary>
-    TEXTURE_FILTER_ANISOTROPIC_16X = 5,
+    TextureFilterAnisotropic16x = 5,
 }

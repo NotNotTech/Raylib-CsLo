@@ -40,16 +40,16 @@ public static unsafe class Loading
         InitWindow(screenWidth, screenHeight, "raylib [models] example - models loading");
 
         // Define the camera to look into our 3d world
-        Camera camera = new();
+        Camera3D camera = new();
         camera.position = new(50.0f, 50.0f, 50.0f); // Camera position
         camera.target = new(0.0f, 10.0f, 0.0f);     // Camera looking at point
         camera.up = new(0.0f, 1.0f, 0.0f);          // Camera up vector (rotation towards target)
         camera.fovy = 45.0f;                                // Camera field-of-view Y
-        camera.Projection = CAMERA_PERSPECTIVE;                   // Camera mode type
+        camera.Projection = CameraPerspective;                   // Camera mode type
 
         Model model = LoadModel("resources/models/obj/castle.obj");                 // Load model
         Texture2D texture = LoadTexture("resources/models/obj/castle_diffuse.png"); // Load model texture
-        model.materials[0].maps[(int)MATERIAL_MAP_ALBEDO].texture = texture;            // Set map diffuse texture
+        model.materials[0].maps[(int)MaterialMapAlbedo].texture = texture;            // Set map diffuse texture
 
         Vector3 position = new(0.0f, 0.0f, 0.0f);                    // Set model position
 
@@ -58,7 +58,7 @@ public static unsafe class Loading
         // NOTE: bounds are calculated from the original size of the model,
         // if model is scaled on drawing, bounds must be also scaled
 
-        SetCameraMode(ref camera, CAMERA_FREE);     // Set a free camera mode
+        SetCameraMode(camera, CameraFree);     // Set a free camera mode
 
         bool selected = false;          // Selected object flag
 
@@ -75,11 +75,10 @@ public static unsafe class Loading
             // Load new models/textures on drag&drop
             if (IsFileDropped())
             {
-                int count = 0;
                 //char** droppedFiles = GetDroppedFiles(&count);
-                string[]? droppedFiles = GetDroppedFiles();
+                string[] droppedFiles = GetDroppedFiles();
 
-                if (count == 1) // Only support one file dropped
+                if (droppedFiles.Length == 1) // Only support one file dropped
                 {
                     if (droppedFiles[0].EndsWith(".obj") ||
                         droppedFiles[0].EndsWith(".gltf") ||
@@ -89,7 +88,7 @@ public static unsafe class Loading
                     {
                         UnloadModel(model);                     // Unload previous model
                         model = LoadModel(droppedFiles[0]);     // Load new model
-                        model.materials[0].maps[(int)MATERIAL_MAP_ALBEDO].texture = texture; // Set current map diffuse texture
+                        model.materials[0].maps[(int)MaterialMapAlbedo].texture = texture; // Set current map diffuse texture
 
                         bounds = GetMeshBoundingBox(model.meshes[0]);
 
@@ -100,7 +99,7 @@ public static unsafe class Loading
                         // Unload current model texture and load new one
                         UnloadTexture(texture);
                         texture = LoadTexture(droppedFiles[0]);
-                        model.materials[0].maps[(int)MATERIAL_MAP_ALBEDO].texture = texture;
+                        model.materials[0].maps[(int)MaterialMapAlbedo].texture = texture;
                     }
                 }
 
@@ -108,10 +107,10 @@ public static unsafe class Loading
             }
 
             // Select model on mouse click
-            if (IsMouseButtonPressed(MOUSE_BUTTON_LEFT))
+            if (IsMouseButtonPressed(MouseButtonLeft))
             {
                 // Check collision between ray and box
-                if (GetRayCollisionBox(GetMouseRay(GetMousePosition(), ref camera), bounds).hit)
+                if (GetRayCollisionBox(GetMouseRay(GetMousePosition(), camera), bounds).hit)
                 {
                     selected = !selected;
                 }
@@ -126,28 +125,28 @@ public static unsafe class Loading
 
             BeginDrawing();
 
-            ClearBackground(RAYWHITE);
+            ClearBackground(Raywhite);
 
-            BeginMode3D(ref camera);
+            BeginMode3D(camera);
 
-            DrawModel(model, position, 1.0f, WHITE);        // Draw 3d model with texture
+            DrawModel(model, position, 1.0f, White);        // Draw 3d model with texture
 
             DrawGrid(20, 10.0f);         // Draw a grid
 
             if (selected)
             {
-                DrawBoundingBox(bounds, GREEN);   // Draw selection box
+                DrawBoundingBox(bounds, Green);   // Draw selection box
             }
 
             EndMode3D();
 
-            DrawText("Drag & drop model to load mesh/texture.", 10, GetScreenHeight() - 20, 10, DARKGRAY);
+            DrawText("Drag & drop model to load mesh/texture.", 10, GetScreenHeight() - 20, 10, Darkgray);
             if (selected)
             {
-                DrawText("MODEL SELECTED", GetScreenWidth() - 110, 10, 10, GREEN);
+                DrawText("MODEL SELECTED", GetScreenWidth() - 110, 10, 10, Green);
             }
 
-            DrawText("(c) Castle 3D model by Alberto Cano", screenWidth - 200, screenHeight - 20, 10, GRAY);
+            DrawText("(c) Castle 3D model by Alberto Cano", screenWidth - 200, screenHeight - 20, 10, Gray);
 
             DrawFPS(10, 10);
 

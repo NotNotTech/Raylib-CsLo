@@ -32,18 +32,18 @@ public static unsafe class MeshPicking
         InitWindow(screenWidth, screenHeight, "raylib [models] example - mesh picking");
 
         // Define the camera to look into our 3d world
-        Camera camera = new();
+        Camera3D camera = new();
         camera.position = new(20.0f, 20.0f, 20.0f); // Camera position
         camera.target = new(0.0f, 8.0f, 0.0f);      // Camera looking at point
         camera.up = new(0.0f, 1.6f, 0.0f);          // Camera up vector (rotation towards target)
         camera.fovy = 45.0f;                                // Camera field-of-view Y
-        camera.Projection = CAMERA_PERSPECTIVE;             // Camera mode type
+        camera.Projection = CameraPerspective;             // Camera mode type
 
         Ray ray = new();        // Picking ray
 
         Model tower = LoadModel("resources/models/obj/turret.obj");                 // Load OBJ model
         Texture2D texture = LoadTexture("resources/models/obj/turret_diffuse.png"); // Load model texture
-        tower.materials[0].maps[(int)MATERIAL_MAP_ALBEDO].texture = texture;            // Set model diffuse texture
+        tower.materials[0].maps[(int)MaterialMapAlbedo].texture = texture;            // Set model diffuse texture
 
         Vector3 towerPos = new(0.0f, 0.0f, 0.0f);                        // Set model position
         BoundingBox towerBBox = GetMeshBoundingBox(tower.meshes[0]);    // Get mesh bounding box
@@ -65,7 +65,7 @@ public static unsafe class MeshPicking
         Vector3 sp = new(-30.0f, 5.0f, 5.0f);
         float sr = 4.0f;
 
-        SetCameraMode(ref camera, CAMERA_FREE); // Set a free camera mode
+        SetCameraMode(camera, CameraFree); // Set a free camera mode
 
         SetTargetFPS(60);                   // Set our game to run at 60 frames-per-second
 
@@ -81,10 +81,10 @@ public static unsafe class MeshPicking
             string hitObjectName = "None";
             collision.distance = FLT_MAX;
             collision.hit = false;
-            Color cursorColor = WHITE;
+            Color cursorColor = White;
 
             // Get ray and test against objects
-            ray = GetMouseRay(GetMousePosition(), ref camera);
+            ray = GetMouseRay(GetMousePosition(), camera);
 
             // Check ray collision against ground quad
             RayCollision groundHitInfo = GetRayCollisionQuad(ray, g0, g1, g2, g3);
@@ -92,7 +92,7 @@ public static unsafe class MeshPicking
             if (groundHitInfo.hit && (groundHitInfo.distance < collision.distance))
             {
                 collision = groundHitInfo;
-                cursorColor = GREEN;
+                cursorColor = Green;
                 hitObjectName = "Ground";
             }
 
@@ -102,7 +102,7 @@ public static unsafe class MeshPicking
             if (triHitInfo.hit && (triHitInfo.distance < collision.distance))
             {
                 collision = triHitInfo;
-                cursorColor = PURPLE;
+                cursorColor = Purple;
                 hitObjectName = "Triangle";
 
                 bary = Vector3Barycenter(collision.point, ta, tb, tc);
@@ -114,7 +114,7 @@ public static unsafe class MeshPicking
             if (sphereHitInfo.hit && (sphereHitInfo.distance < collision.distance))
             {
                 collision = sphereHitInfo;
-                cursorColor = ORANGE;
+                cursorColor = Orange;
                 hitObjectName = "Sphere";
             }
 
@@ -124,7 +124,7 @@ public static unsafe class MeshPicking
             if (boxHitInfo.hit && (boxHitInfo.distance < collision.distance))
             {
                 collision = boxHitInfo;
-                cursorColor = ORANGE;
+                cursorColor = Orange;
                 hitObjectName = "Box";
 
                 // Check ray collision against model
@@ -134,7 +134,7 @@ public static unsafe class MeshPicking
                 if (meshHitInfo.hit)
                 {
                     collision = meshHitInfo;
-                    cursorColor = ORANGE;
+                    cursorColor = Orange;
                     hitObjectName = "Mesh";
                 }
             }
@@ -144,77 +144,77 @@ public static unsafe class MeshPicking
 
             BeginDrawing();
 
-            ClearBackground(RAYWHITE);
+            ClearBackground(Raywhite);
 
-            BeginMode3D(ref camera);
+            BeginMode3D(camera);
 
             // Draw the tower
             // WARNING: If scale is different than 1.0f,
             // not considered by GetRayCollisionModel()
-            DrawModel(tower, towerPos, 1.0f, WHITE);
+            DrawModel(tower, towerPos, 1.0f, White);
 
             // Draw the test triangle
-            DrawLine3D(ta, tb, PURPLE);
-            DrawLine3D(tb, tc, PURPLE);
-            DrawLine3D(tc, ta, PURPLE);
+            DrawLine3D(ta, tb, Purple);
+            DrawLine3D(tb, tc, Purple);
+            DrawLine3D(tc, ta, Purple);
 
             // Draw the test sphere
-            DrawSphereWires(sp, sr, 8, 8, PURPLE);
+            DrawSphereWires(sp, sr, 8, 8, Purple);
 
             // Draw the mesh bbox if we hit it
             if (boxHitInfo.hit)
             {
-                DrawBoundingBox(towerBBox, LIME);
+                DrawBoundingBox(towerBBox, Lime);
             }
 
             // If we hit something, draw the cursor at the hit point
             if (collision.hit)
             {
                 DrawCube(collision.point, 0.3f, 0.3f, 0.3f, cursorColor);
-                DrawCubeWires(collision.point, 0.3f, 0.3f, 0.3f, RED);
+                DrawCubeWires(collision.point, 0.3f, 0.3f, 0.3f, Red);
 
                 Vector3 normalEnd;
                 normalEnd.X = collision.point.X + collision.normal.X;
                 normalEnd.Y = collision.point.Y + collision.normal.Y;
                 normalEnd.Z = collision.point.Z + collision.normal.Z;
 
-                DrawLine3D(collision.point, normalEnd, RED);
+                DrawLine3D(collision.point, normalEnd, Red);
             }
 
-            DrawRay(ray, MAROON);
+            DrawRay(ray, Maroon);
 
             DrawGrid(10, 10.0f);
 
             EndMode3D();
 
             // Draw some debug GUI text
-            DrawText(TextFormat("Hit Object: %s", hitObjectName), 10, 50, 10, BLACK);
+            DrawText(TextFormat("Hit Object: %s", hitObjectName), 10, 50, 10, Black);
 
             if (collision.hit)
             {
                 int ypos = 70;
 
-                DrawText(TextFormat("Distance: %3.2f", collision.distance), 10, ypos, 10, BLACK);
+                DrawText(TextFormat("Distance: %3.2f", collision.distance), 10, ypos, 10, Black);
 
                 DrawText(TextFormat("Hit Pos: %3.2f %3.2f %3.2f",
                                     collision.point.X,
                                     collision.point.Y,
-                                    collision.point.Z), 10, ypos + 15, 10, BLACK);
+                                    collision.point.Z), 10, ypos + 15, 10, Black);
 
                 DrawText(TextFormat("Hit Norm: %3.2f %3.2f %3.2f",
                                     collision.normal.X,
                                     collision.normal.Y,
-                                    collision.normal.Z), 10, ypos + 30, 10, BLACK);
+                                    collision.normal.Z), 10, ypos + 30, 10, Black);
 
                 if (triHitInfo.hit && TextIsEqual(hitObjectName, "Triangle"))
                 {
-                    DrawText(TextFormat("Barycenter: %3.2f %3.2f %3.2f", bary.X, bary.Y, bary.Z), 10, ypos + 45, 10, BLACK);
+                    DrawText(TextFormat("Barycenter: %3.2f %3.2f %3.2f", bary.X, bary.Y, bary.Z), 10, ypos + 45, 10, Black);
                 }
             }
 
-            DrawText("Use Mouse to Move Camera", 10, 430, 10, GRAY);
+            DrawText("Use Mouse to Move Camera", 10, 430, 10, Gray);
 
-            DrawText("(c) Turret 3D model by Alberto Cano", screenWidth - 200, screenHeight - 20, 10, GRAY);
+            DrawText("(c) Turret 3D model by Alberto Cano", screenWidth - 200, screenHeight - 20, 10, Gray);
 
             DrawFPS(10, 10);
 

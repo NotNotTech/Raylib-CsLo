@@ -64,52 +64,48 @@ public static unsafe class ShapesAndTextureShaders
 
             BeginDrawing();
 
-            ClearBackground(RAYWHITE);
+            ClearBackground(Raywhite);
 
             // Start drawing with default shader
 
-            DrawText("USING DEFAULT SHADER", 20, 40, 10, RED);
+            DrawText("USING DEFAULT SHADER", 20, 40, 10, Red);
 
-            DrawCircle(80, 120, 35, DARKBLUE);
-            DrawCircleGradient(80, 220, 60, GREEN, SKYBLUE);
-            DrawCircleLines(80, 340, 80, DARKBLUE);
+            DrawCircle(80, 120, 35, Darkblue);
+            DrawCircleGradient(80, 220, 60, Green, Skyblue);
+            DrawCircleLines(80, 340, 80, Darkblue);
 
 
             // Activate our custom shader to be applied on next shapes/textures drawings
             BeginShaderMode(shader);
 
-            DrawText("USING CUSTOM SHADER", 190, 40, 10, RED);
+            DrawText("USING CUSTOM SHADER", 190, 40, 10, Red);
 
-            DrawRectangle(250 - 60, 90, 120, 60, RED);
-            DrawRectangleGradientH(250 - 90, 170, 180, 130, MAROON, GOLD);
-            DrawRectangleLines(250 - 40, 320, 80, 60, ORANGE);
+            DrawRectangle(250 - 60, 90, 120, 60, Red);
+            DrawRectangleGradientH(250 - 90, 170, 180, 130, Maroon, Gold);
+            DrawRectangleLines(250 - 40, 320, 80, 60, Orange);
 
             // Activate our default shader for next drawings
             EndShaderMode();
 
-            DrawText("USING DEFAULT SHADER", 370, 40, 10, RED);
+            DrawText("USING DEFAULT SHADER", 370, 40, 10, Red);
 
             DrawTriangle(new Vector2(430, 80),
                      new Vector2(430 - 60, 150),
-                     new Vector2(430 + 60, 150), VIOLET);
+                     new Vector2(430 + 60, 150), Violet);
 
-            DrawTriangleLines(new Vector2(430, 160),
-                                  new Vector2(430 - 20, 230),
-                                  new Vector2(
-                430 + 20, 230), DARKBLUE);
+            DrawTriangleLines(new Vector2(430, 160), new Vector2(430 - 20, 230), new Vector2(430 + 20, 230), Darkblue);
 
-            DrawPoly(new Vector2(
-                430, 320), 6, 80, 0, BROWN);
+            DrawPoly(new Vector2(430, 320), 6, 80, 0, Brown);
 
             // Activate our custom shader to be applied on next shapes/textures drawings
             BeginShaderMode(shader);
 
-            DrawTexture(fudesumi, 500, -30, WHITE);    // Using custom shader
+            DrawTexture(fudesumi, 500, -30, White);    // Using custom shader
 
             // Activate our default shader for next drawings
             EndShaderMode();
 
-            DrawText("(c) Fudesumi sprite by Eiden Marsal", 380, screenHeight - 20, 10, GRAY);
+            DrawText("(c) Fudesumi sprite by Eiden Marsal", 380, screenHeight - 20, 10, Gray);
 
             EndDrawing();
 

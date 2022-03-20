@@ -11,11 +11,11 @@ namespace Raylib_CsLo;
 public enum GuiDefaultProperty
 {
     /// <summary>  </summary>
-    TEXT_SIZE = 16,
+    TextSize = 16,
     /// <summary>  </summary>
-    TEXT_SPACING = 17,
+    TextSpacing = 17,
     /// <summary>  </summary>
-    LINE_COLOR = 18,
+    LineColor = 18,
     /// <summary>  </summary>
-    BACKGROUND_COLOR = 19,
+    BackgroundColor = 19,
 }

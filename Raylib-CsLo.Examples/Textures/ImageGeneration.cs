@@ -30,10 +30,10 @@ public static unsafe class ImageGeneration
 
         InitWindow(screenWidth, screenHeight, "raylib [textures] example - procedural images generation");
 
-        Image verticalGradient = GenImageGradientV(screenWidth, screenHeight, RED, BLUE);
-        Image horizontalGradient = GenImageGradientH(screenWidth, screenHeight, RED, BLUE);
-        Image radialGradient = GenImageGradientRadial(screenWidth, screenHeight, 0.0f, WHITE, BLACK);
-        Image checkedImage = GenImageChecked(screenWidth, screenHeight, 32, 32, RED, BLUE);
+        Image verticalGradient = GenImageGradientV(screenWidth, screenHeight, Red, Blue);
+        Image horizontalGradient = GenImageGradientH(screenWidth, screenHeight, Red, Blue);
+        Image radialGradient = GenImageGradientRadial(screenWidth, screenHeight, 0.0f, White, Black);
+        Image checkedImage = GenImageChecked(screenWidth, screenHeight, 32, 32, Red, Blue);
         Image whiteNoise = GenImageWhiteNoise(screenWidth, screenHeight, 0.5f);
         Image cellular = GenImageCellular(screenWidth, screenHeight, 32);
 
@@ -64,7 +64,7 @@ public static unsafe class ImageGeneration
         {
             // Update
 
-            if (IsMouseButtonPressed(MOUSE_BUTTON_LEFT) || IsKeyPressed(KEY_RIGHT))
+            if (IsMouseButtonPressed(MouseButtonLeft) || IsKeyPressed(KeyRight))
             {
                 currentTexture = (currentTexture + 1) % NUM_TEXTURES; // Cycle between the textures
             }
@@ -74,33 +74,33 @@ public static unsafe class ImageGeneration
 
             BeginDrawing();
 
-            ClearBackground(RAYWHITE);
+            ClearBackground(Raywhite);
 
-            DrawTexture(textures[currentTexture], 0, 0, WHITE);
+            DrawTexture(textures[currentTexture], 0, 0, White);
 
-            DrawRectangle(30, 400, 325, 30, Fade(SKYBLUE, 0.5f));
-            DrawRectangleLines(30, 400, 325, 30, Fade(WHITE, 0.5f));
-            DrawText("MOUSE LEFT BUTTON to CYCLE PROCEDURAL TEXTURES", 40, 410, 10, WHITE);
+            DrawRectangle(30, 400, 325, 30, Fade(Skyblue, 0.5f));
+            DrawRectangleLines(30, 400, 325, 30, Fade(White, 0.5f));
+            DrawText("MOUSE LEFT BUTTON to CYCLE PROCEDURAL TEXTURES", 40, 410, 10, White);
 
             switch (currentTexture)
             {
                 case 0:
-                    DrawText("VERTICAL GRADIENT", 560, 10, 20, RAYWHITE);
+                    DrawText("VERTICAL GRADIENT", 560, 10, 20, Raywhite);
                     break;
                 case 1:
-                    DrawText("HORIZONTAL GRADIENT", 540, 10, 20, RAYWHITE);
+                    DrawText("HORIZONTAL GRADIENT", 540, 10, 20, Raywhite);
                     break;
                 case 2:
-                    DrawText("RADIAL GRADIENT", 580, 10, 20, LIGHTGRAY);
+                    DrawText("RADIAL GRADIENT", 580, 10, 20, Lightgray);
                     break;
                 case 3:
-                    DrawText("CHECKED", 680, 10, 20, RAYWHITE);
+                    DrawText("CHECKED", 680, 10, 20, Raywhite);
                     break;
                 case 4:
-                    DrawText("WHITE NOISE", 640, 10, 20, RED);
+                    DrawText("White NOISE", 640, 10, 20, Red);
                     break;
                 case 5:
-                    DrawText("CELLULAR", 670, 10, 20, RAYWHITE);
+                    DrawText("CELLULAR", 670, 10, 20, Raywhite);
                     break;
                 default:
                     break;

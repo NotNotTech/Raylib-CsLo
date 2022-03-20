@@ -61,7 +61,7 @@ public static unsafe class SpriteExplosion
 
 
             // Check for mouse button pressed and activate explosion (if not active)
-            if (IsMouseButtonPressed(MOUSE_BUTTON_LEFT) && !active)
+            if (IsMouseButtonPressed(MouseButtonLeft) && !active)
             {
                 position = GetMousePosition();
                 active = true;
@@ -105,12 +105,12 @@ public static unsafe class SpriteExplosion
 
             BeginDrawing();
 
-            ClearBackground(RAYWHITE);
+            ClearBackground(Raywhite);
 
             // Draw explosion required frame rectangle
             if (active)
             {
-                DrawTextureRec(explosion, frameRec, position, WHITE);
+                DrawTextureRec(explosion, frameRec, position, White);
             }
 
             EndDrawing();

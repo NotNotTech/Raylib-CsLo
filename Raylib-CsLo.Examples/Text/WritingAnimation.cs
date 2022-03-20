@@ -39,7 +39,7 @@ public static unsafe class WritingAnimation
         {
             // Update
 
-            if (IsKeyDown(KEY_SPACE))
+            if (IsKeyDown(KeySpace))
             {
                 framesCounter += 8;
             }
@@ -48,7 +48,7 @@ public static unsafe class WritingAnimation
                 framesCounter++;
             }
 
-            if (IsKeyPressed(KEY_ENTER))
+            if (IsKeyPressed(KeyEnter))
             {
                 framesCounter = 0;
             }
@@ -58,12 +58,12 @@ public static unsafe class WritingAnimation
 
             BeginDrawing();
 
-            ClearBackground(RAYWHITE);
+            ClearBackground(Raywhite);
 
-            DrawText(TextSubtext(message, 0, framesCounter / 10), 210, 160, 20, MAROON);
+            DrawText(TextSubtext(message, 0, framesCounter / 10), 210, 160, 20, Maroon);
 
-            DrawText("PRESS [ENTER] to RESTART!", 240, 260, 20, LIGHTGRAY);
-            DrawText("PRESS [SPACE] to SPEED UP!", 239, 300, 20, LIGHTGRAY);
+            DrawText("PRESS [ENTER] to RESTART!", 240, 260, 20, Lightgray);
+            DrawText("PRESS [SPACE] to SPEED UP!", 239, 300, 20, Lightgray);
 
             EndDrawing();
 

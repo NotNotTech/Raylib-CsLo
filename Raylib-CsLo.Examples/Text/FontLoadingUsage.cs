@@ -69,7 +69,7 @@ public static unsafe class FontLoadingUsage
         positions[4].Y += 2;
         positions[7].Y -= 8;
 
-        Color[] colors = new Color[MAX_FONTS] { MAROON, ORANGE, DARKGREEN, DARKBLUE, DARKPURPLE, LIME, GOLD, RED };
+        Color[] colors = new Color[MAX_FONTS] { Maroon, Orange, Darkgreen, Darkblue, Darkpurple, Lime, Gold, Red };
 
         SetTargetFPS(60);               // Set our game to run at 60 frames-per-second
 
@@ -86,10 +86,10 @@ public static unsafe class FontLoadingUsage
 
             BeginDrawing();
 
-            ClearBackground(RAYWHITE);
+            ClearBackground(Raywhite);
 
-            DrawText("free fonts included with raylib", 250, 20, 20, DARKGRAY);
-            DrawLine(220, 50, 590, 50, DARKGRAY);
+            DrawText("free fonts included with raylib", 250, 20, 20, Darkgray);
+            DrawLine(220, 50, 590, 50, Darkgray);
 
             for (int i = 0; i < MAX_FONTS; i++)
             {

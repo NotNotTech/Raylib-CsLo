@@ -48,10 +48,10 @@ public static unsafe class RectangleScalingMouse
 
             bool mouseScaleReady;
             if (CheckCollisionPointRec(mousePosition, rec) &&
-                CheckCollisionPointRec(mousePosition, new Rectangle(rec.X + rec.width - MOUSE_SCALE_MARK_SIZE, rec.Y + rec.height - MOUSE_SCALE_MARK_SIZE, MOUSE_SCALE_MARK_SIZE, MOUSE_SCALE_MARK_SIZE)))
+                CheckCollisionPointRec(mousePosition, new Rectangle(rec.X + rec.Width - MOUSE_SCALE_MARK_SIZE, rec.Y + rec.Height - MOUSE_SCALE_MARK_SIZE, MOUSE_SCALE_MARK_SIZE, MOUSE_SCALE_MARK_SIZE)))
             {
                 mouseScaleReady = true;
-                if (IsMouseButtonPressed(MOUSE_BUTTON_LEFT))
+                if (IsMouseButtonPressed(MouseButtonLeft))
                 {
                     mouseScaleMode = true;
                 }
@@ -65,20 +65,20 @@ public static unsafe class RectangleScalingMouse
             {
                 mouseScaleReady = true;
 
-                rec.width = mousePosition.X - rec.X;
-                rec.height = mousePosition.Y - rec.Y;
+                rec.Width = mousePosition.X - rec.X;
+                rec.Height = mousePosition.Y - rec.Y;
 
-                if (rec.width < MOUSE_SCALE_MARK_SIZE)
+                if (rec.Width < MOUSE_SCALE_MARK_SIZE)
                 {
-                    rec.width = MOUSE_SCALE_MARK_SIZE;
+                    rec.Width = MOUSE_SCALE_MARK_SIZE;
                 }
 
-                if (rec.height < MOUSE_SCALE_MARK_SIZE)
+                if (rec.Height < MOUSE_SCALE_MARK_SIZE)
                 {
-                    rec.height = MOUSE_SCALE_MARK_SIZE;
+                    rec.Height = MOUSE_SCALE_MARK_SIZE;
                 }
 
-                if (IsMouseButtonReleased(MOUSE_BUTTON_LEFT))
+                if (IsMouseButtonReleased(MouseButtonLeft))
                 {
                     mouseScaleMode = false;
                 }
@@ -89,18 +89,18 @@ public static unsafe class RectangleScalingMouse
 
             BeginDrawing();
 
-            ClearBackground(RAYWHITE);
+            ClearBackground(Raywhite);
 
-            DrawText("Scale rectangle dragging from bottom-right corner!", 10, 10, 20, GRAY);
+            DrawText("Scale rectangle dragging from bottom-right corner!", 10, 10, 20, Gray);
 
-            DrawRectangleRec(rec, Fade(GREEN, 0.5f));
+            DrawRectangleRec(rec, Fade(Green, 0.5f));
 
             if (mouseScaleReady)
             {
-                DrawRectangleLinesEx(rec, 1, RED);
-                DrawTriangle(new Vector2(rec.X + rec.width - MOUSE_SCALE_MARK_SIZE, rec.Y + rec.height),
-                             new Vector2(rec.X + rec.width, rec.Y + rec.height),
-                             new Vector2(rec.X + rec.width, rec.Y + rec.height - MOUSE_SCALE_MARK_SIZE), RED);
+                DrawRectangleLinesEx(rec, 1, Red);
+                DrawTriangle(new Vector2(rec.X + rec.Width - MOUSE_SCALE_MARK_SIZE, rec.Y + rec.Height),
+                             new Vector2(rec.X + rec.Width, rec.Y + rec.Height),
+                             new Vector2(rec.X + rec.Width, rec.Y + rec.Height - MOUSE_SCALE_MARK_SIZE), Red);
             }
 
             EndDrawing();

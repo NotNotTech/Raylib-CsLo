@@ -4,6 +4,7 @@
 // The code and 100+ examples are here! https://github.com/NotNotTech/Raylib-CsLo
 
 // Warning This file is auto generated and changes will be lost
+
 namespace Raylib_CsLo;
 
 /// <summary>  </summary>
@@ -25,7 +26,7 @@ public unsafe partial struct PhysicsManifoldData
     public Vector2 normal;
 
     /// <summary> Points of contact during collision </summary>
-    public Vector2 contacts[2];
+    public fixed float contacts[2];
 
     /// <summary> Current collision number of contacts </summary>
     public uint contactsCount;

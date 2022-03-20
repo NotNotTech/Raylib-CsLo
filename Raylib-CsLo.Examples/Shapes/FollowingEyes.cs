@@ -92,15 +92,15 @@ public static unsafe class FollowingEyes
 
             BeginDrawing();
 
-            ClearBackground(RAYWHITE);
+            ClearBackground(Raywhite);
 
-            DrawCircleV(scleraLeftPosition, scleraRadius, LIGHTGRAY);
-            DrawCircleV(irisLeftPosition, irisRadius, BROWN);
-            DrawCircleV(irisLeftPosition, 10, BLACK);
+            DrawCircleV(scleraLeftPosition, scleraRadius, Lightgray);
+            DrawCircleV(irisLeftPosition, irisRadius, Brown);
+            DrawCircleV(irisLeftPosition, 10, Black);
 
-            DrawCircleV(scleraRightPosition, scleraRadius, LIGHTGRAY);
-            DrawCircleV(irisRightPosition, irisRadius, DARKGREEN);
-            DrawCircleV(irisRightPosition, 10, BLACK);
+            DrawCircleV(scleraRightPosition, scleraRadius, Lightgray);
+            DrawCircleV(irisRightPosition, irisRadius, Darkgreen);
+            DrawCircleV(irisRightPosition, 10, Black);
 
             DrawFPS(10, 10);
 

@@ -29,12 +29,12 @@ public static unsafe class GeometricShapes
         InitWindow(screenWidth, screenHeight, "raylib [models] example - geometric shapes");
 
         // Define the camera to look into our 3d world
-        Camera camera = new();
+        Camera3D camera = new();
         camera.position = new(0.0f, 10.0f, 10.0f);
         camera.target = new(0.0f, 0.0f, 0.0f);
         camera.up = new(0.0f, 1.0f, 0.0f);
         camera.fovy = 45.0f;
-        camera.Projection = CAMERA_PERSPECTIVE;
+        camera.Projection = CameraPerspective;
 
         SetTargetFPS(60);               // Set our game to run at 60 frames-per-second
 
@@ -51,23 +51,23 @@ public static unsafe class GeometricShapes
 
             BeginDrawing();
 
-            ClearBackground(RAYWHITE);
+            ClearBackground(Raywhite);
 
-            BeginMode3D(ref camera);
+            BeginMode3D(camera);
 
-            DrawCube(new(-4.0f, 0.0f, 2.0f), 2.0f, 5.0f, 2.0f, RED);
-            DrawCubeWires(new(-4.0f, 0.0f, 2.0f), 2.0f, 5.0f, 2.0f, GOLD);
-            DrawCubeWires(new(-4.0f, 0.0f, -2.0f), 3.0f, 6.0f, 2.0f, MAROON);
+            DrawCube(new(-4.0f, 0.0f, 2.0f), 2.0f, 5.0f, 2.0f, Red);
+            DrawCubeWires(new(-4.0f, 0.0f, 2.0f), 2.0f, 5.0f, 2.0f, Gold);
+            DrawCubeWires(new(-4.0f, 0.0f, -2.0f), 3.0f, 6.0f, 2.0f, Maroon);
 
-            DrawSphere(new(-1.0f, 0.0f, -2.0f), 1.0f, GREEN);
-            DrawSphereWires(new(1.0f, 0.0f, 2.0f), 2.0f, 16, 16, LIME);
+            DrawSphere(new(-1.0f, 0.0f, -2.0f), 1.0f, Green);
+            DrawSphereWires(new(1.0f, 0.0f, 2.0f), 2.0f, 16, 16, Lime);
 
-            DrawCylinder(new(4.0f, 0.0f, -2.0f), 1.0f, 2.0f, 3.0f, 4, SKYBLUE);
-            DrawCylinderWires(new(4.0f, 0.0f, -2.0f), 1.0f, 2.0f, 3.0f, 4, DARKBLUE);
-            DrawCylinderWires(new(4.5f, -1.0f, 2.0f), 1.0f, 1.0f, 2.0f, 6, BROWN);
+            DrawCylinder(new(4.0f, 0.0f, -2.0f), 1.0f, 2.0f, 3.0f, 4, Skyblue);
+            DrawCylinderWires(new(4.0f, 0.0f, -2.0f), 1.0f, 2.0f, 3.0f, 4, Darkblue);
+            DrawCylinderWires(new(4.5f, -1.0f, 2.0f), 1.0f, 1.0f, 2.0f, 6, Brown);
 
-            DrawCylinder(new(1.0f, 0.0f, -4.0f), 0.0f, 1.5f, 3.0f, 8, GOLD);
-            DrawCylinderWires(new(1.0f, 0.0f, -4.0f), 0.0f, 1.5f, 3.0f, 8, PINK);
+            DrawCylinder(new(1.0f, 0.0f, -4.0f), 0.0f, 1.5f, 3.0f, 8, Gold);
+            DrawCylinderWires(new(1.0f, 0.0f, -4.0f), 0.0f, 1.5f, 3.0f, 8, Pink);
 
             DrawGrid(10, 1.0f);        // Draw a grid
 

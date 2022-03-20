@@ -22,8 +22,19 @@ public class Program
         }
 
         Directory.CreateDirectory(CodegenSettings.OutputFolder);
-        foreach (string bindingPath in Directory.GetFiles(CodegenSettings.BindingsFolder))
+
+        // For manual ordering
+        string[] bindingFiles = {
+            CodegenSettings.BindingsFolder+"raylib_api.json",
+            CodegenSettings.BindingsFolder+"raygui_api.json",
+            CodegenSettings.BindingsFolder+"rlgl_api.json",
+            CodegenSettings.BindingsFolder+"raymath_api.json",
+            CodegenSettings.BindingsFolder+"physac_api.json",
+        };
+
+        foreach (string bindingPath in bindingFiles)
         {
+            Console.WriteLine(bindingPath);
             string fileName = Path.GetFileNameWithoutExtension(bindingPath).Replace("_api", "");
 
             fileName = fileName switch
@@ -54,5 +65,8 @@ public class Program
             StructGenerator structGenerator = new(document, fileName.ToString());
             structGenerator.Generate();
         }
+
+        EasingsGenerator easingsGenerator = new(CodegenSettings.BindingsFolder + "easings.h");
+        easingsGenerator.Generate();
     }
 }

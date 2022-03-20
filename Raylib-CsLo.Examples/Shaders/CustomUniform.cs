@@ -34,21 +34,21 @@ public static unsafe class CustomUniform
         const int screenWidth = 800;
         const int screenHeight = 450;
 
-        SetConfigFlags(FLAG_MSAA_4X_HINT);      // Enable Multi Sampling Anti Aliasing 4x (if available)
+        SetConfigFlags(FlagMsaa4xHint);      // Enable Multi Sampling Anti Aliasing 4x (if available)
 
         InitWindow(screenWidth, screenHeight, "raylib [shaders] example - custom uniform variable");
 
         // Define the camera to look into our 3d world
-        Camera camera = new();
+        Camera3D camera = new();
         camera.position = new Vector3(8.0f, 8.0f, 8.0f);
         camera.target = new Vector3(0.0f, 1.5f, 0.0f);
         camera.up = new Vector3(0.0f, 1.0f, 0.0f);
         camera.fovy = 45.0f;
-        camera.Projection = CAMERA_PERSPECTIVE;
+        camera.Projection = CameraPerspective;
 
         Model model = LoadModel("resources/models/barracks.obj");                   // Load OBJ model
         Texture2D texture = LoadTexture("resources/models/barracks_diffuse.png");   // Load model texture (diffuse map)
-        model.materials[0].maps[(int)MATERIAL_MAP_ALBEDO].texture = texture;                     // Set model diffuse texture
+        model.materials[0].maps[(int)MaterialMapAlbedo].texture = texture;                     // Set model diffuse texture
 
         Vector3 position = new(0.0f, 0.0f, 0.0f);                                    // Set model position
 
@@ -63,10 +63,10 @@ public static unsafe class CustomUniform
         Vector2 swirlCenter = new((float)screenWidth / 2, (float)screenHeight / 2);
 
         // Create a RenderTexture2D to be used for render to texture
-        RenderTexture2D target = LoadRenderTexture(screenWidth, screenHeight);
+        RenderTexture target = LoadRenderTexture(screenWidth, screenHeight);
 
         // Setup orbital camera
-        SetCameraMode(ref camera, CAMERA_ORBITAL);  // Set an orbital camera mode
+        SetCameraMode(camera, CameraOrbital);  // Set an orbital camera mode
 
         SetTargetFPS(60);                   // Set our game to run at 60 frames-per-second
 
@@ -82,7 +82,7 @@ public static unsafe class CustomUniform
             swirlCenter.Y = screenHeight - mousePosition.Y;
 
             // Send new value to the shader to be used on drawing
-            SetShaderValue(shader, swirlCenterLoc, swirlCenter, SHADER_UNIFORM_VEC2);
+            SetShaderValue(shader, swirlCenterLoc, swirlCenter, ShaderUniformVec2);
 
             UpdateCamera(ref camera);          // Update camera
 
@@ -90,28 +90,28 @@ public static unsafe class CustomUniform
             // Draw
 
             BeginTextureMode(target);       // Enable drawing to texture
-            ClearBackground(RAYWHITE);  // Clear texture background
+            ClearBackground(Raywhite);  // Clear texture background
 
-            BeginMode3D(ref camera);        // Begin 3d mode drawing
-            DrawModel(model, position, 0.5f, WHITE);   // Draw 3d model with texture
+            BeginMode3D(camera);        // Begin 3d mode drawing
+            DrawModel(model, position, 0.5f, White);   // Draw 3d model with texture
             DrawGrid(10, 1.0f);     // Draw a grid
             EndMode3D();                // End 3d mode drawing, returns to orthographic 2d mode
 
-            DrawText("TEXT DRAWN IN RENDER TEXTURE", 200, 10, 30, RED);
+            DrawText("TEXT DRAWN IN RENDER TEXTURE", 200, 10, 30, Red);
             EndTextureMode();               // End drawing to texture (now we have a texture available for next passes)
 
             BeginDrawing();
-            ClearBackground(RAYWHITE);  // Clear screen background
+            ClearBackground(Raywhite);  // Clear screen background
 
             // Enable shader using the custom uniform
             BeginShaderMode(shader);
             // NOTE: Render texture must be y-flipped due to default OpenGL coordinates (left-bottom)
             DrawTextureRec(target.texture, new Rectangle(0, 0, target.texture.width, -target.texture.height), new Vector2(
-                0, 0), WHITE);
+                0, 0), White);
             EndShaderMode();
 
             // Draw some 2d text over drawn texture
-            DrawText("(c) Barracks 3D model by Alberto Cano", screenWidth - 220, screenHeight - 20, 10, GRAY);
+            DrawText("(c) Barracks 3D model by Alberto Cano", screenWidth - 220, screenHeight - 20, 10, Gray);
             DrawFPS(10, 10);
             EndDrawing();
 

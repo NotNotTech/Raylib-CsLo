@@ -37,12 +37,14 @@ public class EnumGenerator : BaseGenerator
             Blank();
 
             DocumentationBlock(enumType.Description);
-            Line($"public enum {enumType.Name}");
+
+            Line($"public enum {char.ToUpperInvariant(enumType.Name[0]) + enumType.Name[1..]}");
             StartBlock();
             foreach (RaylibEnumValue value in enumType.Values)
             {
                 DocumentationBlock(value.Description);
-                Line($"{value.Name} = {value.Value},");
+                string name = Converter.FromSnakeToPascalCase(value.Name);
+                Line($"{name} = {value.Value},");
             }
             EndBlock();
 

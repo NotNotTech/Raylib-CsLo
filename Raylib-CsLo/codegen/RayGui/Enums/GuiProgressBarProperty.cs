@@ -11,5 +11,5 @@ namespace Raylib_CsLo;
 public enum GuiProgressBarProperty
 {
     /// <summary>  </summary>
-    PROGRESS_PADDING = 16,
+    ProgressPadding = 16,
 }

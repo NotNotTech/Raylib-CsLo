@@ -11,17 +11,17 @@ namespace Raylib_CsLo;
 public enum BlendMode
 {
     /// <summary> Blend textures considering alpha (default) </summary>
-    BLEND_ALPHA = 0,
+    BlendAlpha = 0,
     /// <summary> Blend textures adding colors </summary>
-    BLEND_ADDITIVE = 1,
+    BlendAdditive = 1,
     /// <summary> Blend textures multiplying colors </summary>
-    BLEND_MULTIPLIED = 2,
+    BlendMultiplied = 2,
     /// <summary> Blend textures adding colors (alternative) </summary>
-    BLEND_ADD_COLORS = 3,
+    BlendAddColors = 3,
     /// <summary> Blend textures subtracting colors (alternative) </summary>
-    BLEND_SUBTRACT_COLORS = 4,
+    BlendSubtractColors = 4,
     /// <summary> Blend premultiplied textures considering alpha </summary>
-    BLEND_ALPHA_PREMUL = 5,
+    BlendAlphaPremul = 5,
     /// <summary> Blend textures using custom src/dst factors (use rlSetBlendMode()) </summary>
-    BLEND_CUSTOM = 6,
+    BlendCustom = 6,
 }

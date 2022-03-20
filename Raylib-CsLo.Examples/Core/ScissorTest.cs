@@ -42,39 +42,39 @@ public static unsafe class ScissorTest
         {
             // Update
 
-            if (IsKeyPressed(KEY_S))
+            if (IsKeyPressed(KeyS))
             {
                 scissorMode = !scissorMode;
             }
 
             // Centre the scissor area around the mouse position
-            scissorArea.x = GetMouseX() - (scissorArea.width / 2);
-            scissorArea.y = GetMouseY() - (scissorArea.height / 2);
+            scissorArea.X = GetMouseX() - (scissorArea.Width / 2);
+            scissorArea.Y = GetMouseY() - (scissorArea.Height / 2);
 
 
             // Draw
 
             BeginDrawing();
 
-            ClearBackground(RAYWHITE);
+            ClearBackground(Raywhite);
 
             if (scissorMode)
             {
-                BeginScissorMode((int)scissorArea.x, (int)scissorArea.y, (int)scissorArea.width, (int)scissorArea.height);
+                BeginScissorMode((int)scissorArea.X, (int)scissorArea.Y, (int)scissorArea.Width, (int)scissorArea.Height);
             }
 
             // Draw full screen rectangle and some text
             // NOTE: Only part defined by scissor area will be rendered
-            DrawRectangle(0, 0, GetScreenWidth(), GetScreenHeight(), RED);
-            DrawText("Move the mouse around to reveal this text!", 190, 200, 20, LIGHTGRAY);
+            DrawRectangle(0, 0, GetScreenWidth(), GetScreenHeight(), Red);
+            DrawText("Move the mouse around to reveal this text!", 190, 200, 20, Lightgray);
 
             if (scissorMode)
             {
                 EndScissorMode();
             }
 
-            DrawRectangleLinesEx(scissorArea, 1, BLACK);
-            DrawText("Press S to toggle scissor test", 10, 10, 20, BLACK);
+            DrawRectangleLinesEx(scissorArea, 1, Black);
+            DrawText("Press S to toggle scissor test", 10, 10, 20, Black);
 
             EndDrawing();
 

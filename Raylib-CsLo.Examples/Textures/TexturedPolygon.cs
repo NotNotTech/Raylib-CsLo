@@ -67,7 +67,7 @@ public static unsafe class TexturedPolygon
         }
 
         // Load texture to be mapped to poly
-        Texture texture = LoadTexture("resources/cat.png");
+        Texture2D texture = LoadTexture("resources/cat.png");
 
         float angle = 0.0f;             // Rotation angle (in degrees)
 
@@ -84,7 +84,7 @@ public static unsafe class TexturedPolygon
             angle++;
             for (int i = 0; i < MAX_POINTS; i++)
             {
-                positions[i] = Vector2Rotate(points[i], angle * DEG2RAD);
+                positions[i] = Vector2Rotate(points[i], angle * MathF.PI / 180);
             }
 
 
@@ -92,11 +92,11 @@ public static unsafe class TexturedPolygon
 
             BeginDrawing();
 
-            ClearBackground(RAYWHITE);
+            ClearBackground(Raywhite);
 
-            DrawText("textured polygon", 20, 20, 20, DARKGRAY);
+            DrawText("textured polygon", 20, 20, 20, Darkgray);
 
-            DrawTexturePoly(texture, new Vector2(GetScreenWidth() / 2, GetScreenHeight() / 2), positions, texcoords, MAX_POINTS, WHITE);
+            DrawTexturePoly(texture, new Vector2(GetScreenWidth() / 2, GetScreenHeight() / 2), positions, texcoords, MAX_POINTS, White);
 
             EndDrawing();
 

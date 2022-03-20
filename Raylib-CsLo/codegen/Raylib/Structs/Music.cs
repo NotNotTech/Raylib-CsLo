@@ -4,6 +4,7 @@
 // The code and 100+ examples are here! https://github.com/NotNotTech/Raylib-CsLo
 
 // Warning This file is auto generated and changes will be lost
+
 namespace Raylib_CsLo;
 
 /// <summary> Music, audio stream, anything longer than ~10 seconds should be streamed </summary>
@@ -22,6 +23,6 @@ public unsafe partial struct Music
     public int ctxType;
 
     /// <summary> Audio context data, depends on type </summary>
-    public void * ctxData;
+    public void* ctxData;
 
 }

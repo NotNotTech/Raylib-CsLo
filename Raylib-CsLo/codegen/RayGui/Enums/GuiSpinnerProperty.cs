@@ -11,7 +11,7 @@ namespace Raylib_CsLo;
 public enum GuiSpinnerProperty
 {
     /// <summary>  </summary>
-    SPIN_BUTTON_WIDTH = 16,
+    SpinButtonWidth = 16,
     /// <summary>  </summary>
-    SPIN_BUTTON_PADDING = 17,
+    SpinButtonPadding = 17,
 }

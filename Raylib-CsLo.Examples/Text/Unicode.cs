@@ -228,15 +228,14 @@ public static unsafe class Unicode
     public static int Example()//int argc, char** argv)
     {
 
-        System.Diagnostics.Debug.Assert(false,
-            "this example does not work properly.  I think the font doesn't include unicode character");
+        System.Diagnostics.Debug.Assert(false, "this example does not work properly.  I think the font doesn't include unicode character");
 
         // Initialization
 
         const int screenWidth = 800;
         const int screenHeight = 450;
 
-        SetConfigFlags(FLAG_MSAA_4X_HINT | FLAG_VSYNC_HINT);
+        SetConfigFlags(FlagMsaa4xHint | FlagVsyncHint);
         InitWindow(screenWidth, screenHeight, "raylib [text] example - unicode");
 
         // Load the font resources
@@ -261,13 +260,13 @@ public static unsafe class Unicode
             // Update
 
             // Add a new set of emojis when SPACE is pressed
-            if (IsKeyPressed(KEY_SPACE))
+            if (IsKeyPressed(KeySpace))
             {
                 RandomizeEmoji();
             }
 
             // Set the selected emoji and copy its text to clipboard
-            if (IsMouseButtonPressed(MOUSE_BUTTON_LEFT) && (hovered != -1) && (hovered != selected))
+            if (IsMouseButtonPressed(MouseButtonLeft) && (hovered != -1) && (hovered != selected))
             {
                 selected = hovered;
                 selectedPos = hoveredPos;
@@ -283,7 +282,7 @@ public static unsafe class Unicode
 
             BeginDrawing();
 
-            ClearBackground(RAYWHITE);
+            ClearBackground(Raywhite);
 
             // Draw random emojis in the background
 
@@ -294,7 +293,7 @@ public static unsafe class Unicode
 
                 if (!CheckCollisionPointRec(mouse, emojiRect))
                 {
-                    DrawTextEx(fontEmoji, txt, pos, fontEmoji.baseSize, 1.0f, selected == i ? emoji[i].EmojiColor : Fade(LIGHTGRAY, 0.4f));
+                    DrawTextEx(fontEmoji, txt, pos, fontEmoji.baseSize, 1.0f, selected == i ? emoji[i].EmojiColor : Fade(Lightgray, 0.4f));
                 }
                 else
                 {
@@ -338,10 +337,10 @@ public static unsafe class Unicode
                 }
 
                 Rectangle msgRect = new(selectedPos.X - 38.8f, selectedPos.Y, (2 * horizontalPadding) + sz.X, (2 * verticalPadding) + sz.Y);
-                msgRect.Y -= msgRect.height;
+                msgRect.Y -= msgRect.Height;
 
                 // Coordinates for the chat bubble triangle
-                Vector2 a = new(selectedPos.X, msgRect.Y + msgRect.height), b = new(a.X + 8, a.Y + 10), c = new(a.X + 10, a.Y);
+                Vector2 a = new(selectedPos.X, msgRect.Y + msgRect.Height), b = new(a.X + 8, a.Y + 10), c = new(a.X + 10, a.Y);
 
                 // Don't go outside the screen
                 if (msgRect.X < 10)
@@ -359,9 +358,9 @@ public static unsafe class Unicode
                     // Swap values so we can actually render the triangle :(
                     (b, a) = (a, b);
                 }
-                if (msgRect.X + msgRect.width > screenWidth)
+                if (msgRect.X + msgRect.Width > screenWidth)
                 {
-                    msgRect.X -= msgRect.X + msgRect.width - screenWidth + 10;
+                    msgRect.X -= msgRect.X + msgRect.Width - screenWidth + 10;
                 }
 
                 // Draw chat bubble
@@ -369,8 +368,8 @@ public static unsafe class Unicode
                 DrawTriangle(a, b, c, emoji[selected].EmojiColor);
 
                 // Draw the main text message
-                Rectangle textRect = new(msgRect.X + (horizontalPadding / 2), msgRect.Y + (verticalPadding / 2), msgRect.width - horizontalPadding, msgRect.height);
-                DrawTextBoxed(*font, messages[message].text, textRect, font->baseSize, 1.0f, true, WHITE);
+                Rectangle textRect = new(msgRect.X + (horizontalPadding / 2), msgRect.Y + (verticalPadding / 2), msgRect.Width - horizontalPadding, msgRect.Height);
+                DrawTextBoxed(*font, messages[message].text, textRect, font->baseSize, 1.0f, true, White);
 
                 // Draw the info text below the main message
                 //int size = (int)strlen(messages[message].text);
@@ -378,14 +377,14 @@ public static unsafe class Unicode
                 int length = GetCodepointCount(messages[message].text);
                 string info = TextFormat("%s %u characters %i bytes", messages[message].language, length, size);
                 sz = MeasureTextEx(GetFontDefault(), info, 10, 1.0f);
-                pos = new Vector2(textRect.X + textRect.width - sz.X, msgRect.Y + msgRect.height - sz.Y - 2);
-                DrawText(info, (int)pos.X, (int)pos.Y, 10, RAYWHITE);
+                pos = new Vector2(textRect.X + textRect.Width - sz.X, msgRect.Y + msgRect.Height - sz.Y - 2);
+                DrawText(info, (int)pos.X, (int)pos.Y, 10, Raywhite);
             }
 
 
             // Draw the info text
-            DrawText("These emojis have something to tell you, click each to find out!", (screenWidth - 650) / 2, screenHeight - 40, 20, GRAY);
-            DrawText("Each emoji is a unicode character from a font, not a texture... Press [SPACEBAR] to refresh", (screenWidth - 484) / 2, screenHeight - 16, 10, GRAY);
+            DrawText("These emojis have something to tell you, click each to find out!", (screenWidth - 650) / 2, screenHeight - 40, 20, Gray);
+            DrawText("Each emoji is a unicode character from a font, not a texture... Press [SPACEBAR] to refresh", (screenWidth - 484) / 2, screenHeight - 16, 10, Gray);
 
             EndDrawing();
 
@@ -429,7 +428,7 @@ public static unsafe class Unicode
     // Draw text using font inside rectangle limits
     static void DrawTextBoxed(Font font, string text, Rectangle rec, float fontSize, float spacing, bool wordWrap, Color tint)
     {
-        DrawTextBoxedSelectable(font, text, rec, fontSize, spacing, wordWrap, tint, 0, 0, WHITE, WHITE);
+        DrawTextBoxedSelectable(font, text, rec, fontSize, spacing, wordWrap, tint, 0, 0, White, White);
     }
 
     // Draw text using font inside rectangle limits with support for text selection
@@ -468,7 +467,7 @@ public static unsafe class Unicode
             float glyphWidth = 0;
             if (codepoint != '\n')
             {
-                glyphWidth = (font.glyphs[index].advanceX == 0) ? font.recs[index].width * scaleFactor : font.glyphs[index].advanceX * scaleFactor;
+                glyphWidth = (font.glyphs[index].advanceX == 0) ? font.recs[index].Width * scaleFactor : font.glyphs[index].advanceX * scaleFactor;
 
                 if (i + 1 < lengthUtf8)
                 {
@@ -490,7 +489,7 @@ public static unsafe class Unicode
                     endLine = i;
                 }
 
-                if ((textOffsetX + glyphWidth) > rec.width)
+                if ((textOffsetX + glyphWidth) > rec.Width)
                 {
                     endLine = (endLine < 1) ? i : endLine;
                     if (i == endLine)
@@ -539,14 +538,14 @@ public static unsafe class Unicode
                 }
                 else
                 {
-                    if (!wordWrap && ((textOffsetX + glyphWidth) > rec.width))
+                    if (!wordWrap && ((textOffsetX + glyphWidth) > rec.Width))
                     {
                         textOffsetY += (font.baseSize + (font.baseSize / 2)) * scaleFactor;
                         textOffsetX = 0;
                     }
 
                     // When text overflows rectangle height limit, just stop drawing
-                    if ((textOffsetY + (font.baseSize * scaleFactor)) > rec.height)
+                    if ((textOffsetY + (font.baseSize * scaleFactor)) > rec.Height)
                     {
                         break;
                     }

@@ -75,19 +75,19 @@ public static unsafe class BackgroundScrolling
 
             // Draw background image twice
             // NOTE: Texture is scaled twice its size
-            DrawTextureEx(background, new Vector2(scrollingBack, 20), 0.0f, 2.0f, WHITE);
-            DrawTextureEx(background, new Vector2((background.width * 2) + scrollingBack, 20), 0.0f, 2.0f, WHITE);
+            DrawTextureEx(background, new Vector2(scrollingBack, 20), 0.0f, 2.0f, White);
+            DrawTextureEx(background, new Vector2((background.width * 2) + scrollingBack, 20), 0.0f, 2.0f, White);
 
             // Draw midground image twice
-            DrawTextureEx(midground, new Vector2(scrollingMid, 20), 0.0f, 2.0f, WHITE);
-            DrawTextureEx(midground, new Vector2((midground.width * 2) + scrollingMid, 20), 0.0f, 2.0f, WHITE);
+            DrawTextureEx(midground, new Vector2(scrollingMid, 20), 0.0f, 2.0f, White);
+            DrawTextureEx(midground, new Vector2((midground.width * 2) + scrollingMid, 20), 0.0f, 2.0f, White);
 
             // Draw foreground image twice
-            DrawTextureEx(foreground, new Vector2(scrollingFore, 70), 0.0f, 2.0f, WHITE);
-            DrawTextureEx(foreground, new Vector2((foreground.width * 2) + scrollingFore, 70), 0.0f, 2.0f, WHITE);
+            DrawTextureEx(foreground, new Vector2(scrollingFore, 70), 0.0f, 2.0f, White);
+            DrawTextureEx(foreground, new Vector2((foreground.width * 2) + scrollingFore, 70), 0.0f, 2.0f, White);
 
-            DrawText("BACKGROUND SCROLLING & PARALLAX", 10, 10, 20, RED);
-            DrawText("(c) Cyberpunk Street Environment by Luis Zuno (@ansimuz)", screenWidth - 330, screenHeight - 20, 10, RAYWHITE);
+            DrawText("BACKGROUND SCROLLING & PARALLAX", 10, 10, 20, Red);
+            DrawText("(c) Cyberpunk Street Environment by Luis Zuno (@ansimuz)", screenWidth - 330, screenHeight - 20, 10, Raywhite);
 
             EndDrawing();
 

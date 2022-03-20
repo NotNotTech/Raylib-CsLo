@@ -31,14 +31,15 @@ public static unsafe class JuliaSet
 
     // A few good julia sets
     static Vector2[] pointsOfInterest = new Vector2[6]
-{
-    new Vector2( -0.348827f, 0.607167f ),
-    new Vector2( -0.786268f, 0.169728f ),
-    new Vector2( -0.8f, 0.156f ),
-    new Vector2( 0.285f, 0.0f ),
-    new Vector2( -0.835f, -0.2321f ),
-    new Vector2( -0.70176f, -0.3842f ),
-};
+    {
+        new Vector2( -0.348827f, 0.607167f ),
+        new Vector2( -0.786268f, 0.169728f ),
+        new Vector2( -0.8f, 0.156f ),
+        new Vector2( 0.285f, 0.0f ),
+        new Vector2( -0.835f, -0.2321f ),
+        new Vector2( -0.70176f, -0.3842f ),
+    };
+
     public static int Example()
     {
         // Initialization
@@ -54,7 +55,7 @@ public static unsafe class JuliaSet
         Shader shader = LoadFShader(TextFormat("resources/shaders/glsl%i/julia_set.fs", GLSL_VERSION));
 
         // Create a RenderTexture2D to be used for render to texture
-        RenderTexture2D target = LoadRenderTexture(GetScreenWidth(), GetScreenHeight());
+        RenderTexture target = LoadRenderTexture(GetScreenWidth(), GetScreenHeight());
 
         // c constant to use in z^2 + c
         Vector2 c = pointsOfInterest[0];// new(pointsOfInterest[0][0], pointsOfInterest[0][1]);
@@ -73,11 +74,11 @@ public static unsafe class JuliaSet
 
         // Tell the shader what the screen dimensions, zoom, offset and c are
         Vector2 screenDims = new(GetScreenWidth(), GetScreenHeight());
-        SetShaderValue(shader, GetShaderLocation(shader, "screenDims"), screenDims, SHADER_UNIFORM_VEC2);
+        SetShaderValue(shader, GetShaderLocation(shader, "screenDims"), screenDims, ShaderUniformVec2);
 
-        SetShaderValue(shader, cLoc, c, SHADER_UNIFORM_VEC2);
-        SetShaderValue(shader, zoomLoc, &zoom, SHADER_UNIFORM_FLOAT);
-        SetShaderValue(shader, offsetLoc, offset, SHADER_UNIFORM_VEC2);
+        SetShaderValue(shader, cLoc, c, ShaderUniformVec2);
+        SetShaderValue(shader, zoomLoc, &zoom, ShaderUniformFloat);
+        SetShaderValue(shader, offsetLoc, offset, ShaderUniformVec2);
 
         int incrementSpeed = 0;             // Multiplier of speed to change c value
         bool showControls = true;           // Show controls
@@ -92,72 +93,72 @@ public static unsafe class JuliaSet
             // Update
 
             // Press [1 - 6] to reset c to a point of interest
-            if (IsKeyPressed(KEY_ONE) ||
-                IsKeyPressed(KEY_TWO) ||
-                IsKeyPressed(KEY_THREE) ||
-                IsKeyPressed(KEY_FOUR) ||
-                IsKeyPressed(KEY_FIVE) ||
-                IsKeyPressed(KEY_SIX))
+            if (IsKeyPressed(KeyOne) ||
+                IsKeyPressed(KeyTwo) ||
+                IsKeyPressed(KeyThree) ||
+                IsKeyPressed(KeyFour) ||
+                IsKeyPressed(KeyFive) ||
+                IsKeyPressed(KeySix))
             {
-                if (IsKeyPressed(KEY_ONE))
+                if (IsKeyPressed(KeyOne))
                 {
                     c = pointsOfInterest[0];//c[0] = pointsOfInterest[0][0], c[1] = pointsOfInterest[0][1];
                 }
-                else if (IsKeyPressed(KEY_TWO))
+                else if (IsKeyPressed(KeyTwo))
                 {
                     c = pointsOfInterest[1];//c[0] = pointsOfInterest[1][0], c[1] = pointsOfInterest[1][1];
                 }
-                else if (IsKeyPressed(KEY_THREE))
+                else if (IsKeyPressed(KeyThree))
                 {
                     c = pointsOfInterest[2];//c[0] = pointsOfInterest[2][0], c[1] = pointsOfInterest[2][1];
                 }
-                else if (IsKeyPressed(KEY_FOUR))
+                else if (IsKeyPressed(KeyFour))
                 {
                     c = pointsOfInterest[3];//c[0] = pointsOfInterest[3][0], c[1] = pointsOfInterest[3][1];
                 }
-                else if (IsKeyPressed(KEY_FIVE))
+                else if (IsKeyPressed(KeyFive))
                 {
                     c = pointsOfInterest[4];//c[0] = pointsOfInterest[4][0], c[1] = pointsOfInterest[4][1];
                 }
-                else if (IsKeyPressed(KEY_SIX))
+                else if (IsKeyPressed(KeySix))
                 {
                     c = pointsOfInterest[5];//c[0] = pointsOfInterest[5][0], c[1] = pointsOfInterest[5][1];
                 }
 
-                SetShaderValue(shader, cLoc, c, SHADER_UNIFORM_VEC2);
+                SetShaderValue(shader, cLoc, c, ShaderUniformVec2);
             }
 
-            if (IsKeyPressed(KEY_SPACE))
+            if (IsKeyPressed(KeySpace))
             {
                 pause = !pause;                 // Pause animation (c change)
             }
 
-            if (IsKeyPressed(KEY_F1))
+            if (IsKeyPressed(KeyF1))
             {
                 showControls = !showControls;  // Toggle whether or not to show controls
             }
 
             if (!pause)
             {
-                if (IsKeyPressed(KEY_RIGHT))
+                if (IsKeyPressed(KeyRight))
                 {
                     incrementSpeed++;
                 }
-                else if (IsKeyPressed(KEY_LEFT))
+                else if (IsKeyPressed(KeyLeft))
                 {
                     incrementSpeed--;
                 }
 
                 // TODO: The idea is to zoom and move around with mouse
                 // Probably offset movement should be proportional to zoom level
-                if (IsMouseButtonDown(MOUSE_BUTTON_LEFT) || IsMouseButtonDown(MOUSE_BUTTON_RIGHT))
+                if (IsMouseButtonDown(MouseButtonLeft) || IsMouseButtonDown(MouseButtonRight))
                 {
-                    if (IsMouseButtonDown(MOUSE_BUTTON_LEFT))
+                    if (IsMouseButtonDown(MouseButtonLeft))
                     {
                         zoom += zoom * 0.003f;
                     }
 
-                    if (IsMouseButtonDown(MOUSE_BUTTON_RIGHT))
+                    if (IsMouseButtonDown(MouseButtonRight))
                     {
                         zoom -= zoom * 0.003f;
                     }
@@ -176,15 +177,15 @@ public static unsafe class JuliaSet
                     offsetSpeed = new Vector2(0.0f, 0.0f);
                 }
 
-                SetShaderValue(shader, zoomLoc, &zoom, SHADER_UNIFORM_FLOAT);
-                SetShaderValue(shader, offsetLoc, offset, SHADER_UNIFORM_VEC2);
+                SetShaderValue(shader, zoomLoc, &zoom, ShaderUniformFloat);
+                SetShaderValue(shader, offsetLoc, offset, ShaderUniformVec2);
 
                 // Increment c value with time
                 float amount = GetFrameTime() * incrementSpeed * 0.0005f;
                 c.X += amount;
                 c.Y += amount;
 
-                SetShaderValue(shader, cLoc, c, SHADER_UNIFORM_VEC2);
+                SetShaderValue(shader, cLoc, c, ShaderUniformVec2);
             }
 
 
@@ -192,34 +193,33 @@ public static unsafe class JuliaSet
 
             // Using a render texture to draw Julia set
             BeginTextureMode(target);       // Enable drawing to texture
-            ClearBackground(BLACK);     // Clear the render texture
+            ClearBackground(Black);     // Clear the render texture
 
             // Draw a rectangle in shader mode to be used as shader canvas
-            // NOTE: Rectangle uses font white character texture coordinates,
+            // NOTE: Rectangle uses font White character texture coordinates,
             // so shader can not be applied here directly because input vertexTexCoord
             // do not represent full screen coordinates (space where want to apply shader)
-            DrawRectangle(0, 0, GetScreenWidth(), GetScreenHeight(), BLACK);
+            DrawRectangle(0, 0, GetScreenWidth(), GetScreenHeight(), Black);
             EndTextureMode();
 
             BeginDrawing();
-            ClearBackground(BLACK);     // Clear screen background
+            ClearBackground(Black);     // Clear screen background
 
             // Draw the saved texture and rendered julia set with shader
             // NOTE: We do not invert texture on Y, already considered inside shader
             BeginShaderMode(shader);
             // WARNING: If FLAG_WINDOW_HIGHDPI is enabled, HighDPI monitor scaling should be considered
             // when rendering the RenderTexture2D to fit in the HighDPI scaled Window
-            DrawTextureEx(target.texture, new Vector2(
-                0.0f, 0.0f), 0.0f, 1.0f, WHITE);
+            DrawTextureEx(target.texture, new Vector2(0.0f, 0.0f), 0.0f, 1.0f, White);
             EndShaderMode();
 
             if (showControls)
             {
-                DrawText("Press Mouse buttons right/left to zoom in/out and move", 10, 15, 10, RAYWHITE);
-                DrawText("Press KEY_F1 to toggle these controls", 10, 30, 10, RAYWHITE);
-                DrawText("Press KEYS [1 - 6] to change point of interest", 10, 45, 10, RAYWHITE);
-                DrawText("Press KEY_LEFT | KEY_RIGHT to change speed", 10, 60, 10, RAYWHITE);
-                DrawText("Press KEY_SPACE to pause movement animation", 10, 75, 10, RAYWHITE);
+                DrawText("Press Mouse buttons right/left to zoom in/out and move", 10, 15, 10, Raywhite);
+                DrawText("Press KEY_F1 to toggle these controls", 10, 30, 10, Raywhite);
+                DrawText("Press KEYS [1 - 6] to change point of interest", 10, 45, 10, Raywhite);
+                DrawText("Press KeyLeft | KEY_RIGHT to change speed", 10, 60, 10, Raywhite);
+                DrawText("Press KEY_SPACE to pause movement animation", 10, 75, 10, Raywhite);
             }
             EndDrawing();
 

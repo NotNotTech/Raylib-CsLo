@@ -34,7 +34,7 @@ public static unsafe class ImageTextDrawing
         Font font = LoadFontEx("resources/KAISG.ttf", 64, (int*)0, 0);
 
         // Draw over image using custom font
-        ImageDrawTextEx(ref parrots, font, "[Parrots font drawing]", new Vector2(20.0f, 20.0f), font.baseSize, 0.0f, RED);
+        ImageDrawTextEx(ref parrots, font, "[Parrots font drawing]", new Vector2(20.0f, 20.0f), font.baseSize, 0.0f, Red);
 
         Texture2D texture = LoadTextureFromImage(parrots);  // Image converted to texture, uploaded to GPU memory (VRAM)
         UnloadImage(parrots);   // Once image has been converted to texture and uploaded to VRAM, it can be unloaded from RAM
@@ -52,7 +52,7 @@ public static unsafe class ImageTextDrawing
             bool showFont;
             // Update
 
-            if (IsKeyDown(KEY_SPACE))
+            if (IsKeyDown(KeySpace))
             {
                 showFont = true;
             }
@@ -66,24 +66,24 @@ public static unsafe class ImageTextDrawing
 
             BeginDrawing();
 
-            ClearBackground(RAYWHITE);
+            ClearBackground(Raywhite);
 
             if (!showFont)
             {
                 // Draw texture with text already drawn inside
-                DrawTextureV(texture, position, WHITE);
+                DrawTextureV(texture, position, White);
 
                 // Draw text directly using sprite font
                 DrawTextEx(font, "[Parrots font drawing]", new Vector2(position.X + 20,
-                           position.Y + 20 + 280), font.baseSize, 0.0f, WHITE);
+                           position.Y + 20 + 280), font.baseSize, 0.0f, White);
             }
 
             else
             {
-                DrawTexture(font.texture, (screenWidth / 2) - (font.texture.width / 2), 50, BLACK);
+                DrawTexture(font.texture, (screenWidth / 2) - (font.texture.width / 2), 50, Black);
             }
 
-            DrawText("PRESS SPACE to SHOW FONT ATLAS USED", 290, 420, 10, DARKGRAY);
+            DrawText("PRESS SPACE to SHOW FONT ATLAS USED", 290, 420, 10, Darkgray);
 
             EndDrawing();
 

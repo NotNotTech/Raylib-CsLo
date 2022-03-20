@@ -38,14 +38,13 @@ public static unsafe class ModulePlayingStreaming
         const int screenWidth = 800;
         const int screenHeight = 450;
 
-        SetConfigFlags(FLAG_MSAA_4X_HINT);  // NOTE: Try to enable MSAA 4X
+        SetConfigFlags(FlagMsaa4xHint);  // NOTE: Try to enable MSAA 4X
 
         InitWindow(screenWidth, screenHeight, "raylib [audio] example - module playing (streaming)");
 
         InitAudioDevice();                  // Initialize audio device
 
-        Color[] colors = new Color[14] { ORANGE, RED, GOLD, LIME, BLUE, VIOLET, BROWN, LIGHTGRAY, PINK,
-                         YELLOW, GREEN, SKYBLUE, PURPLE, BEIGE };
+        Color[] colors = new Color[14] { Orange, Red, Gold, Lime, Blue, Violet, Brown, Lightgray, Pink, Yellow, Green, Skyblue, Purple, Beige };
 
         // Creates ome circles for visual effect
         CircleWave[] circles = new CircleWave[MAX_CIRCLES];
@@ -78,14 +77,14 @@ public static unsafe class ModulePlayingStreaming
             UpdateMusicStream(music);      // Update music buffer with new stream data
 
             // Restart music playing (stop and play)
-            if (IsKeyPressed(KEY_SPACE))
+            if (IsKeyPressed(KeySpace))
             {
                 StopMusicStream(music);
                 PlayMusicStream(music);
             }
 
             // Pause/Resume music playing
-            if (IsKeyPressed(KEY_P))
+            if (IsKeyPressed(KeyP))
             {
                 pause = !pause;
 
@@ -99,11 +98,11 @@ public static unsafe class ModulePlayingStreaming
                 }
             }
 
-            if (IsKeyDown(KEY_DOWN))
+            if (IsKeyDown(KeyDown))
             {
                 pitch -= 0.01f;
             }
-            else if (IsKeyDown(KEY_UP))
+            else if (IsKeyDown(KeyUp))
             {
                 pitch += 0.01f;
             }
@@ -140,7 +139,7 @@ public static unsafe class ModulePlayingStreaming
 
             BeginDrawing();
 
-            ClearBackground(RAYWHITE);
+            ClearBackground(Raywhite);
 
             for (int i = MAX_CIRCLES - 1; i >= 0; i--)
             {
@@ -148,9 +147,9 @@ public static unsafe class ModulePlayingStreaming
             }
 
             // Draw time bar
-            DrawRectangle(20, screenHeight - 20 - 12, screenWidth - 40, 12, LIGHTGRAY);
-            DrawRectangle(20, screenHeight - 20 - 12, (int)timePlayed, 12, MAROON);
-            DrawRectangleLines(20, screenHeight - 20 - 12, screenWidth - 40, 12, GRAY);
+            DrawRectangle(20, screenHeight - 20 - 12, screenWidth - 40, 12, Lightgray);
+            DrawRectangle(20, screenHeight - 20 - 12, (int)timePlayed, 12, Maroon);
+            DrawRectangleLines(20, screenHeight - 20 - 12, screenWidth - 40, 12, Gray);
 
             EndDrawing();
 

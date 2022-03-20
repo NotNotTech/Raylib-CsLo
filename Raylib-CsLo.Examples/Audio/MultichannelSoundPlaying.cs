@@ -45,12 +45,12 @@ public static unsafe class MultichannelSoundPlaying
         {
             // Update
 
-            if (IsKeyPressed(KEY_ENTER))
+            if (IsKeyPressed(KeyEnter))
             {
                 PlaySoundMulti(fxWav);     // Play a new wav sound instance
             }
 
-            if (IsKeyPressed(KEY_SPACE))
+            if (IsKeyPressed(KeySpace))
             {
                 PlaySoundMulti(fxOgg);     // Play a new ogg sound instance
             }
@@ -60,13 +60,13 @@ public static unsafe class MultichannelSoundPlaying
 
             BeginDrawing();
 
-            ClearBackground(RAYWHITE);
+            ClearBackground(Raywhite);
 
-            DrawText("MULTICHANNEL SOUND PLAYING", 20, 20, 20, GRAY);
-            DrawText("Press SPACE to play new ogg instance!", 200, 120, 20, LIGHTGRAY);
-            DrawText("Press ENTER to play new wav instance!", 200, 180, 20, LIGHTGRAY);
+            DrawText("MULTICHANNEL SOUND PLAYING", 20, 20, 20, Gray);
+            DrawText("Press SPACE to play new ogg instance!", 200, 120, 20, Lightgray);
+            DrawText("Press ENTER to play new wav instance!", 200, 180, 20, Lightgray);
 
-            DrawText(TextFormat("CONCURRENT SOUNDS PLAYING: %02i", GetSoundsPlaying()), 220, 280, 20, RED);
+            DrawText(TextFormat("CONCURRENT SOUNDS PLAYING: %02i", GetSoundsPlaying()), 220, 280, 20, Red);
 
             EndDrawing();
 

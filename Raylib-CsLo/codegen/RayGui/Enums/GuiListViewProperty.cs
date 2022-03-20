@@ -11,11 +11,11 @@ namespace Raylib_CsLo;
 public enum GuiListViewProperty
 {
     /// <summary>  </summary>
-    LIST_ITEMS_HEIGHT = 16,
+    ListItemsHeight = 16,
     /// <summary>  </summary>
-    LIST_ITEMS_PADDING = 17,
+    ListItemsPadding = 17,
     /// <summary>  </summary>
-    SCROLLBAR_WIDTH = 18,
+    ScrollbarWidth = 18,
     /// <summary>  </summary>
-    SCROLLBAR_SIDE = 19,
+    ScrollbarSide = 19,
 }

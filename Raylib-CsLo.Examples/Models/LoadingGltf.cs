@@ -36,12 +36,12 @@ public static unsafe class LoadingGltf
         InitWindow(screenWidth, screenHeight, "raylib [models] example - model");
 
         // Define the camera to look into our 3d world
-        Camera camera = new();
+        Camera3D camera = new();
         camera.position = new(10.0f, 10.0f, 10.0f); // Camera position
         camera.target = new(0.0f, 0.0f, 0.0f);      // Camera looking at point
         camera.up = new(0.0f, 1.0f, 0.0f);          // Camera up vector (rotation towards target)
         camera.fovy = 45.0f;                                // Camera field-of-view Y
-        camera.Projection = CAMERA_PERSPECTIVE;             // Camera mode type
+        camera.Projection = CameraPerspective;             // Camera mode type
 
         // Load some models
         Model[] model = new Model[MAX_GLTF_MODELS];
@@ -58,7 +58,7 @@ public static unsafe class LoadingGltf
 
         Vector3 position = new(0.0f, 0.0f, 0.0f);    // Set model position
 
-        SetCameraMode(ref camera, CAMERA_FREE); // Set free camera mode
+        SetCameraMode(camera, CameraFree); // Set free camera mode
 
         SetTargetFPS(60);                   // Set our game to run at 60 frames-per-second
 
@@ -70,7 +70,7 @@ public static unsafe class LoadingGltf
 
             UpdateCamera(ref camera);          // Update our camera with inputs
 
-            if (IsKeyReleased(KEY_RIGHT))
+            if (IsKeyReleased(KeyRight))
             {
                 currentModel++;
                 if (currentModel == MAX_GLTF_MODELS)
@@ -79,7 +79,7 @@ public static unsafe class LoadingGltf
                 }
             }
 
-            if (IsKeyReleased(KEY_LEFT))
+            if (IsKeyReleased(KeyLeft))
             {
                 currentModel--;
                 if (currentModel < 0)
@@ -93,11 +93,11 @@ public static unsafe class LoadingGltf
 
             BeginDrawing();
 
-            ClearBackground(SKYBLUE);
+            ClearBackground(Skyblue);
 
-            BeginMode3D(ref camera);
+            BeginMode3D(camera);
 
-            DrawModel(model[currentModel], position, 1.0f, WHITE);
+            DrawModel(model[currentModel], position, 1.0f, White);
             DrawGrid(10, 1.0f);         // Draw a grid
 
             EndMode3D();

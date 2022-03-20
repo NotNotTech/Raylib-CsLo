@@ -45,7 +45,7 @@ public static unsafe class Draw2dIn3d
 
     const float LETTER_BOUNDRY_SIZE = 0.25f;
     const int TEXT_MAX_LAYERS = 32;
-    static readonly Color LETTER_BOUNDRY_COLOR = VIOLET;
+    static readonly Color LETTER_BOUNDRY_COLOR = Violet;
 
     static bool showLetterBoundary;
     static bool showTextBoundary;
@@ -73,7 +73,7 @@ public static unsafe class Draw2dIn3d
         const int screenWidth = 800;
         const int screenHeight = 450;
 
-        SetConfigFlags(FLAG_MSAA_4X_HINT | FLAG_VSYNC_HINT);
+        SetConfigFlags(FlagMsaa4xHint | FlagVsyncHint);
         InitWindow(screenWidth, screenHeight, "raylib [text] example - draw 2D text in 3D");
 
         bool spin = true;        // Spin the camera?
@@ -85,9 +85,9 @@ public static unsafe class Draw2dIn3d
         camera.target = new Vector3(0.0f, 0.0f, 0.0f);          // Camera looking at point
         camera.up = new Vector3(0.0f, 1.0f, 0.0f);              // Camera up vector (rotation towards target)
         camera.fovy = 45.0f;                                    // Camera field-of-view Y
-        camera.Projection = CAMERA_PERSPECTIVE;                 // Camera mode type
+        camera.Projection = CameraPerspective;                 // Camera mode type
 
-        SetCameraMode(ref camera, CAMERA_ORBITAL);
+        SetCameraMode(camera, CameraOrbital);
 
         Vector3 cubePosition = new(0.0f, 1.0f, 0.0f);
         Vector3 cubeSize = new(2.0f, 2.0f, 2.0f);
@@ -114,8 +114,8 @@ public static unsafe class Draw2dIn3d
         float time = 0.0f;
 
         // Setup a light and dark color
-        Color light = MAROON;
-        Color dark = RED;
+        Color light = Maroon;
+        Color dark = Red;
 
         // Load the alpha discard shader
         Shader alphaDiscard = LoadFShader("resources/shaders/glsl330/alpha_discard.fs");
@@ -152,17 +152,17 @@ public static unsafe class Draw2dIn3d
             }
 
             // Handle Events
-            if (IsKeyPressed(KEY_F1))
+            if (IsKeyPressed(KeyF1))
             {
                 showLetterBoundary = !showLetterBoundary;
             }
 
-            if (IsKeyPressed(KEY_F2))
+            if (IsKeyPressed(KeyF2))
             {
                 showTextBoundary = !showTextBoundary;
             }
 
-            if (IsKeyPressed(KEY_F3))
+            if (IsKeyPressed(KeyF3))
             {
                 // Handle camera change
                 spin = !spin;
@@ -171,24 +171,24 @@ public static unsafe class Draw2dIn3d
                 camera.target = new Vector3(0.0f, 0.0f, 0.0f);          // Camera looking at point
                 camera.up = new Vector3(0.0f, 1.0f, 0.0f);              // Camera up vector (rotation towards target)
                 camera.fovy = 45.0f;                                    // Camera field-of-view Y
-                camera.Projection = CAMERA_PERSPECTIVE;                 // Camera mode type
+                camera.Projection = CameraPerspective;                 // Camera mode type
 
                 if (spin)
                 {
                     camera.position = new Vector3(-10.0f, 15.0f, -10.0f);   // Camera position
-                    SetCameraMode(ref camera, CAMERA_ORBITAL);
+                    SetCameraMode(camera, CameraOrbital);
                 }
                 else
                 {
                     camera.position = new Vector3(10.0f, 10.0f, -10.0f);   // Camera position
-                    SetCameraMode(ref camera, CAMERA_FREE);
+                    SetCameraMode(camera, CameraFree);
                 }
             }
 
             // Handle clicking the cube
-            if (IsMouseButtonPressed(MOUSE_BUTTON_LEFT))
+            if (IsMouseButtonPressed(MouseButtonLeft))
             {
-                Ray ray = GetMouseRay(GetMousePosition(), ref camera);
+                Ray ray = GetMouseRay(GetMousePosition(), camera);
 
                 // Check collision between ray and box
                 RayCollision collision = GetRayCollisionBox(ray,
@@ -203,14 +203,14 @@ public static unsafe class Draw2dIn3d
             }
 
             // Handle text layers changes
-            if (IsKeyPressed(KEY_HOME))
+            if (IsKeyPressed(KeyHome))
             {
                 if (layers > 1)
                 {
                     --layers;
                 }
             }
-            else if (IsKeyPressed(KEY_END))
+            else if (IsKeyPressed(KeyEnd))
             {
                 if (layers < TEXT_MAX_LAYERS)
                 {
@@ -219,39 +219,39 @@ public static unsafe class Draw2dIn3d
             }
 
             // Handle text changes
-            if (IsKeyPressed(KEY_LEFT))
+            if (IsKeyPressed(KeyLeft))
             {
                 fontSize -= 0.5f;
             }
-            else if (IsKeyPressed(KEY_RIGHT))
+            else if (IsKeyPressed(KeyRight))
             {
                 fontSize += 0.5f;
             }
-            else if (IsKeyPressed(KEY_UP))
+            else if (IsKeyPressed(KeyUp))
             {
                 fontSpacing -= 0.1f;
             }
-            else if (IsKeyPressed(KEY_DOWN))
+            else if (IsKeyPressed(KeyDown))
             {
                 fontSpacing += 0.1f;
             }
-            else if (IsKeyPressed(KEY_PAGE_UP))
+            else if (IsKeyPressed(KeyPageUp))
             {
                 lineSpacing -= 0.1f;
             }
-            else if (IsKeyPressed(KEY_PAGE_DOWN))
+            else if (IsKeyPressed(KeyPageDown))
             {
                 lineSpacing += 0.1f;
             }
-            else if (IsKeyDown(KEY_INSERT))
+            else if (IsKeyDown(KeyInsert))
             {
                 layerDistance -= 0.001f;
             }
-            else if (IsKeyDown(KEY_DELETE))
+            else if (IsKeyDown(KeyDelete))
             {
                 layerDistance += 0.001f;
             }
-            else if (IsKeyPressed(KEY_TAB))
+            else if (IsKeyPressed(KeyTab))
             {
                 multicolor = !multicolor;   // Enable /disable multicolor mode
 
@@ -268,14 +268,14 @@ public static unsafe class Draw2dIn3d
 
             // Handle text input
             int ch = GetCharPressed();
-            if (IsKeyPressed(KEY_BACKSPACE))
+            if (IsKeyPressed(KeyBackspace))
             {
                 //// Remove last char
                 //int len = TextLength(text);
                 //if (len > 0) text[len - 1] = '\0';
                 text = text[0..^1];
             }
-            else if (IsKeyPressed(KEY_ENTER))
+            else if (IsKeyPressed(KeyEnter))
             {
                 //// handle newline
                 //int len = TextLength(text);
@@ -314,9 +314,9 @@ public static unsafe class Draw2dIn3d
 
             BeginDrawing();
 
-            ClearBackground(RAYWHITE);
+            ClearBackground(Raywhite);
 
-            BeginMode3D(ref camera);
+            BeginMode3D(camera);
             DrawCubeV(cubePosition, cubeSize, dark);
             DrawCubeWires(cubePosition, 2.1f, 2.1f, 2.1f, light);
 
@@ -326,7 +326,7 @@ public static unsafe class Draw2dIn3d
             // NOTE: more info at https://bedroomcoders.co.uk/raylib-billboards-advanced-use/
             BeginShaderMode(alphaDiscard);
 
-            // Draw the 3D text above the red cube
+            // Draw the 3D text above the Red cube
             rlPushMatrix();
             rlRotatef(90.0f, 1.0f, 0.0f, 0.0f);
             rlRotatef(90.0f, 0.0f, 0.0f, -1.0f);
@@ -362,42 +362,42 @@ public static unsafe class Draw2dIn3d
             quads += TextLength(opt);
             Vector3 m = MeasureText3D(GetFontDefault(), opt, 8.0f, 1.0f, 0.0f);
             Vector3 pos = new(-m.X / 2.0f, 0.01f, 2.0f);
-            DrawText3D(GetFontDefault(), opt, pos, 8.0f, 1.0f, 0.0f, false, BLUE);
+            DrawText3D(GetFontDefault(), opt, pos, 8.0f, 1.0f, 0.0f, false, Blue);
             pos.Z += 0.5f + m.Z;
 
             opt = TextFormat("< SPACING: %2.1f >", fontSpacing);
             quads += TextLength(opt);
             m = MeasureText3D(GetFontDefault(), opt, 8.0f, 1.0f, 0.0f);
             pos.X = -m.X / 2.0f;
-            DrawText3D(GetFontDefault(), opt, pos, 8.0f, 1.0f, 0.0f, false, BLUE);
+            DrawText3D(GetFontDefault(), opt, pos, 8.0f, 1.0f, 0.0f, false, Blue);
             pos.Z += 0.5f + m.Z;
 
             opt = TextFormat("< LINE: %2.1f >", lineSpacing);
             quads += TextLength(opt);
             m = MeasureText3D(GetFontDefault(), opt, 8.0f, 1.0f, 0.0f);
             pos.X = -m.X / 2.0f;
-            DrawText3D(GetFontDefault(), opt, pos, 8.0f, 1.0f, 0.0f, false, BLUE);
+            DrawText3D(GetFontDefault(), opt, pos, 8.0f, 1.0f, 0.0f, false, Blue);
             pos.Z += 1.0f + m.Z;
 
             opt = TextFormat("< LBOX: %3s >", slb ? "ON" : "OFF");
             quads += TextLength(opt);
             m = MeasureText3D(GetFontDefault(), opt, 8.0f, 1.0f, 0.0f);
             pos.X = -m.X / 2.0f;
-            DrawText3D(GetFontDefault(), opt, pos, 8.0f, 1.0f, 0.0f, false, RED);
+            DrawText3D(GetFontDefault(), opt, pos, 8.0f, 1.0f, 0.0f, false, Red);
             pos.Z += 0.5f + m.Z;
 
             opt = TextFormat("< TBOX: %3s >", showTextBoundary ? "ON" : "OFF");
             quads += TextLength(opt);
             m = MeasureText3D(GetFontDefault(), opt, 8.0f, 1.0f, 0.0f);
             pos.X = -m.X / 2.0f;
-            DrawText3D(GetFontDefault(), opt, pos, 8.0f, 1.0f, 0.0f, false, RED);
+            DrawText3D(GetFontDefault(), opt, pos, 8.0f, 1.0f, 0.0f, false, Red);
             pos.Z += 0.5f + m.Z;
 
             opt = TextFormat("< LAYER DISTANCE: %.3f >", layerDistance);
             quads += TextLength(opt);
             m = MeasureText3D(GetFontDefault(), opt, 8.0f, 1.0f, 0.0f);
             pos.X = -m.X / 2.0f;
-            DrawText3D(GetFontDefault(), opt, pos, 8.0f, 1.0f, 0.0f, false, DARKPURPLE);
+            DrawText3D(GetFontDefault(), opt, pos, 8.0f, 1.0f, 0.0f, false, Darkpurple);
             rlPopMatrix();
 
 
@@ -407,42 +407,42 @@ public static unsafe class Draw2dIn3d
             quads += 36;
             m = MeasureText3D(GetFontDefault(), opt, 10.0f, 0.5f, 0.0f);
             pos = new Vector3(-m.X / 2.0f, 0.01f, 2.0f);
-            DrawText3D(GetFontDefault(), opt, pos, 10.0f, 0.5f, 0.0f, false, DARKBLUE);
+            DrawText3D(GetFontDefault(), opt, pos, 10.0f, 0.5f, 0.0f, false, Darkblue);
             pos.Z += 1.5f + m.Z;
 
             opt = "press [Left]/[Right] to change the font size";
             quads += 44;
             m = MeasureText3D(GetFontDefault(), opt, 6.0f, 0.5f, 0.0f);
             pos.X = -m.X / 2.0f;
-            DrawText3D(GetFontDefault(), opt, pos, 6.0f, 0.5f, 0.0f, false, DARKBLUE);
+            DrawText3D(GetFontDefault(), opt, pos, 6.0f, 0.5f, 0.0f, false, Darkblue);
             pos.Z += 0.5f + m.Z;
 
             opt = "press [Up]/[Down] to change the font spacing";
             quads += 44;
             m = MeasureText3D(GetFontDefault(), opt, 6.0f, 0.5f, 0.0f);
             pos.X = -m.X / 2.0f;
-            DrawText3D(GetFontDefault(), opt, pos, 6.0f, 0.5f, 0.0f, false, DARKBLUE);
+            DrawText3D(GetFontDefault(), opt, pos, 6.0f, 0.5f, 0.0f, false, Darkblue);
             pos.Z += 0.5f + m.Z;
 
             opt = "press [PgUp]/[PgDown] to change the line spacing";
             quads += 48;
             m = MeasureText3D(GetFontDefault(), opt, 6.0f, 0.5f, 0.0f);
             pos.X = -m.X / 2.0f;
-            DrawText3D(GetFontDefault(), opt, pos, 6.0f, 0.5f, 0.0f, false, DARKBLUE);
+            DrawText3D(GetFontDefault(), opt, pos, 6.0f, 0.5f, 0.0f, false, Darkblue);
             pos.Z += 0.5f + m.Z;
 
             opt = "press [F1] to toggle the letter boundry";
             quads += 39;
             m = MeasureText3D(GetFontDefault(), opt, 6.0f, 0.5f, 0.0f);
             pos.X = -m.X / 2.0f;
-            DrawText3D(GetFontDefault(), opt, pos, 6.0f, 0.5f, 0.0f, false, DARKBLUE);
+            DrawText3D(GetFontDefault(), opt, pos, 6.0f, 0.5f, 0.0f, false, Darkblue);
             pos.Z += 0.5f + m.Z;
 
             opt = "press [F2] to toggle the text boundry";
             quads += 37;
             m = MeasureText3D(GetFontDefault(), opt, 6.0f, 0.5f, 0.0f);
             pos.X = -m.X / 2.0f;
-            DrawText3D(GetFontDefault(), opt, pos, 6.0f, 0.5f, 0.0f, false, DARKBLUE);
+            DrawText3D(GetFontDefault(), opt, pos, 6.0f, 0.5f, 0.0f, false, Darkblue);
 
 
             showLetterBoundary = slb;
@@ -452,28 +452,28 @@ public static unsafe class Draw2dIn3d
 
             // Draw 2D info text & stats
 
-            DrawText("Drag & drop a font file to change the font!\nType something, see what happens!\n\n Press [F3] to toggle the camera", 10, 35, 10, BLACK);
+            DrawText("Drag & drop a font file to change the font!\nType something, see what happens!\n\n Press [F3] to toggle the camera", 10, 35, 10, Black);
 
             quads += TextLength(text) * 2 * layers;
             string tmp = TextFormat("%2i layer(s) | %s camera | %4i quads (%4i verts)", layers, spin ? "ORBITAL" : "FREE", quads, quads * 4);
             int width = MeasureText(tmp, 10);
-            DrawText(tmp, screenWidth - 20 - width, 10, 10, DARKGREEN);
+            DrawText(tmp, screenWidth - 20 - width, 10, 10, Darkgreen);
 
             tmp = "[Home]/[End] to add/remove 3D text layers";
             width = MeasureText(tmp, 10);
-            DrawText(tmp, screenWidth - 20 - width, 25, 10, DARKGRAY);
+            DrawText(tmp, screenWidth - 20 - width, 25, 10, Darkgray);
 
             tmp = "[Insert]/[Delete] to increase/decrease distance between layers";
             width = MeasureText(tmp, 10);
-            DrawText(tmp, screenWidth - 20 - width, 40, 10, DARKGRAY);
+            DrawText(tmp, screenWidth - 20 - width, 40, 10, Darkgray);
 
             tmp = "click the [CUBE] for a random color";
             width = MeasureText(tmp, 10);
-            DrawText(tmp, screenWidth - 20 - width, 55, 10, DARKGRAY);
+            DrawText(tmp, screenWidth - 20 - width, 55, 10, Darkgray);
 
             tmp = "[Tab] to toggle multicolor mode";
             width = MeasureText(tmp, 10);
-            DrawText(tmp, screenWidth - 20 - width, 70, 10, DARKGRAY);
+            DrawText(tmp, screenWidth - 20 - width, 70, 10, Darkgray);
 
 
             DrawFPS(10, 10);
@@ -513,10 +513,10 @@ public static unsafe class Draw2dIn3d
         // Character source rectangle from font texture atlas
         // NOTE: We consider chars padding when drawing, it could be required for outline/glow shader effects
         Rectangle srcRec = new(font.recs[index].X - font.glyphPadding, font.recs[index].Y - font.glyphPadding,
-                             font.recs[index].width + (2.0f * font.glyphPadding), font.recs[index].height + (2.0f * font.glyphPadding));
+                             font.recs[index].Width + (2.0f * font.glyphPadding), font.recs[index].Height + (2.0f * font.glyphPadding));
 
-        float width = (float)(font.recs[index].width + (2.0f * font.glyphPadding)) / font.baseSize * scale;
-        float height = (float)(font.recs[index].height + (2.0f * font.glyphPadding)) / font.baseSize * scale;
+        float width = (float)(font.recs[index].Width + (2.0f * font.glyphPadding)) / font.baseSize * scale;
+        float height = (float)(font.recs[index].Height + (2.0f * font.glyphPadding)) / font.baseSize * scale;
 
         if (font.texture.id > 0)
         {
@@ -527,8 +527,8 @@ public static unsafe class Draw2dIn3d
             // normalized texture coordinates of the glyph inside the font texture (0.0f -> 1.0f)
             float tx = srcRec.X / font.texture.width;
             float ty = srcRec.Y / font.texture.height;
-            float tw = (srcRec.X + srcRec.width) / font.texture.width;
-            float th = (srcRec.Y + srcRec.height) / font.texture.height;
+            float tw = (srcRec.X + srcRec.Width) / font.texture.width;
+            float th = (srcRec.Y + srcRec.Height) / font.texture.height;
 
             if (showLetterBoundary)
             {
@@ -541,7 +541,7 @@ public static unsafe class Draw2dIn3d
             rlPushMatrix();
             rlTranslatef(position.X, position.Y, position.Z);
 
-            rlBegin(RL_QUADS);
+            rlBegin(RlQuads);
             rlColor4ub(tint.r, tint.g, tint.b, tint.a);
 
             // Front Face
@@ -614,7 +614,7 @@ public static unsafe class Draw2dIn3d
 
                 if (font.glyphs[index].advanceX == 0)
                 {
-                    textOffsetX += (float)(font.recs[index].width + fontSpacing) / font.baseSize * scale;
+                    textOffsetX += (float)(font.recs[index].Width + fontSpacing) / font.baseSize * scale;
                 }
                 else
                 {
@@ -667,7 +667,7 @@ public static unsafe class Draw2dIn3d
                 }
                 else
                 {
-                    textWidth += (font.recs[index].width + font.glyphs[index].offsetX) / font.baseSize * scale;
+                    textWidth += (font.recs[index].Width + font.glyphs[index].offsetX) / font.baseSize * scale;
                 }
             }
             else
@@ -759,7 +759,7 @@ public static unsafe class Draw2dIn3d
 
                 if (font.glyphs[index].advanceX == 0)
                 {
-                    textOffsetX += (float)(font.recs[index].width + fontSpacing) / font.baseSize * scale;
+                    textOffsetX += (float)(font.recs[index].Width + fontSpacing) / font.baseSize * scale;
                 }
                 else
                 {
@@ -816,7 +816,7 @@ public static unsafe class Draw2dIn3d
                     }
                     else
                     {
-                        textWidth += (font.recs[index].width + font.glyphs[index].offsetX) / font.baseSize * scale;
+                        textWidth += (font.recs[index].Width + font.glyphs[index].offsetX) / font.baseSize * scale;
                     }
                 }
             }

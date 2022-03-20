@@ -59,7 +59,7 @@ public static unsafe class InputBox
             if (mouseOnText)
             {
                 // Set the window's cursor to the I-Beam
-                SetMouseCursor(MOUSE_CURSOR_IBEAM);
+                SetMouseCursor(MouseCursorIbeam);
 
                 // Get char pressed (unicode character) on the queue
                 int key = GetCharPressed();
@@ -79,7 +79,7 @@ public static unsafe class InputBox
                     key = GetCharPressed();  // Check next character in the queue
                 }
 
-                if (IsKeyPressed(KEY_BACKSPACE))
+                if (IsKeyPressed(KeyBackspace))
                 {
                     //letterCount--;
                     //if (letterCount < 0) letterCount = 0;
@@ -89,7 +89,7 @@ public static unsafe class InputBox
             }
             else
             {
-                SetMouseCursor(MOUSE_CURSOR_DEFAULT);
+                SetMouseCursor(MouseCursorDefault);
             }
 
             if (mouseOnText)
@@ -106,23 +106,23 @@ public static unsafe class InputBox
 
             BeginDrawing();
 
-            ClearBackground(RAYWHITE);
+            ClearBackground(Raywhite);
 
-            DrawText("PLACE MOUSE OVER INPUT BOX!", 240, 140, 20, GRAY);
+            DrawText("PLACE MOUSE OVER INPUT BOX!", 240, 140, 20, Gray);
 
-            DrawRectangleRec(textBox, LIGHTGRAY);
+            DrawRectangleRec(textBox, Lightgray);
             if (mouseOnText)
             {
-                DrawRectangleLines((int)textBox.X, (int)textBox.Y, (int)textBox.width, (int)textBox.height, RED);
+                DrawRectangleLines((int)textBox.X, (int)textBox.Y, (int)textBox.Width, (int)textBox.Height, Red);
             }
             else
             {
-                DrawRectangleLines((int)textBox.X, (int)textBox.Y, (int)textBox.width, (int)textBox.height, DARKGRAY);
+                DrawRectangleLines((int)textBox.X, (int)textBox.Y, (int)textBox.Width, (int)textBox.Height, Darkgray);
             }
 
-            DrawText(name, (int)textBox.X + 5, (int)textBox.Y + 8, 40, MAROON);
+            DrawText(name, (int)textBox.X + 5, (int)textBox.Y + 8, 40, Maroon);
 
-            DrawText(TextFormat("INPUT CHARS: %i/%i", name.Length, MAX_INPUT_CHARS), 315, 250, 20, DARKGRAY);
+            DrawText(TextFormat("INPUT CHARS: %i/%i", name.Length, MAX_INPUT_CHARS), 315, 250, 20, Darkgray);
 
             if (mouseOnText)
             {
@@ -131,12 +131,12 @@ public static unsafe class InputBox
                     // Draw blinking underscore char
                     if ((framesCounter / 20 % 2) == 0)
                     {
-                        DrawText("_", (int)textBox.X + 8 + MeasureText(name, 40), (int)textBox.Y + 12, 40, MAROON);
+                        DrawText("_", (int)textBox.X + 8 + MeasureText(name, 40), (int)textBox.Y + 12, 40, Maroon);
                     }
                 }
                 else
                 {
-                    DrawText("Press BACKSPACE to delete chars...", 230, 300, 20, GRAY);
+                    DrawText("Press BACKSPACE to delete chars...", 230, 300, 20, Gray);
                 }
             }
 

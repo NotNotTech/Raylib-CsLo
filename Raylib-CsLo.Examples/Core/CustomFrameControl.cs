@@ -62,16 +62,16 @@ public static unsafe class CustomFrameControl
 
             PollInputEvents();              // Poll input events (SUPPORT_CUSTOM_FRAME_CONTROL)
 
-            if (IsKeyPressed(KEY_SPACE))
+            if (IsKeyPressed(KeySpace))
             {
                 pause = !pause;
             }
 
-            if (IsKeyPressed(KEY_UP))
+            if (IsKeyPressed(KeyUp))
             {
                 targetFPS += 20;
             }
-            else if (IsKeyPressed(KEY_DOWN))
+            else if (IsKeyPressed(KeyDown))
             {
                 targetFPS -= 20;
             }
@@ -97,23 +97,23 @@ public static unsafe class CustomFrameControl
 
             BeginDrawing();
 
-            ClearBackground(RAYWHITE);
+            ClearBackground(Raywhite);
 
             for (int i = 0; i < GetScreenWidth() / 200; i++)
             {
-                DrawRectangle(200 * i, 0, 1, GetScreenHeight(), SKYBLUE);
+                DrawRectangle(200 * i, 0, 1, GetScreenHeight(), Skyblue);
             }
 
-            DrawCircle((int)position, (GetScreenHeight() / 2) - 25, 50, RED);
+            DrawCircle((int)position, (GetScreenHeight() / 2) - 25, 50, Red);
 
-            DrawText(TextFormat("%03.0f ms", timeCounter * 1000.0f), position - 40, (GetScreenHeight() / 2) - 100, 20, MAROON);
-            DrawText(TextFormat("PosX: %03.0f", position), position - 50, (GetScreenHeight() / 2) + 40, 20, BLACK);
+            DrawText(TextFormat("%03.0f ms", timeCounter * 1000.0f), position - 40, (GetScreenHeight() / 2) - 100, 20, Maroon);
+            DrawText(TextFormat("PosX: %03.0f", position), position - 50, (GetScreenHeight() / 2) + 40, 20, Black);
 
-            DrawText("Circle is moving at a constant 200 pixels/sec,\nindependently of the frame rate.", 10, 10, 20, DARKGRAY);
-            DrawText("PRESS SPACE to PAUSE MOVEMENT", 10, GetScreenHeight() - 60, 20, GRAY);
-            DrawText("PRESS UP | DOWN to CHANGE TARGET FPS", 10, GetScreenHeight() - 30, 20, GRAY);
-            DrawText(TextFormat("TARGET FPS: %i", targetFPS), GetScreenWidth() - 220, 10, 20, LIME);
-            DrawText(TextFormat("CURRENT FPS: %i", (int)(1.0f / deltaTime)), GetScreenWidth() - 220, 40, 20, GREEN);
+            DrawText("Circle is moving at a constant 200 pixels/sec,\nindependently of the frame rate.", 10, 10, 20, Darkgray);
+            DrawText("PRESS SPACE to PAUSE MOVEMENT", 10, GetScreenHeight() - 60, 20, Gray);
+            DrawText("PRESS UP | DOWN to CHANGE TARGET FPS", 10, GetScreenHeight() - 30, 20, Gray);
+            DrawText(TextFormat("TARGET FPS: %i", targetFPS), GetScreenWidth() - 220, 10, 20, Lime);
+            DrawText(TextFormat("CURRENT FPS: %i", (int)(1.0f / deltaTime)), GetScreenWidth() - 220, 40, 20, Green);
 
             EndDrawing();
 

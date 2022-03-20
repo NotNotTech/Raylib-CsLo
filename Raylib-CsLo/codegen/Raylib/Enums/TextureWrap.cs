@@ -11,11 +11,11 @@ namespace Raylib_CsLo;
 public enum TextureWrap
 {
     /// <summary> Repeats texture in tiled mode </summary>
-    TEXTURE_WRAP_REPEAT = 0,
+    TextureWrapRepeat = 0,
     /// <summary> Clamps texture to edge pixel in tiled mode </summary>
-    TEXTURE_WRAP_CLAMP = 1,
+    TextureWrapClamp = 1,
     /// <summary> Mirrors and repeats the texture in tiled mode </summary>
-    TEXTURE_WRAP_MIRROR_REPEAT = 2,
+    TextureWrapMirrorRepeat = 2,
     /// <summary> Mirrors and clamps to border the texture in tiled mode </summary>
-    TEXTURE_WRAP_MIRROR_CLAMP = 3,
+    TextureWrapMirrorClamp = 3,
 }

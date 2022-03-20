@@ -11,11 +11,11 @@ namespace Raylib_CsLo;
 public enum GuiPropertyElement
 {
     /// <summary>  </summary>
-    BORDER = 0,
+    Border = 0,
     /// <summary>  </summary>
-    BASE = 1,
+    Base = 1,
     /// <summary>  </summary>
-    TEXT = 2,
+    Text = 2,
     /// <summary>  </summary>
-    OTHER = 3,
+    Other = 3,
 }

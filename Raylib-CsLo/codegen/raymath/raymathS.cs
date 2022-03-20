@@ -336,7 +336,7 @@ public unsafe partial class RayMathS
     }
 
     /// <summary>  </summary>
-    public static float3 Vector3ToFloatV(Vector3 v)
+    public static Float3 Vector3ToFloatV(Vector3 v)
     {
         return RayMath.Vector3ToFloatV(v);
     }
@@ -468,7 +468,7 @@ public unsafe partial class RayMathS
     }
 
     /// <summary>  </summary>
-    public static float16 MatrixToFloatV(Matrix4x4 mat)
+    public static Float16 MatrixToFloatV(Matrix4x4 mat)
     {
         return RayMath.MatrixToFloatV(mat);
     }

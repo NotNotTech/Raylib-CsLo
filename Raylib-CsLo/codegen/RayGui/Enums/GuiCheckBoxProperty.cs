@@ -11,5 +11,5 @@ namespace Raylib_CsLo;
 public enum GuiCheckBoxProperty
 {
     /// <summary>  </summary>
-    CHECK_PADDING = 16,
+    CheckPadding = 16,
 }

@@ -46,14 +46,14 @@ public static unsafe class MusicPlayingStreaming
             UpdateMusicStream(music);   // Update music buffer with new stream data
 
             // Restart music playing (stop and play)
-            if (IsKeyPressed(KEY_SPACE))
+            if (IsKeyPressed(KeySpace))
             {
                 StopMusicStream(music);
                 PlayMusicStream(music);
             }
 
             // Pause/Resume music playing
-            if (IsKeyPressed(KEY_P))
+            if (IsKeyPressed(KeyP))
             {
                 pause = !pause;
 
@@ -80,16 +80,16 @@ public static unsafe class MusicPlayingStreaming
 
             BeginDrawing();
 
-            ClearBackground(RAYWHITE);
+            ClearBackground(Raywhite);
 
-            DrawText("MUSIC SHOULD BE PLAYING!", 255, 150, 20, LIGHTGRAY);
+            DrawText("MUSIC SHOULD BE PLAYING!", 255, 150, 20, Lightgray);
 
-            DrawRectangle(200, 200, 400, 12, LIGHTGRAY);
-            DrawRectangle(200, 200, (int)timePlayed, 12, MAROON);
-            DrawRectangleLines(200, 200, 400, 12, GRAY);
+            DrawRectangle(200, 200, 400, 12, Lightgray);
+            DrawRectangle(200, 200, (int)timePlayed, 12, Maroon);
+            DrawRectangleLines(200, 200, 400, 12, Gray);
 
-            DrawText("PRESS SPACE TO RESTART MUSIC", 215, 250, 20, LIGHTGRAY);
-            DrawText("PRESS P TO PAUSE/RESUME MUSIC", 208, 280, 20, LIGHTGRAY);
+            DrawText("PRESS SPACE TO RESTART MUSIC", 215, 250, 20, Lightgray);
+            DrawText("PRESS P TO PAUSE/RESUME MUSIC", 208, 280, 20, Lightgray);
 
             EndDrawing();
 

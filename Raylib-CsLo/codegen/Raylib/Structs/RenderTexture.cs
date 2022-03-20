@@ -4,6 +4,7 @@
 // The code and 100+ examples are here! https://github.com/NotNotTech/Raylib-CsLo
 
 // Warning This file is auto generated and changes will be lost
+
 namespace Raylib_CsLo;
 
 /// <summary> RenderTexture, fbo for texture rendering </summary>
@@ -13,9 +14,9 @@ public unsafe partial struct RenderTexture
     public uint id;
 
     /// <summary> Color buffer attachment texture </summary>
-    public Texture texture;
+    public Texture2D texture;
 
     /// <summary> Depth buffer attachment texture </summary>
-    public Texture depth;
+    public Texture2D depth;
 
 }

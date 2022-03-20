@@ -57,7 +57,7 @@ public static unsafe class SpriteButton
             // Check button state
             if (CheckCollisionPointRec(mousePoint, btnBounds))
             {
-                if (IsMouseButtonDown(MOUSE_BUTTON_LEFT))
+                if (IsMouseButtonDown(MouseButtonLeft))
                 {
                     btnState = 2;
                 }
@@ -66,7 +66,7 @@ public static unsafe class SpriteButton
                     btnState = 1;
                 }
 
-                if (IsMouseButtonReleased(MOUSE_BUTTON_LEFT))
+                if (IsMouseButtonReleased(MouseButtonLeft))
                 {
                     btnAction = true;
                 }
@@ -91,9 +91,9 @@ public static unsafe class SpriteButton
 
             BeginDrawing();
 
-            ClearBackground(RAYWHITE);
+            ClearBackground(Raywhite);
 
-            DrawTextureRec(button, sourceRec, new Vector2(btnBounds.X, btnBounds.Y), WHITE); // Draw button frame
+            DrawTextureRec(button, sourceRec, new Vector2(btnBounds.X, btnBounds.Y), White); // Draw button frame
 
             EndDrawing();
 

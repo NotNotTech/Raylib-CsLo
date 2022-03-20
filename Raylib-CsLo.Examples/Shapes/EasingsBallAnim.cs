@@ -81,7 +81,7 @@ public static unsafe class EasingsBallAnim
             }
             else if (state == 3)        // Reset state to play again
             {
-                if (IsKeyPressed(KEY_ENTER))
+                if (IsKeyPressed(KeyEnter))
                 {
                     // Reset required variables to play again
                     ballPositionX = -100;
@@ -91,7 +91,7 @@ public static unsafe class EasingsBallAnim
                 }
             }
 
-            if (IsKeyPressed(KEY_R))
+            if (IsKeyPressed(KeyR))
             {
                 framesCounter = 0;
             }
@@ -101,18 +101,18 @@ public static unsafe class EasingsBallAnim
 
             BeginDrawing();
 
-            ClearBackground(RAYWHITE);
+            ClearBackground(Raywhite);
 
             if (state >= 2)
             {
-                DrawRectangle(0, 0, screenWidth, screenHeight, GREEN);
+                DrawRectangle(0, 0, screenWidth, screenHeight, Green);
             }
 
-            DrawCircle(ballPositionX, 200, ballRadius, Fade(RED, 1.0f - ballAlpha));
+            DrawCircle(ballPositionX, 200, ballRadius, Fade(Red, 1.0f - ballAlpha));
 
             if (state == 3)
             {
-                DrawText("PRESS [ENTER] TO PLAY AGAIN!", 240, 200, 20, BLACK);
+                DrawText("PRESS [ENTER] TO PLAY AGAIN!", 240, 200, 20, Black);
             }
 
             EndDrawing();

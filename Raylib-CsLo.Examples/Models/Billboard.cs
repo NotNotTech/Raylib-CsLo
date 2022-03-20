@@ -29,17 +29,17 @@ public static unsafe class Billboard
         InitWindow(screenWidth, screenHeight, "raylib [models] example - drawing billboards");
 
         // Define the camera to look into our 3d world
-        Camera camera = new();
+        Camera3D camera = new();
         camera.position = new(5.0f, 4.0f, 5.0f);
         camera.target = new(0.0f, 2.0f, 0.0f);
         camera.up = new(0.0f, 1.0f, 0.0f);
         camera.fovy = 45.0f;
-        camera.Projection = CAMERA_PERSPECTIVE;
+        camera.Projection = CameraPerspective;
 
         Texture2D bill = LoadTexture("resources/billboard.png");     // Our texture billboard
         Vector3 billPosition = new(0.0f, 2.0f, 0.0f);                 // Position where draw billboard
 
-        SetCameraMode(ref camera, CAMERA_ORBITAL);  // Set an orbital camera mode
+        SetCameraMode(camera, CameraOrbital);  // Set an orbital camera mode
 
         SetTargetFPS(60);                       // Set our game to run at 60 frames-per-second
 
@@ -56,13 +56,13 @@ public static unsafe class Billboard
 
             BeginDrawing();
 
-            ClearBackground(RAYWHITE);
+            ClearBackground(Raywhite);
 
-            BeginMode3D(ref camera);
+            BeginMode3D(camera);
 
             DrawGrid(10, 1.0f);        // Draw a grid
 
-            DrawBillboard(ref camera, bill, billPosition, 2.0f, WHITE);
+            DrawBillboard(camera, bill, billPosition, 2.0f, White);
 
             EndMode3D();
 

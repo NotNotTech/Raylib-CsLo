@@ -23,7 +23,6 @@ public static unsafe class PhysicsDemo
 
     //#define PHYSAC_IMPLEMENTATION
     //# include "extras/physac.h"
-    static readonly int* NULL = (int*)0;
     public static int Example()
     {
         // Initialization
@@ -31,7 +30,7 @@ public static unsafe class PhysicsDemo
         const int screenWidth = 800;
         const int screenHeight = 450;
 
-        SetConfigFlags(FLAG_MSAA_4X_HINT);
+        SetConfigFlags(FlagMsaa4xHint);
         InitWindow(screenWidth, screenHeight, "raylib [physac] example - physics demo");
 
         // Physac logo drawing position
@@ -42,12 +41,12 @@ public static unsafe class PhysicsDemo
         InitPhysics();
 
         // Create floor rectangle physics body
-        PhysicsBodyData* floor = CreatePhysicsBodyRectangle(new Vector2(screenWidth / 2.0f, screenHeight), 500, 100, 10);
-        floor->enabled = false;         // Disable body state to convert it to static (no dynamics, but collisions)
+        PhysicsBodyData floor = CreatePhysicsBodyRectangle(new Vector2(screenWidth / 2.0f, screenHeight), 500, 100, 10);
+        floor.enabled = false;         // Disable body state to convert it to static (no dynamics, but collisions)
 
         // Create obstacle circle physics body
-        PhysicsBodyData* circle = CreatePhysicsBodyCircle(new Vector2(screenWidth / 2.0f, screenHeight / 2.0f), 45, 10);
-        circle->enabled = false;        // Disable body state to convert it to static (no dynamics, but collisions)
+        PhysicsBodyData circle = CreatePhysicsBodyCircle(new Vector2(screenWidth / 2.0f, screenHeight / 2.0f), 45, 10);
+        circle.enabled = false;        // Disable body state to convert it to static (no dynamics, but collisions)
 
         SetTargetFPS(60);               // Set our game to run at 60 frames-per-second
 
@@ -59,23 +58,23 @@ public static unsafe class PhysicsDemo
 
             UpdatePhysics();            // Update physics system
 
-            if (IsKeyPressed(KEY_R))    // Reset physics system
+            if (IsKeyPressed(KeyR))    // Reset physics system
             {
                 ResetPhysics();
 
                 floor = CreatePhysicsBodyRectangle(new Vector2(screenWidth / 2.0f, screenHeight), 500, 100, 10);
-                floor->enabled = false;
+                floor.enabled = false;
 
                 circle = CreatePhysicsBodyCircle(new Vector2(screenWidth / 2.0f, screenHeight / 2.0f), 45, 10);
-                circle->enabled = false;
+                circle.enabled = false;
             }
 
             // Physics body creation inputs
-            if (IsMouseButtonPressed(MOUSE_BUTTON_LEFT))
+            if (IsMouseButtonPressed(MouseButtonLeft))
             {
                 CreatePhysicsBodyPolygon(GetMousePosition(), GetRandomValue(20, 80), GetRandomValue(3, 8), 10);
             }
-            else if (IsMouseButtonPressed(MOUSE_BUTTON_RIGHT))
+            else if (IsMouseButtonPressed(MouseButtonRight))
             {
                 CreatePhysicsBodyCircle(GetMousePosition(), GetRandomValue(10, 45), 10);
             }
@@ -84,10 +83,10 @@ public static unsafe class PhysicsDemo
             int bodiesCount = GetPhysicsBodiesCount();
             for (int i = bodiesCount - 1; i >= 0; i--)
             {
-                PhysicsBodyData* body = GetPhysicsBody(i);
-                if (body != NULL && (body->position.Y > screenHeight * 2))
+                PhysicsBodyData? body = GetPhysicsBody(i);
+                if (body != null && body?.position.Y > screenHeight * 2)
                 {
-                    DestroyPhysicsBody(body);
+                    DestroyPhysicsBody(body.Value);
                 }
             }
 
@@ -96,7 +95,7 @@ public static unsafe class PhysicsDemo
 
             BeginDrawing();
 
-            ClearBackground(BLACK);
+            ClearBackground(Black);
 
             DrawFPS(screenWidth - 90, screenHeight - 30);
 
@@ -104,31 +103,31 @@ public static unsafe class PhysicsDemo
             bodiesCount = GetPhysicsBodiesCount();
             for (int i = 0; i < bodiesCount; i++)
             {
-                PhysicsBodyData* body = GetPhysicsBody(i);
+                PhysicsBodyData? body = GetPhysicsBody(i);
 
-                if (body != NULL)
+                if (body != null)
                 {
                     int vertexCount = GetPhysicsShapeVerticesCount(i);
                     for (int j = 0; j < vertexCount; j++)
                     {
                         // Get physics bodies shape vertices to draw lines
                         // Note: GetPhysicsShapeVertex() already calculates rotation transformations
-                        Vector2 vertexA = GetPhysicsShapeVertex(body, j);
+                        Vector2 vertexA = GetPhysicsShapeVertex(body.Value, j);
 
                         int jj = ((j + 1) < vertexCount) ? (j + 1) : 0;   // Get next vertex or first to close the shape
-                        Vector2 vertexB = GetPhysicsShapeVertex(body, jj);
+                        Vector2 vertexB = GetPhysicsShapeVertex(body.Value, jj);
 
-                        DrawLineV(vertexA, vertexB, GREEN);     // Draw a line between two vertex positions
+                        DrawLineV(vertexA, vertexB, Green);     // Draw a line between two vertex positions
                     }
                 }
             }
 
-            DrawText("Left mouse button to create a polygon", 10, 10, 10, WHITE);
-            DrawText("Right mouse button to create a circle", 10, 25, 10, WHITE);
-            DrawText("Press 'R' to reset example", 10, 40, 10, WHITE);
+            DrawText("Left mouse button to create a polygon", 10, 10, 10, White);
+            DrawText("Right mouse button to create a circle", 10, 25, 10, White);
+            DrawText("Press 'R' to reset example", 10, 40, 10, White);
 
-            DrawText("Physac", logoX, logoY, 30, WHITE);
-            DrawText("Powered by", logoX + 50, logoY - 7, 10, WHITE);
+            DrawText("Physac", logoX, logoY, 30, White);
+            DrawText("Powered by", logoX + 50, logoY - 7, 10, White);
 
             EndDrawing();
 

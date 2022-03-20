@@ -4,7 +4,9 @@
 // The code and 100+ examples are here! https://github.com/NotNotTech/Raylib-CsLo
 
 #pragma warning disable IDE0065
-global using System.Drawing;
 global using System.Numerics;
 global using System.Runtime.InteropServices;
+global using static Raylib_CsLo.RlGl;
+global using static Raylib_CsLo.Physac;
+global using Rectangle = System.Drawing.RectangleF;
 #pragma warning restore IDE0065

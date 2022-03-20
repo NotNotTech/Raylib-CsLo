@@ -36,7 +36,7 @@ public static unsafe class WavingCubes
         camera.target = new(0.0f, 0.0f, 0.0f);
         camera.up = new(0.0f, 1.0f, 0.0f);
         camera.fovy = 70.0f;
-        camera.Projection = CAMERA_PERSPECTIVE;
+        camera.Projection = CameraPerspective;
 
         // Specify the amount of blocks in each direction
         const int numBlocks = 15;
@@ -64,9 +64,9 @@ public static unsafe class WavingCubes
 
             BeginDrawing();
 
-            ClearBackground(RAYWHITE);
+            ClearBackground(Raywhite);
 
-            BeginMode3D(ref camera);
+            BeginMode3D(camera);
 
             DrawGrid(10, 5.0f);
 

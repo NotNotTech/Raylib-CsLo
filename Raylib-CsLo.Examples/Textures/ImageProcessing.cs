@@ -37,16 +37,17 @@ public static unsafe class ImageProcessing
         FLIP_HORIZONTAL
     }
 
-    static string[] processText = new string[]{
-    "NO PROCESSING",
-    "COLOR GRAYSCALE",
-    "COLOR TINT",
-    "COLOR INVERT",
-    "COLOR CONTRAST",
-    "COLOR BRIGHTNESS",
-    "FLIP VERTICAL",
-    "FLIP HORIZONTAL"
-};
+    static string[] processText = new string[]
+    {
+        "NO PROCESSING",
+        "COLOR GRAYSCALE",
+        "COLOR TINT",
+        "COLOR INVERT",
+        "COLOR CONTRAST",
+        "COLOR BRIGHTNESS",
+        "FLIP VERTICAL",
+        "FLIP HORIZONTAL"
+    };
 
     public static int Example()
     {
@@ -60,7 +61,7 @@ public static unsafe class ImageProcessing
         // NOTE: Textures MUST be loaded after Window initialization (OpenGL context is required)
 
         Image imOrigin = LoadImage("resources/parrots.png");   // Loaded in CPU memory (RAM)
-        ImageFormat(ref imOrigin, PIXELFORMAT_UNCOMPRESSED_R8G8B8A8);         // Format image to RGBA 32bit (required for texture update) <-- ISSUE
+        ImageFormat(ref imOrigin, PixelformatUncompressedR8g8b8a8);         // Format image to RGBA 32bit (required for texture update) <-- ISSUE
         Texture2D texture = LoadTextureFromImage(imOrigin);    // Image converted to texture, GPU memory (VRAM)
 
         Image imCopy = ImageCopy(imOrigin);
@@ -92,7 +93,7 @@ public static unsafe class ImageProcessing
                 {
                     mouseHoverRec = i;
 
-                    if (IsMouseButtonReleased(MOUSE_BUTTON_LEFT))
+                    if (IsMouseButtonReleased(MouseButtonLeft))
                     {
                         currentProcess = i;
                         textureReload = true;
@@ -106,7 +107,7 @@ public static unsafe class ImageProcessing
             }
 
             // Keyboard toggle group logic
-            if (IsKeyPressed(KEY_DOWN))
+            if (IsKeyPressed(KeyDown))
             {
                 currentProcess++;
                 if (currentProcess > (NUM_PROCESSES - 1))
@@ -116,7 +117,7 @@ public static unsafe class ImageProcessing
 
                 textureReload = true;
             }
-            else if (IsKeyPressed(KEY_UP))
+            else if (IsKeyPressed(KeyUp))
             {
                 currentProcess--;
                 if (currentProcess < 0)
@@ -142,7 +143,7 @@ public static unsafe class ImageProcessing
                         ImageColorGrayscale(ref imCopy);
                         break;
                     case ImageProcess.COLOR_TINT:
-                        ImageColorTint(ref imCopy, GREEN);
+                        ImageColorTint(ref imCopy, Green);
                         break;
                     case ImageProcess.COLOR_INVERT:
                         ImageColorInvert(ref imCopy);
@@ -177,20 +178,20 @@ public static unsafe class ImageProcessing
 
             BeginDrawing();
 
-            ClearBackground(RAYWHITE);
+            ClearBackground(Raywhite);
 
-            DrawText("IMAGE PROCESSING:", 40, 30, 10, DARKGRAY);
+            DrawText("IMAGE PROCESSING:", 40, 30, 10, Darkgray);
 
             // Draw rectangles
             for (int i = 0; i < NUM_PROCESSES; i++)
             {
-                DrawRectangleRec(toggleRecs[i], ((i == currentProcess) || (i == mouseHoverRec)) ? SKYBLUE : LIGHTGRAY);
-                DrawRectangleLines((int)toggleRecs[i].x, (int)toggleRecs[i].y, (int)toggleRecs[i].width, (int)toggleRecs[i].height, ((i == currentProcess) || (i == mouseHoverRec)) ? BLUE : GRAY);
-                DrawText(processText[i], (int)(toggleRecs[i].X + (toggleRecs[i].width / 2) - (MeasureText(processText[i], 10) / 2)), (int)toggleRecs[i].Y + 11, 10, ((i == currentProcess) || (i == mouseHoverRec)) ? DARKBLUE : DARKGRAY);
+                DrawRectangleRec(toggleRecs[i], ((i == currentProcess) || (i == mouseHoverRec)) ? Skyblue : Lightgray);
+                DrawRectangleLines((int)toggleRecs[i].X, (int)toggleRecs[i].Y, (int)toggleRecs[i].Width, (int)toggleRecs[i].Height, ((i == currentProcess) || (i == mouseHoverRec)) ? Blue : Gray);
+                DrawText(processText[i], (int)(toggleRecs[i].X + (toggleRecs[i].Width / 2) - (MeasureText(processText[i], 10) / 2)), (int)toggleRecs[i].Y + 11, 10, ((i == currentProcess) || (i == mouseHoverRec)) ? Darkblue : Darkgray);
             }
 
-            DrawTexture(texture, screenWidth - texture.width - 60, (screenHeight / 2) - (texture.height / 2), WHITE);
-            DrawRectangleLines(screenWidth - texture.width - 60, (screenHeight / 2) - (texture.height / 2), texture.width, texture.height, BLACK);
+            DrawTexture(texture, screenWidth - texture.width - 60, (screenHeight / 2) - (texture.height / 2), White);
+            DrawRectangleLines(screenWidth - texture.width - 60, (screenHeight / 2) - (texture.height / 2), texture.width, texture.height, Black);
 
             EndDrawing();
 

@@ -4,13 +4,14 @@
 // The code and 100+ examples are here! https://github.com/NotNotTech/Raylib-CsLo
 
 // Warning This file is auto generated and changes will be lost
+
 namespace Raylib_CsLo;
 
 /// <summary> Image, pixel data stored in CPU memory (RAM) </summary>
 public unsafe partial struct Image
 {
     /// <summary> Image raw data </summary>
-    public void * data;
+    public void* data;
 
     /// <summary> Image base width </summary>
     public int width;

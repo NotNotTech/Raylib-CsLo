@@ -26,7 +26,7 @@ public static class InputMouse
         const int screenHeight = 450;
 
         InitWindow(screenWidth, screenHeight, "raylib [core] example - mouse input");
-        Color ballColor = DARKBLUE;
+        Color ballColor = Darkblue;
 
         SetTargetFPS(60);               // Set our game to run at 60 frames-per-second
 
@@ -38,33 +38,33 @@ public static class InputMouse
 
             Vector2 ballPosition = GetMousePosition();
 
-            if (IsMouseButtonPressed(MOUSE_BUTTON_LEFT))
+            if (IsMouseButtonPressed(MouseButtonLeft))
             {
-                ballColor = MAROON;
+                ballColor = Maroon;
             }
-            else if (IsMouseButtonPressed(MOUSE_BUTTON_MIDDLE))
+            else if (IsMouseButtonPressed(MouseButtonMiddle))
             {
-                ballColor = LIME;
+                ballColor = Lime;
             }
-            else if (IsMouseButtonPressed(MOUSE_BUTTON_RIGHT))
+            else if (IsMouseButtonPressed(MouseButtonRight))
             {
-                ballColor = DARKBLUE;
+                ballColor = Darkblue;
             }
-            else if (IsMouseButtonPressed(MOUSE_BUTTON_SIDE))
+            else if (IsMouseButtonPressed(MouseButtonSide))
             {
-                ballColor = PURPLE;
+                ballColor = Purple;
             }
-            else if (IsMouseButtonPressed(MOUSE_BUTTON_EXTRA))
+            else if (IsMouseButtonPressed(MouseButtonExtra))
             {
-                ballColor = YELLOW;
+                ballColor = Yellow;
             }
-            else if (IsMouseButtonPressed(MOUSE_BUTTON_FORWARD))
+            else if (IsMouseButtonPressed(MouseButtonForward))
             {
-                ballColor = ORANGE;
+                ballColor = Orange;
             }
-            else if (IsMouseButtonPressed(MOUSE_BUTTON_BACK))
+            else if (IsMouseButtonPressed(MouseButtonBack))
             {
-                ballColor = BEIGE;
+                ballColor = Beige;
             }
 
 
@@ -72,11 +72,11 @@ public static class InputMouse
 
             BeginDrawing();
 
-            ClearBackground(RAYWHITE);
+            ClearBackground(Raywhite);
 
             DrawCircleV(ballPosition, 40, ballColor);
 
-            DrawText("move ball with mouse and click mouse button to change color", 10, 10, 20, DARKGRAY);
+            DrawText("move ball with mouse and click mouse button to change color", 10, 10, 20, Darkgray);
 
             EndDrawing();
 

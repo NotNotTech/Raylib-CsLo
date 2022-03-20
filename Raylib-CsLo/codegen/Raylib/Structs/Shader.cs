@@ -4,6 +4,7 @@
 // The code and 100+ examples are here! https://github.com/NotNotTech/Raylib-CsLo
 
 // Warning This file is auto generated and changes will be lost
+
 namespace Raylib_CsLo;
 
 /// <summary> Shader </summary>
@@ -13,6 +14,6 @@ public unsafe partial struct Shader
     public uint id;
 
     /// <summary> Shader locations array (RL_MAX_SHADER_LOCATIONS) </summary>
-    public int * locs;
+    public int* locs;
 
 }

@@ -70,11 +70,11 @@ public static unsafe class SpriteFontLoading
 
             BeginDrawing();
 
-            ClearBackground(RAYWHITE);
+            ClearBackground(Raywhite);
 
-            DrawTextEx(font1, msg1, fontPosition1, font1.baseSize, -3, WHITE);
-            DrawTextEx(font2, msg2, fontPosition2, font2.baseSize, -2, WHITE);
-            DrawTextEx(font3, msg3, fontPosition3, font3.baseSize, 2, WHITE);
+            DrawTextEx(font1, msg1, fontPosition1, font1.baseSize, -3, White);
+            DrawTextEx(font2, msg2, fontPosition2, font2.baseSize, -2, White);
+            DrawTextEx(font3, msg3, fontPosition3, font3.baseSize, 2, White);
 
             EndDrawing();
 

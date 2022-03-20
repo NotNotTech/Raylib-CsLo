@@ -38,7 +38,7 @@ public static unsafe class TextureDrawing
 
         InitWindow(screenWidth, screenHeight, "raylib [shaders] example - texture drawing");
 
-        Image imBlank = GenImageColor(1024, 1024, BLANK);
+        Image imBlank = GenImageColor(1024, 1024, Blank);
         Texture2D texture = LoadTextureFromImage(imBlank);  // Load blank texture to fill on shader
         UnloadImage(imBlank);
 
@@ -47,7 +47,7 @@ public static unsafe class TextureDrawing
 
         float time = 0.0f;
         int timeLoc = GetShaderLocation(shader, "uTime");
-        SetShaderValue(shader, timeLoc, &time, SHADER_UNIFORM_FLOAT);
+        SetShaderValue(shader, timeLoc, &time, ShaderUniformFloat);
 
         SetTargetFPS(60);               // Set our game to run at 60 frames-per-second
 
@@ -58,20 +58,20 @@ public static unsafe class TextureDrawing
             // Update
 
             time = (float)GetTime();
-            SetShaderValue(shader, timeLoc, &time, SHADER_UNIFORM_FLOAT);
+            SetShaderValue(shader, timeLoc, &time, ShaderUniformFloat);
 
 
             // Draw
 
             BeginDrawing();
 
-            ClearBackground(RAYWHITE);
+            ClearBackground(Raywhite);
 
             BeginShaderMode(shader);    // Enable our custom shader for next shapes/textures drawings
-            DrawTexture(texture, 0, 0, WHITE);  // Drawing BLANK texture, all magic happens on shader
+            DrawTexture(texture, 0, 0, White);  // Drawing BLANK texture, all magic happens on shader
             EndShaderMode();            // Disable our custom shader, return to default shader
 
-            DrawText("BACKGROUND is PAINTED and ANIMATED on SHADER!", 10, 10, 20, MAROON);
+            DrawText("BACKGROUND is PAINTED and ANIMATED on SHADER!", 10, 10, 20, Maroon);
 
             EndDrawing();
 

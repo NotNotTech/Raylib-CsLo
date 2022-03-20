@@ -11,39 +11,39 @@ namespace Raylib_CsLo;
 public enum GamepadButton
 {
     /// <summary> Unknown button, just for error checking </summary>
-    GAMEPAD_BUTTON_UNKNOWN = 0,
+    GamepadButtonUnknown = 0,
     /// <summary> Gamepad left DPAD up button </summary>
-    GAMEPAD_BUTTON_LEFT_FACE_UP = 1,
+    GamepadButtonLeftFaceUp = 1,
     /// <summary> Gamepad left DPAD right button </summary>
-    GAMEPAD_BUTTON_LEFT_FACE_RIGHT = 2,
+    GamepadButtonLeftFaceRight = 2,
     /// <summary> Gamepad left DPAD down button </summary>
-    GAMEPAD_BUTTON_LEFT_FACE_DOWN = 3,
+    GamepadButtonLeftFaceDown = 3,
     /// <summary> Gamepad left DPAD left button </summary>
-    GAMEPAD_BUTTON_LEFT_FACE_LEFT = 4,
+    GamepadButtonLeftFaceLeft = 4,
     /// <summary> Gamepad right button up (i.e. PS3: Triangle, Xbox: Y) </summary>
-    GAMEPAD_BUTTON_RIGHT_FACE_UP = 5,
+    GamepadButtonRightFaceUp = 5,
     /// <summary> Gamepad right button right (i.e. PS3: Square, Xbox: X) </summary>
-    GAMEPAD_BUTTON_RIGHT_FACE_RIGHT = 6,
+    GamepadButtonRightFaceRight = 6,
     /// <summary> Gamepad right button down (i.e. PS3: Cross, Xbox: A) </summary>
-    GAMEPAD_BUTTON_RIGHT_FACE_DOWN = 7,
+    GamepadButtonRightFaceDown = 7,
     /// <summary> Gamepad right button left (i.e. PS3: Circle, Xbox: B) </summary>
-    GAMEPAD_BUTTON_RIGHT_FACE_LEFT = 8,
+    GamepadButtonRightFaceLeft = 8,
     /// <summary> Gamepad top/back trigger left (first), it could be a trailing button </summary>
-    GAMEPAD_BUTTON_LEFT_TRIGGER_1 = 9,
+    GamepadButtonLeftTrigger1 = 9,
     /// <summary> Gamepad top/back trigger left (second), it could be a trailing button </summary>
-    GAMEPAD_BUTTON_LEFT_TRIGGER_2 = 10,
+    GamepadButtonLeftTrigger2 = 10,
     /// <summary> Gamepad top/back trigger right (one), it could be a trailing button </summary>
-    GAMEPAD_BUTTON_RIGHT_TRIGGER_1 = 11,
+    GamepadButtonRightTrigger1 = 11,
     /// <summary> Gamepad top/back trigger right (second), it could be a trailing button </summary>
-    GAMEPAD_BUTTON_RIGHT_TRIGGER_2 = 12,
+    GamepadButtonRightTrigger2 = 12,
     /// <summary> Gamepad center buttons, left one (i.e. PS3: Select) </summary>
-    GAMEPAD_BUTTON_MIDDLE_LEFT = 13,
+    GamepadButtonMiddleLeft = 13,
     /// <summary> Gamepad center buttons, middle one (i.e. PS3: PS, Xbox: XBOX) </summary>
-    GAMEPAD_BUTTON_MIDDLE = 14,
+    GamepadButtonMiddle = 14,
     /// <summary> Gamepad center buttons, right one (i.e. PS3: Start) </summary>
-    GAMEPAD_BUTTON_MIDDLE_RIGHT = 15,
+    GamepadButtonMiddleRight = 15,
     /// <summary> Gamepad joystick pressed button left </summary>
-    GAMEPAD_BUTTON_LEFT_THUMB = 16,
+    GamepadButtonLeftThumb = 16,
     /// <summary> Gamepad joystick pressed button right </summary>
-    GAMEPAD_BUTTON_RIGHT_THUMB = 17,
+    GamepadButtonRightThumb = 17,
 }

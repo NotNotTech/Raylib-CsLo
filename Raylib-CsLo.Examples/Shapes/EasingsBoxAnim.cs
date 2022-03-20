@@ -66,8 +66,8 @@ public static unsafe class EasingsBoxAnim
                 case 1:     // Scale box to an horizontal bar
                 {
                     framesCounter++;
-                    rec.height = EaseBounceOut(framesCounter, 100, -90, 120);
-                    rec.width = EaseBounceOut(framesCounter, 100, GetScreenWidth(), 120);
+                    rec.Height = EaseBounceOut(framesCounter, 100, -90, 120);
+                    rec.Width = EaseBounceOut(framesCounter, 100, GetScreenWidth(), 120);
 
                     if (framesCounter >= 120)
                     {
@@ -91,7 +91,7 @@ public static unsafe class EasingsBoxAnim
                 case 3:     // Increase bar size to fill all screen
                 {
                     framesCounter++;
-                    rec.height = EaseCircOut(framesCounter, 10, GetScreenWidth(), 120);
+                    rec.Height = EaseCircOut(framesCounter, 10, GetScreenWidth(), 120);
 
                     if (framesCounter >= 120)
                     {
@@ -117,7 +117,7 @@ public static unsafe class EasingsBoxAnim
             }
 
             // Reset animation at any moment
-            if (IsKeyPressed(KEY_SPACE))
+            if (IsKeyPressed(KeySpace))
             {
                 rec = new Rectangle(GetScreenWidth() / 2.0f, -100, 100, 100);
                 rotation = 0.0f;
@@ -131,11 +131,11 @@ public static unsafe class EasingsBoxAnim
 
             BeginDrawing();
 
-            ClearBackground(RAYWHITE);
+            ClearBackground(Raywhite);
 
-            DrawRectanglePro(rec, new Vector2(rec.width / 2, rec.height / 2), rotation, Fade(BLACK, alpha));
+            DrawRectanglePro(rec, new Vector2(rec.Width / 2, rec.Height / 2), rotation, Fade(Black, alpha));
 
-            DrawText("PRESS [SPACE] TO RESET BOX ANIMATION!", 10, GetScreenHeight() - 25, 20, LIGHTGRAY);
+            DrawText("PRESS [SPACE] TO RESET BOX ANIMATION!", 10, GetScreenHeight() - 25, 20, Lightgray);
 
             EndDrawing();
 

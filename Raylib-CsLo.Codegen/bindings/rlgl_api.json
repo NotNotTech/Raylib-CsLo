@@ -25,34 +25,9 @@
           "description": "Vertex colors (RGBA - 4 components per vertex) (shader-location = 3)"
         },
         {
-          "type": "#if defined(GRAPHICS_API_OPENGL_11) || defined(GRAPHICS_API_OPENunsigned int *",
-          "name": "vaoId",
-          "description": "OpenGL Vertex Array Object id"
-        },
-        {
           "type": "unsigned int *",
           "name": "indices",
           "description": "Vertex indices (in case vertex data comes indexed) (6 indices per quad)"
-        },
-        {
-          "type": "#endif",
-          "name": "vertexBuffer",
-          "description": "Dynamic buffer(s) for vertex data"
-        },
-        {
-          "type": "#if defined(GRAPHICS_API_OPENGL_ES2)",
-          "name": "vboId[4]",
-          "description": "OpenGL Vertex Buffer Objects id (4 types of vertex data)"
-        },
-        {
-          "type": "unsigned short *",
-          "name": "indices",
-          "description": "Vertex indices (in case vertex data comes indexed) (6 indices per quad)"
-        },
-        {
-          "type": "#endif",
-          "name": "modelview",
-          "description": "Modelview matrix for this draw -> Using RLGL.modelview by default"
         },
         {
           "type": "unsigned int",
@@ -159,19 +134,14 @@
       "description": "",
       "fields": [
         {
-          "type": "rlRenderBatch *",
+          "type": "rlRenderBatch*",
           "name": "currentBatch",
           "description": "Current render batch"
         },
         {
-          "type": "rlRenderBatch",
+          "type": "rlRenderBatch*",
           "name": "defaultBatch",
           "description": "Default internal render batch"
-        },
-        {
-          "type": "struct {",
-          "name": "vertexCounter",
-          "description": "Current active render batch vertex counter (generic, used for all batches)"
         },
         {
           "type": "int",

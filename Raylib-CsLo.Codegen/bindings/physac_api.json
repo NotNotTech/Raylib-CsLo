@@ -68,7 +68,7 @@
       "description": "",
       "fields": [
         {
-          "type": "PhysicsShapeType",
+          "type": "PhysicsShapeType*",
           "name": "type",
           "description": "Shape type (circle or polygon)"
         },
@@ -189,7 +189,7 @@
           "description": "Physics rotation constraint"
         },
         {
-          "type": "PhysicsShape",
+          "type": "PhysicsShape*",
           "name": "shape",
           "description": "Physics body shape information (type, radius, vertices, transform)"
         }
@@ -443,7 +443,7 @@
     {
       "name": "CreatePhysicsBodyCircle",
       "description": "Creates a new circle physics body with generic parameters",
-      "returnType": "PhysicsBody",
+      "returnType": "PhysicsBody*",
       "params": [
         {
           "type": "Vector2",
@@ -462,7 +462,7 @@
     {
       "name": "CreatePhysicsBodyRectangle",
       "description": "Creates a new rectangle physics body with generic parameters",
-      "returnType": "PhysicsBody",
+      "returnType": "PhysicsBody*",
       "params": [
         {
           "type": "Vector2",
@@ -583,7 +583,7 @@
     {
       "name": "GetPhysicsBody",
       "description": "Returns a physics body of the bodies pool at a specific index",
-      "returnType": "PhysicsBody",
+      "returnType": "PhysicsBody*",
       "params": [
         {
           "type": "int",

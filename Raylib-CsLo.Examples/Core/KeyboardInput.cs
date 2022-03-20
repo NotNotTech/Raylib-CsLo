@@ -37,22 +37,22 @@ public static class KeyboardInput
         {
             // Update
 
-            if (IsKeyDown(KEY_RIGHT))
+            if (IsKeyDown(KeyRight))
             {
                 ballPosition.X += 2.0f;
             }
 
-            if (IsKeyDown(KEY_LEFT))
+            if (IsKeyDown(KeyLeft))
             {
                 ballPosition.X -= 2.0f;
             }
 
-            if (IsKeyDown(KEY_UP))
+            if (IsKeyDown(KeyUp))
             {
                 ballPosition.Y -= 2.0f;
             }
 
-            if (IsKeyDown(KEY_DOWN))
+            if (IsKeyDown(KeyDown))
             {
                 ballPosition.Y += 2.0f;
             }
@@ -62,11 +62,11 @@ public static class KeyboardInput
 
             BeginDrawing();
 
-            ClearBackground(RAYWHITE);
+            ClearBackground(Raywhite);
 
-            DrawText("move the ball with arrow keys", 10, 10, 20, DARKGRAY);
+            DrawText("move the ball with arrow keys", 10, 10, 20, Darkgray);
 
-            DrawCircleV(ballPosition, 50, MAROON);
+            DrawCircleV(ballPosition, 50, Maroon);
 
             EndDrawing();
 

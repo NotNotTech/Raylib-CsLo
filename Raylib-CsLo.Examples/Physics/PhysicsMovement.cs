@@ -33,7 +33,7 @@ public static unsafe class PhysicsMovement
         const int screenWidth = 800;
         const int screenHeight = 450;
 
-        SetConfigFlags(FLAG_MSAA_4X_HINT);
+        SetConfigFlags(FlagMsaa4xHint);
         InitWindow(screenWidth, screenHeight, "raylib [physac] example - physics movement");
 
         // Physac logo drawing position
@@ -44,22 +44,22 @@ public static unsafe class PhysicsMovement
         InitPhysics();
 
         // Create floor and walls rectangle physics body
-        PhysicsBodyData* floor = CreatePhysicsBodyRectangle(new Vector2(screenWidth / 2.0f, screenHeight), screenWidth, 100, 10);
-        PhysicsBodyData* platformLeft = CreatePhysicsBodyRectangle(new Vector2(screenWidth * 0.25f, screenHeight * 0.6f), screenWidth * 0.25f, 10, 10);
-        PhysicsBodyData* platformRight = CreatePhysicsBodyRectangle(new Vector2(screenWidth * 0.75f, screenHeight * 0.6f), screenWidth * 0.25f, 10, 10);
-        PhysicsBodyData* wallLeft = CreatePhysicsBodyRectangle(new Vector2(-5, screenHeight / 2.0f), 10, screenHeight, 10);
-        PhysicsBodyData* wallRight = CreatePhysicsBodyRectangle(new Vector2((float)screenWidth + 5, screenHeight / 2.0f), 10, screenHeight, 10);
+        PhysicsBodyData floor = CreatePhysicsBodyRectangle(new Vector2(screenWidth / 2.0f, screenHeight), screenWidth, 100, 10);
+        PhysicsBodyData platformLeft = CreatePhysicsBodyRectangle(new Vector2(screenWidth * 0.25f, screenHeight * 0.6f), screenWidth * 0.25f, 10, 10);
+        PhysicsBodyData platformRight = CreatePhysicsBodyRectangle(new Vector2(screenWidth * 0.75f, screenHeight * 0.6f), screenWidth * 0.25f, 10, 10);
+        PhysicsBodyData wallLeft = CreatePhysicsBodyRectangle(new Vector2(-5, screenHeight / 2.0f), 10, screenHeight, 10);
+        PhysicsBodyData wallRight = CreatePhysicsBodyRectangle(new Vector2((float)screenWidth + 5, screenHeight / 2.0f), 10, screenHeight, 10);
 
         // Disable dynamics to floor and walls physics bodies
-        floor->enabled = false;
-        platformLeft->enabled = false;
-        platformRight->enabled = false;
-        wallLeft->enabled = false;
-        wallRight->enabled = false;
+        floor.enabled = false;
+        platformLeft.enabled = false;
+        platformRight.enabled = false;
+        wallLeft.enabled = false;
+        wallRight.enabled = false;
 
         // Create movement physics body
-        PhysicsBodyData* body = CreatePhysicsBodyRectangle(new Vector2(screenWidth / 2.0f, screenHeight / 2.0f), 50, 50, 1);
-        body->freezeOrient = true;      // Constrain body rotation to avoid little collision torque amounts
+        PhysicsBodyData body = CreatePhysicsBodyRectangle(new Vector2(screenWidth / 2.0f, screenHeight / 2.0f), 50, 50, 1);
+        body.freezeOrient = true;      // Constrain body rotation to avoid little collision torque amounts
 
         SetTargetFPS(60);               // Set our game to run at 60 frames-per-second
 
@@ -71,28 +71,28 @@ public static unsafe class PhysicsMovement
 
             UpdatePhysics();              // Update physics system
 
-            if (IsKeyPressed(KEY_R))      // Reset physics input
+            if (IsKeyPressed(KeyR))      // Reset physics input
             {
                 // Reset movement physics body position, velocity and rotation
-                body->position = new Vector2(screenWidth / 2.0f, screenHeight / 2.0f);
-                body->velocity = new Vector2(0, 0);
+                body.position = new Vector2(screenWidth / 2.0f, screenHeight / 2.0f);
+                body.velocity = new Vector2(0, 0);
                 SetPhysicsBodyRotation(body, 0);
             }
 
             // Horizontal movement input
-            if (IsKeyDown(KEY_RIGHT))
+            if (IsKeyDown(KeyRight))
             {
-                body->velocity.X = VELOCITY;
+                body.velocity.X = VELOCITY;
             }
-            else if (IsKeyDown(KEY_LEFT))
+            else if (IsKeyDown(KeyLeft))
             {
-                body->velocity.X = -VELOCITY;
+                body.velocity.X = -VELOCITY;
             }
 
             // Vertical movement input checking if player physics body is grounded
-            if (IsKeyDown(KEY_UP) && body->isGrounded)
+            if (IsKeyDown(KeyUp) && body.isGrounded)
             {
-                body->velocity.Y = -VELOCITY * 4;
+                body.velocity.Y = -VELOCITY * 4;
             }
 
 
@@ -100,7 +100,7 @@ public static unsafe class PhysicsMovement
 
             BeginDrawing();
 
-            ClearBackground(BLACK);
+            ClearBackground(Black);
 
             DrawFPS(screenWidth - 90, screenHeight - 30);
 
@@ -120,15 +120,15 @@ public static unsafe class PhysicsMovement
                     int jj = ((j + 1) < vertexCount) ? (j + 1) : 0;   // Get next vertex or first to close the shape
                     Vector2 vertexB = GetPhysicsShapeVertex(body, jj);
 
-                    DrawLineV(vertexA, vertexB, GREEN);     // Draw a line between two vertex positions
+                    DrawLineV(vertexA, vertexB, Green);     // Draw a line between two vertex positions
                 }
             }
 
-            DrawText("Use 'ARROWS' to move player", 10, 10, 10, WHITE);
-            DrawText("Press 'R' to reset example", 10, 30, 10, WHITE);
+            DrawText("Use 'ARROWS' to move player", 10, 10, 10, White);
+            DrawText("Press 'R' to reset example", 10, 30, 10, White);
 
-            DrawText("Physac", logoX, logoY, 30, WHITE);
-            DrawText("Powered by", logoX + 50, logoY - 7, 10, WHITE);
+            DrawText("Physac", logoX, logoY, 30, White);
+            DrawText("Powered by", logoX + 50, logoY - 7, 10, White);
 
             EndDrawing();
 

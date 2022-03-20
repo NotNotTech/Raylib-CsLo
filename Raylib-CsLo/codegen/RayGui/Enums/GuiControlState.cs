@@ -11,11 +11,11 @@ namespace Raylib_CsLo;
 public enum GuiControlState
 {
     /// <summary>  </summary>
-    GUI_STATE_NORMAL = 0,
+    GuiStateNormal = 0,
     /// <summary>  </summary>
-    GUI_STATE_FOCUSED = 1,
+    GuiStateFocused = 1,
     /// <summary>  </summary>
-    GUI_STATE_PRESSED = 2,
+    GuiStatePressed = 2,
     /// <summary>  </summary>
-    GUI_STATE_DISABLED = 3,
+    GuiStateDisabled = 3,
 }

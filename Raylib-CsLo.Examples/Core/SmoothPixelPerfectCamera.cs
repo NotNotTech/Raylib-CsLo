@@ -42,7 +42,7 @@ public static unsafe class SmoothPixelPerfectCamera
         Camera2D screenSpaceCamera = new(); // Smoothing camera
         screenSpaceCamera.zoom = 1.0f;
 
-        RenderTexture2D target = LoadRenderTexture(virtualScreenWidth, virtualScreenHeight); // This is where we'll draw all our objects.
+        RenderTexture target = LoadRenderTexture(virtualScreenWidth, virtualScreenHeight); // This is where we'll draw all our objects.
 
         Rectangle rec01 = new(70.0f, 35.0f, 20.0f, 20.0f);
         Rectangle rec02 = new(90.0f, 55.0f, 30.0f, 10.0f);
@@ -86,24 +86,24 @@ public static unsafe class SmoothPixelPerfectCamera
             // Draw
 
             BeginTextureMode(target);
-            ClearBackground(RAYWHITE);
+            ClearBackground(Raywhite);
 
             BeginMode2D(worldSpaceCamera);
-            DrawRectanglePro(rec01, origin, rotation, BLACK);
-            DrawRectanglePro(rec02, origin, -rotation, RED);
-            DrawRectanglePro(rec03, origin, rotation + 45.0f, BLUE);
+            DrawRectanglePro(rec01, origin, rotation, Black);
+            DrawRectanglePro(rec02, origin, -rotation, Red);
+            DrawRectanglePro(rec03, origin, rotation + 45.0f, Blue);
             EndMode2D();
             EndTextureMode();
 
             BeginDrawing();
-            ClearBackground(RED);
+            ClearBackground(Red);
 
             BeginMode2D(screenSpaceCamera);
-            DrawTexturePro(target.texture, sourceRec, destRec, origin, 0.0f, WHITE);
+            DrawTexturePro(target.texture, sourceRec, destRec, origin, 0.0f, White);
             EndMode2D();
 
-            DrawText(TextFormat("Screen resolution: %ix%i", screenWidth, screenHeight), 10, 10, 20, DARKBLUE);
-            DrawText(TextFormat("World resolution: %ix%i", virtualScreenWidth, virtualScreenHeight), 10, 40, 20, DARKGREEN);
+            DrawText(TextFormat("Screen resolution: %ix%i", screenWidth, screenHeight), 10, 10, 20, Darkblue);
+            DrawText(TextFormat("World resolution: %ix%i", virtualScreenWidth, virtualScreenHeight), 10, 40, 20, Darkgreen);
             DrawFPS(GetScreenWidth() - 95, 10);
             EndDrawing();
 

@@ -8,14 +8,14 @@
 namespace Raylib_CsLo;
 
 /// <summary> Shader attribute data types </summary>
-public enum rlShaderAttributeDataType
+public enum RlShaderAttributeDataType
 {
     /// <summary> Shader attribute type: float </summary>
-    RL_SHADER_ATTRIB_FLOAT = 0,
+    RlShaderAttribFloat = 0,
     /// <summary> Shader attribute type: vec2 (2 float) </summary>
-    RL_SHADER_ATTRIB_VEC2 = 1,
+    RlShaderAttribVec2 = 1,
     /// <summary> Shader attribute type: vec3 (3 float) </summary>
-    RL_SHADER_ATTRIB_VEC3 = 2,
+    RlShaderAttribVec3 = 2,
     /// <summary> Shader attribute type: vec4 (4 float) </summary>
-    RL_SHADER_ATTRIB_VEC4 = 3,
+    RlShaderAttribVec4 = 3,
 }

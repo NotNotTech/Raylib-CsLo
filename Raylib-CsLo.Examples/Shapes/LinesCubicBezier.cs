@@ -26,7 +26,7 @@ public static unsafe class LinesCubicBezier
         const int screenWidth = 800;
         const int screenHeight = 450;
 
-        SetConfigFlags(FLAG_MSAA_4X_HINT);
+        SetConfigFlags(FlagMsaa4xHint);
         InitWindow(screenWidth, screenHeight, "raylib [shapes] example - cubic-bezier lines");
 
         Vector2 start = new(0, 0);
@@ -40,11 +40,11 @@ public static unsafe class LinesCubicBezier
         {
             // Update
 
-            if (IsMouseButtonDown(MOUSE_BUTTON_LEFT))
+            if (IsMouseButtonDown(MouseButtonLeft))
             {
                 start = GetMousePosition();
             }
-            else if (IsMouseButtonDown(MOUSE_BUTTON_RIGHT))
+            else if (IsMouseButtonDown(MouseButtonRight))
             {
                 end = GetMousePosition();
             }
@@ -54,11 +54,11 @@ public static unsafe class LinesCubicBezier
 
             BeginDrawing();
 
-            ClearBackground(RAYWHITE);
+            ClearBackground(Raywhite);
 
-            DrawText("USE MOUSE LEFT-RIGHT CLICK to DEFINE LINE START and END POINTS", 15, 20, 20, GRAY);
+            DrawText("USE MOUSE LEFT-RIGHT CLICK to DEFINE LINE START and END POINTS", 15, 20, 20, Gray);
 
-            DrawLineBezier(start, end, 2.0f, RED);
+            DrawLineBezier(start, end, 2.0f, Red);
 
             EndDrawing();
 

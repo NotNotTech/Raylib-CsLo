@@ -37,17 +37,17 @@ public static unsafe class ModelShader
         const int screenWidth = 800;
         const int screenHeight = 450;
 
-        SetConfigFlags(FLAG_MSAA_4X_HINT);      // Enable Multi Sampling Anti Aliasing 4x (if available)
+        SetConfigFlags(FlagMsaa4xHint);      // Enable Multi Sampling Anti Aliasing 4x (if available)
 
         InitWindow(screenWidth, screenHeight, "raylib [shaders] example - model shader");
 
         // Define the camera to look into our 3d world
-        Camera camera = new();
+        Camera3D camera = new();
         camera.position = new Vector3(4.0f, 4.0f, 4.0f);
         camera.target = new Vector3(0.0f, 1.0f, -1.0f);
         camera.up = new Vector3(0.0f, 1.0f, 0.0f);
         camera.fovy = 45.0f;
-        camera.Projection = CAMERA_PERSPECTIVE;
+        camera.Projection = CameraPerspective;
 
         Model model = LoadModel("resources/models/watermill.obj");                   // Load OBJ model
         Texture2D texture = LoadTexture("resources/models/watermill_diffuse.png");   // Load model texture
@@ -57,11 +57,11 @@ public static unsafe class ModelShader
         Shader shader = LoadFShader(TextFormat("resources/shaders/glsl%i/grayscale.fs", GLSL_VERSION));
 
         model.materials[0].shader = shader;                     // Set shader effect to 3d model
-        model.materials[0].maps[(int)MATERIAL_MAP_ALBEDO].texture = texture; // Bind texture to model
+        model.materials[0].maps[(int)MaterialMapAlbedo].texture = texture; // Bind texture to model
 
         Vector3 position = new(0.0f, 0.0f, 0.0f);    // Set model position
 
-        SetCameraMode(ref camera, CAMERA_FREE);         // Set an orbital camera mode
+        SetCameraMode(camera, CameraFree);         // Set an orbital camera mode
 
         SetTargetFPS(60);                           // Set our game to run at 60 frames-per-second
 
@@ -78,17 +78,17 @@ public static unsafe class ModelShader
 
             BeginDrawing();
 
-            ClearBackground(RAYWHITE);
+            ClearBackground(Raywhite);
 
-            BeginMode3D(ref camera);
+            BeginMode3D(camera);
 
-            DrawModel(model, position, 0.2f, WHITE);   // Draw 3d model with texture
+            DrawModel(model, position, 0.2f, White);   // Draw 3d model with texture
 
             DrawGrid(10, 1.0f);     // Draw a grid
 
             EndMode3D();
 
-            DrawText("(c) Watermill 3D model by Alberto Cano", screenWidth - 210, screenHeight - 20, 10, GRAY);
+            DrawText("(c) Watermill 3D model by Alberto Cano", screenWidth - 210, screenHeight - 20, 10, Gray);
 
             DrawFPS(10, 10);
 

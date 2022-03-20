@@ -50,7 +50,7 @@ public static unsafe class SdfFonts
 
         // Loading font data from memory data
         // Parameters > font size: 16, no glyphs array provided (0), glyphs count: 95 (autogenerate chars array)
-        fontDefault.glyphs = Raylib.LoadFontData(fileData, (int)fileSize, 16, (int*)0, 95, (int)FONT_DEFAULT);
+        fontDefault.glyphs = Raylib.LoadFontData(fileData, (int)fileSize, 16, (int*)0, 95, (int)FontDefault);
         // Parameters > glyphs count: 95, font size: 16, glyphs padding in image: 4 px, pack method: 0 (default)
         Image atlas = GenImageFontAtlas(fontDefault.glyphs, &fontDefault.recs, 95, 16, 4, 0);
         fontDefault.texture = LoadTextureFromImage(atlas);
@@ -61,7 +61,7 @@ public static unsafe class SdfFonts
         fontSDF.baseSize = 16;
         fontSDF.glyphCount = 95;
         // Parameters > font size: 16, no glyphs array provided (0), glyphs count: 0 (defaults to 95)
-        fontSDF.glyphs = Raylib.LoadFontData(fileData, (int)fileSize, 16, (int*)0, 0, (int)FONT_SDF);
+        fontSDF.glyphs = Raylib.LoadFontData(fileData, (int)fileSize, 16, (int*)0, 0, (int)FontSdf);
         // Parameters > glyphs count: 95, font size: 16, glyphs padding in image: 0 px, pack method: 1 (Skyline algorythm)
         atlas = GenImageFontAtlas(fontSDF.glyphs, &fontSDF.recs, 95, 16, 0, 1);
         fontSDF.texture = LoadTextureFromImage(atlas);
@@ -71,7 +71,7 @@ public static unsafe class SdfFonts
 
         // Load SDF required shader (we use default vertex shader)
         Shader shader = LoadFShader(TextFormat("resources/shaders/glsl%i/sdf.fs", GLSL_VERSION));
-        SetTextureFilter(fontSDF.texture, TEXTURE_FILTER_BILINEAR);    // Required for SDF font
+        SetTextureFilter(fontSDF.texture, TextureFilterBilinear);    // Required for SDF font
 
         Vector2 fontPosition = new(40, (screenHeight / 2.0f) - 50);
 
@@ -93,7 +93,7 @@ public static unsafe class SdfFonts
             }
 
             int currentFont;
-            if (IsKeyDown(KEY_SPACE))
+            if (IsKeyDown(KeySpace))
             {
                 currentFont = 1;
             }
@@ -120,37 +120,37 @@ public static unsafe class SdfFonts
 
             BeginDrawing();
 
-            ClearBackground(RAYWHITE);
+            ClearBackground(Raywhite);
 
             if (currentFont == 1)
             {
                 // NOTE: SDF fonts require a custom SDf shader to compute fragment color
                 BeginShaderMode(shader);    // Activate SDF font shader
-                DrawTextEx(fontSDF, msg, fontPosition, fontSize, 0, BLACK);
+                DrawTextEx(fontSDF, msg, fontPosition, fontSize, 0, Black);
                 EndShaderMode();            // Activate our default shader for next drawings
 
-                DrawTexture(fontSDF.texture, 10, 10, BLACK);
+                DrawTexture(fontSDF.texture, 10, 10, Black);
             }
             else
             {
-                DrawTextEx(fontDefault, msg, fontPosition, fontSize, 0, BLACK);
-                DrawTexture(fontDefault.texture, 10, 10, BLACK);
+                DrawTextEx(fontDefault, msg, fontPosition, fontSize, 0, Black);
+                DrawTexture(fontDefault.texture, 10, 10, Black);
             }
 
             if (currentFont == 1)
             {
-                DrawText("SDF!", 320, 20, 80, RED);
+                DrawText("SDF!", 320, 20, 80, Red);
             }
             else
             {
-                DrawText("default font", 315, 40, 30, GRAY);
+                DrawText("default font", 315, 40, 30, Gray);
             }
 
-            DrawText("FONT SIZE: 16.0", GetScreenWidth() - 240, 20, 20, DARKGRAY);
-            DrawText(TextFormat("RENDER SIZE: %02.02f", fontSize), GetScreenWidth() - 240, 50, 20, DARKGRAY);
-            DrawText("Use MOUSE WHEEL to SCALE TEXT!", GetScreenWidth() - 240, 90, 10, DARKGRAY);
+            DrawText("FONT SIZE: 16.0", GetScreenWidth() - 240, 20, 20, Darkgray);
+            DrawText(TextFormat("RENDER SIZE: %02.02f", fontSize), GetScreenWidth() - 240, 50, 20, Darkgray);
+            DrawText("Use MOUSE WHEEL to SCALE TEXT!", GetScreenWidth() - 240, 90, 10, Darkgray);
 
-            DrawText("HOLD SPACE to USE SDF FONT VERSION!", 340, GetScreenHeight() - 30, 20, MAROON);
+            DrawText("HOLD SPACE to USE SDF FONT VERSION!", 340, GetScreenHeight() - 30, 20, Maroon);
 
             EndDrawing();
 

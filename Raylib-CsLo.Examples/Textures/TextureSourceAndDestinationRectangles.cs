@@ -61,19 +61,19 @@ public static unsafe class TextureSourceAndDestinationRectangles
 
             BeginDrawing();
 
-            ClearBackground(RAYWHITE);
+            ClearBackground(Raywhite);
 
             // NOTE: Using DrawTexturePro() we can easily rotate and scale the part of the texture we draw
             // sourceRec defines the part of the texture we use for drawing
             // destRec defines the rectangle where our texture part will fit (scaling it to fit)
             // origin defines the point of the texture used as reference for rotation and scaling
             // rotation defines the texture rotation (using origin as rotation point)
-            DrawTexturePro(scarfy, sourceRec, destRec, origin, rotation, WHITE);
+            DrawTexturePro(scarfy, sourceRec, destRec, origin, rotation, White);
 
-            DrawLine((int)destRec.X, 0, (int)destRec.X, screenHeight, GRAY);
-            DrawLine(0, (int)destRec.Y, screenWidth, (int)destRec.Y, GRAY);
+            DrawLine((int)destRec.X, 0, (int)destRec.X, screenHeight, Gray);
+            DrawLine(0, (int)destRec.Y, screenWidth, (int)destRec.Y, Gray);
 
-            DrawText("(c) Scarfy sprite by Eiden Marsal", screenWidth - 200, screenHeight - 20, 10, GRAY);
+            DrawText("(c) Scarfy sprite by Eiden Marsal", screenWidth - 200, screenHeight - 20, 10, Gray);
 
             EndDrawing();
 

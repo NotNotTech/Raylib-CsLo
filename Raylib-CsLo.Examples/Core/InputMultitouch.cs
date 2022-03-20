@@ -50,7 +50,7 @@ public static class InputMultitouch
 
             BeginDrawing();
 
-            ClearBackground(RAYWHITE);
+            ClearBackground(Raywhite);
 
             for (int i = 0; i < MAX_TOUCH_POINTS; ++i)
             {
@@ -58,12 +58,12 @@ public static class InputMultitouch
                 if ((touchPositions[i].X > 0) && (touchPositions[i].Y > 0))
                 {
                     // Draw circle and touch index number
-                    DrawCircleV(touchPositions[i], 34, ORANGE);
-                    DrawText(TextFormat("%d", i), (int)touchPositions[i].X - 10, (int)touchPositions[i].Y - 70, 40, BLACK);
+                    DrawCircleV(touchPositions[i], 34, Orange);
+                    DrawText(TextFormat("%d", i), (int)touchPositions[i].X - 10, (int)touchPositions[i].Y - 70, 40, Black);
                 }
             }
 
-            DrawText("touch the screen at multiple locations to get multiple balls", 10, 10, 20, DARKGRAY);
+            DrawText("touch the screen at multiple locations to get multiple balls", 10, 10, 20, Darkgray);
 
             EndDrawing();
 

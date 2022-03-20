@@ -11,11 +11,11 @@ namespace Raylib_CsLo;
 public enum GuiTextBoxProperty
 {
     /// <summary>  </summary>
-    TEXT_INNER_PADDING = 16,
+    TextInnerPadding = 16,
     /// <summary>  </summary>
-    TEXT_LINES_PADDING = 17,
+    TextLinesPadding = 17,
     /// <summary>  </summary>
-    COLOR_SELECTED_FG = 18,
+    ColorSelectedFg = 18,
     /// <summary>  </summary>
-    COLOR_SELECTED_BG = 19,
+    ColorSelectedBg = 19,
 }

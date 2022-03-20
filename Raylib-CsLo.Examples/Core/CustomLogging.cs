@@ -60,25 +60,25 @@ public static unsafe class CustomLogging
 
         switch ((TraceLogLevel)msgType)
         {
-            case LOG_INFO:
+            case LogInfo:
                 Console.Write($"[INFO] {msgType} :");
                 break;
-            case LOG_ERROR:
+            case LogError:
                 Console.Write($"[ERROR] {msgType} :");
                 break;
-            case LOG_WARNING:
+            case LogWarning:
                 Console.Write($"[WARN] {msgType} :");
                 break;
-            case LOG_DEBUG:
+            case LogDebug:
                 Console.Write($"[DEBUG] {msgType} :");
                 break;
-            case LOG_ALL:
+            case LogAll:
                 break;
-            case LOG_TRACE:
+            case LogTrace:
                 break;
-            case LOG_FATAL:
+            case LogFatal:
                 break;
-            case LOG_NONE:
+            case LogNone:
                 break;
             default:
                 Console.Write($"[???] {msgType} :");
@@ -142,9 +142,9 @@ public static unsafe class CustomLogging
 
             BeginDrawing();
 
-            ClearBackground(RAYWHITE);
+            ClearBackground(Raywhite);
 
-            DrawText("Check out the console output to see the custom logger in action!", 60, 200, 20, LIGHTGRAY);
+            DrawText("Check out the console output to see the custom logger in action!", 60, 200, 20, Lightgray);
 
             EndDrawing();
 

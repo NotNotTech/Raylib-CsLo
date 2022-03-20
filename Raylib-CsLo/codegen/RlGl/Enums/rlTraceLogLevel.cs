@@ -8,22 +8,22 @@
 namespace Raylib_CsLo;
 
 /// <summary> Trace log level </summary>
-public enum rlTraceLogLevel
+public enum RlTraceLogLevel
 {
     /// <summary> Display all logs </summary>
-    RL_LOG_ALL = 0,
+    RlLogAll = 0,
     /// <summary> Trace logging, intended for internal use only </summary>
-    RL_LOG_TRACE = 1,
+    RlLogTrace = 1,
     /// <summary> Debug logging, used for internal debugging, it should be disabled on release builds </summary>
-    RL_LOG_DEBUG = 2,
+    RlLogDebug = 2,
     /// <summary> Info logging, used for program execution info </summary>
-    RL_LOG_INFO = 3,
+    RlLogInfo = 3,
     /// <summary> Warning logging, used on recoverable failures </summary>
-    RL_LOG_WARNING = 4,
+    RlLogWarning = 4,
     /// <summary> Error logging, used on unrecoverable failures </summary>
-    RL_LOG_ERROR = 5,
+    RlLogError = 5,
     /// <summary> Fatal logging, used to abort program: exit(EXIT_FAILURE) </summary>
-    RL_LOG_FATAL = 6,
+    RlLogFatal = 6,
     /// <summary> Disable logging </summary>
-    RL_LOG_NONE = 7,
+    RlLogNone = 7,
 }

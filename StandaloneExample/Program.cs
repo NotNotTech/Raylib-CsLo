@@ -13,9 +13,9 @@ public static class Program
         while (!Raylib.WindowShouldClose()) // Detect window close button or ESC key
         {
             Raylib.BeginDrawing();
-            Raylib.ClearBackground(Raylib.SKYBLUE);
+            Raylib.ClearBackground(Raylib.Skyblue);
             Raylib.DrawFPS(10, 10);
-            Raylib.DrawText("Raylib is easy!!!", 640, 360, 50, Raylib.RED);
+            Raylib.DrawText("Raylib is easy!!!", 640, 360, 50, Raylib.Red);
             Raylib.EndDrawing();
         }
         Raylib.CloseWindow();

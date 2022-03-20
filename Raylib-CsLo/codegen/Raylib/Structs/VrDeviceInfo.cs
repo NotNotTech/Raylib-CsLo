@@ -4,6 +4,7 @@
 // The code and 100+ examples are here! https://github.com/NotNotTech/Raylib-CsLo
 
 // Warning This file is auto generated and changes will be lost
+
 namespace Raylib_CsLo;
 
 /// <summary> VrDeviceInfo, Head-Mounted-Display device parameters </summary>
@@ -34,9 +35,9 @@ public unsafe partial struct VrDeviceInfo
     public float interpupillaryDistance;
 
     /// <summary> Lens distortion constant parameters </summary>
-    public float lensDistortionValues[4];
+    public fixed float lensDistortionValues[4];
 
     /// <summary> Chromatic aberration correction parameters </summary>
-    public float chromaAbCorrection[4];
+    public fixed float chromaAbCorrection[4];
 
 }

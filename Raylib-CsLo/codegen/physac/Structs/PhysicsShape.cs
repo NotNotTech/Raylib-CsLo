@@ -4,16 +4,17 @@
 // The code and 100+ examples are here! https://github.com/NotNotTech/Raylib-CsLo
 
 // Warning This file is auto generated and changes will be lost
+
 namespace Raylib_CsLo;
 
 /// <summary>  </summary>
 public unsafe partial struct PhysicsShape
 {
     /// <summary> Shape type (circle or polygon) </summary>
-    public PhysicsShapeType type;
+    public PhysicsShape* type;
 
     /// <summary> Shape physics body data pointer </summary>
-    public PhysicsBodyData* body;
+    public PhysicsBodyData body;
 
     /// <summary> Shape vertices data (used for polygon shapes) </summary>
     public PhysicsVertexData vertexData;

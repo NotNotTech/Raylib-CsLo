@@ -34,9 +34,9 @@ public static unsafe class MousePainting
 
         // Colours to choose from
         Color[] colors = new Color[MAX_COLORS_COUNT] {
-        RAYWHITE, YELLOW, GOLD, ORANGE, PINK, RED, MAROON, GREEN, LIME, DARKGREEN,
-        SKYBLUE, BLUE, DARKBLUE, PURPLE, VIOLET, DARKPURPLE, BEIGE, BROWN, DARKBROWN,
-        LIGHTGRAY, GRAY, DARKGRAY, BLACK };
+        Raywhite, Yellow, Gold, Orange, Pink, Red, Maroon, Green, Lime, Darkgreen,
+        Skyblue, Blue, Darkblue, Purple, Violet, Darkpurple, Beige, Brown, Darkbrown,
+        Lightgray, Gray, Darkgray, Black };
 
         // Define colorsRecs data (for every rectangle)
         Rectangle[] colorsRecs = new Rectangle[MAX_COLORS_COUNT];
@@ -45,8 +45,8 @@ public static unsafe class MousePainting
         {
             colorsRecs[i].X = 10 + (30.0f * i) + (2 * i);
             colorsRecs[i].Y = 10;
-            colorsRecs[i].width = 30;
-            colorsRecs[i].height = 30;
+            colorsRecs[i].Width = 30;
+            colorsRecs[i].Height = 30;
         }
 
         int colorSelected = 0;
@@ -60,7 +60,7 @@ public static unsafe class MousePainting
         int saveMessageCounter = 0;
 
         // Create a RenderTexture2D to use as a canvas
-        RenderTexture2D target = LoadRenderTexture(screenWidth, screenHeight);
+        RenderTexture target = LoadRenderTexture(screenWidth, screenHeight);
 
         // Clear render texture before entering the game loop
         BeginTextureMode(target);
@@ -78,11 +78,11 @@ public static unsafe class MousePainting
             Vector2 mousePos = GetMousePosition();
 
             // Move between colors with keys
-            if (IsKeyPressed(KEY_RIGHT))
+            if (IsKeyPressed(KeyRight))
             {
                 colorSelected++;
             }
-            else if (IsKeyPressed(KEY_LEFT))
+            else if (IsKeyPressed(KeyLeft))
             {
                 colorSelected--;
             }
@@ -110,7 +110,7 @@ public static unsafe class MousePainting
                 }
             }
 
-            if ((colorMouseHover >= 0) && IsMouseButtonPressed(MOUSE_BUTTON_LEFT))
+            if ((colorMouseHover >= 0) && IsMouseButtonPressed(MouseButtonLeft))
             {
                 colorSelected = colorMouseHover;
                 colorSelectedPrev = colorSelected;
@@ -128,7 +128,7 @@ public static unsafe class MousePainting
                 brushSize = 50;
             }
 
-            if (IsKeyPressed(KEY_C))
+            if (IsKeyPressed(KeyC))
             {
                 // Clear render texture to clear color
                 BeginTextureMode(target);
@@ -136,7 +136,7 @@ public static unsafe class MousePainting
                 EndTextureMode();
             }
 
-            if (IsMouseButtonDown(MOUSE_BUTTON_LEFT) || (GetGestureDetected() == GESTURE_DRAG))
+            if (IsMouseButtonDown(MouseButtonLeft) || (GetGestureDetected() == GestureDrag))
             {
                 // Paint circle into render texture
                 // NOTE: To avoid discontinuous circles, we could store
@@ -150,7 +150,7 @@ public static unsafe class MousePainting
                 EndTextureMode();
             }
 
-            if (IsMouseButtonDown(MOUSE_BUTTON_RIGHT))
+            if (IsMouseButtonDown(MouseButtonRight))
             {
                 if (!mouseWasPressed)
                 {
@@ -169,7 +169,7 @@ public static unsafe class MousePainting
 
                 EndTextureMode();
             }
-            else if (IsMouseButtonReleased(MOUSE_BUTTON_RIGHT) && mouseWasPressed)
+            else if (IsMouseButtonReleased(MouseButtonRight) && mouseWasPressed)
             {
                 colorSelected = colorSelectedPrev;
                 mouseWasPressed = false;
@@ -188,7 +188,7 @@ public static unsafe class MousePainting
 
             // Image saving logic
             // NOTE: Saving painted texture to a default named image
-            if ((btnSaveMouseHover && IsMouseButtonReleased(MOUSE_BUTTON_LEFT)) || IsKeyPressed(KEY_S))
+            if ((btnSaveMouseHover && IsMouseButtonReleased(MouseButtonLeft)) || IsKeyPressed(KeyS))
             {
                 Image image = LoadImageFromTexture(target.texture);
                 ImageFlipVertical(ref image);
@@ -213,17 +213,17 @@ public static unsafe class MousePainting
 
             BeginDrawing();
 
-            ClearBackground(RAYWHITE);
+            ClearBackground(Raywhite);
 
             // NOTE: Render texture must be y-flipped due to default OpenGL coordinates (left-bottom)
-            DrawTextureRec(target.texture, new Rectangle(0, 0, target.texture.width, -target.texture.height), new Vector2(0, 0), WHITE);
+            DrawTextureRec(target.texture, new Rectangle(0, 0, target.texture.width, -target.texture.height), new Vector2(0, 0), White);
 
             // Draw drawing circle for reference
             if (mousePos.Y > 50)
             {
-                if (IsMouseButtonDown(MOUSE_BUTTON_RIGHT))
+                if (IsMouseButtonDown(MouseButtonRight))
                 {
-                    DrawCircleLines((int)mousePos.X, (int)mousePos.Y, brushSize, GRAY);
+                    DrawCircleLines((int)mousePos.X, (int)mousePos.Y, brushSize, Gray);
                 }
                 else
                 {
@@ -232,8 +232,8 @@ public static unsafe class MousePainting
             }
 
             // Draw top panel
-            DrawRectangle(0, 0, GetScreenWidth(), 50, RAYWHITE);
-            DrawLine(0, 50, GetScreenWidth(), 50, LIGHTGRAY);
+            DrawRectangle(0, 0, GetScreenWidth(), 50, Raywhite);
+            DrawLine(0, 50, GetScreenWidth(), 50, Lightgray);
 
             // Draw color selection rectangles
             for (int i = 0; i < MAX_COLORS_COUNT; i++)
@@ -241,26 +241,26 @@ public static unsafe class MousePainting
                 DrawRectangleRec(colorsRecs[i], colors[i]);
             }
 
-            DrawRectangleLines(10, 10, 30, 30, LIGHTGRAY);
+            DrawRectangleLines(10, 10, 30, 30, Lightgray);
 
             if (colorMouseHover >= 0)
             {
-                DrawRectangleRec(colorsRecs[colorMouseHover], Fade(WHITE, 0.6f));
+                DrawRectangleRec(colorsRecs[colorMouseHover], Fade(White, 0.6f));
             }
 
             DrawRectangleLinesEx(new Rectangle(colorsRecs[colorSelected].X - 2, colorsRecs[colorSelected].Y - 2,
-                                 colorsRecs[colorSelected].width + 4, colorsRecs[colorSelected].height + 4), 2, BLACK);
+                                 colorsRecs[colorSelected].Width + 4, colorsRecs[colorSelected].Height + 4), 2, Black);
 
             // Draw save image button
-            DrawRectangleLinesEx(btnSaveRec, 2, btnSaveMouseHover ? RED : BLACK);
-            DrawText("SAVE!", 755, 20, 10, btnSaveMouseHover ? RED : BLACK);
+            DrawRectangleLinesEx(btnSaveRec, 2, btnSaveMouseHover ? Red : Black);
+            DrawText("SAVE!", 755, 20, 10, btnSaveMouseHover ? Red : Black);
 
             // Draw save image message
             if (showSaveMessage)
             {
-                DrawRectangle(0, 0, GetScreenWidth(), GetScreenHeight(), Fade(RAYWHITE, 0.8f));
-                DrawRectangle(0, 150, GetScreenWidth(), 80, BLACK);
-                DrawText("IMAGE SAVED:  my_amazing_texture_painting.png", 150, 180, 20, RAYWHITE);
+                DrawRectangle(0, 0, GetScreenWidth(), GetScreenHeight(), Fade(Raywhite, 0.8f));
+                DrawRectangle(0, 150, GetScreenWidth(), 80, Black);
+                DrawText("IMAGE SAVED:  my_amazing_texture_painting.png", 150, 180, 20, Raywhite);
             }
 
             EndDrawing();
