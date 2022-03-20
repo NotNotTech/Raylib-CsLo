@@ -11,7 +11,7 @@ namespace Raylib_CsLo;
 
 public unsafe partial class PhysacS
 {
-    // GUARD PhysacH
+    // GUARD PhysacH 
 
     // UNKNOWN Physacdef __declspec(dllexport)
 

@@ -11,7 +11,7 @@ namespace Raylib_CsLo;
 
 public unsafe partial class RayMathS
 {
-    // GUARD RaymathH
+    // GUARD RaymathH 
 
     // UNKNOWN Rmapi __declspec(dllexport) extern inline
 
@@ -25,15 +25,15 @@ public unsafe partial class RayMathS
 
     // MACRO Vector3tofloat(vec) (Vector3ToFloatV(vec).v)
 
-    // GUARD RlVector2Type
+    // GUARD RlVector2Type 
 
-    // GUARD RlVector3Type
+    // GUARD RlVector3Type 
 
-    // GUARD RlVector4Type
+    // GUARD RlVector4Type 
 
-    // GUARD RlQuaternionType
+    // GUARD RlQuaternionType 
 
-    // GUARD RlMatrixType
+    // GUARD RlMatrixType 
 
 }
 

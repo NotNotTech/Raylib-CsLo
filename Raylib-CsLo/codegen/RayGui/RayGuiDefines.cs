@@ -11,7 +11,7 @@ namespace Raylib_CsLo;
 
 public unsafe partial class RayGui
 {
-    // GUARD RayguiH
+    // GUARD RayguiH 
 
     public const string RayguiVersion = "3.0";
 
@@ -27,7 +27,7 @@ public unsafe partial class RayGui
 
     // MACRO RayguiCliteral(name) name
 
-    // GUARD RiconsImplementation
+    // GUARD RiconsImplementation 
 
     /// <summary> Size of icons (squared) </summary>
     public const int RiconSize = 16;

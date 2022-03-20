@@ -56,7 +56,7 @@ public unsafe partial struct RlglData
     public uint defaultTextureId;
 
     /// <summary> Active texture ids to be enabled on batch drawing (0 active by default) </summary>
-    public fixed uint activeTextureId[RL_DEFAULT_BATCH_MAX_TEXTURE_UNITS];
+    public fixed uint activeTextureId[RlDefaultBatchMaxTextureUnits];
 
     /// <summary> Default vertex shader id (used by default shader program) </summary>
     public uint defaultVShaderId;

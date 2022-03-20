@@ -40,15 +40,18 @@ public class BaseGenerator
 
     public void Line(string v)
     {
-        for (int i = 0; i < indent; i++)
+        if (v != string.Empty)
         {
-            if (Commented && i == 0)
+            for (int i = 0; i < indent; i++)
             {
-                fileContents.Append("    //  ");
-            }
-            else
-            {
-                fileContents.Append("    ");
+                if (Commented && i == 0)
+                {
+                    fileContents.Append("    //  ");
+                }
+                else
+                {
+                    fileContents.Append("    ");
+                }
             }
         }
 

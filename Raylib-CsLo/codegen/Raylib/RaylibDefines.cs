@@ -11,7 +11,7 @@ namespace Raylib_CsLo;
 
 public unsafe partial class Raylib
 {
-    // GUARD RaylibH
+    // GUARD RaylibH 
 
     public const string RaylibVersion = "4.1-dev";
 
@@ -33,19 +33,19 @@ public unsafe partial class Raylib
 
     // MACRO Cliteral(type) type
 
-    // GUARD RlColorType
+    // GUARD RlColorType 
 
-    // GUARD RlRectangleType
+    // GUARD RlRectangleType 
 
-    // GUARD RlVector2Type
+    // GUARD RlVector2Type 
 
-    // GUARD RlVector3Type
+    // GUARD RlVector3Type 
 
-    // GUARD RlVector4Type
+    // GUARD RlVector4Type 
 
-    // GUARD RlQuaternionType
+    // GUARD RlQuaternionType 
 
-    // GUARD RlMatrixType
+    // GUARD RlMatrixType 
 
     /// <summary> Light Gray </summary>
     public static readonly Color Lightgray = new Color(200, 200, 200, 255);
@@ -125,7 +125,7 @@ public unsafe partial class Raylib
     /// <summary> My own White (raylib logo) </summary>
     public static readonly Color Raywhite = new Color(245, 245, 245, 255);
 
-    // GUARD RlBoolType
+    // GUARD RlBoolType 
 
     // UNKNOWN MouseLeftButton MOUSE_BUTTON_LEFT
 

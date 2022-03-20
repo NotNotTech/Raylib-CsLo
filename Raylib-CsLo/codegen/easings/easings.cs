@@ -103,7 +103,7 @@ public unsafe partial class Easings
     {
         float s = 1.70158f;
         float postFix = t /= d;
-        return (c * (postFix) * t * ((s + 1.0f) * t - s) + b);
+        return (c * (postFix)*t * ((s + 1.0f) * t - s) + b);
     }
 
     public static float EaseBackOut(float t, float b, float c, float d)
@@ -123,7 +123,7 @@ public unsafe partial class Easings
         }
         float postFix = t -= 2.0f;
         s *= 1.525f;
-        return (c / 2.0f * ((postFix) * t * ((s + 1.0f) * t + s) + 2.0f) + b);
+        return (c / 2.0f * ((postFix)*t * ((s + 1.0f) * t + s) + 2.0f) + b);
     }
 
     public static float EaseBounceOut(float t, float b, float c, float d)
@@ -135,17 +135,17 @@ public unsafe partial class Easings
         else if (t < (2.0f / 2.75f))
         {
             float postFix = t -= (1.5f / 2.75f);
-            return (c * (7.5625f * (postFix) * t + 0.75f) + b);
+            return (c * (7.5625f * (postFix)*t + 0.75f) + b);
         }
         else if (t < (2.5 / 2.75))
         {
             float postFix = t -= (2.25f / 2.75f);
-            return (c * (7.5625f * (postFix) * t + 0.9375f) + b);
+            return (c * (7.5625f * (postFix)*t + 0.9375f) + b);
         }
         else
         {
             float postFix = t -= (2.625f / 2.75f);
-            return (c * (7.5625f * (postFix) * t + 0.984375f) + b);
+            return (c * (7.5625f * (postFix)*t + 0.984375f) + b);
         }
     }
 
@@ -204,3 +204,4 @@ public unsafe partial class Easings
 
 }
 #pragma warning restore
+

@@ -14,9 +14,9 @@ public unsafe partial struct PhysicsVertexData
     public uint vertexCount;
 
     /// <summary> Vertex positions vectors </summary>
-    public fixed float positions[PHYSAC_MAX_VERTICES];
+    public fixed float positions[PhysacMaxVertices];
 
     /// <summary> Vertex normals vectors </summary>
-    public fixed float normals[PHYSAC_MAX_VERTICES];
+    public fixed float normals[PhysacMaxVertices];
 
 }

@@ -102,7 +102,7 @@ public class StructGenerator : BaseGenerator
                             }
                             else
                             {
-                                Line($"public fixed {type} {name};");
+                                Line($"public fixed {type} {name[..startArray]}[{Converter.FromSnakeToPascalCase(name[(startArray + 1)..endArray])}];");
                             }
                         }
                     }

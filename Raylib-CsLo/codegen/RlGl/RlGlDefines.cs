@@ -11,7 +11,7 @@ namespace Raylib_CsLo;
 
 public unsafe partial class RlGl
 {
-    // GUARD RlglH
+    // GUARD RlglH 
 
     public const string RlglVersion = "4.0";
 
@@ -29,9 +29,9 @@ public unsafe partial class RlGl
 
     // MACRO RlFree(p) free(p)
 
-    // GUARD GraphicsApiOpengl33
+    // GUARD GraphicsApiOpengl33 
 
-    // GUARD RlglRenderTexturesHint
+    // GUARD RlglRenderTexturesHint 
 
     public const int RlDefaultBatchBufferElements = 8192;
 
@@ -161,7 +161,7 @@ public unsafe partial class RlGl
     /// <summary> GL_COMPUTE_SHADER </summary>
     public const int RlComputeShader = 37305;
 
-    // GUARD RlMatrixType
+    // GUARD RlMatrixType 
 
     // UNKNOWN RlShaderLocMapDiffuse RL_SHADER_LOC_MAP_ALBEDO
 
@@ -175,9 +175,9 @@ public unsafe partial class RlGl
 
     // UNKNOWN GladFree RL_FREE
 
-    // GUARD GladGlImplementation
+    // GUARD GladGlImplementation 
 
-    // GUARD GlGlextPrototypes
+    // GUARD GlGlextPrototypes 
 
     public const float Pi = 3.14159265358979323846f;
 
