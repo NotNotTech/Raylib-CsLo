@@ -34,7 +34,6 @@ public class SafeClassGenerator : BaseGenerator
         Blank();
 
         Line($"namespace {CodegenSettings.NamespaceName};");
-
         Blank();
 
         Line($"public unsafe partial class {fileName}S");
@@ -280,6 +279,11 @@ public class SafeClassGenerator : BaseGenerator
             case "const void*":
             case "void*":
                 Line($"var {localVariable + localVariableSuffix} = (void*){localVariable};");
+                localVariable += localVariableSuffix;
+                break;
+
+            case "IntPtr":
+                Line($"var {localVariable + localVariableSuffix} = (int*){localVariable};");
                 localVariable += localVariableSuffix;
                 break;
 

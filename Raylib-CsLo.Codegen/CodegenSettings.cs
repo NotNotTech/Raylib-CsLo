@@ -17,7 +17,7 @@ public static class CodegenSettings
     public static string BindingsFolder { get; } = TryGetSolutionDirectoryInfo() + "/Raylib-CsLo.Codegen/bindings/";
 
     public const string Utf8ToStringFunction = "Helpers.Utf8ToString";
-    public const string PrtToArrayFunction = "Helpers.PrtToArray";
+    public const string PrtToArrayFunction = "Helpers.CopyPtrToArray";
 
     public const string CodeHeader = "// Copyright ©️ Raylib-CsLo and Contributors.\n// This file is licensed to you under the MPL-2.0.\n// See the LICENSE file in the project root for more info.\n// The code and 100+ examples are here! https://github.com/NotNotTech/Raylib-CsLo\n\n// Warning This file is auto generated and changes will be lost";
 
@@ -38,14 +38,19 @@ public static class CodegenSettings
         "SetLoadFileTextCallback",
         "SetSaveFileDataCallback",
         "SetSaveFileTextCallback",
+        "SetTraceLogCallback",
+        "UpdateAudioStream",
+        "UpdateCamera",
+        "UpdateTexture",
+
+        // Removed do not implement
+        "TextAppend",
         "TextFormat",
         "TextJoin",
         "TextLength",
         "TextSplit",
         "TraceLog",
-        "UpdateAudioStream",
-        "UpdateCamera",
-        "UpdateTexture",
+        "UnloadImageColors",
     };
 
     public static readonly string[] StructsOverride =
@@ -74,6 +79,7 @@ public static class CodegenSettings
     {
         { "BeginBlendMode", ("BlendMode", "mode") },
         { "ClearWindowState", ("ConfigFlags", "flags") },
+        { "DrawTextCodepoints", ("IntPtr", "codepoints") },
         { "GetGamepadAxisMovement", ("GamepadAxis", "axis") },
         { "ImageFormat", ("PixelFormat", "newFormat") },
         { "IsGamepadButtonDown", ("GamepadButton", "button") },
@@ -90,11 +96,15 @@ public static class CodegenSettings
         { "IsMouseButtonReleased", ("MouseButton", "button") },
         { "IsMouseButtonUp", ("MouseButton", "button") },
         { "IsWindowState", ("ConfigFlags", "flag") },
+        { "LoadFontData", ("IntPtr", "fontChars") },
+        { "LoadFontEx", ("IntPtr", "fontChars") },
+        { "LoadFontFromMemory", ("IntPtr", "fontChars") },
         { "LoadImageRaw", ("PixelFormat", "format") },
         { "LoadTextureCubemap", ("CubemapLayout", "layout") },
         { "SetCameraMode", ("CameraMode", "mode") },
         { "SetConfigFlags", ("ConfigFlags", "flags") },
         { "SetExitKey", ("KeyboardKey", "key") },
+        { "SetGesturesEnabled", ("Gesture", "flags") },
         { "SetMaterialTexture", ("MaterialMapIndex", "mapType") },
         { "SetMouseCursor", ("MouseCursor", "cursor") },
         { "SetTextureFilter", ("TextureFilter", "filter") },

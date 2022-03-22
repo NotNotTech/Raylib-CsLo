@@ -15,7 +15,7 @@ public static unsafe class Helpers
         return Marshal.PtrToStringUTF8((IntPtr)utf8Text) ?? "";
     }
 
-    public static T[] PrtToArray<T>(T* ptrToArray, int length) where T : unmanaged
+    public static T[] CopyPtrToArray<T>(T* ptrToArray, int length) where T : unmanaged
     {
         T[] array = new T[length];
 

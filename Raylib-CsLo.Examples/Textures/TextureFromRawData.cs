@@ -49,7 +49,7 @@ public static unsafe class TextureFromRawData
         // Dynamic memory allocation to store pixels data (Color type)
         //Color* pixels = (Color*)malloc(width * height * sizeof(Color));
         //var pixels = stackalloc Color[width * height];
-        Color[]? pixels = new Color[width * height];
+        Color[] pixels = new Color[width * height];
         System.Runtime.InteropServices.GCHandle h_pixels = pixels.GcPin();
 
         //Span<Color> span = new Span<Color>(pixels);

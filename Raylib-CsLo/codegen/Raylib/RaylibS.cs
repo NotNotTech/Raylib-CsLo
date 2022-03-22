@@ -620,11 +620,11 @@ public unsafe partial class RaylibS
         Raylib.MemFree(ptr_);
     }
 
-    /// <summary> Set custom trace log </summary>
-    public static void SetTraceLogCallback(delegate* unmanaged[Cdecl]<int, sbyte*, sbyte*, void> callback)
-    {
-        Raylib.SetTraceLogCallback(callback);
-    }
+    //  /// <summary> Set custom trace log </summary>
+    //  public static void SetTraceLogCallback(delegate* unmanaged[Cdecl]<int, sbyte*, sbyte*, void> callback)
+    //  {
+    //      Raylib.SetTraceLogCallback(callback);
+    //  }
 
     //  /// <summary> Set custom file binary data loader </summary>
     //  public static void SetLoadFileDataCallback(delegate* unmanaged[Cdecl]<sbyte*, uint*, byte*> callback)
@@ -654,7 +654,7 @@ public unsafe partial class RaylibS
     //  public static byte[] LoadFileData(string fileName, uint* bytesRead)
     //  {
     //      using var fileName_ = fileName.MarshalUtf8();
-    //      return Helpers.PrtToArray(Raylib.LoadFileData(fileName_.AsPtr(), bytesRead));
+    //      return Helpers.CopyPtrToArray(Raylib.LoadFileData(fileName_.AsPtr(), bytesRead));
     //  }
 
     /// <summary> Unload file data allocated by LoadFileData() </summary>
@@ -822,7 +822,7 @@ public unsafe partial class RaylibS
     {
         fixed (byte* data_ = data)
         {
-            return Helpers.PrtToArray(Raylib.CompressData(data_, dataLength, compDataLength), dataLength);
+            return Helpers.CopyPtrToArray(Raylib.CompressData(data_, dataLength, compDataLength), dataLength);
         }
     }
 
@@ -831,7 +831,7 @@ public unsafe partial class RaylibS
     {
         fixed (byte* compData_ = compData)
         {
-            return Helpers.PrtToArray(Raylib.DecompressData(compData_, compDataLength, dataLength), compDataLength);
+            return Helpers.CopyPtrToArray(Raylib.DecompressData(compData_, compDataLength, dataLength), compDataLength);
         }
     }
 
@@ -849,7 +849,7 @@ public unsafe partial class RaylibS
     //  {
     //      fixed (byte* data_ = data)
     //      {
-    //          return Helpers.PrtToArray(Raylib.DecodeDataBase64(data_, outputLength), outputLength);
+    //          return Helpers.CopyPtrToArray(Raylib.DecodeDataBase64(data_, outputLength), outputLength);
     //      }
     //  }
 
@@ -1084,9 +1084,9 @@ public unsafe partial class RaylibS
     }
 
     /// <summary> Enable a set of gestures using flags </summary>
-    public static void SetGesturesEnabled(uint flags)
+    public static void SetGesturesEnabled(Gesture flags)
     {
-        Raylib.SetGesturesEnabled(flags);
+        Raylib.SetGesturesEnabled((int)flags);
     }
 
     /// <summary> Check if a gesture have been detected </summary>
@@ -1796,23 +1796,23 @@ public unsafe partial class RaylibS
     //  /// <summary> Load color data from image as a Color array (RGBA - 32bit) </summary>
     //  public static Color[] LoadImageColors(Image image)
     //  {
-    //      return Helpers.PrtToArray(Raylib.LoadImageColors(image));
+    //      return Helpers.CopyPtrToArray(Raylib.LoadImageColors(image));
     //  }
 
     //  /// <summary> Load colors palette from image as a Color array (RGBA - 32bit) </summary>
     //  public static Color[] LoadImagePalette(Image image, int maxPaletteSize, int* colorCount)
     //  {
-    //      return Helpers.PrtToArray(Raylib.LoadImagePalette(image, maxPaletteSize, colorCount));
+    //      return Helpers.CopyPtrToArray(Raylib.LoadImagePalette(image, maxPaletteSize, colorCount));
     //  }
 
-    /// <summary> Unload color data loaded with LoadImageColors() </summary>
-    public static void UnloadImageColors(Color[] colors)
-    {
-        fixed (Color* colors_ = colors)
-        {
-            Raylib.UnloadImageColors(colors_);
-        }
-    }
+    //  /// <summary> Unload color data loaded with LoadImageColors() </summary>
+    //  public static void UnloadImageColors(Color[] colors)
+    //  {
+    //      fixed (Color* colors_ = colors)
+    //      {
+    //          Raylib.UnloadImageColors(colors_);
+    //      }
+    //  }
 
     /// <summary> Unload colors palette loaded with LoadImagePalette() </summary>
     public static void UnloadImagePalette(Color[] colors)
@@ -2015,9 +2015,12 @@ public unsafe partial class RaylibS
     }
 
     /// <summary> Generate GPU mipmaps for a texture </summary>
-    public static void GenTextureMipmaps(Texture2D* texture)
+    public static void GenTextureMipmaps(ref Texture2D texture)
     {
-        Raylib.GenTextureMipmaps(texture);
+        fixed (Texture2D* texture_ = &texture)
+        {
+            Raylib.GenTextureMipmaps(texture_);
+        }
     }
 
     /// <summary> Set texture scaling filter mode </summary>
@@ -2180,10 +2183,11 @@ public unsafe partial class RaylibS
     }
 
     /// <summary> Load font from file with extended parameters, use NULL for fontChars and 0 for glyphCount to load the default character set </summary>
-    public static Font LoadFontEx(string fileName, int fontSize, int* fontChars, int glyphCount)
+    public static Font LoadFontEx(string fileName, int fontSize, IntPtr fontChars, int glyphCount)
     {
         using var fileName_ = fileName.MarshalUtf8();
-        return Raylib.LoadFontEx(fileName_.AsPtr(), fontSize, fontChars, glyphCount);
+        var fontChars_ = (int*)fontChars;
+        return Raylib.LoadFontEx(fileName_.AsPtr(), fontSize, fontChars_, glyphCount);
     }
 
     /// <summary> Load font from Image (XNA style) </summary>
@@ -2193,21 +2197,23 @@ public unsafe partial class RaylibS
     }
 
     /// <summary> Load font from memory buffer, fileType refers to extension: i.e. '.ttf' </summary>
-    public static Font LoadFontFromMemory(string fileType, byte[] fileData, int dataSize, int fontSize, int* fontChars, int glyphCount)
+    public static Font LoadFontFromMemory(string fileType, byte[] fileData, int dataSize, int fontSize, IntPtr fontChars, int glyphCount)
     {
         using var fileType_ = fileType.MarshalUtf8();
         fixed (byte* fileData_ = fileData)
         {
-            return Raylib.LoadFontFromMemory(fileType_.AsPtr(), fileData_, dataSize, fontSize, fontChars, glyphCount);
+            var fontChars_ = (int*)fontChars;
+            return Raylib.LoadFontFromMemory(fileType_.AsPtr(), fileData_, dataSize, fontSize, fontChars_, glyphCount);
         }
     }
 
     /// <summary> Load font data for further use </summary>
-    public static GlyphInfo* LoadFontData(byte[] fileData, int dataSize, int fontSize, int* fontChars, int glyphCount, int type)
+    public static GlyphInfo* LoadFontData(byte[] fileData, int dataSize, int fontSize, IntPtr fontChars, int glyphCount, int type)
     {
         fixed (byte* fileData_ = fileData)
         {
-            return Raylib.LoadFontData(fileData_, dataSize, fontSize, fontChars, glyphCount, type);
+            var fontChars_ = (int*)fontChars;
+            return Raylib.LoadFontData(fileData_, dataSize, fontSize, fontChars_, glyphCount, type);
         }
     }
 
@@ -2270,9 +2276,10 @@ public unsafe partial class RaylibS
     }
 
     /// <summary> Draw multiple character (codepoint) </summary>
-    public static void DrawTextCodepoints(Font font, int* codepoints, int count, Vector2 position, float fontSize, float spacing, Color tint)
+    public static void DrawTextCodepoints(Font font, IntPtr codepoints, int count, Vector2 position, float fontSize, float spacing, Color tint)
     {
-        Raylib.DrawTextCodepoints(font, codepoints, count, position, fontSize, spacing, tint);
+        var codepoints_ = (int*)codepoints;
+        Raylib.DrawTextCodepoints(font, codepoints_, count, position, fontSize, spacing, tint);
     }
 
     /// <summary> Measure string width for default font </summary>
@@ -2414,13 +2421,13 @@ public unsafe partial class RaylibS
     //      return Raylib.TextSplit(text_.AsPtr(), delimiter, count);
     //  }
 
-    /// <summary> Append text at specific position and move cursor! </summary>
-    public static void TextAppend(string text, string append, int* position)
-    {
-        using var text_ = text.MarshalUtf8();
-        using var append_ = append.MarshalUtf8();
-        Raylib.TextAppend(text_.AsPtr(), append_.AsPtr(), position);
-    }
+    //  /// <summary> Append text at specific position and move cursor! </summary>
+    //  public static void TextAppend(string text, string append, int* position)
+    //  {
+    //      using var text_ = text.MarshalUtf8();
+    //      using var append_ = append.MarshalUtf8();
+    //      Raylib.TextAppend(text_.AsPtr(), append_.AsPtr(), position);
+    //  }
 
     /// <summary> Find first text occurrence within a string </summary>
     public static int TextFindIndex(string text, string find)

@@ -30,7 +30,7 @@ public static class Camera2d
 
         Rectangle player = new(400, 280, 40, 40);
         Rectangle[] buildings = new Rectangle[MAX_BUILDINGS];
-        Color[]? buildColors = new Color[MAX_BUILDINGS];
+        Color[] buildColors = new Color[MAX_BUILDINGS];
 
         int spacing = 0;
 

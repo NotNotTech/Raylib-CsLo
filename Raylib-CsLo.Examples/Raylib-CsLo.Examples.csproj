@@ -5,7 +5,6 @@
         <TargetFramework>net6.0</TargetFramework>
         <RootNamespace>Raylib_CsLo.Examples</RootNamespace>
         <ImplicitUsings>enable</ImplicitUsings>
-        <Nullable>enable</Nullable>
         <AllowUnsafeBlocks>True</AllowUnsafeBlocks>
     </PropertyGroup>
 

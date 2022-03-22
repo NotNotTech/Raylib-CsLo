@@ -237,7 +237,10 @@ public unsafe partial class RaylibS
     /// <summary> Load color data from image as a Color array (RGBA - 32bit) </summary>
     public static Color[] LoadImageColors(Image image)
     {
-        return Helpers.PrtToArray(Raylib.LoadImageColors(image), image.width * image.height);
+        var nativeColorArray = Raylib.LoadImageColors(image);
+        var toReturn = Helpers.CopyPtrToArray(nativeColorArray, image.width * image.height);
+        Raylib.UnloadImageColors(nativeColorArray);
+        return toReturn;
     }
 }
 #pragma warning restore IDE0008

@@ -31,7 +31,7 @@ public static unsafe class ImageTextDrawing
         Image parrots = LoadImage("resources/parrots.png"); // Load image in CPU memory (RAM)
 
         // TTF Font loading with custom generation parameters
-        Font font = LoadFontEx("resources/KAISG.ttf", 64, (int*)0, 0);
+        Font font = LoadFontEx("resources/KAISG.ttf", 64, IntPtr.Zero, 0);
 
         // Draw over image using custom font
         ImageDrawTextEx(ref parrots, font, "[Parrots font drawing]", new Vector2(20.0f, 20.0f), font.baseSize, 0.0f, Red);

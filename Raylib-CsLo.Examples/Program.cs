@@ -53,7 +53,7 @@ public static class Program
         Billboard.Example();
         BoxCollisions.Example();
         Cubicmap.Example();
-        FirstPersonMaze.Example();// Crash when closed
+        FirstPersonMaze.Example();
         GeometricShapes.Example();
         Heightmap.Example();
         Loading.Example();

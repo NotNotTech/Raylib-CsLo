@@ -663,7 +663,7 @@ public unsafe partial class RlGlS
     //  /// <summary> Read screen pixel data (color buffer) </summary>
     //  public static byte[] rlReadScreenPixels(int width, int height)
     //  {
-    //      return Helpers.PrtToArray(RlGl.rlReadScreenPixels(width, height));
+    //      return Helpers.CopyPtrToArray(RlGl.rlReadScreenPixels(width, height));
     //  }
 
     /// <summary> Load an empty framebuffer </summary>

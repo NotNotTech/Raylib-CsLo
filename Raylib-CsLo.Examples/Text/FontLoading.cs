@@ -48,7 +48,7 @@ public static unsafe class FontLoading
 
         // TTF font : Font data and atlas are generated directly from TTF
         // NOTE: We define a font base size of 32 pixels tall and up-to 250 characters
-        Font fontTtf = LoadFontEx("resources/pixantiqua.ttf", 32, (int*)0, 250);
+        Font fontTtf = LoadFontEx("resources/pixantiqua.ttf", 32, IntPtr.Zero, 250);
 
 
         SetTargetFPS(60);               // Set our game to run at 60 frames-per-second

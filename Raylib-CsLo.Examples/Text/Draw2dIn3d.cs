@@ -134,13 +134,13 @@ public static unsafe class Draw2dIn3d
             {
                 //int count = 0;
                 //char** droppedFiles = GetDroppedFiles(&count);
-                string[]? droppedFiles = GetDroppedFiles();
+                string[] droppedFiles = GetDroppedFiles();
 
                 // NOTE: We only support first ttf file dropped
                 if (IsFileExtension(droppedFiles[0], ".ttf"))
                 {
                     UnloadFont(font);
-                    font = LoadFontEx(droppedFiles[0], (int)fontSize, (int*)0, 0);
+                    font = LoadFontEx(droppedFiles[0], (int)fontSize, IntPtr.Zero, 0);
                 }
                 else if (IsFileExtension(droppedFiles[0], ".fnt"))
                 {

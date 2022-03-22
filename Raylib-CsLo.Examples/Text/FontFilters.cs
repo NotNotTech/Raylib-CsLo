@@ -37,11 +37,11 @@ public static unsafe class FontFilters
         // NOTE: Textures/Fonts MUST be loaded after Window initialization (OpenGL context is required)
 
         // TTF Font loading with custom generation parameters
-        Font font = LoadFontEx("resources/KAISG.ttf", 96, (int*)0, 0);
+        Font font = LoadFontEx("resources/KAISG.ttf", 96, IntPtr.Zero, 0);
 
         // Generate mipmap levels to use trilinear filtering
         // NOTE: On 2D drawing it won't be noticeable, it looks like FILTER_BILINEAR
-        GenTextureMipmaps(&font.texture);
+        GenTextureMipmaps(ref font.texture);
 
         float fontSize = font.baseSize;
         Vector2 fontPosition = new(40.0f, (screenHeight / 2.0f) - 80.0f);
@@ -94,7 +94,7 @@ public static unsafe class FontFilters
             {
                 //int count = 0;
                 //char** droppedFiles = GetDroppedFiles(&count);
-                string[]? droppedFiles = GetDroppedFiles();
+                string[] droppedFiles = GetDroppedFiles();
 
                 _ = droppedFiles.Length;
 
@@ -102,7 +102,7 @@ public static unsafe class FontFilters
                 if (IsFileExtension(droppedFiles[0], ".ttf"))
                 {
                     UnloadFont(font);
-                    font = LoadFontEx(droppedFiles[0], (int)fontSize, (int*)0, 0);
+                    font = LoadFontEx(droppedFiles[0], (int)fontSize, IntPtr.Zero, 0);
                     ClearDroppedFiles();
                 }
             }

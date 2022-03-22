@@ -25,7 +25,7 @@ public static unsafe class MeshInstancing
     const int MAX_INSTANCES = 10000;
     public static int Example()
     {
-        RLights? rLights = new();
+        RLights rLights = new();
         // Initialization
 
         const int screenWidth = 800;

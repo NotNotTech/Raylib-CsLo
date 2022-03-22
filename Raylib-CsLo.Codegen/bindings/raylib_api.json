@@ -4556,7 +4556,7 @@
       "returnType": "void",
       "params": [
         {
-          "type": "unsigned int",
+          "type": "int",
           "name": "flags"
         }
       ]

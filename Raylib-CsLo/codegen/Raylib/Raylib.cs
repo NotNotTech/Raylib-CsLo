@@ -693,7 +693,7 @@ public unsafe partial class Raylib
 
     /// <summary> Enable a set of gestures using flags </summary>
     [DllImport("raylib", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
-    public static extern void SetGesturesEnabled(uint flags);
+    public static extern void SetGesturesEnabled(int flags);
 
     /// <summary> Check if a gesture have been detected </summary>
     [DllImport("raylib", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]

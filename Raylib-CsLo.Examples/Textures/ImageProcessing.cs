@@ -168,7 +168,7 @@ public static unsafe class ImageProcessing
 
                 Color[] pixels = LoadImageColors(imCopy);    // Load pixel data from image (RGBA 32bit)
                 UpdateTexture(texture, pixels);             // Update texture with new image data
-                UnloadImageColors(pixels);                  // Unload pixels data from RAM
+                // UnloadImageColors(pixels);                  // Unload pixels data from RAM
 
                 textureReload = false;
             }

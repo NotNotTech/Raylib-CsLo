@@ -37,7 +37,7 @@ public static unsafe class Fog
     const int GLSL_VERSION = 330;
     public static int Example()
     {
-        RLights? rLights = new();
+        RLights rLights = new();
         // Initialization
 
         const int screenWidth = 800;

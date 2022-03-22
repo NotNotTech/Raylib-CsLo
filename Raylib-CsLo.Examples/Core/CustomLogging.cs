@@ -122,7 +122,7 @@ public static unsafe class CustomLogging
 
         // First thing we do is setting our custom logger to ensure everything raylib logs
         // will use our own logger instead of its internal one
-        SetTraceLogCallback(&LogCustom);
+        Raylib.SetTraceLogCallback(&LogCustom);
 
 
         InitWindow(screenWidth, screenHeight, "raylib [core] example - custom logging");

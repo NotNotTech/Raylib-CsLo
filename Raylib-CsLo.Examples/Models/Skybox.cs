@@ -62,7 +62,7 @@ public static unsafe class Skybox
         SetShaderValue(shdrCubemap, GetShaderLocation(shdrCubemap, "equirectangularMap"), 0, ShaderUniformInt);
 
         //char skyboxFileName[256];
-        string? skyboxFileName = null;
+        string skyboxFileName = null;
 
         Texture2D panorama;
 
@@ -197,7 +197,7 @@ public static unsafe class Skybox
 
     public static bool EndsWith(this string text, params string[] endings)
     {
-        foreach (string? end in endings)
+        foreach (string end in endings)
         {
             if (text.EndsWith(end))
             {

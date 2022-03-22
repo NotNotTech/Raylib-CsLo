@@ -71,6 +71,7 @@ public static class Converter
             "byte*" => "byte[]",
             "Camera" => "Camera",
             "Camera*" => "ref Camera",
+            "Texture2D*" => "ref Texture2D",
             "Camera3D" => "Camera3D",
             "Camera3D*" => "ref Camera3D",
             "Color*" => "Color[]",

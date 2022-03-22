@@ -129,7 +129,7 @@ public static unsafe class FirstPersonMaze
 
         // De-Initialization
 
-        UnloadImageColors(mapPixels);   // Unload color array
+        // UnloadImageColors(mapPixels);   // Unload color array
 
         UnloadTexture(cubicmap);        // Unload cubicmap texture
         UnloadTexture(texture);         // Unload map texture
