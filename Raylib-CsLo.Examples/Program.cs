@@ -36,7 +36,10 @@ public static class Program
         Camera3dFirstPerson.Example();
         Picking3d.Example();
         WorldToScreen.Example();
-        CustomLogging.Example();
+        if (Environment.OSVersion.Platform == PlatformID.Win32NT)
+        {
+            CustomLogging.Example();
+        }
         WindowLetterbox.Example();
         WindowsDropFiles.Example();
         ScissorTest.Example();

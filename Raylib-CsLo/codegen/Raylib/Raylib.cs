@@ -17,7 +17,7 @@ public unsafe partial class Raylib
 
     /// <summary> Check if KEY_ESCAPE pressed or Close icon pressed </summary>
     [DllImport("raylib", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
-    public static extern bool WindowShouldClose();
+    [return: MarshalAs(UnmanagedType.U1)] public static extern bool WindowShouldClose();
 
     /// <summary> Close window and unload OpenGL context </summary>
     [DllImport("raylib", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
@@ -25,35 +25,35 @@ public unsafe partial class Raylib
 
     /// <summary> Check if window has been initialized successfully </summary>
     [DllImport("raylib", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
-    public static extern bool IsWindowReady();
+    [return: MarshalAs(UnmanagedType.U1)] public static extern bool IsWindowReady();
 
     /// <summary> Check if window is currently fullscreen </summary>
     [DllImport("raylib", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
-    public static extern bool IsWindowFullscreen();
+    [return: MarshalAs(UnmanagedType.U1)] public static extern bool IsWindowFullscreen();
 
     /// <summary> Check if window is currently hidden (only PLATFORM_DESKTOP) </summary>
     [DllImport("raylib", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
-    public static extern bool IsWindowHidden();
+    [return: MarshalAs(UnmanagedType.U1)] public static extern bool IsWindowHidden();
 
     /// <summary> Check if window is currently minimized (only PLATFORM_DESKTOP) </summary>
     [DllImport("raylib", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
-    public static extern bool IsWindowMinimized();
+    [return: MarshalAs(UnmanagedType.U1)] public static extern bool IsWindowMinimized();
 
     /// <summary> Check if window is currently maximized (only PLATFORM_DESKTOP) </summary>
     [DllImport("raylib", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
-    public static extern bool IsWindowMaximized();
+    [return: MarshalAs(UnmanagedType.U1)] public static extern bool IsWindowMaximized();
 
     /// <summary> Check if window is currently focused (only PLATFORM_DESKTOP) </summary>
     [DllImport("raylib", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
-    public static extern bool IsWindowFocused();
+    [return: MarshalAs(UnmanagedType.U1)] public static extern bool IsWindowFocused();
 
     /// <summary> Check if window has been resized last frame </summary>
     [DllImport("raylib", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
-    public static extern bool IsWindowResized();
+    [return: MarshalAs(UnmanagedType.U1)] public static extern bool IsWindowResized();
 
     /// <summary> Check if one specific window flag is enabled </summary>
     [DllImport("raylib", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
-    public static extern bool IsWindowState(uint flag);
+    [return: MarshalAs(UnmanagedType.U1)] public static extern bool IsWindowState(uint flag);
 
     /// <summary> Set window configuration state using flags (only PLATFORM_DESKTOP) </summary>
     [DllImport("raylib", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
@@ -201,7 +201,7 @@ public unsafe partial class Raylib
 
     /// <summary> Check if cursor is not visible </summary>
     [DllImport("raylib", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
-    public static extern bool IsCursorHidden();
+    [return: MarshalAs(UnmanagedType.U1)] public static extern bool IsCursorHidden();
 
     /// <summary> Enables cursor (unlock cursor) </summary>
     [DllImport("raylib", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
@@ -213,7 +213,7 @@ public unsafe partial class Raylib
 
     /// <summary> Check if cursor is on the screen </summary>
     [DllImport("raylib", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
-    public static extern bool IsCursorOnScreen();
+    [return: MarshalAs(UnmanagedType.U1)] public static extern bool IsCursorOnScreen();
 
     /// <summary> Set background color (framebuffer clear color) </summary>
     [DllImport("raylib", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
@@ -437,7 +437,7 @@ public unsafe partial class Raylib
 
     /// <summary> Save data to file from byte array (write), returns true on success </summary>
     [DllImport("raylib", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
-    public static extern bool SaveFileData(sbyte* fileName, void* data, uint bytesToWrite);
+    [return: MarshalAs(UnmanagedType.U1)] public static extern bool SaveFileData(sbyte* fileName, void* data, uint bytesToWrite);
 
     /// <summary> Load text data from file (read), returns a '\0' terminated string </summary>
     [DllImport("raylib", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
@@ -449,19 +449,19 @@ public unsafe partial class Raylib
 
     /// <summary> Save text data to file (write), string must be '\0' terminated, returns true on success </summary>
     [DllImport("raylib", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
-    public static extern bool SaveFileText(sbyte* fileName, sbyte* text);
+    [return: MarshalAs(UnmanagedType.U1)] public static extern bool SaveFileText(sbyte* fileName, sbyte* text);
 
     /// <summary> Check if file exists </summary>
     [DllImport("raylib", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
-    public static extern bool FileExists(sbyte* fileName);
+    [return: MarshalAs(UnmanagedType.U1)] public static extern bool FileExists(sbyte* fileName);
 
     /// <summary> Check if a directory path exists </summary>
     [DllImport("raylib", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
-    public static extern bool DirectoryExists(sbyte* dirPath);
+    [return: MarshalAs(UnmanagedType.U1)] public static extern bool DirectoryExists(sbyte* dirPath);
 
     /// <summary> Check file extension (including point: .png, .wav) </summary>
     [DllImport("raylib", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
-    public static extern bool IsFileExtension(sbyte* fileName, sbyte* ext);
+    [return: MarshalAs(UnmanagedType.U1)] public static extern bool IsFileExtension(sbyte* fileName, sbyte* ext);
 
     /// <summary> Get file length in bytes (NOTE: GetFileSize() conflicts with windows.h) </summary>
     [DllImport("raylib", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
@@ -505,11 +505,11 @@ public unsafe partial class Raylib
 
     /// <summary> Change working directory, return true on success </summary>
     [DllImport("raylib", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
-    public static extern bool ChangeDirectory(sbyte* dir);
+    [return: MarshalAs(UnmanagedType.U1)] public static extern bool ChangeDirectory(sbyte* dir);
 
     /// <summary> Check if a file has been dropped into window </summary>
     [DllImport("raylib", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
-    public static extern bool IsFileDropped();
+    [return: MarshalAs(UnmanagedType.U1)] public static extern bool IsFileDropped();
 
     /// <summary> Get dropped files names (memory should be freed) </summary>
     [DllImport("raylib", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
@@ -541,7 +541,7 @@ public unsafe partial class Raylib
 
     /// <summary> Save integer value to storage file (to defined position), returns true on success </summary>
     [DllImport("raylib", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
-    public static extern bool SaveStorageValue(uint position, int value);
+    [return: MarshalAs(UnmanagedType.U1)] public static extern bool SaveStorageValue(uint position, int value);
 
     /// <summary> Load integer value from storage file (from defined position) </summary>
     [DllImport("raylib", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
@@ -553,19 +553,19 @@ public unsafe partial class Raylib
 
     /// <summary> Check if a key has been pressed once </summary>
     [DllImport("raylib", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
-    public static extern bool IsKeyPressed(int key);
+    [return: MarshalAs(UnmanagedType.U1)] public static extern bool IsKeyPressed(int key);
 
     /// <summary> Check if a key is being pressed </summary>
     [DllImport("raylib", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
-    public static extern bool IsKeyDown(int key);
+    [return: MarshalAs(UnmanagedType.U1)] public static extern bool IsKeyDown(int key);
 
     /// <summary> Check if a key has been released once </summary>
     [DllImport("raylib", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
-    public static extern bool IsKeyReleased(int key);
+    [return: MarshalAs(UnmanagedType.U1)] public static extern bool IsKeyReleased(int key);
 
     /// <summary> Check if a key is NOT being pressed </summary>
     [DllImport("raylib", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
-    public static extern bool IsKeyUp(int key);
+    [return: MarshalAs(UnmanagedType.U1)] public static extern bool IsKeyUp(int key);
 
     /// <summary> Set a custom key to exit program (default is ESC) </summary>
     [DllImport("raylib", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
@@ -581,7 +581,7 @@ public unsafe partial class Raylib
 
     /// <summary> Check if a gamepad is available </summary>
     [DllImport("raylib", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
-    public static extern bool IsGamepadAvailable(int gamepad);
+    [return: MarshalAs(UnmanagedType.U1)] public static extern bool IsGamepadAvailable(int gamepad);
 
     /// <summary> Get gamepad internal name id </summary>
     [DllImport("raylib", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
@@ -589,19 +589,19 @@ public unsafe partial class Raylib
 
     /// <summary> Check if a gamepad button has been pressed once </summary>
     [DllImport("raylib", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
-    public static extern bool IsGamepadButtonPressed(int gamepad, int button);
+    [return: MarshalAs(UnmanagedType.U1)] public static extern bool IsGamepadButtonPressed(int gamepad, int button);
 
     /// <summary> Check if a gamepad button is being pressed </summary>
     [DllImport("raylib", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
-    public static extern bool IsGamepadButtonDown(int gamepad, int button);
+    [return: MarshalAs(UnmanagedType.U1)] public static extern bool IsGamepadButtonDown(int gamepad, int button);
 
     /// <summary> Check if a gamepad button has been released once </summary>
     [DllImport("raylib", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
-    public static extern bool IsGamepadButtonReleased(int gamepad, int button);
+    [return: MarshalAs(UnmanagedType.U1)] public static extern bool IsGamepadButtonReleased(int gamepad, int button);
 
     /// <summary> Check if a gamepad button is NOT being pressed </summary>
     [DllImport("raylib", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
-    public static extern bool IsGamepadButtonUp(int gamepad, int button);
+    [return: MarshalAs(UnmanagedType.U1)] public static extern bool IsGamepadButtonUp(int gamepad, int button);
 
     /// <summary> Get the last gamepad button pressed </summary>
     [DllImport("raylib", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
@@ -621,19 +621,19 @@ public unsafe partial class Raylib
 
     /// <summary> Check if a mouse button has been pressed once </summary>
     [DllImport("raylib", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
-    public static extern bool IsMouseButtonPressed(int button);
+    [return: MarshalAs(UnmanagedType.U1)] public static extern bool IsMouseButtonPressed(int button);
 
     /// <summary> Check if a mouse button is being pressed </summary>
     [DllImport("raylib", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
-    public static extern bool IsMouseButtonDown(int button);
+    [return: MarshalAs(UnmanagedType.U1)] public static extern bool IsMouseButtonDown(int button);
 
     /// <summary> Check if a mouse button has been released once </summary>
     [DllImport("raylib", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
-    public static extern bool IsMouseButtonReleased(int button);
+    [return: MarshalAs(UnmanagedType.U1)] public static extern bool IsMouseButtonReleased(int button);
 
     /// <summary> Check if a mouse button is NOT being pressed </summary>
     [DllImport("raylib", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
-    public static extern bool IsMouseButtonUp(int button);
+    [return: MarshalAs(UnmanagedType.U1)] public static extern bool IsMouseButtonUp(int button);
 
     /// <summary> Get mouse position X </summary>
     [DllImport("raylib", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
@@ -697,7 +697,7 @@ public unsafe partial class Raylib
 
     /// <summary> Check if a gesture have been detected </summary>
     [DllImport("raylib", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
-    public static extern bool IsGestureDetected(int gesture);
+    [return: MarshalAs(UnmanagedType.U1)] public static extern bool IsGestureDetected(int gesture);
 
     /// <summary> Get latest detected gesture </summary>
     [DllImport("raylib", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
@@ -901,35 +901,35 @@ public unsafe partial class Raylib
 
     /// <summary> Check collision between two rectangles </summary>
     [DllImport("raylib", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
-    public static extern bool CheckCollisionRecs(Rectangle rec1, Rectangle rec2);
+    [return: MarshalAs(UnmanagedType.U1)] public static extern bool CheckCollisionRecs(Rectangle rec1, Rectangle rec2);
 
     /// <summary> Check collision between two circles </summary>
     [DllImport("raylib", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
-    public static extern bool CheckCollisionCircles(Vector2 center1, float radius1, Vector2 center2, float radius2);
+    [return: MarshalAs(UnmanagedType.U1)] public static extern bool CheckCollisionCircles(Vector2 center1, float radius1, Vector2 center2, float radius2);
 
     /// <summary> Check collision between circle and rectangle </summary>
     [DllImport("raylib", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
-    public static extern bool CheckCollisionCircleRec(Vector2 center, float radius, Rectangle rec);
+    [return: MarshalAs(UnmanagedType.U1)] public static extern bool CheckCollisionCircleRec(Vector2 center, float radius, Rectangle rec);
 
     /// <summary> Check if point is inside rectangle </summary>
     [DllImport("raylib", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
-    public static extern bool CheckCollisionPointRec(Vector2 point, Rectangle rec);
+    [return: MarshalAs(UnmanagedType.U1)] public static extern bool CheckCollisionPointRec(Vector2 point, Rectangle rec);
 
     /// <summary> Check if point is inside circle </summary>
     [DllImport("raylib", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
-    public static extern bool CheckCollisionPointCircle(Vector2 point, Vector2 center, float radius);
+    [return: MarshalAs(UnmanagedType.U1)] public static extern bool CheckCollisionPointCircle(Vector2 point, Vector2 center, float radius);
 
     /// <summary> Check if point is inside a triangle </summary>
     [DllImport("raylib", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
-    public static extern bool CheckCollisionPointTriangle(Vector2 point, Vector2 p1, Vector2 p2, Vector2 p3);
+    [return: MarshalAs(UnmanagedType.U1)] public static extern bool CheckCollisionPointTriangle(Vector2 point, Vector2 p1, Vector2 p2, Vector2 p3);
 
     /// <summary> Check the collision between two lines defined by two points each, returns collision point by reference </summary>
     [DllImport("raylib", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
-    public static extern bool CheckCollisionLines(Vector2 startPos1, Vector2 endPos1, Vector2 startPos2, Vector2 endPos2, Vector2* collisionPoint);
+    [return: MarshalAs(UnmanagedType.U1)] public static extern bool CheckCollisionLines(Vector2 startPos1, Vector2 endPos1, Vector2 startPos2, Vector2 endPos2, Vector2* collisionPoint);
 
     /// <summary> Check if point belongs to line created between two points [p1] and [p2] with defined margin in pixels [threshold] </summary>
     [DllImport("raylib", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
-    public static extern bool CheckCollisionPointLine(Vector2 point, Vector2 p1, Vector2 p2, int threshold);
+    [return: MarshalAs(UnmanagedType.U1)] public static extern bool CheckCollisionPointLine(Vector2 point, Vector2 p1, Vector2 p2, int threshold);
 
     /// <summary> Get collision rectangle for two rectangles collision </summary>
     [DllImport("raylib", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
@@ -965,11 +965,11 @@ public unsafe partial class Raylib
 
     /// <summary> Export image data to file, returns true on success </summary>
     [DllImport("raylib", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
-    public static extern bool ExportImage(Image image, sbyte* fileName);
+    [return: MarshalAs(UnmanagedType.U1)] public static extern bool ExportImage(Image image, sbyte* fileName);
 
     /// <summary> Export image as code file defining an array of bytes, returns true on success </summary>
     [DllImport("raylib", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
-    public static extern bool ExportImageAsCode(Image image, sbyte* fileName);
+    [return: MarshalAs(UnmanagedType.U1)] public static extern bool ExportImageAsCode(Image image, sbyte* fileName);
 
     /// <summary> Generate image: plain color </summary>
     [DllImport("raylib", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
@@ -1349,7 +1349,7 @@ public unsafe partial class Raylib
 
     /// <summary> Export font as code file, returns true on success </summary>
     [DllImport("raylib", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
-    public static extern bool ExportFontAsCode(Font font, sbyte* fileName);
+    [return: MarshalAs(UnmanagedType.U1)] public static extern bool ExportFontAsCode(Font font, sbyte* fileName);
 
     /// <summary> Draw current FPS </summary>
     [DllImport("raylib", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
@@ -1425,7 +1425,7 @@ public unsafe partial class Raylib
 
     /// <summary> Check if two text string are equal </summary>
     [DllImport("raylib", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
-    public static extern bool TextIsEqual(sbyte* text1, sbyte* text2);
+    [return: MarshalAs(UnmanagedType.U1)] public static extern bool TextIsEqual(sbyte* text1, sbyte* text2);
 
     /// <summary> Get text length, checks for '\0' ending </summary>
     [DllImport("raylib", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
@@ -1637,7 +1637,7 @@ public unsafe partial class Raylib
 
     /// <summary> Export mesh data to file, returns true on success </summary>
     [DllImport("raylib", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
-    public static extern bool ExportMesh(Mesh mesh, sbyte* fileName);
+    [return: MarshalAs(UnmanagedType.U1)] public static extern bool ExportMesh(Mesh mesh, sbyte* fileName);
 
     /// <summary> Compute mesh bounding box limits </summary>
     [DllImport("raylib", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
@@ -1733,19 +1733,19 @@ public unsafe partial class Raylib
 
     /// <summary> Check model animation skeleton match </summary>
     [DllImport("raylib", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
-    public static extern bool IsModelAnimationValid(Model model, ModelAnimation anim);
+    [return: MarshalAs(UnmanagedType.U1)] public static extern bool IsModelAnimationValid(Model model, ModelAnimation anim);
 
     /// <summary> Check collision between two spheres </summary>
     [DllImport("raylib", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
-    public static extern bool CheckCollisionSpheres(Vector3 center1, float radius1, Vector3 center2, float radius2);
+    [return: MarshalAs(UnmanagedType.U1)] public static extern bool CheckCollisionSpheres(Vector3 center1, float radius1, Vector3 center2, float radius2);
 
     /// <summary> Check collision between two bounding boxes </summary>
     [DllImport("raylib", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
-    public static extern bool CheckCollisionBoxes(BoundingBox box1, BoundingBox box2);
+    [return: MarshalAs(UnmanagedType.U1)] public static extern bool CheckCollisionBoxes(BoundingBox box1, BoundingBox box2);
 
     /// <summary> Check collision between box and sphere </summary>
     [DllImport("raylib", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
-    public static extern bool CheckCollisionBoxSphere(BoundingBox box, Vector3 center, float radius);
+    [return: MarshalAs(UnmanagedType.U1)] public static extern bool CheckCollisionBoxSphere(BoundingBox box, Vector3 center, float radius);
 
     /// <summary> Get collision info between ray and sphere </summary>
     [DllImport("raylib", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
@@ -1781,7 +1781,7 @@ public unsafe partial class Raylib
 
     /// <summary> Check if audio device has been initialized successfully </summary>
     [DllImport("raylib", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
-    public static extern bool IsAudioDeviceReady();
+    [return: MarshalAs(UnmanagedType.U1)] public static extern bool IsAudioDeviceReady();
 
     /// <summary> Set master volume (listener) </summary>
     [DllImport("raylib", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
@@ -1817,11 +1817,11 @@ public unsafe partial class Raylib
 
     /// <summary> Export wave data to file, returns true on success </summary>
     [DllImport("raylib", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
-    public static extern bool ExportWave(Wave wave, sbyte* fileName);
+    [return: MarshalAs(UnmanagedType.U1)] public static extern bool ExportWave(Wave wave, sbyte* fileName);
 
     /// <summary> Export wave sample data to code (.h), returns true on success </summary>
     [DllImport("raylib", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
-    public static extern bool ExportWaveAsCode(Wave wave, sbyte* fileName);
+    [return: MarshalAs(UnmanagedType.U1)] public static extern bool ExportWaveAsCode(Wave wave, sbyte* fileName);
 
     /// <summary> Play a sound </summary>
     [DllImport("raylib", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
@@ -1853,7 +1853,7 @@ public unsafe partial class Raylib
 
     /// <summary> Check if a sound is currently playing </summary>
     [DllImport("raylib", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
-    public static extern bool IsSoundPlaying(Sound sound);
+    [return: MarshalAs(UnmanagedType.U1)] public static extern bool IsSoundPlaying(Sound sound);
 
     /// <summary> Set volume for a sound (1.0 is max level) </summary>
     [DllImport("raylib", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
@@ -1905,7 +1905,7 @@ public unsafe partial class Raylib
 
     /// <summary> Check if music is playing </summary>
     [DllImport("raylib", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
-    public static extern bool IsMusicStreamPlaying(Music music);
+    [return: MarshalAs(UnmanagedType.U1)] public static extern bool IsMusicStreamPlaying(Music music);
 
     /// <summary> Updates buffers for music streaming </summary>
     [DllImport("raylib", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
@@ -1961,7 +1961,7 @@ public unsafe partial class Raylib
 
     /// <summary> Check if any audio stream buffers requires refill </summary>
     [DllImport("raylib", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
-    public static extern bool IsAudioStreamProcessed(AudioStream stream);
+    [return: MarshalAs(UnmanagedType.U1)] public static extern bool IsAudioStreamProcessed(AudioStream stream);
 
     /// <summary> Play audio stream </summary>
     [DllImport("raylib", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
@@ -1977,7 +1977,7 @@ public unsafe partial class Raylib
 
     /// <summary> Check if audio stream is playing </summary>
     [DllImport("raylib", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
-    public static extern bool IsAudioStreamPlaying(AudioStream stream);
+    [return: MarshalAs(UnmanagedType.U1)] public static extern bool IsAudioStreamPlaying(AudioStream stream);
 
     /// <summary> Stop audio stream </summary>
     [DllImport("raylib", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]

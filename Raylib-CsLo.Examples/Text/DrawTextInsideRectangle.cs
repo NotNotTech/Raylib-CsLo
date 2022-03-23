@@ -164,7 +164,7 @@ public static unsafe class DrawTextInsideRectangle
     // Draw text using font inside rectangle limits with support for text selection
     static void DrawTextBoxedSelectable(Font font, string text, Rectangle rec, float fontSize, float spacing, bool wordWrap, Color tint, int selectStart, int selectLength, Color selectTint, Color selectBackTint)
     {
-        int length = TextLength(text);  // Total length in bytes of the text, scanned by codepoints in loop
+        int length = text.Length;  // Total length in bytes of the text, scanned by codepoints in loop
 
         float textOffsetY = 0;          // Offset between lines (on line break '\n')
         float textOffsetX = 0.0f;       // Offset X to next character to draw

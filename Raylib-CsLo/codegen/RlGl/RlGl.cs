@@ -97,7 +97,7 @@ public unsafe partial class RlGl
 
     /// <summary> Enable vertex array (VAO, if supported) </summary>
     [DllImport("raylib", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
-    public static extern bool rlEnableVertexArray(uint vaoId);
+    [return: MarshalAs(UnmanagedType.U1)] public static extern bool rlEnableVertexArray(uint vaoId);
 
     /// <summary> Disable vertex array (VAO, if supported) </summary>
     [DllImport("raylib", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
@@ -257,7 +257,7 @@ public unsafe partial class RlGl
 
     /// <summary> Check if stereo render is enabled </summary>
     [DllImport("raylib", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
-    public static extern bool rlIsStereoRenderEnabled();
+    [return: MarshalAs(UnmanagedType.U1)] public static extern bool rlIsStereoRenderEnabled();
 
     /// <summary> Clear color buffer with color </summary>
     [DllImport("raylib", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
@@ -337,7 +337,7 @@ public unsafe partial class RlGl
 
     /// <summary> Check internal buffer overflow for a given number of vertex </summary>
     [DllImport("raylib", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
-    public static extern bool rlCheckRenderBatchLimit(int vCount);
+    [return: MarshalAs(UnmanagedType.U1)] public static extern bool rlCheckRenderBatchLimit(int vCount);
 
     /// <summary> Set current texture for render batch and check buffers limits </summary>
     [DllImport("raylib", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
@@ -449,7 +449,7 @@ public unsafe partial class RlGl
 
     /// <summary> Verify framebuffer is complete </summary>
     [DllImport("raylib", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
-    public static extern bool rlFramebufferComplete(uint id);
+    [return: MarshalAs(UnmanagedType.U1)] public static extern bool rlFramebufferComplete(uint id);
 
     /// <summary> Delete framebuffer from GPU </summary>
     [DllImport("raylib", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]

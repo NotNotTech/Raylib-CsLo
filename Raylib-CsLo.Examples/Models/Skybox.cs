@@ -227,9 +227,8 @@ public static unsafe class Skybox
         // Check if framebuffer is complete with attachments (valid)
         if (rlFramebufferComplete(fbo))
         {
-            TraceLog(LogInfo, "FBO: [ID %i] Framebuffer object created successfully", fbo);
+            Console.WriteLine("FBO: [ID {0}] Framebuffer object created successfully", fbo);
         }
-
 
         // STEP 2: Draw to framebuffer
 

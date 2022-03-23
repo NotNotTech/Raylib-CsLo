@@ -228,7 +228,7 @@ public static unsafe class Unicode
     public static int Example()//int argc, char** argv)
     {
 
-        System.Diagnostics.Debug.Assert(false, "this example does not work properly.  I think the font doesn't include unicode character");
+        // System.Diagnostics.Debug.Assert(false, "this example does not work properly.  I think the font doesn't include unicode character");
 
         // Initialization
 
@@ -373,7 +373,7 @@ public static unsafe class Unicode
 
                 // Draw the info text below the main message
                 //int size = (int)strlen(messages[message].text);
-                int size = TextLength(messages[message].text);
+                int size = messages[message].text.Length;
                 int length = GetCodepointCount(messages[message].text);
                 string info = TextFormat("%s %u characters %i bytes", messages[message].language, length, size);
                 sz = MeasureTextEx(GetFontDefault(), info, 10, 1.0f);
@@ -434,7 +434,7 @@ public static unsafe class Unicode
     // Draw text using font inside rectangle limits with support for text selection
     static void DrawTextBoxedSelectable(Font font, string text, Rectangle rec, float fontSize, float spacing, bool wordWrap, Color tint, int selectStart, int selectLength, Color selectTint, Color selectBackTint)
     {
-        int lengthUtf8 = TextLength(text);  // Total length in bytes of the text, scanned by codepoints in loop
+        int lengthUtf8 = text.Length;  // Total length in bytes of the text, scanned by codepoints in loop
 
         float textOffsetY = 0;          // Offset between lines (on line break '\n')
         float textOffsetX = 0.0f;       // Offset X to next character to draw

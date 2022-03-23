@@ -39,11 +39,13 @@ public static class KeyboardInput
 
             if (IsKeyDown(KeyRight))
             {
+                Console.WriteLine("Right");
                 ballPosition.X += 2.0f;
             }
 
             if (IsKeyDown(KeyLeft))
             {
+                Console.WriteLine("Left");
                 ballPosition.X -= 2.0f;
             }
 

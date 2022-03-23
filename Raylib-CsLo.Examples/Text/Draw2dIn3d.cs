@@ -359,42 +359,42 @@ public static unsafe class Draw2dIn3d
             rlPushMatrix();
             rlRotatef(180.0f, 0.0f, 1.0f, 0.0f);
             string opt = TextFormat("< SIZE: %2.1f >", fontSize);
-            quads += TextLength(opt);
+            quads += opt.Length;
             Vector3 m = MeasureText3D(GetFontDefault(), opt, 8.0f, 1.0f, 0.0f);
             Vector3 pos = new(-m.X / 2.0f, 0.01f, 2.0f);
             DrawText3D(GetFontDefault(), opt, pos, 8.0f, 1.0f, 0.0f, false, Blue);
             pos.Z += 0.5f + m.Z;
 
             opt = TextFormat("< SPACING: %2.1f >", fontSpacing);
-            quads += TextLength(opt);
+            quads += opt.Length;
             m = MeasureText3D(GetFontDefault(), opt, 8.0f, 1.0f, 0.0f);
             pos.X = -m.X / 2.0f;
             DrawText3D(GetFontDefault(), opt, pos, 8.0f, 1.0f, 0.0f, false, Blue);
             pos.Z += 0.5f + m.Z;
 
             opt = TextFormat("< LINE: %2.1f >", lineSpacing);
-            quads += TextLength(opt);
+            quads += opt.Length;
             m = MeasureText3D(GetFontDefault(), opt, 8.0f, 1.0f, 0.0f);
             pos.X = -m.X / 2.0f;
             DrawText3D(GetFontDefault(), opt, pos, 8.0f, 1.0f, 0.0f, false, Blue);
             pos.Z += 1.0f + m.Z;
 
             opt = TextFormat("< LBOX: %3s >", slb ? "ON" : "OFF");
-            quads += TextLength(opt);
+            quads += opt.Length;
             m = MeasureText3D(GetFontDefault(), opt, 8.0f, 1.0f, 0.0f);
             pos.X = -m.X / 2.0f;
             DrawText3D(GetFontDefault(), opt, pos, 8.0f, 1.0f, 0.0f, false, Red);
             pos.Z += 0.5f + m.Z;
 
             opt = TextFormat("< TBOX: %3s >", showTextBoundary ? "ON" : "OFF");
-            quads += TextLength(opt);
+            quads += opt.Length;
             m = MeasureText3D(GetFontDefault(), opt, 8.0f, 1.0f, 0.0f);
             pos.X = -m.X / 2.0f;
             DrawText3D(GetFontDefault(), opt, pos, 8.0f, 1.0f, 0.0f, false, Red);
             pos.Z += 0.5f + m.Z;
 
             opt = TextFormat("< LAYER DISTANCE: %.3f >", layerDistance);
-            quads += TextLength(opt);
+            quads += opt.Length;
             m = MeasureText3D(GetFontDefault(), opt, 8.0f, 1.0f, 0.0f);
             pos.X = -m.X / 2.0f;
             DrawText3D(GetFontDefault(), opt, pos, 8.0f, 1.0f, 0.0f, false, Darkpurple);
@@ -454,7 +454,7 @@ public static unsafe class Draw2dIn3d
 
             DrawText("Drag & drop a font file to change the font!\nType something, see what happens!\n\n Press [F3] to toggle the camera", 10, 35, 10, Black);
 
-            quads += TextLength(text) * 2 * layers;
+            quads += text.Length * 2 * layers;
             string tmp = TextFormat("%2i layer(s) | %s camera | %4i quads (%4i verts)", layers, spin ? "ORBITAL" : "FREE", quads, quads * 4);
             int width = MeasureText(tmp, 10);
             DrawText(tmp, screenWidth - 20 - width, 10, 10, Darkgreen);
@@ -577,7 +577,7 @@ public static unsafe class Draw2dIn3d
 
     static void DrawText3D(Font font, string text, Vector3 position, float fontSize, float fontSpacing, float lineSpacing, bool backface, Color tint)
     {
-        int length = TextLength(text);          // Total length in bytes of the text, scanned by codepoints in loop
+        int length = text.Length;          // Total length in bytes of the text, scanned by codepoints in loop
 
         float textOffsetY = 0.0f;               // Offset between lines (on line break '\n')
         float textOffsetX = 0.0f;               // Offset X to next character to draw
@@ -630,7 +630,7 @@ public static unsafe class Draw2dIn3d
 
     static Vector3 MeasureText3D(Font font, string text, float fontSize, float fontSpacing, float lineSpacing)
     {
-        int len = TextLength(text);
+        int len = text.Length;
         int tempLen = 0;                // Used to count longer text line num chars
         int lenCounter = 0;
 
@@ -704,7 +704,7 @@ public static unsafe class Draw2dIn3d
 
     static void DrawTextWave3D(Font font, string text, Vector3 position, float fontSize, float fontSpacing, float lineSpacing, bool backface, WaveTextConfig* config, float time, Color tint)
     {
-        int length = TextLength(text);          // Total length in bytes of the text, scanned by codepoints in loop
+        int length = text.Length;          // Total length in bytes of the text, scanned by codepoints in loop
 
         float textOffsetY = 0.0f;               // Offset between lines (on line break '\n')
         float textOffsetX = 0.0f;               // Offset X to next character to draw
@@ -773,7 +773,7 @@ public static unsafe class Draw2dIn3d
 
     static Vector3 MeasureTextWave3D(Font font, string text, float fontSize, float fontSpacing, float lineSpacing)
     {
-        int len = TextLength(text);
+        int len = text.Length;
         int tempLen = 0;                // Used to count longer text line num chars
         int lenCounter = 0;
 

@@ -5,6 +5,7 @@
 
 namespace Raylib_CsLo.Codegen.Generators;
 
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -61,7 +62,9 @@ public class NativeClassGenerator : BaseGenerator
 
         string importname = fileName.ToLowerInvariant();
 
-        if (importname != "raygui" || importname != "physac")
+        Console.WriteLine(importname);
+
+        if (importname != "raygui" && importname != "physac")
         {
             importname = "raylib";
         }
@@ -70,7 +73,12 @@ public class NativeClassGenerator : BaseGenerator
 
         string returnType = GenReturnType(func);
         string parameters = GenParameterDefinitions(func);
-        Line($"public static extern {returnType} {func.Name}({parameters});");
+        string boolMarshaling = "[return: MarshalAs(UnmanagedType.U1)] ";
+        if (Converter.FromCToUnsafeCs(func.Return) != "bool")
+        {
+            boolMarshaling = "";
+        }
+        Line($"{boolMarshaling}public static extern {returnType} {func.Name}({parameters});");
         Blank();
     }
 
@@ -141,7 +149,7 @@ public class NativeClassGenerator : BaseGenerator
                 func.Manual = true;
             }
 
-            bool isReturnSame = Converter.FromCToUnsafeCs(func.Return).Equals(Converter.FromCToSafeCs(func.Return), System.StringComparison.Ordinal);
+            bool isReturnSame = Converter.FromCToUnsafeCs(func.Return).Equals(Converter.FromCToSafeCs(func.Return), StringComparison.Ordinal);
             bool isParamsSame = true;
             if (parameters != null)
             {

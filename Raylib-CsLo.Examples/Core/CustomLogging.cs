@@ -22,8 +22,6 @@ using System.Runtime.InteropServices;
 using System.Text;
 using static Raylib_CsLo.TraceLogLevel;
 
-// TODO remove below
-#pragma warning disable
 /// <summary>
 /// tough to implement logging.
 /// solution from : https://stackoverflow.com/a/37629480
@@ -33,15 +31,10 @@ public static unsafe class CustomLogging
 {
 
     [DllImport("msvcrt.dll", CharSet = CharSet.Ansi, CallingConvention = CallingConvention.Cdecl)]
-    public static extern int vsprintf(
-        StringBuilder buffer,
-        string format,
-        IntPtr args);
+    public static extern int vsprintf(StringBuilder buffer, string format, IntPtr args);
 
     [DllImport("msvcrt.dll", CallingConvention = CallingConvention.Cdecl)]
-    public static extern int _vscprintf(
-        string format,
-        IntPtr ptr);
+    public static extern int _vscprintf(string format, IntPtr ptr);
 
 
     // Custom logging funtion
@@ -158,4 +151,3 @@ public static unsafe class CustomLogging
         return 0;
     }
 }
-#pragma warning restore

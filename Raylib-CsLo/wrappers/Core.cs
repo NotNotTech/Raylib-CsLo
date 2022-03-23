@@ -22,8 +22,33 @@ public unsafe partial class RaylibS
     /// <summary> Show trace log messages (LOG_DEBUG, LOG_INFO, LOG_WARNING, LOG_ERROR...) </summary>
     public static void TraceLog(TraceLogLevel logLevel, string text, params object[] args)
     {
-        text = text.SPrintF(args);
-        TraceLog((int)logLevel, text, args);
+        using var text_ = text.MarshalUtf8();
+        Raylib.TraceLog((int)logLevel, text_.AsPtr(), __arglist(args));
+    }
+
+    /// <summary> Show trace log messages (LOG_DEBUG, LOG_INFO, LOG_WARNING, LOG_ERROR...) </summary>
+    public static void TraceLog(TraceLogLevel logLevel, string text)
+    {
+        using var text_ = text.MarshalUtf8();
+        Raylib.TraceLog((int)logLevel, text_.AsPtr(), __arglist());
+    }
+
+    /// <summary> Set mouse position XY </summary>
+    public static void SetMousePosition(Vector2 position)
+    {
+        Raylib.SetMousePosition((int)position.X, (int)position.Y);
+    }
+
+    /// <summary> Set mouse offset </summary>
+    public static void SetMouseOffset(Vector2 offset)
+    {
+        Raylib.SetMouseOffset((int)offset.X, (int)offset.Y);
+    }
+
+    /// <summary> Set mouse scaling </summary>
+    public static void SetMouseScale(Vector2 scale)
+    {
+        Raylib.SetMouseScale(scale.X, scale.Y);
     }
 
     /// <summary>
@@ -152,15 +177,6 @@ public unsafe partial class RaylibS
         string[] files = GetDroppedFiles();
         ClearDroppedFiles();
         return files;
-    }
-
-    /// <summary>
-    /// Get text length, checks for '\0' ending TODO: remove not needed in safe
-    /// </summary>
-    public static int TextLength(string text)
-    {
-        using var text_ = text.MarshalUtf8();
-        return (int)Raylib.TextLength(text_.AsPtr());
     }
 
     /// <summary>
