@@ -16,20 +16,20 @@ public class Program
     {
         Console.WriteLine("\n-- Raylib Code Gen --\n");
 
-        if (Directory.Exists(CodegenSettings.OutputFolder))
+        if (Directory.Exists(Settings.OutputFolder))
         {
-            Directory.Delete(CodegenSettings.OutputFolder, true);
+            Directory.Delete(Settings.OutputFolder, true);
         }
 
-        Directory.CreateDirectory(CodegenSettings.OutputFolder);
+        Directory.CreateDirectory(Settings.OutputFolder);
 
         // For manual ordering
         string[] bindingFiles = {
-            CodegenSettings.BindingsFolder+"raylib_api.json",
-            CodegenSettings.BindingsFolder+"raygui_api.json",
-            CodegenSettings.BindingsFolder+"rlgl_api.json",
-            CodegenSettings.BindingsFolder+"raymath_api.json",
-            CodegenSettings.BindingsFolder+"physac_api.json",
+            Settings.BindingsFolder+"raylib_api.json",
+            Settings.BindingsFolder+"raygui_api.json",
+            Settings.BindingsFolder+"rlgl_api.json",
+            Settings.BindingsFolder+"raymath_api.json",
+            Settings.BindingsFolder+"physac_api.json",
         };
 
         foreach (string bindingPath in bindingFiles)
@@ -66,7 +66,7 @@ public class Program
             structGenerator.Generate();
         }
 
-        EasingsGenerator easingsGenerator = new(CodegenSettings.BindingsFolder + "easings.h");
+        EasingsGenerator easingsGenerator = new(Settings.BindingsFolder + "easings.h");
         easingsGenerator.Generate();
     }
 }

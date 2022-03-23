@@ -22,14 +22,14 @@ public class EasingsGenerator : BaseGenerator
 
     public void Generate()
     {
-        Line(CodegenSettings.CodeHeader);
+        Line(Settings.CodeHeader);
 
         Blank();
 
         Line($"#pragma warning disable");
         Blank();
 
-        Line($"namespace {CodegenSettings.NamespaceName};");
+        Line($"namespace {Settings.NamespaceName};");
 
         Blank();
 
@@ -44,7 +44,7 @@ public class EasingsGenerator : BaseGenerator
         Line($"#pragma warning restore");
         Blank();
 
-        string file = CodegenSettings.OutputFolder + "Easings/Easings.cs";
+        string file = Settings.OutputFolder + "Easings/Easings.cs";
         Directory.CreateDirectory(Path.GetDirectoryName(file));
         File.WriteAllText(file, fileContents.ToString());
     }

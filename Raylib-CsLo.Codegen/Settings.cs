@@ -9,7 +9,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 
-public static class CodegenSettings
+public static class Settings
 {
     public const string NamespaceName = "Raylib_CsLo";
 
@@ -130,6 +130,77 @@ public static class CodegenSettings
         { "PixelFormat", "(int)" },
         { "TextureFilter", "(int)" },
         { "TextureWrap", "(int)" },
+    };
+
+    // Converts C to unsafe C#
+    public static readonly Dictionary<string, string> CToUnsafeConversion = new()
+    {
+        { "LoadFileDataCallback", "delegate* unmanaged[Cdecl]<sbyte*, uint*, byte*>" },
+        { "LoadFileTextCallback", "delegate* unmanaged[Cdecl]<sbyte*, sbyte*>" },
+        { "SaveFileDataCallback", "delegate* unmanaged[Cdecl]<sbyte*, void*, uint, bool>" },
+        { "SaveFileTextCallback", "delegate* unmanaged[Cdecl]<sbyte*, sbyte*>" },
+        { "TraceLogCallback", "delegate* unmanaged[Cdecl]<int, sbyte*, sbyte*, void>" },
+
+        { "Camera", "Camera3D" },
+        { "Camera*", "Camera3D*" },
+        { "const GlyphInfo*", "GlyphInfo*" },
+        { "float16", "Float16" },
+        { "float3", "Float3" },
+        { "GuiStyle", "uint*" },
+        { "Matrix", "Matrix4x4" },
+        { "Matrix*", "Matrix4x4*" },
+        { "PhysicsBody", "PhysicsBodyData" },
+        { "PhysicsBody*", "PhysicsBodyData" },
+        { "PhysicsShapeType", "PhysicsShape" },
+        { "PhysicsShapeType*", "PhysicsShape*" },
+        { "rAudioBuffer", "RAudioBuffer" },
+        { "rAudioBuffer*", "RAudioBuffer*" },
+        { "RenderTexture2D", "RenderTexture" },
+        { "rlDrawCall*", "RlDrawCall*" },
+        { "rlFramebufferAttachType", "RlFramebufferAttachType" },
+        { "rlRenderBatch", "RlRenderBatch" },
+        { "rlRenderBatch*", "RlRenderBatch*" },
+        { "rlVertexBuffer*", "RlVertexBuffer*" },
+        { "Texture", "Texture2D" },
+        { "Texture*", "Texture2D*" },
+        { "TextureCubemap", "Texture2D" },
+
+        { "char", "sbyte" },
+        { "char*", "sbyte*" },
+        { "char**", "sbyte**" },
+        { "int*", "int*" },
+        { "unsigned char", "byte" },
+        { "unsigned char*", "byte*" },
+        { "unsigned int", "uint" },
+        { "unsigned int*", "uint*" },
+        { "unsigned long long", "ulong" },
+        { "unsigned short", "ushort" },
+        { "unsigned short*", "ushort*" },
+        { "void*", "void*" },
+
+        { "...", "__arglist" }// var args arry},
+    };
+
+    // Converts unsafe C# to safe C#
+    public static readonly Dictionary<string, string> UnsafeToSafeConversion = new()
+    {
+        { "byte*", "byte[]" },
+        { "Camera", "Camera" },
+        { "Camera*", "ref Camera" },
+        { "Camera3D", "Camera3D" },
+        { "Camera3D*", "ref Camera3D" },
+        { "Color*", "Color[]" },
+        { "Image*", "ref Image" },
+        { "int*", "int*" },
+        { "Matrix4x4*", "Matrix4x4[]" },
+        { "PhysicsBodyData", "PhysicsBodyData" },
+        { "sbyte*", "string" },
+        { "Texture2D*", "ref Texture2D" },
+        { "Vector2*", "Vector2[]" },
+        { "Rectangle*", "Rectangle[]" },
+        { "void*", "IntPtr" },
+
+        { "__arglist", "params object[]" },
     };
 
     public static string TryGetSolutionDirectoryInfo()

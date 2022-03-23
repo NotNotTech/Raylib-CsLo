@@ -27,7 +27,7 @@ public class DefineGenerator : BaseGenerator
 
     public void Generate()
     {
-        Line(CodegenSettings.CodeHeader);
+        Line(Settings.CodeHeader);
 
         Blank();
 
@@ -35,7 +35,7 @@ public class DefineGenerator : BaseGenerator
 
         Blank();
 
-        Line($"namespace {CodegenSettings.NamespaceName};");
+        Line($"namespace {Settings.NamespaceName};");
 
         Blank();
 
@@ -46,7 +46,7 @@ public class DefineGenerator : BaseGenerator
         {
             foreach (RaylibDefine define in defines)
             {
-                if (CodegenSettings.DefinesOverride.Contains(define.Name))
+                if (Settings.DefinesOverride.Contains(define.Name))
                 {
                     continue;
                 }
@@ -119,11 +119,11 @@ public class DefineGenerator : BaseGenerator
         Blank();
         Line($"#pragma warning restore");
 
-        string file = CodegenSettings.OutputFolder + fileName + "/" + fileName + "Defines.cs";
+        string file = Settings.OutputFolder + fileName + "/" + fileName + "Defines.cs";
         Directory.CreateDirectory(Path.GetDirectoryName(file));
         File.WriteAllText(file, fileContents.ToString());
 
-        file = CodegenSettings.OutputFolder + fileName + "/" + fileName + "SafeDefines.cs";
+        file = Settings.OutputFolder + fileName + "/" + fileName + "SafeDefines.cs";
         Directory.CreateDirectory(Path.GetDirectoryName(file));
         fileContents.Replace(definition, definition + "S");
         File.WriteAllText(file, fileContents.ToString());

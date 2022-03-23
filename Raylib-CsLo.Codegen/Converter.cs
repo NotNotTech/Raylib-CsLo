@@ -5,87 +5,23 @@
 
 namespace Raylib_CsLo.Codegen;
 
+using System.Collections.Generic;
+
 public static class Converter
 {
     // Used in gen of DllImport
     public static string FromCToUnsafeCs(string type)
     {
         type = type.Replace("const ", "");
-        return type switch
-        {
-            "LoadFileDataCallback" => "delegate* unmanaged[Cdecl]<sbyte*, uint*, byte*>",
-            "LoadFileTextCallback" => "delegate* unmanaged[Cdecl]<sbyte*, sbyte*>",
-            "SaveFileDataCallback" => "delegate* unmanaged[Cdecl]<sbyte*, void*, uint, bool>",
-            "SaveFileTextCallback" => "delegate* unmanaged[Cdecl]<sbyte*, sbyte*>",
-            "TraceLogCallback" => "delegate* unmanaged[Cdecl]<int, sbyte*, sbyte*, void>",
-
-            "Camera" => "Camera3D",
-            "Camera*" => "Camera3D*",
-            "const GlyphInfo*" => "GlyphInfo*",
-            "float16" => "Float16",
-            "float3" => "Float3",
-            "GuiStyle" => "uint*",
-            "Matrix" => "Matrix4x4",
-            "Matrix*" => "Matrix4x4*",
-            "PhysicsBody" => "PhysicsBodyData",
-            "PhysicsBody*" => "PhysicsBodyData",
-            "PhysicsShapeType" => "PhysicsShape",
-            "PhysicsShapeType*" => "PhysicsShape*",
-            "rAudioBuffer" => "RAudioBuffer",
-            "rAudioBuffer*" => "RAudioBuffer*",
-            "RenderTexture2D" => "RenderTexture",
-            "rlDrawCall*" => "RlDrawCall*",
-            "rlFramebufferAttachType" => "RlFramebufferAttachType",
-            "rlRenderBatch" => "RlRenderBatch",
-            "rlRenderBatch*" => "RlRenderBatch*",
-            "rlVertexBuffer*" => "RlVertexBuffer*",
-            "Texture" => "Texture2D",
-            "Texture*" => "Texture2D*",
-            "TextureCubemap" => "Texture2D",
-
-            "char" => "sbyte",
-            "char*" => "sbyte*",
-            "char**" => "sbyte**",
-            "int*" => "int*",
-            "unsigned char" => "byte",
-            "unsigned char*" => "byte*",
-            "unsigned int" => "uint",
-            "unsigned int*" => "uint*",
-            "unsigned long long" => "ulong",
-            "unsigned short" => "ushort",
-            "unsigned short*" => "ushort*",
-            "void*" => "void*",
-
-            "..." => "__arglist", // var args array
-            _ => type,
-        };
+        return Settings.CToUnsafeConversion.GetValueOrDefault(type, type);
     }
 
     // Uses the above output as input
     // Used in gen of Safe Cs types
     public static string FromCToSafeCs(string type)
     {
-        string unsafeType = FromCToUnsafeCs(type);
-        return unsafeType switch
-        {
-            "byte*" => "byte[]",
-            "Camera" => "Camera",
-            "Camera*" => "ref Camera",
-            "Texture2D*" => "ref Texture2D",
-            "Camera3D" => "Camera3D",
-            "Camera3D*" => "ref Camera3D",
-            "Color*" => "Color[]",
-            "Image*" => "ref Image",
-            "int*" => "int*",
-            "Matrix4x4*" => "Matrix4x4[]",
-            "PhysicsBodyData" => "PhysicsBodyData",
-            "sbyte*" => "string",
-            "Vector2*" => "Vector2[]",
-            "void*" => "IntPtr",
-
-            "__arglist" => "params object[]",
-            _ => unsafeType,
-        };
+        type = FromCToUnsafeCs(type);
+        return Settings.UnsafeToSafeConversion.GetValueOrDefault(type, type);
     }
 
     public static string FromSnakeToPascalCase(string value)

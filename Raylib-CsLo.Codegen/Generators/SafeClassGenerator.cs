@@ -27,13 +27,13 @@ public class SafeClassGenerator : BaseGenerator
 
     public void Generate()
     {
-        Line(CodegenSettings.CodeHeader);
+        Line(Settings.CodeHeader);
         Blank();
 
         Line($"#pragma warning disable");
         Blank();
 
-        Line($"namespace {CodegenSettings.NamespaceName};");
+        Line($"namespace {Settings.NamespaceName};");
         Blank();
 
         Line($"public unsafe partial class {fileName}S");
@@ -41,7 +41,7 @@ public class SafeClassGenerator : BaseGenerator
         StartBlock();
         foreach (RaylibFunction func in functions)
         {
-            if (CodegenSettings.ParamTypeEnumOverride.TryGetValue(func.Name, out (string type, string name) value))
+            if (Settings.ParamTypeEnumOverride.TryGetValue(func.Name, out (string type, string name) value))
             {
                 for (int i = 0; i < func.Parameters.Count; i++)
                 {
@@ -68,7 +68,7 @@ public class SafeClassGenerator : BaseGenerator
         Blank();
         Line($"#pragma warning restore");
 
-        string file = CodegenSettings.OutputFolder + fileName + "/" + fileName + "S.cs";
+        string file = Settings.OutputFolder + fileName + "/" + fileName + "S.cs";
         Directory.CreateDirectory(Path.GetDirectoryName(file));
         File.WriteAllText(file, fileContents.ToString());
     }
@@ -192,15 +192,15 @@ public class SafeClassGenerator : BaseGenerator
         switch (unsafeType)
         {
             case "sbyte*":
-                helper = CodegenSettings.Utf8ToStringFunction;
+                helper = Settings.Utf8ToStringFunction;
                 break;
 
             case "byte*":
-                helper = CodegenSettings.PrtToArrayFunction;
+                helper = Settings.PrtToArrayFunction;
                 break;
 
             case "Color*":
-                helper = CodegenSettings.PrtToArrayFunction;
+                helper = Settings.PrtToArrayFunction;
                 break;
 
             default:
@@ -209,7 +209,7 @@ public class SafeClassGenerator : BaseGenerator
 
         RaylibParameter param = func.Parameters?.Find((p) => p.Name.ToLowerInvariant().Contains("length"));
 
-        if (param != null && helper == CodegenSettings.PrtToArrayFunction)
+        if (param != null && helper == Settings.PrtToArrayFunction)
         {
             return Call(helper, unsafeCall + ", " + param.Name);
         }
@@ -248,7 +248,7 @@ public class SafeClassGenerator : BaseGenerator
     /// </summary>
     static string CastEnumParams(string type)
     {
-        if (CodegenSettings.EnumCastType.TryGetValue(type, out string value))
+        if (Settings.EnumCastType.TryGetValue(type, out string value))
         {
             return value;
         }

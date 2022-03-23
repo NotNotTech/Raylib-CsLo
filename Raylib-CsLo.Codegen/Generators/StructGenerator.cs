@@ -32,17 +32,17 @@ public class StructGenerator : BaseGenerator
     {
         foreach (RaylibStructType structType in structTypes)
         {
-            if (structs.Contains(structType.Name) || CodegenSettings.StructsOverride.Contains(structType.Name))
+            if (structs.Contains(structType.Name) || Settings.StructsOverride.Contains(structType.Name))
             {
                 continue;
             }
 
             structs.Add(structType.Name);
-            Line(CodegenSettings.CodeHeader);
+            Line(Settings.CodeHeader);
 
             Blank();
 
-            Line($"namespace {CodegenSettings.NamespaceName};");
+            Line($"namespace {Settings.NamespaceName};");
 
             Blank();
 
@@ -115,7 +115,7 @@ public class StructGenerator : BaseGenerator
             }
             EndBlock();
 
-            string file = CodegenSettings.OutputFolder + fileName + "/Structs/" + structType.Name + ".cs";
+            string file = Settings.OutputFolder + fileName + "/Structs/" + structType.Name + ".cs";
             Directory.CreateDirectory(Path.GetDirectoryName(file));
             File.WriteAllText(file, fileContents.ToString());
             fileContents.Clear();

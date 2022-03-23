@@ -27,13 +27,13 @@ public class NativeClassGenerator : BaseGenerator
 
     public void Generate()
     {
-        Line(CodegenSettings.CodeHeader);
+        Line(Settings.CodeHeader);
         Blank();
 
         Line($"#pragma warning disable");
         Blank();
 
-        Line($"namespace {CodegenSettings.NamespaceName};");
+        Line($"namespace {Settings.NamespaceName};");
 
         Blank();
 
@@ -50,7 +50,7 @@ public class NativeClassGenerator : BaseGenerator
         Blank();
         Line($"#pragma warning restore");
 
-        string file = CodegenSettings.OutputFolder + fileName + "/" + fileName + ".cs";
+        string file = Settings.OutputFolder + fileName + "/" + fileName + ".cs";
         Directory.CreateDirectory(Path.GetDirectoryName(file));
         File.WriteAllText(file, fileContents.ToString());
     }
@@ -136,7 +136,7 @@ public class NativeClassGenerator : BaseGenerator
             }
 
             // Skip auto gening these functions be sure to add them manually
-            if (CodegenSettings.FunctionsToHandleManually.Contains(func.Name))
+            if (Settings.FunctionsToHandleManually.Contains(func.Name))
             {
                 func.Manual = true;
             }

@@ -28,11 +28,11 @@ public class EnumGenerator : BaseGenerator
     {
         foreach (RaylibEnumType enumType in enumTypes)
         {
-            Line(CodegenSettings.CodeHeader);
+            Line(Settings.CodeHeader);
 
             Blank();
 
-            Line($"namespace {CodegenSettings.NamespaceName};");
+            Line($"namespace {Settings.NamespaceName};");
 
             Blank();
 
@@ -48,7 +48,7 @@ public class EnumGenerator : BaseGenerator
             }
             EndBlock();
 
-            string file = CodegenSettings.OutputFolder + fileName + "/Enums/" + enumType.Name + ".cs";
+            string file = Settings.OutputFolder + fileName + "/Enums/" + enumType.Name + ".cs";
             Directory.CreateDirectory(Path.GetDirectoryName(file));
             File.WriteAllText(file, fileContents.ToString());
             fileContents.Clear();

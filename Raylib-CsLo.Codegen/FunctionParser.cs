@@ -31,7 +31,7 @@ public static class FunctionParser
             }
 
             // Skip auto gening these functions be sure to add them manually
-            if (CodegenSettings.FunctionsToHandleManually.Contains(func.Name))
+            if (Settings.FunctionsToHandleManually.Contains(func.Name))
             {
                 func.Manual = true;
             }
