@@ -150,8 +150,6 @@ public static unsafe class ExamplePicker
 
         InitWindow(screenWidth, screenHeight, "Raylib-CsLo Example Picker");
 
-        SetExitKey(0);
-
         Image icon = LoadImageRaw("./Icon.raw", 128, 128, PixelformatUncompressedR8g8b8a8, 0);
 
         Raylib.SetWindowIcon(icon);
@@ -160,15 +158,7 @@ public static unsafe class ExamplePicker
 
         SetTargetFPS(60);
 
-        List<string> files = new();
-
-        foreach (string file in Directory.EnumerateFiles(@"D:\raylib\examples\", "*.png", SearchOption.AllDirectories))
-        {
-            Console.WriteLine(file);
-            files.Add(file);
-        }
-
-        Dictionary<int, Texture2D> previews = new(files.Count);
+        Dictionary<int, Texture2D> previews = new();
 
         for (int i = 0; i < Examples.Length; i++)
         {
@@ -177,9 +167,6 @@ public static unsafe class ExamplePicker
 
         while (!WindowShouldClose())
         {
-            BeginDrawing();
-            ClearBackground(White);
-
             if (IsKeyPressed(KeyLeft))
             {
                 currentExample--;
@@ -199,10 +186,14 @@ public static unsafe class ExamplePicker
                 currentExample %= Examples.Length;
             }
 
-            if (IsKeyPressed(KeyEnter))
+            if (IsKeyDown(KeyEnter))
             {
-                Console.WriteLine(Examples[currentExample]);
+                CloseWindow();
+                return currentExample;
             }
+
+            BeginDrawing();
+            ClearBackground(White);
 
             float scale = 1;
             float x = (screenWidth / 2) - (previews[currentExample].width / 2 * scale);
@@ -215,14 +206,11 @@ public static unsafe class ExamplePicker
             Font font = GetFontDefault();
             DrawTextPro(font, Examples[currentExample], new Vector2(screenWidth / 2, screenHeight - 40), new Vector2(MeasureText(Examples[currentExample], 32) / 2f, 32), 0, 32, 4, Color.Black);
 
-            // DrawLine(screenWidth / 2, 0, screenWidth / 2, screenHeight, Black);
-
             EndDrawing();
         }
 
         CloseWindow();
-
-        return 0;
+        return -1;
     }
 }
 
