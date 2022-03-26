@@ -19,7 +19,7 @@ namespace Raylib_CsLo.Examples.Core;
 public static unsafe class VrSimulator
 {
     const int GLSL_VERSION = 330;
-    public static int Example()
+    public static void Example()
     {
         // Initialization
 
@@ -60,26 +60,18 @@ public static unsafe class VrSimulator
         VrStereoConfig config = LoadVrStereoConfig(device);
 
         // Distortion shader (uses device lens distortion and chroma)
-        Shader distortion = LoadFShader(TextFormat("resources/distortion%i.fs", GLSL_VERSION));
+        Shader distortion = LoadFShader($"resources/distortion{GLSL_VERSION}.fs");
 
         // Update distortion shader with lens and distortion-scale parameters
-        SetShaderValue(distortion, GetShaderLocation(distortion, "leftLensCenter"),
-                       config.leftLensCenter, ShaderUniformVec2);
-        SetShaderValue(distortion, GetShaderLocation(distortion, "rightLensCenter"),
-                       config.rightLensCenter, ShaderUniformVec2);
-        SetShaderValue(distortion, GetShaderLocation(distortion, "leftScreenCenter"),
-                       config.leftScreenCenter, ShaderUniformVec2);
-        SetShaderValue(distortion, GetShaderLocation(distortion, "rightScreenCenter"),
-                       config.rightScreenCenter, ShaderUniformVec2);
+        SetShaderValue(distortion, GetShaderLocation(distortion, "leftLensCenter"), config.leftLensCenter, ShaderUniformVec2);
+        SetShaderValue(distortion, GetShaderLocation(distortion, "rightLensCenter"), config.rightLensCenter, ShaderUniformVec2);
+        SetShaderValue(distortion, GetShaderLocation(distortion, "leftScreenCenter"), config.leftScreenCenter, ShaderUniformVec2);
+        SetShaderValue(distortion, GetShaderLocation(distortion, "rightScreenCenter"), config.rightScreenCenter, ShaderUniformVec2);
 
-        SetShaderValue(distortion, GetShaderLocation(distortion, "scale"),
-                       config.scale, ShaderUniformVec2);
-        SetShaderValue(distortion, GetShaderLocation(distortion, "scaleIn"),
-                       config.scaleIn, ShaderUniformVec2);
-        SetShaderValue(distortion, GetShaderLocation(distortion, "deviceWarpParam"),
-                       device.lensDistortionValues, ShaderUniformVec4);
-        SetShaderValue(distortion, GetShaderLocation(distortion, "chromaAbParam"),
-                       device.chromaAbCorrection, ShaderUniformVec4);
+        SetShaderValue(distortion, GetShaderLocation(distortion, "scale"), config.scale, ShaderUniformVec2);
+        SetShaderValue(distortion, GetShaderLocation(distortion, "scaleIn"), config.scaleIn, ShaderUniformVec2);
+        SetShaderValue(distortion, GetShaderLocation(distortion, "deviceWarpParam"), device.lensDistortionValues, ShaderUniformVec4);
+        SetShaderValue(distortion, GetShaderLocation(distortion, "chromaAbParam"), device.chromaAbCorrection, ShaderUniformVec4);
 
         // Initialize framebuffer for stereo rendering
         // NOTE: Screen size should match HMD aspect ratio
@@ -127,8 +119,8 @@ public static unsafe class VrSimulator
             ClearBackground(Raywhite);
             BeginShaderMode(distortion);
             DrawTextureRec(target.texture, new(
-                0, 0, target.texture.width,
-                              -target.texture.height), new(0.0f, 0.0f), White);
+                        0, 0, target.texture.width,
+                                      -target.texture.height), new(0.0f, 0.0f), White);
             EndShaderMode();
             DrawFPS(10, 10);
             EndDrawing();
@@ -145,7 +137,6 @@ public static unsafe class VrSimulator
         CloseWindow();                  // Close window and OpenGL context
 
 
-        return 0;
     }
 
 

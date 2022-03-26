@@ -18,10 +18,10 @@ namespace Raylib_CsLo.Examples.Audio;
 *
 ********************************************************************************************/
 
-public static unsafe class MultichannelSoundPlaying
+public static unsafe class MultichannelSound
 {
 
-    public static int Example()
+    public static void Example()
     {
         // Initialization
 
@@ -66,7 +66,7 @@ public static unsafe class MultichannelSoundPlaying
             DrawText("Press SPACE to play new ogg instance!", 200, 120, 20, Lightgray);
             DrawText("Press ENTER to play new wav instance!", 200, 180, 20, Lightgray);
 
-            DrawText(TextFormat("CONCURRENT SOUNDS PLAYING: %02i", GetSoundsPlaying()), 220, 280, 20, Red);
+            DrawText(string.Format("CONCURRENT SOUNDS PLAYING: {0}", GetSoundsPlaying()), 220, 280, 20, Red);
 
             EndDrawing();
 
@@ -82,8 +82,5 @@ public static unsafe class MultichannelSoundPlaying
         CloseAudioDevice();     // Close audio device
 
         CloseWindow();          // Close window and OpenGL context
-
-
-        return 0;
     }
 }

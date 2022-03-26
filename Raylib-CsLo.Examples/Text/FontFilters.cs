@@ -23,7 +23,7 @@ namespace Raylib_CsLo.Examples.Text;
 public static unsafe class FontFilters
 {
 
-    public static int Example()
+    public static void Example()
     {
         // Initialization
 
@@ -125,8 +125,8 @@ public static unsafe class FontFilters
             //DrawRectangleLines(fontPosition.X, fontPosition.Y, textSize.X, textSize.Y, Red);
 
             DrawRectangle(0, screenHeight - 80, screenWidth, 80, Lightgray);
-            DrawText(TextFormat("Font size: %02.02f", fontSize), 20, screenHeight - 50, 10, Darkgray);
-            DrawText(TextFormat("Text size: [%02.02f, %02.02f]", textSize.X, textSize.Y), 20, screenHeight - 30, 10, Darkgray);
+            DrawText(string.Format("Font size: {0}", fontSize.ToString("00.00")), 20, screenHeight - 50, 10, Darkgray);
+            DrawText(string.Format("Text size: [{0}, {1}]", textSize.X.ToString("00.00"), textSize.Y.ToString("00.00")), 20, screenHeight - 30, 10, Darkgray);
             DrawText("CURRENT TEXTURE FILTER:", 250, 400, 20, Gray);
 
             if (currentFontFilter == 0)
@@ -155,6 +155,6 @@ public static unsafe class FontFilters
         CloseWindow();              // Close window and OpenGL context
 
 
-        return 0;
+
     }
 }

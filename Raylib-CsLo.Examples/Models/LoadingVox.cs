@@ -21,7 +21,7 @@ namespace Raylib_CsLo.Examples.Models;
 public static unsafe class LoadingVox
 {
     const int MAX_VOX_FILES = 3;
-    public static int Example()
+    public static void Example()
     {
         // Initialization
 
@@ -122,7 +122,7 @@ public static unsafe class LoadingVox
             DrawRectangle(10, 400, 310, 30, Fade(Skyblue, 0.5f));
             DrawRectangleLines(10, 400, 310, 30, Fade(Darkblue, 0.5f));
             DrawText("MOUSE LEFT BUTTON to CYCLE VOX MODELS", 40, 410, 10, Blue);
-            DrawText(TextFormat("File: %s", GetFileName(voxFileNames[currentModel])), 10, 10, 20, Gray);
+            DrawText("File: " + GetFileName(voxFileNames[currentModel]), 10, 10, 20, Gray);
 
             EndDrawing();
 
@@ -139,7 +139,7 @@ public static unsafe class LoadingVox
         CloseWindow();          // Close window and OpenGL context
 
 
-        return 0;
+
     }
 
 

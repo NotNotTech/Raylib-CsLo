@@ -40,18 +40,22 @@
     </PropertyGroup>
 
     <ItemGroup>
-        <!-- <Content Include="runtimes\win-x64\native\raylib.dll">
+        <Content Include="runtimes\**">
+            <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+            <Pack>true</Pack>
+            <PackagePath>runtimes</PackagePath>
+        </Content>
+
+        <!-- Windows Testing -->
+        <Content Include="runtimes\win-x64\native\raylib.dll">
             <CopyToOutputDirectory>Always</CopyToOutputDirectory>
             <TargetPath>raylib.dll</TargetPath>
-        </Content> -->
+        </Content>
+
+        <!-- Linux Testing -->
         <Content Include="runtimes/linux-x64/native/libraylib.so">
             <CopyToOutputDirectory>Always</CopyToOutputDirectory>
             <TargetPath>raylib.so</TargetPath>
-        </Content>
-
-        <Content Include="runtimes/linux-x64/native/libraygui.so">
-            <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-            <TargetPath>raygui.so</TargetPath>
         </Content>
     </ItemGroup>
 

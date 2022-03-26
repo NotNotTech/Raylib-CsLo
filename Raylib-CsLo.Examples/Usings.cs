@@ -37,5 +37,4 @@ global using static Raylib_CsLo.ShaderLocationIndex;
 global using static Raylib_CsLo.ShaderUniformDataType;
 global using static Raylib_CsLo.TextureFilter;
 global using static Raylib_CsLo.TextureWrap;
-global using static Raylib_CsLo.TraceLogLevel;
 #pragma warning restore IDE0065

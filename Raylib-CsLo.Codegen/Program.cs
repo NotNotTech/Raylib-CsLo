@@ -34,7 +34,6 @@ public class Program
 
         foreach (string bindingPath in bindingFiles)
         {
-            Console.WriteLine(bindingPath);
             string fileName = Path.GetFileNameWithoutExtension(bindingPath).Replace("_api", "");
 
             fileName = fileName switch

@@ -22,7 +22,7 @@ public static unsafe class SpriteExplosion
     const int NUM_FRAMES_PER_LINE = 5;
     const int NUM_LINES = 5;
 
-    public static int Example()
+    public static void Example()
     {
         // Initialization
 
@@ -127,6 +127,6 @@ public static unsafe class SpriteExplosion
         CloseWindow();              // Close window and OpenGL context
 
 
-        return 0;
+
     }
 }

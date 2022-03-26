@@ -19,7 +19,7 @@ namespace Raylib_CsLo.Examples.Core;
 public static unsafe class WindowFlags
 {
 
-    public static int Example()
+    public static void Example()
     {
         // Initialization
 
@@ -28,20 +28,20 @@ public static unsafe class WindowFlags
 
         // Possible window flags
         /*
-		FLAG_VSYNC_HINT
-		FLAG_FULLSCREEN_MODE    -> not working properly -> wrong scaling!
-		FlagWindowResizable
-		FLAG_WINDOW_UNDECORATED
-		FLAG_WINDOW_TRANSPARENT
-		FLAG_WINDOW_HIDDEN
-		FLAG_WINDOW_MINIMIZED   -> Not supported on window creation
-		FLAG_WINDOW_MAXIMIZED   -> Not supported on window creation
-		FLAG_WINDOW_UNFOCUSED
-		FLAG_WINDOW_TOPMOST
-		FLAG_WINDOW_HIGHDPI     -> errors after minimize-resize, fb size is recalculated
-		FLAG_WINDOW_ALWAYS_RUN
-		FlagMsaa4xHint
-		*/
+        FLAG_VSYNC_HINT
+        FLAG_FULLSCREEN_MODE    -> not working properly -> wrong scaling!
+        FlagWindowResizable
+        FLAG_WINDOW_UNDECORATED
+        FLAG_WINDOW_TRANSPARENT
+        FLAG_WINDOW_HIDDEN
+        FLAG_WINDOW_MINIMIZED   -> Not supported on window creation
+        FLAG_WINDOW_MAXIMIZED   -> Not supported on window creation
+        FLAG_WINDOW_UNFOCUSED
+        FLAG_WINDOW_TOPMOST
+        FLAG_WINDOW_HIGHDPI     -> errors after minimize-resize, fb size is recalculated
+        FLAG_WINDOW_ALWAYS_RUN
+        FlagMsaa4xHint
+        */
 
         // Set configuration flags for window creation
         //SetConfigFlags(FLAG_VSYNC_HINT | FlagMsaa4xHint | FLAG_WINDOW_HIGHDPI);
@@ -223,7 +223,7 @@ public static unsafe class WindowFlags
 
             DrawFPS(10, 10);
 
-            DrawText(TextFormat("Screen Size: [%i, %i]", GetScreenWidth(), GetScreenHeight()), 10, 40, 10, Green);
+            DrawText(string.Format("Screen Size: [{0}, {1}]", GetScreenWidth(), GetScreenHeight()), 10, 40, 10, Green);
 
             // Draw window state info
             DrawText("Following flags can be set after window creation:", 10, 60, 10, Gray);
@@ -354,7 +354,6 @@ public static unsafe class WindowFlags
         CloseWindow();        // Close window and OpenGL context
 
 
-        return 0;
     }
 
 

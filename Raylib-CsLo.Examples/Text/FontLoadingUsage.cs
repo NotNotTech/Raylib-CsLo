@@ -19,12 +19,12 @@ namespace Raylib_CsLo.Examples.Text;
 *
 ********************************************************************************************/
 
-public static unsafe class FontLoadingUsage
+public static unsafe class RaylibFonts
 {
 
     const int MAX_FONTS = 8;
 
-    public static int Example()
+    public static void Example()
     {
         // Initialization
 
@@ -112,6 +112,6 @@ public static unsafe class FontLoadingUsage
         CloseWindow();                 // Close window and OpenGL context
 
 
-        return 0;
+
     }
 }

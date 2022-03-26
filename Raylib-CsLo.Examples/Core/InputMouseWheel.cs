@@ -19,7 +19,7 @@ namespace Raylib_CsLo.Examples.Core;
 public static class InputMouseWheel
 {
 
-    public static int Example()
+    public static void Example()
     {
         // Initialization
 
@@ -52,7 +52,7 @@ public static class InputMouseWheel
             DrawRectangle((screenWidth / 2) - 40, boxPositionY, 80, 80, Maroon);
 
             DrawText("Use mouse wheel to move the cube up and down!", 10, 10, 20, Gray);
-            DrawText(TextFormat("Box position Y: %03i", boxPositionY), 10, 40, 20, Lightgray);
+            DrawText(string.Format("Box position Y: {0}", boxPositionY.ToString("000")), 10, 40, 20, Lightgray);
 
             EndDrawing();
 
@@ -63,6 +63,5 @@ public static class InputMouseWheel
         CloseWindow();        // Close window and OpenGL context
 
 
-        return 0;
     }
 }

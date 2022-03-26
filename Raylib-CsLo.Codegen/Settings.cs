@@ -21,36 +21,61 @@ public static class Settings
 
     public const string CodeHeader = "// Copyright ©️ Raylib-CsLo and Contributors.\n// This file is licensed to you under the MPL-2.0.\n// See the LICENSE file in the project root for more info.\n// The code and 100+ examples are here! https://github.com/NotNotTech/Raylib-CsLo\n\n// Warning This file is auto generated and changes will be lost";
 
+    // Safe only native includes all
     public static readonly string[] FunctionsToHandleManually =
     {
-        "DecodeDataBase64",
-        "EncodeDataBase64",
+        // Raylib
         "GetCodepoint",
-        "GetDirectoryFiles",
         "GetDroppedFiles",
         "GetGestureDetected",
-        "LoadFileData",
         "LoadImageColors",
         "LoadImagePalette",
         "LoadModelAnimations",
+        "TraceLog",
+        "UpdateAudioStream",
+        "UpdateTexture",
+        "UpdateTextureRec",
+
+        // RlGl
         "rlReadScreenPixels",
+
+        // Removed do not implement
+        "TextAppend",       // Use normal string manipulation
+        "string.Format",
+        "TextJoin",
+        "TextLength",
+        "TextSplit",
+
+        // TODO What are these used for dont think we need them in safe
+        "DecodeDataBase64",
+        "EncodeDataBase64",
+
+        // Unload not needed in safe bindings
+        "UnloadImageColors",
+        "UnloadImagePalette",
+
+        // Not needed in safe
+        "MemAlloc",
+        "MemFree",
+        "MemRealloc",
+
+        // TODO maybe add Deprecated atribute and throw exception
+        "DirectoryExists",  // File.DirectoryExists();
+        "FileExists",       // File.FileExists();
+        "LoadFileData",     // File.ReadAllBytes();
+        "LoadFileText",     // File.ReadAllText();
+        "SaveFileData",     // File.WriteAllBytes();
+        "SaveFileText",     // File.WriteAllText();
+
+        "GetDirectoryFiles",// Directory.GetFiles();
+
+        "WaitTime",         // Thread.Sleep();
+
         "SetLoadFileDataCallback",
         "SetLoadFileTextCallback",
         "SetSaveFileDataCallback",
         "SetSaveFileTextCallback",
         "SetTraceLogCallback",
-        "UpdateAudioStream",
-        "UpdateCamera",
-        "UpdateTexture",
-
-        // Removed do not implement
-        "TextAppend",
-        "TextFormat",
-        "TextJoin",
-        "TextLength",
-        "TextSplit",
-        "TraceLog",
-        "UnloadImageColors",
     };
 
     public static readonly string[] StructsOverride =
@@ -178,7 +203,7 @@ public static class Settings
         { "unsigned short*", "ushort*" },
         { "void*", "void*" },
 
-        { "...", "__arglist" }// var args arry},
+        { "...", "__arglist" }
     };
 
     // Converts unsafe C# to safe C#

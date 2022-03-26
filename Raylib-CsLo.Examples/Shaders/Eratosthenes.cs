@@ -34,7 +34,7 @@ public static unsafe class Eratosthenes
 {
 
     const int GLSL_VERSION = 330;
-    public static int Example()
+    public static void Example()
     {
         // Initialization
 
@@ -47,7 +47,7 @@ public static unsafe class Eratosthenes
 
         // Load Eratosthenes shader
         // NOTE: Defining 0 (NULL) for vertex shader forces usage of internal default vertex shader
-        Shader shader = LoadFShader(TextFormat("resources/shaders/glsl%i/eratosthenes.fs", GLSL_VERSION));
+        Shader shader = LoadFShader(string.Format("resources/shaders/glsl{0}/eratosthenes.fs", GLSL_VERSION));
 
         SetTargetFPS(60);                   // Set our game to run at 60 frames-per-second
 
@@ -91,6 +91,6 @@ public static unsafe class Eratosthenes
         CloseWindow();                      // Close window and OpenGL context
 
 
-        return 0;
+
     }
 }

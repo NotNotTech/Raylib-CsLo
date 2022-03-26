@@ -34,9 +34,9 @@ namespace Raylib_CsLo.Examples.Core;
 public static unsafe class CustomFrameControl
 {
 
-    public static int Example()
+    public static void Example()
     {
-        System.Diagnostics.Debug.Assert(false, "this example requires a recompile of raylib with the SUPPORT_CUSTOM_FRAME_CONTROL flag.  see above docs");
+        Console.Error.WriteLine("this example requires a recompile of raylib with the SUPPORT_CUSTOM_FRAME_CONTROL flag.  see above docs");
         // Initialization
 
         const int screenWidth = 800;
@@ -106,14 +106,14 @@ public static unsafe class CustomFrameControl
 
             DrawCircle((int)position, (GetScreenHeight() / 2) - 25, 50, Red);
 
-            DrawText(TextFormat("%03.0f ms", timeCounter * 1000.0f), position - 40, (GetScreenHeight() / 2) - 100, 20, Maroon);
-            DrawText(TextFormat("PosX: %03.0f", position), position - 50, (GetScreenHeight() / 2) + 40, 20, Black);
+            DrawText(string.Format("{0} ms", (timeCounter * 1000.0f).ToString("000.0")), (int)(position - 40), (GetScreenHeight() / 2) - 100, 20, Maroon);
+            DrawText(string.Format("PosX: {0}", position.ToString("000.0")), (int)(position - 50), (GetScreenHeight() / 2) + 40, 20, Black);
 
             DrawText("Circle is moving at a constant 200 pixels/sec,\nindependently of the frame rate.", 10, 10, 20, Darkgray);
             DrawText("PRESS SPACE to PAUSE MOVEMENT", 10, GetScreenHeight() - 60, 20, Gray);
             DrawText("PRESS UP | DOWN to CHANGE TARGET FPS", 10, GetScreenHeight() - 30, 20, Gray);
-            DrawText(TextFormat("TARGET FPS: %i", targetFPS), GetScreenWidth() - 220, 10, 20, Lime);
-            DrawText(TextFormat("CURRENT FPS: %i", (int)(1.0f / deltaTime)), GetScreenWidth() - 220, 40, 20, Green);
+            DrawText(string.Format("TARGET FPS: {0}", targetFPS), GetScreenWidth() - 220, 10, 20, Lime);
+            DrawText(string.Format("CURRENT FPS: {0}", (int)(1.0f / deltaTime)), GetScreenWidth() - 220, 40, 20, Green);
 
             EndDrawing();
 
@@ -131,7 +131,7 @@ public static unsafe class CustomFrameControl
                 double waitTime = (1.0f / targetFPS) - updateDrawTime;
                 if (waitTime > 0.0)
                 {
-                    WaitTime((float)waitTime * 1000.0f);
+                    Thread.Sleep((int)(waitTime * 1000));
                     currentTime = GetTime();
                     deltaTime = (float)(currentTime - previousTime);
                 }
@@ -150,6 +150,5 @@ public static unsafe class CustomFrameControl
         CloseWindow();        // Close window and OpenGL context
 
 
-        return 0;
     }
 }

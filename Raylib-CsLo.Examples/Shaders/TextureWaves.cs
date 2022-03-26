@@ -35,7 +35,7 @@ public static unsafe class TextureWaves
 	const int GLSL_VERSION = 100;
 #endif
 
-    public static int Example()
+    public static void Example()
     {
         // Initialization
 
@@ -48,7 +48,7 @@ public static unsafe class TextureWaves
         Texture2D texture = LoadTexture("resources/space.png");
 
         // Load shader and setup location points and values
-        Shader shader = LoadFShader(TextFormat("resources/shaders/glsl%i/wave.fs", GLSL_VERSION));
+        Shader shader = LoadFShader(string.Format("resources/shaders/glsl{0}/wave.fs", GLSL_VERSION));
 
         int secondsLoc = GetShaderLocation(shader, "secondes");
         int freqXLoc = GetShaderLocation(shader, "freqX");
@@ -115,6 +115,6 @@ public static unsafe class TextureWaves
         CloseWindow();              // Close window and OpenGL context
 
 
-        return 0;
+
     }
 }

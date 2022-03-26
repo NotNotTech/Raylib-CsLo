@@ -259,6 +259,10 @@ csharp_preserve_single_line_blocks = true
 # CUSTOM
 ##########################################
 
+csharp_preserve_single_line_statements = true
+csharp_preserve_single_line_blocks = true
+csharp_indent_switch_labels = true
+csharp_indent_case_contents = false
 # Allow instance fields as it would add alot of noise and require alot of pragmas
 dotnet_diagnostic.CA1051.severity = none
 dotnet_diagnostic.CS1591.severity = none

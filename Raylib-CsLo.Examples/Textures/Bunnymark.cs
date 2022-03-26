@@ -34,7 +34,7 @@ public static unsafe class Bunnymark
         public Color color;
     }
 
-    public static int Example()
+    public static void Example()
     {
         // Initialization
 
@@ -115,8 +115,8 @@ public static unsafe class Bunnymark
             }
 
             DrawRectangle(0, 0, screenWidth, 40, Black);
-            DrawText(TextFormat("bunnies: %i", bunniesCount), 120, 10, 20, Green);
-            DrawText(TextFormat("batched draw calls: %i", 1 + (bunniesCount / MAX_BATCH_ELEMENTS)), 320, 10, 20, Maroon);
+            DrawText(string.Format("bunnies: {0}", bunniesCount), 120, 10, 20, Green);
+            DrawText(string.Format("batched draw calls: {0}", 1 + (bunniesCount / MAX_BATCH_ELEMENTS)), 320, 10, 20, Maroon);
 
             DrawFPS(10, 10);
 
@@ -133,6 +133,6 @@ public static unsafe class Bunnymark
         CloseWindow();              // Close window and OpenGL context
 
 
-        return 0;
+
     }
 }

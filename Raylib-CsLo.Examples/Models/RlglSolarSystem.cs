@@ -20,7 +20,7 @@ namespace Raylib_CsLo.Examples.Models;
 ///</summary>
 public static unsafe class RlglSolarSystem
 {
-    public static int Example()
+    public static void Example()
     {
         // Initialization
 
@@ -118,7 +118,7 @@ public static unsafe class RlglSolarSystem
         CloseWindow();        // Close window and OpenGL context
 
 
-        return 0;
+
     }
 
 

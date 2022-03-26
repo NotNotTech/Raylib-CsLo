@@ -24,7 +24,7 @@ public static unsafe class DrawRing
     //#define RAYGUI_IMPLEMENTATION
     //# include "extras/raygui.h"                 // Required for GUI controls
 
-    public static int Example()
+    public static void Example()
     {
         // Initialization
 
@@ -99,7 +99,7 @@ public static unsafe class DrawRing
 
 
             int minSegments = (int)MathF.Ceiling((endAngle - startAngle) / 90);
-            DrawText(TextFormat("MODE: %s", (segments >= minSegments) ? "MANUAL" : "AUTO"), 600, 270, 10, (segments >= minSegments) ? Maroon : Darkgray);
+            DrawText(string.Format("MODE: {0}", (segments >= minSegments) ? "MANUAL" : "AUTO  "), 600, 270, 10, (segments >= minSegments) ? Maroon : Darkgray);
 
             DrawFPS(10, 10);
 
@@ -112,6 +112,6 @@ public static unsafe class DrawRing
         CloseWindow();        // Close window and OpenGL context
 
 
-        return 0;
+
     }
 }

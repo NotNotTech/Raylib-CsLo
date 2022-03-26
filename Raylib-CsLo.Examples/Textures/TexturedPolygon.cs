@@ -25,7 +25,7 @@ public static unsafe class TexturedPolygon
 
     const int MAX_POINTS = 11;      // 10 points and back to the start
 
-    public static int Example()
+    public static void Example()
     {
         // Initialization
 
@@ -109,7 +109,7 @@ public static unsafe class TexturedPolygon
         CloseWindow();          // Close window and OpenGL context
 
 
-        return 0;
+
     }
 
 

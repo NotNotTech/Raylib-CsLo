@@ -40,7 +40,7 @@ public static unsafe class JuliaSet
         new Vector2( -0.70176f, -0.3842f ),
     };
 
-    public static int Example()
+    public static void Example()
     {
         // Initialization
 
@@ -52,7 +52,7 @@ public static unsafe class JuliaSet
 
         // Load julia set shader
         // NOTE: Defining 0 (NULL) for vertex shader forces usage of internal default vertex shader
-        Shader shader = LoadFShader(TextFormat("resources/shaders/glsl%i/julia_set.fs", GLSL_VERSION));
+        Shader shader = LoadFShader(string.Format("resources/shaders/glsl{0}/julia_set.fs", GLSL_VERSION));
 
         // Create a RenderTexture2D to be used for render to texture
         RenderTexture target = LoadRenderTexture(GetScreenWidth(), GetScreenHeight());
@@ -233,6 +233,6 @@ public static unsafe class JuliaSet
         CloseWindow();                      // Close window and OpenGL context
 
 
-        return 0;
+
     }
 }

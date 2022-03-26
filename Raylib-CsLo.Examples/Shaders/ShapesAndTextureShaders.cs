@@ -33,7 +33,7 @@ public static unsafe class ShapesAndTextureShaders
 	const int GLSL_VERSION = 100;
 #endif
 
-    public static int Example()
+    public static void Example()
     {
         // Initialization
 
@@ -47,7 +47,7 @@ public static unsafe class ShapesAndTextureShaders
         // Load shader to be used on some parts drawing
         // NOTE 1: Using GLSL 330 shader version, on OpenGL ES 2.0 use GLSL 100 shader version
         // NOTE 2: Defining 0 (NULL) for vertex shader forces usage of internal default vertex shader
-        Shader shader = LoadFShader(TextFormat("resources/shaders/glsl%i/grayscale.fs", GLSL_VERSION));
+        Shader shader = LoadFShader(string.Format("resources/shaders/glsl{0}/grayscale.fs", GLSL_VERSION));
 
         SetTargetFPS(60);               // Set our game to run at 60 frames-per-second
 
@@ -90,8 +90,8 @@ public static unsafe class ShapesAndTextureShaders
             DrawText("USING DEFAULT SHADER", 370, 40, 10, Red);
 
             DrawTriangle(new Vector2(430, 80),
-                     new Vector2(430 - 60, 150),
-                     new Vector2(430 + 60, 150), Violet);
+                             new Vector2(430 - 60, 150),
+                             new Vector2(430 + 60, 150), Violet);
 
             DrawTriangleLines(new Vector2(430, 160), new Vector2(430 - 20, 230), new Vector2(430 + 20, 230), Darkblue);
 
@@ -119,6 +119,6 @@ public static unsafe class ShapesAndTextureShaders
         CloseWindow();              // Close window and OpenGL context
 
 
-        return 0;
+
     }
 }

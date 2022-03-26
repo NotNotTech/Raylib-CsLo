@@ -21,7 +21,7 @@ public static unsafe class EasingsBoxAnim
 
     // # include "extras/easings.h"            // Required for easing functions
 
-    public static int Example()
+    public static void Example()
     {
         // Initialization
 
@@ -113,7 +113,7 @@ public static unsafe class EasingsBoxAnim
                 }
                 break;
                 default:
-                    break;
+                break;
             }
 
             // Reset animation at any moment
@@ -146,6 +146,6 @@ public static unsafe class EasingsBoxAnim
         CloseWindow();        // Close window and OpenGL context
 
 
-        return 0;
+
     }
 }

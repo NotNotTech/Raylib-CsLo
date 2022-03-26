@@ -21,7 +21,7 @@ namespace Raylib_CsLo.Examples.Core;
 public static unsafe class WindowLetterbox
 {
 
-    public static int Example()
+    public static void Example()
     {
         const int windowWidth = 800;
         const int windowHeight = 450;
@@ -88,8 +88,8 @@ public static unsafe class WindowLetterbox
             }
 
             DrawText("If executed inside a window,\nyou can resize the window,\nand see the screen scaling!", 10, 25, 20, White);
-            DrawText(TextFormat("Default Mouse: [%i , %i]", (int)mouse.X, (int)mouse.Y), 350, 25, 20, Green);
-            DrawText(TextFormat("Virtual Mouse: [%i , %i]", (int)virtualMouse.X, (int)virtualMouse.Y), 350, 55, 20, Yellow);
+            DrawText(string.Format("Default Mouse: [{0} , {1}]", (int)mouse.X, (int)mouse.Y), 350, 25, 20, Green);
+            DrawText(string.Format("Virtual Mouse: [{0} , {1}]", (int)virtualMouse.X, (int)virtualMouse.Y), 350, 55, 20, Yellow);
             EndTextureMode();
 
             BeginDrawing();
@@ -111,7 +111,6 @@ public static unsafe class WindowLetterbox
         CloseWindow();                      // Close window and OpenGL context
 
 
-        return 0;
     }
 
 

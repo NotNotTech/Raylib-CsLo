@@ -19,7 +19,7 @@ namespace Raylib_CsLo.Examples.Core;
 public static unsafe class Picking3d
 {
 
-    public static int Example()
+    public static void Example()
     {
         // Initialization
 
@@ -63,10 +63,10 @@ public static unsafe class Picking3d
 
                     // Check collision between ray and box
                     collision = GetRayCollisionBox(ray,
-                        new BoundingBox(
-                        new(cubePosition.X - (cubeSize.X / 2), cubePosition.Y - (cubeSize.Y / 2), cubePosition.Z - (cubeSize.Z / 2)),
-                                          new(cubePosition.X + (cubeSize.X / 2), cubePosition.Y + (cubeSize.Y / 2), cubePosition.Z + (cubeSize.Z / 2))
-                    ));
+                                        new BoundingBox(
+                                        new(cubePosition.X - (cubeSize.X / 2), cubePosition.Y - (cubeSize.Y / 2), cubePosition.Z - (cubeSize.Z / 2)),
+                                                          new(cubePosition.X + (cubeSize.X / 2), cubePosition.Y + (cubeSize.Y / 2), cubePosition.Z + (cubeSize.Z / 2))
+                                    ));
                 }
                 else
                 {
@@ -119,7 +119,6 @@ public static unsafe class Picking3d
         CloseWindow();        // Close window and OpenGL context
 
 
-        return 0;
     }
 
 

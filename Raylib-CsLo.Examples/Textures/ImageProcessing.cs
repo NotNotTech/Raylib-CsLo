@@ -49,7 +49,7 @@ public static unsafe class ImageProcessing
         "FLIP HORIZONTAL"
     };
 
-    public static int Example()
+    public static void Example()
     {
         // Initialization
 
@@ -140,34 +140,37 @@ public static unsafe class ImageProcessing
                 switch ((ImageProcess)currentProcess)
                 {
                     case ImageProcess.COLOR_GRAYSCALE:
-                        ImageColorGrayscale(ref imCopy);
-                        break;
+                    ImageColorGrayscale(ref imCopy);
+                    break;
                     case ImageProcess.COLOR_TINT:
-                        ImageColorTint(ref imCopy, Green);
-                        break;
+                    ImageColorTint(ref imCopy, Green);
+                    break;
                     case ImageProcess.COLOR_INVERT:
-                        ImageColorInvert(ref imCopy);
-                        break;
+                    ImageColorInvert(ref imCopy);
+                    break;
                     case ImageProcess.COLOR_CONTRAST:
-                        ImageColorContrast(ref imCopy, -40);
-                        break;
+                    ImageColorContrast(ref imCopy, -40);
+                    break;
                     case ImageProcess.COLOR_BRIGHTNESS:
-                        ImageColorBrightness(ref imCopy, -80);
-                        break;
+                    ImageColorBrightness(ref imCopy, -80);
+                    break;
                     case ImageProcess.FLIP_VERTICAL:
-                        ImageFlipVertical(ref imCopy);
-                        break;
+                    ImageFlipVertical(ref imCopy);
+                    break;
                     case ImageProcess.FLIP_HORIZONTAL:
-                        ImageFlipHorizontal(ref imCopy);
-                        break;
+                    ImageFlipHorizontal(ref imCopy);
+                    break;
                     case ImageProcess.NONE:
-                        break;
+                    break;
                     default:
-                        break;
+                    break;
                 }
 
-                Color[] pixels = LoadImageColors(imCopy);    // Load pixel data from image (RGBA 32bit)
-                UpdateTexture(texture, pixels);             // Update texture with new image data
+                Color[] pixels = LoadImageColors(imCopy);
+                // Load pixel data from image (RGBA 32bit)
+                UpdateTexture(texture, pixels);
+                // Update texture with new image data
+
                 // UnloadImageColors(pixels);                  // Unload pixels data from RAM
 
                 textureReload = false;
@@ -206,7 +209,7 @@ public static unsafe class ImageProcessing
         CloseWindow();                // Close window and OpenGL context
 
 
-        return 0;
+
     }
 
 }

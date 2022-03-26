@@ -21,7 +21,7 @@ public static unsafe class SpriteButton
 
     const int NUM_FRAMES = 3;       // Number of frames (rectangles) for the button sprite texture
 
-    public static int Example()
+    public static void Example()
     {
         // Initialization
 
@@ -109,7 +109,7 @@ public static unsafe class SpriteButton
         CloseWindow();          // Close window and OpenGL context
 
 
-        return 0;
+
     }
 
 

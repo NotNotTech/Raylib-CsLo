@@ -22,7 +22,7 @@ public static unsafe class DrawTextInsideRectangle
 {
 
     // Main entry point
-    public static int Example()
+    public static void Example()
     {
         // Initialization
 
@@ -146,7 +146,7 @@ public static unsafe class DrawTextInsideRectangle
         CloseWindow();        // Close window and OpenGL context
 
 
-        return 0;
+
     }
 
 

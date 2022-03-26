@@ -18,7 +18,7 @@ namespace Raylib_CsLo.Examples.Core;
 public static class InputMouse
 {
 
-    public static int Example()
+    public static void Example()
     {
         // Initialization
 
@@ -87,6 +87,5 @@ public static class InputMouse
         CloseWindow();        // Close window and OpenGL context
 
 
-        return 0;
     }
 }

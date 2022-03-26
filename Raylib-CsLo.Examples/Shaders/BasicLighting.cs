@@ -31,7 +31,7 @@ public static unsafe class BasicLighting
 {
 
     const int GLSL_VERSION = 330;
-    public static int Example()
+    public static void Example()
     {
         RLights rLights = new();
 
@@ -56,7 +56,7 @@ public static unsafe class BasicLighting
         Model model = LoadModelFromMesh(GenMeshPlane(10.0f, 10.0f, 3, 3));
         Model cube = LoadModelFromMesh(GenMeshCube(2.0f, 4.0f, 2.0f));
 
-        Shader shader = LoadShader(TextFormat("resources/shaders/glsl%i/base_lighting.vs", GLSL_VERSION), TextFormat("resources/shaders/glsl%i/lighting.fs", GLSL_VERSION));
+        Shader shader = LoadShader(string.Format("resources/shaders/glsl{0}/base_lighting.vs", GLSL_VERSION), string.Format("resources/shaders/glsl{0}/lighting.fs", GLSL_VERSION));
 
         // Get some required shader loactions
         shader.locs[(int)ShaderLocVectorView] = GetShaderLocation(shader, "viewPos");
@@ -93,13 +93,21 @@ public static unsafe class BasicLighting
 
             // Check key inputs to enable/disable lights
             if (IsKeyPressed(KeyY))
-            { lights[0].enabled = !lights[0].enabled; }
+            {
+                lights[0].enabled = !lights[0].enabled;
+            }
             if (IsKeyPressed(KeyR))
-            { lights[1].enabled = !lights[1].enabled; }
+            {
+                lights[1].enabled = !lights[1].enabled;
+            }
             if (IsKeyPressed(KeyG))
-            { lights[2].enabled = !lights[2].enabled; }
+            {
+                lights[2].enabled = !lights[2].enabled;
+            }
             if (IsKeyPressed(KeyB))
-            { lights[3].enabled = !lights[3].enabled; }
+            {
+                lights[3].enabled = !lights[3].enabled;
+            }
 
             // Update light values (actually, only enable/disable them)
             UpdateLightValues(shader, lights[0]);
@@ -181,6 +189,6 @@ public static unsafe class BasicLighting
         CloseWindow();          // Close window and OpenGL context
 
 
-        return 0;
+
     }
 }

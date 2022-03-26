@@ -35,7 +35,7 @@ public static unsafe class Fog
 {
 
     const int GLSL_VERSION = 330;
-    public static int Example()
+    public static void Example()
     {
         RLights rLights = new();
         // Initialization
@@ -65,7 +65,7 @@ public static unsafe class Fog
         modelC.materials[0].maps[(int)MaterialMapAlbedo].texture = texture;
 
         // Load shader and set up some uniforms
-        Shader shader = LoadShader(TextFormat("resources/shaders/glsl%i/base_lighting.vs", GLSL_VERSION), TextFormat("resources/shaders/glsl%i/fog.fs", GLSL_VERSION));
+        Shader shader = LoadShader(string.Format("resources/shaders/glsl{0}/base_lighting.vs", GLSL_VERSION), string.Format("resources/shaders/glsl{0}/fog.fs", GLSL_VERSION));
         shader.locs[(int)ShaderLocMatrixModel] = GetShaderLocation(shader, "matModel");
         shader.locs[(int)ShaderLocVectorView] = GetShaderLocation(shader, "viewPos");
 
@@ -145,7 +145,7 @@ public static unsafe class Fog
 
             EndMode3D();
 
-            DrawText(TextFormat("Use KeyUp/KeyDown to change fog density [%.2f]", fogDensity), 10, 10, 20, Raywhite);
+            DrawText(string.Format("Use KeyUp/KeyDown to change fog density [{0}]", fogDensity.ToString("0.00")), 10, 10, 20, Raywhite);
 
             EndDrawing();
 
@@ -162,6 +162,6 @@ public static unsafe class Fog
         CloseWindow();              // Close window and OpenGL context
 
 
-        return 0;
+
     }
 }

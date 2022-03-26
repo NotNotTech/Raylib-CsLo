@@ -18,7 +18,7 @@ namespace Raylib_CsLo.Examples.Audio;
 public static unsafe class SoundLoadingAndPlaying
 {
 
-    public static int Example()
+    public static void Example()
     {
         // Initialization
 
@@ -74,6 +74,5 @@ public static unsafe class SoundLoadingAndPlaying
         CloseWindow();          // Close window and OpenGL context
 
 
-        return 0;
     }
 }

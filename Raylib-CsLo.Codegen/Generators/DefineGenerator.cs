@@ -56,60 +56,60 @@ public class DefineGenerator : BaseGenerator
                 switch (define.Type)
                 {
                     case "STRING":
-                        if (define.Description != "")
-                        {
-                            DocumentationBlock(define.Description);
-                        }
-                        Line($"public const string {name} = \"{define.Value}\";");
-                        break;
+                    if (define.Description != "")
+                    {
+                        DocumentationBlock(define.Description);
+                    }
+                    Line($"public const string {name} = \"{define.Value}\";");
+                    break;
 
                     case "FLOAT":
-                        if (define.Description != "")
-                        {
-                            DocumentationBlock(define.Description);
-                        }
-                        Line($"public const float {name} = {define.Value}f;");
-                        break;
+                    if (define.Description != "")
+                    {
+                        DocumentationBlock(define.Description);
+                    }
+                    Line($"public const float {name} = {define.Value}f;");
+                    break;
 
                     case "DOUBLE":
-                        if (define.Description != "")
-                        {
-                            DocumentationBlock(define.Description);
-                        }
-                        Line($"public const double {name} = {define.Value};");
-                        break;
+                    if (define.Description != "")
+                    {
+                        DocumentationBlock(define.Description);
+                    }
+                    Line($"public const double {name} = {define.Value};");
+                    break;
 
                     case "INT":
-                        if (define.Description != "")
-                        {
-                            DocumentationBlock(define.Description);
-                        }
-                        Line($"public const int {name} = {define.Value};");
-                        break;
+                    if (define.Description != "")
+                    {
+                        DocumentationBlock(define.Description);
+                    }
+                    Line($"public const int {name} = {define.Value};");
+                    break;
 
                     case "LONG":
-                        if (define.Description != "")
-                        {
-                            DocumentationBlock(define.Description);
-                        }
-                        Line($"public const long {name} = {define.Value};");
-                        break;
+                    if (define.Description != "")
+                    {
+                        DocumentationBlock(define.Description);
+                    }
+                    Line($"public const long {name} = {define.Value};");
+                    break;
 
                     case "COLOR":
-                        if (define.Description != "")
-                        {
-                            DocumentationBlock(define.Description);
-                        }
-                        string val = define.Value.Replace("CLITERAL(Color)", "new Color").Replace("{ ", "(").Replace(" }", ")");
-                        Line($"public static readonly Color {name} = {val};");
-                        break;
+                    if (define.Description != "")
+                    {
+                        DocumentationBlock(define.Description);
+                    }
+                    string val = define.Value.Replace("CLITERAL(Color)", "new Color").Replace("{ ", "(").Replace(" }", ")");
+                    Line($"public static readonly Color {name} = {val};");
+                    break;
 
                     case "GUARD":
                     case "MAKRO":
                     case "UNKNOWN":
                     default:
-                        Line($"// {define.Type} {name} {define.Value}");
-                        break;
+                    Line($"// {define.Type} {name} {define.Value}");
+                    break;
                 }
 
                 Blank();

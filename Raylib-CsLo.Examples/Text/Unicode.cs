@@ -225,7 +225,7 @@ public static unsafe class Unicode
 
     // Main entry point
 
-    public static int Example()//int argc, char** argv)
+    public static void Example()//int argc, char** argv)
     {
 
         // System.Diagnostics.Debug.Assert(false, "this example does not work properly.  I think the font doesn't include unicode character");
@@ -375,7 +375,7 @@ public static unsafe class Unicode
                 //int size = (int)strlen(messages[message].text);
                 int size = messages[message].text.Length;
                 int length = GetCodepointCount(messages[message].text);
-                string info = TextFormat("%s %u characters %i bytes", messages[message].language, length, size);
+                string info = string.Format("{0} {1} characters {2} bytes", messages[message].language, length, size);
                 sz = MeasureTextEx(GetFontDefault(), info, 10, 1.0f);
                 pos = new Vector2(textRect.X + textRect.Width - sz.X, msgRect.Y + msgRect.Height - sz.Y - 2);
                 DrawText(info, (int)pos.X, (int)pos.Y, 10, Raywhite);
@@ -399,7 +399,7 @@ public static unsafe class Unicode
         CloseWindow();              // Close window and OpenGL context
 
 
-        return 0;
+
     }
 
     // Fills the emoji array with random emoji (only those emojis present in fontEmoji)

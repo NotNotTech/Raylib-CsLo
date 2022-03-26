@@ -192,19 +192,19 @@ public class SafeClassGenerator : BaseGenerator
         switch (unsafeType)
         {
             case "sbyte*":
-                helper = Settings.Utf8ToStringFunction;
-                break;
+            helper = Settings.Utf8ToStringFunction;
+            break;
 
             case "byte*":
-                helper = Settings.PrtToArrayFunction;
-                break;
+            helper = Settings.PrtToArrayFunction;
+            break;
 
             case "Color*":
-                helper = Settings.PrtToArrayFunction;
-                break;
+            helper = Settings.PrtToArrayFunction;
+            break;
 
             default:
-                return unsafeCall;
+            return unsafeCall;
         }
 
         RaylibParameter param = func.Parameters?.Find((p) => p.Name.ToLowerInvariant().Contains("length"));
@@ -267,52 +267,6 @@ public class SafeClassGenerator : BaseGenerator
 
         string localVariable = parameter.Name;
 
-        switch (parameter.Type)
-        {
-            case "const char*":
-            case "char*":
-                Line($"using var {localVariable + localVariableSuffix} = {localVariable}.MarshalUtf8();");
-                localVariable += localVariableSuffix;
-                localVariable += ".AsPtr()";
-                break;
-
-            case "const void*":
-            case "void*":
-                Line($"var {localVariable + localVariableSuffix} = (void*){localVariable};");
-                localVariable += localVariableSuffix;
-                break;
-
-            case "IntPtr":
-                Line($"var {localVariable + localVariableSuffix} = (int*){localVariable};");
-                localVariable += localVariableSuffix;
-                break;
-
-            case "unsigned char*":
-            case "const unsigned char*":
-                Line($"fixed ({Converter.FromCToUnsafeCs(parameter.Type)} {localVariable + localVariableSuffix} = {localVariable})");
-                StartBlock();
-                localVariable += localVariableSuffix;
-                numClosingBrackets++;
-                break;
-
-            case "const Matrix*":
-            case "Matrix*":
-            case "Vector2*":
-            case "Color*":
-                Line($"fixed ({Converter.FromCToUnsafeCs(parameter.Type)} {localVariable + localVariableSuffix} = {localVariable})");
-                StartBlock();
-                localVariable += localVariableSuffix;
-                numClosingBrackets++;
-                break;
-
-            case "Camera*":
-                localVariable = "&" + parameter.Name;
-                break;
-
-            default:
-                break;
-        }
-
         if (Converter.FromCToSafeCs(parameter.Type).Contains("ref ") && parameter.Type.EndsWith('*'))
         {
             Line($"fixed ({Converter.FromCToUnsafeCs(parameter.Type)} {localVariable + localVariableSuffix} = &{localVariable})");
@@ -320,7 +274,54 @@ public class SafeClassGenerator : BaseGenerator
             localVariable += localVariableSuffix;
             numClosingBrackets++;
         }
+        else
+        {
+            switch (parameter.Type)
+            {
+                case "const char*":
+                case "char*":
+                Line($"using var {localVariable + localVariableSuffix} = {localVariable}.MarshalUtf8();");
+                localVariable += localVariableSuffix;
+                localVariable += ".AsPtr()";
+                break;
 
+                case "const void*":
+                case "void*":
+                Line($"var {localVariable + localVariableSuffix} = (void*){localVariable};");
+                localVariable += localVariableSuffix;
+                break;
+
+                case "IntPtr":
+                Line($"var {localVariable + localVariableSuffix} = (int*){localVariable};");
+                localVariable += localVariableSuffix;
+                break;
+
+                case "unsigned char*":
+                case "const unsigned char*":
+                Line($"fixed ({Converter.FromCToUnsafeCs(parameter.Type)} {localVariable + localVariableSuffix} = {localVariable})");
+                StartBlock();
+                localVariable += localVariableSuffix;
+                numClosingBrackets++;
+                break;
+
+                case "const Matrix*":
+                case "Matrix*":
+                case "Vector2*":
+                case "Color*":
+                Line($"fixed ({Converter.FromCToUnsafeCs(parameter.Type)} {localVariable + localVariableSuffix} = {localVariable})");
+                StartBlock();
+                localVariable += localVariableSuffix;
+                numClosingBrackets++;
+                break;
+
+                case "Camera*":
+                localVariable = "&" + parameter.Name;
+                break;
+
+                default:
+                break;
+            }
+        }
         return localVariable;
     }
 }

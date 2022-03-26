@@ -19,7 +19,7 @@ namespace Raylib_CsLo.Examples.Shapes;
 public static unsafe class BasicShapes
 {
 
-    public static int Example()
+    public static void Example()
     {
         // Initialization
 
@@ -82,6 +82,6 @@ public static unsafe class BasicShapes
         CloseWindow();        // Close window and OpenGL context
 
 
-        return 0;
+
     }
 }

@@ -68,7 +68,7 @@ public static unsafe class Spotlight
         public Vector2 vel;
     }
 
-    public static int Example()
+    public static void Example()
     {
         // Initialization
 
@@ -99,7 +99,7 @@ public static unsafe class Spotlight
         int frameCounter = 0;
 
         // Use default vert shader
-        Shader shdrSpot = LoadFShader(TextFormat("resources/shaders/glsl%i/spotlight.fs", GLSL_VERSION));
+        Shader shdrSpot = LoadFShader(string.Format("resources/shaders/glsl{0}/spotlight.fs", GLSL_VERSION));
 
         // Get the locations of spots in the shader
         Spot[] spots = new Spot[MAX_SPOTS];
@@ -250,7 +250,7 @@ public static unsafe class Spotlight
         CloseWindow();        // Close window and OpenGL context
 
 
-        return 0;
+
     }
 
 

@@ -23,7 +23,7 @@ public static class BasicScreenManager
 
     public enum GameScreen { LOGO = 0, TITLE, GAMEPLAY, ENDING }
 
-    public static int Example()
+    public static void Example()
     {
         // Initialization
 
@@ -96,7 +96,7 @@ public static class BasicScreenManager
                 }
                 break;
                 default:
-                    break;
+                break;
             }
 
 
@@ -144,7 +144,7 @@ public static class BasicScreenManager
                 }
                 break;
                 default:
-                    break;
+                break;
             }
 
             EndDrawing();
@@ -159,6 +159,5 @@ public static class BasicScreenManager
         CloseWindow(); // Close window and OpenGL context
 
 
-        return 0;
     }
 }

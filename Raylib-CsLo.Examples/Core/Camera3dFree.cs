@@ -19,7 +19,7 @@ namespace Raylib_CsLo.Examples.Core;
 public static unsafe class Camera3dFree
 {
 
-    public static int Example()
+    public static void Example()
     {
         // Initialization
 
@@ -52,12 +52,12 @@ public static unsafe class Camera3dFree
 
             UpdateCamera(ref camera);          // Update camera
 
-            if (IsKeyDown('Z'))
+            if (IsKeyDown(KeyZ))
             {
                 camera.target = new(0.0f, 0.0f, 0.0f);
             }
 
-            if (IsKeyDown('Z'))
+            if (IsKeyDown(KeyZ))
             {
                 camera.target = new(0.0f, 0.0f, 0.0f);
             }
@@ -99,6 +99,5 @@ public static unsafe class Camera3dFree
         CloseWindow();        // Close window and OpenGL context
 
 
-        return 0;
     }
 }

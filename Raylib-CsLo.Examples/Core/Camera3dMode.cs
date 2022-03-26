@@ -18,7 +18,7 @@ namespace Raylib_CsLo.Examples.Core;
 public static class Camera3dMode
 {
 
-    public static int Example()
+    public static void Example()
     {
         // Initialization
 
@@ -76,6 +76,6 @@ public static class Camera3dMode
         CloseWindow();        // Close window and OpenGL context
 
 
-        return 0;
+
     }
 }

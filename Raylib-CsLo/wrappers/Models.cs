@@ -5,7 +5,23 @@
 
 namespace Raylib_CsLo;
 
+using Microsoft.Toolkit.HighPerformance.Buffers;
+
 public unsafe partial class RaylibS
 {
-
+    /// <summary> free animations via UnloadModelAnimation() when done </summary>
+    public static ModelAnimation[] LoadModelAnimations(string fileName)
+    {
+        using SpanOwner<sbyte> soFileName = fileName.MarshalUtf8();
+        uint count;
+        ModelAnimation* p_animations = Raylib.LoadModelAnimations(soFileName.AsPtr(), &count);
+        ModelAnimation[] toReturn = new ModelAnimation[count];
+        for (int i = 0; i < count; i++)
+        {
+            toReturn[i] = p_animations[i];
+        }
+        //this ptr isn't needed.
+        Raylib.MemFree(p_animations);
+        return toReturn;
+    }
 }

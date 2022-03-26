@@ -21,7 +21,7 @@ public static unsafe class ColorsPalette
 
     const int MAX_COLORS_COUNT = 21;          // Number of colors available
 
-    public static int Example()
+    public static void Example()
     {
         // Initialization
 
@@ -107,6 +107,6 @@ public static unsafe class ColorsPalette
         CloseWindow();                // Close window and OpenGL context
 
 
-        return 0;
+
     }
 }

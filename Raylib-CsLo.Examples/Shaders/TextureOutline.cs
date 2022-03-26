@@ -31,7 +31,7 @@ public static unsafe class TextureOutline
 	const int GLSL_VERSION = 100;
 #endif
 
-    public static int Example()
+    public static void Example()
     {
         // Initialization
 
@@ -42,7 +42,7 @@ public static unsafe class TextureOutline
 
         Texture2D texture = LoadTexture("resources/fudesumi.png");
 
-        Shader shdrOutline = LoadFShader(TextFormat("resources/shaders/glsl%i/outline.fs", GLSL_VERSION));
+        Shader shdrOutline = LoadFShader(string.Format("resources/shaders/glsl{0}/outline.fs", GLSL_VERSION));
 
         float outlineSize = 2.0f;
         Vector4 outlineColor = new(1.0f, 0.0f, 0.0f, 1.0f);     // Normalized Red color
@@ -89,7 +89,7 @@ public static unsafe class TextureOutline
 
             DrawText("Shader-based\ntexture\noutline", 10, 10, 20, Gray);
 
-            DrawText(TextFormat("Outline size: %i px", (int)outlineSize), 10, 120, 20, Maroon);
+            DrawText(string.Format("Outline size: {0} px", (int)outlineSize), 10, 120, 20, Maroon);
 
             DrawFPS(710, 10);
 
@@ -105,6 +105,6 @@ public static unsafe class TextureOutline
         CloseWindow();        // Close window and OpenGL context
 
 
-        return 0;
+
     }
 }

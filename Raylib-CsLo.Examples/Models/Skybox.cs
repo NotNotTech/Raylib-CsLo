@@ -25,7 +25,7 @@ public static unsafe class Skybox
     //#endif
     const int GLSL_VERSION = 330;
 
-    public static int Example()
+    public static void Example()
     {
 
 
@@ -50,14 +50,14 @@ public static unsafe class Skybox
 
         // Load skybox shader and set required locations
         // NOTE: Some locations are automatically set at shader loading
-        skybox.materials[0].shader = LoadShader(TextFormat("resources/shaders/glsl%i/skybox.vs", GLSL_VERSION), TextFormat("resources/shaders/glsl%i/skybox.fs", GLSL_VERSION));
+        skybox.materials[0].shader = LoadShader(string.Format("resources/shaders/glsl{0}/skybox.vs", GLSL_VERSION), string.Format("resources/shaders/glsl{0}/skybox.fs", GLSL_VERSION));
 
         SetShaderValue(skybox.materials[0].shader, GetShaderLocation(skybox.materials[0].shader, "environmentMap"), MaterialMapCubemap, ShaderUniformInt);
         SetShaderValue(skybox.materials[0].shader, GetShaderLocation(skybox.materials[0].shader, "doGamma"), useHDR ? 1 : 0, ShaderUniformInt);
         SetShaderValue(skybox.materials[0].shader, GetShaderLocation(skybox.materials[0].shader, "vflipped"), useHDR ? 1 : 0, ShaderUniformInt);
 
         // Load cubemap shader and setup required shader locations
-        Shader shdrCubemap = LoadShader(TextFormat("resources/shaders/glsl%i/cubemap.vs", GLSL_VERSION), TextFormat("resources/shaders/glsl%i/cubemap.fs", GLSL_VERSION));
+        Shader shdrCubemap = LoadShader(string.Format("resources/shaders/glsl{0}/cubemap.vs", GLSL_VERSION), string.Format("resources/shaders/glsl{0}/cubemap.fs", GLSL_VERSION));
 
         SetShaderValue(shdrCubemap, GetShaderLocation(shdrCubemap, "equirectangularMap"), 0, ShaderUniformInt);
 
@@ -168,11 +168,11 @@ public static unsafe class Skybox
             {
                 if (useHDR)
                 {
-                    DrawText(TextFormat("Panorama image from hdrihaven.com: %s", GetFileName(skyboxFileName)), 10, GetScreenHeight() - 20, 10, Black);
+                    DrawText("Panorama image from hdrihaven.com: " + GetFileName(skyboxFileName), 10, GetScreenHeight() - 20, 10, Black);
                 }
                 else
                 {
-                    DrawText(TextFormat(": %s", GetFileName(skyboxFileName)), 10, GetScreenHeight() - 20, 10, Black);
+                    DrawText(": " + GetFileName(skyboxFileName), 10, GetScreenHeight() - 20, 10, Black);
                 }
             }
 
@@ -192,7 +192,7 @@ public static unsafe class Skybox
         CloseWindow();              // Close window and OpenGL context
 
 
-        return 0;
+
     }
 
     public static bool EndsWith(this string text, params string[] endings)

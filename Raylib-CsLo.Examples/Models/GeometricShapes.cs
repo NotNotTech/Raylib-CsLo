@@ -19,7 +19,7 @@ namespace Raylib_CsLo.Examples.Models;
 public static unsafe class GeometricShapes
 {
 
-    public static int Example()
+    public static void Example()
     {
         // Initialization
 
@@ -84,6 +84,5 @@ public static unsafe class GeometricShapes
         CloseWindow();        // Close window and OpenGL context
 
 
-        return 0;
     }
 }

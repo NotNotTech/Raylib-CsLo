@@ -26,9 +26,9 @@ public static unsafe class MeshGeneration
         mesh->vertexCount = triangleCount * 3;
         mesh->triangleCount = triangleCount;
 
-        mesh->vertices = (float*)MemAlloc(mesh->vertexCount * 3 * sizeof(float));
-        mesh->texcoords = (float*)MemAlloc(mesh->vertexCount * 2 * sizeof(float));
-        mesh->normals = (float*)MemAlloc(mesh->vertexCount * 3 * sizeof(float));
+        mesh->vertices = (float*)Raylib.MemAlloc(mesh->vertexCount * 3 * sizeof(float));
+        mesh->texcoords = (float*)Raylib.MemAlloc(mesh->vertexCount * 2 * sizeof(float));
+        mesh->normals = (float*)Raylib.MemAlloc(mesh->vertexCount * 3 * sizeof(float));
     }
 
     // generate a simple triangle mesh from code
@@ -71,7 +71,7 @@ public static unsafe class MeshGeneration
 
         return mesh;
     }
-    public static int Example()
+    public static void Example()
     {
         // Initialization
 
@@ -166,34 +166,34 @@ public static unsafe class MeshGeneration
             switch (currentModel)
             {
                 case 0:
-                    DrawText("PLANE", 680, 10, 20, Darkblue);
-                    break;
+                DrawText("PLANE", 680, 10, 20, Darkblue);
+                break;
                 case 1:
-                    DrawText("CUBE", 680, 10, 20, Darkblue);
-                    break;
+                DrawText("CUBE", 680, 10, 20, Darkblue);
+                break;
                 case 2:
-                    DrawText("SPHERE", 680, 10, 20, Darkblue);
-                    break;
+                DrawText("SPHERE", 680, 10, 20, Darkblue);
+                break;
                 case 3:
-                    DrawText("HEMISPHERE", 640, 10, 20, Darkblue);
-                    break;
+                DrawText("HEMISPHERE", 640, 10, 20, Darkblue);
+                break;
                 case 4:
-                    DrawText("CYLINDER", 680, 10, 20, Darkblue);
-                    break;
+                DrawText("CYLINDER", 680, 10, 20, Darkblue);
+                break;
                 case 5:
-                    DrawText("TORUS", 680, 10, 20, Darkblue);
-                    break;
+                DrawText("TORUS", 680, 10, 20, Darkblue);
+                break;
                 case 6:
-                    DrawText("KNOT", 680, 10, 20, Darkblue);
-                    break;
+                DrawText("KNOT", 680, 10, 20, Darkblue);
+                break;
                 case 7:
-                    DrawText("POLY", 680, 10, 20, Darkblue);
-                    break;
+                DrawText("POLY", 680, 10, 20, Darkblue);
+                break;
                 case 8:
-                    DrawText("Parametric(custom)", 580, 10, 20, Darkblue);
-                    break;
+                DrawText("Parametric(custom)", 580, 10, 20, Darkblue);
+                break;
                 default:
-                    break;
+                break;
             }
 
             EndDrawing();
@@ -213,6 +213,6 @@ public static unsafe class MeshGeneration
         CloseWindow();          // Close window and OpenGL context
 
 
-        return 0;
+
     }
 }

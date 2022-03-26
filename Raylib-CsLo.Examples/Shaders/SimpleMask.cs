@@ -36,7 +36,7 @@ public static unsafe class SimpleMask
 	const int GLSL_VERSION = 100;
 #endif
 
-    public static int Example()
+    public static void Example()
     {
         // Initialization
 
@@ -65,7 +65,7 @@ public static unsafe class SimpleMask
         Model model3 = LoadModelFromMesh(sphere);
 
         // Load the shader
-        Shader shader = LoadFShader(TextFormat("resources/shaders/glsl%i/mask.fs", GLSL_VERSION));
+        Shader shader = LoadFShader(string.Format("resources/shaders/glsl{0}/mask.fs", GLSL_VERSION));
 
         // Load and apply the diffuse texture (colour map)
         Texture2D texDiffuse = LoadTexture("resources/plasma.png");
@@ -126,8 +126,8 @@ public static unsafe class SimpleMask
 
             EndMode3D();
 
-            DrawRectangle(16, 698, MeasureText(TextFormat("Frame: %i", framesCounter), 20) + 8, 42, Blue);
-            DrawText(TextFormat("Frame: %i", framesCounter), 20, 700, 20, White);
+            DrawRectangle(16, 698, MeasureText(string.Format("Frame: {0}", framesCounter), 20) + 8, 42, Blue);
+            DrawText(string.Format("Frame: {0}", framesCounter), 20, 700, 20, White);
 
             DrawFPS(10, 10);
 
@@ -149,6 +149,6 @@ public static unsafe class SimpleMask
         CloseWindow();              // Close window and OpenGL context
 
 
-        return 0;
+
     }
 }

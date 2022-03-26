@@ -24,7 +24,7 @@ public static unsafe class OrthographicProjection
 {
     const float FOVY_PERSPECTIVE = 45.0f;
     const float WIDTH_ORTHOGRAPHIC = 10.0f;
-    public static int Example()
+    public static void Example()
     {
         // Initialization
 
@@ -107,6 +107,6 @@ public static unsafe class OrthographicProjection
         CloseWindow();        // Close window and OpenGL context
 
 
-        return 0;
+
     }
 }

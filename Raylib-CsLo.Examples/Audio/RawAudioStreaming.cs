@@ -28,7 +28,7 @@ public static unsafe class RawAudioStreaming
     const int MAX_SAMPLES = 512;
     const int MAX_SAMPLES_PER_UPDATE = 4096;
 
-    public static int Example()
+    public static void Example()
     {
         // Initialization
 
@@ -154,7 +154,7 @@ public static unsafe class RawAudioStreaming
 
             ClearBackground(Raywhite);
 
-            DrawText(TextFormat("sine frequency: %i", (int)frequency), GetScreenWidth() - 220, 10, 20, Red);
+            DrawText(string.Format("sine frequency: {0}", (int)frequency), GetScreenWidth() - 220, 10, 20, Red);
             DrawText("click mouse button to change frequency", 10, 10, 20, Darkgray);
 
             // Draw the current buffer state proportionate to the screen
@@ -181,7 +181,6 @@ public static unsafe class RawAudioStreaming
         CloseWindow();              // Close window and OpenGL context
 
 
-        return 0;
     }
 
 

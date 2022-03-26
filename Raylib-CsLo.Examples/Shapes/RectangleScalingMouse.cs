@@ -22,7 +22,7 @@ public static unsafe class RectangleScalingMouse
 
     const int MOUSE_SCALE_MARK_SIZE = 12;
 
-    public static int Example()
+    public static void Example()
     {
         // Initialization
 
@@ -112,6 +112,6 @@ public static unsafe class RectangleScalingMouse
         CloseWindow();        // Close window and OpenGL context
 
 
-        return 0;
+
     }
 }

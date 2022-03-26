@@ -33,7 +33,7 @@ public static unsafe class ParticlesBlending
         public bool active;        // NOTE: Use it to activate/deactive particle
     }
 
-    public static int Example()
+    public static void Example()
     {
         // Initialization
 
@@ -159,6 +159,6 @@ public static unsafe class ParticlesBlending
         CloseWindow();        // Close window and OpenGL context
 
 
-        return 0;
+
     }
 }

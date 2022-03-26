@@ -60,14 +60,7 @@ public class NativeClassGenerator : BaseGenerator
     {
         DocumentationBlock(func.Description);
 
-        string importname = fileName.ToLowerInvariant();
-
-        Console.WriteLine(importname);
-
-        if (importname != "raygui" && importname != "physac")
-        {
-            importname = "raylib";
-        }
+        string importname = "raylib";
 
         Line($"[DllImport(\"{importname}\", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]");
 

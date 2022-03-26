@@ -32,7 +32,7 @@ public static unsafe class EasingsRectangleArray
 
     const int PLAY_TIME_IN_FRAMES = 240;                 // At 60 fps = 4 seconds
 
-    public static int Example()
+    public static void Example()
     {
         // Initialization
 
@@ -135,6 +135,6 @@ public static unsafe class EasingsRectangleArray
         CloseWindow();        // Close window and OpenGL context
 
 
-        return 0;
+
     }
 }

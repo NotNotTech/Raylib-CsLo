@@ -28,7 +28,7 @@ namespace Raylib_CsLo.Examples.Models;
 public static unsafe class Animation
 {
 
-    public static int Example()
+    public static void Example()
     {
         // Initialization
 
@@ -123,7 +123,6 @@ public static unsafe class Animation
         CloseWindow();              // Close window and OpenGL context
 
 
-        return 0;
     }
 
 }

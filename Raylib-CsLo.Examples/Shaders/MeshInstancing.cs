@@ -23,7 +23,7 @@ public static unsafe class MeshInstancing
 
     const int GLSL_VERSION = 330;
     const int MAX_INSTANCES = 10000;
-    public static int Example()
+    public static void Example()
     {
         RLights rLights = new();
         // Initialization
@@ -76,7 +76,7 @@ public static unsafe class MeshInstancing
 
         Matrix4x4[] transforms = new Matrix4x4[MAX_INSTANCES];   // Pre-multiplied transformations passed to rlgl
 
-        Shader shader = LoadShader(TextFormat("resources/shaders/glsl%i/base_lighting_instanced.vs", GLSL_VERSION), TextFormat("resources/shaders/glsl%i/lighting.fs", GLSL_VERSION));
+        Shader shader = LoadShader(string.Format("resources/shaders/glsl{0}/base_lighting_instanced.vs", GLSL_VERSION), string.Format("resources/shaders/glsl{0}/lighting.fs", GLSL_VERSION));
 
         // Get some shader loactions
         shader.locs[(int)ShaderLocMatrixMvp] = GetShaderLocation(shader, "mvp");
@@ -238,7 +238,7 @@ public static unsafe class MeshInstancing
                 //flip for opengl column major
                 transforms[i] = Matrix4x4.Transpose(transforms[i]);
             }
-            DrawMeshInstanced(cube, material, transforms, MAX_INSTANCES);
+            // DrawMeshInstanced(cube, material, transforms, MAX_INSTANCES);
             EndMode3D();
 
             DrawText("A CUBE OF DANCING CUBES!", 490, 10, 20, Maroon);
@@ -246,25 +246,25 @@ public static unsafe class MeshInstancing
 
             DrawText("1 - 9", 10, textPositionY += 25, 10, Black);
             DrawText(": Number of groups", 50, textPositionY, 10, Black);
-            DrawText(TextFormat(": %d", groups), 160, textPositionY, 10, Black);
+            DrawText(string.Format(": {0}", groups), 160, textPositionY, 10, Black);
 
             DrawText("UP", 10, textPositionY += 15, 10, Black);
             DrawText(": increase amplitude", 50, textPositionY, 10, Black);
-            DrawText(TextFormat(": %.2f", amp), 160, textPositionY, 10, Black);
+            DrawText(string.Format(": {0}", amp.ToString("0.00")), 160, textPositionY, 10, Black);
 
             DrawText("DOWN", 10, textPositionY += 15, 10, Black);
             DrawText(": decrease amplitude", 50, textPositionY, 10, Black);
 
             DrawText("LEFT", 10, textPositionY += 15, 10, Black);
             DrawText(": decrease variance", 50, textPositionY, 10, Black);
-            DrawText(TextFormat(": %.2f", variance), 160, textPositionY, 10, Black);
+            DrawText(string.Format(": {0}", variance.ToString("0.00")), 160, textPositionY, 10, Black);
 
             DrawText("RIGHT", 10, textPositionY += 15, 10, Black);
             DrawText(": increase variance", 50, textPositionY, 10, Black);
 
             DrawText("+/=", 10, textPositionY += 15, 10, Black);
             DrawText(": increase speed", 50, textPositionY, 10, Black);
-            DrawText(TextFormat(": %d = %f loops/sec", speed, (float)fps / speed), 160, textPositionY, 10, Black);
+            DrawText(string.Format(": {0} = {1} loops/sec", speed, (float)fps / speed), 160, textPositionY, 10, Black);
 
             DrawText("-", 10, textPositionY += 15, 10, Black);
             DrawText(": decrease speed", 50, textPositionY, 10, Black);
@@ -283,6 +283,6 @@ public static unsafe class MeshInstancing
         CloseWindow();        // Close window and OpenGL context
 
 
-        return 0;
+
     }
 }

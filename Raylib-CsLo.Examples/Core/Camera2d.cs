@@ -19,7 +19,7 @@ namespace Raylib_CsLo.Examples.Core;
 public static class Camera2d
 {
     const int MAX_BUILDINGS = 100;
-    public static int Example()
+    public static void Example()
     {
         // Initialization
 
@@ -162,6 +162,5 @@ public static class Camera2d
         CloseWindow();        // Close window and OpenGL context
 
 
-        return 0;
     }
 }

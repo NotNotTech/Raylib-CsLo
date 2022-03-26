@@ -22,7 +22,7 @@ public static unsafe class TextureRectangle
     const int MAX_FRAME_SPEED = 15;
     const int MIN_FRAME_SPEED = 1;
 
-    public static int Example()
+    public static void Example()
     {
         // Initialization
 
@@ -94,7 +94,7 @@ public static unsafe class TextureRectangle
             DrawRectangleLines(15 + (int)frameRec.X, 40 + (int)frameRec.Y, (int)frameRec.Width, (int)frameRec.Height, Red);
 
             DrawText("FRAME SPEED: ", 165, 210, 10, Darkgray);
-            DrawText(TextFormat("%02i FPS", framesSpeed), 575, 210, 10, Darkgray);
+            DrawText(string.Format("{0:2} FPS", framesSpeed), 575, 210, 10, Darkgray);
             DrawText("PRESS RIGHT/LEFT KEYS to CHANGE SPEED!", 290, 240, 10, Darkgray);
 
             for (int i = 0; i < MAX_FRAME_SPEED; i++)
@@ -122,6 +122,6 @@ public static unsafe class TextureRectangle
         CloseWindow();                // Close window and OpenGL context
 
 
-        return 0;
+
     }
 }

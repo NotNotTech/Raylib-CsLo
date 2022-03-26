@@ -22,6 +22,8 @@ using System.Runtime.InteropServices;
 using System.Text;
 using static Raylib_CsLo.TraceLogLevel;
 
+#pragma warning disable
+
 /// <summary>
 /// tough to implement logging.
 /// solution from : https://stackoverflow.com/a/37629480
@@ -54,28 +56,46 @@ public static unsafe class CustomLogging
         switch ((TraceLogLevel)msgType)
         {
             case LogInfo:
+            {
+                Console.ForegroundColor = ConsoleColor.Blue;
                 Console.Write($"[INFO] {msgType} :");
-                break;
+                Console.ResetColor();
+            }
+            break;
             case LogError:
+            {
+                Console.ForegroundColor = ConsoleColor.Red;
                 Console.Write($"[ERROR] {msgType} :");
-                break;
+                Console.ResetColor();
+            }
+            break;
             case LogWarning:
+            {
+                Console.ForegroundColor = ConsoleColor.Yellow;
                 Console.Write($"[WARN] {msgType} :");
-                break;
+                Console.ResetColor();
+            }
+            break;
             case LogDebug:
+            {
                 Console.Write($"[DEBUG] {msgType} :");
-                break;
+            }
+            break;
             case LogAll:
-                break;
+            break;
             case LogTrace:
-                break;
+            break;
             case LogFatal:
-                break;
+            break;
             case LogNone:
-                break;
+            break;
             default:
+            {
+                Console.ForegroundColor = ConsoleColor.DarkRed;
                 Console.Write($"[???] {msgType} :");
-                break;
+                Console.ResetColor();
+            }
+            break;
         }
 
         //vprintf(text, args);
@@ -151,3 +171,4 @@ public static unsafe class CustomLogging
         return 0;
     }
 }
+#pragma warning restore

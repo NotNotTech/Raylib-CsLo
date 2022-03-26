@@ -20,7 +20,7 @@ public static unsafe class CollisionArea
 {
     // #include <stdlib.h>     // Required for abs()
 
-    public static int Example()
+    public static void Example()
     {
         // Initialization
 
@@ -121,7 +121,7 @@ public static unsafe class CollisionArea
                 DrawText("COLLISION!", (GetScreenWidth() / 2) - (MeasureText("COLLISION!", 20) / 2), (screenUpperLimit / 2) - 10, 20, Black);
 
                 // Draw collision area
-                DrawText(TextFormat("Collision Area: %i", (int)boxCollision.Width * (int)boxCollision.Height), (GetScreenWidth() / 2) - 100, screenUpperLimit + 10, 20, Black);
+                DrawText(string.Format("Collision Area: {0}", (int)boxCollision.Width * (int)boxCollision.Height), (GetScreenWidth() / 2) - 100, screenUpperLimit + 10, 20, Black);
             }
 
             DrawFPS(10, 10);
@@ -135,6 +135,6 @@ public static unsafe class CollisionArea
         CloseWindow();        // Close window and OpenGL context
 
 
-        return 0;
+
     }
 }

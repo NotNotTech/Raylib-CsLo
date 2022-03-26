@@ -29,7 +29,7 @@ public static unsafe class TextureDrawing
 	const int GLSL_VERSION = 100;
 #endif
 
-    public static int Example()
+    public static void Example()
     {
         // Initialization
 
@@ -43,7 +43,7 @@ public static unsafe class TextureDrawing
         UnloadImage(imBlank);
 
         // NOTE: Using GLSL 330 shader version, on OpenGL ES 2.0 use GLSL 100 shader version
-        Shader shader = LoadFShader(TextFormat("resources/shaders/glsl%i/cubes_panning.fs", GLSL_VERSION));
+        Shader shader = LoadFShader(string.Format("resources/shaders/glsl{0}/cubes_panning.fs", GLSL_VERSION));
 
         float time = 0.0f;
         int timeLoc = GetShaderLocation(shader, "uTime");
@@ -84,6 +84,6 @@ public static unsafe class TextureDrawing
         CloseWindow();        // Close window and OpenGL context
 
 
-        return 0;
+
     }
 }

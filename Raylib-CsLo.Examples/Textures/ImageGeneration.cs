@@ -21,7 +21,7 @@ public static unsafe class ImageGeneration
 
     const int NUM_TEXTURES = 6;      // Currently we have 7 generation algorithms
 
-    public static int Example()
+    public static void Example()
     {
         // Initialization
 
@@ -85,25 +85,25 @@ public static unsafe class ImageGeneration
             switch (currentTexture)
             {
                 case 0:
-                    DrawText("VERTICAL GRADIENT", 560, 10, 20, Raywhite);
-                    break;
+                DrawText("VERTICAL GRADIENT", 560, 10, 20, Raywhite);
+                break;
                 case 1:
-                    DrawText("HORIZONTAL GRADIENT", 540, 10, 20, Raywhite);
-                    break;
+                DrawText("HORIZONTAL GRADIENT", 540, 10, 20, Raywhite);
+                break;
                 case 2:
-                    DrawText("RADIAL GRADIENT", 580, 10, 20, Lightgray);
-                    break;
+                DrawText("RADIAL GRADIENT", 580, 10, 20, Lightgray);
+                break;
                 case 3:
-                    DrawText("CHECKED", 680, 10, 20, Raywhite);
-                    break;
+                DrawText("CHECKED", 680, 10, 20, Raywhite);
+                break;
                 case 4:
-                    DrawText("White NOISE", 640, 10, 20, Red);
-                    break;
+                DrawText("White NOISE", 640, 10, 20, Red);
+                break;
                 case 5:
-                    DrawText("CELLULAR", 670, 10, 20, Raywhite);
-                    break;
+                DrawText("CELLULAR", 670, 10, 20, Raywhite);
+                break;
                 default:
-                    break;
+                break;
             }
 
             EndDrawing();
@@ -122,6 +122,6 @@ public static unsafe class ImageGeneration
         CloseWindow();                // Close window and OpenGL context
 
 
-        return 0;
+
     }
 }

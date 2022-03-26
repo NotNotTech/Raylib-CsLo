@@ -28,7 +28,7 @@ namespace Raylib_CsLo.Examples.Text;
 public static unsafe class SpriteFontLoading
 {
 
-    public static int Example()
+    public static void Example()
     {
         // Initialization
 
@@ -89,6 +89,6 @@ public static unsafe class SpriteFontLoading
         CloseWindow();          // Close window and OpenGL context
 
 
-        return 0;
+
     }
 }

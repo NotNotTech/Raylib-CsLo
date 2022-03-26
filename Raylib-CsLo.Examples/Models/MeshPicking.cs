@@ -22,7 +22,7 @@ public static unsafe class MeshPicking
 {
     //#define FLT_MAX     340282346638528859811704183484516925440.0f     // Maximum value of a float, from bit pattern 01111111011111111111111111111111
     const float FLT_MAX = float.MaxValue;
-    public static int Example()
+    public static void Example()
     {
         // Initialization
 
@@ -188,27 +188,21 @@ public static unsafe class MeshPicking
             EndMode3D();
 
             // Draw some debug GUI text
-            DrawText(TextFormat("Hit Object: %s", hitObjectName), 10, 50, 10, Black);
+            DrawText("Hit Object: " + hitObjectName, 10, 50, 10, Black);
 
             if (collision.hit)
             {
                 int ypos = 70;
 
-                DrawText(TextFormat("Distance: %3.2f", collision.distance), 10, ypos, 10, Black);
+                DrawText("Distance: " + collision.distance.ToString("000.00"), 10, ypos, 10, Black);
 
-                DrawText(TextFormat("Hit Pos: %3.2f %3.2f %3.2f",
-                                    collision.point.X,
-                                    collision.point.Y,
-                                    collision.point.Z), 10, ypos + 15, 10, Black);
+                DrawText(string.Format("Hit Pos: {0} {1} {2}", collision.point.X.ToString("000.00"), collision.point.Y.ToString("000.00"), collision.point.Z.ToString("000.00")), 10, ypos + 15, 10, Black);
 
-                DrawText(TextFormat("Hit Norm: %3.2f %3.2f %3.2f",
-                                    collision.normal.X,
-                                    collision.normal.Y,
-                                    collision.normal.Z), 10, ypos + 30, 10, Black);
+                DrawText(string.Format("Hit Norm: {0} {1} {2}", collision.normal.X.ToString("000.00"), collision.normal.Y.ToString("000.00"), collision.normal.Z.ToString("000.00")), 10, ypos + 30, 10, Black);
 
                 if (triHitInfo.hit && TextIsEqual(hitObjectName, "Triangle"))
                 {
-                    DrawText(TextFormat("Barycenter: %3.2f %3.2f %3.2f", bary.X, bary.Y, bary.Z), 10, ypos + 45, 10, Black);
+                    DrawText(string.Format("Barycenter: {0} {1} {2}", bary.X.ToString("000.00"), bary.Y.ToString("000.00"), bary.Z.ToString("000.00")), 10, ypos + 45, 10, Black);
                 }
             }
 
@@ -230,6 +224,6 @@ public static unsafe class MeshPicking
         CloseWindow();              // Close window and OpenGL context
 
 
-        return 0;
+
     }
 }

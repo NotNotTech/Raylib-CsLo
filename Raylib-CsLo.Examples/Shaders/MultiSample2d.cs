@@ -28,7 +28,7 @@ public static unsafe class MultiSample2d
 {
 
     const int GLSL_VERSION = 330;
-    public static int Example()
+    public static void Example()
     {
         //var rLights = new Examples.RLights();
 
@@ -47,7 +47,7 @@ public static unsafe class MultiSample2d
         Texture2D texBlue = LoadTextureFromImage(imBlue);
         UnloadImage(imBlue);
 
-        Shader shader = LoadFShader(TextFormat("resources/shaders/glsl%i/color_mix.fs", GLSL_VERSION));
+        Shader shader = LoadFShader(string.Format("resources/shaders/glsl{0}/color_mix.fs", GLSL_VERSION));
 
         // Get an additional sampler2D location to be enabled on drawing
         int texBlueLoc = GetShaderLocation(shader, "texture1");
@@ -119,6 +119,6 @@ public static unsafe class MultiSample2d
         CloseWindow();              // Close window and OpenGL context
 
 
-        return 0;
+
     }
 }

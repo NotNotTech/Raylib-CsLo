@@ -7,5 +7,12 @@ namespace Raylib_CsLo;
 
 public unsafe partial class RaylibS
 {
-
+    /// <summary> Update audio stream buffers with data </summary>
+    public static void UpdateAudioStream(AudioStream stream, Span<short> data, int frameCount)
+    {
+        fixed (short* data_ = data)
+        {
+            Raylib.UpdateAudioStream(stream, data_, frameCount);
+        }
+    }
 }

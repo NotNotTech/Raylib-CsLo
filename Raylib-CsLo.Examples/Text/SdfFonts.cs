@@ -27,7 +27,7 @@ public static unsafe class SdfFonts
 
     // #include <stdlib.h>
 
-    public static int Example()
+    public static void Example()
     {
         // Initialization
 
@@ -41,7 +41,7 @@ public static unsafe class SdfFonts
         string msg = "Signed Distance Fields";
 
         // Loading file to memory
-        byte* fileData = LoadFileData("resources/anonymous_pro_bold.ttf", out uint fileSize);
+        byte[] fileData = File.ReadAllBytes("resources/anonymous_pro_bold.ttf");
 
         // Default font generation from TTF font
         Font fontDefault = new();
@@ -50,7 +50,7 @@ public static unsafe class SdfFonts
 
         // Loading font data from memory data
         // Parameters > font size: 16, no glyphs array provided (0), glyphs count: 95 (autogenerate chars array)
-        fontDefault.glyphs = Raylib.LoadFontData(fileData, (int)fileSize, 16, (int*)0, 95, (int)FontDefault);
+        fontDefault.glyphs = LoadFontData(fileData, fileData.Length, 16, IntPtr.Zero, 95, (int)FontDefault);
         // Parameters > glyphs count: 95, font size: 16, glyphs padding in image: 4 px, pack method: 0 (default)
         Image atlas = GenImageFontAtlas(fontDefault.glyphs, &fontDefault.recs, 95, 16, 4, 0);
         fontDefault.texture = LoadTextureFromImage(atlas);
@@ -61,16 +61,14 @@ public static unsafe class SdfFonts
         fontSDF.baseSize = 16;
         fontSDF.glyphCount = 95;
         // Parameters > font size: 16, no glyphs array provided (0), glyphs count: 0 (defaults to 95)
-        fontSDF.glyphs = Raylib.LoadFontData(fileData, (int)fileSize, 16, (int*)0, 0, (int)FontSdf);
+        fontSDF.glyphs = LoadFontData(fileData, fileData.Length, 16, IntPtr.Zero, 0, (int)FontSdf);
         // Parameters > glyphs count: 95, font size: 16, glyphs padding in image: 0 px, pack method: 1 (Skyline algorythm)
         atlas = GenImageFontAtlas(fontSDF.glyphs, &fontSDF.recs, 95, 16, 0, 1);
         fontSDF.texture = LoadTextureFromImage(atlas);
         UnloadImage(atlas);
 
-        Raylib.UnloadFileData(fileData);      // Free memory from loaded file
-
         // Load SDF required shader (we use default vertex shader)
-        Shader shader = LoadFShader(TextFormat("resources/shaders/glsl%i/sdf.fs", GLSL_VERSION));
+        Shader shader = LoadFShader(string.Format("resources/shaders/glsl{0}/sdf.fs", GLSL_VERSION));
         SetTextureFilter(fontSDF.texture, TextureFilterBilinear);    // Required for SDF font
 
         Vector2 fontPosition = new(40, (screenHeight / 2.0f) - 50);
@@ -147,7 +145,7 @@ public static unsafe class SdfFonts
             }
 
             DrawText("FONT SIZE: 16.0", GetScreenWidth() - 240, 20, 20, Darkgray);
-            DrawText(TextFormat("RENDER SIZE: %02.02f", fontSize), GetScreenWidth() - 240, 50, 20, Darkgray);
+            DrawText(string.Format("RENDER SIZE: {0}", fontSize.ToString("00.00")), GetScreenWidth() - 240, 50, 20, Darkgray);
             DrawText("Use MOUSE WHEEL to SCALE TEXT!", GetScreenWidth() - 240, 90, 10, Darkgray);
 
             DrawText("HOLD SPACE to USE SDF FONT VERSION!", 340, GetScreenHeight() - 30, 20, Maroon);
@@ -166,7 +164,7 @@ public static unsafe class SdfFonts
         CloseWindow();              // Close window and OpenGL context
 
 
-        return 0;
+
     }
 
 }

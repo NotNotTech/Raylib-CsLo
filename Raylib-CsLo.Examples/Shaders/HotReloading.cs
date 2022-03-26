@@ -25,7 +25,7 @@ public static unsafe class HotReloading
 {
 
     const int GLSL_VERSION = 330;
-    public static int Example()
+    public static void Example()
     {
         // Initialization
 
@@ -34,14 +34,14 @@ public static unsafe class HotReloading
 
         InitWindow(screenWidth, screenHeight, "raylib [shaders] example - hot reloading");
 
-        string fragShaderFileName = "resources/shaders/glsl%i/reload.fs";
+        string fragShaderFileName = "resources/shaders/glsl{0}/reload.fs";
 
-        //System.IO.File.GetLastWriteTime(TextFormat(fragShaderFileName, GLSL_VERSION)).Ticks;
-        long fragShaderFileModTime = GetFileModTime(TextFormat(fragShaderFileName, GLSL_VERSION));
+        //System.IO.File.GetLastWriteTime(string.Format(fragShaderFileName, GLSL_VERSION)).Ticks;
+        long fragShaderFileModTime = GetFileModTime(string.Format(fragShaderFileName, GLSL_VERSION));
 
         // Load raymarching shader
         // NOTE: Defining 0 (NULL) for vertex shader forces usage of internal default vertex shader
-        Shader shader = LoadFShader(TextFormat(fragShaderFileName, GLSL_VERSION));
+        Shader shader = LoadFShader(string.Format(fragShaderFileName, GLSL_VERSION));
 
         // Get shader locations for required uniforms
         int resolutionLoc = GetShaderLocation(shader, "resolution");
@@ -73,13 +73,13 @@ public static unsafe class HotReloading
             // Hot shader reloading
             if (shaderAutoReloading || IsMouseButtonPressed(MouseButtonLeft))
             {
-                long currentFragShaderModTime = GetFileModTime(TextFormat(fragShaderFileName, GLSL_VERSION));
+                long currentFragShaderModTime = GetFileModTime(string.Format(fragShaderFileName, GLSL_VERSION));
 
                 // Check if shader file has been modified
                 if (currentFragShaderModTime != fragShaderFileModTime)
                 {
                     // Try reloading updated shader
-                    Shader updatedShader = LoadFShader(TextFormat(fragShaderFileName, GLSL_VERSION));
+                    Shader updatedShader = LoadFShader(string.Format(fragShaderFileName, GLSL_VERSION));
 
                     if (updatedShader.id != rlGetShaderIdDefault())      // It was correctly loaded
                     {
@@ -116,14 +116,13 @@ public static unsafe class HotReloading
             DrawRectangle(0, 0, screenWidth, screenHeight, White);
             EndShaderMode();
 
-            DrawText(TextFormat("PRESS [A] to TOGGLE SHADER AUTOLOADING: %s",
-                     shaderAutoReloading ? "AUTO" : "MANUAL"), 10, 10, 10, shaderAutoReloading ? Red : Black);
+            DrawText(string.Format("PRESS [A] to TOGGLE SHADER AUTOLOADING: {0}", shaderAutoReloading ? "AUTO" : "MANUAL"), 10, 10, 10, shaderAutoReloading ? Red : Black);
             if (!shaderAutoReloading)
             {
                 DrawText("MOUSE CLICK to SHADER RE-LOADING", 10, 30, 10, Black);
             }
 
-            DrawText(TextFormat("Shader last modification: %s", DateTime.FromFileTime(fragShaderFileModTime).ToString(CultureInfo.CurrentCulture)), 10, 430, 10, Black);
+            DrawText(string.Format("Shader last modification: {0}", DateTime.FromFileTime(fragShaderFileModTime).ToString(CultureInfo.CurrentCulture)), 10, 430, 10, Black);
 
             EndDrawing();
 
@@ -136,7 +135,7 @@ public static unsafe class HotReloading
         CloseWindow();                  // Close window and OpenGL context
 
 
-        return 0;
+
     }
 
 

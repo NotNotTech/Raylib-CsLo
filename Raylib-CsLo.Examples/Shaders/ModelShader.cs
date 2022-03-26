@@ -28,7 +28,7 @@ public static unsafe class ModelShader
 {
 
     const int GLSL_VERSION = 330;
-    public static int Example()
+    public static void Example()
     {
         //var rLights = new Examples.RLights();
 
@@ -54,7 +54,7 @@ public static unsafe class ModelShader
 
         // Load shader for model
         // NOTE: Defining 0 (NULL) for vertex shader forces usage of internal default vertex shader
-        Shader shader = LoadFShader(TextFormat("resources/shaders/glsl%i/grayscale.fs", GLSL_VERSION));
+        Shader shader = LoadFShader(string.Format("resources/shaders/glsl{0}/grayscale.fs", GLSL_VERSION));
 
         model.materials[0].shader = shader;                     // Set shader effect to 3d model
         model.materials[0].maps[(int)MaterialMapAlbedo].texture = texture; // Bind texture to model
@@ -105,6 +105,6 @@ public static unsafe class ModelShader
         CloseWindow();              // Close window and OpenGL context
 
 
-        return 0;
+
     }
 }

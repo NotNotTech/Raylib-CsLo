@@ -248,7 +248,7 @@ public static unsafe class Camera2dPlatformer
             camera.target = Vector2.Add(camera.target, diff * (speed * delta / length));
         }
     }
-    public static int Example()
+    public static void Example()
     {
         // Initialization
 
@@ -259,8 +259,8 @@ public static unsafe class Camera2dPlatformer
 
         Player player = new();
         player.position = new(
-            400, 280
-        );
+                400, 280
+            );
         player.speed = 0F;
         player.canJump = false;
         EnvItem[] envItems =
@@ -371,7 +371,7 @@ public static unsafe class Camera2dPlatformer
         CloseWindow(); // Close window and OpenGL context
 
 
-        return 0;
+
     }
 
     public delegate void CameraUpdaters(ref Camera2D camera, Player player, EnvItem[] envItems, int envItemsLength, float delta, int width, int height);

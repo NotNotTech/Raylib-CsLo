@@ -278,11 +278,11 @@ public unsafe partial class RaylibS
         Raylib.PollInputEvents();
     }
 
-    /// <summary> Wait for some milliseconds (halt program execution) </summary>
-    public static void WaitTime(float ms)
-    {
-        Raylib.WaitTime(ms);
-    }
+    //  /// <summary> Wait for some milliseconds (halt program execution) </summary>
+    //  public static void WaitTime(float ms)
+    //  {
+    //      Raylib.WaitTime(ms);
+    //  }
 
     /// <summary> Shows cursor </summary>
     public static void ShowCursor()
@@ -600,25 +600,25 @@ public unsafe partial class RaylibS
         Raylib.SetTraceLogLevel(logLevel);
     }
 
-    /// <summary> Internal memory allocator </summary>
-    public static IntPtr MemAlloc(int size)
-    {
-        return (IntPtr)Raylib.MemAlloc(size);
-    }
+    //  /// <summary> Internal memory allocator </summary>
+    //  public static IntPtr MemAlloc(int size)
+    //  {
+    //      return (IntPtr)Raylib.MemAlloc(size);
+    //  }
 
-    /// <summary> Internal memory reallocator </summary>
-    public static IntPtr MemRealloc(IntPtr ptr, int size)
-    {
-        var ptr_ = (void*)ptr;
-        return (IntPtr)Raylib.MemRealloc(ptr_, size);
-    }
+    //  /// <summary> Internal memory reallocator </summary>
+    //  public static IntPtr MemRealloc(IntPtr ptr, int size)
+    //  {
+    //      var ptr_ = (void*)ptr;
+    //      return (IntPtr)Raylib.MemRealloc(ptr_, size);
+    //  }
 
-    /// <summary> Internal memory free </summary>
-    public static void MemFree(IntPtr ptr)
-    {
-        var ptr_ = (void*)ptr;
-        Raylib.MemFree(ptr_);
-    }
+    //  /// <summary> Internal memory free </summary>
+    //  public static void MemFree(IntPtr ptr)
+    //  {
+    //      var ptr_ = (void*)ptr;
+    //      Raylib.MemFree(ptr_);
+    //  }
 
     //  /// <summary> Set custom trace log </summary>
     //  public static void SetTraceLogCallback(delegate* unmanaged[Cdecl]<int, sbyte*, sbyte*, void> callback)
@@ -666,20 +666,20 @@ public unsafe partial class RaylibS
         }
     }
 
-    /// <summary> Save data to file from byte array (write), returns true on success </summary>
-    public static bool SaveFileData(string fileName, IntPtr data, uint bytesToWrite)
-    {
-        using var fileName_ = fileName.MarshalUtf8();
-        var data_ = (void*)data;
-        return Raylib.SaveFileData(fileName_.AsPtr(), data_, bytesToWrite);
-    }
+    //  /// <summary> Save data to file from byte array (write), returns true on success </summary>
+    //  public static bool SaveFileData(string fileName, IntPtr data, uint bytesToWrite)
+    //  {
+    //      using var fileName_ = fileName.MarshalUtf8();
+    //      var data_ = (void*)data;
+    //      return Raylib.SaveFileData(fileName_.AsPtr(), data_, bytesToWrite);
+    //  }
 
-    /// <summary> Load text data from file (read), returns a '\0' terminated string </summary>
-    public static string LoadFileText(string fileName)
-    {
-        using var fileName_ = fileName.MarshalUtf8();
-        return Helpers.Utf8ToString(Raylib.LoadFileText(fileName_.AsPtr()));
-    }
+    //  /// <summary> Load text data from file (read), returns a '\0' terminated string </summary>
+    //  public static string LoadFileText(string fileName)
+    //  {
+    //      using var fileName_ = fileName.MarshalUtf8();
+    //      return Helpers.Utf8ToString(Raylib.LoadFileText(fileName_.AsPtr()));
+    //  }
 
     /// <summary> Unload file text data allocated by LoadFileText() </summary>
     public static void UnloadFileText(string text)
@@ -688,27 +688,27 @@ public unsafe partial class RaylibS
         Raylib.UnloadFileText(text_.AsPtr());
     }
 
-    /// <summary> Save text data to file (write), string must be '\0' terminated, returns true on success </summary>
-    public static bool SaveFileText(string fileName, string text)
-    {
-        using var fileName_ = fileName.MarshalUtf8();
-        using var text_ = text.MarshalUtf8();
-        return Raylib.SaveFileText(fileName_.AsPtr(), text_.AsPtr());
-    }
+    //  /// <summary> Save text data to file (write), string must be '\0' terminated, returns true on success </summary>
+    //  public static bool SaveFileText(string fileName, string text)
+    //  {
+    //      using var fileName_ = fileName.MarshalUtf8();
+    //      using var text_ = text.MarshalUtf8();
+    //      return Raylib.SaveFileText(fileName_.AsPtr(), text_.AsPtr());
+    //  }
 
-    /// <summary> Check if file exists </summary>
-    public static bool FileExists(string fileName)
-    {
-        using var fileName_ = fileName.MarshalUtf8();
-        return Raylib.FileExists(fileName_.AsPtr());
-    }
+    //  /// <summary> Check if file exists </summary>
+    //  public static bool FileExists(string fileName)
+    //  {
+    //      using var fileName_ = fileName.MarshalUtf8();
+    //      return Raylib.FileExists(fileName_.AsPtr());
+    //  }
 
-    /// <summary> Check if a directory path exists </summary>
-    public static bool DirectoryExists(string dirPath)
-    {
-        using var dirPath_ = dirPath.MarshalUtf8();
-        return Raylib.DirectoryExists(dirPath_.AsPtr());
-    }
+    //  /// <summary> Check if a directory path exists </summary>
+    //  public static bool DirectoryExists(string dirPath)
+    //  {
+    //      using var dirPath_ = dirPath.MarshalUtf8();
+    //      return Raylib.DirectoryExists(dirPath_.AsPtr());
+    //  }
 
     /// <summary> Check file extension (including point: .png, .wav) </summary>
     public static bool IsFileExtension(string fileName, string ext)
@@ -1137,14 +1137,14 @@ public unsafe partial class RaylibS
         Raylib.SetCameraMode(camera, (int)mode);
     }
 
-    //  /// <summary> Update camera position for selected mode </summary>
-    //  public static void UpdateCamera(ref Camera3D camera)
-    //  {
-    //      fixed (Camera3D* &camera_ = &&camera)
-    //      {
-    //          Raylib.UpdateCamera(&camera_);
-    //      }
-    //  }
+    /// <summary> Update camera position for selected mode </summary>
+    public static void UpdateCamera(ref Camera3D camera)
+    {
+        fixed (Camera3D* camera_ = &camera)
+        {
+            Raylib.UpdateCamera(camera_);
+        }
+    }
 
     /// <summary> Set camera pan key to combine with mouse movement (free camera) </summary>
     public static void SetCameraPanControl(int keyPan)
@@ -1814,14 +1814,14 @@ public unsafe partial class RaylibS
     //      }
     //  }
 
-    /// <summary> Unload colors palette loaded with LoadImagePalette() </summary>
-    public static void UnloadImagePalette(Color[] colors)
-    {
-        fixed (Color* colors_ = colors)
-        {
-            Raylib.UnloadImagePalette(colors_);
-        }
-    }
+    //  /// <summary> Unload colors palette loaded with LoadImagePalette() </summary>
+    //  public static void UnloadImagePalette(Color[] colors)
+    //  {
+    //      fixed (Color* colors_ = colors)
+    //      {
+    //          Raylib.UnloadImagePalette(colors_);
+    //      }
+    //  }
 
     /// <summary> Get image alpha border rectangle </summary>
     public static Rectangle GetImageAlphaBorder(Image image, float threshold)
@@ -2007,12 +2007,12 @@ public unsafe partial class RaylibS
     //      Raylib.UpdateTexture(texture, pixels_);
     //  }
 
-    /// <summary> Update GPU texture rectangle with new data </summary>
-    public static void UpdateTextureRec(Texture2D texture, Rectangle rec, IntPtr pixels)
-    {
-        var pixels_ = (void*)pixels;
-        Raylib.UpdateTextureRec(texture, rec, pixels_);
-    }
+    //  /// <summary> Update GPU texture rectangle with new data </summary>
+    //  public static void UpdateTextureRec(Texture2D texture, Rectangle rec, IntPtr pixels)
+    //  {
+    //      var pixels_ = (void*)pixels;
+    //      Raylib.UpdateTextureRec(texture, rec, pixels_);
+    //  }
 
     /// <summary> Generate GPU mipmaps for a texture </summary>
     public static void GenTextureMipmaps(ref Texture2D texture)
@@ -2376,12 +2376,12 @@ public unsafe partial class RaylibS
     //      return Raylib.TextLength(text_.AsPtr());
     //  }
 
-    //  /// <summary> Text formatting with variables (sprintf() style) </summary>
-    //  public static string TextFormat(string text, params object[] args)
-    //  {
-    //      using var text_ = text.MarshalUtf8();
-    //      return Helpers.Utf8ToString(Raylib.TextFormat(text_.AsPtr(), __arglist(args)));
-    //  }
+    /// <summary> Text formatting with variables (sprintf() style) </summary>
+    public static string TextFormat(string text, params object[] args)
+    {
+        using var text_ = text.MarshalUtf8();
+        return Helpers.Utf8ToString(Raylib.TextFormat(text_.AsPtr(), __arglist(args)));
+    }
 
     /// <summary> Get a piece of a text string </summary>
     public static string TextSubtext(string text, int position, int length)

@@ -30,7 +30,7 @@ namespace Raylib_CsLo.Examples.Models;
 public static unsafe class Loading
 {
 
-    public static int Example()
+    public static void Example()
     {
         // Initialization
 
@@ -162,6 +162,6 @@ public static unsafe class Loading
         CloseWindow();              // Close window and OpenGL context
 
 
-        return 0;
+
     }
 }

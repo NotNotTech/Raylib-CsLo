@@ -20,7 +20,7 @@ namespace Raylib_CsLo.Examples.Core;
 public static class InputMultitouch
 {
     const int MAX_TOUCH_POINTS = 10;
-    public static int Example()
+    public static void Example()
     {
         // Initialization
 
@@ -59,7 +59,7 @@ public static class InputMultitouch
                 {
                     // Draw circle and touch index number
                     DrawCircleV(touchPositions[i], 34, Orange);
-                    DrawText(TextFormat("%d", i), (int)touchPositions[i].X - 10, (int)touchPositions[i].Y - 70, 40, Black);
+                    DrawText(i.ToString(), (int)touchPositions[i].X - 10, (int)touchPositions[i].Y - 70, 40, Black);
                 }
             }
 
@@ -74,6 +74,5 @@ public static class InputMultitouch
         CloseWindow();        // Close window and OpenGL context
 
 
-        return 0;
     }
 }

@@ -18,148 +18,148 @@ public static class Program
 {
     public static void Main()
     {
-
-        // CORE
-
-        BasicWindow.Example();
-        BasicScreenManager.Example();
-        KeyboardInput.Example();
-        InputMouse.Example();
-        InputMouseWheel.Example();
-        GamepadInput.Example();
-        InputMultitouch.Example();
-        InputGesturesDetection.Example();
-        Camera2d.Example();
-        Camera2dPlatformer.Example();
-        Camera3dMode.Example();
-        Camera3dFree.Example();
-        Camera3dFirstPerson.Example();
-        Picking3d.Example();
-        WorldToScreen.Example();
-        if (Environment.OSVersion.Platform == PlatformID.Win32NT)
+        int choice = 0;
+        while (choice != -1)
         {
-            CustomLogging.Example();
+            choice = ExamplePicker.Example();
+
+            switch (choice)
+            {
+                // Core
+                case 0: BasicWindow.Example(); break;
+                case 1: BasicScreenManager.Example(); break;
+                case 2: InputKeys.Example(); break;
+                case 3: InputMouse.Example(); break;
+                case 4: InputMouseWheel.Example(); break;
+                case 5: InputGamepad.Example(); break;
+                case 6: InputMultitouch.Example(); break;
+                case 7: InputGestures.Example(); break;
+                case 8: Camera2d.Example(); break;
+                case 9: Camera2dPlatformer.Example(); break;
+                case 10: Camera3dMode.Example(); break;
+                case 11: Camera3dFree.Example(); break;
+                case 12: Camera3dFirstPerson.Example(); break;
+                case 13: Picking3d.Example(); break;
+                case 14: WorldScreen.Example(); break;
+                case 15: CustomLogging.Example(); break;
+                case 16: WindowLetterbox.Example(); break;
+                case 17: DropFiles.Example(); break;
+                case 18: ScissorTest.Example(); break;
+                case 19: VrSimulator.Example(); break;
+                case 20: QuatConversion.Example(); break;
+                case 21: WindowFlags.Example(); break;
+                case 22: SplitScreen.Example(); break;
+                case 23: SmoothPixelperfect.Example(); break;
+                case 24: CustomFrameControl.Example(); break;// The following example requires a custom build of raylib to work.see it's docs for info.
+
+                // Models
+                case 25: Animation.Example(); break;
+                case 26: Billboard.Example(); break;
+                case 27: BoxCollisions.Example(); break;
+                case 28: Cubicmap.Example(); break;
+                case 29: FirstPersonMaze.Example(); break;
+                case 30: GeometricShapes.Example(); break;
+                case 31: Heightmap.Example(); break;
+                case 32: Loading.Example(); break;
+                case 33: LoadingGltf.Example(); break;
+                case 34: LoadingVox.Example(); break;
+                case 35: MeshGeneration.Example(); break;
+                case 36: MeshPicking.Example(); break;
+                case 37: OrthographicProjection.Example(); break;
+                case 38: RlglSolarSystem.Example(); break;
+                case 39: Skybox.Example(); break;
+                case 40: WavingCubes.Example(); break;
+                case 41: YawPitchRoll.Example(); break;
+
+                // Shaders
+                case 42: BasicLighting.Example(); break;
+                case 43: CustomUniform.Example(); break;
+                case 44: Eratosthenes.Example(); break;
+                case 45: Fog.Example(); break;
+                case 46: HotReloading.Example(); break;
+                case 47: JuliaSet.Example(); break;
+                case 48: MeshInstancing.Example(); break;// FIXME I have no clue whats going on here
+                case 49: ModelShader.Example(); break;
+                case 50: MultiSample2d.Example(); break;
+                case 51: PaletteColorSwitch.Example(); break;
+                case 52: PostProcessing.Example(); break;
+                case 53: Raymarching.Example(); break;
+                case 54: ShapesAndTextureShaders.Example(); break;
+                case 55: SimpleMask.Example(); break;
+                case 56: Spotlight.Example(); break;
+                case 57: TextureDrawing.Example(); break;
+                case 58: TextureOutline.Example(); break;
+                case 59: TextureWaves.Example(); break;
+
+                // Textures
+                case 60: BackgroundScrolling.Example(); break;
+                case 61: BlendModes.Example(); break;
+                case 62: Bunnymark.Example(); break;
+                case 63: ImageDrawing.Example(); break;
+                case 64: ImageGeneration.Example(); break;
+                case 65: ImageLoading.Example(); break;
+                case 66: ImageProcessing.Example(); break;// FIXME
+                case 67: ImageText.Example(); break;
+                case 68: LoadingAndDrawing.Example(); break;
+                case 69: MousePainting.Example(); break;
+                case 70: NPatchDrawing.Example(); break;
+                case 71: ParticlesBlending.Example(); break;
+                case 72: SpriteButton.Example(); break;
+                case 73: SpriteExplosion.Example(); break;
+                case 74: TexturedPolygon.Example(); break;
+                case 75: TextureRawData.Example(); break;
+                case 76: TextureRectangle.Example(); break;
+                case 77: TextureSourceAndDestinationRectangles.Example(); break;
+                case 78: TextureToImage.Example(); break;
+                case 79: TiledTexture.Example(); break;
+
+                // Text
+                case 80: Draw2dIn3d.Example(); break;
+                case 81: DrawTextInsideRectangle.Example(); break;
+                case 82: FontFilters.Example(); break;
+                case 83: FontLoading.Example(); break;
+                case 84: RaylibFonts.Example(); break;
+                case 85: InputBox.Example(); break;
+                case 86: SdfFonts.Example(); break;
+                case 87: SpriteFontLoading.Example(); break;
+                case 88: TextFormatting.Example(); break;
+                case 89: WritingAnimation.Example(); break;
+                case 90: Unicode.Example(); break;// the unicode example doesn't work properly.  I guess the fonts don't include the needed unicode chars
+
+                // Shapes
+                case 91: BasicShapes.Example(); break;
+                case 92: BouncingBall.Example(); break;
+                case 93: CollisionArea.Example(); break;
+                case 94: ColorsPalette.Example(); break;
+                case 95: DrawCircleSector.Example(); break;
+                case 96: DrawRectangleRounded.Example(); break;
+                case 97: DrawRing.Example(); break;
+                case 98: EasingsBallAnim.Example(); break;
+                case 99: EasingsBoxAnim.Example(); break;
+                case 100: EasingsRectangleArray.Example(); break;
+                case 101: FollowingEyes.Example(); break;
+                case 102: LogoAnimation.Example(); break;
+                case 103: LogoUsingShapes.Example(); break;
+                case 104: RectangleScalingMouse.Example(); break;
+                case 105: LinesBezier.Example(); break;
+
+                // Audio
+                case 106: ModulePlaying.Example(); break;
+                case 107: MultichannelSound.Example(); break;
+                case 108: MusicStreaming.Example(); break;
+                case 109: RawAudioStreaming.Example(); break;
+                case 110: SoundLoadingAndPlaying.Example(); break;
+
+                // Physics
+                case 111: PhysicsDemo.Example(); break;// FIXME
+                case 112: PhysicsFriction.Example(); break;// FIXME
+                case 113: PhysicsMovement.Example(); break;// FIXME
+                case 114: PhysicsRestitution.Example(); break;// FIXME
+                case 115: PhysicsShatter.Example(); break;// FIXME
+
+                default:
+                break;
+            }
         }
-        WindowLetterbox.Example();
-        WindowsDropFiles.Example();
-        ScissorTest.Example();
-        VrSimulator.Example();
-        QuatConversions.Example();
-        WindowFlags.Example();
-        SplitScreen.Example();
-        SmoothPixelPerfectCamera.Example();
-        CustomFrameControl.Example();// The following example requires a custom build of raylib to work.see it's docs for info.
-
-        // MODELS
-
-        Animation.Example();
-        Billboard.Example();
-        BoxCollisions.Example();
-        Cubicmap.Example();
-        FirstPersonMaze.Example();
-        GeometricShapes.Example();
-        Heightmap.Example();
-        Loading.Example();
-        LoadingGltf.Example();
-        LoadingVox.Example();
-        MeshGeneration.Example();
-        MeshPicking.Example();
-        OrthographicProjection.Example();
-        RlglSolarSystem.Example();
-        Skybox.Example();
-        WavingCubes.Example();
-        YawPitchRoll.Example();
-
-        // SHADERS
-
-        BasicLighting.Example();
-        CustomUniform.Example();
-        Eratosthenes.Example();
-        Fog.Example();
-        HotReloading.Example();
-        JuliaSet.Example();
-        MeshInstancing.Example();// FIXME I have no clue whats going on here
-        ModelShader.Example();
-        MultiSample2d.Example();
-        PaletteColorSwitch.Example();
-        PostProcessingShader.Example();
-        RaymarchingShapes.Example();
-        ShapesAndTextureShaders.Example();
-        SimpleMask.Example();
-        Spotlight.Example();
-        TextureDrawing.Example();
-        TextureOutline.Example();
-        TextureWaves.Example();
-
-        // TEXTURES
-
-        BackgroundScrolling.Example();
-        BlendModes.Example();
-        Bunnymark.Example();
-        ImageDrawing.Example();
-        ImageGeneration.Example();
-        ImageLoading.Example();
-        ImageProcessing.Example();// FIXME
-        ImageTextDrawing.Example();
-        LoadingAndDrawing.Example();
-        MousePainting.Example();
-        NPatchDrawing.Example();
-        ParticlesBlending.Example();
-        SpriteButton.Example();
-        SpriteExplosion.Example();
-        TexturedPolygon.Example();
-        TextureFromRawData.Example();
-        TextureRectangle.Example();
-        TextureSourceAndDestinationRectangles.Example();
-        TextureToImage.Example();
-        TiledTexture.Example();
-
-        // TEXT
-
-        Draw2dIn3d.Example();
-        DrawTextInsideRectangle.Example();
-        FontFilters.Example();
-        FontLoading.Example();
-        FontLoadingUsage.Example();
-        InputBox.Example();
-        SdfFonts.Example();
-        SpriteFontLoading.Example();
-        TextFormatting.Example();
-        WritingAnimation.Example();
-        Unicode.Example();// the unicode example doesn't work properly.  I guess the fonts don't include the needed unicode chars
-
-        // SHAPES
-
-        BasicShapes.Example();
-        BoundingBall.Example();
-        CollisionArea.Example();
-        ColorsPalette.Example();
-        DrawCircleSector.Example();
-        DrawRectangleRounded.Example();
-        DrawRing.Example();
-        EasingsBallAnim.Example();
-        EasingsBoxAnim.Example();
-        EasingsRectangleArray.Example();
-        FollowingEyes.Example();
-        LogoAnimation.Example();
-        LogoUsingShapes.Example();
-        RectangleScalingMouse.Example();
-        LinesCubicBezier.Example();
-
-        // AUDIO
-
-        ModulePlayingStreaming.Example();
-        MultichannelSoundPlaying.Example();
-        MusicPlayingStreaming.Example();
-        RawAudioStreaming.Example();
-        SoundLoadingAndPlaying.Example();
-
-        // PHYSICS
-
-        PhysicsDemo.Example();// FIXME
-        PhysicsFriction.Example();// FIXME
-        PhysicsMovement.Example();// FIXME
-        PhysicsRestitution.Example();// FIXME
-        PhysicsShatter.Example();// FIXME
     }
 }

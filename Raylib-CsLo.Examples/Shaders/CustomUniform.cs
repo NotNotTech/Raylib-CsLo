@@ -27,7 +27,7 @@ public static unsafe class CustomUniform
 {
 
     const int GLSL_VERSION = 330;
-    public static int Example()
+    public static void Example()
     {
         // Initialization
 
@@ -54,7 +54,7 @@ public static unsafe class CustomUniform
 
         // Load postprocessing shader
         // NOTE: Defining 0 (NULL) for vertex shader forces usage of internal default vertex shader
-        Shader shader = LoadFShader(TextFormat("resources/shaders/glsl%i/swirl.fs", GLSL_VERSION));
+        Shader shader = LoadFShader(string.Format("resources/shaders/glsl{0}/swirl.fs", GLSL_VERSION));
 
         // Get variable (uniform) location on the shader to connect with the program
         // NOTE: If uniform variable could not be found in the shader, function returns -1
@@ -106,8 +106,7 @@ public static unsafe class CustomUniform
             // Enable shader using the custom uniform
             BeginShaderMode(shader);
             // NOTE: Render texture must be y-flipped due to default OpenGL coordinates (left-bottom)
-            DrawTextureRec(target.texture, new Rectangle(0, 0, target.texture.width, -target.texture.height), new Vector2(
-                0, 0), White);
+            DrawTextureRec(target.texture, new Rectangle(0, 0, target.texture.width, -target.texture.height), new Vector2(0, 0), White);
             EndShaderMode();
 
             // Draw some 2d text over drawn texture
@@ -127,6 +126,6 @@ public static unsafe class CustomUniform
         CloseWindow();                      // Close window and OpenGL context
 
 
-        return 0;
+
     }
 }

@@ -19,7 +19,7 @@ namespace Raylib_CsLo.Examples.Text;
 public static unsafe class TextFormatting
 {
 
-    public static int Example()
+    public static void Example()
     {
         // Initialization
 
@@ -49,13 +49,13 @@ public static unsafe class TextFormatting
 
             ClearBackground(Raywhite);
 
-            DrawText(TextFormat("Score: %08i", score), 200, 80, 20, Red);
+            DrawText(string.Format("Score: {0:8}", score), 200, 80, 20, Red);
 
-            DrawText(TextFormat("HiScore: %08i", hiscore), 200, 120, 20, Green);
+            DrawText(string.Format("HiScore: {0:8}", hiscore), 200, 120, 20, Green);
 
-            DrawText(TextFormat("Lives: %02i", lives), 200, 160, 40, Blue);
+            DrawText(string.Format("Lives: {0:2}", lives), 200, 160, 40, Blue);
 
-            DrawText(TextFormat("Elapsed Time: %02.02f ms", GetFrameTime() * 1000), 200, 220, 20, Black);
+            DrawText(string.Format("Elapsed Time: {0} ms", (GetFrameTime() * 1000).ToString("00.00")), 200, 220, 20, Black);
 
             EndDrawing();
 
@@ -66,6 +66,6 @@ public static unsafe class TextFormatting
         CloseWindow();        // Close window and OpenGL context
 
 
-        return 0;
+
     }
 }

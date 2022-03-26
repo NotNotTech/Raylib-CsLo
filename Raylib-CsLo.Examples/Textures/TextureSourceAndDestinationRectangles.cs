@@ -19,7 +19,7 @@ namespace Raylib_CsLo.Examples.Textures;
 public static unsafe class TextureSourceAndDestinationRectangles
 {
 
-    public static int Example()
+    public static void Example()
     {
         // Initialization
 
@@ -86,6 +86,6 @@ public static unsafe class TextureSourceAndDestinationRectangles
         CloseWindow();                // Close window and OpenGL context
 
 
-        return 0;
+
     }
 }

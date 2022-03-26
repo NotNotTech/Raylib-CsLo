@@ -21,7 +21,7 @@ public static unsafe class FollowingEyes
 
     // # include <math.h>       // Required for: MathF.Atan2()
 
-    public static int Example()
+    public static void Example()
     {
         // Initialization
 
@@ -113,6 +113,6 @@ public static unsafe class FollowingEyes
         CloseWindow();        // Close window and OpenGL context
 
 
-        return 0;
+
     }
 }

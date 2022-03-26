@@ -250,139 +250,139 @@ class FormatObject
                 switch (step)
                 {
                     case FormatStep.Flags:
-                        if (c == '%')
-                        {
-                            staticPart.Append('%');
-                            mode = ParseMode.Static;
-                            continue;
-                        }
+                    if (c == '%')
+                    {
+                        staticPart.Append('%');
+                        mode = ParseMode.Static;
+                        continue;
+                    }
 
 
-                        if (c == '-')
-                        {
-                            part.LeftAlign = true;
-                        }
-                        else if (c == '+')
-                        {
-                            part.ForcePlus = true;
-                        }
-                        else if (c == ' ')
-                        {
-                            part.BlankIfPlus = true;
-                        }
-                        else if (c == '#')
-                        {
-                            part.HashMark = true;
-                        }
-                        else if (c == '0')
-                        {
-                            part.PadWithZero = true;
-                        }
-                        else
-                        {
-                            step = FormatStep.Width;
-                            goto case FormatStep.Width;
-                        }
+                    if (c == '-')
+                    {
+                        part.LeftAlign = true;
+                    }
+                    else if (c == '+')
+                    {
+                        part.ForcePlus = true;
+                    }
+                    else if (c == ' ')
+                    {
+                        part.BlankIfPlus = true;
+                    }
+                    else if (c == '#')
+                    {
+                        part.HashMark = true;
+                    }
+                    else if (c == '0')
+                    {
+                        part.PadWithZero = true;
+                    }
+                    else
+                    {
+                        step = FormatStep.Width;
+                        goto case FormatStep.Width;
+                    }
 
-                        break;
+                    break;
                     case FormatStep.Width:
-                        if (tempBuffer != null)
+                    if (tempBuffer != null)
+                    {
+                        if (c >= '0' && c <= '9')
                         {
-                            if (c >= '0' && c <= '9')
-                            {
-                                tempBuffer.Append(c);
-                            }
-                            else
-                            {
-                                part.width = int.Parse(tempBuffer.ToString());
-                                tempBuffer = null;
-                                goto case FormatStep.PrecisionStart;
-                            }
-                        }
-                        else if (c == '*')
-                        {
-                            part.width = -1;
-                            argCount++;
-                        }
-                        else if (c >= '0' && c <= '9')
-                        {
-                            tempBuffer = new StringBuilder();
                             tempBuffer.Append(c);
                         }
                         else
                         {
+                            part.width = int.Parse(tempBuffer.ToString());
+                            tempBuffer = null;
                             goto case FormatStep.PrecisionStart;
                         }
+                    }
+                    else if (c == '*')
+                    {
+                        part.width = -1;
+                        argCount++;
+                    }
+                    else if (c >= '0' && c <= '9')
+                    {
+                        tempBuffer = new StringBuilder();
+                        tempBuffer.Append(c);
+                    }
+                    else
+                    {
+                        goto case FormatStep.PrecisionStart;
+                    }
 
-                        break;
+                    break;
                     case FormatStep.PrecisionStart:
-                        if (c != '.')
-                        {
-                            goto case FormatStep.Length;
-                        }
-                        else
-                        {
-                            step = FormatStep.Precision;
-                        }
+                    if (c != '.')
+                    {
+                        goto case FormatStep.Length;
+                    }
+                    else
+                    {
+                        step = FormatStep.Precision;
+                    }
 
-                        break;
+                    break;
                     case FormatStep.Precision:
-                        if (tempBuffer != null)
+                    if (tempBuffer != null)
+                    {
+                        if (c >= '0' && c <= '9')
                         {
-                            if (c >= '0' && c <= '9')
-                            {
-                                tempBuffer.Append(c);
-                            }
-                            else
-                            {
-                                part.precision = int.Parse(tempBuffer.ToString());
-                                tempBuffer = null;
-                                goto case FormatStep.Length;
-                            }
-                        }
-                        else if (c == '*')
-                        {
-                            part.precision = -1;
-                            argCount++;
-                        }
-                        else if (c >= '0' && c <= '9')
-                        {
-                            tempBuffer = new StringBuilder();
                             tempBuffer.Append(c);
                         }
                         else
                         {
-                            part.precision = 0;
+                            part.precision = int.Parse(tempBuffer.ToString());
+                            tempBuffer = null;
                             goto case FormatStep.Length;
                         }
-
-                        break;
-                    case FormatStep.Length:
-                        if ("hlL".IndexOf(c) != -1)
-                        {
-                            part.length = c;
-                            step = FormatStep.Specifier;
-                        }
-                        else
-                        {
-                            step = FormatStep.Specifier;
-                            goto case FormatStep.Specifier;
-                        }
-
-                        break;
-                    case FormatStep.Specifier:
+                    }
+                    else if (c == '*')
+                    {
+                        part.precision = -1;
                         argCount++;
-                        part.specifier = c;
+                    }
+                    else if (c >= '0' && c <= '9')
+                    {
+                        tempBuffer = new StringBuilder();
+                        tempBuffer.Append(c);
+                    }
+                    else
+                    {
+                        part.precision = 0;
+                        goto case FormatStep.Length;
+                    }
 
-                        staticParts.Add(staticPart.ToString());
-                        staticPart = new StringBuilder();
-                        parts.Add(part);
-                        part = null;
+                    break;
+                    case FormatStep.Length:
+                    if ("hlL".IndexOf(c) != -1)
+                    {
+                        part.length = c;
+                        step = FormatStep.Specifier;
+                    }
+                    else
+                    {
+                        step = FormatStep.Specifier;
+                        goto case FormatStep.Specifier;
+                    }
 
-                        mode = ParseMode.Static;
-                        break;
+                    break;
+                    case FormatStep.Specifier:
+                    argCount++;
+                    part.specifier = c;
+
+                    staticParts.Add(staticPart.ToString());
+                    staticPart = new StringBuilder();
+                    parts.Add(part);
+                    part = null;
+
+                    mode = ParseMode.Static;
+                    break;
                     default:
-                        break;
+                    break;
                 }
             }
         }

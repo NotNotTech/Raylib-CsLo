@@ -25,7 +25,7 @@ public static unsafe class TiledTexture
     const int MARGIN_SIZE = 8;       // Size for the margins
     const int COLOR_SIZE = 16;       // Size of the color select buttons
 
-    public static int Example()//int argc, char** argv)
+    public static void Example()//int argc, char** argv)
     {
         // Initialization
 
@@ -179,15 +179,15 @@ public static unsafe class TiledTexture
             }
 
             DrawText("Scale (UP/DOWN to change)", 2 + MARGIN_SIZE, 80 + 256 + MARGIN_SIZE, 10, Black);
-            DrawText(TextFormat("%.2fx", scale), 2 + MARGIN_SIZE, 92 + 256 + MARGIN_SIZE, 20, Black);
+            DrawText(string.Format("{0}", scale.ToString("0.00")), 2 + MARGIN_SIZE, 92 + 256 + MARGIN_SIZE, 20, Black);
 
             DrawText("Rotation (LEFT/RIGHT to change)", 2 + MARGIN_SIZE, 122 + 256 + MARGIN_SIZE, 10, Black);
-            DrawText(TextFormat("%.0f degrees", rotation), 2 + MARGIN_SIZE, 134 + 256 + MARGIN_SIZE, 20, Black);
+            DrawText(string.Format("{0} degrees", rotation.ToString("0.")), 2 + MARGIN_SIZE, 134 + 256 + MARGIN_SIZE, 20, Black);
 
             DrawText("Press [SPACE] to reset", 2 + MARGIN_SIZE, 164 + 256 + MARGIN_SIZE, 10, Darkblue);
 
             // Draw FPS
-            DrawText(TextFormat("%i FPS", GetFPS()), 2 + MARGIN_SIZE, 2 + MARGIN_SIZE, 20, Black);
+            DrawText(string.Format("{0} FPS", GetFPS()), 2 + MARGIN_SIZE, 2 + MARGIN_SIZE, 20, Black);
             EndDrawing();
 
         }
@@ -199,6 +199,6 @@ public static unsafe class TiledTexture
         CloseWindow();              // Close window and OpenGL context
 
 
-        return 0;
+
     }
 }

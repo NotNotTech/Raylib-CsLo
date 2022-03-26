@@ -24,7 +24,7 @@ public static unsafe class DrawRectangleRounded
     //#define RAYGUI_IMPLEMENTATION
     //# include "extras/raygui.h"                 // Required for GUI controls
 
-    public static int Example()
+    public static void Example()
     {
         // Initialization
 
@@ -95,7 +95,7 @@ public static unsafe class DrawRectangleRounded
             drawRect = GuiCheckBox(new Rectangle(640, 380, 20, 20), "DrawRect", drawRect);
 
 
-            DrawText(TextFormat("MODE: %s", (segments >= 4) ? "MANUAL" : "AUTO"), 640, 280, 10, (segments >= 4) ? Maroon : Darkgray);
+            DrawText(string.Format("MODE: {0}", (segments >= 4) ? "MANUAL" : "AUTO"), 640, 280, 10, (segments >= 4) ? Maroon : Darkgray);
 
             DrawFPS(10, 10);
 
@@ -110,6 +110,6 @@ public static unsafe class DrawRectangleRounded
         //RayGui.GuiDisable();
         //RayGui.GuiEnable();
         ////Raylib.unload
-        return 0;
+
     }
 }

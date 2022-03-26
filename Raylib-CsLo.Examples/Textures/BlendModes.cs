@@ -23,7 +23,7 @@ namespace Raylib_CsLo.Examples.Textures;
 public static unsafe class BlendModes
 {
 
-    public static int Example()
+    public static void Example()
     {
         // Initialization
 
@@ -83,25 +83,25 @@ public static unsafe class BlendModes
             switch (blendMode)
             {
                 case BlendAlpha:
-                    DrawText("Current: BLEND_ALPHA", (screenWidth / 2) - 60, 370, 10, Gray);
-                    break;
+                DrawText("Current: BLEND_ALPHA", (screenWidth / 2) - 60, 370, 10, Gray);
+                break;
                 case BlendAdditive:
-                    DrawText("Current: BLEND_ADDITIVE", (screenWidth / 2) - 60, 370, 10, Gray);
-                    break;
+                DrawText("Current: BLEND_ADDITIVE", (screenWidth / 2) - 60, 370, 10, Gray);
+                break;
                 case BlendMultiplied:
-                    DrawText("Current: BLEND_MULTIPLIED", (screenWidth / 2) - 60, 370, 10, Gray);
-                    break;
+                DrawText("Current: BLEND_MULTIPLIED", (screenWidth / 2) - 60, 370, 10, Gray);
+                break;
                 case BlendAddColors:
-                    DrawText("Current: BLEND_ADD_COLORS", (screenWidth / 2) - 60, 370, 10, Gray);
-                    break;
+                DrawText("Current: BLEND_ADD_COLORS", (screenWidth / 2) - 60, 370, 10, Gray);
+                break;
                 case BlendSubtractColors:
-                    break;
+                break;
                 case BlendCustom:
-                    break;
+                break;
                 case BlendAlphaPremul:
-                    break;
+                break;
                 default:
-                    break;
+                break;
             }
 
             DrawText("(c) Cyberpunk Street Environment by Luis Zuno (@ansimuz)", screenWidth - 330, screenHeight - 20, 10, Gray);
@@ -118,7 +118,7 @@ public static unsafe class BlendModes
         CloseWindow();            // Close window and OpenGL context
 
 
-        return 0;
+
     }
 
 

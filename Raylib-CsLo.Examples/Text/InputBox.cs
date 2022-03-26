@@ -21,7 +21,7 @@ public static unsafe class InputBox
 
     const int MAX_INPUT_CHARS = 9;
 
-    public static int Example()
+    public static void Example()
     {
         // Initialization
 
@@ -122,7 +122,7 @@ public static unsafe class InputBox
 
             DrawText(name, (int)textBox.X + 5, (int)textBox.Y + 8, 40, Maroon);
 
-            DrawText(TextFormat("INPUT CHARS: %i/%i", name.Length, MAX_INPUT_CHARS), 315, 250, 20, Darkgray);
+            DrawText(string.Format("INPUT CHARS: {0}/{1}", name.Length, MAX_INPUT_CHARS), 315, 250, 20, Darkgray);
 
             if (mouseOnText)
             {
@@ -149,6 +149,6 @@ public static unsafe class InputBox
         CloseWindow();        // Close window and OpenGL context
 
 
-        return 0;
+
     }
 }
