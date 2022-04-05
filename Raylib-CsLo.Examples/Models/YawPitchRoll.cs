@@ -20,7 +20,7 @@ namespace Raylib_CsLo.Examples.Models;
 public static class YawPitchRoll
 {
 
-    public static void Example()
+    public static unsafe void Example()
     {
         // Initialization
 

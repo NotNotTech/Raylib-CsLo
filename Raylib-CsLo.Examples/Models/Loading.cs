@@ -30,7 +30,7 @@ namespace Raylib_CsLo.Examples.Models;
 public static class Loading
 {
 
-    public static void Example()
+    public static unsafe void Example()
     {
         // Initialization
 

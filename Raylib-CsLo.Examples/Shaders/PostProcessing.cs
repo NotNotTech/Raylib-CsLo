@@ -69,7 +69,7 @@ public static class PostProcessing
 };
 
 
-    public static void Example()
+    public static unsafe void Example()
     {
         // Initialization
 

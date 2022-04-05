@@ -27,7 +27,7 @@ public static class SdfFonts
 
     // #include <stdlib.h>
 
-    public static void Example()
+    public static unsafe void Example()
     {
         // Initialization
 

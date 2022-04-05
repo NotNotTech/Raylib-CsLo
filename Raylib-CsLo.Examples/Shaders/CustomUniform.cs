@@ -27,7 +27,7 @@ public static class CustomUniform
 {
 
     const int GLSL_VERSION = 330;
-    public static void Example()
+    public static unsafe void Example()
     {
         // Initialization
 

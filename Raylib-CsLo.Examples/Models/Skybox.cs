@@ -25,7 +25,7 @@ public static class Skybox
     //#endif
     const int GLSL_VERSION = 330;
 
-    public static void Example()
+    public static unsafe void Example()
     {
 
 
@@ -209,7 +209,7 @@ public static class Skybox
 
 
     // Generate cubemap texture from HDR texture
-    static Texture2D GenTextureCubemap(Shader shader, Texture2D panorama, int size, PixelFormat format)
+    static unsafe Texture2D GenTextureCubemap(Shader shader, Texture2D panorama, int size, PixelFormat format)
     {
         Texture2D cubemap = new();
 

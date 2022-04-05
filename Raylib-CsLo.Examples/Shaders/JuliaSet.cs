@@ -40,7 +40,7 @@ public static class JuliaSet
         new Vector2( -0.70176f, -0.3842f ),
     };
 
-    public static void Example()
+    public static unsafe void Example()
     {
         // Initialization
 

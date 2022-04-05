@@ -26,7 +26,7 @@ public static class TextureRawData
 
     // #include <stdlib.h>         // Required for: malloc() and free()
 
-    public static void Example()
+    public static unsafe void Example()
     {
         // Initialization
 

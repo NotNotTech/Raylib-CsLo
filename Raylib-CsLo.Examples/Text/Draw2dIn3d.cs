@@ -30,7 +30,7 @@ namespace Raylib_CsLo.Examples.Text;
 *
 ********************************************************************************************/
 
-public static class Draw2dIn3d
+public static unsafe class Draw2dIn3d
 {
     // # include "rlgl.h"
 
@@ -339,7 +339,7 @@ public static class Draw2dIn3d
                     clr = multi[i];
                 }
 
-                DrawTextWave3D(font, text, new Vector3(-tbox.X / 2.0f, layerDistance * i, -4.5f), fontSize, fontSpacing, lineSpacing, true, &wcfg, time, clr);
+                DrawTextWave3D(font, text, new Vector3(-tbox.X / 2.0f, layerDistance * i, -4.5f), fontSize, fontSpacing, lineSpacing, true, ref wcfg, time, clr);
             }
 
             // Draw the text boundry if set
@@ -702,7 +702,7 @@ public static class Draw2dIn3d
     }
 
 
-    static void DrawTextWave3D(Font font, string text, Vector3 position, float fontSize, float fontSpacing, float lineSpacing, bool backface, WaveTextConfig* config, float time, Color tint)
+    static void DrawTextWave3D(Font font, string text, Vector3 position, float fontSize, float fontSpacing, float lineSpacing, bool backface, ref WaveTextConfig config, float time, Color tint)
     {
         int length = text.Length;          // Total length in bytes of the text, scanned by codepoints in loop
 
@@ -749,9 +749,9 @@ public static class Draw2dIn3d
                     Vector3 pos = position;
                     if (wave) // Apply the wave effect
                     {
-                        pos.X += MathF.Sin((time * config->waveSpeed.X) - (k * config->waveOffset.X)) * config->waveRange.X;
-                        pos.Y += MathF.Sin((time * config->waveSpeed.Y) - (k * config->waveOffset.Y)) * config->waveRange.Y;
-                        pos.Z += MathF.Sin((time * config->waveSpeed.Z) - (k * config->waveOffset.Z)) * config->waveRange.Z;
+                        pos.X += MathF.Sin((time * config.waveSpeed.X) - (k * config.waveOffset.X)) * config.waveRange.X;
+                        pos.Y += MathF.Sin((time * config.waveSpeed.Y) - (k * config.waveOffset.Y)) * config.waveRange.Y;
+                        pos.Z += MathF.Sin((time * config.waveSpeed.Z) - (k * config.waveOffset.Z)) * config.waveRange.Z;
                     }
 
                     DrawTextCodepoint3D(font, codepoint, new Vector3(pos.X + textOffsetX, pos.Y, pos.Z + textOffsetY), fontSize, backface, tint);

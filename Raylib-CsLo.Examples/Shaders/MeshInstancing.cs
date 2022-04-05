@@ -23,7 +23,7 @@ public static class MeshInstancing
 
     const int GLSL_VERSION = 330;
     const int MAX_INSTANCES = 10000;
-    public static void Example()
+    public static unsafe void Example()
     {
         RLights rLights = new();
         // Initialization

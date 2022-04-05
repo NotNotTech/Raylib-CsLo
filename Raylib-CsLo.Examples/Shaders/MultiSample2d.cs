@@ -28,7 +28,7 @@ public static class MultiSample2d
 {
 
     const int GLSL_VERSION = 330;
-    public static void Example()
+    public static unsafe void Example()
     {
         //var rLights = new Examples.RLights();
 

@@ -155,14 +155,14 @@ public static class DrawTextInsideRectangle
 
 
     // Draw text using font inside rectangle limits
-    static void DrawTextBoxed(Font font, string text, Rectangle rec, float fontSize, float spacing, bool wordWrap, Color tint)
+    static unsafe void DrawTextBoxed(Font font, string text, Rectangle rec, float fontSize, float spacing, bool wordWrap, Color tint)
     {
         DrawTextBoxedSelectable(font, text, rec, fontSize, spacing, wordWrap, tint, 0, 0, White, White);
     }
 
 
     // Draw text using font inside rectangle limits with support for text selection
-    static void DrawTextBoxedSelectable(Font font, string text, Rectangle rec, float fontSize, float spacing, bool wordWrap, Color tint, int selectStart, int selectLength, Color selectTint, Color selectBackTint)
+    static unsafe void DrawTextBoxedSelectable(Font font, string text, Rectangle rec, float fontSize, float spacing, bool wordWrap, Color tint, int selectStart, int selectLength, Color selectTint, Color selectBackTint)
     {
         int length = text.Length;  // Total length in bytes of the text, scanned by codepoints in loop
 

@@ -165,7 +165,7 @@ public static class ExamplePicker
             previews.Add(i, LoadTextureFromImage(LoadImage("resources/previews/" + Examples[i] + ".png")));
         }
 
-        var pickedExampleToRun = false;
+        bool pickedExampleToRun = false;
         while (!WindowShouldClose())
         {
             if (IsKeyPressed(KeyLeft))

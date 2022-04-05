@@ -31,7 +31,7 @@ public static class BasicLighting
 {
 
     const int GLSL_VERSION = 330;
-    public static void Example()
+    public static unsafe void Example()
     {
         RLights rLights = new();
 

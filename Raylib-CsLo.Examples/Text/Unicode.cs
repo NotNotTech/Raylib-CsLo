@@ -225,7 +225,7 @@ public static class Unicode
 
     // Main entry point
 
-    public static void Example()//int argc, char** argv)
+    public static unsafe void Example()//int argc, char** argv)
     {
 
         // System.Diagnostics.Debug.Assert(false, "this example does not work properly.  I think the font doesn't include unicode character");
@@ -432,7 +432,7 @@ public static class Unicode
     }
 
     // Draw text using font inside rectangle limits with support for text selection
-    static void DrawTextBoxedSelectable(Font font, string text, Rectangle rec, float fontSize, float spacing, bool wordWrap, Color tint, int selectStart, int selectLength, Color selectTint, Color selectBackTint)
+    static unsafe void DrawTextBoxedSelectable(Font font, string text, Rectangle rec, float fontSize, float spacing, bool wordWrap, Color tint, int selectStart, int selectLength, Color selectTint, Color selectBackTint)
     {
         int lengthUtf8 = text.Length;  // Total length in bytes of the text, scanned by codepoints in loop
 
