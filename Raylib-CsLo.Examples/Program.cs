@@ -18,10 +18,39 @@ public static class Program
 {
     public static void Main()
     {
+        bool runall = false; //set to true to run all, otherwise will show a gui to run specific tests
+
+        List<int> bulkRunExampleIds=null;
+        if (runall == true)
+        {
+            bulkRunExampleIds = new();
+            for (var i = 0; i < 116;i++)
+            {
+                bulkRunExampleIds.Add(i);
+            }
+        }
+
+        //debugging certain tests that need fixing
+        bulkRunExampleIds = new() {48,66,11,112,113,114,115 };
+
         int choice = 0;
         while (choice != -1)
         {
-            choice = ExamplePicker.Example();
+            if (bulkRunExampleIds == null)
+            {
+                //the default: run an example via the picker
+                choice = ExamplePicker.Example();
+            }
+            else
+            {
+                //run bulk examples then exit
+                if (bulkRunExampleIds.Count == 0)
+                {
+                    break;
+                }
+                choice = bulkRunExampleIds[0];
+                bulkRunExampleIds.RemoveAt(0);
+            }
 
             switch (choice)
             {
