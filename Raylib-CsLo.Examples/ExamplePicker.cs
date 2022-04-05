@@ -165,6 +165,7 @@ public static unsafe class ExamplePicker
             previews.Add(i, LoadTextureFromImage(LoadImage("resources/previews/" + Examples[i] + ".png")));
         }
 
+        var pickedExampleToRun = false;
         while (!WindowShouldClose())
         {
             if (IsKeyPressed(KeyLeft))
@@ -188,8 +189,11 @@ public static unsafe class ExamplePicker
 
             if (IsKeyDown(KeyEnter))
             {
-                CloseWindow();
-                return currentExample;
+                pickedExampleToRun = true;
+            }
+            else if (pickedExampleToRun) //hack raylib bugfix:  if you exit while the last call to IsKeyDown(KeyEnter) returns true, it will be "stuck" true for the next window call.
+            {
+                break; //closes window when this breaks out of render loop
             }
 
             BeginDrawing();
@@ -207,9 +211,13 @@ public static unsafe class ExamplePicker
             DrawTextPro(font, Examples[currentExample], new Vector2(screenWidth / 2, screenHeight - 40), new Vector2(MeasureText(Examples[currentExample], 32) / 2f, 32), 0, 32, 4, Color.Black);
 
             EndDrawing();
-        }
 
+        }
         CloseWindow();
+        if (pickedExampleToRun)
+        {
+            return currentExample;
+        }
         return -1;
     }
 }
