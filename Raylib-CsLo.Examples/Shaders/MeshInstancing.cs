@@ -232,13 +232,13 @@ public static unsafe class MeshInstancing
             ClearBackground(Raywhite);
 
             BeginMode3D(camera);
-            //DrawMesh(cube, material, MatrixIdentity());
-            for (int i = 0; i < transforms.Length; i++)
-            {
-                //flip for opengl column major
-                transforms[i] = Matrix4x4.Transpose(transforms[i]);
-            }
-            // DrawMeshInstanced(cube, material, transforms, MAX_INSTANCES);
+            ////DrawMesh(cube, material, MatrixIdentity());
+            //for (int i = 0; i < transforms.Length; i++)
+            //{
+            //    //flip for opengl column major
+            //    transforms[i] = Matrix4x4.Transpose(transforms[i]);
+            //}
+            DrawMeshInstanced(cube, material, transforms, MAX_INSTANCES);
             EndMode3D();
 
             DrawText("A CUBE OF DANCING CUBES!", 490, 10, 20, Maroon);
