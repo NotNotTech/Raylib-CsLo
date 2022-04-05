@@ -22,7 +22,7 @@ namespace Raylib_CsLo.Examples.Shaders;
 *
 ********************************************************************************************/
 
-public static unsafe class TextureOutline
+public static class TextureOutline
 {
 
 #if PLATFORM_DESKTOP
@@ -54,7 +54,7 @@ public static unsafe class TextureOutline
         int textureSizeLoc = GetShaderLocation(shdrOutline, "textureSize");
 
         // Set shader values (they can be changed later)
-        SetShaderValue(shdrOutline, outlineSizeLoc, &outlineSize, ShaderUniformFloat);
+        SetShaderValue(shdrOutline, outlineSizeLoc, ref outlineSize, ShaderUniformFloat);
         SetShaderValue(shdrOutline, outlineColorLoc, outlineColor, ShaderUniformVec4);
         SetShaderValue(shdrOutline, textureSizeLoc, textureSize, ShaderUniformVec2);
 
@@ -72,7 +72,7 @@ public static unsafe class TextureOutline
                 outlineSize = 1.0f;
             }
 
-            SetShaderValue(shdrOutline, outlineSizeLoc, &outlineSize, ShaderUniformFloat);
+            SetShaderValue(shdrOutline, outlineSizeLoc, ref outlineSize, ShaderUniformFloat);
 
 
             // Draw

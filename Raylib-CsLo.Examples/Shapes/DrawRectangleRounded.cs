@@ -18,7 +18,7 @@ namespace Raylib_CsLo.Examples.Shapes;
 *
 ********************************************************************************************/
 
-public static unsafe class DrawRectangleRounded
+public static class DrawRectangleRounded
 {
 
     //#define RAYGUI_IMPLEMENTATION

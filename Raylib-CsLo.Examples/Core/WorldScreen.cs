@@ -16,7 +16,7 @@
 
 namespace Raylib_CsLo.Examples.Core;
 
-public static unsafe class WorldScreen
+public static class WorldScreen
 {
 
     public static void Example()

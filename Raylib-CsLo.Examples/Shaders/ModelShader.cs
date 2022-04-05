@@ -24,7 +24,7 @@ namespace Raylib_CsLo.Examples.Shaders;
 ********************************************************************************************/
 
 
-public static unsafe class ModelShader
+public static class ModelShader
 {
 
     const int GLSL_VERSION = 330;

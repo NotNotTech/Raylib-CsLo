@@ -16,7 +16,7 @@ namespace Raylib_CsLo.Examples.Textures;
 *
 ********************************************************************************************/
 
-public static unsafe class ParticlesBlending
+public static class ParticlesBlending
 {
 
     const int MAX_PARTICLES = 200;

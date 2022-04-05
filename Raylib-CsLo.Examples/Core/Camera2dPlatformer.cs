@@ -21,7 +21,7 @@ namespace Raylib_CsLo.Examples.Core;
 
 
 
-public static unsafe class Camera2dPlatformer
+public static class Camera2dPlatformer
 {
     public class Player
     {

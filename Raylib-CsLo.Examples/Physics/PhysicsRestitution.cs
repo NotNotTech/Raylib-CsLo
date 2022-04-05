@@ -18,7 +18,7 @@ namespace Raylib_CsLo.Examples.Physics;
 *
 ********************************************************************************************/
 
-public static unsafe class PhysicsRestitution
+public static class PhysicsRestitution
 {
 
     //#define PHYSAC_IMPLEMENTATION

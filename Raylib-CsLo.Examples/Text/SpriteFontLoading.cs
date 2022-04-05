@@ -25,7 +25,7 @@ namespace Raylib_CsLo.Examples.Text;
 *
 ********************************************************************************************/
 
-public static unsafe class SpriteFontLoading
+public static class SpriteFontLoading
 {
 
     public static void Example()

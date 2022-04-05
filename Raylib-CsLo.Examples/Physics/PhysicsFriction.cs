@@ -18,7 +18,7 @@ namespace Raylib_CsLo.Examples.Physics;
 *
 ********************************************************************************************/
 
-public static unsafe class PhysicsFriction
+public static class PhysicsFriction
 {
 
     //#define PHYSAC_IMPLEMENTATION

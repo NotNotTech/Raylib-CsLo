@@ -16,7 +16,7 @@
 
 namespace Raylib_CsLo.Examples.Core;
 
-public static unsafe class WindowFlags
+public static class WindowFlags
 {
 
     public static void Example()

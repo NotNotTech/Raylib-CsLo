@@ -24,7 +24,7 @@ namespace Raylib_CsLo.Examples.Shaders;
 *
 ********************************************************************************************/
 
-public static unsafe class ShapesAndTextureShaders
+public static class ShapesAndTextureShaders
 {
 
 #if PLATFORM_DESKTOP

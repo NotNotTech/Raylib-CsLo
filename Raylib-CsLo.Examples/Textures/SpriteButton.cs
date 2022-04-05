@@ -16,7 +16,7 @@ namespace Raylib_CsLo.Examples.Textures;
 *
 ********************************************************************************************/
 
-public static unsafe class SpriteButton
+public static class SpriteButton
 {
 
     const int NUM_FRAMES = 3;       // Number of frames (rectangles) for the button sprite texture

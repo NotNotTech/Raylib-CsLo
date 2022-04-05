@@ -19,7 +19,7 @@ namespace Raylib_CsLo.Examples.Text;
 *
 ********************************************************************************************/
 
-public static unsafe class RaylibFonts
+public static class RaylibFonts
 {
 
     const int MAX_FONTS = 8;

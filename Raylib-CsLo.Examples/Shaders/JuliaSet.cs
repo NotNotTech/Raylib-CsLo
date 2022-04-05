@@ -23,7 +23,7 @@ namespace Raylib_CsLo.Examples.Shaders;
 *
 ********************************************************************************************/
 
-public static unsafe class JuliaSet
+public static class JuliaSet
 {
 
     const int GLSL_VERSION = 330;

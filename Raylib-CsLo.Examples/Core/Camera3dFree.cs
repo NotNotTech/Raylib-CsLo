@@ -16,7 +16,7 @@
 
 namespace Raylib_CsLo.Examples.Core;
 
-public static unsafe class Camera3dFree
+public static class Camera3dFree
 {
 
     public static void Example()

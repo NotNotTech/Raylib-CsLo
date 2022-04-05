@@ -103,7 +103,7 @@ public static unsafe class SimpleMask
             rotation.Z -= 0.0025f;
 
             // Send frames counter to shader for animation
-            SetShaderValue(shader, shaderFrame, &framesCounter, ShaderUniformInt);
+            SetShaderValue(shader, shaderFrame, ref framesCounter, ShaderUniformInt);
 
             // Rotate one of the models
             model1.transform = MatrixRotateXYZ(rotation);

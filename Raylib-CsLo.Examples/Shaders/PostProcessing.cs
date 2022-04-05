@@ -22,7 +22,7 @@ namespace Raylib_CsLo.Examples.Shaders;
 *   Copyright (c) 2015 Ramon Santamaria (@raysan5)
 *
 ********************************************************************************************/
-public static unsafe class PostProcessing
+public static class PostProcessing
 {
     ////#if PLATFORM_DESKTOP
     ////	const int GLSL_VERSION = 330;

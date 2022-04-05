@@ -16,7 +16,7 @@ namespace Raylib_CsLo.Examples.Shapes;
 *
 ********************************************************************************************/
 
-public static unsafe class CollisionArea
+public static class CollisionArea
 {
     // #include <stdlib.h>     // Required for abs()
 

@@ -18,7 +18,7 @@ namespace Raylib_CsLo.Examples.Models;
 //*
 //********************************************************************************************/
 ///</summary>
-public static unsafe class RlglSolarSystem
+public static class RlglSolarSystem
 {
     public static void Example()
     {

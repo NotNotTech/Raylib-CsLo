@@ -16,7 +16,7 @@
 
 namespace Raylib_CsLo.Examples.Core;
 
-public static unsafe class Camera3dFirstPerson
+public static class Camera3dFirstPerson
 {
     const int MAX_COLUMNS = 20;
     public static void Example()

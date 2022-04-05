@@ -16,7 +16,7 @@ namespace Raylib_CsLo.Examples.Text;
 *
 ********************************************************************************************/
 
-public static unsafe class InputBox
+public static class InputBox
 {
 
     const int MAX_INPUT_CHARS = 9;

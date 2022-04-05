@@ -20,7 +20,7 @@ namespace Raylib_CsLo.Examples.Text;
 *
 ********************************************************************************************/
 
-public static unsafe class FontFilters
+public static class FontFilters
 {
 
     public static void Example()

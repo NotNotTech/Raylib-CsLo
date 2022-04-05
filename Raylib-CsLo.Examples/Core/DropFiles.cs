@@ -18,7 +18,7 @@ namespace Raylib_CsLo.Examples.Core;
 *   Copyright (c) 2015 Ramon Santamaria (@raysan5)
 *
 ********************************************************************************************/
-public static unsafe class DropFiles
+public static class DropFiles
 {
 
     public static void Example()

@@ -19,7 +19,7 @@
 
 namespace Raylib_CsLo.Examples.Core;
 
-public static unsafe class SmoothPixelperfect
+public static class SmoothPixelperfect
 {
 
     public static void Example()

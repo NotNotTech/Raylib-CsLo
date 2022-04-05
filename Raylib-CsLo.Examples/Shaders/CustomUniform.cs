@@ -23,7 +23,7 @@ namespace Raylib_CsLo.Examples.Shaders;
 *
 ********************************************************************************************/
 
-public static unsafe class CustomUniform
+public static class CustomUniform
 {
 
     const int GLSL_VERSION = 330;

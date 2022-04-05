@@ -21,7 +21,7 @@ using Microsoft.Toolkit.HighPerformance;
 *
 ********************************************************************************************/
 
-public static unsafe class TextureRawData
+public static class TextureRawData
 {
 
     // #include <stdlib.h>         // Required for: malloc() and free()

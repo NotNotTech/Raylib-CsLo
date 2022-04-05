@@ -20,7 +20,7 @@ namespace Raylib_CsLo.Examples.Textures;
 *
 ********************************************************************************************/
 
-public static unsafe class NPatchDrawing
+public static class NPatchDrawing
 {
 
     public static void Example()

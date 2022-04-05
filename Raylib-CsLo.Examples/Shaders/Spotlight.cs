@@ -35,7 +35,7 @@ namespace Raylib_CsLo.Examples.Shaders;
 *
 ********************************************************************************************/
 
-public static unsafe class Spotlight
+public static class Spotlight
 {
 
 #if PLATFORM_DESKTOP
@@ -124,7 +124,7 @@ public static unsafe class Spotlight
         // a pitch Black half and a dimly lit half.
         int wLoc = GetShaderLocation(shdrSpot, "screenWidth");
         float sw = GetScreenWidth();
-        SetShaderValue(shdrSpot, wLoc, &sw, ShaderUniformFloat);
+        SetShaderValue(shdrSpot, wLoc, ref sw, ShaderUniformFloat);
 
         // Randomize the locations and velocities of the spotlights
         // and initialize the shader locations

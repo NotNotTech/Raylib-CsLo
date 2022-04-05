@@ -16,7 +16,7 @@ namespace Raylib_CsLo.Examples.Audio;
 *
 ********************************************************************************************/
 
-public static unsafe class ModulePlaying
+public static class ModulePlaying
 {
 
     const int MAX_CIRCLES = 64;

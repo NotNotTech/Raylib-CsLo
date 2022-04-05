@@ -15,7 +15,7 @@ namespace Raylib_CsLo.Examples.Text;
 *
 ********************************************************************************************/
 
-public static unsafe class WritingAnimation
+public static class WritingAnimation
 {
 
     public static void Example()

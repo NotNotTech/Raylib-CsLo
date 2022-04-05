@@ -18,7 +18,7 @@ namespace Raylib_CsLo.Examples.Models;
 //*
 //********************************************************************************************/
 ///</summary>
-public static unsafe class WavingCubes
+public static class WavingCubes
 {
 
     public static void Example()

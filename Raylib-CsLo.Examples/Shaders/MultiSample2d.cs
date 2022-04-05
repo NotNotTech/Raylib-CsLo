@@ -24,7 +24,7 @@ namespace Raylib_CsLo.Examples.Shaders;
 ********************************************************************************************/
 
 
-public static unsafe class MultiSample2d
+public static class MultiSample2d
 {
 
     const int GLSL_VERSION = 330;

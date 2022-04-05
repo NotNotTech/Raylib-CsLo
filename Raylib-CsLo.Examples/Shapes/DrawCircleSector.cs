@@ -17,7 +17,7 @@ namespace Raylib_CsLo.Examples.Shapes;
 *   Copyright (c) 2018 Vlad Adrian (@demizdor) and Ramon Santamaria (@raysan5)
 *
 ********************************************************************************************/
-public static unsafe class DrawCircleSector
+public static class DrawCircleSector
 {
 
     //#define RAYGUI_IMPLEMENTATION

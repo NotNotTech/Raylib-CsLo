@@ -26,7 +26,7 @@ namespace Raylib_CsLo.Examples.Shaders;
 *
 ********************************************************************************************/
 
-public static unsafe class TextureWaves
+public static class TextureWaves
 {
 
 #if PLATFORM_DESKTOP
@@ -67,13 +67,13 @@ public static unsafe class TextureWaves
         float speedY = 8.0f;
 
         Vector2 screenSize = new(GetScreenWidth(), GetScreenHeight());
-        SetShaderValue(shader, GetShaderLocation(shader, "size"), &screenSize, ShaderUniformVec2);
-        SetShaderValue(shader, freqXLoc, &freqX, ShaderUniformFloat);
-        SetShaderValue(shader, freqYLoc, &freqY, ShaderUniformFloat);
-        SetShaderValue(shader, ampXLoc, &ampX, ShaderUniformFloat);
-        SetShaderValue(shader, ampYLoc, &ampY, ShaderUniformFloat);
-        SetShaderValue(shader, speedXLoc, &speedX, ShaderUniformFloat);
-        SetShaderValue(shader, speedYLoc, &speedY, ShaderUniformFloat);
+        SetShaderValue(shader, GetShaderLocation(shader, "size"), ref screenSize, ShaderUniformVec2);
+        SetShaderValue(shader, freqXLoc, ref freqX, ShaderUniformFloat);
+        SetShaderValue(shader, freqYLoc, ref freqY, ShaderUniformFloat);
+        SetShaderValue(shader, ampXLoc, ref ampX, ShaderUniformFloat);
+        SetShaderValue(shader, ampYLoc, ref ampY, ShaderUniformFloat);
+        SetShaderValue(shader, speedXLoc, ref speedX, ShaderUniformFloat);
+        SetShaderValue(shader, speedYLoc, ref speedY, ShaderUniformFloat);
 
         float seconds = 0.0f;
 
@@ -87,7 +87,7 @@ public static unsafe class TextureWaves
 
             seconds += GetFrameTime();
 
-            SetShaderValue(shader, secondsLoc, &seconds, ShaderUniformFloat);
+            SetShaderValue(shader, secondsLoc, ref seconds, ShaderUniformFloat);
 
 
             // Draw

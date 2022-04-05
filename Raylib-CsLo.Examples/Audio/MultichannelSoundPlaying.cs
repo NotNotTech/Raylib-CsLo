@@ -18,7 +18,7 @@ namespace Raylib_CsLo.Examples.Audio;
 *
 ********************************************************************************************/
 
-public static unsafe class MultichannelSound
+public static class MultichannelSound
 {
 
     public static void Example()

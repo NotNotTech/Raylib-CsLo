@@ -16,7 +16,7 @@ namespace Raylib_CsLo.Examples.Shapes;
 *
 ********************************************************************************************/
 
-public static unsafe class LinesBezier
+public static class LinesBezier
 {
 
     public static void Example()

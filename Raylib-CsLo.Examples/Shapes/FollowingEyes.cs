@@ -16,7 +16,7 @@ namespace Raylib_CsLo.Examples.Shapes;
 *
 ********************************************************************************************/
 
-public static unsafe class FollowingEyes
+public static class FollowingEyes
 {
 
     // # include <math.h>       // Required for: MathF.Atan2()

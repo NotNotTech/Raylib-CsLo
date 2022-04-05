@@ -16,7 +16,7 @@ namespace Raylib_CsLo.Examples.Shapes;
 *
 ********************************************************************************************/
 
-public static unsafe class LogoUsingShapes
+public static class LogoUsingShapes
 {
 
     public static void Example()

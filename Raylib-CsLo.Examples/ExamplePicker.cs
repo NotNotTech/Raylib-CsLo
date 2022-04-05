@@ -5,7 +5,7 @@
 
 namespace Raylib_CsLo.Examples.Shaders;
 
-public static unsafe class ExamplePicker
+public static class ExamplePicker
 {
     static int currentExample;
 

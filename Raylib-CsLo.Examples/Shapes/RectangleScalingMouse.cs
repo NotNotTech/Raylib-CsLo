@@ -17,7 +17,7 @@ namespace Raylib_CsLo.Examples.Shapes;
 *
 ********************************************************************************************/
 
-public static unsafe class RectangleScalingMouse
+public static class RectangleScalingMouse
 {
 
     const int MOUSE_SCALE_MARK_SIZE = 12;

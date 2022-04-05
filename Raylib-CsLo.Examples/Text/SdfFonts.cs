@@ -16,7 +16,7 @@ namespace Raylib_CsLo.Examples.Text;
 *
 ********************************************************************************************/
 
-public static unsafe class SdfFonts
+public static class SdfFonts
 {
 
 #if PLATFORM_DESKTOP

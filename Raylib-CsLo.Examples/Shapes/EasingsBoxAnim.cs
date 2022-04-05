@@ -16,7 +16,7 @@ namespace Raylib_CsLo.Examples.Shapes;
 *
 ********************************************************************************************/
 
-public static unsafe class EasingsBoxAnim
+public static class EasingsBoxAnim
 {
 
     // # include "extras/easings.h"            // Required for easing functions

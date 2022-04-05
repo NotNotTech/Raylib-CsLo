@@ -16,7 +16,7 @@ namespace Raylib_CsLo.Examples.Shapes;
 *
 ********************************************************************************************/
 
-public static unsafe class BouncingBall
+public static class BouncingBall
 {
 
     public static void Example()

@@ -20,7 +20,7 @@ namespace Raylib_CsLo.Examples.Shaders;
 *
 ********************************************************************************************/
 
-public static unsafe class TextureDrawing
+public static class TextureDrawing
 {
 
 #if PLATFORM_DESKTOP
@@ -47,7 +47,7 @@ public static unsafe class TextureDrawing
 
         float time = 0.0f;
         int timeLoc = GetShaderLocation(shader, "uTime");
-        SetShaderValue(shader, timeLoc, &time, ShaderUniformFloat);
+        SetShaderValue(shader, timeLoc, ref time, ShaderUniformFloat);
 
         SetTargetFPS(60);               // Set our game to run at 60 frames-per-second
 
@@ -58,7 +58,7 @@ public static unsafe class TextureDrawing
             // Update
 
             time = (float)GetTime();
-            SetShaderValue(shader, timeLoc, &time, ShaderUniformFloat);
+            SetShaderValue(shader, timeLoc, ref time, ShaderUniformFloat);
 
 
             // Draw

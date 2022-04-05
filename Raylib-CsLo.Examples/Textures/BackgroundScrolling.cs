@@ -16,7 +16,7 @@ namespace Raylib_CsLo.Examples.Textures;
 *
 ********************************************************************************************/
 
-public static unsafe class BackgroundScrolling
+public static class BackgroundScrolling
 {
 
     public static void Example()

@@ -18,7 +18,7 @@ namespace Raylib_CsLo.Examples.Textures;
 *
 ********************************************************************************************/
 
-public static unsafe class ImageDrawing
+public static class ImageDrawing
 {
 
     public static void Example()

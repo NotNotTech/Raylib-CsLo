@@ -18,7 +18,7 @@ namespace Raylib_CsLo.Examples.Audio;
 *
 ********************************************************************************************/
 
-public static unsafe class RawAudioStreaming
+public static class RawAudioStreaming
 {
 
     // #include <stdlib.h>         // Required for: malloc(), free()

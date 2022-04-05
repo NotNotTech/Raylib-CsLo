@@ -18,7 +18,7 @@ namespace Raylib_CsLo.Examples.Models;
 //*
 //********************************************************************************************/
 ///</summary>
-public static unsafe class LoadingVox
+public static class LoadingVox
 {
     const int MAX_VOX_FILES = 3;
     public static void Example()

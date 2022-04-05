@@ -16,7 +16,7 @@ namespace Raylib_CsLo.Examples.Models;
 //*
 //********************************************************************************************/
 ///</summary>
-public static unsafe class Skybox
+public static class Skybox
 {
     //#if defined(PLATFORM_DESKTOP)
     //#define GLSL_VERSION            330

@@ -18,7 +18,7 @@ namespace Raylib_CsLo.Examples.Text;
 *
 ********************************************************************************************/
 
-public static unsafe class DrawTextInsideRectangle
+public static class DrawTextInsideRectangle
 {
 
     // Main entry point

@@ -16,7 +16,7 @@ namespace Raylib_CsLo.Examples.Shapes;
 *
 ********************************************************************************************/
 
-public static unsafe class BasicShapes
+public static class BasicShapes
 {
 
     public static void Example()

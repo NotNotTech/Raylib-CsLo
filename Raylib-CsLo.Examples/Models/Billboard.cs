@@ -16,7 +16,7 @@ namespace Raylib_CsLo.Examples.Models;
 //*
 //********************************************************************************************/
 ///</summary>
-public static unsafe class Billboard
+public static class Billboard
 {
 
     public static void Example()

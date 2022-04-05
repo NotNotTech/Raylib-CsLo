@@ -27,7 +27,7 @@ using System.Numerics;
 ********************************************************************************************/
 
 
-public static unsafe class BasicLighting
+public static class BasicLighting
 {
 
     const int GLSL_VERSION = 330;

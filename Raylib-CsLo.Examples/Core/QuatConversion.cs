@@ -21,7 +21,7 @@
 
 namespace Raylib_CsLo.Examples.Core;
 
-public static unsafe class QuatConversion
+public static class QuatConversion
 {
 
     public static void Example()

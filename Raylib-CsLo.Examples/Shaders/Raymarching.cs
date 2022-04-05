@@ -18,7 +18,7 @@ namespace Raylib_CsLo.Examples.Shaders;
 *
 ********************************************************************************************/
 
-public static unsafe class Raymarching
+public static class Raymarching
 {
 
 
@@ -80,7 +80,7 @@ public static unsafe class Raymarching
             // Set shader required uniform values
             SetShaderValue(shader, viewEyeLoc, cameraPos, ShaderUniformVec3);
             SetShaderValue(shader, viewCenterLoc, cameraTarget, ShaderUniformVec3);
-            SetShaderValue(shader, runTimeLoc, &runTime, ShaderUniformFloat);
+            SetShaderValue(shader, runTimeLoc, ref runTime, ShaderUniformFloat);
 
             // Check if screen is resized
             if (IsWindowResized())

@@ -27,7 +27,7 @@ namespace Raylib_CsLo.Examples.Models;
 //*
 //********************************************************************************************/
 ///</summary>
-public static unsafe class Loading
+public static class Loading
 {
 
     public static void Example()

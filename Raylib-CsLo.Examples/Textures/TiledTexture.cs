@@ -17,7 +17,7 @@ namespace Raylib_CsLo.Examples.Textures;
 ********************************************************************************************/
 
 
-public static unsafe class TiledTexture
+public static class TiledTexture
 {
 
     //#define SIZEOF(A) (sizeof(A)/sizeof(A[0]))

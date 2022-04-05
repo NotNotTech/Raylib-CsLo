@@ -18,7 +18,7 @@
 
 namespace Raylib_CsLo.Examples.Core;
 
-public static unsafe class SplitScreen
+public static class SplitScreen
 {
     static Texture2D textureGrid;// = { 0 };
     static Camera3D cameraPlayer1;// = { 0 };

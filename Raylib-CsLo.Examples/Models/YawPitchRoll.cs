@@ -17,7 +17,7 @@ namespace Raylib_CsLo.Examples.Models;
 //*
 //********************************************************************************************/
 ///</summary>
-public static unsafe class YawPitchRoll
+public static class YawPitchRoll
 {
 
     public static void Example()

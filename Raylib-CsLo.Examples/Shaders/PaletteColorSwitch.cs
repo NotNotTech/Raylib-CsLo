@@ -25,7 +25,7 @@ namespace Raylib_CsLo.Examples.Shaders;
 *
 ********************************************************************************************/
 
-public static unsafe class PaletteColorSwitch
+public static class PaletteColorSwitch
 {
     ////#if defined(PLATFORM_DESKTOP)
     ////	const int GLSL_VERSION = 330;

@@ -23,7 +23,7 @@ namespace Raylib_CsLo.Examples.Models;
 //*
 //********************************************************************************************/
 ///</summary>
-public static unsafe class LoadingGltf
+public static class LoadingGltf
 {
     const int MAX_GLTF_MODELS = 8;
     public static void Example()

@@ -18,7 +18,7 @@ namespace Raylib_CsLo.Examples.Shaders;
 *
 ********************************************************************************************/
 
-public static unsafe class MeshInstancing
+public static class MeshInstancing
 {
 
     const int GLSL_VERSION = 330;

@@ -21,7 +21,7 @@ using System.Globalization;
 *
 ********************************************************************************************/
 
-public static unsafe class HotReloading
+public static class HotReloading
 {
 
     const int GLSL_VERSION = 330;

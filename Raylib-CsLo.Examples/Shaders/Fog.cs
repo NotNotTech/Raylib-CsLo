@@ -31,7 +31,7 @@ namespace Raylib_CsLo.Examples.Shaders;
 *   Copyright (c) 2019 Chris Camacho (@chriscamacho) and Ramon Santamaria (@raysan5)
 *
 ********************************************************************************************/
-public static unsafe class Fog
+public static class Fog
 {
 
     const int GLSL_VERSION = 330;

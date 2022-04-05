@@ -18,7 +18,7 @@ namespace Raylib_CsLo.Examples.Textures;
 *
 ********************************************************************************************/
 
-public static unsafe class ImageProcessing
+public static class ImageProcessing
 {
 
     // #include <stdlib.h>             // Required for: free()

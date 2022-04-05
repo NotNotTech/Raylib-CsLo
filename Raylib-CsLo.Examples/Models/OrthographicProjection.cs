@@ -20,7 +20,7 @@ namespace Raylib_CsLo.Examples.Models;
 //*
 //********************************************************************************************/
 ///</summary>
-public static unsafe class OrthographicProjection
+public static class OrthographicProjection
 {
     const float FOVY_PERSPECTIVE = 45.0f;
     const float WIDTH_ORTHOGRAPHIC = 10.0f;

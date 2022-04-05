@@ -16,7 +16,7 @@ namespace Raylib_CsLo.Examples.Textures;
 *
 ********************************************************************************************/
 
-public static unsafe class TextureRectangle
+public static class TextureRectangle
 {
 
     const int MAX_FRAME_SPEED = 15;

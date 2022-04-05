@@ -16,7 +16,7 @@ namespace Raylib_CsLo.Examples.Textures;
 *
 ********************************************************************************************/
 
-public static unsafe class ImageGeneration
+public static class ImageGeneration
 {
 
     const int NUM_TEXTURES = 6;      // Currently we have 7 generation algorithms

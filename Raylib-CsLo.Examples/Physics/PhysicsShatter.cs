@@ -18,7 +18,7 @@ namespace Raylib_CsLo.Examples.Physics;
 *
 ********************************************************************************************/
 
-public static unsafe class PhysicsShatter
+public static class PhysicsShatter
 {
 
     //#define PHYSAC_IMPLEMENTATION

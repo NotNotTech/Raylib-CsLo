@@ -16,7 +16,7 @@ namespace Raylib_CsLo.Examples.Models;
 //*
 //********************************************************************************************/
 ///</summary>
-public static unsafe class GeometricShapes
+public static class GeometricShapes
 {
 
     public static void Example()

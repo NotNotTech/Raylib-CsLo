@@ -19,7 +19,7 @@ namespace Raylib_CsLo.Examples.Textures;
 *
 ********************************************************************************************/
 
-public static unsafe class TexturedPolygon
+public static class TexturedPolygon
 {
     //# include "raymath.h"
 

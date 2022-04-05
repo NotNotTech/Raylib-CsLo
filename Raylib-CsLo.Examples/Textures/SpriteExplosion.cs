@@ -16,7 +16,7 @@ namespace Raylib_CsLo.Examples.Textures;
 *
 ********************************************************************************************/
 
-public static unsafe class SpriteExplosion
+public static class SpriteExplosion
 {
 
     const int NUM_FRAMES_PER_LINE = 5;

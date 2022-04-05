@@ -30,7 +30,7 @@ namespace Raylib_CsLo.Examples.Text;
 *
 ********************************************************************************************/
 
-public static unsafe class Draw2dIn3d
+public static class Draw2dIn3d
 {
     // # include "rlgl.h"
 

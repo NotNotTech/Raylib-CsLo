@@ -16,7 +16,7 @@ namespace Raylib_CsLo.Examples.Audio;
 *
 ********************************************************************************************/
 
-public static unsafe class MusicStreaming
+public static class MusicStreaming
 {
 
     public static void Example()

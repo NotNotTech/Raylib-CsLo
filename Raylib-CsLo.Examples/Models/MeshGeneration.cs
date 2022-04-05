@@ -16,7 +16,7 @@ namespace Raylib_CsLo.Examples.Models;
 //*
 //********************************************************************************************/
 ///</summary>
-public static unsafe class MeshGeneration
+public static class MeshGeneration
 {
     const int NUM_MODELS = 9;      // Parametric 3d shapes to generate
 

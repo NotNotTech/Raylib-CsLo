@@ -19,7 +19,7 @@
 
 namespace Raylib_CsLo.Examples.Core;
 
-public static unsafe class ScissorTest
+public static class ScissorTest
 {
 
     public static void Example()

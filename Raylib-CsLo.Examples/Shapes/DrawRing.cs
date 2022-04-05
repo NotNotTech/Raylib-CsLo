@@ -18,7 +18,7 @@ namespace Raylib_CsLo.Examples.Shapes;
 *
 ********************************************************************************************/
 
-public static unsafe class DrawRing
+public static class DrawRing
 {
 
     //#define RAYGUI_IMPLEMENTATION

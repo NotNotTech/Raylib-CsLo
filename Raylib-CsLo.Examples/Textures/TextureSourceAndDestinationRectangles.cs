@@ -16,7 +16,7 @@ namespace Raylib_CsLo.Examples.Textures;
 *
 ********************************************************************************************/
 
-public static unsafe class TextureSourceAndDestinationRectangles
+public static class TextureSourceAndDestinationRectangles
 {
 
     public static void Example()

@@ -16,7 +16,7 @@ namespace Raylib_CsLo.Examples.Text;
 *
 ********************************************************************************************/
 
-public static unsafe class TextFormatting
+public static class TextFormatting
 {
 
     public static void Example()

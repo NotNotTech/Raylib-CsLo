@@ -18,7 +18,7 @@ namespace Raylib_CsLo.Examples.Textures;
 *
 ********************************************************************************************/
 
-public static unsafe class MousePainting
+public static class MousePainting
 {
 
     const int MAX_COLORS_COUNT = 23;          // Number of colors available

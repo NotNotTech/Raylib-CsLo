@@ -16,7 +16,7 @@ namespace Raylib_CsLo.Examples.Shapes;
 *
 ********************************************************************************************/
 
-public static unsafe class ColorsPalette
+public static class ColorsPalette
 {
 
     const int MAX_COLORS_COUNT = 21;          // Number of colors available

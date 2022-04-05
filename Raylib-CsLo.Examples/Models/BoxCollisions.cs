@@ -16,7 +16,7 @@ namespace Raylib_CsLo.Examples.Models;
 //*
 //********************************************************************************************/
 ///</summary>
-public static unsafe class BoxCollisions
+public static class BoxCollisions
 {
 
     public static void Example()

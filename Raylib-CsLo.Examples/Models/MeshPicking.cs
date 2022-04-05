@@ -18,7 +18,7 @@ namespace Raylib_CsLo.Examples.Models;
 //*
 //********************************************************************************************/
 ///</summary>
-public static unsafe class MeshPicking
+public static class MeshPicking
 {
     //#define FLT_MAX     340282346638528859811704183484516925440.0f     // Maximum value of a float, from bit pattern 01111111011111111111111111111111
     const float FLT_MAX = float.MaxValue;

@@ -18,7 +18,7 @@
 
 namespace Raylib_CsLo.Examples.Core;
 
-public static unsafe class WindowLetterbox
+public static class WindowLetterbox
 {
 
     public static void Example()

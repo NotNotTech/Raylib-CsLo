@@ -20,7 +20,7 @@ namespace Raylib_CsLo.Examples.Textures;
 *
 ********************************************************************************************/
 
-public static unsafe class BlendModes
+public static class BlendModes
 {
 
     public static void Example()

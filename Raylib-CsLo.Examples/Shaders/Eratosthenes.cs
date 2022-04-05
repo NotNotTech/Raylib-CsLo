@@ -30,7 +30,7 @@ namespace Raylib_CsLo.Examples.Shaders;
 *
 ********************************************************************************************/
 
-public static unsafe class Eratosthenes
+public static class Eratosthenes
 {
 
     const int GLSL_VERSION = 330;

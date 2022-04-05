@@ -18,7 +18,7 @@ namespace Raylib_CsLo.Examples.Physics;
 *
 ********************************************************************************************/
 
-public static unsafe class PhysicsMovement
+public static class PhysicsMovement
 {
 
     //#define PHYSAC_IMPLEMENTATION

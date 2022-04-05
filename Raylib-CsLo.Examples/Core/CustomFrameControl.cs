@@ -31,7 +31,7 @@
 
 namespace Raylib_CsLo.Examples.Core;
 
-public static unsafe class CustomFrameControl
+public static class CustomFrameControl
 {
 
     public static void Example()

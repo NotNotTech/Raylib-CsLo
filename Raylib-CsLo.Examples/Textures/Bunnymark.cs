@@ -16,7 +16,7 @@ namespace Raylib_CsLo.Examples.Textures;
 *
 ********************************************************************************************/
 
-public static unsafe class Bunnymark
+public static class Bunnymark
 {
 
     // #include <stdlib.h>                 // Required for: malloc(), free()

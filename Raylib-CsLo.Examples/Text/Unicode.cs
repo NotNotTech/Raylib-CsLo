@@ -18,7 +18,7 @@ namespace Raylib_CsLo.Examples.Text;
 *
 ********************************************************************************************/
 
-public static unsafe class Unicode
+public static class Unicode
 {
 
     // # include <stdio.h>

@@ -16,7 +16,7 @@
 
 namespace Raylib_CsLo.Examples.Core;
 
-public static unsafe class Picking3d
+public static class Picking3d
 {
 
     public static void Example()
