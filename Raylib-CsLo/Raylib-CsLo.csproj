@@ -15,8 +15,8 @@
         <RepositoryUrl>https://github.com/NotNotTech/Raylib-CsLo</RepositoryUrl>
         <PackageReadmeFile>README.md</PackageReadmeFile>
         <PackageIcon>raylib-cslo_128x128.png</PackageIcon>
-        <Version>4.0.0</Version>
-        <PackageReleaseNotes>Release Notes: No breaking changes. Broaden DotNet support to Net5+, etc (via NetStandard 2.1)</PackageReleaseNotes>
+        <Version>4.0.1</Version>
+        <PackageReleaseNotes>Release Notes: No breaking changes. Add Raygui and Physac support to OsX-x64 native binary.</PackageReleaseNotes>
         <Authors>Novaleaf</Authors>
         <Company>NotNotTech</Company>
         <Description>
