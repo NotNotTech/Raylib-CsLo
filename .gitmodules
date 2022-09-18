@@ -1,0 +1,9 @@
+[submodule "sub-modules/raylib"]
+	path = sub-modules/raylib
+	url = https://github.com/raysan5/raylib
+[submodule "sub-modules/physac"]
+	path = sub-modules/physac
+	url = https://github.com/raysan5/physac
+[submodule "sub-modules/raygui"]
+	path = sub-modules/raygui
+	url = https://github.com/raysan5/raygui
