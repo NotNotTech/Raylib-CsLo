@@ -58,15 +58,18 @@ project "raylib-with-extras"
 	targetdir "raylib-with-extras/bin/%{cfg.buildcfg}"
 	cppdialect "C++17"
 	
-	includedirs { "raylib/src","raylib/src/extras", "raylib/src/external/glfw/include", "raylib-with-extras/src"}
+	includedirs { "raylib/src","raylib/src/external/glfw/include", 	
+	"raylib-extra-shims/src", --extras .c files	
+	"physac/src/","raygui/src/" --extras .h files
+} 
 	vpaths 
 	{
 		["Header Files"] = { "raylib/src/**.h"},
 		["Source Files/*"] = {"raylib/src/**.c"},
-		["Extras Headers"] = { "raylib/src/extras/**.h"},
-		["Extras Sources"] = { "raylib-with-extras/src/**.c"},
+		["Extras Headers"] = { "physac/src/**.h","raygui/src/**.h"},
+		["Extras Sources"] = { "raylib-extra-shims/src/**.c"},
 	}
-	files {"raylib/src/*.h", "raylib/src/*.c","raylib/src/extras/*.h", "raylib-with-extras/src/*.c"}
+	files {"raylib/src/*.h", "raylib/src/*.c","physac/src/**.h","raygui/src/**.h", "raylib-extra-shims/src/*.c"}
 
 
 -- -----------------  ORIGINAL FILE BELOW

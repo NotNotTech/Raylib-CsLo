@@ -23,6 +23,9 @@ external resources needed for creating bindings.
 - When you build, the compiled native binaries should be put in their respective folder under https://github.com/NotNotTech/Raylib-CsLo/tree/main/Raylib-CsLo/runtimes
 
 
+## rebuilding from scratch on windows
+if the raylib (cpp) project structure changes (such as what happened for raylib 4.2) you might need to regenerate the windows solution.   To do so, delete the `raylib-with-extras` folder, edit the `premake5.lua`, then run `premake5.exe vs2022` .  This will generate a new visual studio solution that you can build normally.
+
 # dev notes
 these are just notes for use doirn develoment...  please ignore unless you run into problems
 
