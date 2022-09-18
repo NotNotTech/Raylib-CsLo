@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
+    <Filter Include="Extras Headers">
+      <UniqueIdentifier>{F85301C8-E421-F5CD-CDB5-65F4B922D132}</UniqueIdentifier>
+    </Filter>
     <Filter Include="Extras Sources">
       <UniqueIdentifier>{C013872F-ACE1-7A35-9575-EB5B81E2569A}</UniqueIdentifier>
     </Filter>
@@ -12,22 +15,13 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\physac\src\physac.h">
+      <Filter>Extras Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="..\raygui\src\raygui.h">
+      <Filter>Extras Headers</Filter>
+    </ClInclude>
     <ClInclude Include="..\raylib\src\config.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\raylib\src\extras\easings.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\raylib\src\extras\physac.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\raylib\src\extras\raygui.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\raylib\src\extras\rmem.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\raylib\src\raudio.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\raylib\src\raylib.h">
@@ -50,6 +44,12 @@
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="..\raylib-extra-shims\src\physac.c">
+      <Filter>Extras Sources</Filter>
+    </ClCompile>
+    <ClCompile Include="..\raylib-extra-shims\src\raygui.c">
+      <Filter>Extras Sources</Filter>
+    </ClCompile>
     <ClCompile Include="..\raylib\src\raudio.c">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -73,12 +73,6 @@
     </ClCompile>
     <ClCompile Include="..\raylib\src\utils.c">
       <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\physac.c">
-      <Filter>Extras Sources</Filter>
-    </ClCompile>
-    <ClCompile Include="src\raygui.c">
-      <Filter>Extras Sources</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
