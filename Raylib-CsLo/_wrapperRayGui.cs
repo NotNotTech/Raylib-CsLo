@@ -207,13 +207,13 @@ i++)
 	}
 
 
-	public static int GuiTextInputBox(Rectangle bounds, string? title, string? message, string? buttons, string? text)
+	public static int GuiTextInputBox(Rectangle bounds, string? title, string? message, string? buttons, string? text, int textMaxSize = 255)
 	{
 		using var soTitle = title.MarshalUtf8();
 		using var soMessage = message.MarshalUtf8();
 		using var sobuttons = buttons.MarshalUtf8();
 		using var sotext = text.MarshalUtf8();
-		return GuiTextInputBox(bounds, soTitle.AsPtr(), soMessage.AsPtr(), sobuttons.AsPtr(), sotext.AsPtr());
+		return GuiTextInputBox(bounds, soTitle.AsPtr(), soMessage.AsPtr(), sobuttons.AsPtr(), sotext.AsPtr(),textMaxSize,null);
 	}
 
 	public static void GuiLoadStyle(string? fileName)

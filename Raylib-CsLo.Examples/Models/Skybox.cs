@@ -112,7 +112,7 @@ public unsafe static class Skybox
 			{
 				int count = 0;
 				//char** droppedFiles = GetDroppedFiles(&count);
-				string[] droppedFiles = GetDroppedFiles();
+				string[] droppedFiles = GetDroppedFilesAndClear();
 				count = droppedFiles.Length;
 
 				if (count == 1)         // Only support one file dropped
@@ -144,7 +144,7 @@ public unsafe static class Skybox
 					}
 				}
 
-				ClearDroppedFiles();    // Clear internal buffers
+				//ClearDroppedFiles();    // Clear internal buffers
 			}
 			//----------------------------------------------------------------------------------
 

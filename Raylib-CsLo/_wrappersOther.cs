@@ -13,7 +13,12 @@ using System.Runtime.CompilerServices;
 
 namespace Raylib_CsLo;
 
+public static unsafe partial class RayMath
+{
+	public static float floorf(float x)=>MathF.Floor(x);
+	public static float fabsf(float x) => MathF.Abs(x);
 
+}
 
 public static unsafe partial class RlGl
 {

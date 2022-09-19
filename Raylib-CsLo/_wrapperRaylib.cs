@@ -160,26 +160,31 @@ public static unsafe partial class Raylib
 	public static float GetGamepadAxisMovement(int gamepad, GamepadAxis axis) =>
 		GetGamepadAxisMovement(gamepad, (int)axis);
 
-	public static string[] GetDroppedFiles()
+	public static string[] GetDroppedFilesAndClear()
 	{
-		int count;
-		var buffer = GetDroppedFiles(&count);
+		var filePathList = LoadDroppedFiles();
+		var count = filePathList.count;
+
+		//int count;
+		//var buffer = LoadDroppedFiles(&count);
 		var files = new string[count];
 
 		for (int i = 0; i < count; i++)
 		{
-			files[i] = Helpers.Utf8ToString(buffer[i]);
+			//files[i] = Helpers.Utf8ToString(buffer[i]);
+			files[i] = Helpers.Utf8ToString(filePathList.paths[i]);
 		}
-
+		UnloadDroppedFiles(filePathList);
 		return files;
 	}
 
-	public static string[] GetDroppedFilesAndClear()
-	{
-		var files = GetDroppedFiles();
-		ClearDroppedFiles();
-		return files;
-	}
+	//public static string[] GetDroppedFilesAndClear()
+	//{
+	//	var files = GetDroppedFiles();
+	//	ClearDroppedFiles();
+		
+	//	return files;
+	//}
 
 
 

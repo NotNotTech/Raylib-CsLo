@@ -1,4 +1,4 @@
-﻿// [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] 
+// [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] 
 // [!!] Copyright ©️ Raylib-CsLo and Contributors. 
 // [!!] This file is licensed to you under the MPL-2.0.
 // [!!] See the LICENSE file in the project root for more info. 
@@ -92,7 +92,7 @@ public unsafe static class FontFilters
 			{
 				//int count = 0;
 				//char** droppedFiles = GetDroppedFiles(&count);
-				var droppedFiles = GetDroppedFiles();
+				var droppedFiles = GetDroppedFilesAndClear();
 				var count = droppedFiles.Length;
 
 				// NOTE: We only support first ttf file dropped
@@ -100,7 +100,7 @@ public unsafe static class FontFilters
 				{
 					UnloadFont(font);
 					font = LoadFontEx(droppedFiles[0], (int)fontSize, (int*)0, 0);
-					ClearDroppedFiles();
+					//ClearDroppedFiles();
 				}
 			}
 			//----------------------------------------------------------------------------------
@@ -136,7 +136,7 @@ public unsafe static class FontFilters
 
 		// De-Initialization
 		//--------------------------------------------------------------------------------------
-		ClearDroppedFiles();        // Clear internal buffers
+		//ClearDroppedFiles();        // Clear internal buffers
 
 		UnloadFont(font);           // Font unloading
 

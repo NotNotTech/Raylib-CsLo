@@ -89,8 +89,25 @@ public static class Program
 	public static void Main(params string[] args)
 	{
 
+		/////////////////////////////////////////
+		////////////////////////  AUDIO
+		Raylib_CsLo.Examples.Audio.ModulePlayingStreaming.main();
+		//Raylib_CsLo.Examples.Audio.MultichannelSoundPlaying.main();
+		Raylib_CsLo.Examples.Audio.MusicPlayingStreaming.main();
+		Raylib_CsLo.Examples.Audio.RawAudioStreaming.main();
+		Raylib_CsLo.Examples.Audio.SoundLoadingAndPlaying.main();
+
+
+		/////////////////////////////////////////
+		//////////////////////////  PHYSICS
+		Raylib_CsLo.Examples.Physics.PhysicsDemo.main();
+		Raylib_CsLo.Examples.Physics.PhysicsFriction.main();
+		Raylib_CsLo.Examples.Physics.PhysicsMovement.main();
+		Raylib_CsLo.Examples.Physics.PhysicsRestitution.main();
+		Raylib_CsLo.Examples.Physics.PhysicsShatter.main();
+
 		//Raylib_CsLo.Examples.Shaders.MeshInstancing.main();
-		//return;
+		return;
 
 		/////////////////////////////////////////
 		/////////////////////////////////////////

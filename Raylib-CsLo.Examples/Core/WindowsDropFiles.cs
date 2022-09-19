@@ -48,7 +48,7 @@ public unsafe static class WindowsDropFiles
 			if (IsFileDropped())
 			{
 				//droppedFiles = GetDroppedFiles(&count);
-				droppedFiles = GetDroppedFiles();
+				droppedFiles = GetDroppedFilesAndClear();
 				count = droppedFiles.Length;
 			}
 			//----------------------------------------------------------------------------------
@@ -81,7 +81,7 @@ public unsafe static class WindowsDropFiles
 
 		// De-Initialization
 		//--------------------------------------------------------------------------------------
-		ClearDroppedFiles();    // Clear internal buffers
+		//ClearDroppedFiles();    // Clear internal buffers
 
 		CloseWindow();          // Close window and OpenGL context
 								//--------------------------------------------------------------------------------------

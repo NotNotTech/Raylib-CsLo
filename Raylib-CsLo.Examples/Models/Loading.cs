@@ -1,4 +1,4 @@
-﻿// [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] 
+// [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] [!!] 
 // [!!] Copyright ©️ Raylib-CsLo and Contributors. 
 // [!!] This file is licensed to you under the MPL-2.0.
 // [!!] See the LICENSE file in the project root for more info. 
@@ -80,7 +80,7 @@ public unsafe static class Loading
 			{
 				int count = 0;
 				//char** droppedFiles = GetDroppedFiles(&count);
-				var droppedFiles = GetDroppedFiles();
+				var droppedFiles = GetDroppedFilesAndClear();
 
 				if (count == 1) // Only support one file dropped
 				{
@@ -107,7 +107,7 @@ public unsafe static class Loading
 					}
 				}
 
-				ClearDroppedFiles();    // Clear internal buffers
+				//ClearDroppedFiles();    // Clear internal buffers
 			}
 
 			// Select model on mouse click

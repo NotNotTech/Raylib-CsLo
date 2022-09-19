@@ -30,11 +30,11 @@ namespace Raylib_CsLo.UnitTests
         {
             if (Environment.Is64BitProcess)
             {
-                Assert.Equal(24, sizeof(AudioStream));
+                Assert.Equal(32, sizeof(AudioStream));
             }
             else
             {
-                Assert.Equal(16, sizeof(AudioStream));
+                Assert.Equal(20, sizeof(AudioStream));
             }
         }
     }
