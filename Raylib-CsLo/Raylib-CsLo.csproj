@@ -10,16 +10,23 @@
         <ImplicitUsings>enable</ImplicitUsings>
         <Nullable>enable</Nullable>
         <AllowUnsafeBlocks>True</AllowUnsafeBlocks>
+
+    </PropertyGroup>
+
+
+    <PropertyGroup>
         <GenerateDocumentationFile>True</GenerateDocumentationFile>
         <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
         <RepositoryUrl>https://github.com/NotNotTech/Raylib-CsLo</RepositoryUrl>
         <PackageReadmeFile>README.md</PackageReadmeFile>
         <PackageIcon>raylib-cslo_128x128.png</PackageIcon>
-        <Version>4.0.1</Version>
-        <PackageReleaseNotes>Release Notes: No breaking changes. Add Raygui and Physac support to OsX-x64 native binary.</PackageReleaseNotes>
+        <Version>4.2.0-alpha0</Version>
+        <PackageReleaseNotes>Release Notes: raylib 4.2 release. buggy, winx64 only.</PackageReleaseNotes>
         <Authors>Novaleaf</Authors>
         <Company>NotNotTech</Company>
         <Description>
+            #ALPHA VERSION.  ONLY WINDOWS X64 SUPPORTED!
+
             Managed C# bindings to Raylib, a friendly 2d/3d game framework similar to XNA / MonoGame.
             - Win/Linux/OsX supported.
             - Includes bindings for raylib extras: RayGui, Easings, Physac, RlGl, RayMath.
@@ -32,8 +39,8 @@
             - No intellisense docs. [read the raylib cheatsheet for docs](https://www.raylib.com/cheatsheet/cheatsheet.html) or [view the examples](https://github.com/NotNotTech/Raylib-CsLo/tree/main/Raylib-CsLo.Examples)
         </Description>
         <PackageProjectUrl>https://github.com/NotNotTech/Raylib-CsLo</PackageProjectUrl>
-       
-        
+
+
         <PackageTags>raylib;gamedev;binding;NotNot;rendering;3d;2d;graphics;opengl;physics;audio;</PackageTags>
         <PackageLicenseExpression>MPL-2.0</PackageLicenseExpression>
         <AssemblyVersion>0.0.0.*</AssemblyVersion>
@@ -43,7 +50,6 @@
         <AllowedOutputExtensionsInPackageBuildOutputFolder>$(AllowedOutputExtensionsInPackageBuildOutputFolder);.pdb</AllowedOutputExtensionsInPackageBuildOutputFolder>
         <IsPublishable>True</IsPublishable>
     </PropertyGroup>
-
     <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
         <Deterministic>False</Deterministic>
         <NoWarn>1701;1702;1591;IDE0073;</NoWarn>
@@ -114,31 +120,31 @@
     </ItemGroup>
 
     <ItemGroup>
-      <None Remove="raylib.pdb" />
+        <None Remove="raylib.pdb" />
     </ItemGroup>
 
     <ItemGroup>
-      <Content Include="raylib.dll">
-        <CopyToOutputDirectory>Always</CopyToOutputDirectory>        
-      </Content>
-      <Content Include="raylib.pdb">
-        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-      </Content>
+        <Content Include="raylib.dll">
+            <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+        </Content>
+        <Content Include="raylib.pdb">
+            <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+        </Content>
     </ItemGroup>
 
     <ItemGroup>
-      <Compile Update="wasm.Designer.cs">
-        <DesignTime>True</DesignTime>
-        <AutoGen>True</AutoGen>
-        <DependentUpon>wasm.md</DependentUpon>
-      </Compile>
+        <Compile Update="wasm.Designer.cs">
+            <DesignTime>True</DesignTime>
+            <AutoGen>True</AutoGen>
+            <DependentUpon>wasm.md</DependentUpon>
+        </Compile>
     </ItemGroup>
 
     <ItemGroup>
-      <None Update="wasm.md">
-        <Generator>ResXFileCodeGenerator</Generator>
-        <LastGenOutput>wasm.Designer.cs</LastGenOutput>
-      </None>
+        <None Update="wasm.md">
+            <Generator>ResXFileCodeGenerator</Generator>
+            <LastGenOutput>wasm.Designer.cs</LastGenOutput>
+        </None>
     </ItemGroup>
 
 </Project>
