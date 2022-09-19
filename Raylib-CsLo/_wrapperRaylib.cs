@@ -371,7 +371,10 @@ public static unsafe partial class Raylib
 
 	public static void ImageFormat(Image* image, PixelFormat newFormat) => ImageFormat(image, (int)newFormat);
 
-
+	/// <summary>
+	/// safe override, using NULL for the `fontChars` argument.
+	/// </summary>
+	public static Font LoadFontEx(string fileName, int fontSize,  int glyphCount) =>LoadFontEx(fileName, fontSize,default(int*), glyphCount);
 
 	public static Font LoadFontEx(string fileName, int fontSize, int* fontChars, int glyphCount)
 	{

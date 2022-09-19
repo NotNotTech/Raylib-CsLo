@@ -22,6 +22,7 @@
 - [Usage Tips / FAQ](#usage-tips--faq)
 - [Known Issues:](#known-issues)
 - [How to Contribute](#how-to-contribute)
+- [Want to build from scratch?](#want-to-build-from-scratch)
 - [License options:  `MPL2.0` or `PCL`](#license-options--mpl20-or-pcl)
   - [Mozilla Public License 2.0 (**MPL**)](#mozilla-public-license-20-mpl)
   - [Private Commercial License (**PCL**)](#private-commercial-license-pcl)
@@ -193,7 +194,11 @@ If you still think a PCL is what you need, raise an issue or email JasonS aat No
 
 # ChangeLog
 changelog for major releases.
-
+- **4.2.0-alpha1**  (2022/09/19): fixs:
+  -  fix marshalling of null strings passed to native code.  was marshalling as empty strings but instead should have been marshalling as NULL.   fixed.  see https://github.com/NotNotTech/Raylib-CsLo/issues/20
+- **4.2.0-alpha0**  (2022/09/19): Update to `Raylib4.2`. Bugs:
+  - Native binaries only build for Win_x64.  No binaries for linux or osx.  Use the `4.0` nuget package until someone contribs the Raylib native build for those platforms.
+  - *[Raylib Native Regression Bug]* Memory corruption in the Streaming Audio system.  Causes corruption of Native Raylib state upon closing a streaming session.   This is a bug in the native code, so we need to await an upstream fix.   see https://github.com/raysan5/raylib/issues/2714
 - **4.0.0-rc.5.0** (2021/12/15):  No breaking changes. Broaden DotNet support to Net5+, etc (via NetStandard 2.1)
 - **4.0.0-rc.4.0** (2021/12/04):  No breaking changes. Cleanup and change license from LGPL to MPL, because LGPL doesn't allow private static linking.
 - **4.0.0-rc.3** (2021/11/29):  No breaking changes.  Improve Boolean Marshalling.  
