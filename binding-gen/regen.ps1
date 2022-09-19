@@ -13,7 +13,10 @@ $RaylibExtrasSrc = "../sub-modules/raylib/src/extras/"
 $PhysacSrc = "../sub-modules/physac/src/"
 $RayGuiSrc = "../sub-modules/raygui/src/"
 $EasingsSrc = "../sub-modules/raylib/examples/others/"
-$RayBin = "../sub-modules/raylib-with-extras/bin/Release.DLL/" 
+# location where the raylib-with-extras (bundled dll) is built at
+# $RayBin = "../sub-modules/raylib-with-extras/bin/Release.DLL/" 
+
+
 
 " ################ # raylib"
 dotnet ..\sub-modules\ClangSharp\artifacts\bin\sources\ClangSharpPInvokeGenerator\Release\net6.0\ClangSharpPInvokeGenerator.dll @gen-raylib.rsp --file-directory "$RaylibSrc" --file raylib.h --methodClassName Raylib --libraryPath raylib --exclude PI DEG2RAD RAD2DEG

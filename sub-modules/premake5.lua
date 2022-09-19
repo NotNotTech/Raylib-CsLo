@@ -36,7 +36,8 @@ workspace "Raylib-With-Extras"
 		defines{"GRAPHICS_API_OPENGL_33"}
 	end
 	
-project "raylib-with-extras"
+--The raylib-with-extras project, but named "raylib" so the dll is named properly
+project "raylib"
 	filter "configurations:Debug.DLL OR Release.DLL"
 		kind "SharedLib"
 		defines {"BUILD_LIBTYPE_SHARED"}

@@ -19,10 +19,10 @@
     </ProjectConfiguration>
   </ItemGroup>
   <PropertyGroup Label="Globals">
-    <ProjectGuid>{F545B5E0-E129-7636-4A8A-7089368D60B8}</ProjectGuid>
+    <ProjectGuid>{8898EA18-743A-15EF-5DF5-284349369C3F}</ProjectGuid>
     <IgnoreWarnCompileDuplicatedFilename>true</IgnoreWarnCompileDuplicatedFilename>
     <Keyword>Win32Proj</Keyword>
-    <RootNamespace>raylib-with-extras</RootNamespace>
+    <RootNamespace>raylib</RootNamespace>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
@@ -68,27 +68,27 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <OutDir>bin\Debug\</OutDir>
     <IntDir>obj\x64\Debug\</IntDir>
-    <TargetName>raylib-with-extras</TargetName>
+    <TargetName>raylib</TargetName>
     <TargetExt>.lib</TargetExt>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug.DLL|x64'">
     <LinkIncremental>true</LinkIncremental>
     <OutDir>bin\Debug.DLL\</OutDir>
     <IntDir>obj\x64\Debug.DLL\</IntDir>
-    <TargetName>raylib-with-extras</TargetName>
+    <TargetName>raylib</TargetName>
     <TargetExt>.dll</TargetExt>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <OutDir>bin\Release\</OutDir>
     <IntDir>obj\x64\Release\</IntDir>
-    <TargetName>raylib-with-extras</TargetName>
+    <TargetName>raylib</TargetName>
     <TargetExt>.lib</TargetExt>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release.DLL|x64'">
     <LinkIncremental>false</LinkIncremental>
     <OutDir>bin\Release.DLL\</OutDir>
     <IntDir>obj\x64\Release.DLL\</IntDir>
-    <TargetName>raylib-with-extras</TargetName>
+    <TargetName>raylib</TargetName>
     <TargetExt>.dll</TargetExt>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
@@ -123,7 +123,7 @@
       <SubSystem>Windows</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <AdditionalDependencies>winmm.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <ImportLibrary>bin\Debug.DLL\raylib-with-extras.lib</ImportLibrary>
+      <ImportLibrary>bin\Debug.DLL\raylib.lib</ImportLibrary>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -166,7 +166,7 @@
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
       <AdditionalDependencies>winmm.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <ImportLibrary>bin\Release.DLL\raylib-with-extras.lib</ImportLibrary>
+      <ImportLibrary>bin\Release.DLL\raylib.lib</ImportLibrary>
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>

@@ -29,9 +29,9 @@ public unsafe static class MeshGeneration
 		mesh->vertexCount = triangleCount * 3;
 		mesh->triangleCount = triangleCount;
 
-		mesh->vertices = (float*)MemAlloc((uint)(mesh->vertexCount * 3 * sizeof(float)));
-		mesh->texcoords = (float*)MemAlloc((uint)(mesh->vertexCount * 2 * sizeof(float)));
-		mesh->normals = (float*)MemAlloc((uint)(mesh->vertexCount * 3 * sizeof(float)));
+		mesh->vertices = (float*)MemAlloc((int)(mesh->vertexCount * 3 * sizeof(float)));
+		mesh->texcoords = (float*)MemAlloc((int)(mesh->vertexCount * 2 * sizeof(float)));
+		mesh->normals = (float*)MemAlloc((int)(mesh->vertexCount * 3 * sizeof(float)));
 	}
 
 	// generate a simple triangle mesh from code
