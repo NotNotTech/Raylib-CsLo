@@ -30,16 +30,29 @@ public unsafe static class zz_Extensions
 
 	public static SpanOwner<sbyte> MarshalUtf8(this string? text)
 	{
-		text ??= "";
+		//bugfix: if null is passed, return a zero length span.  previously (wrongly) marshaled null as an empty string.
+		if (text == null)
+		{
+			return SpanOwner<sbyte>.Empty;
+		}
 
 		var length = Encoding.UTF8.GetByteCount(text) + 1;//need Length+1 so that we always can guarantee a null terminated ending char
 		var toReturn = SpanOwner<sbyte>.Allocate(length, AllocationMode.Clear); 
 		var count = Encoding.UTF8.GetBytes(text.AsSpan(), toReturn.Span.AsBytes());
 		return toReturn;
 	}
-
+	/// <summary>
+	/// if an empty span is supplied, marshalls a NULL pointer.
+	/// </summary>
+	/// <typeparam name="TPtr"></typeparam>
+	/// <param name="spanOwner"></param>
+	/// <returns></returns>
 	public static TPtr* AsPtr<TPtr>(this SpanOwner<TPtr> spanOwner) where TPtr : unmanaged
 	{
+		if (spanOwner.Length == 0)
+		{
+			return null;
+		}
 		return (TPtr*)Unsafe.AsPointer(ref spanOwner.DangerousGetReference());
 	}
 

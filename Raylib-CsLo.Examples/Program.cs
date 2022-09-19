@@ -88,8 +88,9 @@ public static class Program
 
 	public static void Main(params string[] args)
 	{
-
-
+		/////////////////////////////////////////
+		////////////  MANUAL TEST CASES:  these are test cases for bugfixes to CsLo
+		Raylib_CsLo.Examples.TestCases.NullString.LoadShaderFromMemory.Program.main(args);
 
 		//return;
 
