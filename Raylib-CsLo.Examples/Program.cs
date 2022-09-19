@@ -89,25 +89,9 @@ public static class Program
 	public static void Main(params string[] args)
 	{
 
-		/////////////////////////////////////////
-		////////////////////////  AUDIO
-		Raylib_CsLo.Examples.Audio.ModulePlayingStreaming.main();
-		//Raylib_CsLo.Examples.Audio.MultichannelSoundPlaying.main();
-		Raylib_CsLo.Examples.Audio.MusicPlayingStreaming.main();
-		Raylib_CsLo.Examples.Audio.RawAudioStreaming.main();
-		Raylib_CsLo.Examples.Audio.SoundLoadingAndPlaying.main();
 
 
-		/////////////////////////////////////////
-		//////////////////////////  PHYSICS
-		Raylib_CsLo.Examples.Physics.PhysicsDemo.main();
-		Raylib_CsLo.Examples.Physics.PhysicsFriction.main();
-		Raylib_CsLo.Examples.Physics.PhysicsMovement.main();
-		Raylib_CsLo.Examples.Physics.PhysicsRestitution.main();
-		Raylib_CsLo.Examples.Physics.PhysicsShatter.main();
-
-		//Raylib_CsLo.Examples.Shaders.MeshInstancing.main();
-		return;
+		//return;
 
 		/////////////////////////////////////////
 		/////////////////////////////////////////
@@ -249,13 +233,6 @@ public static class Program
 		Raylib_CsLo.Examples.Shapes.LinesCubicBezier.main();
 
 
-		/////////////////////////////////////////
-		////////////////////////  AUDIO
-		Raylib_CsLo.Examples.Audio.ModulePlayingStreaming.main();
-		Raylib_CsLo.Examples.Audio.MultichannelSoundPlaying.main();
-		Raylib_CsLo.Examples.Audio.MusicPlayingStreaming.main();
-		Raylib_CsLo.Examples.Audio.RawAudioStreaming.main();
-		Raylib_CsLo.Examples.Audio.SoundLoadingAndPlaying.main();
 
 
 		/////////////////////////////////////////
@@ -265,6 +242,18 @@ public static class Program
 		Raylib_CsLo.Examples.Physics.PhysicsMovement.main();
 		Raylib_CsLo.Examples.Physics.PhysicsRestitution.main();
 		Raylib_CsLo.Examples.Physics.PhysicsShatter.main();
+
+
+
+		/////////////////////////////////////////
+		////////////////////////  AUDIO
+		Raylib_CsLo.Examples.Audio.MultichannelSoundPlaying.main();
+		Raylib_CsLo.Examples.Audio.RawAudioStreaming.main();
+		Raylib_CsLo.Examples.Audio.SoundLoadingAndPlaying.main();
+		System.Diagnostics.Debug.Assert(false,
+			"There are bugs in the native Audio code, regarding streaming.  Each of the following streaming example works, but upon exit, it might do some memory/state corruption that causes the next audio scene to crash upon it's exit. see https://github.com/raysan5/raylib/issues/2714 ");
+		Raylib_CsLo.Examples.Audio.MusicPlayingStreaming.main();
+		Raylib_CsLo.Examples.Audio.ModulePlayingStreaming.main();
 
 	}
 
