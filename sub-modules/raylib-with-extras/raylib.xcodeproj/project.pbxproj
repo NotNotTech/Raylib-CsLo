@@ -1,0 +1,406 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		0E8F4F1A82E9940C00CD1D5A /* raygui.c in Sources */ = {isa = PBXBuildFile; fileRef = 3D040C024F2DE8B4831ED242 /* raygui.c */; };
+		128B862886E5CB1A04C95468 /* physac.c in Sources */ = {isa = PBXBuildFile; fileRef = 086BF5301A95D1E24E86BB70 /* physac.c */; };
+		271029186B5ECE8AAD860758 /* utils.c in Sources */ = {isa = PBXBuildFile; fileRef = 4741D100690D7E32A5C2A740 /* utils.c */; };
+		5922872C9D712C9EDF98656C /* rcore.c in Sources */ = {isa = PBXBuildFile; fileRef = 7CC4E3D49E909106DB45BA14 /* rcore.c */; };
+		9C7B59E263095154D10B7822 /* rtextures.c in Sources */ = {isa = PBXBuildFile; fileRef = C8435C2A5DBA1B5CCC56726A /* rtextures.c */; };
+		BE7E7B622BA689D42D3979A2 /* rshapes.c in Sources */ = {isa = PBXBuildFile; fileRef = A9B6E7AAF719DDDC6D38DDEA /* rshapes.c */; };
+		C9B7921E5C455C10C51E005E /* raudio.c in Sources */ = {isa = PBXBuildFile; fileRef = 4CFB49A610670B584F0AAFE6 /* raudio.c */; };
+		D03199FA14803F6C56A7783A /* rglfw.c in Sources */ = {isa = PBXBuildFile; fileRef = 285B52C24A26FFF486DC2902 /* rglfw.c */; };
+		DFC661A424150716663C3FE4 /* rtext.c in Sources */ = {isa = PBXBuildFile; fileRef = 888F9ACCAA5B47FEE710710C /* rtext.c */; };
+		F7EAD9626512E7D466A5D7A2 /* rmodels.c in Sources */ = {isa = PBXBuildFile; fileRef = 0D4265AA5AA55BDCD0C45BEA /* rmodels.c */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		086BF5301A95D1E24E86BB70 /* physac.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; name = physac.c; path = "../raylib-extra-shims/src/physac.c"; sourceTree = "<group>"; };
+		0D4265AA5AA55BDCD0C45BEA /* rmodels.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; name = rmodels.c; path = ../raylib/src/rmodels.c; sourceTree = "<group>"; };
+		1687B754D9F3790618971D94 /* config.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = config.h; path = ../raylib/src/config.h; sourceTree = "<group>"; };
+		285B52C24A26FFF486DC2902 /* rglfw.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; name = rglfw.c; path = ../raylib/src/rglfw.c; sourceTree = "<group>"; };
+		298DE55476F0DB86ED0FDB94 /* raymath.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = raymath.h; path = ../raylib/src/raymath.h; sourceTree = "<group>"; };
+		3D040C024F2DE8B4831ED242 /* raygui.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; name = raygui.c; path = "../raylib-extra-shims/src/raygui.c"; sourceTree = "<group>"; };
+		3FBF192E032ADAE041CE7F6E /* raylib.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = raylib.h; path = ../raylib/src/raylib.h; sourceTree = "<group>"; };
+		4741D100690D7E32A5C2A740 /* utils.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; name = utils.c; path = ../raylib/src/utils.c; sourceTree = "<group>"; };
+		479B15AA6966C2DCA61BEBEA /* utils.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = utils.h; path = ../raylib/src/utils.h; sourceTree = "<group>"; };
+		4CFB49A610670B584F0AAFE6 /* raudio.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; name = raudio.c; path = ../raylib/src/raudio.c; sourceTree = "<group>"; };
+		6415B97EB178AFB02797AFBE /* rcamera.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = rcamera.h; path = ../raylib/src/rcamera.h; sourceTree = "<group>"; };
+		7CC4E3D49E909106DB45BA14 /* rcore.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; name = rcore.c; path = ../raylib/src/rcore.c; sourceTree = "<group>"; };
+		84DA1C0AAD14D4BC94B0624A /* rlgl.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = rlgl.h; path = ../raylib/src/rlgl.h; sourceTree = "<group>"; };
+		888F9ACCAA5B47FEE710710C /* rtext.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; name = rtext.c; path = ../raylib/src/rtext.c; sourceTree = "<group>"; };
+		A9B6E7AAF719DDDC6D38DDEA /* rshapes.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; name = rshapes.c; path = ../raylib/src/rshapes.c; sourceTree = "<group>"; };
+		AF2739F0449DF922B33A5030 /* rgestures.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = rgestures.h; path = ../raylib/src/rgestures.h; sourceTree = "<group>"; };
+		BA5B4C9D7DC70E4FBC6AB2DD /* physac.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = physac.h; path = ../physac/src/physac.h; sourceTree = "<group>"; };
+		C8435C2A5DBA1B5CCC56726A /* rtextures.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; name = rtextures.c; path = ../raylib/src/rtextures.c; sourceTree = "<group>"; };
+		D42385F145AE9E63F4AFC431 /* raylib.lib */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; name = raylib.lib; path = raylib.lib; sourceTree = BUILT_PRODUCTS_DIR; };
+		DAFFFE589E6BC00ADD0F6498 /* raygui.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = raygui.h; path = ../raygui/src/raygui.h; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		AF462AE1BC02DA5330ED4921 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		6F47B78D9DEE0B7FF72F65CD /* Embed Libraries */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+			);
+			name = "Embed Libraries";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXGroup section */
+		2DD89AA30B839D55DF2820E3 /* raylib */ = {
+			isa = PBXGroup;
+			children = (
+				81A6A3AEA37250E0E02779EE /* Extras Headers */,
+				3EB20D3E607DBA709D32E37E /* Extras Sources */,
+				C98A48C011FB2CF25699FF00 /* Header Files */,
+				8F1EDA50D78FBE821C2E9090 /* Source Files */,
+				A6C936B49B3FADE6EA134CF4 /* Products */,
+			);
+			name = raylib;
+			sourceTree = "<group>";
+		};
+		3EB20D3E607DBA709D32E37E /* Extras Sources */ = {
+			isa = PBXGroup;
+			children = (
+				086BF5301A95D1E24E86BB70 /* physac.c */,
+				3D040C024F2DE8B4831ED242 /* raygui.c */,
+			);
+			name = "Extras Sources";
+			sourceTree = "<group>";
+		};
+		81A6A3AEA37250E0E02779EE /* Extras Headers */ = {
+			isa = PBXGroup;
+			children = (
+				BA5B4C9D7DC70E4FBC6AB2DD /* physac.h */,
+				DAFFFE589E6BC00ADD0F6498 /* raygui.h */,
+			);
+			name = "Extras Headers";
+			sourceTree = "<group>";
+		};
+		8F1EDA50D78FBE821C2E9090 /* Source Files */ = {
+			isa = PBXGroup;
+			children = (
+				4CFB49A610670B584F0AAFE6 /* raudio.c */,
+				7CC4E3D49E909106DB45BA14 /* rcore.c */,
+				285B52C24A26FFF486DC2902 /* rglfw.c */,
+				0D4265AA5AA55BDCD0C45BEA /* rmodels.c */,
+				A9B6E7AAF719DDDC6D38DDEA /* rshapes.c */,
+				888F9ACCAA5B47FEE710710C /* rtext.c */,
+				C8435C2A5DBA1B5CCC56726A /* rtextures.c */,
+				4741D100690D7E32A5C2A740 /* utils.c */,
+			);
+			name = "Source Files";
+			sourceTree = "<group>";
+		};
+		A6C936B49B3FADE6EA134CF4 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				D42385F145AE9E63F4AFC431 /* raylib.lib */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		C98A48C011FB2CF25699FF00 /* Header Files */ = {
+			isa = PBXGroup;
+			children = (
+				1687B754D9F3790618971D94 /* config.h */,
+				3FBF192E032ADAE041CE7F6E /* raylib.h */,
+				298DE55476F0DB86ED0FDB94 /* raymath.h */,
+				6415B97EB178AFB02797AFBE /* rcamera.h */,
+				AF2739F0449DF922B33A5030 /* rgestures.h */,
+				84DA1C0AAD14D4BC94B0624A /* rlgl.h */,
+				479B15AA6966C2DCA61BEBEA /* utils.h */,
+			);
+			name = "Header Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		84A9E3B7881AB5E9098759F7 /* raylib */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 9D817340AA3E22B21F289180 /* Build configuration list for PBXNativeTarget "raylib" */;
+			buildPhases = (
+				1F2DAB812BEA5AF3A0D4C9C1 /* Resources */,
+				88DAC4D89597744A0A81E318 /* Sources */,
+				AF462AE1BC02DA5330ED4921 /* Frameworks */,
+				6F47B78D9DEE0B7FF72F65CD /* Embed Libraries */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = raylib;
+			productName = raylib;
+			productReference = D42385F145AE9E63F4AFC431 /* raylib.lib */;
+			productType = "com.apple.product-type.library.static";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		08FB7793FE84155DC02AAC07 /* Project object */ = {
+			isa = PBXProject;
+			buildConfigurationList = 1DEB928908733DD80010E9CD /* Build configuration list for PBXProject "raylib" */;
+			compatibilityVersion = "Xcode 3.2";
+			hasScannedForEncodings = 1;
+			mainGroup = 2DD89AA30B839D55DF2820E3 /* raylib */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				84A9E3B7881AB5E9098759F7 /* raylib.lib */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		1F2DAB812BEA5AF3A0D4C9C1 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		88DAC4D89597744A0A81E318 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				128B862886E5CB1A04C95468 /* physac.c in Sources */,
+				0E8F4F1A82E9940C00CD1D5A /* raygui.c in Sources */,
+				C9B7921E5C455C10C51E005E /* raudio.c in Sources */,
+				5922872C9D712C9EDF98656C /* rcore.c in Sources */,
+				D03199FA14803F6C56A7783A /* rglfw.c in Sources */,
+				F7EAD9626512E7D466A5D7A2 /* rmodels.c in Sources */,
+				BE7E7B622BA689D42D3979A2 /* rshapes.c in Sources */,
+				DFC661A424150716663C3FE4 /* rtext.c in Sources */,
+				9C7B59E263095154D10B7822 /* rtextures.c in Sources */,
+				271029186B5ECE8AAD860758 /* utils.c in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		1018915C3EBEE54E98003F9C /* Debug.DLL */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_CXX_LANGUAGE_STANDARD = "c++1z";
+				CONFIGURATION_BUILD_DIR = "$(SYMROOT)";
+				CONFIGURATION_TEMP_DIR = "$(OBJROOT)";
+				COPY_PHASE_STRIP = NO;
+				GCC_ENABLE_FIX_AND_CONTINUE = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					DEBUG,
+					PLATFORM_DESKTOP,
+					GRAPHICS_API_OPENGL_33,
+					BUILD_LIBTYPE_SHARED,
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				OBJROOT = obj/x64/Debug.DLL;
+				ONLY_ACTIVE_ARCH = YES;
+				SYMROOT = bin/Debug.DLL;
+				USER_HEADER_SEARCH_PATHS = (
+					../raylib/src,
+					../raylib/src/external/glfw/include,
+					"../raylib-extra-shims/src",
+					../physac/src,
+					../raygui/src,
+				);
+			};
+			name = Debug.DLL;
+		};
+		23499C8052DB6B722DE8AAC0 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CONFIGURATION_BUILD_DIR = bin/Release;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				EXECUTABLE_EXTENSION = lib;
+				GCC_DYNAMIC_NO_PIC = NO;
+				INSTALL_PATH = /usr/local/lib;
+				PRODUCT_NAME = raylib;
+			};
+			name = Release;
+		};
+		402695D09B67E9426EC23410 /* Debug.DLL */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CONFIGURATION_BUILD_DIR = bin/Debug.DLL;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				EXECUTABLE_EXTENSION = dll;
+				GCC_DYNAMIC_NO_PIC = NO;
+				INSTALL_PATH = /usr/local/lib;
+				PRODUCT_NAME = raylib;
+			};
+			name = Debug.DLL;
+		};
+		509C794C5D5928BED243978C /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_CXX_LANGUAGE_STANDARD = "c++1z";
+				CONFIGURATION_BUILD_DIR = "$(SYMROOT)";
+				CONFIGURATION_TEMP_DIR = "$(OBJROOT)";
+				GCC_OPTIMIZATION_LEVEL = 3;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					NDEBUG,
+					PLATFORM_DESKTOP,
+					GRAPHICS_API_OPENGL_33,
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				OBJROOT = obj/x64/Release;
+				ONLY_ACTIVE_ARCH = NO;
+				SYMROOT = bin/Release;
+				USER_HEADER_SEARCH_PATHS = (
+					../raylib/src,
+					../raylib/src/external/glfw/include,
+					"../raylib-extra-shims/src",
+					../physac/src,
+					../raygui/src,
+				);
+			};
+			name = Release;
+		};
+		A5D02516175B3D88C65C6356 /* Release.DLL */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_CXX_LANGUAGE_STANDARD = "c++1z";
+				CONFIGURATION_BUILD_DIR = "$(SYMROOT)";
+				CONFIGURATION_TEMP_DIR = "$(OBJROOT)";
+				GCC_OPTIMIZATION_LEVEL = 3;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					NDEBUG,
+					PLATFORM_DESKTOP,
+					GRAPHICS_API_OPENGL_33,
+					BUILD_LIBTYPE_SHARED,
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				OBJROOT = obj/x64/Release.DLL;
+				ONLY_ACTIVE_ARCH = NO;
+				SYMROOT = bin/Release.DLL;
+				USER_HEADER_SEARCH_PATHS = (
+					../raylib/src,
+					../raylib/src/external/glfw/include,
+					"../raylib-extra-shims/src",
+					../physac/src,
+					../raygui/src,
+				);
+			};
+			name = Release.DLL;
+		};
+		B7CC68060E59D278E6D2E646 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CONFIGURATION_BUILD_DIR = bin/Debug;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				EXECUTABLE_EXTENSION = lib;
+				GCC_DYNAMIC_NO_PIC = NO;
+				INSTALL_PATH = /usr/local/lib;
+				PRODUCT_NAME = raylib;
+			};
+			name = Debug;
+		};
+		D7BD774A08A16F3C1BB9A58A /* Release.DLL */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CONFIGURATION_BUILD_DIR = bin/Release.DLL;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				EXECUTABLE_EXTENSION = dll;
+				GCC_DYNAMIC_NO_PIC = NO;
+				INSTALL_PATH = /usr/local/lib;
+				PRODUCT_NAME = raylib;
+			};
+			name = Release.DLL;
+		};
+		E5FDB2923883DD840AC840D2 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_CXX_LANGUAGE_STANDARD = "c++1z";
+				CONFIGURATION_BUILD_DIR = "$(SYMROOT)";
+				CONFIGURATION_TEMP_DIR = "$(OBJROOT)";
+				COPY_PHASE_STRIP = NO;
+				GCC_ENABLE_FIX_AND_CONTINUE = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					DEBUG,
+					PLATFORM_DESKTOP,
+					GRAPHICS_API_OPENGL_33,
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				OBJROOT = obj/x64/Debug;
+				ONLY_ACTIVE_ARCH = YES;
+				SYMROOT = bin/Debug;
+				USER_HEADER_SEARCH_PATHS = (
+					../raylib/src,
+					../raylib/src/external/glfw/include,
+					"../raylib-extra-shims/src",
+					../physac/src,
+					../raygui/src,
+				);
+			};
+			name = Debug;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		1DEB928908733DD80010E9CD /* Build configuration list for PBXProject "raylib" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				E5FDB2923883DD840AC840D2 /* Debug */,
+				1018915C3EBEE54E98003F9C /* Debug.DLL */,
+				509C794C5D5928BED243978C /* Release */,
+				A5D02516175B3D88C65C6356 /* Release.DLL */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		9D817340AA3E22B21F289180 /* Build configuration list for PBXNativeTarget "raylib.lib" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				B7CC68060E59D278E6D2E646 /* Debug */,
+				402695D09B67E9426EC23410 /* Debug.DLL */,
+				23499C8052DB6B722DE8AAC0 /* Release */,
+				D7BD774A08A16F3C1BB9A58A /* Release.DLL */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+/* End XCConfigurationList section */
+};
+rootObject = 08FB7793FE84155DC02AAC07 /* Project object */;
+}

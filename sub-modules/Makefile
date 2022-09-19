@@ -9,31 +9,31 @@ ifndef verbose
 endif
 
 ifeq ($(config),debug_x64)
-  raylib_with_extras_config = debug_x64
+  raylib_config = debug_x64
 
 else ifeq ($(config),debug.dll_x64)
-  raylib_with_extras_config = debug.dll_x64
+  raylib_config = debug.dll_x64
 
 else ifeq ($(config),release_x64)
-  raylib_with_extras_config = release_x64
+  raylib_config = release_x64
 
 else ifeq ($(config),release.dll_x64)
-  raylib_with_extras_config = release.dll_x64
+  raylib_config = release.dll_x64
 
 else
   $(error "invalid configuration $(config)")
 endif
 
-PROJECTS := raylib-with-extras
+PROJECTS := raylib
 
 .PHONY: all clean help $(PROJECTS) 
 
 all: $(PROJECTS)
 
-raylib-with-extras:
-ifneq (,$(raylib_with_extras_config))
-	@echo "==== Building raylib-with-extras ($(raylib_with_extras_config)) ===="
-	@${MAKE} --no-print-directory -C raylib-with-extras -f Makefile config=$(raylib_with_extras_config)
+raylib:
+ifneq (,$(raylib_config))
+	@echo "==== Building raylib ($(raylib_config)) ===="
+	@${MAKE} --no-print-directory -C raylib-with-extras -f Makefile config=$(raylib_config)
 endif
 
 clean:
@@ -51,6 +51,6 @@ help:
 	@echo "TARGETS:"
 	@echo "   all (default)"
 	@echo "   clean"
-	@echo "   raylib-with-extras"
+	@echo "   raylib"
 	@echo ""
 	@echo "For more information, see https://github.com/premake/premake-core/wiki"
