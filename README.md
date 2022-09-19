@@ -176,6 +176,8 @@ If you need a custom camera, check out the `Raylib-Extras-CsLo` project, which c
   - improve wrappers for ease of use
   - ????  check issues
 
+# Want to build from scratch?
+check out the readme under the `binding-gen` folder
 
 # License options:  `MPL2.0` or `PCL`
 ## [Mozilla Public License 2.0 (**MPL**)](https://github.com/NotNotTech/Raylib-CsLo/blob/main/LICENSE)
