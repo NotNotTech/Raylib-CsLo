@@ -20,17 +20,14 @@
         <RepositoryUrl>https://github.com/NotNotTech/Raylib-CsLo</RepositoryUrl>
         <PackageReadmeFile>README.md</PackageReadmeFile>
         <PackageIcon>raylib-cslo_128x128.png</PackageIcon>
-        <Version>4.2.0-alpha1</Version>
-        <PackageReleaseNotes>Release Notes: raylib 4.2 release. buggy, winx64 only.</PackageReleaseNotes>
+        <Version>4.2.0.2</Version>
+        <PackageReleaseNotes>Release Notes: raylib 4.2 release. win-x64 and linux-x64 support</PackageReleaseNotes>
         <Authors>Novaleaf</Authors>
         <Company>NotNotTech</Company>
         <Description>
-            # IMPORTANT: `Raylib-CsLo 4.2.0` VERSION IS `WIN_x64` AND `LINUX_x64`***ONLY***!
-            - For OSX, use `4.0` package.
-
             Managed C# bindings to Raylib, a friendly 2d/3d game framework similar to XNA / MonoGame.
             - Win/Linux/OsX supported.
-            - Includes bindings for raylib extras: RayGui, Easings, Physac, RlGl, RayMath, RRes.
+            - Includes bindings for raylib extras: RayGui, Easings, Physac, RlGl, RayMath.
             - Minimal bindings + convenience wrappers to make it easier to use.
             - Tested and verified via more than 100 examples (**ALL** Raylib examples ported).  These [examples are available to you in the GitHub Repo](https://github.com/NotNotTech/Raylib-CsLo/tree/main/Raylib-CsLo.Examples)
             -    Requires `unsafe` for 3d workflows.
