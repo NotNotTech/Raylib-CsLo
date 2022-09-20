@@ -11,12 +11,13 @@
 
 #help on passing args: https://morgantechspace.com/2014/12/How-to-pass-arguments-to-PowerShell-script.html
 param( 
-	[Parameter(Mandatory = $true, HelpMessage = "either set env:NUGET_KEY = 'your_key' or input it now")] $NugetKey
+	[Parameter(Mandatory = $true, HelpMessage = "either set env:NUGET_KEY = 'your_key' or input it now.  if already set in env, just hit enter to use it.")] $NugetKey
 	#, [Parameter(Mandatory = $true)] 	$NugetPackage
 )
 if (!($NugetKey)) {
 	$NugetKey = $env:NUGET_KEY
 }
+Write-Output "Key Used: $NugetKey" 
 
 # change dir to folder containing script
 pushd $PSScriptRoot
