@@ -25,7 +25,8 @@
         <Authors>Novaleaf</Authors>
         <Company>NotNotTech</Company>
         <Description>
-            #ALPHA VERSION.  ONLY WINDOWS X64 SUPPORTED!
+            # IMPORTANT: `Raylib-CsLo 4.2.0` VERSION IS `WIN_x64` AND `LINUX_x64`***ONLY***!
+            - For OSX, use `4.0` package.
 
             Managed C# bindings to Raylib, a friendly 2d/3d game framework similar to XNA / MonoGame.
             - Win/Linux/OsX supported.

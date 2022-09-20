@@ -32,6 +32,7 @@
 
 
 # IMPORTANT: `Raylib-CsLo 4.2.0` VERSION IS `WIN_x64` AND `LINUX_x64`***ONLY***!
+- For OSX, use `4.0` package.
 - Please see https://github.com/NotNotTech/Raylib-CsLo/issues/23  I can not build **osx** on my computer.  If you need this platforms, consider helping out.   
 - Also FYI: There is a state corruption bug in the *native* audio subsystem if you dispose of streaming audio.   see https://github.com/raysan5/raylib/issues/2714
 
