@@ -8,6 +8,7 @@
 [![Chat on Discord](https://img.shields.io/badge/chat%20on-discord-7289DA)](https://discord.gg/raylib)
 # Table of Contents
 - [Table of Contents](#table-of-contents)
+- [4.2.0-Alpha VERSIONS ARE WINDOWS X64 ***ONLY***!](#420-alpha-versions-are-windows-x64-only)
 - [About](#about)
   - [What is **Raylib**?](#what-is-raylib)
   - [Super easy to use for 2d!](#super-easy-to-use-for-2d)
@@ -28,6 +29,11 @@
   - [Private Commercial License (**PCL**)](#private-commercial-license-pcl)
 - [ChangeLog](#changelog)
 - [Todo](#todo)
+
+
+# 4.2.0-Alpha VERSIONS ARE WINDOWS X64 ***ONLY***!
+Please see https://github.com/NotNotTech/Raylib-CsLo/issues/23  I can not build **linux** or **osx** on my computer.  If you need these platforms, consider helping out.
+
 
 
 # About
@@ -194,8 +200,9 @@ If you still think a PCL is what you need, raise an issue or email JasonS aat No
 
 # ChangeLog
 changelog for major releases.
-- **4.2.0-alpha1**  (2022/09/19): fixs:
+- **4.2.0-alpha1**  (2022/09/19): 
   -  fix marshalling of null strings passed to native code.  was marshalling as empty strings but instead should have been marshalling as NULL.   fixed.  see https://github.com/NotNotTech/Raylib-CsLo/issues/20
+  -  include basic (unsafe) RRes bindings.  see https://github.com/NotNotTech/Raylib-CsLo/issues/19
 - **4.2.0-alpha0**  (2022/09/19): Update to `Raylib4.2`. Bugs:
   - Native binaries only build for Win_x64.  No binaries for linux or osx.  Use the `4.0` nuget package until someone contribs the Raylib native build for those platforms.
   - *[Raylib Native Regression Bug]* Memory corruption in the Streaming Audio system.  Causes corruption of Native Raylib state upon closing a streaming session.   This is a bug in the native code, so we need to await an upstream fix.   see https://github.com/raysan5/raylib/issues/2714
