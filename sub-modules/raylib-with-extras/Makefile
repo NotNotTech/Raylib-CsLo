@@ -19,7 +19,7 @@ endif
 # #############################################
 
 RESCOMP = windres
-INCLUDES += -I../raylib/src -I../raylib/src/external/glfw/include -I../raylib-extra-shims/src -I../physac/src -I../raygui/src
+INCLUDES += -I../raylib/src -I../raylib/src/external/glfw/include -I../raylib-extra-shims/src -I../physac/src -I../raygui/src -I../rres/src
 FORCE_INCLUDE +=
 ALL_CPPFLAGS += $(CPPFLAGS) -MMD -MP $(DEFINES) $(INCLUDES)
 ALL_RESFLAGS += $(RESFLAGS) $(DEFINES) $(INCLUDES)
@@ -90,6 +90,7 @@ GENERATED += $(OBJDIR)/raygui.o
 GENERATED += $(OBJDIR)/rcore.o
 GENERATED += $(OBJDIR)/rglfw.o
 GENERATED += $(OBJDIR)/rmodels.o
+GENERATED += $(OBJDIR)/rres.o
 GENERATED += $(OBJDIR)/rshapes.o
 GENERATED += $(OBJDIR)/rtext.o
 GENERATED += $(OBJDIR)/rtextures.o
@@ -100,6 +101,7 @@ OBJECTS += $(OBJDIR)/raygui.o
 OBJECTS += $(OBJDIR)/rcore.o
 OBJECTS += $(OBJDIR)/rglfw.o
 OBJECTS += $(OBJDIR)/rmodels.o
+OBJECTS += $(OBJDIR)/rres.o
 OBJECTS += $(OBJDIR)/rshapes.o
 OBJECTS += $(OBJDIR)/rtext.o
 OBJECTS += $(OBJDIR)/rtextures.o
@@ -171,6 +173,9 @@ $(OBJDIR)/physac.o: ../raylib-extra-shims/src/physac.c
 	@echo $(notdir $<)
 	$(SILENT) $(CC) $(ALL_CFLAGS) $(FORCE_INCLUDE) -o "$@" -MF "$(@:%.o=%.d)" -c "$<"
 $(OBJDIR)/raygui.o: ../raylib-extra-shims/src/raygui.c
+	@echo $(notdir $<)
+	$(SILENT) $(CC) $(ALL_CFLAGS) $(FORCE_INCLUDE) -o "$@" -MF "$(@:%.o=%.d)" -c "$<"
+$(OBJDIR)/rres.o: ../raylib-extra-shims/src/rres.c
 	@echo $(notdir $<)
 	$(SILENT) $(CC) $(ALL_CFLAGS) $(FORCE_INCLUDE) -o "$@" -MF "$(@:%.o=%.d)" -c "$<"
 $(OBJDIR)/raudio.o: ../raylib/src/raudio.c

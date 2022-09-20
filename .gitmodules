@@ -7,3 +7,6 @@
 [submodule "sub-modules/raygui"]
 	path = sub-modules/raygui
 	url = https://github.com/raysan5/raygui
+[submodule "sub-modules/rres"]
+	path = sub-modules/rres
+	url = https://github.com/raysan5/rres

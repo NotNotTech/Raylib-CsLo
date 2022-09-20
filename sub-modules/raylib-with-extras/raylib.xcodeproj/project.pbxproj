@@ -10,6 +10,7 @@
 		0E8F4F1A82E9940C00CD1D5A /* raygui.c in Sources */ = {isa = PBXBuildFile; fileRef = 3D040C024F2DE8B4831ED242 /* raygui.c */; };
 		128B862886E5CB1A04C95468 /* physac.c in Sources */ = {isa = PBXBuildFile; fileRef = 086BF5301A95D1E24E86BB70 /* physac.c */; };
 		271029186B5ECE8AAD860758 /* utils.c in Sources */ = {isa = PBXBuildFile; fileRef = 4741D100690D7E32A5C2A740 /* utils.c */; };
+		4D68EE90EF528A82E6799CD0 /* rres.c in Sources */ = {isa = PBXBuildFile; fileRef = B8D82D1886FB80CA0E09D358 /* rres.c */; };
 		5922872C9D712C9EDF98656C /* rcore.c in Sources */ = {isa = PBXBuildFile; fileRef = 7CC4E3D49E909106DB45BA14 /* rcore.c */; };
 		9C7B59E263095154D10B7822 /* rtextures.c in Sources */ = {isa = PBXBuildFile; fileRef = C8435C2A5DBA1B5CCC56726A /* rtextures.c */; };
 		BE7E7B622BA689D42D3979A2 /* rshapes.c in Sources */ = {isa = PBXBuildFile; fileRef = A9B6E7AAF719DDDC6D38DDEA /* rshapes.c */; };
@@ -31,15 +32,22 @@
 		479B15AA6966C2DCA61BEBEA /* utils.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = utils.h; path = ../raylib/src/utils.h; sourceTree = "<group>"; };
 		4CFB49A610670B584F0AAFE6 /* raudio.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; name = raudio.c; path = ../raylib/src/raudio.c; sourceTree = "<group>"; };
 		6415B97EB178AFB02797AFBE /* rcamera.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = rcamera.h; path = ../raylib/src/rcamera.h; sourceTree = "<group>"; };
+		6DBF9E879EA39679B1BBCCC7 /* lz4.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = lz4.h; path = ../rres/src/external/lz4.h; sourceTree = "<group>"; };
 		7CC4E3D49E909106DB45BA14 /* rcore.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; name = rcore.c; path = ../raylib/src/rcore.c; sourceTree = "<group>"; };
 		84DA1C0AAD14D4BC94B0624A /* rlgl.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = rlgl.h; path = ../raylib/src/rlgl.h; sourceTree = "<group>"; };
+		8753B199CFC495CB146367D9 /* rres.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = rres.h; path = ../rres/src/rres.h; sourceTree = "<group>"; };
 		888F9ACCAA5B47FEE710710C /* rtext.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; name = rtext.c; path = ../raylib/src/rtext.c; sourceTree = "<group>"; };
+		A4DD92C5D5C18AB7E8D9C105 /* aes.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = aes.h; path = ../rres/src/external/aes.h; sourceTree = "<group>"; };
 		A9B6E7AAF719DDDC6D38DDEA /* rshapes.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; name = rshapes.c; path = ../raylib/src/rshapes.c; sourceTree = "<group>"; };
 		AF2739F0449DF922B33A5030 /* rgestures.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = rgestures.h; path = ../raylib/src/rgestures.h; sourceTree = "<group>"; };
+		B3944165E4783957F7906FA5 /* qoi.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = qoi.h; path = ../rres/src/external/qoi.h; sourceTree = "<group>"; };
+		B8D82D1886FB80CA0E09D358 /* rres.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; name = rres.c; path = "../raylib-extra-shims/src/rres.c"; sourceTree = "<group>"; };
 		BA5B4C9D7DC70E4FBC6AB2DD /* physac.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = physac.h; path = ../physac/src/physac.h; sourceTree = "<group>"; };
 		C8435C2A5DBA1B5CCC56726A /* rtextures.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; name = rtextures.c; path = ../raylib/src/rtextures.c; sourceTree = "<group>"; };
+		CC822BFB9310236D01124A3B /* monocypher.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = monocypher.h; path = ../rres/src/external/monocypher.h; sourceTree = "<group>"; };
 		D42385F145AE9E63F4AFC431 /* raylib.lib */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; name = raylib.lib; path = raylib.lib; sourceTree = BUILT_PRODUCTS_DIR; };
 		DAFFFE589E6BC00ADD0F6498 /* raygui.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = raygui.h; path = ../raygui/src/raygui.h; sourceTree = "<group>"; };
+		DBECA819AA0FFBCB311E4E59 /* rres-raylib.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "rres-raylib.h"; path = "../rres/src/rres-raylib.h"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -83,6 +91,7 @@
 			children = (
 				086BF5301A95D1E24E86BB70 /* physac.c */,
 				3D040C024F2DE8B4831ED242 /* raygui.c */,
+				B8D82D1886FB80CA0E09D358 /* rres.c */,
 			);
 			name = "Extras Sources";
 			sourceTree = "<group>";
@@ -90,8 +99,14 @@
 		81A6A3AEA37250E0E02779EE /* Extras Headers */ = {
 			isa = PBXGroup;
 			children = (
+				A4DD92C5D5C18AB7E8D9C105 /* aes.h */,
+				6DBF9E879EA39679B1BBCCC7 /* lz4.h */,
+				CC822BFB9310236D01124A3B /* monocypher.h */,
 				BA5B4C9D7DC70E4FBC6AB2DD /* physac.h */,
+				B3944165E4783957F7906FA5 /* qoi.h */,
 				DAFFFE589E6BC00ADD0F6498 /* raygui.h */,
+				DBECA819AA0FFBCB311E4E59 /* rres-raylib.h */,
+				8753B199CFC495CB146367D9 /* rres.h */,
 			);
 			name = "Extras Headers";
 			sourceTree = "<group>";
@@ -188,6 +203,7 @@
 			files = (
 				128B862886E5CB1A04C95468 /* physac.c in Sources */,
 				0E8F4F1A82E9940C00CD1D5A /* raygui.c in Sources */,
+				4D68EE90EF528A82E6799CD0 /* rres.c in Sources */,
 				C9B7921E5C455C10C51E005E /* raudio.c in Sources */,
 				5922872C9D712C9EDF98656C /* rcore.c in Sources */,
 				D03199FA14803F6C56A7783A /* rglfw.c in Sources */,
@@ -232,6 +248,7 @@
 					"../raylib-extra-shims/src",
 					../physac/src,
 					../raygui/src,
+					../rres/src,
 				);
 			};
 			name = Debug.DLL;
@@ -286,6 +303,7 @@
 					"../raylib-extra-shims/src",
 					../physac/src,
 					../raygui/src,
+					../rres/src,
 				);
 			};
 			name = Release;
@@ -315,6 +333,7 @@
 					"../raylib-extra-shims/src",
 					../physac/src,
 					../raygui/src,
+					../rres/src,
 				);
 			};
 			name = Release.DLL;
@@ -371,6 +390,7 @@
 					"../raylib-extra-shims/src",
 					../physac/src,
 					../raygui/src,
+					../rres/src,
 				);
 			};
 			name = Debug;

@@ -8,11 +8,12 @@ pushd ..\sub-modules\ClangSharp\
 dotnet build -c Release
 popd
 
-$RaylibSrc = "..\sub-modules\raylib\src"
-$RaylibExtrasSrc = "../sub-modules/raylib/src/extras/"
-$PhysacSrc = "../sub-modules/physac/src/"
-$RayGuiSrc = "../sub-modules/raygui/src/"
-$EasingsSrc = "../sub-modules/raylib/examples/others/"
+$RaylibSrc = "../sub-modules/raylib/src"
+$RaylibExtrasSrc = "../sub-modules/raylib/src/extras"
+$PhysacSrc = "../sub-modules/physac/src"
+$RayGuiSrc = "../sub-modules/raygui/src"
+$RResSrc = "../sub-modules/rres/src"
+$EasingsSrc = "../sub-modules/raylib/examples/others"
 # location where the raylib-with-extras (bundled dll) is built at
 # $RayBin = "../sub-modules/raylib-with-extras/bin/Release.DLL/" 
 
@@ -33,6 +34,12 @@ dotnet ..\sub-modules\ClangSharp\artifacts\bin\sources\ClangSharpPInvokeGenerato
 " ################ # physac"
 dotnet ..\sub-modules\ClangSharp\artifacts\bin\sources\ClangSharpPInvokeGenerator\Release\net6.0\ClangSharpPInvokeGenerator.dll @gen-raylib.rsp --file-directory "$PhysacSrc" --include-directory "$RaylibSrc" --file physac.h --methodClassName Physac --libraryPath raylib
 # robocopy "$RayBin" "..\Raylib-CsLo\" physac.dll physac.pdb
+" ################ # rres"
+dotnet ..\sub-modules\ClangSharp\artifacts\bin\sources\ClangSharpPInvokeGenerator\Release\net6.0\ClangSharpPInvokeGenerator.dll @gen-raylib.rsp --file-directory "$RResSrc" --file rres.h --methodClassName RRes --libraryPath raylib --include-directory "$RaylibSrc"
+# robocopy "$RayBin" "..\Raylib-CsLo\" raygui.dll raygui.pdb
+# " ################ # rres-raylib"
+# dotnet ..\sub-modules\ClangSharp\artifacts\bin\sources\ClangSharpPInvokeGenerator\Release\net6.0\ClangSharpPInvokeGenerator.dll @gen-raylib.rsp --file-directory "$RResSrc" --file "rres-raylib.h" --methodClassName RResRaylib --libraryPath raylib --include-directory "$RaylibSrc" --exclude RLAPI
+# robocopy "$RayBin" "..\Raylib-CsLo\" raygui.dll raygui.pdb
 " ################ # Easings "
 dotnet ..\sub-modules\ClangSharp\artifacts\bin\sources\ClangSharpPInvokeGenerator\Release\net6.0\ClangSharpPInvokeGenerator.dll @gen-raylib.rsp --file-directory "$EasingsSrc" --include-directory "$RaylibSrc" --file reasings.h --methodClassName Easings --exclude EaseElasticInOut PI DEG2RAD RAD2DEG
 

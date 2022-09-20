@@ -42,12 +42,33 @@
     <ClInclude Include="..\raylib\src\utils.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="..\rres\src\external\aes.h">
+      <Filter>Extras Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="..\rres\src\external\lz4.h">
+      <Filter>Extras Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="..\rres\src\external\monocypher.h">
+      <Filter>Extras Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="..\rres\src\external\qoi.h">
+      <Filter>Extras Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="..\rres\src\rres-raylib.h">
+      <Filter>Extras Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="..\rres\src\rres.h">
+      <Filter>Extras Headers</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\raylib-extra-shims\src\physac.c">
       <Filter>Extras Sources</Filter>
     </ClCompile>
     <ClCompile Include="..\raylib-extra-shims\src\raygui.c">
+      <Filter>Extras Sources</Filter>
+    </ClCompile>
+    <ClCompile Include="..\raylib-extra-shims\src\rres.c">
       <Filter>Extras Sources</Filter>
     </ClCompile>
     <ClCompile Include="..\raylib\src\raudio.c">
