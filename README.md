@@ -34,6 +34,13 @@
 # 4.2.0-Alpha VERSIONS ARE WINDOWS X64 ***ONLY***!
 Please see https://github.com/NotNotTech/Raylib-CsLo/issues/23  I can not build **linux** or **osx** on my computer.  If you need these platforms, consider helping out.
 
+You can get the **PRE**-released:  https://www.nuget.org/packages/Raylib-CsLo/4.2.0-alpha1     Win_x64 only.  
+
+Highlights:
+- Linux and OSX builds needs someone to volunteer who knows how to build raylib+extras (bundled) on linux.  see https://github.com/NotNotTech/Raylib-CsLo/issues/23
+- There is a state corruption bug in the audio subsystem if you dispose of streaming audio.   see https://github.com/raysan5/raylib/issues/2714
+- now bundles `rres`
+
 
 
 # About
