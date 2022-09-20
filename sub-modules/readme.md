@@ -36,13 +36,12 @@ external resources needed for creating bindings.
   - `sudo apt update`
   - `sudo apt upgrade`
   - `sudo apt install gcc make g++` 
-  - `sudo apt install libx11-dev libxcursor-dev libxrandr-dev libxi-dev mesa-common-dev libglu1-mesa-dev`  from https://stackoverflow.com/questions/5299989/x11-xlib-h-not-found-in-ubuntu
-  - still didn't work, but this issue on `glfw` mentions:
-    - `sudo apt install libgl1-mesa-dev xorg-dev`
-      - https://github.com/go-gl/glfw/issues/158
-      - **It seems like maybe `xorg-dev` is all that's really needed**
-  - above worked
-  - build via ubuntu WSL `make config=release.dll_x64`
+  - `sudo apt install libx11-dev libxcursor-dev libxrandr-dev libxi-dev mesa-common-dev libglu1-mesa-dev`
+  - `sudo apt install libgl1-mesa-dev xorg-dev`
+  - `cd raylib/src`
+  - `make RAYLIB_LIBTYPE=SHARED RAYLIB_MODULE_RAYGUI=TRUE RAYLIB_MODULE_PHYSAC=TRUE`
+  - verify shared lib was built ok by inspecting the output of `nm libraylib.so.4.2.0`
+  
 
 
 # dev notes

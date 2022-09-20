@@ -8,7 +8,7 @@
 [![Chat on Discord](https://img.shields.io/badge/chat%20on-discord-7289DA)](https://discord.gg/raylib)
 # Table of Contents
 - [Table of Contents](#table-of-contents)
-- [4.2.0-Alpha VERSIONS ARE WINDOWS X64 ***ONLY***!](#420-alpha-versions-are-windows-x64-only)
+- [IMPORTANT: `Raylib-CsLo 4.2.0` VERSION IS `WIN_x64` AND `LINUX_x64`***ONLY***!](#important-raylib-cslo-420-version-is-win_x64-and-linux_x64only)
 - [About](#about)
   - [What is **Raylib**?](#what-is-raylib)
   - [Super easy to use for 2d!](#super-easy-to-use-for-2d)
@@ -31,15 +31,9 @@
 - [Todo](#todo)
 
 
-# 4.2.0-Alpha VERSIONS ARE WINDOWS X64 ***ONLY***!
-Please see https://github.com/NotNotTech/Raylib-CsLo/issues/23  I can not build **linux** or **osx** on my computer.  If you need these platforms, consider helping out.
-
-You can get the **PRE**-released:  https://www.nuget.org/packages/Raylib-CsLo/4.2.0-alpha1     Win_x64 only.  
-
-Highlights:
-- Linux and OSX builds needs someone to volunteer who knows how to build raylib+extras (bundled) on linux.  see https://github.com/NotNotTech/Raylib-CsLo/issues/23
-- There is a state corruption bug in the audio subsystem if you dispose of streaming audio.   see https://github.com/raysan5/raylib/issues/2714
-- now bundles `rres`
+# IMPORTANT: `Raylib-CsLo 4.2.0` VERSION IS `WIN_x64` AND `LINUX_x64`***ONLY***!
+- Please see https://github.com/NotNotTech/Raylib-CsLo/issues/23  I can not build **osx** on my computer.  If you need this platforms, consider helping out.   
+- Also FYI: There is a state corruption bug in the *native* audio subsystem if you dispose of streaming audio.   see https://github.com/raysan5/raylib/issues/2714
 
 
 
@@ -207,6 +201,7 @@ If you still think a PCL is what you need, raise an issue or email JasonS aat No
 
 # ChangeLog
 changelog for major releases.
+- **4.2.0**  (2022/09/20): Includes Linux binaries (Thanks `Peter0x44`).
 - **4.2.0-alpha1**  (2022/09/19): 
   -  fix marshalling of null strings passed to native code.  was marshalling as empty strings but instead should have been marshalling as NULL.   fixed.  see https://github.com/NotNotTech/Raylib-CsLo/issues/20
   -  include basic (unsafe) RRes bindings.  see https://github.com/NotNotTech/Raylib-CsLo/issues/19
