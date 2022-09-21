@@ -22,6 +22,8 @@
 - [Extras (1st person, 3rd person cameras)](#extras-1st-person-3rd-person-cameras)
 - [Usage Tips / FAQ](#usage-tips--faq)
 - [Known Issues:](#known-issues)
+- [TROUBLESHOOTING your game](#troubleshooting-your-game)
+  - [Frame stutters / hitching / spikes](#frame-stutters--hitching--spikes)
 - [How to Contribute](#how-to-contribute)
 - [Want to build from scratch?](#want-to-build-from-scratch)
 - [License options:  `MPL2.0` or `PCL`](#license-options--mpl20-or-pcl)
@@ -174,6 +176,14 @@ If you need a custom camera, check out the `Raylib-Extras-CsLo` project, which c
       global using TextureCubemap = Raylib_CsLo.Texture;
       global using Matrix = System.Numerics.Matrix4x4;
       ```
+
+# TROUBLESHOOTING your game
+
+## Frame stutters / hitching / spikes
+- Make sure the Garbage Collector isn't overwhelmed
+- Ensure your graphic drivers are up to date
+- **If using an Nvidia card**, read this: https://stackoverflow.com/questions/36959508/nvidia-graphics-driver-causing-noticeable-frame-stuttering
+  - TLDR: Poor driver support for OpenGl games.  In your driver settings, turn "Threaded Optimization" to `OFF`.
 
 # How to Contribute
 
