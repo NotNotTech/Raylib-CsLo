@@ -8,7 +8,7 @@
 [![Chat on Discord](https://img.shields.io/badge/chat%20on-discord-7289DA)](https://discord.gg/raylib)
 # Table of Contents
 - [Table of Contents](#table-of-contents)
-- [IMPORTANT: `Raylib-CsLo 4.2.0` VERSION IS `WIN_x64` AND `LINUX_x64`***ONLY***!](#important-raylib-cslo-420-version-is-win_x64-and-linux_x64only)
+- [IMPORTANT: `Raylib-CsLo 4.2.0` VERSION IS `WIN_x64` AND `LINUX_x64` ***ONLY***!](#important-raylib-cslo-420-version-is-win_x64-and-linux_x64-only)
 - [About](#about)
   - [What is **Raylib**?](#what-is-raylib)
   - [Super easy to use for 2d!](#super-easy-to-use-for-2d)
@@ -28,10 +28,9 @@
   - [Mozilla Public License 2.0 (**MPL**)](#mozilla-public-license-20-mpl)
   - [Private Commercial License (**PCL**)](#private-commercial-license-pcl)
 - [ChangeLog](#changelog)
-- [Todo](#todo)
 
 
-# IMPORTANT: `Raylib-CsLo 4.2.0` VERSION IS `WIN_x64` AND `LINUX_x64`***ONLY***!
+# IMPORTANT: `Raylib-CsLo 4.2.0` VERSION IS `WIN_x64` AND `LINUX_x64` ***ONLY***!
 - For OSX, use `4.0` package.
 - Please see https://github.com/NotNotTech/Raylib-CsLo/issues/23  I can not build **osx** on my computer.  If you need this platforms, consider helping out.   
 - Also FYI: There is a state corruption bug in the *native* audio subsystem if you dispose of streaming audio.   see https://github.com/raysan5/raylib/issues/2714
@@ -126,15 +125,15 @@ Here are links to most the examples.  The images/links probably won't work from 
 | ------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | Each binding is hand crafted with carefull design                   | Exact Bindings (Autogen) with wrappers to make C# usage nice.                                                                                                                     |
 | Bindings for `Raylib` and extras `RayMath`, `RlGl`.                 | Bindings for `Raylib` and all extras (`RayGui`, `Easings`, `Physac`, `RlGl`, `RayMath`)                                                                                           |
-| Optimized for normal C# usage                                       | Optimized for maximum performance and requires `unsafe`                                                                                                                           |
+| Optimized for normal C# usage                                       | Optimized for maximum performance and might require `unsafe`                                                                                                                           |
 | New Raylib version? Harder to detect breaking changes               | New Raylib version? Breaking changes are easy to spot and fix                                                                                                                     |
 | includes Intellisence docs                                          | No docs.  Use the [Cheatsheet](https://www.raylib.com/cheatsheet/cheatsheet.html) /          [Examples](https://github.com/NotNotTech/Raylib-CsLo/tree/main/Raylib-CsLo.Examples) |
-| has a long track record                                             | didn't exist till mid november 2021!                                                                                                                                              |
+| Born 2018-07                                             | Born 2021-11                                                                                                                                              |
 | [Lots of examples](https://github.com/ChrisDill/Raylib-cs-Examples) | [ALL 100+ Raylib examples](https://github.com/NotNotTech/Raylib-CsLo/tree/main/Raylib-CsLo.Examples)                                                                              |
-| zlib licensed                                                       | MPL 2.0 Licensed licensed                                                                                                                                                         |
+| zlib Licensed                                                       | MPL 2.0 Licensed                                                                                                                                                          |
 | [Nuget Package](https://www.nuget.org/packages/Raylib-cs/)          | [Nuget Package](https://www.nuget.org/packages/Raylib-CsLo)                                                                                                                       |
-| raylib 3.7.1 Stable                                                 | Raylib 4.0.0                                                                                                                                                                      |
-| lots of contribs                                                    | just little 'ol me                                                                                                                                                                |
+| Raylib 4.0                                                 | Raylib 4.2                                                                                                                                                                      |
+| lots of contribs                                                    | few contribs                                                                                                                                                                |
 
 # Extras (1st person, 3rd person cameras)
 If you need a custom camera, check out the `Raylib-Extras-CsLo` project, which contains a custom First Person Camera and Third Person Camera.  https://github.com/NotNotTech/Raylib-Extras-CsLo
@@ -220,13 +219,6 @@ changelog for major releases.
 - **4.0.0-alpha.2** (2021/11/18):  Model examples ported. AutoGen Bindings expanded to include all api's exposed by Raylib.dll (adding `RayMath`, `RlGl`)
 - **4.0.0-alpha.1** (2021/11/16):  all `Core` examples ported, so "feature complete" for the workflows used in those examples (and, complete only for those workflows)
 
-
-# Todo
-- soonish
-  - Improve XPlat:
-    - *pending.  will aim to have native binaries generated via github actions...*
-  - exit pre-release
-- later
   
   
 
