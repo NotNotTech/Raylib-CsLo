@@ -30,6 +30,8 @@ external resources needed for creating bindings.
 - after building, copy the raylib.dll/pdb to the runtimes folder, and root of raylib-cslo project folder too (for local debug).  also be sure to CLEAN output folders in VS to use the new dll!"
 
 ## LINUX build notes
+- thanks to `Peter0x44` for help on this. (2022-09@Discord-Raylib)
+- The workflow described here does not use `Premake` because that workflow broke when trying to build `4.2` for linux.
 - if on windows, can open this folder in WSL or container, then do the following steps.  (VSCode makes opening in wsl/container easy!)
 
 - needed to build for linux:
@@ -42,6 +44,20 @@ external resources needed for creating bindings.
   - `make RAYLIB_LIBTYPE=SHARED RAYLIB_MODULE_RAYGUI=TRUE RAYLIB_MODULE_PHYSAC=TRUE`
   - verify shared lib was built ok by inspecting the output of `nm libraylib.so.4.2.0`
   
+## MAC build notes
+- thanks to `Shpendicus` for this writeup. (2022-09@Discord-Raylib)
+- The workflow described here does not use `Premake` because I had no way to run it myself.
+1. Install latest xcode with homebre: (`brew doctor`)
+2. open up the shell terminal and enter 
+    ```
+    git clone https://github.com/raysan5/raylib
+    git clone https://github.com/raysan5/raygui
+    git clone https://github.com/raysan5/physac
+    cd raylib/src
+    make RAYLIB_LIBTYPE=SHARED RAYLIB_MODULE_RAYGUI=TRUE RAYLIB_MODULE_PHYSAC=TRUE
+    ```
+3. go the `raylib` folder inside `/usr/`
+and there u go deeper into the `/src` folder of raylib where u find the `.dylib `
 
 
 # dev notes

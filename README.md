@@ -10,7 +10,7 @@
 # Table of Contents
 
 - [Table of Contents](#table-of-contents)
-- [IMPORTANT: `Raylib-CsLo 4_2_*` VERSION IS `WIN_x64` AND `LINUX_x64` ***ONLY***](#important-raylib-cslo-4_2_-version-is-win_x64-and-linux_x64-only)
+- [IMPORTANT: `Raylib-CsLo 4_2_*` VERSION NOW INCLUDES `MAC_x64`](#important-raylib-cslo-4_2_-version-now-includes-mac_x64)
 - [About](#about)
   - [What is **Raylib**?](#what-is-raylib)
   - [Super easy to use for 2d](#super-easy-to-use-for-2d)
@@ -33,12 +33,10 @@
   - [Private Commercial License (**PCL**)](#private-commercial-license-pcl)
 - [ChangeLog](#changelog)
 
-# IMPORTANT: `Raylib-CsLo 4_2_*` VERSION IS `WIN_x64` AND `LINUX_x64` ***ONLY***
+# IMPORTANT: `Raylib-CsLo 4_2_*` VERSION NOW INCLUDES `MAC_x64` 
 
-- For OSX, use `4.0` package.
-- Please see <https://github.com/NotNotTech/Raylib-CsLo/issues/23>  I can not build **osx** on my computer.  If you need this platforms, consider helping out.
-- Also FYI: There is a state corruption bug in the *native* audio subsystem if you dispose of streaming audio.   see <https://github.com/raysan5/raylib/issues/2714>
-
+- Win, Linux, and Mac should all work now (x64)  If not, you can use the `4.0` release as a backup.
+- Thanks to `Peter0x44` and `Shpendicus` for help building linux and mac binaries.
 
 # About
 
@@ -236,12 +234,12 @@ If you still think a PCL is what you need, raise an issue or email JasonS aat No
 
 changelog for major releases.
 
+- **4.2.0.3**  (2022/09/22): Includes Mac x64 binaries (Thanks `Shpendicus`).
 - **4.2.0**  (2022/09/20): Includes Linux binaries (Thanks `Peter0x44`).
 - **4.2.0-alpha1**  (2022/09/19):
   - fix marshalling of null strings passed to native code.  was marshalling as empty strings but instead should have been marshalling as NULL.   fixed.  see <https://github.com/NotNotTech/Raylib-CsLo/issues/20>
-  - include basic (unsafe) RRes bindings.  see <https://github.com/NotNotTech/Raylib-CsLo/issues/19>
 - **4.2.0-alpha0**  (2022/09/19): Update to `Raylib4.2`. Bugs:
-  - Native binaries only build for Win_x64.  No binaries for linux or osx.  Use the `4.0` nuget package until someone contribs the Raylib native build for those platforms.
+  - ~~Native binaries only build for Win_x64.  No binaries for linux or osx.  Use the `4.0` nuget package until someone contribs the Raylib native build for those platforms.~~ (fixed 4.2.0.3)
   - *[Raylib Native Regression Bug]* Memory corruption in the Streaming Audio system.  Causes corruption of Native Raylib state upon closing a streaming session.   This is a bug in the native code, so we need to await an upstream fix.   see <https://github.com/raysan5/raylib/issues/2714>
 - **4.0.0-rc.5.0** (2021/12/15):  No breaking changes. Broaden DotNet support to Net5+, etc (via NetStandard 2.1)
 - **4.0.0-rc.4.0** (2021/12/04):  No breaking changes. Cleanup and change license from LGPL to MPL, because LGPL doesn't allow private static linking.
