@@ -125,6 +125,7 @@ Here are links to most the examples.  The images/links probably won't work from 
 
 | [`Raylib-Cs`](https://github.com/ChrisDill/Raylib-cs)               | `Raylib-CsLo`                                                                                                                                                                     |
 | ------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| ***An artisanal, bespoke binding+wrapper.***                  | ***A cold, calculating robo-binding.***                                                                                                                       |
 | Each binding is hand crafted with carefull design                   | Exact Bindings (Autogen) with wrappers to make C# usage nice.                                                                                                                     |
 | Bindings for `Raylib` and extras `RayMath`, `RlGl`.                 | Bindings for `Raylib` and all extras (`RayGui`, `Easings`, `Physac`, `RlGl`, `RayMath`)                                                                                           |
 | Optimized for normal C# usage                                       | Optimized for maximum performance and might require `unsafe`                                                                                                                           |
