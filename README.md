@@ -127,7 +127,7 @@ You can build the native binaries for whatever platform you need.  Please see th
 
 # Examples
 
-Here are links to most the examples.  The images/links probably won't work from Nuget.  [Visit the Github Repo to see it properly.](https://github.com/NotNotTech/Raylib-CsLo)
+Here are links to most the examples.
 
 | [`Core`](https://github.com/NotNotTech/Raylib-CsLo/tree/main/Raylib-CsLo.Examples/Core/)                                                 | [`Shapes`](https://github.com/NotNotTech/Raylib-CsLo/tree/main/Raylib-CsLo.Examples/Shapes/)                                                   | [`Textures`](https://github.com/NotNotTech/Raylib-CsLo/tree/main/Raylib-CsLo.Examples/Textures/)                                                     | [`Text`](https://github.com/NotNotTech/Raylib-CsLo/tree/main/Raylib-CsLo.Examples/Text/)                                                 | [`Models`](https://github.com/NotNotTech/Raylib-CsLo/tree/main/Raylib-CsLo.Examples/Models/)                                                   | [`Shaders`](https://github.com/NotNotTech/Raylib-CsLo/tree/main/Raylib-CsLo.Examples/Shaders/)                                                    | [`Audio`](https://github.com/NotNotTech/Raylib-CsLo/tree/main/Raylib-CsLo.Examples/Audio/)                                                  | [`Physics`](https://github.com/NotNotTech/Raylib-CsLo/tree/main/Raylib-CsLo.Examples/Physics/)                                                    |
 | -------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------- |
@@ -178,6 +178,7 @@ If you need a custom camera, check out the `Raylib-Extras-CsLo` project, which c
 
 # Known Issues
 
+- `Audio`: **v4.2 Regression Bug**.  There is a state corruption bug in the *native* audio subsystem if you dispose of streaming audio.  You may encounter this if you use multiple windows and audio streaming. see this [tracking issue](https://github.com/NotNotTech/Raylib-CsLo/issues/22) for more info.
 - `RayGui`: be sure to call `RayGui.GuiLoadStyleDefault();` right after you `InitWindow()`.  This is needed to initialize the gui properly.  If you don't, if you close a raylib window and then open a new one (inside the same app), the gui will be broken.
 - The `Text.Unicode` example doesn't render unicode properly.  Maybe the required font is missing, maybe there is a bug in the example (Utf16 to Utf8 conversion) or maybe there is a bug in Raylib.  A hunch: I think it's probably due to the fonts not including unicode characters, but I didn't investigate further.
 - Native Memory allocation functions are not ported:  use `System.Runtime.InteropServices.NativeMemory.Alloc()` instead
