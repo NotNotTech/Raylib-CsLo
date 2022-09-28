@@ -1,0 +1,81 @@
+on:
+  push:
+  workflow_dispatch:
+defaults:
+  run:
+    shell: bash
+jobs:
+  build:
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        os:
+          - macos-latest
+          - ubuntu-latest
+          - windows-latest
+        include:
+          - os: macos-latest
+            output: build/raylib/libraylib.dylib
+          - os: ubuntu-latest
+            output: build/raylib/libraylib.so
+          - os: windows-latest
+            output: build/raylib/Release/raylib.dll
+    steps:
+      - name: checkout repository
+        uses: actions/checkout@v3
+        with:
+          submodules: true
+
+      - name: setup linux dependencies
+        if: matrix.os == 'ubuntu-latest'
+        run: |
+          sudo apt install -y \
+            libasound2-dev \
+            mesa-common-dev \
+            libx11-dev \
+            libxrandr-dev \
+            libxi-dev xorg-dev \
+            libgl1-mesa-dev \
+            libglu1-mesa-dev
+
+      - name: build raylib
+        working-directory: sub-modules/raylib
+        run: |
+          cmake -B build \
+            -D CMAKE_BUILD_TYPE=Release \
+            -D BUILD_SHARED_LIBS=On \
+            -D BUILD_EXAMPLES=Off
+          cmake --build build --config Release
+          cp ${{ matrix.output }} ${GITHUB_WORKSPACE}
+
+      - name: upload artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: ${{ matrix.os }}
+          path: ${{ matrix.output }}
+
+  push:
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+      - name: checkout repository
+        uses: actions/checkout@v3
+
+      - name: download macos build
+        uses: actions/download-artifact@v3
+        with:
+          name: macos-latest
+
+      - name: download ubuntu build
+        uses: actions/download-artifact@v3
+        with:
+          name: ubuntu-latest
+
+      - name: download windows build
+        uses: actions/download-artifact@v3
+        with:
+          name: windows-latest
+
+      - name: check files
+        run: ls
