@@ -45,6 +45,7 @@ jobs:
       - name: build raylib
         working-directory: sub-modules/raylib
         run: |
+          git apply ../raylib.patch
           cmake -B build \
             -D CMAKE_BUILD_TYPE=Release \
             -D BUILD_SHARED_LIBS=On \
