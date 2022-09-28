@@ -16,11 +16,14 @@ jobs:
           - windows-latest
         include:
           - os: macos-latest
-            output: build/raylib/libraylib.dylib
+            output-directory: build/raylib
+            output-name: libraylib.dylib
           - os: ubuntu-latest
-            output: build/raylib/libraylib.so
+            output-directory: build/raylib
+            output-name: libraylib.so
           - os: windows-latest
-            output: build/raylib/Release/raylib.dll
+            output-directory: build/raylib/Release
+            output-name: raylib.dll
     steps:
       - name: checkout repository
         uses: actions/checkout@v3
@@ -47,13 +50,13 @@ jobs:
             -D BUILD_SHARED_LIBS=On \
             -D BUILD_EXAMPLES=Off
           cmake --build build --config Release
-          cp ${{ matrix.output }} ${GITHUB_WORKSPACE}
+          cp ${{ matrix.output-directory }}/${{ matrix.output-name }} ${GITHUB_WORKSPACE}
 
       - name: upload artifact
         uses: actions/upload-artifact@v3
         with:
           name: ${{ matrix.os }}
-          path: ${{ matrix.output }}
+          path: ${{ matrix.output-name }}
 
   push:
     needs: build
