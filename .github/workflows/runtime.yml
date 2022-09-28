@@ -69,16 +69,22 @@ jobs:
         uses: actions/download-artifact@v3
         with:
           name: macos-latest
+          path: Raylib-CsLo/runtimes/osx-x64/native
 
       - name: download ubuntu build
         uses: actions/download-artifact@v3
         with:
           name: ubuntu-latest
+          path: Raylib-CsLo/runtimes/linux-x64/native
 
       - name: download windows build
         uses: actions/download-artifact@v3
         with:
           name: windows-latest
+          path: Raylib-CsLo/runtimes/win-x64/native
 
-      - name: check files
-        run: ls
+      - name: push changes
+        uses: stefanzweifel/git-auto-commit-action@v4.14.1
+        with:
+          commit_message: update runtimes
+          file_pattern: Raylib-CsLo/runtimes/**/native
