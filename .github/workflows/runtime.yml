@@ -1,0 +1,90 @@
+on:
+  workflow_dispatch:
+defaults:
+  run:
+    shell: bash
+jobs:
+  build:
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        os:
+          - macos-latest
+          - ubuntu-latest
+          - windows-latest
+        include:
+          - os: macos-latest
+            output-directory: build/raylib
+            output-name: libraylib.dylib
+          - os: ubuntu-latest
+            output-directory: build/raylib
+            output-name: libraylib.so
+          - os: windows-latest
+            output-directory: build/raylib/Release
+            output-name: raylib.dll
+    steps:
+      - name: checkout repository
+        uses: actions/checkout@v3
+        with:
+          submodules: true
+
+      - name: setup linux dependencies
+        if: matrix.os == 'ubuntu-latest'
+        run: |
+          sudo apt install -y \
+            libasound2-dev \
+            mesa-common-dev \
+            libx11-dev \
+            libxrandr-dev \
+            libxi-dev xorg-dev \
+            libgl1-mesa-dev \
+            libglu1-mesa-dev
+
+      - name: build raylib
+        working-directory: sub-modules/raylib
+        run: |
+          git apply ../raylib.patch
+          cmake -B build \
+            -D CMAKE_BUILD_TYPE=Release \
+            -D BUILD_SHARED_LIBS=On \
+            -D BUILD_EXAMPLES=Off
+          cmake --build build --config Release
+          cp ${{ matrix.output-directory }}/${{ matrix.output-name }} ${GITHUB_WORKSPACE}
+
+      - name: upload artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: ${{ matrix.os }}
+          path: ${{ matrix.output-name }}
+
+  push:
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+      - name: checkout repository
+        uses: actions/checkout@v3
+
+      - name: download macos build
+        uses: actions/download-artifact@v3
+        with:
+          name: macos-latest
+          path: Raylib-CsLo/runtimes/osx-x64/native
+
+      - name: download ubuntu build
+        uses: actions/download-artifact@v3
+        with:
+          name: ubuntu-latest
+          path: Raylib-CsLo/runtimes/linux-x64/native
+
+      - name: download windows build
+        uses: actions/download-artifact@v3
+        with:
+          name: windows-latest
+          path: Raylib-CsLo/runtimes/win-x64/native
+
+      - name: push changes
+        uses: stefanzweifel/git-auto-commit-action@v4.14.1
+        with:
+          commit_message: update runtimes
+          file_pattern: Raylib-CsLo/runtimes/**/native

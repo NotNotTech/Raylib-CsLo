@@ -118,16 +118,11 @@
     </ItemGroup>
 
     <ItemGroup>
-        <None Remove="raylib.pdb" />
-    </ItemGroup>
-
-    <ItemGroup>
-        <Content Include="raylib.dll">
-            <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-        </Content>
-        <Content Include="raylib.pdb">
-            <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-        </Content>
+      <Content Include="runtimes/**" Link="%(Filename)%(Extension)">
+        <PackagePath>runtimes/</PackagePath>
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+        <Pack>false</Pack>
+      </Content>
     </ItemGroup>
 
     <ItemGroup>
