@@ -119,6 +119,7 @@
 
     <ItemGroup>
         <None Remove="raylib.pdb" />
+        <None Remove="runtimes\osx-arm64\native\readme.md" />
     </ItemGroup>
 
     <ItemGroup>
