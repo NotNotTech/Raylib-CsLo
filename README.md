@@ -10,7 +10,7 @@
 # Table of Contents
 
 - [Table of Contents](#table-of-contents)
-- [IMPORTANT: `Raylib-CsLo 4_2_*` VERSION NOW INCLUDES `MAC_x64`](#important-raylib-cslo-4_2_-version-now-includes-mac_x64)
+- [IMPORTANT: `Raylib-CsLo 4_2_*` VERSION NOW INCLUDES `MAC_arm64` (M1) and `MAC_x64`](#important-raylib-cslo-4_2_-version-now-includes-mac_arm64-m1-and-mac_x64)
 - [About](#about)
   - [What is **Raylib**?](#what-is-raylib)
   - [Super easy to use for 2d](#super-easy-to-use-for-2d)
@@ -29,12 +29,11 @@
 - [How to Contribute](#how-to-contribute)
 - [Want to build from scratch?](#want-to-build-from-scratch)
 - [License options: MPL or PCL](#license-options-mpl-or-pcl)
-  - [Mozilla Public License 2_0 (**MPL**)](#mozilla-public-license-2_0-mpl)
+  - [Mozilla Public License 2\_0 (**MPL**)](#mozilla-public-license-2_0-mpl)
   - [Private Commercial License (**PCL**)](#private-commercial-license-pcl)
 - [ChangeLog](#changelog)
 
-# IMPORTANT: `Raylib-CsLo 4_2_*` VERSION NOW INCLUDES `MAC_x64` 
-
+# IMPORTANT: `Raylib-CsLo 4_2_*` VERSION NOW INCLUDES `MAC_arm64` (M1) and `MAC_x64`
 - Win, Linux, and Mac should all work now (x64)  If not, you can use the `4.0` release as a backup.
 - Thanks to `Peter0x44` and `Shpendicus` for help building linux and mac binaries.
 
@@ -235,6 +234,7 @@ If you still think a PCL is what you need, raise an issue or email JasonS aat No
 
 changelog for major releases.
 
+- **4.2.0.4**  (2022/09/22): Includes Mac arm64 (M1) binaries (Thanks `Shpendicus`).
 - **4.2.0.3**  (2022/09/22): Includes Mac x64 binaries (Thanks `Shpendicus`).
 - **4.2.0**  (2022/09/20): Includes Linux binaries (Thanks `Peter0x44`).
 - **4.2.0-alpha1**  (2022/09/19):
