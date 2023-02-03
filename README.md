@@ -10,7 +10,7 @@
 # Table of Contents
 
 - [Table of Contents](#table-of-contents)
-- [IMPORTANT: `Raylib-CsLo 4_2_*` VERSION NOW INCLUDES `MAC_arm64` (M1) and `MAC_x64`](#important-raylib-cslo-4_2_-version-now-includes-mac_arm64-m1-and-mac_x64)
+- [Mac M1 is now supported](#mac-m1-is-now-supported)
 - [About](#about)
   - [What is **Raylib**?](#what-is-raylib)
   - [Super easy to use for 2d](#super-easy-to-use-for-2d)
@@ -33,9 +33,9 @@
   - [Private Commercial License (**PCL**)](#private-commercial-license-pcl)
 - [ChangeLog](#changelog)
 
-# IMPORTANT: `Raylib-CsLo 4_2_*` VERSION NOW INCLUDES `MAC_arm64` (M1) and `MAC_x64`
-- Win, Linux, and Mac should all work now (x64)  If not, you can use the `4.0` release as a backup.
-- Thanks to `Peter0x44` and `Shpendicus` for help building linux and mac binaries.
+# Mac M1 is now supported
+`v4.2.0.5` should now include full osx support, both x64 and arm64, which includes supporting the M1.   
+If you test on the M1 and have problems, please raise an issue.
 
 # About
 
@@ -234,7 +234,7 @@ If you still think a PCL is what you need, raise an issue or email JasonS aat No
 
 changelog for major releases.
 
-- **4.2.0.4**  (2022/09/22): Includes Mac arm64 (M1) binaries (Thanks `Shpendicus`).
+- **4.2.0.5**  (2023/01/31): Includes Mac arm64 (M1) binaries (Thanks `Shpendicus`).
 - **4.2.0.3**  (2022/09/22): Includes Mac x64 binaries (Thanks `Shpendicus`).
 - **4.2.0**  (2022/09/20): Includes Linux binaries (Thanks `Peter0x44`).
 - **4.2.0-alpha1**  (2022/09/19):
