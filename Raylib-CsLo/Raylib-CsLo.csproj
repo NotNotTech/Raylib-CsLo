@@ -20,7 +20,7 @@
         <RepositoryUrl>https://github.com/NotNotTech/Raylib-CsLo</RepositoryUrl>
         <PackageReadmeFile>README.md</PackageReadmeFile>
         <PackageIcon>raylib-cslo_128x128.png</PackageIcon>
-        <Version>4.2.0.5-alpha1</Version>
+        <Version>4.2.0.5</Version>
         <PackageReleaseNotes>Release Notes: add mac-arm64 (M1) support</PackageReleaseNotes>
         <Authors>Novaleaf</Authors>
         <Company>NotNotTech</Company>

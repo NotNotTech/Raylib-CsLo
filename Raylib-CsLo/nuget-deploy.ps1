@@ -61,4 +61,5 @@ dotnet nuget push "$NugetPackage" --source https://api.nuget.org/v3/index.json -
 
 popd
 Write-Output "********  PUBLISH DONE! ******** "
+read-host "Press any key to exit"
 
