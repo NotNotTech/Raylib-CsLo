@@ -28,6 +28,7 @@
   - [Frame stutters, hitching, spikes](#frame-stutters-hitching-spikes)
 - [How to Contribute](#how-to-contribute)
 - [Want to build from scratch?](#want-to-build-from-scratch)
+  - [yoink the native binary instead](#yoink-the-native-binary-instead)
 - [License options: MPL or PCL](#license-options-mpl-or-pcl)
   - [Mozilla Public License 2\_0 (**MPL**)](#mozilla-public-license-2_0-mpl)
   - [Private Commercial License (**PCL**)](#private-commercial-license-pcl)
@@ -216,6 +217,11 @@ If you need a custom camera, check out the `Raylib-Extras-CsLo` project, which c
 # Want to build from scratch?
 
 check out the readme under the `binding-gen` folder
+
+## yoink the native binary instead
+If there is a platform that doesn't work due to no native binary being shipped with the Raylib-CsLo nuget package, 
+you should just be able to yoink the official raylib native library [...like from here](https://github.com/raysan5/raylib/releases/tag/4.2.0) and if it's put in the right folder location (output folder), 
+raylib-cslo can use it, assuming it's named properly.   If you do this you need to be aware that the various raylib-extras will not be available, but everything else should work.
 
 # License options: MPL or PCL
 
