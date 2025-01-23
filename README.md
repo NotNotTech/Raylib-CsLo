@@ -1,3 +1,13 @@
+# Archived (2025-01-23)
+In 2023 I made the decision to stop C# development using Raylib:
+- Raylib is made for Cpp, and it's evolution over time results in many breaking changes for bindings such as Raylib-CsLo
+- A bug in NVidia OpenGL drivers caused frame stutter when using Raylib.  Troubleshooting/solving this took a month, and was an incredible burnout. (TLDR; Turn NVidia Thread Optimization off)
+- Godot 4.x supports C# reasonably well
+
+During 2023-2024 I attempted to find anybody in the community interested in taking over the project.  While a few people decided to fork CsLo, nobody expressed interest in taking it over directly.
+
+
+
 | [![Raylib-CsLo-Logo](https://raw.githubusercontent.com/NotNotTech/Raylib-CsLo/main/meta/logos/raylib-cslo_128x128.png)](https://github.com/NotNotTech/Raylib-CsLo) |
 | ------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
 
